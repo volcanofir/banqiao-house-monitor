@@ -3,13 +3,13 @@ import json
 import logging
 import requests
 import urllib3
+import re
 from bs4 import BeautifulSoup
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from flask import Flask
 from threading import Thread
 
-# 徹底停用所有 SSL 安全警告
 urllib3.disable_warnings()
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -22,7 +22,13 @@ TARGET_STREETS = [
     "翠華街", "林森街", "萬安街", "光復街"
 ]
 
+# 修正：使用 591 買屋列表頁面網址
+SEARCH_591_URL = "https://sale.591.com.tw/?shType=list&regionid=3&section=26&sort=firstRow_desc"
 SEARCH_SINYI_URL = "https://www.sinyi.com.tw/buy/list/NewTaipei-city/Banqiao-district/date-desc/1"
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+}
 
 app_flask = Flask(__name__)
 @app_flask.route('/')
@@ -49,43 +55,32 @@ def matches_target_street(text):
 def fetch_591_cases():
     cases = []
     status_log = ""
-    api_url = "https://house.591.com.tw/stat/v1/web/list"
-    params = {
-        "region": 3,
-        "section": 26,
-        "type": 1,
-        "firstRow": 0,
-        "totalRows": 50,
-        "sort": "firstRow_desc"
-    }
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
-        "Device": "pc"
-    }
     try:
-        # 強制 verify=False 直接忽視 SSL 憑證問題
-        res = requests.get(api_url, headers=headers, params=params, timeout=10, verify=False)
+        res = requests.get(SEARCH_591_URL, headers=HEADERS, timeout=10, verify=False)
         if res.status_code == 200:
-            data = res.json()
-            items = data.get("data", {}).get("house_list", [])
-            for item in items:
-                title = item.get("title", "")
-                address = item.get("address", "")
-                price = f"{item.get('price')}萬"
-                houseid = item.get("houseid") or item.get("id")
-                url = f"https://sale.591.com.tw/home/{houseid}"
-                
-                full_text = f"{title} {address}"
-                is_matched = matches_target_street(full_text)
-                
-                cases.append({
-                    "source": "591房屋",
-                    "title": title,
-                    "address": address if address else "板橋區",
-                    "price": price,
-                    "url": url,
-                    "matched": is_matched
-                })
+            match = re.search(r'window\.__INITIAL_STATE__\s*=\s*({.*?});', res.text)
+            if match:
+                data = json.loads(match.group(1))
+                items = data.get("list", {}).get("data", [])
+                for item in items:
+                    title = item.get("title", "")
+                    address = item.get("address", "")
+                    price = f"{item.get('price')}萬"
+                    url = f"https://sale.591.com.tw/home/{item.get('houseid')}"
+                    
+                    full_text = f"{title} {address}"
+                    is_matched = matches_target_street(full_text)
+                    
+                    cases.append({
+                        "source": "591房屋",
+                        "title": title,
+                        "address": address if address else "新北市板橋區",
+                        "price": price,
+                        "url": url,
+                        "matched": is_matched
+                    })
+            else:
+                status_log = "591 網頁資料解析失敗"
         else:
             status_log = f"591 HTTP {res.status_code}"
     except Exception as e:
@@ -96,11 +91,8 @@ def fetch_591_cases():
 def fetch_sinyi_cases():
     cases = []
     status_log = ""
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
-    }
     try:
-        res = requests.get(SEARCH_SINYI_URL, headers=headers, timeout=10, verify=False)
+        res = requests.get(SEARCH_SINYI_URL, headers=HEADERS, timeout=10, verify=False)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             links = soup.find_all("a", href=True)
