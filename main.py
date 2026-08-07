@@ -14,7 +14,8 @@ TARGET_STREETS = [
     "中山路二段", "三民路一段", "三民路二段", "翠華街", "林森街", "萬安街", "光復街"
 ]
 
-SEARCH_SINYI_URL = "https://www.sinyi.com.tw/buy/list/NewTaipei-city/Banqiao-district/default-desc/1"
+# 改為 date-desc 依最新上架排序
+SEARCH_SINYI_URL = "https://www.sinyi.com.tw/buy/list/NewTaipei-city/Banqiao-district/date-desc/1"
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept-Language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
@@ -28,7 +29,15 @@ def matches_target_street(text):
 def fetch_591_cases():
     cases = []
     api_url = "https://house.591.com.tw/stat/v1/web/list"
-    params = {"region": 3, "section": 26, "type": 1, "firstRow": 0, "totalRows": 50}
+    # 加入 sort: "firstRow_desc" 確保抓取最新上架物件
+    params = {
+        "region": 3,
+        "section": 26,
+        "type": 1,
+        "firstRow": 0,
+        "totalRows": 50,
+        "sort": "firstRow_desc"
+    }
     try:
         res = requests.get(api_url, headers=HEADERS, params=params, timeout=10)
         if res.status_code == 200:
@@ -106,7 +115,6 @@ async def do_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(reply_msg, disable_web_page_preview=True)
 
 def main():
-    # 刪除殘留的 Webhook 綁定，改回純長輪詢
     requests.get(f"https://api.telegram.org/bot{TG_TOKEN}/deleteWebhook")
     
     app = Application.builder().token(TG_TOKEN).build()
