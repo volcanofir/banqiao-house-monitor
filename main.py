@@ -3,8 +3,8 @@ import json
 import requests
 from bs4 import BeautifulSoup
 
-ACCESS_TOKEN = os.environ.get("LINE_ACCESS_TOKEN")
-USER_ID = os.environ.get("LINE_USER_ID")
+TG_TOKEN = os.environ.get("TG_TOKEN")
+TG_CHAT_ID = os.environ.get("TG_CHAT_ID")
 HISTORY_FILE = "history.json"
 
 TARGET_REGION_NAME = "板橋區"
@@ -38,32 +38,24 @@ def save_history(history):
     with open(HISTORY_FILE, "w", encoding="utf-8") as f:
         json.dump(history, f, ensure_ascii=False, indent=2)
 
-def send_line_message(message):
-    if not ACCESS_TOKEN or not USER_ID:
-        print("未設定 LINE_ACCESS_TOKEN 或 LINE_USER_ID，測試輸出：")
+def send_telegram_message(message):
+    if not TG_TOKEN or not TG_CHAT_ID:
+        print("未設定 TG_TOKEN 或 TG_CHAT_ID，測試輸出：")
         print(message)
         return
         
-    url = "https://api.line.me/v2/bot/message/push"
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {ACCESS_TOKEN}"
-    }
+    url = f"https://api.telegram.org/bot{TG_TOKEN}/sendMessage"
     payload = {
-        "to": USER_ID,
-        "messages": [
-            {
-                "type": "text",
-                "text": message
-            }
-        ]
+        "chat_id": TG_CHAT_ID,
+        "text": message,
+        "disable_web_page_preview": False
     }
     try:
-        res = requests.post(url, headers=headers, json=payload, timeout=5)
+        res = requests.post(url, json=payload, timeout=5)
         if res.status_code != 200:
-            print(f"LINE 發送失敗: {res.text}")
+            print(f"Telegram 發送失敗: {res.text}")
     except Exception as e:
-        print(f"LINE 發送異常: {e}")
+        print(f"Telegram 發送異常: {e}")
 
 def matches_target_street(text):
     if not text:
@@ -154,13 +146,13 @@ def main():
         if case["id"] not in history:
             new_found_count += 1
             msg = (
-                f"\n🏠 【{case['source']}】新案件上架！\n"
+                f"🏠 【{case['source']}】新案件上架！\n"
                 f"標題：{case['title']}\n"
                 f"地址：{case['address']}\n"
                 f"總價：{case['price']}\n"
                 f"連結：{case['url']}"
             )
-            send_line_message(msg)
+            send_telegram_message(msg)
             updated_history.append(case["id"])
             
     if new_found_count > 0:
