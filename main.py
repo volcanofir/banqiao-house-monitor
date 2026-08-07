@@ -2,14 +2,15 @@ import os
 import json
 import logging
 import requests
-import ssl
+import urllib3
 from bs4 import BeautifulSoup
-from requests.adapters import HTTPAdapter
-from urllib3.poolmanager import PoolManager
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from flask import Flask
 from threading import Thread
+
+# 徹底停用所有 SSL 安全警告
+urllib3.disable_warnings()
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
@@ -22,26 +23,6 @@ TARGET_STREETS = [
 ]
 
 SEARCH_SINYI_URL = "https://www.sinyi.com.tw/buy/list/NewTaipei-city/Banqiao-district/date-desc/1"
-
-# --- 徹底停用 SSL 驗證，解決 SSL 報錯問題 ---
-class SSLAdapter(HTTPAdapter):
-    def init_poolmanager(self, *args, **kwargs):
-        ctx = ssl.create_default_context()
-        ctx.check_hostname = False
-        ctx.verify_mode = ssl.CERT_NONE
-        kwargs['ssl_context'] = ctx
-        return super().init_poolmanager(*args, **kwargs)
-
-def get_safe_session():
-    s = requests.Session()
-    s.mount('https://', SSLAdapter())
-    s.headers.update({
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
-    })
-    return s
-# ---------------------------------------------
 
 app_flask = Flask(__name__)
 @app_flask.route('/')
@@ -68,8 +49,6 @@ def matches_target_street(text):
 def fetch_591_cases():
     cases = []
     status_log = ""
-    session = get_safe_session()
-    
     api_url = "https://house.591.com.tw/stat/v1/web/list"
     params = {
         "region": 3,
@@ -79,11 +58,13 @@ def fetch_591_cases():
         "totalRows": 50,
         "sort": "firstRow_desc"
     }
-    
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+        "Device": "pc"
+    }
     try:
-        session.get("https://sale.591.com.tw", timeout=10)
-        res = session.get(api_url, params=params, timeout=10)
-        
+        # 強制 verify=False 直接忽視 SSL 憑證問題
+        res = requests.get(api_url, headers=headers, params=params, timeout=10, verify=False)
         if res.status_code == 200:
             data = res.json()
             items = data.get("data", {}).get("house_list", [])
@@ -106,19 +87,20 @@ def fetch_591_cases():
                     "matched": is_matched
                 })
         else:
-            status_log = f"591 回傳 HTTP {res.status_code}"
+            status_log = f"591 HTTP {res.status_code}"
     except Exception as e:
-        status_log = f"591 存取異常: {e}"
+        status_log = f"591: {e}"
         
     return cases, status_log
 
 def fetch_sinyi_cases():
     cases = []
     status_log = ""
-    session = get_safe_session()
-    
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+    }
     try:
-        res = session.get(SEARCH_SINYI_URL, timeout=10)
+        res = requests.get(SEARCH_SINYI_URL, headers=headers, timeout=10, verify=False)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             links = soup.find_all("a", href=True)
@@ -131,9 +113,8 @@ def fetch_sinyi_cases():
                     
                     full_url = f"https://www.sinyi.com.tw{href}" if href.startswith("/") else href
                     parent_text = link.parent.text if link.parent else title
-                    grand_parent_text = link.parent.parent.text if link.parent and link.parent.parent else parent_text
                     
-                    is_matched = matches_target_street(grand_parent_text) or matches_target_street(title)
+                    is_matched = matches_target_street(parent_text) or matches_target_street(title)
                     
                     if is_strictly_banqiao(title) and not any(c["url"] == full_url for c in cases):
                         cases.append({
@@ -145,9 +126,9 @@ def fetch_sinyi_cases():
                             "matched": is_matched
                         })
         else:
-            status_log = f"信義回傳 HTTP {res.status_code}"
+            status_log = f"信義 HTTP {res.status_code}"
     except Exception as e:
-        status_log = f"信義存取異常: {e}"
+        status_log = f"信義: {e}"
         
     return cases, status_log
 
@@ -167,12 +148,11 @@ async def do_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_msg = f"⚠️ 指定路段目前無最新上架，以下為【板橋區最新物件（共抓取 {len(all_cases)} 筆）】：\n\n"
         display_cases = all_cases[:5]
     else:
-        err_msg = "⚠️ 抓取失敗紀錄：\n"
+        err_msg = "⚠️ 抓取狀態紀錄：\n"
         if log_591:
             err_msg += f"- {log_591}\n"
         if log_sinyi:
             err_msg += f"- {log_sinyi}\n"
-        err_msg += "\n請稍等 1 分鐘後重新嘗試。"
         await update.message.reply_text(err_msg)
         return
 
