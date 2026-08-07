@@ -10,7 +10,6 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 TG_TOKEN = os.environ.get("TG_TOKEN")
 
-# 包含所有指定路段，並補齊中文數字、阿拉伯數字與無段號簡寫
 TARGET_STREETS = [
     "中山路二段", "中山路2段", "中山路",
     "三民路一段", "三民路1段", "三民路二段", "三民路2段", "三民路",
@@ -108,7 +107,7 @@ async def do_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_msg = f"🏠 【板橋指定路段】最新物件（共 {len(matched_cases)} 筆）：\n\n"
         display_cases = matched_cases
     else:
-        reply_msg = "⚠️ 未發現完全符合指定路段的案件，以下為【板橋區最新上架物件】：\n\n"
+        reply_msg = "⚠️ 指定路段最新 50 筆內無新案件，以下為【板橋區最新上架物件】：\n\n"
         display_cases = all_cases[:5]
 
     for idx, case in enumerate(display_cases, 1):
