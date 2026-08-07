@@ -9,12 +9,14 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 TG_TOKEN = os.environ.get("TG_TOKEN")
-TARGET_REGION_NAME = "板橋區"
+
+# 包含所有指定路段，並補齊中文數字、阿拉伯數字與無段號簡寫
 TARGET_STREETS = [
-    "中山路二段", "三民路一段", "三民路二段", "翠華街", "林森街", "萬安街", "光復街"
+    "中山路二段", "中山路2段", "中山路",
+    "三民路一段", "三民路1段", "三民路二段", "三民路2段", "三民路",
+    "翠華街", "林森街", "萬安街", "光復街"
 ]
 
-# 改為 date-desc 依最新上架排序
 SEARCH_SINYI_URL = "https://www.sinyi.com.tw/buy/list/NewTaipei-city/Banqiao-district/date-desc/1"
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -29,7 +31,6 @@ def matches_target_street(text):
 def fetch_591_cases():
     cases = []
     api_url = "https://house.591.com.tw/stat/v1/web/list"
-    # 加入 sort: "firstRow_desc" 確保抓取最新上架物件
     params = {
         "region": 3,
         "section": 26,
@@ -46,16 +47,17 @@ def fetch_591_cases():
             for item in items:
                 title = item.get("title", "")
                 address = item.get("address", "")
-                if not (matches_target_street(address) or matches_target_street(title)):
-                    continue
                 price = f"{item.get('price')}萬"
                 url = f"https://sale.591.com.tw/home/{item.get('houseid')}"
+                
+                is_matched = matches_target_street(address) or matches_target_street(title)
                 cases.append({
                     "source": "591房屋",
                     "title": title,
                     "address": address,
                     "price": price,
-                    "url": url
+                    "url": url,
+                    "matched": is_matched
                 })
     except Exception as e:
         print(f"591 抓取異常: {e}")
@@ -77,16 +79,17 @@ def fetch_sinyi_cases():
                 url = f"https://www.sinyi.com.tw{href}" if href.startswith("/") else href
                 address_elem = card.select_one(".buy-list-address") or card.select_one("span[class*='address']")
                 address = address_elem.text.strip() if address_elem else ""
-                if not (matches_target_street(address) or matches_target_street(title)):
-                    continue
                 price_elem = card.select_one(".buy-list-price") or card.select_one("span[class*='price']")
                 price = price_elem.text.strip().replace("\n", "") if price_elem else "未知"
+                
+                is_matched = matches_target_street(address) or matches_target_street(title)
                 cases.append({
                     "source": "信義房屋",
                     "title": title,
                     "address": address,
                     "price": price,
-                    "url": url
+                    "url": url,
+                    "matched": is_matched
                 })
     except Exception as e:
         print(f"信義房屋 抓取異常: {e}")
@@ -99,12 +102,16 @@ async def do_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
     cases_sinyi = fetch_sinyi_cases()
     all_cases = cases_591 + cases_sinyi
 
-    if not all_cases:
-        await update.message.reply_text("目前未發現指定路段的最新上架物件。")
-        return
+    matched_cases = [c for c in all_cases if c["matched"]]
 
-    reply_msg = f"🏠 【板橋指定路段】最新物件查詢結果（共 {len(all_cases)} 筆）：\n\n"
-    for idx, case in enumerate(all_cases, 1):
+    if matched_cases:
+        reply_msg = f"🏠 【板橋指定路段】最新物件（共 {len(matched_cases)} 筆）：\n\n"
+        display_cases = matched_cases
+    else:
+        reply_msg = "⚠️ 未發現完全符合指定路段的案件，以下為【板橋區最新上架物件】：\n\n"
+        display_cases = all_cases[:5]
+
+    for idx, case in enumerate(display_cases, 1):
         reply_msg += (
             f"{idx}. [{case['source']}] {case['title']}\n"
             f"📍 地址：{case['address']}\n"
