@@ -1,10 +1,8 @@
 import os
 import json
 import logging
-import asyncio
 import requests
 from bs4 import BeautifulSoup
-from flask import Flask, request
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
@@ -21,8 +19,6 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept-Language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
 }
-
-app_flask = Flask(__name__)
 
 def matches_target_street(text):
     if not text:
@@ -109,30 +105,16 @@ async def do_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     await update.message.reply_text(reply_msg, disable_web_page_preview=True)
 
-tg_app = Application.builder().token(TG_TOKEN).build()
-tg_app.add_handler(CommandHandler(["start", "check", "search"], do_search))
-tg_app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, do_search))
+def main():
+    # 刪除殘留的 Webhook 綁定，改回純長輪詢
+    requests.get(f"https://api.telegram.org/bot{TG_TOKEN}/deleteWebhook")
+    
+    app = Application.builder().token(TG_TOKEN).build()
+    app.add_handler(CommandHandler(["start", "check", "search"], do_search))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, do_search))
 
-@app_flask.route('/', methods=['GET'])
-def health():
-    return "OK", 200
-
-@app_flask.route('/webhook', methods=['POST'])
-def webhook():
-    if request.method == "POST":
-        try:
-            json_data = request.get_json(force=True)
-            update = Update.de_json(json_data, tg_app.bot)
-            
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-            loop.run_until_complete(tg_app.initialize())
-            loop.run_until_complete(tg_app.process_update(update))
-            loop.close()
-        except Exception as e:
-            print("Webhook 處理錯誤:", e)
-        return "OK", 200
+    print("Telegram 機器人已成功啟動 Polling...")
+    app.run_polling(drop_pending_updates=True)
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    app_flask.run(host="0.0.0.0", port=port)
+    main()
