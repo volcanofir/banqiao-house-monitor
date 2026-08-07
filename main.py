@@ -48,25 +48,30 @@ def matches_target_street(text):
 def fetch_591_cases():
     cases = []
     status_log = ""
-    # 直連 591 App 列表資料 API（無需解析 HTML）
-    api_url = "https://house.591.com.tw/stat/v1/web/list"
+    # 使用 591 最新買屋列表 API
+    api_url = "https://sale.591.com.tw/home/search/list"
     params = {
-        "region": 3,
-        "section": 26,
-        "type": 1,
-        "firstRow": 0,
-        "totalRows": 30,
-        "sort": "firstRow_desc"
+        "type": "1",
+        "regionid": "3",
+        "section": "26",
+        "firstRow": "0",
+        "totalRows": "30",
+        "order": "posttime_desc"
     }
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
-        "X-Requested-With": "XMLHttpRequest"
+        "X-Requested-With": "XMLHttpRequest",
+        "Referer": "https://sale.591.com.tw/"
     }
     try:
-        res = requests.get(api_url, headers=headers, params=params, timeout=10, verify=False)
+        s = requests.Session()
+        # 先打首頁建立 Session Cookie
+        s.get("https://sale.591.com.tw", headers=headers, timeout=5, verify=False)
+        res = s.get(api_url, headers=headers, params=params, timeout=10, verify=False)
+        
         if res.status_code == 200:
             data = res.json()
-            items = data.get("data", {}).get("house_list", [])
+            items = data.get("data", {}).get("house_list", []) or data.get("data", {}).get("data", [])
             for item in items:
                 title = item.get("title", "")
                 address = item.get("address", "")
@@ -86,7 +91,7 @@ def fetch_591_cases():
                     "matched": is_matched
                 })
         else:
-            status_log = f"591 API 回傳 {res.status_code}"
+            status_log = f"591 HTTP {res.status_code}"
     except Exception as e:
         status_log = f"591 異常: {e}"
         
