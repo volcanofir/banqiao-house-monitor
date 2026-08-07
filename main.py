@@ -3,10 +3,10 @@ import json
 import logging
 import requests
 from bs4 import BeautifulSoup
+from flask import Flask, request
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
-# 設定紀錄檔
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 TG_TOKEN = os.environ.get("TG_TOKEN")
@@ -20,6 +20,8 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept-Language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
 }
+
+app_flask = Flask(__name__)
 
 def matches_target_street(text):
     if not text:
@@ -106,19 +108,22 @@ async def do_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     await update.message.reply_text(reply_msg, disable_web_page_preview=True)
 
-def main():
-    if not TG_TOKEN:
-        print("未設定 TG_TOKEN，無法啟動 Telegram Bot！")
-        return
+tg_app = Application.builder().token(TG_TOKEN).build()
+tg_app.add_handler(CommandHandler(["start", "check", "search"], do_search))
+tg_app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, do_search))
 
-    app = Application.builder().token(TG_TOKEN).build()
+@app_flask.route('/', methods=['GET'])
+def health():
+    return "OK", 200
 
-    # 監聽指令與任何文字訊息
-    app.add_handler(CommandHandler(["start", "check", "search"], do_search))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, do_search))
-
-    print("Telegram 機器人啟動成功，等待使用者輸入指令...")
-    app.run_polling()
+@app_flask.route('/webhook', methods=['POST'])
+async def webhook():
+    if request.method == "POST":
+        update = Update.de_json(request.get_json(force=True), tg_app.bot)
+        await tg_app.initialize()
+        await tg_app.process_update(update)
+        return "OK", 200
 
 if __name__ == "__main__":
-    main()
+    port = int(os.environ.get("PORT", 10000))
+    app_flask.run(host="0.0.0.0", port=port)
