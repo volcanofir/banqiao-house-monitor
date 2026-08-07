@@ -19,13 +19,14 @@ TARGET_STREETS = [
     "翠華街", "林森街", "萬安街", "光復街"
 ]
 
+# 使用網頁代理跳過 Cloudflare/IP 阻擋
+PROXY_PREFIX = "https://api.allorigins.win/raw?url="
+
 SEARCH_591_URL = "https://sale.591.com.tw/?shType=list&regionid=3&section=26&sort=firstRow_desc"
 SEARCH_SINYI_URL = "https://www.sinyi.com.tw/buy/list/NewTaipei-city/Banqiao-district/date-desc/1"
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-    "Accept-Language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
 }
 
 app_flask = Flask(__name__)
@@ -53,11 +54,11 @@ def matches_target_street(text):
 def fetch_591_cases():
     cases = []
     try:
-        session = requests.Session()
-        res = session.get(SEARCH_591_URL, headers=HEADERS, timeout=10)
+        # 透過免費 Proxy 轉發，避開 IP 封鎖
+        proxy_url = PROXY_PREFIX + requests.utils.quote(SEARCH_591_URL)
+        res = requests.get(proxy_url, headers=HEADERS, timeout=15)
         
         if res.status_code == 200:
-            # 從網頁源碼提取 591 內嵌的 JSON 資料
             match = re.search(r'window\.__INITIAL_STATE__\s*=\s*({.*?});', res.text)
             if match:
                 data = json.loads(match.group(1))
@@ -74,7 +75,7 @@ def fetch_591_cases():
                     cases.append({
                         "source": "591房屋",
                         "title": title,
-                        "address": address if address else "板橋區",
+                        "address": address if address else "新北市板橋區",
                         "price": price,
                         "url": url,
                         "matched": is_matched
@@ -86,8 +87,8 @@ def fetch_591_cases():
 def fetch_sinyi_cases():
     cases = []
     try:
-        session = requests.Session()
-        res = session.get(SEARCH_SINYI_URL, headers=HEADERS, timeout=10)
+        proxy_url = PROXY_PREFIX + requests.utils.quote(SEARCH_SINYI_URL)
+        res = requests.get(proxy_url, headers=HEADERS, timeout=15)
         
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
@@ -134,7 +135,7 @@ async def do_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_msg = f"⚠️ 指定路段目前無最新上架，以下為【板橋區最新物件（共抓取 {len(all_cases)} 筆）】：\n\n"
         display_cases = all_cases[:5]
     else:
-        reply_msg = "⚠️ 房產平台目前連線忙碌中，請過幾分鐘後再次嘗試查詢。"
+        reply_msg = "⚠️ 平台防爬機制較嚴格，請稍等 1 分鐘後再發送一次「查」。"
         await update.message.reply_text(reply_msg)
         return
 
