@@ -2,16 +2,14 @@ import os
 import json
 import logging
 import requests
-import cloudscraper
-import urllib3
+import ssl
 from bs4 import BeautifulSoup
+from requests.adapters import HTTPAdapter
+from urllib3.poolmanager import PoolManager
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from flask import Flask
 from threading import Thread
-
-# 停用 SSL 警告
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
@@ -24,6 +22,26 @@ TARGET_STREETS = [
 ]
 
 SEARCH_SINYI_URL = "https://www.sinyi.com.tw/buy/list/NewTaipei-city/Banqiao-district/date-desc/1"
+
+# --- 徹底停用 SSL 驗證，解決 SSL 報錯問題 ---
+class SSLAdapter(HTTPAdapter):
+    def init_poolmanager(self, *args, **kwargs):
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        kwargs['ssl_context'] = ctx
+        return super().init_poolmanager(*args, **kwargs)
+
+def get_safe_session():
+    s = requests.Session()
+    s.mount('https://', SSLAdapter())
+    s.headers.update({
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+    })
+    return s
+# ---------------------------------------------
 
 app_flask = Flask(__name__)
 @app_flask.route('/')
@@ -47,16 +65,10 @@ def matches_target_street(text):
         return False
     return any(street in text for street in TARGET_STREETS)
 
-def get_configured_scraper():
-    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
-    # 同時關閉憑證驗證與主機名檢查，徹底解決 SSL 報錯
-    scraper.verify = False
-    return scraper
-
 def fetch_591_cases():
     cases = []
     status_log = ""
-    scraper = get_configured_scraper()
+    session = get_safe_session()
     
     api_url = "https://house.591.com.tw/stat/v1/web/list"
     params = {
@@ -69,8 +81,8 @@ def fetch_591_cases():
     }
     
     try:
-        scraper.get("https://sale.591.com.tw", timeout=10)
-        res = scraper.get(api_url, params=params, timeout=10)
+        session.get("https://sale.591.com.tw", timeout=10)
+        res = session.get(api_url, params=params, timeout=10)
         
         if res.status_code == 200:
             data = res.json()
@@ -94,19 +106,19 @@ def fetch_591_cases():
                     "matched": is_matched
                 })
         else:
-            status_log = f"591 回傳狀態碼 {res.status_code}"
+            status_log = f"591 回傳 HTTP {res.status_code}"
     except Exception as e:
-        status_log = f"591 存取失敗: {e}"
+        status_log = f"591 存取異常: {e}"
         
     return cases, status_log
 
 def fetch_sinyi_cases():
     cases = []
     status_log = ""
-    scraper = get_configured_scraper()
+    session = get_safe_session()
     
     try:
-        res = scraper.get(SEARCH_SINYI_URL, timeout=10)
+        res = session.get(SEARCH_SINYI_URL, timeout=10)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             links = soup.find_all("a", href=True)
@@ -133,9 +145,9 @@ def fetch_sinyi_cases():
                             "matched": is_matched
                         })
         else:
-            status_log = f"信義回傳狀態碼 {res.status_code}"
+            status_log = f"信義回傳 HTTP {res.status_code}"
     except Exception as e:
-        status_log = f"信義存取失敗: {e}"
+        status_log = f"信義存取異常: {e}"
         
     return cases, status_log
 
@@ -155,12 +167,12 @@ async def do_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_msg = f"⚠️ 指定路段目前無最新上架，以下為【板橋區最新物件（共抓取 {len(all_cases)} 筆）】：\n\n"
         display_cases = all_cases[:5]
     else:
-        err_msg = "⚠️ 抓取失敗原因：\n"
+        err_msg = "⚠️ 抓取失敗紀錄：\n"
         if log_591:
             err_msg += f"- {log_591}\n"
         if log_sinyi:
             err_msg += f"- {log_sinyi}\n"
-        err_msg += "\n平台對雲端 IP 進行防護中，建議稍候嘗試。"
+        err_msg += "\n請稍等 1 分鐘後重新嘗試。"
         await update.message.reply_text(err_msg)
         return
 
