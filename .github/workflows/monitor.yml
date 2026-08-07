@@ -2,7 +2,6 @@ name: 板橋指定路段房屋監控
 
 on:
   schedule:
-    # 每天在台灣時間 10:00, 16:00, 21:00 各自動執行一次
     - cron: '0 2,8,13 * * *'
   workflow_dispatch:
 
@@ -27,8 +26,8 @@ jobs:
 
       - name: 執行監控爬蟲
         env:
-          LINE_ACCESS_TOKEN: ${{ secrets.LINE_ACCESS_TOKEN }}
-          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
         run: |
           python main.py
 
