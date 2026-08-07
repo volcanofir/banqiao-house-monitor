@@ -3,11 +3,15 @@ import json
 import logging
 import requests
 import cloudscraper
+import urllib3
 from bs4 import BeautifulSoup
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from flask import Flask
 from threading import Thread
+
+# 關閉 SSL 不安全連線警告
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
@@ -46,7 +50,7 @@ def matches_target_street(text):
 def fetch_591_cases():
     cases = []
     status_log = ""
-    # 使用 cloudscraper 模擬瀏覽器繞過 Cloudflare 驗證
+    # 建立繞過 Cloudflare 驗證的 scraper
     scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
     
     api_url = "https://house.591.com.tw/stat/v1/web/list"
@@ -60,9 +64,9 @@ def fetch_591_cases():
     }
     
     try:
-        # 先訪問首頁取得驗證 Token
-        scraper.get("https://sale.591.com.tw", timeout=10)
-        res = scraper.get(api_url, params=params, timeout=10)
+        # 加上 verify=False 繞過 SSL 憑證過濾
+        scraper.get("https://sale.591.com.tw", timeout=10, verify=False)
+        res = scraper.get(api_url, params=params, timeout=10, verify=False)
         
         if res.status_code == 200:
             data = res.json()
@@ -98,7 +102,7 @@ def fetch_sinyi_cases():
     scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
     
     try:
-        res = scraper.get(SEARCH_SINYI_URL, timeout=10)
+        res = scraper.get(SEARCH_SINYI_URL, timeout=10, verify=False)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             links = soup.find_all("a", href=True)
