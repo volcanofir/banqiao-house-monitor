@@ -2,7 +2,6 @@ import os
 import json
 import logging
 import requests
-import re
 from bs4 import BeautifulSoup
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
@@ -19,15 +18,7 @@ TARGET_STREETS = [
     "翠華街", "林森街", "萬安街", "光復街"
 ]
 
-# 使用網頁代理跳過 Cloudflare/IP 阻擋
-PROXY_PREFIX = "https://api.allorigins.win/raw?url="
-
-SEARCH_591_URL = "https://sale.591.com.tw/?shType=list&regionid=3&section=26&sort=firstRow_desc"
 SEARCH_SINYI_URL = "https://www.sinyi.com.tw/buy/list/NewTaipei-city/Banqiao-district/date-desc/1"
-
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
-}
 
 app_flask = Flask(__name__)
 @app_flask.route('/')
@@ -53,43 +44,57 @@ def matches_target_street(text):
 
 def fetch_591_cases():
     cases = []
+    # 使用 591 手機 App 專用 API，防爬限制最少
+    mobile_api = "https://m.591.com.tw/v1/house/list"
+    params = {
+        "type": "1",
+        "kind": "9",         # 買屋列表
+        "regionid": "3",      # 新北市
+        "section": "26",      # 板橋區
+        "order": "posttime_desc", # 最新發布排序
+        "page": "1",
+        "limit": "30"
+    }
+    headers = {
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1",
+        "X-Requested-With": "XMLHttpRequest",
+        "Referer": "https://m.591.com.tw/"
+    }
     try:
-        # 透過免費 Proxy 轉發，避開 IP 封鎖
-        proxy_url = PROXY_PREFIX + requests.utils.quote(SEARCH_591_URL)
-        res = requests.get(proxy_url, headers=HEADERS, timeout=15)
-        
+        res = requests.get(mobile_api, headers=headers, params=params, timeout=10)
         if res.status_code == 200:
-            match = re.search(r'window\.__INITIAL_STATE__\s*=\s*({.*?});', res.text)
-            if match:
-                data = json.loads(match.group(1))
-                items = data.get("list", {}).get("data", [])
-                for item in items:
-                    title = item.get("title", "")
-                    address = item.get("address", "")
-                    price = f"{item.get('price')}萬"
-                    url = f"https://sale.591.com.tw/home/{item.get('houseid')}"
-                    
-                    full_text = f"{title} {address}"
-                    is_matched = matches_target_street(full_text)
-                    
-                    cases.append({
-                        "source": "591房屋",
-                        "title": title,
-                        "address": address if address else "新北市板橋區",
-                        "price": price,
-                        "url": url,
-                        "matched": is_matched
-                    })
+            data = res.json()
+            items = data.get("data", {}).get("items", [])
+            for item in items:
+                title = item.get("title", "")
+                address = item.get("address", "") or item.get("section_name", "板橋區")
+                price = f"{item.get('price', '')}萬"
+                houseid = item.get("id") or item.get("houseid")
+                url = f"https://sale.591.com.tw/home/{houseid}" if houseid else "https://sale.591.com.tw"
+                
+                full_text = f"{title} {address}"
+                is_matched = matches_target_street(full_text)
+                
+                cases.append({
+                    "source": "591房屋",
+                    "title": title,
+                    "address": address,
+                    "price": price,
+                    "url": url,
+                    "matched": is_matched
+                })
     except Exception as e:
-        print(f"591 抓取異常: {e}")
+        print(f"591 手機 API 抓取異常: {e}")
     return cases
 
 def fetch_sinyi_cases():
     cases = []
+    headers = {
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    }
     try:
-        proxy_url = PROXY_PREFIX + requests.utils.quote(SEARCH_SINYI_URL)
-        res = requests.get(proxy_url, headers=HEADERS, timeout=15)
-        
+        res = requests.get(SEARCH_SINYI_URL, headers=headers, timeout=10)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             links = soup.find_all("a", href=True)
@@ -102,9 +107,8 @@ def fetch_sinyi_cases():
                     
                     full_url = f"https://www.sinyi.com.tw{href}" if href.startswith("/") else href
                     parent_text = link.parent.text if link.parent else title
-                    grand_parent_text = link.parent.parent.text if link.parent and link.parent.parent else parent_text
                     
-                    is_matched = matches_target_street(grand_parent_text) or matches_target_street(title)
+                    is_matched = matches_target_street(parent_text) or matches_target_street(title)
                     
                     if is_strictly_banqiao(title) and not any(c["url"] == full_url for c in cases):
                         cases.append({
@@ -132,10 +136,10 @@ async def do_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_msg = f"🏠 【板橋指定路段】最新物件（共 {len(matched_cases)} 筆）：\n\n"
         display_cases = matched_cases
     elif all_cases:
-        reply_msg = f"⚠️ 指定路段目前無最新上架，以下為【板橋區最新物件（共抓取 {len(all_cases)} 筆）】：\n\n"
+        reply_msg = f"⚠️ 指定路段目前無最新上架，以下為【板橋區最新物件】：\n\n"
         display_cases = all_cases[:5]
     else:
-        reply_msg = "⚠️ 平台防爬機制較嚴格，請稍等 1 分鐘後再發送一次「查」。"
+        reply_msg = "⚠️ 暫時無法取得物件，請稍後再試。"
         await update.message.reply_text(reply_msg)
         return
 
