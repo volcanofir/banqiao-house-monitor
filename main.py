@@ -10,7 +10,7 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 from flask import Flask
 from threading import Thread
 
-# 關閉 SSL 不安全連線警告
+# 停用 SSL 警告
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -47,11 +47,16 @@ def matches_target_street(text):
         return False
     return any(street in text for street in TARGET_STREETS)
 
+def get_configured_scraper():
+    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
+    # 同時關閉憑證驗證與主機名檢查，徹底解決 SSL 報錯
+    scraper.verify = False
+    return scraper
+
 def fetch_591_cases():
     cases = []
     status_log = ""
-    # 建立繞過 Cloudflare 驗證的 scraper
-    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
+    scraper = get_configured_scraper()
     
     api_url = "https://house.591.com.tw/stat/v1/web/list"
     params = {
@@ -64,9 +69,8 @@ def fetch_591_cases():
     }
     
     try:
-        # 加上 verify=False 繞過 SSL 憑證過濾
-        scraper.get("https://sale.591.com.tw", timeout=10, verify=False)
-        res = scraper.get(api_url, params=params, timeout=10, verify=False)
+        scraper.get("https://sale.591.com.tw", timeout=10)
+        res = scraper.get(api_url, params=params, timeout=10)
         
         if res.status_code == 200:
             data = res.json()
@@ -99,10 +103,10 @@ def fetch_591_cases():
 def fetch_sinyi_cases():
     cases = []
     status_log = ""
-    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
+    scraper = get_configured_scraper()
     
     try:
-        res = scraper.get(SEARCH_SINYI_URL, timeout=10, verify=False)
+        res = scraper.get(SEARCH_SINYI_URL, timeout=10)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
             links = soup.find_all("a", href=True)
