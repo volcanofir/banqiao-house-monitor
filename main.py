@@ -3,10 +3,23 @@ import json
 import logging
 import requests
 from bs4 import BeautifulSoup
-from flask import Flask, request
+from flask import Flask
+from threading import Thread
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
+# 1. 建立 Flask HTTP 服務（解決 Render No open ports 檢測）
+app_flask = Flask(__name__)
+
+@app_flask.route('/')
+def home():
+    return "Telegram Bot is Running!", 200
+
+def run_flask():
+    port = int(os.environ.get("PORT", 10000))
+    app_flask.run(host="0.0.0.0", port=port)
+
+# 2. Telegram Bot 爬蟲邏輯
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 TG_TOKEN = os.environ.get("TG_TOKEN")
@@ -20,8 +33,6 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept-Language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
 }
-
-app_flask = Flask(__name__)
 
 def matches_target_street(text):
     if not text:
@@ -108,22 +119,23 @@ async def do_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     await update.message.reply_text(reply_msg, disable_web_page_preview=True)
 
-tg_app = Application.builder().token(TG_TOKEN).build()
-tg_app.add_handler(CommandHandler(["start", "check", "search"], do_search))
-tg_app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, do_search))
+def main():
+    if not TG_TOKEN:
+        print("未設定 TG_TOKEN，無法啟動 Telegram Bot！")
+        return
 
-@app_flask.route('/', methods=['GET'])
-def health():
-    return "OK", 200
+    # 在背景啟動 Flask Web 伺服器
+    t = Thread(target=run_flask)
+    t.daemon = True
+    t.start()
 
-@app_flask.route('/webhook', methods=['POST'])
-async def webhook():
-    if request.method == "POST":
-        update = Update.de_json(request.get_json(force=True), tg_app.bot)
-        await tg_app.initialize()
-        await tg_app.process_update(update)
-        return "OK", 200
+    # 啟動 Telegram Bot Polling 監聽
+    app_tg = Application.builder().token(TG_TOKEN).build()
+    app_tg.add_handler(CommandHandler(["start", "check", "search"], do_search))
+    app_tg.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, do_search))
+
+    print("Telegram 機器人啟動成功，等待使用者輸入指令...")
+    app_tg.run_polling()
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    app_flask.run(host="0.0.0.0", port=port)
+    main()
