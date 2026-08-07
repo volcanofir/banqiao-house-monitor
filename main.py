@@ -2,6 +2,7 @@ import os
 import json
 import logging
 import requests
+import re
 from bs4 import BeautifulSoup
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
@@ -18,8 +19,14 @@ TARGET_STREETS = [
     "翠華街", "林森街", "萬安街", "光復街"
 ]
 
-# 改用完整版信義房屋列表 API / 頁面網址
+SEARCH_591_URL = "https://sale.591.com.tw/?shType=list&regionid=3&section=26&sort=firstRow_desc"
 SEARCH_SINYI_URL = "https://www.sinyi.com.tw/buy/list/NewTaipei-city/Banqiao-district/date-desc/1"
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+}
 
 app_flask = Flask(__name__)
 @app_flask.route('/')
@@ -43,52 +50,35 @@ def matches_target_street(text):
         return False
     return any(street in text for street in TARGET_STREETS)
 
-def get_browser_session():
-    s = requests.Session()
-    s.headers.update({
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
-        "Accept-Language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
-        "Cache-Control": "max-age=0",
-        "Sec-Ch-Ua": '"Google Chrome";v="123", "Not:A-Brand";v="8", "Chromium";v="123"',
-        "Sec-Ch-Ua-Mobile": "?0",
-        "Sec-Ch-Ua-Platform": '"Windows"',
-        "Sec-Fetch-Dest": "document",
-        "Sec-Fetch-Mode": "navigate",
-        "Sec-Fetch-Site": "none",
-        "Sec-Fetch-User": "?1",
-        "Upgrade-Insecure-Requests": "1"
-    })
-    return s
-
 def fetch_591_cases():
     cases = []
-    api_url = "https://house.591.com.tw/stat/v1/web/list"
-    params = {"region": 3, "section": 26, "type": 1, "firstRow": 0, "totalRows": 50, "sort": "firstRow_desc"}
     try:
-        session = get_browser_session()
-        session.get("https://sale.591.com.tw", timeout=5)
-        res = session.get(api_url, params=params, timeout=10)
+        session = requests.Session()
+        res = session.get(SEARCH_591_URL, headers=HEADERS, timeout=10)
         
         if res.status_code == 200:
-            items = res.json().get("data", {}).get("house_list", [])
-            for item in items:
-                title = item.get("title", "")
-                address = item.get("address", "")
-                price = f"{item.get('price')}萬"
-                url = f"https://sale.591.com.tw/home/{item.get('houseid')}"
-                
-                full_text = f"{title} {address}"
-                is_matched = matches_target_street(full_text)
-                
-                cases.append({
-                    "source": "591房屋",
-                    "title": title,
-                    "address": address if address else "板橋區",
-                    "price": price,
-                    "url": url,
-                    "matched": is_matched
-                })
+            # 從網頁源碼提取 591 內嵌的 JSON 資料
+            match = re.search(r'window\.__INITIAL_STATE__\s*=\s*({.*?});', res.text)
+            if match:
+                data = json.loads(match.group(1))
+                items = data.get("list", {}).get("data", [])
+                for item in items:
+                    title = item.get("title", "")
+                    address = item.get("address", "")
+                    price = f"{item.get('price')}萬"
+                    url = f"https://sale.591.com.tw/home/{item.get('houseid')}"
+                    
+                    full_text = f"{title} {address}"
+                    is_matched = matches_target_street(full_text)
+                    
+                    cases.append({
+                        "source": "591房屋",
+                        "title": title,
+                        "address": address if address else "板橋區",
+                        "price": price,
+                        "url": url,
+                        "matched": is_matched
+                    })
     except Exception as e:
         print(f"591 抓取異常: {e}")
     return cases
@@ -96,16 +86,13 @@ def fetch_591_cases():
 def fetch_sinyi_cases():
     cases = []
     try:
-        session = get_browser_session()
-        # 存取信義房屋並模擬進入頁面
-        res = session.get(SEARCH_SINYI_URL, timeout=10)
+        session = requests.Session()
+        res = session.get(SEARCH_SINYI_URL, headers=HEADERS, timeout=10)
         
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
-            
-            # 全方位尋找房屋卡片
-            cards = soup.find_all("a", href=True)
-            for link in cards:
+            links = soup.find_all("a", href=True)
+            for link in links:
                 href = link.get("href", "")
                 if "/buy/house/" in href:
                     title = link.get("title") or link.text.strip()
@@ -113,8 +100,6 @@ def fetch_sinyi_cases():
                         continue
                     
                     full_url = f"https://www.sinyi.com.tw{href}" if href.startswith("/") else href
-                    
-                    # 取父層文字作為比對依據
                     parent_text = link.parent.text if link.parent else title
                     grand_parent_text = link.parent.parent.text if link.parent and link.parent.parent else parent_text
                     
@@ -149,7 +134,7 @@ async def do_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_msg = f"⚠️ 指定路段目前無最新上架，以下為【板橋區最新物件（共抓取 {len(all_cases)} 筆）】：\n\n"
         display_cases = all_cases[:5]
     else:
-        reply_msg = "⚠️ 房產平台目前對雲端 IP 發起防爬機制，請過幾分鐘後再次嘗試查詢。"
+        reply_msg = "⚠️ 房產平台目前連線忙碌中，請過幾分鐘後再次嘗試查詢。"
         await update.message.reply_text(reply_msg)
         return
 
