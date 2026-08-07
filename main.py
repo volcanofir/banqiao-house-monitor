@@ -13,8 +13,8 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 TG_TOKEN = os.environ.get("TG_TOKEN")
 
 TARGET_STREETS = [
-    "中山路二段", "中山路2段", "中山路",
-    "三民路一段", "三民路1段", "三民路二段", "三民路2段", "三民路",
+    "中山路二段", "中山路2段",
+    "三民路一段", "三民路1段", "三民路二段", "三民路2段",
     "翠華街", "林森街", "萬安街", "光復街"
 ]
 
@@ -33,8 +33,18 @@ def run_flask():
     port = int(os.environ.get("PORT", 10000))
     app_flask.run(host="0.0.0.0", port=port)
 
-def matches_target_street(text):
+# 嚴格過濾：必須包含「板橋」，且絕不能出現其他行政區
+def is_strictly_banqiao(text):
     if not text:
+        return False
+    # 出現其他行政區直接剔除
+    other_districts = ["永和", "中和", "土城", "新莊", "三重", "台北", "北市"]
+    if any(dist in text for dist in other_districts):
+        return False
+    return "板橋" in text
+
+def matches_target_street(text):
+    if not is_strictly_banqiao(text):
         return False
     return any(street in text for street in TARGET_STREETS)
 
@@ -51,8 +61,18 @@ def fetch_591_cases():
                 address = item.get("address", "")
                 price = f"{item.get('price')}萬"
                 url = f"https://sale.591.com.tw/home/{item.get('houseid')}"
-                is_matched = matches_target_street(address) or matches_target_street(title)
-                cases.append({"source": "591房屋", "title": title, "address": address, "price": price, "url": url, "matched": is_matched})
+                
+                full_text = f"板橋區 {title} {address}"
+                is_matched = matches_target_street(full_text)
+                
+                cases.append({
+                    "source": "591房屋",
+                    "title": title,
+                    "address": address,
+                    "price": price,
+                    "url": url,
+                    "matched": is_matched
+                })
     except Exception as e:
         print(f"591 抓取異常: {e}")
     return cases
@@ -63,31 +83,27 @@ def fetch_sinyi_cases():
         res = requests.get(SEARCH_SINYI_URL, headers=HEADERS, timeout=10)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
-            
-            # 使用更強大的全域搜尋方式定位信義房屋的物件超連結
             links = soup.find_all("a", href=True)
             for link in links:
                 href = link.get("href", "")
-                # 信義房屋物件網址格式通常為 /buy/house/XXXXX
                 if "/buy/house/" in href:
                     title = link.get("title") or link.text.strip()
                     if not title or len(title) < 4:
                         continue
                     
                     full_url = f"https://www.sinyi.com.tw{href}" if href.startswith("/") else href
-                    
-                    # 尋找同一張卡片區塊內的地址與價格
                     parent_card = link.find_parent("div")
-                    card_text = parent_card.text if parent_card else ""
+                    card_text = parent_card.text if parent_card else title
                     
+                    # 雙重比對
                     is_matched = matches_target_street(card_text) or matches_target_street(title)
+                    is_banqiao = is_strictly_banqiao(card_text) or is_strictly_banqiao(title)
                     
-                    # 避免重複抓取相同網址
-                    if not any(c["url"] == full_url for c in cases):
+                    if is_banqiao and not any(c["url"] == full_url for c in cases):
                         cases.append({
                             "source": "信義房屋",
-                            "title": title[:30], # 截取適當長度標題
-                            "address": "板橋區（詳見連結）",
+                            "title": title[:35],
+                            "address": "新北市板橋區",
                             "price": "點擊連結查看",
                             "url": full_url,
                             "matched": is_matched
@@ -103,14 +119,17 @@ async def do_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
     cases_sinyi = fetch_sinyi_cases()
     all_cases = cases_591 + cases_sinyi
 
+    # 1. 優先取「純板橋 + 指定路段」
     matched_cases = [c for c in all_cases if c["matched"]]
 
     if matched_cases:
         reply_msg = f"🏠 【板橋指定路段】最新物件（共 {len(matched_cases)} 筆）：\n\n"
         display_cases = matched_cases
     else:
+        # 2. 備用方案：只取純板橋區案件
+        banqiao_only = [c for c in all_cases if is_strictly_banqiao(f"{c['title']} {c['address']}")]
         reply_msg = "⚠️ 指定路段最新頁面內無精確匹配案件，以下為【板橋區最新上架物件】：\n\n"
-        display_cases = all_cases[:5]
+        display_cases = banqiao_only[:5]
 
     for idx, case in enumerate(display_cases, 1):
         reply_msg += f"{idx}. [{case['source']}] {case['title']}\n📍 地址：{case['address']}\n💰 總價：{case['price']}\n🔗 連結：{case['url']}\n\n"
