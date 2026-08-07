@@ -2,6 +2,7 @@ import os
 import json
 import logging
 import requests
+import cloudscraper
 from bs4 import BeautifulSoup
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
@@ -18,8 +19,7 @@ TARGET_STREETS = [
     "翠華街", "林森街", "萬安街", "光復街"
 ]
 
-# 信義房屋手機版網址（防爬較鬆）
-SEARCH_SINYI_URL = "https://m.sinyi.com.tw/buy/list/NewTaipei-city/Banqiao-district/date-desc/1"
+SEARCH_SINYI_URL = "https://www.sinyi.com.tw/buy/list/NewTaipei-city/Banqiao-district/date-desc/1"
 
 app_flask = Flask(__name__)
 @app_flask.route('/')
@@ -45,7 +45,10 @@ def matches_target_street(text):
 
 def fetch_591_cases():
     cases = []
-    # 591 Web 列表 API (帶上 Session 與真實模擬 Token)
+    status_log = ""
+    # 使用 cloudscraper 模擬瀏覽器繞過 Cloudflare 驗證
+    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
+    
     api_url = "https://house.591.com.tw/stat/v1/web/list"
     params = {
         "region": 3,
@@ -55,16 +58,11 @@ def fetch_591_cases():
         "totalRows": 50,
         "sort": "firstRow_desc"
     }
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
-        "X-Requested-With": "XMLHttpRequest",
-        "Device": "pc"
-    }
+    
     try:
-        s = requests.Session()
-        # 先存取首頁獲取基本 Cookie 繞過初步防禦
-        s.get("https://sale.591.com.tw", headers=headers, timeout=5)
-        res = s.get(api_url, headers=headers, params=params, timeout=10)
+        # 先訪問首頁取得驗證 Token
+        scraper.get("https://sale.591.com.tw", timeout=10)
+        res = scraper.get(api_url, params=params, timeout=10)
         
         if res.status_code == 200:
             data = res.json()
@@ -87,21 +85,22 @@ def fetch_591_cases():
                     "url": url,
                     "matched": is_matched
                 })
+        else:
+            status_log = f"591 回傳狀態碼 {res.status_code}"
     except Exception as e:
-        print(f"591 抓取異常: {e}")
-    return cases
+        status_log = f"591 存取失敗: {e}"
+        
+    return cases, status_log
 
 def fetch_sinyi_cases():
     cases = []
-    headers = {
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-    }
+    status_log = ""
+    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
+    
     try:
-        res = requests.get(SEARCH_SINYI_URL, headers=headers, timeout=10)
+        res = scraper.get(SEARCH_SINYI_URL, timeout=10)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, "html.parser")
-            # 解析信義房屋頁面所有房屋連結
             links = soup.find_all("a", href=True)
             for link in links:
                 href = link.get("href", "")
@@ -125,15 +124,18 @@ def fetch_sinyi_cases():
                             "url": full_url,
                             "matched": is_matched
                         })
+        else:
+            status_log = f"信義回傳狀態碼 {res.status_code}"
     except Exception as e:
-        print(f"信義房屋 抓取異常: {e}")
-    return cases
+        status_log = f"信義存取失敗: {e}"
+        
+    return cases, status_log
 
 async def do_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("🔍 正在即時抓取【板橋 591 與 信義房屋】最新物件，請稍候...")
     
-    cases_591 = fetch_591_cases()
-    cases_sinyi = fetch_sinyi_cases()
+    cases_591, log_591 = fetch_591_cases()
+    cases_sinyi, log_sinyi = fetch_sinyi_cases()
     all_cases = cases_591 + cases_sinyi
 
     matched_cases = [c for c in all_cases if c["matched"]]
@@ -142,11 +144,16 @@ async def do_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_msg = f"🏠 【板橋指定路段】最新物件（共 {len(matched_cases)} 筆）：\n\n"
         display_cases = matched_cases
     elif all_cases:
-        reply_msg = f"⚠️ 指定路段目前無最新上架，以下為【板橋區最新物件（共 {len(all_cases)} 筆）】：\n\n"
+        reply_msg = f"⚠️ 指定路段目前無最新上架，以下為【板橋區最新物件（共抓取 {len(all_cases)} 筆）】：\n\n"
         display_cases = all_cases[:5]
     else:
-        reply_msg = "⚠️ 平台目前連線忙碌中，請稍候 1~2 分鐘後重新嘗試。"
-        await update.message.reply_text(reply_msg)
+        err_msg = "⚠️ 抓取失敗原因：\n"
+        if log_591:
+            err_msg += f"- {log_591}\n"
+        if log_sinyi:
+            err_msg += f"- {log_sinyi}\n"
+        err_msg += "\n平台對雲端 IP 進行防護中，建議稍候嘗試。"
+        await update.message.reply_text(err_msg)
         return
 
     for idx, case in enumerate(display_cases, 1):
