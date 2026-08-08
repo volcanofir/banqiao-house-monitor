@@ -25,10 +25,12 @@ logging.basicConfig(
     level=logging.INFO,
 )
 logger = logging.getLogger("banqiao-house-bot")
+logging.getLogger("httpx").setLevel(logging.WARNING)
 
 TG_TOKEN = os.environ.get("TG_TOKEN")
 VERIFY_SSL = os.environ.get("VERIFY_SSL", "false").lower() == "true"
 MAX_RESULTS = int(os.environ.get("MAX_RESULTS", "10"))
+BOT_VERSION = "2026-08-09-591-fallback-v2"
 
 TARGET_STREETS = [
     "中山路二段",
@@ -49,6 +51,10 @@ OTHER_DISTRICTS = ("永和", "中和", "土城", "新莊", "三重", "台北", "
 SEARCH_SINYI_URL = "https://www.sinyi.com.tw/buy/list/NewTaipei-city/Banqiao-district/date-desc/1"
 SEARCH_591_API = "https://sale.591.com.tw/home/search/list"
 SEARCH_591_HOME = "https://sale.591.com.tw"
+SEARCH_591_FALLBACK_URLS = [
+    "https://sale.591.com.tw/list?regionid=3&section=26&order=posttime_desc",
+    "https://sale.591.com.tw/?regionid=3&section=26&order=posttime_desc",
+]
 
 app_flask = Flask(__name__)
 
@@ -136,6 +142,7 @@ def dedupe_cases(cases: Iterable[HouseCase]) -> list[HouseCase]:
 
 def fetch_591_cases() -> tuple[list[HouseCase], str]:
     cases: list[HouseCase] = []
+    logs: list[str] = []
     params = {
         "type": "1",
         "regionid": "3",
@@ -157,37 +164,100 @@ def fetch_591_cases() -> tuple[list[HouseCase], str]:
             timeout=12,
             verify=VERIFY_SSL,
         )
-        if response.status_code != 200:
-            return cases, f"591 HTTP {response.status_code}"
+        if response.status_code == 200:
+            payload = response.json()
+            data = payload.get("data", {})
+            items = data.get("house_list") or data.get("data") or []
 
-        payload = response.json()
-        data = payload.get("data", {})
-        items = data.get("house_list") or data.get("data") or []
+            for item in items:
+                title = normalize_text(item.get("title"))
+                address = normalize_text(item.get("address")) or "新北市板橋區"
+                price = format_price(item.get("price"))
+                house_id = item.get("houseid") or item.get("id")
+                if not title or not house_id:
+                    continue
 
-        for item in items:
-            title = normalize_text(item.get("title"))
-            address = normalize_text(item.get("address")) or "新北市板橋區"
-            price = format_price(item.get("price"))
-            house_id = item.get("houseid") or item.get("id")
-            if not title or not house_id:
-                continue
-
-            url = f"https://sale.591.com.tw/home/{house_id}"
-            full_text = f"{title} {address}"
-            cases.append(
-                HouseCase(
-                    source="591房屋",
-                    title=title,
-                    address=address,
-                    price=price,
-                    url=url,
-                    matched=matches_target_street(full_text, source_is_already_banqiao=True),
+                url = f"https://sale.591.com.tw/home/{house_id}"
+                full_text = f"{title} {address}"
+                cases.append(
+                    HouseCase(
+                        source="591房屋",
+                        title=title,
+                        address=address,
+                        price=price,
+                        url=url,
+                        matched=matches_target_street(full_text, source_is_already_banqiao=True),
+                    )
                 )
-            )
-        return dedupe_cases(cases), ""
+            return dedupe_cases(cases), ""
+
+        logs.append(f"591 API HTTP {response.status_code}")
+        fallback_cases, fallback_log = fetch_591_cases_from_html(session)
+        if fallback_cases:
+            return fallback_cases, fallback_log
+        if fallback_log:
+            logs.append(fallback_log)
+        return cases, "；".join(logs)
     except Exception as exc:
         logger.exception("591 fetch failed")
-        return cases, f"591 異常：{exc}"
+        try:
+            fallback_cases, fallback_log = fetch_591_cases_from_html(requests.Session())
+            if fallback_cases:
+                return fallback_cases, fallback_log
+            return cases, f"591 異常：{exc}；{fallback_log}"
+        except Exception:
+            return cases, f"591 異常：{exc}"
+
+
+def fetch_591_cases_from_html(session: requests.Session) -> tuple[list[HouseCase], str]:
+    cases: list[HouseCase] = []
+    logs: list[str] = []
+    link_pattern = re.compile(r"/home/(\d+)")
+
+    for search_url in SEARCH_591_FALLBACK_URLS:
+        try:
+            response = session.get(
+                search_url,
+                headers=default_headers(SEARCH_591_HOME),
+                timeout=12,
+                verify=VERIFY_SSL,
+            )
+            if response.status_code != 200:
+                logs.append(f"591 列表頁 HTTP {response.status_code}")
+                continue
+
+            soup = BeautifulSoup(response.text, "html.parser")
+            for link in soup.find_all("a", href=True):
+                href = normalize_text(link.get("href"))
+                match = link_pattern.search(href)
+                if not match:
+                    continue
+
+                title = normalize_text(link.get("title") or link.get_text(" ", strip=True))
+                parent_text = normalize_text(link.parent.get_text(" ", strip=True) if link.parent else title)
+                full_text = f"{title} {parent_text}"
+                if not title or not is_banqiao_text(full_text, source_is_already_banqiao=True):
+                    continue
+
+                house_id = match.group(1)
+                cases.append(
+                    HouseCase(
+                        source="591房屋",
+                        title=title[:40],
+                        address="新北市板橋區",
+                        price="點擊連結查看",
+                        url=f"https://sale.591.com.tw/home/{house_id}",
+                        matched=matches_target_street(full_text, source_is_already_banqiao=True),
+                    )
+                )
+
+            cases = dedupe_cases(cases)
+            if cases:
+                return cases, "591 API 失敗，已改用列表頁備援抓取"
+        except Exception as exc:
+            logs.append(f"591 列表頁異常：{exc}")
+
+    return [], "；".join(logs) or "591 API 與列表頁都沒有抓到資料"
 
 
 def walk_json(value: Any) -> Iterable[dict[str, Any]]:
@@ -338,6 +408,12 @@ async def show_help(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
+async def show_version(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not update.message:
+        return
+    await update.message.reply_text(f"Bot version: {BOT_VERSION}")
+
+
 def main():
     if not TG_TOKEN:
         raise RuntimeError("請先設定環境變數 TG_TOKEN")
@@ -348,6 +424,7 @@ def main():
     asyncio.set_event_loop(asyncio.new_event_loop())
     application = Application.builder().token(TG_TOKEN).build()
     application.add_handler(CommandHandler(["start", "help"], show_help))
+    application.add_handler(CommandHandler(["version"], show_version))
     application.add_handler(CommandHandler(["check", "search"], do_search))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, do_search))
 
