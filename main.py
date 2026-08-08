@@ -1,3 +1,4 @@
+import asyncio
 import html
 import json
 import logging
@@ -344,6 +345,7 @@ def main():
     requests.get(f"https://api.telegram.org/bot{TG_TOKEN}/deleteWebhook", timeout=8)
     Thread(target=run_flask, daemon=True).start()
 
+    asyncio.set_event_loop(asyncio.new_event_loop())
     application = Application.builder().token(TG_TOKEN).build()
     application.add_handler(CommandHandler(["start", "help"], show_help))
     application.add_handler(CommandHandler(["check", "search"], do_search))
