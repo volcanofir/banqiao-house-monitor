@@ -9,7 +9,7 @@ on:
       - ".github/workflows/test-591.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   test-591:
@@ -28,4 +28,14 @@ jobs:
         run: pip install requests beautifulsoup4
 
       - name: Test 591 street URLs
-        run: python scripts/test_591_streets.py
+        run: |
+          mkdir -p diagnostics
+          python scripts/test_591_streets.py | tee diagnostics/591_test.txt
+
+      - name: Save diagnostic result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add diagnostics/591_test.txt
+          git diff --cached --quiet || git commit -m "Update 591 diagnostic result"
+          git push
