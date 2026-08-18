@@ -29,9 +29,7 @@ OTHER_DISTRICTS = (
 )
 
 INVALID_MARKERS = ("案件已下架", "物件已下架", "找不到此案件", "此物件不存在", "頁面不存在", "物件不存在")
-SEARCH_591_API = "https://sale.591.com.tw/home/search/list"
-SEARCH_591_HOME = "https://sale.591.com.tw"
-SEARCH_591_MOBILE = "https://m.591.com.tw/v2/sale"
+SEARCH_591_HOME = "https://sale.591.com.tw/"
 
 
 def now_iso():
@@ -133,117 +131,178 @@ def dedupe_by_id(items):
     return output
 
 
-def fetch_591_old_api():
-    rows, logs = [], []
-    session = requests.Session()
-    headers = default_headers(SEARCH_591_HOME)
-    headers.update({"Accept": "application/json, text/javascript, */*; q=0.01", "X-Requested-With": "XMLHttpRequest"})
+def decode_js_string(value):
+    if value is None:
+        return ""
     try:
-        session.get(SEARCH_591_HOME, headers=default_headers(), timeout=10)
-    except Exception as exc:
-        logs.append(f"591 首頁連線失敗：{exc}")
-
-    seen = set()
-    for first_row in (0, 30, 60, 90, 120):
-        params = {"type": "1", "regionid": "3", "section": "26", "firstRow": str(first_row), "totalRows": "30", "order": "posttime_desc"}
-        try:
-            response = session.get(SEARCH_591_API, params=params, headers=headers, timeout=20)
-        except Exception as exc:
-            logs.append(f"591 舊 API 第 {first_row // 30 + 1} 頁連線失敗：{exc}")
-            return [], False, logs
-        if response.status_code != 200:
-            logs.append(f"591 舊 API 第 {first_row // 30 + 1} 頁 HTTP {response.status_code}")
-            return [], False, logs
-        try:
-            payload = response.json()
-        except Exception:
-            logs.append(f"591 舊 API 第 {first_row // 30 + 1} 頁 JSON 解析失敗")
-            return [], False, logs
-        data = payload.get("data", {}) if isinstance(payload, dict) else {}
-        items = data.get("house_list") or data.get("data") or []
-        if not isinstance(items, list):
-            items = []
-        page_new = 0
-        for item in items:
-            house_id = str(item.get("houseid") or item.get("id") or "").strip()
-            title = normalize_text(item.get("title"))
-            address = normalize_text(item.get("address")) or "新北市板橋區"
-            if not house_id or not title or house_id in seen:
-                continue
-            seen.add(house_id)
-            page_new += 1
-            road = match_road(f"{title} {address}", source_locked_to_banqiao=True)
-            if not road:
-                continue
-            rows.append({
-                "id": f"591:{house_id}", "source": "591", "houseId": house_id, "road": road,
-                "title": title, "address": address,
-                "price": format_price(item.get("price") or item.get("showprice")),
-                "size": format_area(item.get("area") or item.get("areaBuilding") or item.get("area_building")),
-                "url": f"https://sale.591.com.tw/home/house/detail/2/{house_id}.html",
-                "postTime": to_unix(item.get("posttime") or item.get("postTime")),
-            })
-        logs.append(f"591 舊 API 第 {first_row // 30 + 1} 頁：板橋 {len(items)}／新增 {page_new}")
-        if len(items) < 30 or page_new == 0:
-            break
-    return dedupe_by_id(rows), True, logs
+        return json.loads(f'"{value}"')
+    except Exception:
+        return normalize_text(value.replace(r"\/", "/").replace(r'\"', '"'))
 
 
-def parse_mobile_591(body):
-    pattern = re.compile(r'\{type:[^{}]*?houseid:(\d+)[\s\S]*?title:"((?:\\.|[^"])*)"[\s\S]*?posttime:(\d+)[\s\S]*?address:("((?:\\.|[^"])*)"|[A-Za-z_$][\w$]*)[\s\S]*?showprice:("((?:\\.|[^"])*)"|[A-Za-z_$][\w$]*)[\s\S]*?\}', re.S)
+def parse_591_script_objects(body):
+    pattern = re.compile(
+        r'\{type:[^{}]*?houseid:(\d+)[\s\S]*?title:"((?:\\.|[^"])*)"'
+        r'[\s\S]*?posttime:(\d+)[\s\S]*?address:("((?:\\.|[^"])*)"|[A-Za-z_$][\w$]*)'
+        r'[\s\S]*?showprice:("((?:\\.|[^"])*)"|[A-Za-z_$][\w$]*)[\s\S]*?\}',
+        re.S,
+    )
     rows = []
     for match in pattern.finditer(body):
         house_id = match.group(1)
-        title = bytes(match.group(2), "utf-8").decode("unicode_escape", errors="ignore")
+        title = normalize_text(decode_js_string(match.group(2)))
         raw_address = match.group(5)
-        address = bytes(raw_address, "utf-8").decode("unicode_escape", errors="ignore") if raw_address else "新北市板橋區"
+        address = normalize_text(decode_js_string(raw_address)) if raw_address else ""
         raw_price = match.group(7)
-        price = bytes(raw_price, "utf-8").decode("unicode_escape", errors="ignore") if raw_price else None
+        price = normalize_text(decode_js_string(raw_price)) if raw_price else None
         road = match_road(f"{title} {address}", source_locked_to_banqiao=True)
         if not road:
             continue
+        if not address:
+            address = f"新北市{road}"
         rows.append({
-            "id": f"591:{house_id}", "source": "591", "houseId": house_id, "road": road,
-            "title": normalize_text(title), "address": normalize_text(address) or "新北市板橋區",
-            "price": format_price(price), "size": format_area(match.group(0)),
-            "url": f"https://sale.591.com.tw/home/house/detail/2/{house_id}.html", "postTime": int(match.group(3)),
+            "id": f"591:{house_id}",
+            "source": "591",
+            "houseId": house_id,
+            "road": road,
+            "title": title or f"591案件 {house_id}",
+            "address": address,
+            "price": format_price(price),
+            "size": format_area(match.group(0)),
+            "url": f"https://sale.591.com.tw/home/house/detail/2/{house_id}.html",
+            "postTime": int(match.group(3)),
         })
-    return dedupe_by_id(rows)
+    return rows
 
 
-def fetch_591_mobile():
-    logs = []
-    for attempt, delay in enumerate((0, 15, 45), start=1):
-        if delay:
-            time.sleep(delay)
-        try:
-            response = requests.get(
-                SEARCH_591_MOBILE,
-                params={"regionid": "3", "sectionidStr": "26", "o": "32", "shType": "list"},
-                headers=default_headers("https://sale.591.com.tw/"),
-                timeout=30,
-            )
-        except Exception as exc:
-            logs.append(f"591 mobile 第 {attempt} 次連線失敗：{exc}")
+def parse_591_html_cards(body):
+    soup = BeautifulSoup(body, "html.parser")
+    rows = []
+    seen = set()
+
+    for link in soup.find_all("a", href=True):
+        href = normalize_text(link.get("href"))
+        match = re.search(r"/home/house/detail/2/(\d+)\.html", href)
+        if not match:
+            match = re.search(r"/home/(\d+)(?:$|[/?#])", href)
+        if not match:
             continue
-        if response.status_code != 200:
-            logs.append(f"591 mobile 第 {attempt} 次 HTTP {response.status_code}")
+
+        house_id = match.group(1)
+        if house_id in seen:
             continue
-        rows = parse_mobile_591(response.text)
-        logs.append(f"591 mobile 第 {attempt} 次：指定路段 {len(rows)} 筆")
-        return rows, True, logs
-    return [], False, logs
+
+        card = link
+        for _ in range(6):
+            if not card.parent:
+                break
+            card = card.parent
+            card_text = normalize_text(card.get_text(" ", strip=True))
+            if match_road(card_text, source_locked_to_banqiao=True):
+                break
+
+        card_text = normalize_text(card.get_text(" ", strip=True))
+        road = match_road(card_text, source_locked_to_banqiao=True)
+        if not road:
+            continue
+        if has_other_district(card_text):
+            continue
+
+        title = normalize_text(link.get("title") or link.get_text(" ", strip=True))
+        if not title or len(title) < 3:
+            title_node = card.find(["h2", "h3", "h4"])
+            title = normalize_text(title_node.get_text(" ", strip=True) if title_node else "")
+        if not title:
+            title = f"591案件 {house_id}"
+
+        price_match = re.search(r"([\d,]+(?:\.\d+)?)\s*萬", card_text)
+        area_match = re.search(r"([1-9]\d{0,2}(?:\.\d+)?)\s*坪", card_text)
+        address = f"新北市{road}"
+
+        rows.append({
+            "id": f"591:{house_id}",
+            "source": "591",
+            "houseId": house_id,
+            "road": road,
+            "title": title,
+            "address": address,
+            "price": f"{price_match.group(1)}萬" if price_match else None,
+            "size": f"{area_match.group(1)}坪" if area_match else None,
+            "url": href if href.startswith("http") else f"https://sale.591.com.tw{href}",
+            "postTime": None,
+        })
+        seen.add(house_id)
+
+    return rows
+
+
+def parse_591_html(body):
+    rows = parse_591_script_objects(body)
+    if rows:
+        return dedupe_by_id(rows)
+    return dedupe_by_id(parse_591_html_cards(body))
 
 
 def fetch_591():
-    rows, ok, logs = fetch_591_old_api()
-    if ok:
-        return rows, True, f"591 板橋資料池完成，指定路段 {len(rows)} 筆。", logs
-    mobile_rows, mobile_ok, mobile_logs = fetch_591_mobile()
-    logs.extend(mobile_logs)
-    if mobile_ok:
-        return mobile_rows, True, f"591 mobile 板橋資料池完成，指定路段 {len(mobile_rows)} 筆。", logs
-    return [], False, "591 本輪遭暫時封鎖，保留上一輪資料。", logs
+    """
+    跟信義相同概念：
+    直接抓一般售屋列表 HTML，先由 591 查詢條件鎖定新北市 + 板橋區，
+    再從頁面內容比對 7 條監控路段。
+    """
+    session = requests.Session()
+    logs = []
+    rows = []
+    seen_ids = set()
+    successful_pages = 0
+
+    for page_index, first_row in enumerate((0, 30, 60, 90, 120), start=1):
+        response = None
+        for attempt, delay in enumerate((0, 20, 60), start=1):
+            if delay:
+                time.sleep(delay)
+            params = {
+                "regionid": "3",
+                "section": "26",
+                "shType": "list",
+                "order": "posttime_desc",
+                "firstRow": str(first_row),
+            }
+            try:
+                response = session.get(
+                    SEARCH_591_HOME,
+                    params=params,
+                    headers=default_headers(SEARCH_591_HOME),
+                    timeout=30,
+                )
+            except Exception as exc:
+                logs.append(f"591 HTML 第 {page_index} 頁第 {attempt} 次連線失敗：{exc}")
+                continue
+
+            if response.status_code == 200:
+                break
+
+            logs.append(f"591 HTML 第 {page_index} 頁第 {attempt} 次 HTTP {response.status_code}")
+
+        if response is None or response.status_code != 200:
+            if page_index == 1:
+                return [], False, "591 一般板橋列表本輪遭暫時封鎖，保留上一輪資料。", logs
+            break
+
+        successful_pages += 1
+        page_rows = parse_591_html(response.text)
+        page_new = [item for item in page_rows if item["id"] not in seen_ids]
+        for item in page_new:
+            seen_ids.add(item["id"])
+        rows.extend(page_new)
+        logs.append(f"591 HTML 第 {page_index} 頁：解析 {len(page_rows)}／新增 {len(page_new)}")
+
+        if not page_rows or (page_index > 1 and not page_new):
+            break
+
+    rows = dedupe_by_id(rows)
+    if successful_pages:
+        return rows, True, f"591 一般板橋列表 HTML 完成，指定路段 {len(rows)} 筆。", logs
+    return [], False, "591 一般板橋列表本輪無法讀取，保留上一輪資料。", logs
 
 
 def fetch_sinyi():
