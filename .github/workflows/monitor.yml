@@ -51,3 +51,5 @@ jobs:
           git add docs/data/listings.json
           git diff --cached --quiet || git commit -m "Update monitored listings [skip ci]"
           git push
+
+      # First GitHub-only monitor run triggered after Pages enablement.
