@@ -1,11 +1,37 @@
 import json
 import time
+import uuid
 from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
 import monitor_pages as core
 from playwright.sync_api import sync_playwright
 
 API_591_V1 = "bff-house.591.com.tw/v1/touch/sale/list"
+API_591_V1_BASE = "https://bff-house.591.com.tw/v1/touch/sale/list"
+
+
+def static_api_template(street_id):
+    params = {
+        "type": "sale",
+        "dropDown": "1",
+        "version": "2017",
+        "firstRow": "0",
+        "category": "1",
+        "device_id": str(uuid.uuid4()),
+        "timestamp": str(int(time.time() * 1000)),
+        "__v__": "1",
+        "newPage": "1",
+        "newPageSize": "30",
+        "kind": "0",
+        "regionid": "3",
+        "sectionidStr": "26",
+        "o": "32",
+        "streetid": str(street_id),
+        "recom_community": "1",
+        "region_id": "3",
+        "device": "touch",
+    }
+    return f"{API_591_V1_BASE}?{urlencode(params)}"
 
 
 def build_api_url(template_url, street_id, first_row=0, page_no=1):
@@ -91,21 +117,30 @@ def fast_fetch_591():
             bootstrap_street = core.WATCH_591_STREETS[bootstrap_road]
             bootstrap_url = core.build_591_page_url(bootstrap_road, bootstrap_street)
             try:
-                page.goto(bootstrap_url, wait_until="domcontentloaded", timeout=25000)
+                page.goto(bootstrap_url, wait_until="domcontentloaded", timeout=20000)
             except Exception as exc:
-                logs.append(f"591 bootstrap 導航訊息：{exc}")
+                logs.append(f"591 session 暖機導航訊息：{exc}")
 
-            for _ in range(20):
+            for _ in range(10):
                 if captured_urls:
                     break
                 page.wait_for_timeout(500)
 
-            if not captured_urls:
-                browser.close()
-                return [], False, "591 無法取得列表 API，保留上一輪資料。", logs
+            if captured_urls:
+                template_url = captured_urls[-1]
+                logs.append("591 已從頁面取得 API 模板。")
+            else:
+                template_url = static_api_template(bootstrap_street)
+                logs.append("591 頁面未主動發出列表 XHR，改用已確認的固定 API 格式。")
 
-            template_url = captured_urls[-1]
-            logs.append("591 已建立單一瀏覽器 session，改用 BrowserContext request 查詢 7 路段。")
+            # Verify the template once before the seven-road loop.
+            verify_url = build_api_url(template_url, bootstrap_street, 0, 1)
+            _, verified = request_json(context, verify_url, logs, "591 API 模板驗證")
+            if not verified:
+                browser.close()
+                return [], False, "591 API 模板驗證失敗，保留上一輪資料。", logs
+
+            logs.append("591 session/API 已就緒，開始查詢 7 路段。")
 
             for road, street_id in core.WATCH_591_STREETS.items():
                 road_seen = set()
