@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#f5d331" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <title>Banqiao House Monitor</title>
+  <style>
+    :root{--cream:#fff8df;--paper:#fffef8;--yellow:#f5d331;--yellow2:#ffe88b;--green:#124b37;--green2:#236650;--red:#cf3f4a;--ink:#30312f;--muted:#756f64;--line:#e3ca73;--gray:#515861}
+    *{box-sizing:border-box} body{margin:0;background:var(--cream);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif} a{color:inherit}
+    header{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid #eee;padding:18px;text-align:center;font-weight:800}
+    main{width:min(1180px,calc(100% - 28px));margin:auto;padding:28px 0 60px}.hero{position:relative;overflow:hidden;border-radius:32px;background:var(--yellow);padding:34px}.hero:after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;right:-90px;top:-120px;background:rgba(255,238,158,.55)}.hero>*{position:relative;z-index:1}.eyebrow{font-size:13px;font-weight:900;letter-spacing:.18em;color:#a47700}.hero .eyebrow{letter-spacing:0;color:#315244;font-size:16px}.hero h1{font-size:clamp(36px,7vw,58px);line-height:1.08;color:var(--green);margin:14px 0 18px}.hero p{font-size:18px;line-height:1.9;color:#315244;max-width:850px}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}.metric{background:rgba(255,255,250,.94);border:1px solid #d6cda8;border-radius:25px;padding:18px}.metric span{display:block;color:var(--muted);font-size:14px}.metric strong{display:block;color:var(--green);font-size:28px;margin-top:6px}
+    .panel{background:var(--paper);border:1px solid var(--line);border-radius:30px;overflow:hidden;margin-top:20px;box-shadow:0 10px 30px rgba(80,70,30,.05)}.stripe{height:8px;background:linear-gradient(90deg,var(--red) 0 66%,var(--gray) 66%)}.inside{padding:25px}.inside h2{font-size:27px;margin:4px 0 20px}.source-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.source-card{background:var(--cream);border:1px solid #ead58b;border-radius:18px;padding:17px}.source-head{display:flex;justify-content:space-between;gap:12px;align-items:center}.source-head strong{color:var(--green);font-size:18px}.badge{display:inline-block;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800}.ok{background:#dcefe7;color:#14503c}.err{background:#f7dadd;color:#972a35}.neutral{background:#eee9df;color:#625a4d}.source-card p{margin:10px 0 0;color:#625c52;line-height:1.7;font-size:14px}.roads{display:flex;flex-wrap:wrap;gap:8px}.road-chip{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--cream);font-size:14px;font-weight:700;color:#315044}
+    .tools{display:grid;grid-template-columns:1fr 160px 160px;gap:8px;margin-bottom:16px}.tools input,.tools select{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px 13px;background:#fff;font:inherit}.note{font-size:13px;color:var(--muted);margin-bottom:16px}
+    details{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;margin:10px 0}summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:16px;background:#fff4c8;color:var(--green);font-weight:900}summary::-webkit-details-marker{display:none}.count{background:var(--green);color:#fff;border-radius:999px;padding:5px 10px;font-size:12px}.list{padding:0 14px}.item{padding:15px 0;border-bottom:1px solid #f0e5bd}.item:last-child{border:0}.item-title{font-weight:900;color:var(--green);text-decoration:none;line-height:1.5}.row{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:8px;color:#645e54;font-size:13px}.pill{border-radius:999px;padding:4px 8px;background:#f0ece4}.pill.new{background:#dcefe7;color:#14503c}.pill.off{background:#f7dadd;color:#972a35}.empty{padding:18px;border-radius:16px;background:var(--cream);color:var(--muted)}
+    @media(max-width:760px){main{width:min(100% - 18px,1180px);padding-top:18px}.hero{padding:27px 20px;border-radius:27px}.hero p{font-size:16px}.metrics{grid-template-columns:1fr 1fr}.metric strong{font-size:25px}.source-grid{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.inside{padding:19px}.panel{border-radius:25px}}
+  </style>
+</head>
+<body>
+<header>Banqiao House Monitor</header>
+<main>
+  <section class="hero">
+    <div class="eyebrow">監控來源：591、信義房屋</div>
+    <h1>指定路段追蹤上架物件</h1>
+    <p>系統先鎖定新北市板橋區的買賣案件，再比對指定路段。資料由 GitHub Actions 每 3 小時更新一次，不使用 Netlify。</p>
+    <div class="metrics">
+      <div class="metric"><span>監控路段</span><strong id="mRoads">7 條</strong></div>
+      <div class="metric"><span>目前上架</span><strong id="mActive">-</strong></div>
+      <div class="metric"><span>近期新案</span><strong id="mNew">-</strong></div>
+      <div class="metric"><span>已確認下架</span><strong id="mOff">-</strong></div>
+    </div>
+  </section>
+
+  <section class="panel"><div class="stripe"></div><div class="inside"><div class="eyebrow">MONITOR STATUS</div><h2>已啟用</h2><div class="source-grid" id="sources"></div></div></section>
+  <section class="panel"><div class="stripe"></div><div class="inside"><div class="eyebrow">ROAD WATCH</div><h2>監控路段</h2><div class="roads" id="roads"></div></div></section>
+  <section class="panel"><div class="stripe"></div><div class="inside"><div class="eyebrow">LISTINGS</div><h2>案件列表</h2>
+    <div class="tools"><input id="q" placeholder="搜尋路段、案件、地址"><select id="source"><option>全部來源</option><option>591</option><option>信義房屋</option></select><select id="state"><option>全部狀態</option><option>近期新案</option><option>已上架</option><option>已下架</option></select></div>
+    <div class="note" id="updated">正在讀取最新資料…</div><div id="groups"></div>
+  </div></section>
+</main>
+<script>
+const defaultRoads=['板橋區中山路二段','板橋區三民路二段','板橋區光復街','板橋區萬安街','板橋區林森街','板橋區三民路一段','板橋區翠華街'];
+let DATA={listings:[],runs:{},watchRoads:defaultRoads};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=v=>{if(!v)return '-';const d=new Date(v);return Number.isNaN(d.getTime())?v:new Intl.DateTimeFormat('zh-TW',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Taipei'}).format(d)};
+const statusOf=x=>{if(!x.active)return '已下架';if(x.newAt&&Date.now()-new Date(x.newAt).getTime()<=14*86400000)return '近期新案';return '已上架'};
+function render(){const rows=DATA.listings||[],roads=DATA.watchRoads||defaultRoads;document.querySelector('#mRoads').textContent=`${roads.length} 條`;document.querySelector('#mActive').textContent=`${rows.filter(x=>x.active!==false).length} 筆`;document.querySelector('#mNew').textContent=`${rows.filter(x=>statusOf(x)==='近期新案').length} 筆`;document.querySelector('#mOff').textContent=`${rows.filter(x=>x.active===false).length} 筆`;document.querySelector('#roads').innerHTML=roads.map(r=>`<span class="road-chip">${esc(r)}</span>`).join('');
+ document.querySelector('#sources').innerHTML=['591','信義房屋'].map(name=>{const r=DATA.runs?.[name];const ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${ok?'ok':'err'}">${r?ok?'正常':'異常':'等待首次執行'}</span></div><p>${r?`${esc(r.message||'')}<br>本次 ${r.totalCount??0} 筆・新案 ${r.newCount??0}・確認下架 ${r.removedCount??0}<br>最近更新：${fmt(r.checkedAt)}`:'尚未有執行紀錄'}</p></div>`}).join('');document.querySelector('#updated').textContent=`資料最近更新：${fmt(DATA.updatedAt)}。路段預設全部收折，需要時再點開。`;renderGroups();}
+function renderGroups(){const q=document.querySelector('#q').value.trim(),source=document.querySelector('#source').value,state=document.querySelector('#state').value,roads=DATA.watchRoads||defaultRoads;let rows=(DATA.listings||[]).filter(x=>(source==='全部來源'||x.source===source)&&(state==='全部狀態'||statusOf(x)===state)&&(!q||[x.road,x.title,x.address,x.source].join(' ').includes(q)));let html='';for(const road of roads){const items=rows.filter(x=>x.road===road);if(!items.length)continue;html+=`<details><summary><span>${esc(road)}</span><span class="count">${items.length} 筆</span></summary><div class="list">${items.map(x=>{const st=statusOf(x),cls=st==='近期新案'?'new':st==='已下架'?'off':'';return `<article class="item"><a class="item-title" href="${esc(x.url)}" target="_blank" rel="noreferrer">${esc(x.title)}</a><div class="row"><span class="pill">${esc(x.source)}</span><span class="pill ${cls}">${st}</span>${x.price?`<span>${esc(x.price)}</span>`:''}${x.size?`<span>${esc(x.size)}</span>`:''}<span>${esc(x.address||'-')}</span></div><div class="row"><span>首次紀錄：${fmt(x.firstSeenAt)}</span><span>最後看到：${fmt(x.lastSeenAt)}</span></div></article>`}).join('')}</div></details>`}document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的案件。</div>'}
+['q','source','state'].forEach(id=>document.querySelector('#'+id).addEventListener(id==='q'?'input':'change',renderGroups));
+fetch(`data/listings.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.json()).then(d=>{DATA=d;render()}).catch(e=>{document.querySelector('#updated').textContent='資料檔尚未建立，請先執行 GitHub Action。';render()});
+</script>
+</body>
+</html>
