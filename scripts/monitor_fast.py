@@ -27,9 +27,25 @@ def build_api_url(template_url, street_id, first_row=0, page_no=1):
     return urlunparse(parsed._replace(query=urlencode(params)))
 
 
+def new_mobile_context(browser):
+    return browser.new_context(
+        user_agent=(
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) "
+            "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 "
+            "Mobile/15E148 Safari/604.1"
+        ),
+        viewport={"width": 390, "height": 844},
+        device_scale_factor=3,
+        is_mobile=True,
+        has_touch=True,
+        locale="zh-TW",
+        timezone_id="Asia/Taipei",
+    )
+
+
 def request_json(context, url, logs, label):
     last_error = ""
-    for attempt, delay in enumerate((0, 0.7, 1.5), start=1):
+    for attempt, delay in enumerate((0, 1.0, 2.0), start=1):
         if delay:
             time.sleep(delay)
         try:
@@ -53,7 +69,7 @@ def request_json(context, url, logs, label):
     return None, False
 
 
-def warm_591_session(page, logs, bootstrap_url):
+def warm_591_session(page, logs, bootstrap_url, road):
     v1_urls = []
     v2_urls = []
 
@@ -76,7 +92,7 @@ def warm_591_session(page, logs, bootstrap_url):
                 target = f"{target}{separator}_r={int(time.time())}"
             page.goto(target, wait_until="domcontentloaded", timeout=25000)
         except Exception as exc:
-            logs.append(f"591 暖機第 {round_no} 次導航訊息：{exc}")
+            logs.append(f"{road} 暖機第 {round_no} 次導航訊息：{exc}")
 
         for tick in range(24):
             if v1_urls or v2_urls:
@@ -92,12 +108,77 @@ def warm_591_session(page, logs, bootstrap_url):
             break
 
     if v1_urls:
-        logs.append("591 暖機成功：取得 v1/touch/sale/list。")
+        logs.append(f"{road} 獨立 session 暖機成功：取得 v1/touch/sale/list。")
         return v1_urls[-1]
     if v2_urls:
-        logs.append("591 暖機成功：取得 v2/php-api list。")
+        logs.append(f"{road} 獨立 session 暖機成功：取得 v2/php-api list。")
         return v2_urls[-1]
+    logs.append(f"{road} 獨立 session 暖機失敗：未取得列表 API。")
     return None
+
+
+def fetch_one_591_road(browser, road, street_id, logs):
+    context = new_mobile_context(browser)
+    page = context.new_page()
+    road_rows = []
+    road_seen = set()
+
+    try:
+        bootstrap_url = core.build_591_page_url(road, street_id)
+        template_url = warm_591_session(page, logs, bootstrap_url, road)
+        if not template_url:
+            return [], False
+
+        verify_url = build_api_url(template_url, street_id, 0, 1)
+        _, verified = request_json(
+            context,
+            verify_url,
+            logs,
+            f"{road} API 模板驗證",
+        )
+        if not verified:
+            logs.append(f"{road} 獨立 session API 模板驗證失敗。")
+            return [], False
+
+        for page_no in range(1, 11):
+            first_row = (page_no - 1) * 30
+            api_url = build_api_url(template_url, street_id, first_row, page_no)
+            payload, ok = request_json(
+                context,
+                api_url,
+                logs,
+                f"{road} streetid={street_id} 第 {page_no} 頁",
+            )
+            if not ok:
+                logs.append(f"{road} 本輪未完整抓取。")
+                return [], False
+
+            page_rows, raw_count = core.parse_591_api_payload(payload, road)
+            new_rows = [item for item in page_rows if item["id"] not in road_seen]
+
+            for item in new_rows:
+                road_seen.add(item["id"])
+                road_rows.append(item)
+
+            logs.append(
+                f"{road} streetid={street_id} 第 {page_no} 頁："
+                f"API {raw_count} 筆／路段符合 {len(page_rows)}／新增 {len(new_rows)}"
+            )
+
+            if raw_count == 0:
+                break
+            if page_no > 1 and not new_rows:
+                break
+            if raw_count < 30:
+                break
+
+            time.sleep(0.25)
+
+        logs.append(f"{road} 獨立 session 完整成功，共 {len(road_rows)} 筆。")
+        return road_rows, True
+
+    finally:
+        context.close()
 
 
 def fast_fetch_591():
@@ -113,105 +194,44 @@ def fast_fetch_591():
                 headless=True,
                 args=["--disable-dev-shm-usage"],
             )
-            context = browser.new_context(
-                user_agent=(
-                    "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) "
-                    "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 "
-                    "Mobile/15E148 Safari/604.1"
-                ),
-                viewport={"width": 390, "height": 844},
-                device_scale_factor=3,
-                is_mobile=True,
-                has_touch=True,
-                locale="zh-TW",
-                timezone_id="Asia/Taipei",
-            )
-            page = context.new_page()
 
-            bootstrap_road = "板橋區中山路二段"
-            bootstrap_street = core.WATCH_591_STREETS[bootstrap_road]
-            bootstrap_url = core.build_591_page_url(bootstrap_road, bootstrap_street)
-            template_url = warm_591_session(page, logs, bootstrap_url)
+            logs.append("591 改用 7 路段各自獨立 BrowserContext/session。")
 
-            if not template_url:
-                browser.close()
-                return [], False, "591 暖機兩次仍未取得列表 API，保留上一輪資料。", logs
+            for index, (road, street_id) in enumerate(core.WATCH_591_STREETS.items(), start=1):
+                logs.append(f"開始第 {index}/7 路段：{road}。")
+                road_rows, ok = fetch_one_591_road(browser, road, street_id, logs)
 
-            verify_url = build_api_url(template_url, bootstrap_street, 0, 1)
-            _, verified = request_json(context, verify_url, logs, "591 API 模板驗證")
-            if not verified:
-                browser.close()
-                return [], False, "591 API 模板驗證失敗，保留上一輪資料。", logs
-
-            logs.append("591 session/API 已就緒，開始查詢 7 路段。")
-
-            for road, street_id in core.WATCH_591_STREETS.items():
-                road_seen = set()
-                road_complete = True
-                road_started = False
-
-                for page_no in range(1, 11):
-                    first_row = (page_no - 1) * 30
-                    api_url = build_api_url(template_url, street_id, first_row, page_no)
-                    payload, ok = request_json(
-                        context,
-                        api_url,
-                        logs,
-                        f"{road} streetid={street_id} 第 {page_no} 頁",
-                    )
-                    if not ok:
-                        road_complete = False
-                        break
-
-                    if page_no == 1:
-                        road_started = True
-
-                    page_rows, raw_count = core.parse_591_api_payload(payload, road)
-                    new_rows = [item for item in page_rows if item["id"] not in road_seen]
-
-                    for item in new_rows:
-                        road_seen.add(item["id"])
+                if ok:
+                    successful_roads += 1
+                    for item in road_rows:
                         if item["id"] not in global_seen:
                             global_seen.add(item["id"])
                             rows.append(item)
-
-                    logs.append(
-                        f"{road} streetid={street_id} 第 {page_no} 頁："
-                        f"API {raw_count} 筆／路段符合 {len(page_rows)}／新增 {len(new_rows)}"
-                    )
-
-                    if raw_count == 0:
-                        break
-                    if page_no > 1 and not new_rows:
-                        break
-                    if raw_count < 30:
-                        break
-
-                    time.sleep(0.15)
-
-                if road_started and road_complete:
-                    successful_roads += 1
                 else:
-                    logs.append(f"{road} 本輪未完整抓取，不計入成功路段。")
+                    logs.append(f"{road} 本輪失敗，不計入成功路段。")
+
+                # Give 591 a short gap before creating the next anonymous session.
+                if index < len(core.WATCH_591_STREETS):
+                    time.sleep(2.0)
 
             browser.close()
 
     except Exception as exc:
-        return [], False, f"591 快速模式啟動失敗，保留上一輪資料：{exc}", logs
+        return [], False, f"591 獨立 session 模式啟動失敗，保留上一輪資料：{exc}", logs
 
     rows = core.dedupe_by_id(rows)
     if successful_roads == len(core.WATCH_591_STREETS):
         return (
             rows,
             True,
-            f"591 快速 API 完成，成功 7/7 路段，共 {len(rows)} 筆板橋指定路段案件。",
+            f"591 獨立 session 完成，成功 7/7 路段，共 {len(rows)} 筆板橋指定路段案件。",
             logs,
         )
 
     return (
         [],
         False,
-        f"591 本輪僅完整成功 {successful_roads}/7 路段，保留上一輪資料。",
+        f"591 獨立 session 本輪僅完整成功 {successful_roads}/7 路段，保留上一輪資料。",
         logs,
     )
 
