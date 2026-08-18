@@ -1,0 +1,84 @@
+{
+  "mode": "independent_browser_context_per_road",
+  "successCount": 4,
+  "totalRoads": 7,
+  "allSucceeded": false,
+  "results": [
+    {
+      "road": "板橋區中山路二段",
+      "streetid": "27507",
+      "success": false,
+      "count": 0,
+      "pages": 0,
+      "logs": [
+        "板橋區中山路二段 暖機失敗"
+      ]
+    },
+    {
+      "road": "板橋區三民路二段",
+      "streetid": "27485",
+      "success": false,
+      "count": 0,
+      "pages": 0,
+      "logs": [
+        "板橋區三民路二段 暖機失敗"
+      ]
+    },
+    {
+      "road": "板橋區光復街",
+      "streetid": "27550",
+      "success": true,
+      "count": 3,
+      "pages": 1,
+      "logs": [
+        "板橋區光復街 暖機成功",
+        "第 1 頁 raw=3 match=3 new=3"
+      ]
+    },
+    {
+      "road": "板橋區萬安街",
+      "streetid": "27630",
+      "success": true,
+      "count": 9,
+      "pages": 1,
+      "logs": [
+        "板橋區萬安街 暖機成功",
+        "第 1 頁 raw=10 match=9 new=9"
+      ]
+    },
+    {
+      "road": "板橋區林森街",
+      "streetid": "27574",
+      "success": true,
+      "count": 6,
+      "pages": 1,
+      "logs": [
+        "板橋區林森街 暖機成功",
+        "第 1 頁 raw=6 match=6 new=6"
+      ]
+    },
+    {
+      "road": "板橋區三民路一段",
+      "streetid": "27484",
+      "success": true,
+      "count": 36,
+      "pages": 2,
+      "logs": [
+        "板橋區三民路一段 暖機成功",
+        "第 1 頁 raw=30 match=30 new=30",
+        "第 2 頁 raw=7 match=6 new=6"
+      ]
+    },
+    {
+      "road": "板橋區翠華街",
+      "streetid": "27644",
+      "success": false,
+      "count": 0,
+      "pages": 0,
+      "logs": [
+        "板橋區翠華街 暖機失敗"
+      ]
+    }
+  ],
+  "productionDataModified": false
+}
