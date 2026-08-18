@@ -42,3 +42,5 @@ jobs:
           git add docs/data/591-playwright-diagnostic.json
           git diff --cached --quiet || git commit -m "Update 591 Playwright diagnostic [skip ci]"
           git push
+
+# trigger: 2026-08-18-playwright-test
