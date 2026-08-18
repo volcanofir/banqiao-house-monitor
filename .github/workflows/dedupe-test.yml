@@ -1,0 +1,73 @@
+name: 591 去重驗證
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/dedupe-test.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  test-dedupe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify 591 dedupe is idempotent
+        run: |
+          PYTHONPATH=scripts python - <<'PY'
+          import json
+          from pathlib import Path
+          from dedupe_listings import dedupe_591
+
+          data_path = Path("docs/data/listings.json")
+          report_path = Path("docs/data/dedupe-test.json")
+          state = json.loads(data_path.read_text(encoding="utf-8"))
+          rows = state.get("listings") or []
+
+          before_591 = [x for x in rows if x.get("source") == "591"]
+          first_pass, removed_first = dedupe_591(rows)
+          after_591 = [x for x in first_pass if x.get("source") == "591"]
+          second_pass, removed_second = dedupe_591(first_pass)
+          second_591 = [x for x in second_pass if x.get("source") == "591"]
+
+          before_ids = {x.get("id") for x in before_591 if x.get("id")}
+          after_ids = {x.get("id") for x in after_591 if x.get("id")}
+          removed_ids = sorted(before_ids - after_ids)
+
+          report = {
+              "productionDataUpdatedAt": state.get("updatedAt"),
+              "beforeTotal": len(rows),
+              "before591": len(before_591),
+              "afterFirstPass591": len(after_591),
+              "removedFirstPass": removed_first,
+              "afterSecondPass591": len(second_591),
+              "removedSecondPass": removed_second,
+              "idempotent": removed_second == 0 and len(after_591) == len(second_591),
+              "removedIds": removed_ids,
+              "productionDataModified": False,
+          }
+          report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+          print(json.dumps(report, ensure_ascii=False, indent=2))
+          if not report["idempotent"]:
+              raise SystemExit("Dedupe is not idempotent")
+          PY
+
+      - name: Save verification report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/dedupe-test.json
+          git diff --cached --quiet || git commit -m "Update 591 dedupe verification"
+          git push
