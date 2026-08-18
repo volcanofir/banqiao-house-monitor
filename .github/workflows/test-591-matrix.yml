@@ -1,0 +1,124 @@
+name: 591 七路段獨立 Runner 測試
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/test_591_matrix_road.py"
+      - ".github/workflows/test-591-matrix.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  road-test:
+    name: ${{ matrix.road }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - key: zhongshan2
+            road: 板橋區中山路二段
+            street_id: "27507"
+          - key: sanmin2
+            road: 板橋區三民路二段
+            street_id: "27485"
+          - key: guangfu
+            road: 板橋區光復街
+            street_id: "27550"
+          - key: wanan
+            road: 板橋區萬安街
+            street_id: "27630"
+          - key: linsen
+            road: 板橋區林森街
+            street_id: "27574"
+          - key: sanmin1
+            road: 板橋區三民路一段
+            street_id: "27484"
+          - key: cuihua
+            road: 板橋區翠華街
+            street_id: "27644"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 playwright
+
+      - name: Test one 591 road
+        env:
+          ROAD: ${{ matrix.road }}
+          STREET_ID: ${{ matrix.street_id }}
+          OUTPUT: matrix-results/${{ matrix.key }}.json
+        run: python scripts/test_591_matrix_road.py
+
+      - name: Upload road result
+        uses: actions/upload-artifact@v4
+        with:
+          name: 591-matrix-${{ matrix.key }}
+          path: matrix-results/${{ matrix.key }}.json
+          if-no-files-found: error
+
+  aggregate:
+    name: 彙整 7 路段結果
+    needs: road-test
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Download all road results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: 591-matrix-*
+          path: matrix-results
+          merge-multiple: true
+
+      - name: Build test report
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          src = Path("matrix-results")
+          files = sorted(src.glob("*.json"))
+          results = [json.loads(p.read_text(encoding="utf-8")) for p in files]
+          success = sum(1 for r in results if r.get("success"))
+          report = {
+              "checkedAt": datetime.now(timezone.utc).isoformat(),
+              "mode": "seven_independent_github_runner_jobs",
+              "successCount": success,
+              "totalRoads": 7,
+              "receivedResults": len(results),
+              "allSucceeded": len(results) == 7 and success == 7,
+              "results": results,
+              "productionDataModified": False,
+          }
+          out = Path("docs/data/591-matrix-test.json")
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+          print(json.dumps(report, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Save test report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/591-matrix-test.json
+          git diff --cached --quiet || git commit -m "Update 591 matrix runner test"
+          git push
