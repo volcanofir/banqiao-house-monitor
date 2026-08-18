@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-18T17:29:17+00:00",
+  "updatedAt": "2026-08-18T19:27:24+00:00",
   "watchRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -11,51 +11,20 @@
   ],
   "runs": {
     "591": {
-      "checkedAt": "2026-08-18T17:29:17+00:00",
+      "checkedAt": "2026-08-18T19:27:24+00:00",
       "status": "error",
       "totalCount": 249,
       "newCount": 0,
       "removedCount": 0,
-      "message": "591 本輪僅完整成功 1/7 路段，保留上一輪資料。；顯示去重後 249 筆（合併 31 筆重複）。",
+      "message": "591 暖機兩次仍未取得列表 API，保留上一輪資料。；顯示去重後 249 筆。",
       "logs": [
-        "591 暖機成功：取得 v2/php-api list。",
-        "591 session/API 已就緒，開始查詢 7 路段。",
-        "板橋區中山路二段 streetid=27507 第 1 頁：API 30 筆／路段符合 30／新增 30",
-        "板橋區中山路二段 streetid=27507 第 2 頁：API 31 筆／路段符合 30／新增 30",
-        "板橋區中山路二段 streetid=27507 第 3 頁：API 31 筆／路段符合 30／新增 27",
-        "板橋區中山路二段 streetid=27507 第 4 頁：API 31 筆／路段符合 30／新增 30",
-        "板橋區中山路二段 streetid=27507 第 5 頁：API 27 筆／路段符合 26／新增 26",
-        "板橋區三民路二段 streetid=27485 第 1 頁 第 1 次失敗：HTTP 403",
-        "板橋區三民路二段 streetid=27485 第 1 頁 第 2 次失敗：HTTP 403",
-        "板橋區三民路二段 streetid=27485 第 1 頁 第 3 次失敗：HTTP 403",
-        "板橋區三民路二段 本輪未完整抓取，不計入成功路段。",
-        "板橋區光復街 streetid=27550 第 1 頁 第 1 次失敗：HTTP 403",
-        "板橋區光復街 streetid=27550 第 1 頁 第 2 次失敗：HTTP 403",
-        "板橋區光復街 streetid=27550 第 1 頁 第 3 次失敗：HTTP 403",
-        "板橋區光復街 本輪未完整抓取，不計入成功路段。",
-        "板橋區萬安街 streetid=27630 第 1 頁 第 1 次失敗：HTTP 403",
-        "板橋區萬安街 streetid=27630 第 1 頁 第 2 次失敗：HTTP 403",
-        "板橋區萬安街 streetid=27630 第 1 頁 第 3 次失敗：HTTP 403",
-        "板橋區萬安街 本輪未完整抓取，不計入成功路段。",
-        "板橋區林森街 streetid=27574 第 1 頁 第 1 次失敗：HTTP 403",
-        "板橋區林森街 streetid=27574 第 1 頁 第 2 次失敗：HTTP 403",
-        "板橋區林森街 streetid=27574 第 1 頁 第 3 次失敗：HTTP 403",
-        "板橋區林森街 本輪未完整抓取，不計入成功路段。",
-        "板橋區三民路一段 streetid=27484 第 1 頁 第 1 次失敗：HTTP 403",
-        "板橋區三民路一段 streetid=27484 第 1 頁 第 2 次失敗：HTTP 403",
-        "板橋區三民路一段 streetid=27484 第 1 頁 第 3 次失敗：HTTP 403",
-        "板橋區三民路一段 本輪未完整抓取，不計入成功路段。",
-        "板橋區翠華街 streetid=27644 第 1 頁 第 1 次失敗：HTTP 403",
-        "板橋區翠華街 streetid=27644 第 1 頁 第 2 次失敗：HTTP 403",
-        "板橋區翠華街 streetid=27644 第 1 頁 第 3 次失敗：HTTP 403",
-        "板橋區翠華街 本輪未完整抓取，不計入成功路段。",
-        "591 物件層去重：合併 31 筆重複，顯示 249 筆。"
+        "591 物件層去重：合併 0 筆重複，顯示 249 筆。"
       ],
       "mode": "playwright_api",
-      "dedupeRemoved": 31
+      "dedupeRemoved": 0
     },
     "信義房屋": {
-      "checkedAt": "2026-08-18T17:29:17+00:00",
+      "checkedAt": "2026-08-18T19:27:24+00:00",
       "status": "ok",
       "totalCount": 77,
       "newCount": 0,
@@ -97,7 +66,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1787060321,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20757319",
@@ -114,7 +85,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1787050828,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20756275",
@@ -131,7 +104,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1787042124,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20744178",
@@ -148,7 +123,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786875278,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20743829",
@@ -165,7 +142,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786871128,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20743502",
@@ -182,7 +161,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786867674,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20742630",
@@ -199,7 +180,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786858709,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20739617",
@@ -216,7 +199,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786785438,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20739234",
@@ -233,7 +218,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786781871,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20738446",
@@ -250,7 +237,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786776768,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20738181",
@@ -267,7 +256,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786773489,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20737473",
@@ -284,7 +275,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786766036,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20735622",
@@ -301,7 +294,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786711333,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20734994",
@@ -318,7 +313,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786704934,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20629531",
@@ -335,7 +332,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786704523,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20657856",
@@ -352,7 +351,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786702703,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20734554",
@@ -369,7 +370,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786701175,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:24880416",
@@ -386,7 +389,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786689896,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20731720",
@@ -403,7 +408,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786686277,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20729207",
@@ -420,7 +427,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786633893,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20727686",
@@ -437,7 +446,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786613251,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20723975",
@@ -454,7 +465,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786588459,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20722611",
@@ -471,7 +484,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786545647,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:24909871",
@@ -488,7 +503,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786535378,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20721501",
@@ -505,7 +522,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786524703,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20719297",
@@ -522,7 +541,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786509982,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20719229",
@@ -539,7 +560,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786509237,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20717998",
@@ -556,7 +579,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786500843,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20717472",
@@ -573,7 +598,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786464842,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20717436",
@@ -590,7 +617,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786463803,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20717420",
@@ -607,7 +636,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786463522,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20715652",
@@ -624,7 +655,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786441591,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20715218",
@@ -641,7 +674,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786437502,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20714964",
@@ -658,7 +693,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786436067,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20711895",
@@ -675,7 +712,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786415984,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20711374",
@@ -692,7 +731,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786412397,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:24893430",
@@ -709,7 +750,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786403051,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20710447",
@@ -726,7 +769,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786364099,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20710444",
@@ -743,7 +788,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786364080,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20705608",
@@ -760,7 +807,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786337168,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20705830",
@@ -777,7 +826,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786334755,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20699586",
@@ -794,7 +845,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786283306,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20702834",
@@ -811,7 +864,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786270696,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20700992",
@@ -828,7 +883,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786250062,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20700638",
@@ -845,7 +902,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786245948,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20698641",
@@ -862,7 +921,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786182479,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20698557",
@@ -879,7 +940,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786181853,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20697485",
@@ -896,7 +959,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786174182,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20694678",
@@ -913,7 +978,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786110343,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:24886062",
@@ -930,7 +997,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786106253,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20693132",
@@ -947,7 +1016,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786105293,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20694163",
@@ -964,7 +1035,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786103514,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20694113",
@@ -981,7 +1054,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786102953,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20693930",
@@ -998,7 +1073,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786101006,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20689112",
@@ -1015,7 +1092,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786072040,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20686126",
@@ -1032,7 +1111,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786007303,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20685149",
@@ -1049,7 +1130,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1786001737,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20681756",
@@ -1066,7 +1149,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785991810,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20681461",
@@ -1083,7 +1168,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785978230,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20676150",
@@ -1100,7 +1187,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785900454,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20675948",
@@ -1117,7 +1206,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785899366,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20675706",
@@ -1134,7 +1225,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785898065,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20675578",
@@ -1151,7 +1244,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785897388,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20674223",
@@ -1168,7 +1263,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785847890,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20673961",
@@ -1185,7 +1282,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785844477,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20672556",
@@ -1202,7 +1301,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785832935,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20671692",
@@ -1219,7 +1320,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785828172,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20667283",
@@ -1236,7 +1339,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785758959,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20665461",
@@ -1253,7 +1358,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785745463,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20665214",
@@ -1270,7 +1377,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785743753,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20660640",
@@ -1287,7 +1396,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785676242,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20660519",
@@ -1304,7 +1415,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785674554,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20660397",
@@ -1321,7 +1434,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785672344,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20659166",
@@ -1338,7 +1453,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785656169,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20658864",
@@ -1355,7 +1472,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785653352,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20658662",
@@ -1372,7 +1491,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785651786,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20657871",
@@ -1389,7 +1510,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785643583,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20657497",
@@ -1406,7 +1529,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785640297,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20657197",
@@ -1423,7 +1548,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785637592,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20654110",
@@ -1440,7 +1567,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785566785,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20654094",
@@ -1457,7 +1586,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785566643,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20652767",
@@ -1474,7 +1605,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785554933,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20652445",
@@ -1491,7 +1624,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785552364,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20651306",
@@ -1508,7 +1643,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785506170,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20650862",
@@ -1525,7 +1662,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785498926,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20647702",
@@ -1542,7 +1681,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785479507,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20647208",
@@ -1559,7 +1700,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785476795,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20647185",
@@ -1576,7 +1719,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785476648,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20633113",
@@ -1593,7 +1738,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785471233,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20643126",
@@ -1610,7 +1757,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785402531,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20639790",
@@ -1627,7 +1776,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785378152,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20639444",
@@ -1644,7 +1795,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785374828,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20637017",
@@ -1661,7 +1814,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785315769,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:24910615",
@@ -1678,7 +1833,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785314275,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20633079",
@@ -1695,7 +1852,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785237889,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:24812471",
@@ -1712,7 +1871,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785223860,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20630921",
@@ -1729,7 +1890,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785220851,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20622128",
@@ -1746,7 +1909,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785217438,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20627234",
@@ -1763,7 +1928,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785151618,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20625569",
@@ -1780,7 +1947,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785140092,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20625028",
@@ -1797,7 +1966,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785137321,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20622337",
@@ -1814,7 +1985,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785134879,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20622394",
@@ -1831,7 +2004,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785132821,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20623611",
@@ -1848,7 +2023,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785128933,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20622341",
@@ -1865,7 +2042,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785122089,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20619331",
@@ -1882,7 +2061,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1785051491,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20617054",
@@ -1899,7 +2080,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784987362,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20617053",
@@ -1916,7 +2099,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784987326,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20616844",
@@ -1933,7 +2118,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784982818,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20615064",
@@ -1950,7 +2137,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784964679,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20613238",
@@ -1967,7 +2156,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784948286,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20611790",
@@ -1984,7 +2175,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784895712,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20611124",
@@ -2001,7 +2194,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784890021,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20610585",
@@ -2018,7 +2213,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784885877,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20607270",
@@ -2035,7 +2232,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784865993,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20606555",
@@ -2052,7 +2251,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784861936,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20603785",
@@ -2069,7 +2270,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784797715,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20600613",
@@ -2086,7 +2289,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784775495,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20600021",
@@ -2103,7 +2308,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784771775,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20599659",
@@ -2120,7 +2327,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784762039,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20595368",
@@ -2137,7 +2346,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784693369,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20594941",
@@ -2154,7 +2365,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784691034,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20594550",
@@ -2171,7 +2384,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784689036,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20593544",
@@ -2188,7 +2403,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784663036,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20591239",
@@ -2205,7 +2422,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784623334,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20591155",
@@ -2222,7 +2441,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784622663,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20582333",
@@ -2239,7 +2460,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784531547,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20583406",
@@ -2256,7 +2479,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784529438,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20581898",
@@ -2273,7 +2498,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784520354,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20581246",
@@ -2290,7 +2517,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784516598,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20579802",
@@ -2307,7 +2536,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784466347,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20579215",
@@ -2324,7 +2555,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784455716,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20572773",
@@ -2341,7 +2574,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784344899,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20568400",
@@ -2358,7 +2593,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784284842,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20569709",
@@ -2375,7 +2612,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784280925,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20569606",
@@ -2392,7 +2631,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784280447,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20569579",
@@ -2409,7 +2650,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784280299,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20569145",
@@ -2426,7 +2669,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784278125,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20565839",
@@ -2443,7 +2688,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784257568,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20565656",
@@ -2460,7 +2707,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784256510,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20564556",
@@ -2477,7 +2726,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784207876,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20552766",
@@ -2494,7 +2745,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784199480,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20557514",
@@ -2511,7 +2764,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784109394,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20557506",
@@ -2528,7 +2783,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784109359,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20555870",
@@ -2545,7 +2802,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784098799,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20554659",
@@ -2562,7 +2821,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784089061,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20554105",
@@ -2579,7 +2840,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784085436,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20553281",
@@ -2596,7 +2859,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784080067,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20552329",
@@ -2613,7 +2878,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784032572,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20552240",
@@ -2630,7 +2897,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784031530,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20547657",
@@ -2647,7 +2916,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1784000702,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20541173",
@@ -2664,7 +2935,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783921882,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20538355",
@@ -2681,7 +2954,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783907546,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20537650",
@@ -2698,7 +2973,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783864934,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20535894",
@@ -2715,7 +2992,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783843835,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20533885",
@@ -2732,7 +3011,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783827317,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20531407",
@@ -2749,7 +3030,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783753033,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20531017",
@@ -2766,7 +3049,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783744378,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20528223",
@@ -2783,7 +3068,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783662609,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20527207",
@@ -2800,7 +3087,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783652276,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20526150",
@@ -2817,7 +3106,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783600759,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20525889",
@@ -2834,7 +3125,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783596719,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20524304",
@@ -2851,7 +3144,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783584177,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20523222",
@@ -2868,7 +3163,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783577643,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20522465",
@@ -2885,7 +3182,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783571901,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20460976",
@@ -2902,7 +3201,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783502837,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20460960",
@@ -2919,7 +3220,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783497730,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20501478",
@@ -2936,7 +3239,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783491663,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20459692",
@@ -2953,7 +3258,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783489562,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20514443",
@@ -2970,7 +3277,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783432146,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20459506",
@@ -2987,7 +3296,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783403683,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20510237",
@@ -3004,7 +3315,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783402404,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20507770",
@@ -3021,7 +3334,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783353124,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20505251",
@@ -3038,7 +3353,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783327570,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20503643",
@@ -3055,7 +3372,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783317928,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20503488",
@@ -3072,7 +3391,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783317064,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20503413",
@@ -3089,7 +3410,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783316613,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20503396",
@@ -3106,7 +3429,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783316550,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20496097",
@@ -3123,7 +3448,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783172454,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20494514",
@@ -3140,7 +3467,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783152552,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:24683125",
@@ -3157,7 +3486,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783150726,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20492794",
@@ -3174,7 +3505,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783136894,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:19885906",
@@ -3191,7 +3524,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783074277,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20486830",
@@ -3208,7 +3543,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1783054312,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20483840",
@@ -3225,7 +3562,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782986813,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20480993",
@@ -3242,7 +3581,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782968184,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20480274",
@@ -3259,7 +3600,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782962762,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20480229",
@@ -3276,7 +3619,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782962237,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20479128",
@@ -3293,7 +3638,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782923078,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20477208",
@@ -3310,7 +3657,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782899801,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20473877",
@@ -3327,7 +3676,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782872201,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20469343",
@@ -3344,7 +3695,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782795991,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20468954",
@@ -3361,7 +3714,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782792990,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20467468",
@@ -3378,7 +3733,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782750838,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20466241",
@@ -3395,7 +3752,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782728140,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20463312",
@@ -3412,7 +3771,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782709605,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20462335",
@@ -3429,7 +3790,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782703182,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20460890",
@@ -3446,7 +3809,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782660646,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20456786",
@@ -3463,7 +3828,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782557355,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20456224",
@@ -3480,7 +3847,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782550325,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20455523",
@@ -3497,7 +3866,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782542515,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20452224",
@@ -3514,7 +3885,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782472977,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:24668565",
@@ -3531,7 +3904,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782467278,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20451539",
@@ -3548,7 +3923,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782463017,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20447556",
@@ -3565,7 +3942,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782389075,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20447235",
@@ -3582,7 +3961,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782385435,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20446969",
@@ -3599,7 +3980,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782382382,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20436236",
@@ -3616,7 +3999,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782379017,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20445026",
@@ -3633,7 +4018,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782367658,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20444608",
@@ -3650,7 +4037,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782364259,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20443891",
@@ -3667,7 +4056,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782357773,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20442758",
@@ -3684,7 +4075,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782315918,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20439633",
@@ -3701,7 +4094,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782281612,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20438313",
@@ -3718,7 +4113,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782270903,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20438256",
@@ -3735,7 +4132,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782270526,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20423164",
@@ -3752,7 +4151,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782211932,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:24561765",
@@ -3769,7 +4170,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782191838,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20428593",
@@ -3786,7 +4189,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782114659,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20428491",
@@ -3803,7 +4208,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782114140,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:24513964",
@@ -3820,7 +4227,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782107086,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20427005",
@@ -3837,7 +4246,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782105289,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20426198",
@@ -3854,7 +4265,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782099253,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20426048",
@@ -3871,7 +4284,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782098505,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20425846",
@@ -3888,7 +4303,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782097260,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20421621",
@@ -3905,7 +4322,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1782008957,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20421210",
@@ -3922,7 +4341,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1781980518,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20420999",
@@ -3939,7 +4360,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1781964967,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20420459",
@@ -3956,7 +4379,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1781952038,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20420240",
@@ -3973,7 +4398,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1781949018,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20420095",
@@ -3990,7 +4417,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1781947375,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20416911",
@@ -4007,7 +4436,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1781879050,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20416860",
@@ -4024,7 +4455,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1781877966,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20416117",
@@ -4041,7 +4474,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1781862955,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20411403",
@@ -4058,7 +4493,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1781772608,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20382365",
@@ -4075,7 +4512,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1781322146,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20377252",
@@ -4092,7 +4531,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1781245207,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20359661",
@@ -4109,7 +4550,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1780992923,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20327196",
@@ -4126,7 +4569,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1780561536,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20319664",
@@ -4143,7 +4588,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1780455127,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20251660",
@@ -4160,7 +4607,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1779430118,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20209473",
@@ -4177,7 +4626,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1778823823,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20202263",
@@ -4194,7 +4645,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1778729371,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20198500",
@@ -4211,7 +4664,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1778659954,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20198383",
@@ -4228,7 +4683,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1778659416,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20156050",
@@ -4245,7 +4702,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1778059642,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20154789",
@@ -4262,7 +4721,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1778056849,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20134351",
@@ -4279,7 +4740,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1777784898,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20120678",
@@ -4296,7 +4759,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1777541557,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "591:20066316",
@@ -4313,7 +4778,9 @@
       "lastSeenAt": "2026-08-18T17:05:03+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": 1776673619,
+      "sourcePublishedAtType": "posttime"
     },
     {
       "id": "信義房屋:2823PG",
@@ -4327,10 +4794,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/2823PG?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:5752GM",
@@ -4344,10 +4813,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/5752GM?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:4042UF",
@@ -4361,10 +4832,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/4042UF?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:9433FB",
@@ -4378,10 +4851,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/9433FB?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:8606ZC",
@@ -4395,10 +4870,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/8606ZC?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:0976KZ",
@@ -4412,10 +4889,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/0976KZ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:3215DL",
@@ -4429,10 +4908,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/3215DL?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:9559HX",
@@ -4446,10 +4927,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/9559HX?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:7892UX",
@@ -4463,10 +4946,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/7892UX?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:3408ZN",
@@ -4480,10 +4965,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/3408ZN?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:7188GU",
@@ -4497,10 +4984,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/7188GU?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:3620NG",
@@ -4514,10 +5003,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/3620NG?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:3568NM",
@@ -4531,10 +5022,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/3568NM?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:6014TP",
@@ -4548,10 +5041,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/6014TP?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:9067NP",
@@ -4565,10 +5060,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/9067NP?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:1129DX",
@@ -4582,10 +5079,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/1129DX?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:6152TJ",
@@ -4599,10 +5098,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/6152TJ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:4833HN",
@@ -4616,10 +5117,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/4833HN?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:2491JY",
@@ -4633,10 +5136,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/2491JY?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:9048RV",
@@ -4650,10 +5155,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/9048RV?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:5799WW",
@@ -4667,10 +5174,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/5799WW?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:2006WS",
@@ -4684,10 +5193,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/2006WS?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:7533YZ",
@@ -4701,10 +5212,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/7533YZ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:2696BS",
@@ -4718,10 +5231,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/2696BS?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:9368WF",
@@ -4735,10 +5250,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/9368WF?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:5358WW",
@@ -4752,10 +5269,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/5358WW?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:9633KZ",
@@ -4769,10 +5288,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/9633KZ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:6067GC",
@@ -4786,10 +5307,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/6067GC?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:0352HH",
@@ -4803,10 +5326,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/0352HH?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:1110AH",
@@ -4820,10 +5345,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/1110AH?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:1718YP",
@@ -4837,10 +5364,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/1718YP?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:6901DN",
@@ -4854,10 +5383,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/6901DN?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:1247NF",
@@ -4871,10 +5402,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/1247NF?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:7956WZ",
@@ -4888,10 +5421,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/7956WZ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:7015KC",
@@ -4905,10 +5440,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/7015KC?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:01327T",
@@ -4922,10 +5459,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/01327T?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:74076H",
@@ -4939,10 +5478,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/74076H?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:03516R",
@@ -4956,10 +5497,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/03516R?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:68310D",
@@ -4973,10 +5516,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/68310D?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:3658LZ",
@@ -4990,10 +5535,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/3658LZ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:3860YC",
@@ -5007,10 +5554,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/3860YC?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:49148N",
@@ -5024,10 +5573,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/49148N?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:6092QT",
@@ -5041,10 +5592,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/6092QT?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:7553TW",
@@ -5058,10 +5611,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/7553TW?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:6956FJ",
@@ -5075,10 +5630,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/6956FJ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:0886ZW",
@@ -5092,10 +5649,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/0886ZW?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:5660VN",
@@ -5109,10 +5668,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/5660VN?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:3860VH",
@@ -5126,10 +5687,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/3860VH?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:5637RL",
@@ -5143,10 +5706,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/5637RL?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:5818CQ",
@@ -5160,10 +5725,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/5818CQ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:6218YW",
@@ -5177,10 +5744,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/6218YW?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:8351DU",
@@ -5194,10 +5763,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/8351DU?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:63549G",
@@ -5211,10 +5782,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/63549G?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:5368YG",
@@ -5228,10 +5801,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/5368YG?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:9435YK",
@@ -5245,10 +5820,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/9435YK?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:8352FP",
@@ -5262,10 +5839,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/8352FP?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:0390CW",
@@ -5279,10 +5858,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/0390CW?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:7070PV",
@@ -5296,10 +5877,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/7070PV?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:2238MF",
@@ -5313,10 +5896,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/2238MF?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:33277Z",
@@ -5330,10 +5915,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/33277Z?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:8478PH",
@@ -5347,10 +5934,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/8478PH?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:1402SL",
@@ -5364,10 +5953,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/1402SL?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:2664TV",
@@ -5381,10 +5972,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/2664TV?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:5887RT",
@@ -5398,10 +5991,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/5887RT?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:8712WC",
@@ -5415,10 +6010,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/8712WC?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:9282JF",
@@ -5432,10 +6029,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/9282JF?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:18830N",
@@ -5449,10 +6048,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/18830N?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:5916JZ",
@@ -5466,10 +6067,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/5916JZ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:6630DJ",
@@ -5483,10 +6086,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/6630DJ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:6300AU",
@@ -5500,10 +6105,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/6300AU?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:8593LS",
@@ -5517,10 +6124,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/8593LS?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:1867YM",
@@ -5534,10 +6143,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/1867YM?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:6522GX",
@@ -5551,10 +6162,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/6522GX?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:0496JB",
@@ -5568,10 +6181,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/0496JB?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:5347JQ",
@@ -5585,10 +6200,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/5347JQ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:7288WM",
@@ -5602,10 +6219,12 @@
       "url": "https://www.sinyi.com.tw/buy/house/7288WM?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     },
     {
       "id": "信義房屋:4658HT",
@@ -5619,10 +6238,18 @@
       "url": "https://www.sinyi.com.tw/buy/house/4658HT?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:29:17+00:00",
+      "lastSeenAt": "2026-08-18T19:27:24+00:00",
       "newAt": null,
       "active": true,
-      "removedAt": null
+      "removedAt": null,
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": null
     }
-  ]
+  ],
+  "timeNormalization": {
+    "591RealPublishTimes": 249,
+    "sinyiRealPublishTimes": 0,
+    "sinyiMissingPublishTimes": 77,
+    "logs": []
+  }
 }
