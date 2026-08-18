@@ -1,40 +1,14 @@
-name: 板橋指定路段房屋監控
+name: 板橋指定路段房屋監控（舊版停用）
 
 on:
-  schedule:
-    - cron: '0 2,8,13 * * *'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  run-crawler:
+  legacy-disabled:
     runs-on: ubuntu-latest
     steps:
-      - name: 檢出專案程式碼
-        uses: actions/checkout@v3
-
-      - name: 設定 Python 環境
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: 安裝套件
-        run: |
-          pip install -r requirements.txt
-
-      - name: 執行監控爬蟲
-        env:
-          TG_TOKEN: ${{ secrets.TG_TOKEN }}
-          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
-        run: |
-          python main.py
-
-      - name: 自動寫回並提交歷史紀錄
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add history.json || true
-          git commit -m "Auto update history [skip ci]" || exit 0
-          git push
+      - name: Legacy monitor disabled
+        run: echo "Legacy scheduled monitor is disabled. Use volcanofir/banqiao-house-monitor-runner instead."
