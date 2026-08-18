@@ -80,3 +80,61 @@ SUMMARY
 林森街(27574): HTTP 403, bytes 919, houseid 0, detail 0, href-id 0
 三民路一段(27484): HTTP 403, bytes 919, houseid 0, detail 0, href-id 0
 翠華街(27644): HTTP 403, bytes 919, houseid 0, detail 0, href-id 0
+==========================================================================================
+DESKTOP / API COMPARISON
+------------------------------------------------------------------------------------------
+ROAD=中山路二段 streetid=27507
+desktop-user-style: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+desktop-old-style: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+search-api: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+------------------------------------------------------------------------------------------
+ROAD=三民路二段 streetid=27485
+desktop-user-style: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+desktop-old-style: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+search-api: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+------------------------------------------------------------------------------------------
+ROAD=光復街 streetid=27550
+desktop-user-style: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+desktop-old-style: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+search-api: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+------------------------------------------------------------------------------------------
+ROAD=萬安街 streetid=27630
+desktop-user-style: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+desktop-old-style: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+search-api: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+------------------------------------------------------------------------------------------
+ROAD=林森街 streetid=27574
+desktop-user-style: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+desktop-old-style: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+search-api: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+------------------------------------------------------------------------------------------
+ROAD=三民路一段 streetid=27484
+desktop-user-style: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+desktop-old-style: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+search-api: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+------------------------------------------------------------------------------------------
+ROAD=翠華街 streetid=27644
+desktop-user-style: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+desktop-old-style: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
+search-api: HTTP=403 bytes=919 ct=text/html title=ERROR: The request could not be satisfied
+  houseid=0 sample=[] detail=0 sample=[]
