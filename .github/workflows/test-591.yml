@@ -1,0 +1,31 @@
+name: 591 路段診斷測試
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/test_591_streets.py"
+      - ".github/workflows/test-591.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test-591:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install packages
+        run: pip install requests beautifulsoup4
+
+      - name: Test 591 street URLs
+        run: python scripts/test_591_streets.py
