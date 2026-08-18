@@ -7,7 +7,7 @@ on:
     paths:
       - "scripts/monitor_pages.py"
       - "scripts/monitor_fast.py"
-      - "docs/**"
+      - "docs/index.html"
       - ".github/workflows/monitor.yml"
   schedule:
     # Asia/Taipei 00:00 / 03:00 / 06:00 / 09:00 / 12:00 / 15:00 / 18:00 / 21:00
@@ -52,5 +52,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/data/listings.json
-          git diff --cached --quiet || git commit -m "Update monitored listings [skip ci]"
+          git diff --cached --quiet || git commit -m "Update monitored listings"
           git push
