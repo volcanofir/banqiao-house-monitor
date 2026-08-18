@@ -1,5 +1,5 @@
 {
-  "updatedAt": null,
+  "updatedAt": "2026-08-18T12:18:41+00:00",
   "watchRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -9,6 +9,31 @@
     "板橋區三民路一段",
     "板橋區翠華街"
   ],
-  "runs": {},
+  "runs": {
+    "591": {
+      "checkedAt": "2026-08-18T12:18:41+00:00",
+      "status": "error",
+      "totalCount": 0,
+      "newCount": 0,
+      "removedCount": 0,
+      "message": "591 HTTP 403",
+      "logs": [
+        "第 1 頁 HTTP 403"
+      ]
+    },
+    "信義房屋": {
+      "checkedAt": "2026-08-18T12:18:41+00:00",
+      "status": "ok",
+      "totalCount": 0,
+      "newCount": 0,
+      "removedCount": 0,
+      "message": "信義板橋頁完成，指定路段 0 筆。",
+      "logs": [
+        "第 1 頁：指定路段新增 0 筆",
+        "第 2 頁：指定路段新增 0 筆",
+        "第 3 頁：指定路段新增 0 筆"
+      ]
+    }
+  },
   "listings": []
 }
