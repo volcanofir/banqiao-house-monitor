@@ -26,27 +26,30 @@ def build_api_url(template_url, street_id, first_row=0, page_no=1):
     return urlunparse(parsed._replace(query=urlencode(params)))
 
 
-def browser_fetch_json(page, url, timeout_ms=12000):
-    return page.evaluate(
-        """async ({url, timeoutMs}) => {
-          const controller = new AbortController();
-          const timer = setTimeout(() => controller.abort(), timeoutMs);
-          try {
-            const response = await fetch(url, {
-              credentials: 'include',
-              signal: controller.signal,
-              cache: 'no-store'
-            });
-            const text = await response.text();
-            return {status: response.status, text, error: null};
-          } catch (error) {
-            return {status: 0, text: '', error: String(error)};
-          } finally {
-            clearTimeout(timer);
-          }
-        }""",
-        {"url": url, "timeoutMs": timeout_ms},
-    )
+def request_json(context, url, logs, label):
+    last_error = ""
+    for attempt, delay in enumerate((0, 0.7, 1.5), start=1):
+        if delay:
+            time.sleep(delay)
+        try:
+            response = context.request.get(
+                url,
+                headers={
+                    "Accept": "application/json, text/plain, */*",
+                    "Referer": "https://m.591.com.tw/",
+                    "Origin": "https://m.591.com.tw",
+                },
+                timeout=12000,
+            )
+            status = response.status
+            text = response.text()
+            if status == 200:
+                return json.loads(text), True
+            last_error = f"HTTP {status}"
+        except Exception as exc:
+            last_error = str(exc)
+        logs.append(f"{label} 第 {attempt} 次失敗：{last_error}")
+    return None, False
 
 
 def fast_fetch_591():
@@ -57,8 +60,6 @@ def fast_fetch_591():
 
     try:
         with sync_playwright() as p:
-            # GitHub-hosted ubuntu runners already include Google Chrome.
-            # Using the installed Chrome avoids downloading Chromium on every run.
             browser = p.chromium.launch(
                 channel="chrome",
                 headless=True,
@@ -86,8 +87,6 @@ def fast_fetch_591():
 
             page.on("response", on_response)
 
-            # Bootstrap only once. After this, all seven roads reuse the same
-            # browser session and the same discovered 591 API URL shape.
             bootstrap_road = "板橋區中山路二段"
             bootstrap_street = core.WATCH_591_STREETS[bootstrap_road]
             bootstrap_url = core.build_591_page_url(bootstrap_road, bootstrap_street)
@@ -106,33 +105,28 @@ def fast_fetch_591():
                 return [], False, "591 無法取得列表 API，保留上一輪資料。", logs
 
             template_url = captured_urls[-1]
-            logs.append("591 已建立單一瀏覽器 session，開始直接查詢 7 路段 API。")
+            logs.append("591 已建立單一瀏覽器 session，改用 BrowserContext request 查詢 7 路段。")
 
             for road, street_id in core.WATCH_591_STREETS.items():
                 road_seen = set()
-                road_ok = False
+                road_complete = True
+                road_started = False
 
                 for page_no in range(1, 11):
                     first_row = (page_no - 1) * 30
                     api_url = build_api_url(template_url, street_id, first_row, page_no)
-                    result = browser_fetch_json(page, api_url)
-
-                    if result.get("status") != 200:
-                        logs.append(
-                            f"{road} streetid={street_id} 第 {page_no} 頁 API 失敗："
-                            f"HTTP {result.get('status')} {result.get('error') or ''}".strip()
-                        )
-                        break
-
-                    try:
-                        payload = json.loads(result.get("text") or "{}")
-                    except Exception as exc:
-                        logs.append(f"{road} 第 {page_no} 頁 JSON 解析失敗：{exc}")
+                    payload, ok = request_json(
+                        context,
+                        api_url,
+                        logs,
+                        f"{road} streetid={street_id} 第 {page_no} 頁",
+                    )
+                    if not ok:
+                        road_complete = False
                         break
 
                     if page_no == 1:
-                        road_ok = True
-                        successful_roads += 1
+                        road_started = True
 
                     page_rows, raw_count = core.parse_591_api_payload(payload, road)
                     new_rows = [item for item in page_rows if item["id"] not in road_seen]
@@ -155,8 +149,12 @@ def fast_fetch_591():
                     if raw_count < 30:
                         break
 
-                if not road_ok:
-                    logs.append(f"{road} 本輪 API 未成功。")
+                    time.sleep(0.15)
+
+                if road_started and road_complete:
+                    successful_roads += 1
+                else:
+                    logs.append(f"{road} 本輪未完整抓取，不計入成功路段。")
 
             browser.close()
 
@@ -164,14 +162,20 @@ def fast_fetch_591():
         return [], False, f"591 快速模式啟動失敗，保留上一輪資料：{exc}", logs
 
     rows = core.dedupe_by_id(rows)
-    if successful_roads:
+    if successful_roads == len(core.WATCH_591_STREETS):
         return (
             rows,
             True,
-            f"591 快速 API 完成，成功 {successful_roads}/7 路段，共 {len(rows)} 筆板橋指定路段案件。",
+            f"591 快速 API 完成，成功 7/7 路段，共 {len(rows)} 筆板橋指定路段案件。",
             logs,
         )
-    return [], False, "591 七路段皆未成功取得 API，保留上一輪資料。", logs
+
+    return (
+        [],
+        False,
+        f"591 本輪僅完整成功 {successful_roads}/7 路段，保留上一輪資料。",
+        logs,
+    )
 
 
 def main():
@@ -182,14 +186,15 @@ def main():
     rows_591, ok_591, msg_591, logs_591 = fast_fetch_591()
     rows_sinyi, ok_sinyi, msg_sinyi, logs_sinyi = core.fetch_sinyi()
 
-    # Remove the old experimental 591 baseline once, so bad legacy rows
-    # (including the old incorrect area parsing) do not survive the switch.
     previous_591_run = (state.get("runs") or {}).get("591") or {}
-    if ok_591 and previous_591_run.get("mode") != "playwright_api":
+    previous_was_full = "成功 7/7" in (previous_591_run.get("message") or "")
+
+    if ok_591 and not previous_was_full:
         state["listings"] = [
             item for item in state.get("listings", [])
             if item.get("source") != "591"
         ]
+        state.setdefault("runs", {})["591"] = {}
 
     new_591, _ = core.merge_source(
         state, "591", rows_591, ok_591, msg_591, logs_591, checked_at
