@@ -2,18 +2,13 @@ name: 591 Playwright 診斷
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/diagnose_591_playwright.py"
-      - ".github/workflows/diagnose-591.yml"
 
 permissions:
   contents: write
 
 concurrency:
   group: diagnose-591-playwright
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   diagnose:
@@ -42,5 +37,3 @@ jobs:
           git add docs/data/591-playwright-diagnostic.json
           git diff --cached --quiet || git commit -m "Update 591 Playwright diagnostic [skip ci]"
           git push
-
-# trigger: 2026-08-18-playwright-test
