@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-18T17:09:35+00:00",
+  "updatedAt": "2026-08-18T17:12:42+00:00",
   "watchRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -11,22 +11,17 @@
   ],
   "runs": {
     "591": {
-      "checkedAt": "2026-08-18T17:09:35+00:00",
+      "checkedAt": "2026-08-18T17:12:42+00:00",
       "status": "error",
       "totalCount": 280,
       "newCount": 0,
       "removedCount": 0,
-      "message": "591 API 模板驗證失敗，保留上一輪資料。",
-      "logs": [
-        "591 頁面未主動發出列表 XHR，改用已確認的固定 API 格式。",
-        "591 API 模板驗證 第 1 次失敗：HTTP 403",
-        "591 API 模板驗證 第 2 次失敗：HTTP 403",
-        "591 API 模板驗證 第 3 次失敗：HTTP 403"
-      ],
+      "message": "591 暖機兩次仍未取得列表 API，保留上一輪資料。",
+      "logs": [],
       "mode": "playwright_api"
     },
     "信義房屋": {
-      "checkedAt": "2026-08-18T17:09:35+00:00",
+      "checkedAt": "2026-08-18T17:12:42+00:00",
       "status": "ok",
       "totalCount": 77,
       "newCount": 0,
@@ -4825,7 +4820,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/2823PG?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -4842,7 +4837,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/5752GM?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -4859,7 +4854,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/4042UF?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -4876,7 +4871,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/9433FB?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -4893,7 +4888,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/8606ZC?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -4910,7 +4905,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/0976KZ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -4927,7 +4922,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/3215DL?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -4944,7 +4939,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/9559HX?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -4961,7 +4956,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/7892UX?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -4978,7 +4973,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/3408ZN?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -4995,7 +4990,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/7188GU?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5012,7 +5007,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/3620NG?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5029,7 +5024,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/3568NM?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5046,7 +5041,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/6014TP?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5063,7 +5058,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/9067NP?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5080,7 +5075,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/1129DX?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5097,7 +5092,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/6152TJ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5114,7 +5109,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/4833HN?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5131,7 +5126,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/2491JY?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5148,7 +5143,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/9048RV?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5165,7 +5160,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/5799WW?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5182,7 +5177,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/2006WS?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5199,7 +5194,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/7533YZ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5216,7 +5211,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/2696BS?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5233,7 +5228,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/9368WF?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5250,7 +5245,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/5358WW?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5267,7 +5262,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/9633KZ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5284,7 +5279,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/6067GC?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5301,7 +5296,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/0352HH?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5318,7 +5313,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/1110AH?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5335,7 +5330,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/1718YP?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5352,7 +5347,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/6901DN?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5369,7 +5364,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/1247NF?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5386,7 +5381,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/7956WZ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5403,7 +5398,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/7015KC?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5420,7 +5415,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/01327T?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5437,7 +5432,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/74076H?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5454,7 +5449,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/03516R?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5471,7 +5466,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/68310D?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5488,7 +5483,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/3658LZ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5505,7 +5500,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/3860YC?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5522,7 +5517,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/49148N?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5539,7 +5534,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/6092QT?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5556,7 +5551,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/7553TW?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5573,7 +5568,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/6956FJ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5590,7 +5585,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/0886ZW?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5607,7 +5602,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/5660VN?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5624,7 +5619,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/3860VH?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5641,7 +5636,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/5637RL?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5658,7 +5653,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/5818CQ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5675,7 +5670,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/6218YW?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5692,7 +5687,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/8351DU?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5709,7 +5704,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/63549G?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5726,7 +5721,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/5368YG?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5743,7 +5738,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/9435YK?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5760,7 +5755,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/8352FP?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5777,7 +5772,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/0390CW?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5794,7 +5789,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/7070PV?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5811,7 +5806,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/2238MF?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5828,7 +5823,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/33277Z?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5845,7 +5840,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/8478PH?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5862,7 +5857,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/1402SL?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5879,7 +5874,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/2664TV?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5896,7 +5891,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/5887RT?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5913,7 +5908,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/8712WC?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5930,7 +5925,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/9282JF?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5947,7 +5942,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/18830N?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5964,7 +5959,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/5916JZ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5981,7 +5976,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/6630DJ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -5998,7 +5993,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/6300AU?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -6015,7 +6010,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/8593LS?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -6032,7 +6027,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/1867YM?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -6049,7 +6044,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/6522GX?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -6066,7 +6061,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/0496JB?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -6083,7 +6078,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/5347JQ?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -6100,7 +6095,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/7288WM?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
@@ -6117,7 +6112,7 @@
       "url": "https://www.sinyi.com.tw/buy/house/4658HT?breadcrumb=list",
       "postTime": null,
       "firstSeenAt": "2026-08-18T12:57:05+00:00",
-      "lastSeenAt": "2026-08-18T17:09:35+00:00",
+      "lastSeenAt": "2026-08-18T17:12:42+00:00",
       "newAt": null,
       "active": true,
       "removedAt": null
