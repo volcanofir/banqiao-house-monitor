@@ -2,15 +2,15 @@ import html
 import json
 import os
 import re
+import time
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urljoin
+from urllib.parse import quote
 
 import requests
 from bs4 import BeautifulSoup
 
 DATA_PATH = Path("docs/data/listings.json")
-TZ_OFFSET = "+08:00"
 
 WATCH_ROADS = {
     "板橋區中山路二段": ("中山路二段", "中山路2段"),
@@ -22,15 +22,16 @@ WATCH_ROADS = {
     "板橋區翠華街": ("翠華街",),
 }
 
-BANQIAO_ALIASES = ("板橋", "板橋區", "新北市板橋區")
 OTHER_DISTRICTS = (
-    "永和", "中和", "土城", "新莊", "三重", "蘆洲", "汐止", "鶯歌", "三峽", "淡水", "新店", "五股", "泰山", "林口", "八里", "台北", "北市", "桃園", "基隆"
+    "永和區", "中和區", "新莊區", "土城區", "樹林區", "三重區", "蘆洲區",
+    "汐止區", "鶯歌區", "三峽區", "淡水區", "新店區", "五股區", "泰山區",
+    "林口區", "八里區", "台北市", "臺北市", "桃園市", "基隆市",
 )
 
+INVALID_MARKERS = ("案件已下架", "物件已下架", "找不到此案件", "此物件不存在", "頁面不存在", "物件不存在")
 SEARCH_591_API = "https://sale.591.com.tw/home/search/list"
 SEARCH_591_HOME = "https://sale.591.com.tw"
-SEARCH_SINYI = "https://www.sinyi.com.tw/buy/list/NewTaipei-city/Banqiao-district/date-desc/{page}"
-INVALID_MARKERS = ("案件已下架", "物件已下架", "找不到此案件", "此物件不存在", "頁面不存在", "物件不存在")
+SEARCH_591_MOBILE = "https://m.591.com.tw/v2/sale"
 
 
 def now_iso():
@@ -38,10 +39,10 @@ def now_iso():
 
 
 def normalize_text(value):
-    text = "" if value is None else str(value)
-    text = html.unescape(text)
-    text = re.sub(r"\s+", " ", text).strip()
-    return text.replace("臺", "台")
+    text = html.unescape("" if value is None else str(value))
+    text = re.sub(r"\s+", " ", text).strip().replace("臺", "台")
+    text = text.replace("中山路2段", "中山路二段").replace("三民路1段", "三民路一段").replace("三民路2段", "三民路二段")
+    return text
 
 
 def default_headers(referer=None):
@@ -50,30 +51,28 @@ def default_headers(referer=None):
         "Accept-Language": "zh-TW,zh;q=0.9,en;q=0.7",
         "Cache-Control": "no-cache",
         "Pragma": "no-cache",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
     }
     if referer:
         headers["Referer"] = referer
     return headers
 
 
-def looks_like_other_district(text):
+def has_other_district(text):
     text = normalize_text(text)
-    return any(dist in text for dist in OTHER_DISTRICTS)
+    return any(item.replace("臺", "台") in text for item in OTHER_DISTRICTS)
 
 
-def is_banqiao_text(text, source_is_already_banqiao=False):
+def is_banqiao_address(address):
+    text = normalize_text(address)
+    return "板橋區" in text and not has_other_district(text)
+
+
+def match_road(text, source_locked_to_banqiao=False):
     text = normalize_text(text)
-    if not text or looks_like_other_district(text):
-        return False
-    if source_is_already_banqiao:
-        return True
-    return any(alias in text for alias in BANQIAO_ALIASES)
-
-
-def match_road(text, source_is_already_banqiao=False):
-    text = normalize_text(text)
-    if not is_banqiao_text(text, source_is_already_banqiao=source_is_already_banqiao):
+    if not source_locked_to_banqiao and not is_banqiao_address(text):
+        return None
+    if source_locked_to_banqiao and has_other_district(text):
         return None
     for canonical, aliases in WATCH_ROADS.items():
         if any(alias in text for alias in aliases):
@@ -82,227 +81,221 @@ def match_road(text, source_is_already_banqiao=False):
 
 
 def format_price(value):
-    value = normalize_text(value)
-    if not value:
+    text = normalize_text(value)
+    if not text:
         return None
-    if "萬" in value:
-        return value
-    number = re.search(r"\d+(?:\.\d+)?", value.replace(",", ""))
-    return f"{number.group(0)}萬" if number else value
+    if "萬" in text:
+        return text
+    match = re.search(r"\d+(?:\.\d+)?", text.replace(",", ""))
+    if not match:
+        return None
+    amount = float(match.group(0))
+    if amount >= 100000:
+        amount /= 10000
+    return f"{amount:g}萬"
 
 
 def format_area(value):
-    value = normalize_text(value)
-    m = re.search(r"([1-9]\d{0,2}(?:\.\d+)?)\s*坪", value)
-    if m:
-        return f"{m.group(1)}坪"
-    m = re.search(r"\b([1-9]\d{0,2}(?:\.\d+)?)\b", value)
-    return f"{m.group(1)}坪" if m else None
+    text = normalize_text(value)
+    match = re.search(r"([1-9]\d{0,2}(?:\.\d+)?)\s*坪", text)
+    if match:
+        return f"{match.group(1)}坪"
+    match = re.search(r"\b([1-9]\d{0,2}(?:\.\d+)?)\b", text)
+    return f"{match.group(1)}坪" if match else None
 
 
 def to_unix(value):
     if value in (None, ""):
         return None
+    if isinstance(value, (int, float)):
+        number = int(value)
+        return number // 1000 if number > 10**12 else number
     try:
-        n = int(float(value))
-        return n // 1000 if n > 10**12 else n
+        parsed = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+        return int(parsed.timestamp())
     except Exception:
-        return None
+        try:
+            number = int(float(value))
+            return number // 1000 if number > 10**12 else number
+        except Exception:
+            return None
 
 
 def dedupe_by_id(items):
     seen = set()
     output = []
     for item in items:
-        key = item["id"]
-        if key in seen:
+        item_id = item.get("id")
+        if not item_id or item_id in seen:
             continue
-        seen.add(key)
+        seen.add(item_id)
         output.append(item)
     return output
 
 
-def fetch_591():
-    """ChatGPT Site-era logic: lock 591 to New Taipei + Banqiao first, then match the 7 roads."""
-    rows = []
-    logs = []
+def fetch_591_old_api():
+    rows, logs = [], []
     session = requests.Session()
     headers = default_headers(SEARCH_591_HOME)
-    headers["X-Requested-With"] = "XMLHttpRequest"
-
+    headers.update({"Accept": "application/json, text/javascript, */*; q=0.01", "X-Requested-With": "XMLHttpRequest"})
     try:
-        session.get(SEARCH_591_HOME, headers=headers, timeout=10)
+        session.get(SEARCH_591_HOME, headers=default_headers(), timeout=10)
     except Exception as exc:
-        return [], False, f"591 首頁連線失敗：{exc}", logs
+        logs.append(f"591 首頁連線失敗：{exc}")
 
-    seen_page_ids = set()
+    seen = set()
     for first_row in (0, 30, 60, 90, 120):
-        params = {
-            "type": "1",
-            "regionid": "3",
-            "section": "26",
-            "firstRow": str(first_row),
-            "totalRows": "30",
-            "order": "posttime_desc",
-        }
+        params = {"type": "1", "regionid": "3", "section": "26", "firstRow": str(first_row), "totalRows": "30", "order": "posttime_desc"}
         try:
-            response = session.get(SEARCH_591_API, headers=headers, params=params, timeout=15)
+            response = session.get(SEARCH_591_API, params=params, headers=headers, timeout=20)
         except Exception as exc:
-            logs.append(f"第 {first_row // 30 + 1} 頁連線失敗：{exc}")
-            if first_row == 0:
-                return [], False, logs[-1], logs
-            break
-
+            logs.append(f"591 舊 API 第 {first_row // 30 + 1} 頁連線失敗：{exc}")
+            return [], False, logs
         if response.status_code != 200:
-            logs.append(f"第 {first_row // 30 + 1} 頁 HTTP {response.status_code}")
-            if first_row == 0:
-                return [], False, f"591 HTTP {response.status_code}", logs
-            break
-
+            logs.append(f"591 舊 API 第 {first_row // 30 + 1} 頁 HTTP {response.status_code}")
+            return [], False, logs
         try:
             payload = response.json()
         except Exception:
-            logs.append(f"第 {first_row // 30 + 1} 頁 JSON 解析失敗")
-            if first_row == 0:
-                return [], False, logs[-1], logs
-            break
-
+            logs.append(f"591 舊 API 第 {first_row // 30 + 1} 頁 JSON 解析失敗")
+            return [], False, logs
         data = payload.get("data", {}) if isinstance(payload, dict) else {}
         items = data.get("house_list") or data.get("data") or []
         if not isinstance(items, list):
             items = []
-
         page_new = 0
-        page_match = 0
         for item in items:
             house_id = str(item.get("houseid") or item.get("id") or "").strip()
             title = normalize_text(item.get("title"))
             address = normalize_text(item.get("address")) or "新北市板橋區"
-            if not house_id or not title or house_id in seen_page_ids:
+            if not house_id or not title or house_id in seen:
                 continue
-            seen_page_ids.add(house_id)
+            seen.add(house_id)
             page_new += 1
-
-            road = match_road(f"{title} {address}", source_is_already_banqiao=True)
+            road = match_road(f"{title} {address}", source_locked_to_banqiao=True)
             if not road:
                 continue
-            page_match += 1
             rows.append({
-                "id": f"591:{house_id}",
-                "source": "591",
-                "houseId": house_id,
-                "road": road,
-                "title": title,
-                "address": address,
+                "id": f"591:{house_id}", "source": "591", "houseId": house_id, "road": road,
+                "title": title, "address": address,
                 "price": format_price(item.get("price") or item.get("showprice")),
                 "size": format_area(item.get("area") or item.get("areaBuilding") or item.get("area_building")),
-                "url": f"https://sale.591.com.tw/home/{house_id}",
+                "url": f"https://sale.591.com.tw/home/house/detail/2/{house_id}.html",
                 "postTime": to_unix(item.get("posttime") or item.get("postTime")),
             })
-
-        logs.append(f"第 {first_row // 30 + 1} 頁：板橋資料 {len(items)}／新增 {page_new}／指定路段 {page_match}")
-        if not items or (first_row > 0 and page_new == 0) or len(items) < 30:
+        logs.append(f"591 舊 API 第 {first_row // 30 + 1} 頁：板橋 {len(items)}／新增 {page_new}")
+        if len(items) < 30 or page_new == 0:
             break
-
-    rows = dedupe_by_id(rows)
-    return rows, True, f"591 板橋資料池完成，指定路段 {len(rows)} 筆。", logs
+    return dedupe_by_id(rows), True, logs
 
 
-def walk_json(value):
-    if isinstance(value, dict):
-        yield value
-        for child in value.values():
-            yield from walk_json(child)
-    elif isinstance(value, list):
-        for child in value:
-            yield from walk_json(child)
-
-
-def extract_sinyi_json(payload):
+def parse_mobile_591(body):
+    pattern = re.compile(r'\{type:[^{}]*?houseid:(\d+)[\s\S]*?title:"((?:\\.|[^"])*)"[\s\S]*?posttime:(\d+)[\s\S]*?address:("((?:\\.|[^"])*)"|[A-Za-z_$][\w$]*)[\s\S]*?showprice:("((?:\\.|[^"])*)"|[A-Za-z_$][\w$]*)[\s\S]*?\}', re.S)
     rows = []
-    for item in walk_json(payload):
-        href = normalize_text(item.get("url") or item.get("href") or item.get("link"))
-        title = normalize_text(item.get("name") or item.get("title") or item.get("caseName"))
-        address = normalize_text(item.get("address") or item.get("addr"))
-        price = normalize_text(item.get("price") or item.get("totalPrice") or item.get("amount"))
-        if "/buy/house/" not in href or not title:
-            continue
-        full_text = f"{title} {address}"
-        road = match_road(full_text)
+    for match in pattern.finditer(body):
+        house_id = match.group(1)
+        title = bytes(match.group(2), "utf-8").decode("unicode_escape", errors="ignore")
+        raw_address = match.group(5)
+        address = bytes(raw_address, "utf-8").decode("unicode_escape", errors="ignore") if raw_address else "新北市板橋區"
+        raw_price = match.group(7)
+        price = bytes(raw_price, "utf-8").decode("unicode_escape", errors="ignore") if raw_price else None
+        road = match_road(f"{title} {address}", source_locked_to_banqiao=True)
         if not road:
             continue
-        full_url = urljoin("https://www.sinyi.com.tw", href)
-        house_id = full_url.rstrip("/").split("/")[-1]
         rows.append({
-            "id": f"信義房屋:{house_id}",
-            "source": "信義房屋",
-            "houseId": house_id,
-            "road": road,
-            "title": title[:80],
-            "address": address or "新北市板橋區",
-            "price": format_price(price),
-            "size": format_area(item.get("area") or item.get("buildingArea") or item.get("totalArea")),
-            "url": full_url,
-            "postTime": None,
+            "id": f"591:{house_id}", "source": "591", "houseId": house_id, "road": road,
+            "title": normalize_text(title), "address": normalize_text(address) or "新北市板橋區",
+            "price": format_price(price), "size": format_area(match.group(0)),
+            "url": f"https://sale.591.com.tw/home/house/detail/2/{house_id}.html", "postTime": int(match.group(3)),
         })
-    return rows
+    return dedupe_by_id(rows)
+
+
+def fetch_591_mobile():
+    logs = []
+    for attempt, delay in enumerate((0, 15, 45), start=1):
+        if delay:
+            time.sleep(delay)
+        try:
+            response = requests.get(
+                SEARCH_591_MOBILE,
+                params={"regionid": "3", "sectionidStr": "26", "o": "32", "shType": "list"},
+                headers=default_headers("https://sale.591.com.tw/"),
+                timeout=30,
+            )
+        except Exception as exc:
+            logs.append(f"591 mobile 第 {attempt} 次連線失敗：{exc}")
+            continue
+        if response.status_code != 200:
+            logs.append(f"591 mobile 第 {attempt} 次 HTTP {response.status_code}")
+            continue
+        rows = parse_mobile_591(response.text)
+        logs.append(f"591 mobile 第 {attempt} 次：指定路段 {len(rows)} 筆")
+        return rows, True, logs
+    return [], False, logs
+
+
+def fetch_591():
+    rows, ok, logs = fetch_591_old_api()
+    if ok:
+        return rows, True, f"591 板橋資料池完成，指定路段 {len(rows)} 筆。", logs
+    mobile_rows, mobile_ok, mobile_logs = fetch_591_mobile()
+    logs.extend(mobile_logs)
+    if mobile_ok:
+        return mobile_rows, True, f"591 mobile 板橋資料池完成，指定路段 {len(mobile_rows)} 筆。", logs
+    return [], False, "591 本輪遭暫時封鎖，保留上一輪資料。", logs
 
 
 def fetch_sinyi():
-    rows = []
-    logs = []
-    any_success = False
-    for page in (1, 2, 3):
-        url = SEARCH_SINYI.format(page=page)
-        try:
-            response = requests.get(url, headers=default_headers("https://www.sinyi.com.tw/"), timeout=15)
-        except Exception as exc:
-            logs.append(f"第 {page} 頁連線失敗：{exc}")
-            continue
-        if response.status_code != 200:
-            logs.append(f"第 {page} 頁 HTTP {response.status_code}")
-            continue
-
-        any_success = True
-        soup = BeautifulSoup(response.text, "html.parser")
-        before = len(rows)
-        next_data = soup.find("script", id="__NEXT_DATA__", type="application/json")
-        if next_data and next_data.string:
+    rows, logs = [], []
+    success_count = 0
+    for road in WATCH_ROADS:
+        keyword = road.replace("板橋區", "")
+        for page in (1, 2, 3):
+            url = f"https://www.sinyi.com.tw/buy/list/NewTaipei-city/220-zip/{quote(keyword)}-keyword/publish-desc/{page}"
             try:
-                rows.extend(extract_sinyi_json(json.loads(next_data.string)))
-            except Exception:
-                pass
-
-        for link in soup.find_all("a", href=True):
-            href = normalize_text(link.get("href"))
-            if "/buy/house/" not in href:
+                response = requests.get(url, headers=default_headers("https://www.sinyi.com.tw/"), timeout=30)
+            except Exception as exc:
+                logs.append(f"{road} 第 {page} 頁連線失敗：{exc}")
                 continue
-            title = normalize_text(link.get("title") or link.get_text(" ", strip=True))
-            if not title or len(title) < 4 or "信義" in title or "瀏覽" in title:
+            if response.status_code != 200:
+                logs.append(f"{road} 第 {page} 頁 HTTP {response.status_code}")
                 continue
-            parent_text = normalize_text(link.parent.get_text(" ", strip=True) if link.parent else title)
-            full_text = f"{title} {parent_text}"
-            road = match_road(full_text)
-            if not road:
-                continue
-            full_url = urljoin("https://www.sinyi.com.tw", href)
-            house_id = full_url.rstrip("/").split("/")[-1]
-            rows.append({
-                "id": f"信義房屋:{house_id}",
-                "source": "信義房屋",
-                "houseId": house_id,
-                "road": road,
-                "title": title[:80],
-                "address": "新北市板橋區",
-                "price": None,
-                "size": None,
-                "url": full_url,
-                "postTime": None,
-            })
-        logs.append(f"第 {page} 頁：指定路段新增 {len(rows) - before} 筆")
-
+            success_count += 1
+            soup = BeautifulSoup(response.text, "html.parser")
+            script = soup.find("script", id="__NEXT_DATA__")
+            parsed = []
+            if script and script.string:
+                try:
+                    payload = json.loads(script.string)
+                    reducer = (((payload.get("props") or {}).get("initialReduxState") or {}).get("buyReducer") or {})
+                    parsed = reducer.get("list") or []
+                except Exception:
+                    parsed = []
+            added = 0
+            for item in parsed if isinstance(parsed, list) else []:
+                house_id = normalize_text(item.get("houseNo"))
+                title = normalize_text(item.get("name"))
+                address = normalize_text(item.get("address"))
+                if not house_id or not title or not address or not is_banqiao_address(address):
+                    continue
+                if road not in normalize_text(address):
+                    aliases = WATCH_ROADS[road]
+                    if not any(alias in normalize_text(address) for alias in aliases):
+                        continue
+                rows.append({
+                    "id": f"信義房屋:{house_id}", "source": "信義房屋", "houseId": house_id, "road": road,
+                    "title": title, "address": address,
+                    "price": f"{item.get('totalPrice'):,}萬" if isinstance(item.get("totalPrice"), (int, float)) else None,
+                    "size": f"{item.get('areaBuilding')}坪" if isinstance(item.get("areaBuilding"), (int, float)) else None,
+                    "url": f"https://www.sinyi.com.tw/buy/house/{quote(house_id)}?breadcrumb=list",
+                    "postTime": to_unix(item.get("publishTime") or item.get("updateTime") or item.get("createTime")),
+                })
+                added += 1
+            logs.append(f"{road} 第 {page} 頁：解析 {len(parsed) if isinstance(parsed, list) else 0}／板橋 {added}")
     rows = dedupe_by_id(rows)
-    return rows, any_success, (f"信義板橋頁完成，指定路段 {len(rows)} 筆。" if any_success else "信義抓取失敗。"), logs
+    ok = success_count > 0
+    return rows, ok, (f"信義完成 7 路段 × 3 頁，共 {len(rows)} 筆板橋案件。" if ok else "信義房屋抓取失敗。"), logs
 
 
 def definitely_inactive(item):
@@ -310,7 +303,7 @@ def definitely_inactive(item):
     if not url:
         return False
     try:
-        response = requests.get(url, headers=default_headers(), timeout=10, allow_redirects=True)
+        response = requests.get(url, headers=default_headers(), timeout=12, allow_redirects=True)
     except Exception:
         return False
     if response.status_code in (404, 410):
@@ -326,8 +319,6 @@ def load_state():
         return {"updatedAt": None, "runs": {}, "listings": []}
     try:
         data = json.loads(DATA_PATH.read_text(encoding="utf-8"))
-        if not isinstance(data, dict):
-            raise ValueError
         data.setdefault("runs", {})
         data.setdefault("listings", [])
         return data
@@ -342,40 +333,24 @@ def merge_source(state, source, current, success, message, logs, checked_at):
     had_baseline = bool(previous_by_id)
 
     if not success:
-        active_count = sum(1 for item in previous if item.get("active", True))
         state["runs"][source] = {
-            "checkedAt": checked_at,
-            "status": "error",
-            "totalCount": active_count,
-            "newCount": 0,
-            "removedCount": 0,
-            "message": message,
-            "logs": logs,
+            "checkedAt": checked_at, "status": "error",
+            "totalCount": sum(1 for item in previous if item.get("active", True)),
+            "newCount": 0, "removedCount": 0, "message": message, "logs": logs,
         }
         state["listings"] = other + previous
         return [], []
 
     current_ids = {item["id"] for item in current}
-    new_ids = []
-    merged = []
+    new_ids, merged = [], []
     for item in current:
         old = previous_by_id.get(item["id"])
-        if old:
-            first_seen = old.get("firstSeenAt") or checked_at
-            new_at = old.get("newAt")
-        else:
-            first_seen = checked_at
-            new_at = checked_at if had_baseline else None
-            if had_baseline:
-                new_ids.append(item["id"])
-        merged.append({
-            **item,
-            "firstSeenAt": first_seen,
-            "lastSeenAt": checked_at,
-            "newAt": new_at,
-            "active": True,
-            "removedAt": None,
-        })
+        first_seen = (old or {}).get("firstSeenAt") or checked_at
+        new_at = (old or {}).get("newAt")
+        if not old and had_baseline:
+            new_at = checked_at
+            new_ids.append(item["id"])
+        merged.append({**item, "firstSeenAt": first_seen, "lastSeenAt": checked_at, "newAt": new_at, "active": True, "removedAt": None})
 
     removed_ids = []
     for old in previous:
@@ -392,13 +367,8 @@ def merge_source(state, source, current, success, message, logs, checked_at):
             merged.append(old)
 
     state["runs"][source] = {
-        "checkedAt": checked_at,
-        "status": "ok",
-        "totalCount": len(current),
-        "newCount": len(new_ids),
-        "removedCount": len(removed_ids),
-        "message": message,
-        "logs": logs,
+        "checkedAt": checked_at, "status": "ok", "totalCount": len(current),
+        "newCount": len(new_ids), "removedCount": len(removed_ids), "message": message, "logs": logs,
     }
     state["listings"] = other + dedupe_by_id(merged)
     return new_ids, removed_ids
@@ -411,23 +381,15 @@ def send_telegram(state, new_ids):
         return
     lookup = {item.get("id"): item for item in state.get("listings", [])}
     fresh = [lookup[item_id] for item_id in new_ids if item_id in lookup]
-    if not fresh:
-        return
     lines = ["板橋指定路段新案件", ""]
-    for i, item in enumerate(fresh[:10], 1):
+    for index, item in enumerate(fresh[:10], 1):
         lines.extend([
-            f"{i}. [{item.get('source')}] {item.get('road')}",
-            item.get("title") or "",
+            f"{index}. [{item.get('source')}] {item.get('road')}", item.get("title") or "",
             " / ".join(str(v) for v in (item.get("price"), item.get("size"), item.get("address")) if v),
-            item.get("url") or "",
-            "",
+            item.get("url") or "", "",
         ])
     try:
-        requests.post(
-            f"https://api.telegram.org/bot{token}/sendMessage",
-            json={"chat_id": chat_id, "text": "\n".join(lines)[:4000], "disable_web_page_preview": True},
-            timeout=10,
-        )
+        requests.post(f"https://api.telegram.org/bot{token}/sendMessage", json={"chat_id": chat_id, "text": "\n".join(lines)[:4000], "disable_web_page_preview": True}, timeout=10)
     except Exception:
         pass
 
@@ -445,15 +407,7 @@ def main():
 
     state["updatedAt"] = checked_at
     state["watchRoads"] = list(WATCH_ROADS.keys())
-    state["listings"] = sorted(
-        state["listings"],
-        key=lambda item: (
-            0 if item.get("active", True) else 1,
-            -(item.get("postTime") or 0),
-            item.get("firstSeenAt") or "",
-        ),
-    )[:600]
-
+    state["listings"] = sorted(state["listings"], key=lambda item: (0 if item.get("active", True) else 1, -(item.get("postTime") or 0), item.get("firstSeenAt") or ""))[:600]
     DATA_PATH.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
     send_telegram(state, new_591 + new_sinyi)
 
