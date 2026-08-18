@@ -1,37 +1,12 @@
 import json
 import time
-import uuid
 from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
 import monitor_pages as core
 from playwright.sync_api import sync_playwright
 
 API_591_V1 = "bff-house.591.com.tw/v1/touch/sale/list"
-API_591_V1_BASE = "https://bff-house.591.com.tw/v1/touch/sale/list"
-
-
-def static_api_template(street_id):
-    params = {
-        "type": "sale",
-        "dropDown": "1",
-        "version": "2017",
-        "firstRow": "0",
-        "category": "1",
-        "device_id": str(uuid.uuid4()),
-        "timestamp": str(int(time.time() * 1000)),
-        "__v__": "1",
-        "newPage": "1",
-        "newPageSize": "30",
-        "kind": "0",
-        "regionid": "3",
-        "sectionidStr": "26",
-        "o": "32",
-        "streetid": str(street_id),
-        "recom_community": "1",
-        "region_id": "3",
-        "device": "touch",
-    }
-    return f"{API_591_V1_BASE}?{urlencode(params)}"
+API_591_V2 = "bff-house.591.com.tw/v2/php-api"
 
 
 def build_api_url(template_url, street_id, first_row=0, page_no=1):
@@ -78,6 +53,53 @@ def request_json(context, url, logs, label):
     return None, False
 
 
+def warm_591_session(page, logs, bootstrap_url):
+    v1_urls = []
+    v2_urls = []
+
+    def on_response(response):
+        if response.status != 200:
+            return
+        url = response.url
+        if API_591_V1 in url:
+            v1_urls.append(url)
+        elif API_591_V2 in url and "action=list" in url:
+            v2_urls.append(url)
+
+    page.on("response", on_response)
+
+    for round_no in (1, 2):
+        try:
+            target = bootstrap_url
+            if round_no == 2:
+                separator = "&" if "?" in target else "?"
+                target = f"{target}{separator}_r={int(time.time())}"
+            page.goto(target, wait_until="domcontentloaded", timeout=25000)
+        except Exception as exc:
+            logs.append(f"591 暖機第 {round_no} 次導航訊息：{exc}")
+
+        for tick in range(24):
+            if v1_urls or v2_urls:
+                break
+            if tick in (8, 16):
+                try:
+                    page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+                except Exception:
+                    pass
+            page.wait_for_timeout(500)
+
+        if v1_urls or v2_urls:
+            break
+
+    if v1_urls:
+        logs.append("591 暖機成功：取得 v1/touch/sale/list。")
+        return v1_urls[-1]
+    if v2_urls:
+        logs.append("591 暖機成功：取得 v2/php-api list。")
+        return v2_urls[-1]
+    return None
+
+
 def fast_fetch_591():
     logs = []
     rows = []
@@ -105,35 +127,16 @@ def fast_fetch_591():
                 timezone_id="Asia/Taipei",
             )
             page = context.new_page()
-            captured_urls = []
-
-            def on_response(response):
-                if API_591_V1 in response.url and response.status == 200:
-                    captured_urls.append(response.url)
-
-            page.on("response", on_response)
 
             bootstrap_road = "板橋區中山路二段"
             bootstrap_street = core.WATCH_591_STREETS[bootstrap_road]
             bootstrap_url = core.build_591_page_url(bootstrap_road, bootstrap_street)
-            try:
-                page.goto(bootstrap_url, wait_until="domcontentloaded", timeout=20000)
-            except Exception as exc:
-                logs.append(f"591 session 暖機導航訊息：{exc}")
+            template_url = warm_591_session(page, logs, bootstrap_url)
 
-            for _ in range(10):
-                if captured_urls:
-                    break
-                page.wait_for_timeout(500)
+            if not template_url:
+                browser.close()
+                return [], False, "591 暖機兩次仍未取得列表 API，保留上一輪資料。", logs
 
-            if captured_urls:
-                template_url = captured_urls[-1]
-                logs.append("591 已從頁面取得 API 模板。")
-            else:
-                template_url = static_api_template(bootstrap_street)
-                logs.append("591 頁面未主動發出列表 XHR，改用已確認的固定 API 格式。")
-
-            # Verify the template once before the seven-road loop.
             verify_url = build_api_url(template_url, bootstrap_street, 0, 1)
             _, verified = request_json(context, verify_url, logs, "591 API 模板驗證")
             if not verified:
