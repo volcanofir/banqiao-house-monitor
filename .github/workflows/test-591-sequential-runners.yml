@@ -14,23 +14,16 @@ jobs:
     name: 1 中山路二段
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    steps: &road_steps
+    steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - run: pip install requests beautifulsoup4 playwright
-      - run: python -m playwright install chromium
+        with: {python-version: "3.12"}
+      - run: pip install requests beautifulsoup4 playwright && python -m playwright install chromium
       - name: Test road
-        env:
-          ROAD: ${{ vars.ROAD }}
-          STREET_ID: ${{ vars.STREET_ID }}
-          OUTPUT: result.json
+        env: {ROAD: "板橋區中山路二段", STREET_ID: "27507", OUTPUT: "result.json"}
         run: python scripts/test_591_matrix_road.py
       - uses: actions/upload-artifact@v4
-        with:
-          name: ${{ github.job }}
-          path: result.json
+        with: {name: road1, path: result.json}
 
   road2:
     name: 2 三民路二段
