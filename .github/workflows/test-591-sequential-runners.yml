@@ -1,4 +1,4 @@
-name: 591 Sequential Runner Test
+name: 591 Two-at-a-Time Runner Test
 
 on:
   workflow_dispatch:
@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - run: pip install requests beautifulsoup4 playwright && python -m playwright install chromium
+      - run: pip install requests beautifulsoup4 playwright
       - name: Test road
         env: {ROAD: "板橋區中山路二段", STREET_ID: "27507", OUTPUT: "result.json"}
         run: python scripts/test_591_matrix_road.py
@@ -31,16 +31,13 @@ jobs:
 
   road2:
     name: 2 三民路二段
-    needs: road1
-    if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - run: pip install requests beautifulsoup4 playwright && python -m playwright install chromium
-      - run: sleep 20
+      - run: pip install requests beautifulsoup4 playwright
       - name: Test road
         env: {ROAD: "板橋區三民路二段", STREET_ID: "27485", OUTPUT: "result.json"}
         run: python scripts/test_591_matrix_road.py
@@ -49,7 +46,7 @@ jobs:
 
   road3:
     name: 3 光復街
-    needs: road2
+    needs: [road1, road2]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -57,8 +54,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - run: pip install requests beautifulsoup4 playwright && python -m playwright install chromium
-      - run: sleep 20
+      - run: pip install requests beautifulsoup4 playwright
       - name: Test road
         env: {ROAD: "板橋區光復街", STREET_ID: "27550", OUTPUT: "result.json"}
         run: python scripts/test_591_matrix_road.py
@@ -67,7 +63,7 @@ jobs:
 
   road4:
     name: 4 萬安街
-    needs: road3
+    needs: [road1, road2]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -75,8 +71,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - run: pip install requests beautifulsoup4 playwright && python -m playwright install chromium
-      - run: sleep 20
+      - run: pip install requests beautifulsoup4 playwright
       - name: Test road
         env: {ROAD: "板橋區萬安街", STREET_ID: "27630", OUTPUT: "result.json"}
         run: python scripts/test_591_matrix_road.py
@@ -85,7 +80,7 @@ jobs:
 
   road5:
     name: 5 林森街
-    needs: road4
+    needs: [road3, road4]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -93,8 +88,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - run: pip install requests beautifulsoup4 playwright && python -m playwright install chromium
-      - run: sleep 20
+      - run: pip install requests beautifulsoup4 playwright
       - name: Test road
         env: {ROAD: "板橋區林森街", STREET_ID: "27574", OUTPUT: "result.json"}
         run: python scripts/test_591_matrix_road.py
@@ -103,7 +97,7 @@ jobs:
 
   road6:
     name: 6 三民路一段
-    needs: road5
+    needs: [road3, road4]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -111,8 +105,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - run: pip install requests beautifulsoup4 playwright && python -m playwright install chromium
-      - run: sleep 20
+      - run: pip install requests beautifulsoup4 playwright
       - name: Test road
         env: {ROAD: "板橋區三民路一段", STREET_ID: "27484", OUTPUT: "result.json"}
         run: python scripts/test_591_matrix_road.py
@@ -121,7 +114,7 @@ jobs:
 
   road7:
     name: 7 翠華街
-    needs: road6
+    needs: [road5, road6]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -129,8 +122,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - run: pip install requests beautifulsoup4 playwright && python -m playwright install chromium
-      - run: sleep 20
+      - run: pip install requests beautifulsoup4 playwright
       - name: Test road
         env: {ROAD: "板橋區翠華街", STREET_ID: "27644", OUTPUT: "result.json"}
         run: python scripts/test_591_matrix_road.py
