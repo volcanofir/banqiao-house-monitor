@@ -2,6 +2,10 @@ name: 591 Sequential Runner Test
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "tests/trigger-591-sequential.txt"
 
 permissions:
   contents: read
