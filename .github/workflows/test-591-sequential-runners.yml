@@ -1,0 +1,162 @@
+name: 591 Sequential Runner Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: "1"
+
+jobs:
+  road1:
+    name: 1 中山路二段
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps: &road_steps
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests beautifulsoup4 playwright
+      - run: python -m playwright install chromium
+      - name: Test road
+        env:
+          ROAD: ${{ vars.ROAD }}
+          STREET_ID: ${{ vars.STREET_ID }}
+          OUTPUT: result.json
+        run: python scripts/test_591_matrix_road.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.job }}
+          path: result.json
+
+  road2:
+    name: 2 三民路二段
+    needs: road1
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install requests beautifulsoup4 playwright && python -m playwright install chromium
+      - run: sleep 20
+      - name: Test road
+        env: {ROAD: "板橋區三民路二段", STREET_ID: "27485", OUTPUT: "result.json"}
+        run: python scripts/test_591_matrix_road.py
+      - uses: actions/upload-artifact@v4
+        with: {name: road2, path: result.json}
+
+  road3:
+    name: 3 光復街
+    needs: road2
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install requests beautifulsoup4 playwright && python -m playwright install chromium
+      - run: sleep 20
+      - name: Test road
+        env: {ROAD: "板橋區光復街", STREET_ID: "27550", OUTPUT: "result.json"}
+        run: python scripts/test_591_matrix_road.py
+      - uses: actions/upload-artifact@v4
+        with: {name: road3, path: result.json}
+
+  road4:
+    name: 4 萬安街
+    needs: road3
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install requests beautifulsoup4 playwright && python -m playwright install chromium
+      - run: sleep 20
+      - name: Test road
+        env: {ROAD: "板橋區萬安街", STREET_ID: "27630", OUTPUT: "result.json"}
+        run: python scripts/test_591_matrix_road.py
+      - uses: actions/upload-artifact@v4
+        with: {name: road4, path: result.json}
+
+  road5:
+    name: 5 林森街
+    needs: road4
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install requests beautifulsoup4 playwright && python -m playwright install chromium
+      - run: sleep 20
+      - name: Test road
+        env: {ROAD: "板橋區林森街", STREET_ID: "27574", OUTPUT: "result.json"}
+        run: python scripts/test_591_matrix_road.py
+      - uses: actions/upload-artifact@v4
+        with: {name: road5, path: result.json}
+
+  road6:
+    name: 6 三民路一段
+    needs: road5
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install requests beautifulsoup4 playwright && python -m playwright install chromium
+      - run: sleep 20
+      - name: Test road
+        env: {ROAD: "板橋區三民路一段", STREET_ID: "27484", OUTPUT: "result.json"}
+        run: python scripts/test_591_matrix_road.py
+      - uses: actions/upload-artifact@v4
+        with: {name: road6, path: result.json}
+
+  road7:
+    name: 7 翠華街
+    needs: road6
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install requests beautifulsoup4 playwright && python -m playwright install chromium
+      - run: sleep 20
+      - name: Test road
+        env: {ROAD: "板橋區翠華街", STREET_ID: "27644", OUTPUT: "result.json"}
+        run: python scripts/test_591_matrix_road.py
+      - uses: actions/upload-artifact@v4
+        with: {name: road7, path: result.json}
+
+  summary:
+    name: Summary
+    needs: [road1, road2, road3, road4, road5, road6, road7]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: road*
+          path: results
+      - name: Print summary
+        run: |
+          python - <<'PY'
+          import glob,json
+          files=glob.glob('results/**/result.json',recursive=True)
+          rows=[json.load(open(f)) for f in files]
+          print('received',len(rows),'/7')
+          for r in rows: print(('OK' if r['success'] else 'FAIL'),r['road'],r['count'],r['logs'])
+          print('success',sum(bool(r['success']) for r in rows),'/7')
+          PY
