@@ -33,6 +33,42 @@ def title_similarity(a, b):
     return SequenceMatcher(None, a, b).ratio()
 
 
+def normalized_feature_text(item):
+    text = f"{item.get('title') or ''} {item.get('address') or ''}".lower().replace("臺", "台")
+    replacements = {
+        "鼎家": "頂加",
+        "鼎加": "頂加",
+        "頂樓加蓋": "頂加",
+        "頂樓增建": "頂加",
+        "7+8": "頂加",
+        "7＋8": "頂加",
+        "七加八": "頂加",
+    }
+    for src, dst in replacements.items():
+        text = text.replace(src, dst)
+    return text
+
+
+def property_features(item):
+    text = normalized_feature_text(item)
+    features = set()
+    feature_terms = {
+        "埔墘": ("埔墘",),
+        "電梯": ("電梯",),
+        "頂加": ("頂加",),
+        "三面採光": ("三面採光",),
+        "內外梯": ("內外梯", "內外樓梯"),
+        "邊間": ("邊間",),
+        "景觀": ("景觀",),
+        "四房": ("4房", "四房"),
+        "雙車位": ("雙車位", "雙平車", "雙坡平"),
+    }
+    for name, terms in feature_terms.items():
+        if any(term in text for term in terms):
+            features.add(name)
+    return features
+
+
 def location_key(item):
     address = str(item.get("address") or "").replace("臺", "台")
     prefix = address.split("板橋區", 1)[0].replace("新北市", "").strip()
@@ -45,6 +81,12 @@ def numbered_address_key(item):
     if "號" not in address:
         return None
     return chinese_key(address)
+
+
+def lane_address_key(item):
+    address = str(item.get("address") or "").replace("臺", "台")
+    match = re.search(r"([\u4e00-\u9fff]+路(?:一|二|三|四|五|六|七|八|九|十|\d+)?段\d+巷(?:\d+弄)?)", address)
+    return chinese_key(match.group(1)) if match else None
 
 
 def structured_hint(item, kind):
@@ -109,6 +151,18 @@ def is_same_591_property(a, b):
     ):
         return True
 
+    lane_a = lane_address_key(a)
+    lane_b = lane_address_key(b)
+    if (
+        lane_a
+        and lane_b
+        and lane_a == lane_b
+        and price_diff is not None
+        and price_diff <= 1.0
+        and area_diff <= 0.15
+    ):
+        return True
+
     loc_a = location_key(a)
     loc_b = location_key(b)
     if (
@@ -118,6 +172,23 @@ def is_same_591_property(a, b):
         and price_diff is not None
         and price_diff <= 1.0
         and area_diff <= 0.15
+    ):
+        return True
+
+    features_a = property_features(a)
+    features_b = property_features(b)
+    common_features = features_a & features_b
+    strong_structure = {"頂加", "三面採光", "內外梯", "雙車位"}
+
+    # Marketing titles for the same home can be completely different. When
+    # price and size are effectively identical, matching multiple concrete
+    # property features is stronger evidence than raw title similarity.
+    if (
+        price_diff is not None
+        and price_diff <= 1.0
+        and area_diff <= 0.05
+        and len(common_features) >= 2
+        and bool(common_features & strong_structure)
     ):
         return True
 
@@ -149,8 +220,6 @@ def published_rank(item):
 
 
 def choose_keeper(a, b):
-    # The primary card is always the oldest source listing in the duplicate group.
-    # Missing publish timestamps are treated as newest/unknown, not as oldest.
     rank_a = (published_rank(a), str(a.get("firstSeenAt") or ""), str(a.get("id") or ""))
     rank_b = (published_rank(b), str(b.get("firstSeenAt") or ""), str(b.get("id") or ""))
     keeper, other = (a, b) if rank_a <= rank_b else (b, a)
@@ -222,7 +291,6 @@ def finalize_cluster(record, members):
                 str(item.get("id") or ""),
             ),
         )
-        # Use the oldest listing's display fields, then preserve merged state below.
         oldest_id = oldest.get("id")
         for item in members:
             if item.get("id") == oldest_id:
@@ -243,7 +311,6 @@ def finalize_cluster(record, members):
         merged.pop(key, None)
 
     if len(ids) > 1:
-        # Audit list is oldest -> newest so the first row matches the primary card.
         detailed_members.sort(
             key=lambda item: (
                 published_rank(item),
@@ -266,6 +333,19 @@ def finalize_cluster(record, members):
     return merged
 
 
+def cluster_matches(item, cluster):
+    # Match against the representative and every known member. This makes the
+    # grouping transitive: A can match B and B can match C even when A/C titles
+    # are worded too differently to pass a direct comparison.
+    candidates = [cluster["record"]]
+    for member in cluster["members"]:
+        candidates.append(member)
+        old_members = member.get("mergedListings")
+        if isinstance(old_members, list):
+            candidates.extend(old_members)
+    return any(is_same_591_property(item, candidate) for candidate in candidates)
+
+
 def dedupe_591(rows):
     non_591 = [item for item in rows if item.get("source") != "591"]
     source_rows = [item for item in rows if item.get("source") == "591"]
@@ -282,7 +362,7 @@ def dedupe_591(rows):
     for item in source_rows:
         duplicate_index = None
         for index, cluster in enumerate(clusters):
-            if is_same_591_property(item, cluster["record"]):
+            if cluster_matches(item, cluster):
                 duplicate_index = index
                 break
 
