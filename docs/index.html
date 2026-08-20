@@ -140,13 +140,12 @@ function renderGroups(){
       const st=statusOf(x),cls=st==='近期新案'?'new':st==='已下架'?'off':'';
       const pub=sourcePublish(x);
       const sourceTimeLine=pub?`<div class="row"><span class="publish">來源上架時間：${pub}</span></div>`:'';
-      const systemTimeLine=`<div class="row"><span>系統最後確認：${fmt(x.lastSeenAt)}</span></div>`;
       const mergedCount=Number(x.mergedListingCount||0),activeMerged=Number(x.mergedActiveListingCount||0);
       const mergePill=mergedCount>1?`<span class="pill merge" title="同一案件共找到 ${mergedCount} 筆刊登${activeMerged?`，其中目前上架 ${activeMerged} 筆`:''}">已合併 ${mergedCount} 筆</span>`:'';
       const changeAmount=Number(x.priceChangeAmount||0);
       const priceChangePill=changeAmount>0&&x.priceChangeDirection==='down'?`<span class="pill down" title="前次有效價格 ${x.previousEffectivePrice??'-'} 萬">降價 ${changeAmount} 萬</span>`:changeAmount>0&&x.priceChangeDirection==='up'?`<span class="pill up" title="前次有效價格 ${x.previousEffectivePrice??'-'} 萬">漲價 ${changeAmount} 萬</span>`:'';
       const shownPrice=displayPrice(x);
-      return `<article class="item"><a class="item-title" href="${esc(x.url)}" target="_blank" rel="noreferrer">${esc(x.title)}</a><div class="row"><span class="pill">${esc(x.source)}</span><span class="pill ${cls}">${st}</span>${mergePill}${priceChangePill}${shownPrice?`<span>${esc(shownPrice)}</span>`:''}${x.size?`<span>${esc(x.size)}</span>`:''}<span>${esc(x.address||'-')}</span></div>${sourceTimeLine}${systemTimeLine}${mergedAudit(x)}</article>`
+      return `<article class="item"><a class="item-title" href="${esc(x.url)}" target="_blank" rel="noreferrer">${esc(x.title)}</a><div class="row"><span class="pill">${esc(x.source)}</span><span class="pill ${cls}">${st}</span>${mergePill}${priceChangePill}${shownPrice?`<span>${esc(shownPrice)}</span>`:''}${x.size?`<span>${esc(x.size)}</span>`:''}<span>${esc(x.address||'-')}</span></div>${sourceTimeLine}${mergedAudit(x)}</article>`
     }).join('')}</div></details>`;
   }
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的案件。</div>';
