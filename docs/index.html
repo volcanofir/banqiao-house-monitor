@@ -139,8 +139,7 @@ function renderGroups(){
     html+=`<details class="road-group"><summary><span>${esc(road)}</span><span class="count">${items.length} 筆</span></summary><div class="list">${items.map(x=>{
       const st=statusOf(x),cls=st==='近期新案'?'new':st==='已下架'?'off':'';
       const pub=sourcePublish(x);
-      const fallbackDiscovery=x.source==='信義房屋'&&!pub&&st==='近期新案'?(x.newAt||x.firstSeenAt):null;
-      const sourceTimeLine=pub?`<div class="row"><span class="publish">來源上架時間：${pub}</span></div>`:fallbackDiscovery?`<div class="row"><span class="publish">最近發現：${fmt(fallbackDiscovery)}</span></div>`:'';
+      const sourceTimeLine=pub?`<div class="row"><span class="publish">來源上架時間：${pub}</span></div>`:'';
       const systemTimeLine=`<div class="row"><span>系統最後確認：${fmt(x.lastSeenAt)}</span></div>`;
       const mergedCount=Number(x.mergedListingCount||0),activeMerged=Number(x.mergedActiveListingCount||0);
       const mergePill=mergedCount>1?`<span class="pill merge" title="同一案件共找到 ${mergedCount} 筆刊登${activeMerged?`，其中目前上架 ${activeMerged} 筆`:''}">已合併 ${mergedCount} 筆</span>`:'';
