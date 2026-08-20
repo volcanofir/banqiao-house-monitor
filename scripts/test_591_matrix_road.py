@@ -1,6 +1,7 @@
 import json
 import os
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
@@ -13,6 +14,10 @@ API_591_V2 = "bff-house.591.com.tw/v2/php-api"
 ROAD = os.environ["ROAD"]
 STREET_ID = os.environ["STREET_ID"]
 OUTPUT = Path(os.environ.get("OUTPUT", "matrix-result.json"))
+
+
+def now_iso():
+    return datetime.now(timezone.utc).isoformat()
 
 
 def build_api_url(template_url, first_row=0, page_no=1):
@@ -120,6 +125,8 @@ def main():
         "count": 0,
         "pages": 0,
         "logs": logs,
+        "startedAt": now_iso(),
+        "_startedEpoch": time.time(),
     }
 
     try:
@@ -167,6 +174,9 @@ def main():
 
 
 def write_result(result):
+    started_epoch = result.pop("_startedEpoch", time.time())
+    result["finishedAt"] = now_iso()
+    result["durationSeconds"] = round(max(0.0, time.time() - started_epoch), 2)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(result, ensure_ascii=False, indent=2))
