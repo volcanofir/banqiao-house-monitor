@@ -1,4 +1,4 @@
-name: 591 Surfshark Two-at-a-Time Test
+name: 591 Surfshark Fastest Test
 
 on:
   workflow_dispatch:
@@ -14,131 +14,49 @@ env:
   PYTHONUNBUFFERED: "1"
 
 jobs:
-  batch1:
-    name: 1-2 中山二段 + 三民二段
+  fastest:
+    name: VPN once + 7 roads parallel
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-python@v5
-        with: {python-version: "3.12"}
-      - run: pip install requests beautifulsoup4 playwright
-      - name: Connect Surfshark Taiwan WireGuard
-        env:
-          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
-        run: bash scripts/connect_surfshark_wireguard.sh
-      - name: Test two roads in parallel
-        run: |
-          ROAD="板橋區中山路二段" STREET_ID="27507" OUTPUT="road1.json" python scripts/test_591_matrix_road.py &
-          p1=$!
-          ROAD="板橋區三民路二段" STREET_ID="27485" OUTPUT="road2.json" python scripts/test_591_matrix_road.py &
-          p2=$!
-          wait "$p1"
-          wait "$p2"
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with: {name: road1, path: road1.json, if-no-files-found: warn}
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with: {name: road2, path: road2.json, if-no-files-found: warn}
 
-  batch2:
-    name: 3-4 光復街 + 萬安街
-    needs: batch1
-    if: always()
-    runs-on: ubuntu-latest
-    timeout-minutes: 8
-    steps:
-      - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
-        with: {python-version: "3.12"}
-      - run: pip install requests beautifulsoup4 playwright
-      - name: Connect Surfshark Taiwan WireGuard
-        env:
-          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
-        run: bash scripts/connect_surfshark_wireguard.sh
-      - name: Test two roads in parallel
-        run: |
-          ROAD="板橋區光復街" STREET_ID="27550" OUTPUT="road3.json" python scripts/test_591_matrix_road.py &
-          p1=$!
-          ROAD="板橋區萬安街" STREET_ID="27630" OUTPUT="road4.json" python scripts/test_591_matrix_road.py &
-          p2=$!
-          wait "$p1"
-          wait "$p2"
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with: {name: road3, path: road3.json, if-no-files-found: warn}
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with: {name: road4, path: road4.json, if-no-files-found: warn}
-
-  batch3:
-    name: 5-6 林森街 + 三民一段
-    needs: batch2
-    if: always()
-    runs-on: ubuntu-latest
-    timeout-minutes: 8
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v5
-        with: {python-version: "3.12"}
-      - run: pip install requests beautifulsoup4 playwright
-      - name: Connect Surfshark Taiwan WireGuard
-        env:
-          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
-        run: bash scripts/connect_surfshark_wireguard.sh
-      - name: Test two roads in parallel
-        run: |
-          ROAD="板橋區林森街" STREET_ID="27574" OUTPUT="road5.json" python scripts/test_591_matrix_road.py &
-          p1=$!
-          ROAD="板橋區三民路一段" STREET_ID="27484" OUTPUT="road6.json" python scripts/test_591_matrix_road.py &
-          p2=$!
-          wait "$p1"
-          wait "$p2"
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with: {name: road5, path: road5.json, if-no-files-found: warn}
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with: {name: road6, path: road6.json, if-no-files-found: warn}
-
-  batch4:
-    name: 7 翠華街
-    needs: batch3
-    if: always()
-    runs-on: ubuntu-latest
-    timeout-minutes: 8
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v5
-        with: {python-version: "3.12"}
-      - run: pip install requests beautifulsoup4 playwright
-      - name: Connect Surfshark Taiwan WireGuard
-        env:
-          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
-        run: bash scripts/connect_surfshark_wireguard.sh
-      - name: Test road
-        env:
-          ROAD: "板橋區翠華街"
-          STREET_ID: "27644"
-          OUTPUT: "road7.json"
-        run: python scripts/test_591_matrix_road.py
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with: {name: road7, path: road7.json, if-no-files-found: warn}
-
-  summary:
-    name: Summary
-    needs: [batch1, batch2, batch3, batch4]
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/download-artifact@v4
         with:
-          pattern: road*
-          path: results
+          python-version: "3.12"
+
+      - name: Install Python packages
+        run: pip install requests beautifulsoup4 playwright
+
+      - name: Connect Surfshark Taiwan WireGuard once
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        run: bash scripts/connect_surfshark_wireguard.sh
+
+      - name: Test all 7 roads in parallel
+        run: |
+          set -u
+          started=$(date +%s)
+
+          ROAD="板橋區中山路二段" STREET_ID="27507" OUTPUT="results/road1.json" python scripts/test_591_matrix_road.py & p1=$!
+          ROAD="板橋區三民路二段" STREET_ID="27485" OUTPUT="results/road2.json" python scripts/test_591_matrix_road.py & p2=$!
+          ROAD="板橋區光復街" STREET_ID="27550" OUTPUT="results/road3.json" python scripts/test_591_matrix_road.py & p3=$!
+          ROAD="板橋區萬安街" STREET_ID="27630" OUTPUT="results/road4.json" python scripts/test_591_matrix_road.py & p4=$!
+          ROAD="板橋區林森街" STREET_ID="27574" OUTPUT="results/road5.json" python scripts/test_591_matrix_road.py & p5=$!
+          ROAD="板橋區三民路一段" STREET_ID="27484" OUTPUT="results/road6.json" python scripts/test_591_matrix_road.py & p6=$!
+          ROAD="板橋區翠華街" STREET_ID="27644" OUTPUT="results/road7.json" python scripts/test_591_matrix_road.py & p7=$!
+
+          rc=0
+          for pid in "$p1" "$p2" "$p3" "$p4" "$p5" "$p6" "$p7"; do
+            wait "$pid" || rc=1
+          done
+
+          finished=$(date +%s)
+          echo $((finished-started)) > results/parallel-wall-seconds.txt
+          exit "$rc"
+
       - name: Build persistent summary
+        if: always()
         run: |
           python - <<'PY'
           import glob, json
@@ -154,30 +72,44 @@ jobs:
               '板橋區三民路一段': 6,
               '板橋區翠華街': 7,
           }
-          files = glob.glob('results/**/*.json', recursive=True)
+
           rows = []
-          for f in files:
+          for f in glob.glob('results/road*.json'):
               try:
                   rows.append(json.load(open(f, encoding='utf-8')))
               except Exception as exc:
-                  rows.append({'road': f, 'success': False, 'count': 0, 'pages': 0, 'logs': [f'讀取結果失敗：{exc}']})
+                  rows.append({
+                      'road': f,
+                      'success': False,
+                      'count': 0,
+                      'pages': 0,
+                      'logs': [f'讀取結果失敗：{exc}'],
+                  })
           rows.sort(key=lambda r: order.get(r.get('road'), 999))
+
+          wall = None
+          wall_file = Path('results/parallel-wall-seconds.txt')
+          if wall_file.exists():
+              try:
+                  wall = int(wall_file.read_text().strip())
+              except Exception:
+                  pass
 
           starts = [r.get('startedAt') for r in rows if r.get('startedAt')]
           finishes = [r.get('finishedAt') for r in rows if r.get('finishedAt')]
-          total_duration = None
+          test_span = None
           if starts and finishes:
               try:
                   s = min(datetime.fromisoformat(x) for x in starts)
                   e = max(datetime.fromisoformat(x) for x in finishes)
-                  total_duration = round((e - s).total_seconds(), 2)
+                  test_span = round((e - s).total_seconds(), 2)
               except Exception:
                   pass
 
           exit_ips = sorted({r.get('vpnExitIp') for r in rows if r.get('vpnExitIp')})
           report = {
               'checkedAt': datetime.now(timezone.utc).isoformat(),
-              'mode': 'surfshark_taiwan_wireguard_two_roads_per_runner',
+              'mode': 'surfshark_taiwan_wireguard_one_runner_seven_parallel',
               'vpnExpected': True,
               'vpnVerifiedForAllResults': len(rows) == 7 and all(bool(r.get('vpnConnected')) and bool(r.get('vpnExitIp')) for r in rows),
               'vpnExitIps': exit_ips,
@@ -185,7 +117,8 @@ jobs:
               'totalRoads': 7,
               'receivedResults': len(rows),
               'allSucceeded': len(rows) == 7 and all(bool(r.get('success')) for r in rows),
-              'totalDurationSeconds': total_duration,
+              'parallelWallSeconds': wall,
+              'testSpanSeconds': test_span,
               'results': rows,
               'productionDataModified': False,
           }
@@ -194,11 +127,21 @@ jobs:
           out.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
           print(json.dumps(report, ensure_ascii=False, indent=2))
           PY
+
+      - name: Upload raw test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fastest-591-results
+          path: results/
+          if-no-files-found: warn
+
       - name: Save test report to GitHub
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/data/591-two-at-time-test.json
-          git diff --cached --quiet || git commit -m "Update 591 Surfshark VPN test report"
+          git diff --cached --quiet || git commit -m "Update fastest 591 Surfshark test report"
           git pull --rebase
           git push
