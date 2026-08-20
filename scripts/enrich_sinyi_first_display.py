@@ -34,6 +34,13 @@ def parse_first_display(value):
         return None
 
 
+def iso_from_timestamp(ts):
+    try:
+        return datetime.fromtimestamp(int(ts), ZoneInfo("Asia/Taipei")).isoformat(timespec="seconds")
+    except Exception:
+        return None
+
+
 def extract(payload, house_id):
     if not isinstance(payload, dict):
         return None
@@ -110,9 +117,12 @@ def main():
         ts = hit.get("timestamp")
         if ts:
             item["sourcePublishedAt"] = ts
-            item["sourcePublishedAtType"] = "firstDisplay"
+            # Keep publishTime for current frontend compatibility; record the true API field separately.
+            item["sourcePublishedAtType"] = "publishTime"
+            item["sourcePublishedAtField"] = "firstDisplay"
             item["postTime"] = ts
             item["sinyiFirstDisplay"] = hit.get("firstDisplay")
+            item["newAt"] = iso_from_timestamp(ts)
             applied += 1
 
     state.setdefault("timeNormalization", {})
