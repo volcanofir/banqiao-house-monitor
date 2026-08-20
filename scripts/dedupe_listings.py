@@ -140,16 +140,20 @@ def is_same_591_property(a, b):
     return False
 
 
-def choose_keeper(a, b):
-    def rank(item):
-        return (
-            1 if item.get("active", True) else 0,
-            int(item.get("postTime") or 0),
-            str(item.get("lastSeenAt") or ""),
-            str(item.get("id") or ""),
-        )
+def published_rank(item):
+    value = item.get("sourcePublishedAt") or item.get("postTime")
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return 10**18
 
-    keeper, other = (a, b) if rank(a) >= rank(b) else (b, a)
+
+def choose_keeper(a, b):
+    # The primary card is always the oldest source listing in the duplicate group.
+    # Missing publish timestamps are treated as newest/unknown, not as oldest.
+    rank_a = (published_rank(a), str(a.get("firstSeenAt") or ""), str(a.get("id") or ""))
+    rank_b = (published_rank(b), str(b.get("firstSeenAt") or ""), str(b.get("id") or ""))
+    keeper, other = (a, b) if rank_a <= rank_b else (b, a)
     merged = dict(keeper)
 
     first_seen = [x for x in (a.get("firstSeenAt"), b.get("firstSeenAt")) if x]
@@ -192,7 +196,6 @@ def review_item(item):
 
 
 def expand_members(members):
-    """Flatten any previously merged record so the audit list stays complete."""
     expanded = []
     seen = set()
     for item in members:
@@ -209,8 +212,24 @@ def expand_members(members):
 
 
 def finalize_cluster(record, members):
-    merged = dict(record)
     detailed_members = expand_members(members)
+    if detailed_members:
+        oldest = min(
+            detailed_members,
+            key=lambda item: (
+                published_rank(item),
+                str(item.get("firstSeenAt") or ""),
+                str(item.get("id") or ""),
+            ),
+        )
+        # Use the oldest listing's display fields, then preserve merged state below.
+        oldest_id = oldest.get("id")
+        for item in members:
+            if item.get("id") == oldest_id:
+                record = choose_keeper(record, item)
+                break
+
+    merged = dict(record)
     ids = [item.get("id") for item in detailed_members if item.get("id")]
     active_count = sum(1 for item in detailed_members if item.get("active", True))
 
@@ -224,12 +243,13 @@ def finalize_cluster(record, members):
         merged.pop(key, None)
 
     if len(ids) > 1:
+        # Audit list is oldest -> newest so the first row matches the primary card.
         detailed_members.sort(
             key=lambda item: (
-                int(item.get("postTime") or 0),
-                str(item.get("lastSeenAt") or ""),
-            ),
-            reverse=True,
+                published_rank(item),
+                str(item.get("firstSeenAt") or ""),
+                str(item.get("id") or ""),
+            )
         )
         merged["mergedListingCount"] = len(ids)
         merged["mergedDuplicateCount"] = len(ids) - 1
