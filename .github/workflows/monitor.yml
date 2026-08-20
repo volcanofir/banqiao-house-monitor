@@ -9,6 +9,7 @@ on:
       - "scripts/monitor_fast.py"
       - "scripts/connect_surfshark_wireguard.sh"
       - "scripts/dedupe_listings.py"
+      - "scripts/dedupe_listings_v2.py"
       - "scripts/normalize_source_times.py"
       - ".github/workflows/monitor.yml"
   schedule:
@@ -63,7 +64,7 @@ jobs:
         run: python scripts/monitor_fast.py
 
       - name: Remove duplicate 591 properties
-        run: python scripts/dedupe_listings.py
+        run: python scripts/dedupe_listings_v2.py
 
       - name: Normalize source publish times
         run: python scripts/normalize_source_times.py
