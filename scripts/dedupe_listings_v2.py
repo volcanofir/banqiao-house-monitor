@@ -180,9 +180,6 @@ def same_property(a, b):
         "一樓", "二樓", "三樓", "店面", "透天", "收租",
     }
 
-    # Exact price + exact area on the same road is a strong fingerprint.
-    # One shared housing/structure feature is enough; transitive clustering
-    # then joins differently-worded ads through common intermediate members.
     if common & high_signal:
         return True
     if len(common) >= 2:
@@ -200,7 +197,7 @@ def published_rank(item):
 
 def raw_row(item, parent=None):
     parent = parent or {}
-    row = {
+    return {
         "id": item.get("id"),
         "source": item.get("source") or parent.get("source") or "591",
         "houseId": item.get("houseId"),
@@ -219,25 +216,21 @@ def raw_row(item, parent=None):
         "active": item.get("active", parent.get("active", True)),
         "removedAt": item.get("removedAt"),
     }
-    return row
 
 
 def merge_same_id(old, new):
     if not old:
         return dict(new)
     merged = dict(old)
-    # Prefer current/top-level non-empty descriptive fields.
     for key in ("source", "houseId", "road", "title", "address", "price", "size", "url", "postTime", "sourcePublishedAt", "sourcePublishedAtType"):
         if new.get(key) not in (None, ""):
             merged[key] = new.get(key)
-
     firsts = [x for x in (old.get("firstSeenAt"), new.get("firstSeenAt")) if x]
     lasts = [x for x in (old.get("lastSeenAt"), new.get("lastSeenAt")) if x]
     if firsts:
         merged["firstSeenAt"] = min(firsts)
     if lasts:
         merged["lastSeenAt"] = max(lasts)
-
     old_new_at, new_new_at = old.get("newAt"), new.get("newAt")
     if old_new_at and new_new_at:
         merged["newAt"] = min(old_new_at, new_new_at)
@@ -245,7 +238,6 @@ def merge_same_id(old, new):
         merged["newAt"] = old_new_at or new_new_at
     else:
         merged["newAt"] = None
-
     merged["active"] = bool(old.get("active", True) or new.get("active", True))
     merged["removedAt"] = None if merged["active"] else (new.get("removedAt") or old.get("removedAt"))
     return merged
@@ -253,8 +245,6 @@ def merge_same_id(old, new):
 
 def flatten_591(source_rows):
     by_id = {}
-    # Embedded historical members first; top-level/current rows later overwrite
-    # descriptive fields while preserving earliest firstSeen and latest lastSeen.
     for parent in source_rows:
         old_members = parent.get("mergedListings")
         if isinstance(old_members, list):
@@ -299,9 +289,9 @@ def build_record(members):
         merged["mergedActiveListingCount"] = sum(1 for x in members if x.get("active", True))
         merged["mergedListingIds"] = [x.get("id") for x in members if x.get("id")]
         merged["mergedListings"] = [dict(x) for x in members]
-        # A repost must not turn an old property into a new property.
-        new_times = [x.get("newAt") for x in members]
-        merged["newAt"] = min(new_times) if new_times and all(new_times) else None
+        # Any listing that belongs to a duplicate group is an existing property,
+        # never a "recent new listing", even if every repost was discovered recently.
+        merged["newAt"] = None
 
     return merged
 
@@ -310,7 +300,6 @@ def dedupe(rows):
     non_591 = [x for x in rows if x.get("source") != "591"]
     top_level_591 = [x for x in rows if x.get("source") == "591"]
     raw_591 = flatten_591(top_level_591)
-
     raw_591.sort(key=lambda x: (int(x.get("postTime") or 0), str(x.get("lastSeenAt") or "")), reverse=True)
     clusters = []
     for item in raw_591:
@@ -323,7 +312,6 @@ def dedupe(rows):
             clusters.append([item])
         else:
             clusters[match].append(item)
-
     kept = [build_record(cluster) for cluster in clusters]
     removed = max(0, len(raw_591) - len(kept))
     return non_591 + kept, removed, len(raw_591)
@@ -333,7 +321,6 @@ def main():
     if not DATA_PATH.exists():
         print("No listings data found; nothing to dedupe.")
         return
-
     state = json.loads(DATA_PATH.read_text(encoding="utf-8"))
     after, removed, raw_count = dedupe(state.get("listings") or [])
     after.sort(key=lambda x: (0 if x.get("active", True) else 1, -(x.get("postTime") or 0), x.get("firstSeenAt") or ""))
