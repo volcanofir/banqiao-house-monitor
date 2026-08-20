@@ -126,6 +126,8 @@ def main():
         "pages": 0,
         "logs": logs,
         "startedAt": now_iso(),
+        "vpnConnected": os.environ.get("VPN_CONNECTED", "").lower() == "true",
+        "vpnExitIp": os.environ.get("VPN_EXIT_IP") or None,
         "_startedEpoch": time.time(),
     }
 
