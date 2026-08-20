@@ -173,34 +173,70 @@ def choose_keeper(a, b):
     return merged
 
 
+def review_item(item):
+    return {
+        "id": item.get("id"),
+        "houseId": item.get("houseId"),
+        "title": item.get("title"),
+        "url": item.get("url"),
+        "price": item.get("price"),
+        "size": item.get("size"),
+        "address": item.get("address"),
+        "postTime": item.get("postTime"),
+        "sourcePublishedAt": item.get("sourcePublishedAt"),
+        "sourcePublishedAtType": item.get("sourcePublishedAtType"),
+        "firstSeenAt": item.get("firstSeenAt"),
+        "lastSeenAt": item.get("lastSeenAt"),
+        "active": item.get("active", True),
+    }
+
+
+def expand_members(members):
+    """Flatten any previously merged record so the audit list stays complete."""
+    expanded = []
+    seen = set()
+    for item in members:
+        candidates = [review_item(item)]
+        old_members = item.get("mergedListings")
+        if isinstance(old_members, list):
+            candidates.extend(old_members)
+        for candidate in candidates:
+            item_id = candidate.get("id")
+            if item_id and item_id not in seen:
+                seen.add(item_id)
+                expanded.append(candidate)
+    return expanded
+
+
 def finalize_cluster(record, members):
     merged = dict(record)
-    ids = []
-    active_count = 0
-    for item in members:
-        item_id = item.get("id")
-        if item_id and item_id not in ids:
-            ids.append(item_id)
-        if item.get("active", True):
-            active_count += 1
+    detailed_members = expand_members(members)
+    ids = [item.get("id") for item in detailed_members if item.get("id")]
+    active_count = sum(1 for item in detailed_members if item.get("active", True))
 
     for key in (
         "mergedListingCount",
         "mergedDuplicateCount",
         "mergedActiveListingCount",
         "mergedListingIds",
+        "mergedListings",
     ):
         merged.pop(key, None)
 
     if len(ids) > 1:
+        detailed_members.sort(
+            key=lambda item: (
+                int(item.get("postTime") or 0),
+                str(item.get("lastSeenAt") or ""),
+            ),
+            reverse=True,
+        )
         merged["mergedListingCount"] = len(ids)
         merged["mergedDuplicateCount"] = len(ids) - 1
         merged["mergedActiveListingCount"] = active_count
         merged["mergedListingIds"] = ids
+        merged["mergedListings"] = detailed_members
 
-        # A newly posted duplicate ad must not turn an already-known property
-        # into a new property. Only keep newAt when every member of the cluster
-        # is genuinely new in this run.
         member_new_times = [item.get("newAt") for item in members]
         if not member_new_times or not all(member_new_times):
             merged["newAt"] = None
