@@ -1,4 +1,4 @@
-name: 591 Two-at-a-Time Runner Test
+name: 591 Surfshark Two-at-a-Time Test
 
 on:
   workflow_dispatch:
@@ -14,131 +14,122 @@ env:
   PYTHONUNBUFFERED: "1"
 
 jobs:
-  road1:
-    name: 1 中山路二段
+  batch1:
+    name: 1-2 中山二段 + 三民二段
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
       - run: pip install requests beautifulsoup4 playwright
-      - name: Test road
-        env: {ROAD: "板橋區中山路二段", STREET_ID: "27507", OUTPUT: "result.json"}
-        run: python scripts/test_591_matrix_road.py
+      - name: Connect Surfshark Taiwan WireGuard
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        run: bash scripts/connect_surfshark_wireguard.sh
+      - name: Test two roads in parallel
+        run: |
+          ROAD="板橋區中山路二段" STREET_ID="27507" OUTPUT="road1.json" python scripts/test_591_matrix_road.py &
+          p1=$!
+          ROAD="板橋區三民路二段" STREET_ID="27485" OUTPUT="road2.json" python scripts/test_591_matrix_road.py &
+          p2=$!
+          wait "$p1"
+          wait "$p2"
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: road1, path: result.json, if-no-files-found: warn}
-
-  road2:
-    name: 2 三民路二段
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v5
-        with: {python-version: "3.12"}
-      - run: pip install requests beautifulsoup4 playwright
-      - name: Test road
-        env: {ROAD: "板橋區三民路二段", STREET_ID: "27485", OUTPUT: "result.json"}
-        run: python scripts/test_591_matrix_road.py
+        with: {name: road1, path: road1.json, if-no-files-found: warn}
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: road2, path: result.json, if-no-files-found: warn}
+        with: {name: road2, path: road2.json, if-no-files-found: warn}
 
-  road3:
-    name: 3 光復街
-    needs: [road1, road2]
+  batch2:
+    name: 3-4 光復街 + 萬安街
+    needs: batch1
     if: always()
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
       - run: pip install requests beautifulsoup4 playwright
-      - name: Test road
-        env: {ROAD: "板橋區光復街", STREET_ID: "27550", OUTPUT: "result.json"}
-        run: python scripts/test_591_matrix_road.py
+      - name: Connect Surfshark Taiwan WireGuard
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        run: bash scripts/connect_surfshark_wireguard.sh
+      - name: Test two roads in parallel
+        run: |
+          ROAD="板橋區光復街" STREET_ID="27550" OUTPUT="road3.json" python scripts/test_591_matrix_road.py &
+          p1=$!
+          ROAD="板橋區萬安街" STREET_ID="27630" OUTPUT="road4.json" python scripts/test_591_matrix_road.py &
+          p2=$!
+          wait "$p1"
+          wait "$p2"
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: road3, path: result.json, if-no-files-found: warn}
+        with: {name: road3, path: road3.json, if-no-files-found: warn}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: road4, path: road4.json, if-no-files-found: warn}
 
-  road4:
-    name: 4 萬安街
-    needs: [road1, road2]
+  batch3:
+    name: 5-6 林森街 + 三民一段
+    needs: batch2
     if: always()
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
       - run: pip install requests beautifulsoup4 playwright
-      - name: Test road
-        env: {ROAD: "板橋區萬安街", STREET_ID: "27630", OUTPUT: "result.json"}
-        run: python scripts/test_591_matrix_road.py
+      - name: Connect Surfshark Taiwan WireGuard
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        run: bash scripts/connect_surfshark_wireguard.sh
+      - name: Test two roads in parallel
+        run: |
+          ROAD="板橋區林森街" STREET_ID="27574" OUTPUT="road5.json" python scripts/test_591_matrix_road.py &
+          p1=$!
+          ROAD="板橋區三民路一段" STREET_ID="27484" OUTPUT="road6.json" python scripts/test_591_matrix_road.py &
+          p2=$!
+          wait "$p1"
+          wait "$p2"
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: road4, path: result.json, if-no-files-found: warn}
-
-  road5:
-    name: 5 林森街
-    needs: [road3, road4]
-    if: always()
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v5
-        with: {python-version: "3.12"}
-      - run: pip install requests beautifulsoup4 playwright
-      - name: Test road
-        env: {ROAD: "板橋區林森街", STREET_ID: "27574", OUTPUT: "result.json"}
-        run: python scripts/test_591_matrix_road.py
+        with: {name: road5, path: road5.json, if-no-files-found: warn}
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: road5, path: result.json, if-no-files-found: warn}
+        with: {name: road6, path: road6.json, if-no-files-found: warn}
 
-  road6:
-    name: 6 三民路一段
-    needs: [road3, road4]
-    if: always()
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v5
-        with: {python-version: "3.12"}
-      - run: pip install requests beautifulsoup4 playwright
-      - name: Test road
-        env: {ROAD: "板橋區三民路一段", STREET_ID: "27484", OUTPUT: "result.json"}
-        run: python scripts/test_591_matrix_road.py
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with: {name: road6, path: result.json, if-no-files-found: warn}
-
-  road7:
+  batch4:
     name: 7 翠華街
-    needs: [road5, road6]
+    needs: batch3
     if: always()
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
       - run: pip install requests beautifulsoup4 playwright
+      - name: Connect Surfshark Taiwan WireGuard
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        run: bash scripts/connect_surfshark_wireguard.sh
       - name: Test road
-        env: {ROAD: "板橋區翠華街", STREET_ID: "27644", OUTPUT: "result.json"}
+        env:
+          ROAD: "板橋區翠華街"
+          STREET_ID: "27644"
+          OUTPUT: "road7.json"
         run: python scripts/test_591_matrix_road.py
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: road7, path: result.json, if-no-files-found: warn}
+        with: {name: road7, path: road7.json, if-no-files-found: warn}
 
   summary:
     name: Summary
-    needs: [road1, road2, road3, road4, road5, road6, road7]
+    needs: [batch1, batch2, batch3, batch4]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -163,7 +154,7 @@ jobs:
               '板橋區三民路一段': 6,
               '板橋區翠華街': 7,
           }
-          files = glob.glob('results/**/result.json', recursive=True)
+          files = glob.glob('results/**/*.json', recursive=True)
           rows = []
           for f in files:
               try:
@@ -183,9 +174,13 @@ jobs:
               except Exception:
                   pass
 
+          exit_ips = sorted({r.get('vpnExitIp') for r in rows if r.get('vpnExitIp')})
           report = {
               'checkedAt': datetime.now(timezone.utc).isoformat(),
-              'mode': 'two_at_a_time_independent_github_runners',
+              'mode': 'surfshark_taiwan_wireguard_two_roads_per_runner',
+              'vpnExpected': True,
+              'vpnVerifiedForAllResults': len(rows) == 7 and all(bool(r.get('vpnConnected')) and bool(r.get('vpnExitIp')) for r in rows),
+              'vpnExitIps': exit_ips,
               'successCount': sum(bool(r.get('success')) for r in rows),
               'totalRoads': 7,
               'receivedResults': len(rows),
@@ -204,5 +199,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/data/591-two-at-time-test.json
-          git diff --cached --quiet || git commit -m "Update 591 two-at-a-time test report"
+          git diff --cached --quiet || git commit -m "Update 591 Surfshark VPN test report"
+          git pull --rebase
           git push
