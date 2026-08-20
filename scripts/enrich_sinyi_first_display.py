@@ -10,10 +10,12 @@ DATA_PATH = Path("docs/data/listings.json")
 CACHE_PATH = Path("docs/data/sinyi-first-display-cache.json")
 API_URL = "https://sinyiwebapi.sinyi.com.tw/getObjectContent.php"
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1",
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
     "Accept": "application/json, text/plain, */*",
     "Accept-Language": "zh-TW,zh;q=0.9,en;q=0.7",
+    "Content-Type": "application/json",
     "Referer": "https://www.sinyi.com.tw/",
+    "Origin": "https://www.sinyi.com.tw",
 }
 
 
@@ -56,22 +58,41 @@ def extract(payload, house_id):
     return {"firstDisplay": raw, "timestamp": ts}
 
 
+def build_payload(house_id):
+    return {
+        "machineNo": "",
+        "ipAddress": "",
+        "osType": 5,
+        "model": "web",
+        "deviceVersion": "Linux",
+        "appVersion": "151.0.0.0",
+        "deviceType": 3,
+        "apType": 3,
+        "browser": 1,
+        "memberId": "",
+        "domain": "www.sinyi.com.tw",
+        "utmSource": "",
+        "utmMedium": "",
+        "utmCampaign": "",
+        "utmCode": "",
+        "requestor": 1,
+        "utmContent": "",
+        "utmTerm": "",
+        "sinyiGroup": 1,
+        "houseNo": str(house_id),
+        "agentId": "",
+        "memberPhone": "",
+        "showOff": 0,
+    }
+
+
 def fetch_one(house_id):
     session = requests.Session()
     session.headers.update(HEADERS)
-    attempts = [
-        ("post", {"houseno": house_id}),
-        ("post", {"houseNo": house_id}),
-        ("get", {"houseno": house_id}),
-        ("get", {"houseNo": house_id}),
-    ]
     last_error = None
-    for method, params in attempts:
+    for attempt in range(1, 4):
         try:
-            if method == "post":
-                r = session.post(API_URL, data=params, timeout=12)
-            else:
-                r = session.get(API_URL, params=params, timeout=12)
+            r = session.post(API_URL, json=build_payload(house_id), timeout=15)
             if r.status_code != 200:
                 last_error = f"HTTP {r.status_code}"
                 continue
@@ -83,7 +104,8 @@ def fetch_one(house_id):
             found = extract(payload, house_id)
             if found:
                 return house_id, found, None
-            last_error = "house/firstDisplay not found"
+            message = payload.get("message") if isinstance(payload, dict) else None
+            last_error = f"house/firstDisplay not found{': ' + str(message) if message else ''}"
         except Exception as exc:
             last_error = f"{type(exc).__name__}: {exc}"
     return house_id, None, last_error
@@ -117,7 +139,6 @@ def main():
         ts = hit.get("timestamp")
         if ts:
             item["sourcePublishedAt"] = ts
-            # Keep publishTime for current frontend compatibility; record the true API field separately.
             item["sourcePublishedAtType"] = "publishTime"
             item["sourcePublishedAtField"] = "firstDisplay"
             item["postTime"] = ts
