@@ -3,7 +3,6 @@ import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urlparse
 
 from playwright.async_api import async_playwright
 
@@ -117,12 +116,11 @@ async def diagnose_one(browser, item):
     page.on('response',on_response)
     try:
         await page.goto(item.get('url'),wait_until='domcontentloaded',timeout=45000)
-        await page.wait_for_timeout(10000)
-        # Trigger lazy/API loads without interacting with forms.
+        await page.wait_for_timeout(8000)
         for frac in (0.25,0.5,0.75,1.0):
             try:
                 await page.evaluate(f'window.scrollTo(0, document.body.scrollHeight*{frac})')
-                await page.wait_for_timeout(1200)
+                await page.wait_for_timeout(1000)
             except Exception:
                 pass
     except Exception as exc:
@@ -137,31 +135,26 @@ async def diagnose_one(browser, item):
 
 async def main():
     state=json.loads(DATA_PATH.read_text(encoding='utf-8'))
-    samples=[x for x in state.get('listings',[]) if x.get('source')=='信義房屋' and x.get('houseId')][:8]
-    async with async_playwright() as p:
-        browser=await p.chromium.launch(channel='chrome',headless=True,args=['--disable-dev-shm-usage'])
-        try:
-            results=[]
-            for item in samples:
-                results.append(await diagnose_one(browser,item))
-        finally:
-            await browser.close()
-    all_house=[]
-    for r in results:
+    samples=[x for x in state.get('listings',[]) if x.get('source')=='信義房屋' and x.get('houseId')][:6]
+    report={'summary':{'checkedAt':now_iso(),'sampleCount':len(samples),'productionDataModified':False},'houseRelatedResponses':[],'results':[]}
+    try:
+        async with async_playwright() as p:
+            browser=await p.chromium.launch(headless=True,args=['--disable-dev-shm-usage'])
+            try:
+                for item in samples:
+                    report['results'].append(await diagnose_one(browser,item))
+            finally:
+                await browser.close()
+    except Exception as exc:
+        report['summary']['fatalError']=f'{type(exc).__name__}: {exc}'
+
+    for r in report['results']:
         for resp in r.get('responses',[]):
             if resp.get('containsHouseId'):
-                all_house.append({'houseId':r['houseId'],'url':resp['url'],'timeCandidates':resp.get('timeCandidates',[]),'houseObjects':resp.get('houseObjects',[])})
-    report={
-        'summary':{
-            'checkedAt':now_iso(),
-            'sampleCount':len(samples),
-            'responsesKept':sum(r.get('apiCount',0) for r in results),
-            'houseRelatedResponses':sum(r.get('houseApiCount',0) for r in results),
-            'productionDataModified':False,
-        },
-        'houseRelatedResponses':all_house,
-        'results':results,
-    }
+                report['houseRelatedResponses'].append({'houseId':r['houseId'],'url':resp['url'],'timeCandidates':resp.get('timeCandidates',[]),'houseObjects':resp.get('houseObjects',[])})
+    report['summary']['responsesKept']=sum(r.get('apiCount',0) for r in report['results'])
+    report['summary']['houseRelatedResponses']=sum(r.get('houseApiCount',0) for r in report['results'])
+
     OUT_PATH.parent.mkdir(parents=True,exist_ok=True)
     OUT_PATH.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps(report['summary'],ensure_ascii=False,indent=2))
