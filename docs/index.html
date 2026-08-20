@@ -7,7 +7,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <title>Banqiao House Monitor</title>
   <style>
-    :root{--cream:#fff8df;--paper:#fffef8;--yellow:#f5d331;--yellow2:#ffe88b;--green:#124b37;--green2:#236650;--red:#cf3f4a;--ink:#30312f;--muted:#756f64;--line:#e3ca73;--gray:#515861}
+    :root{--cream:#fff8df;--paper:#fffef8;--yellow:#f5d331;--green:#124b37;--red:#cf3f4a;--ink:#30312f;--muted:#756f64;--line:#e3ca73;--gray:#515861}
     *{box-sizing:border-box}
     body{margin:0;background:var(--cream);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif}
     a{color:inherit}
@@ -33,10 +33,8 @@
     .source-head{display:flex;justify-content:space-between;gap:12px;align-items:center}
     .source-head strong{color:var(--green);font-size:18px}
     .badge{display:inline-block;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800}
-    .ok{background:#dcefe7;color:#14503c}.err{background:#f7dadd;color:#972a35}.stale{background:#fff0bd;color:#8a6500}.neutral{background:#eee9df;color:#625a4d}
+    .ok{background:#dcefe7;color:#14503c}.err{background:#f7dadd;color:#972a35}.stale{background:#fff0bd;color:#8a6500}
     .source-card p{margin:10px 0 0;color:#625c52;line-height:1.7;font-size:14px}
-    .roads{display:flex;flex-wrap:wrap;gap:8px}
-    .road-chip{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--cream);font-size:14px;font-weight:700;color:#315044}
     .tools{display:grid;grid-template-columns:180px 180px minmax(220px,1fr);gap:8px;margin-bottom:16px}
     .tools select{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px 13px;background:#fff;font:inherit}
     .note{font-size:13px;color:var(--muted);margin-bottom:16px}
@@ -66,7 +64,7 @@
   <section class="hero">
     <div class="eyebrow">監控來源：591、信義房屋</div>
     <h1>指定路段追蹤上架物件</h1>
-    <p>系統先鎖定新北市板橋區的買賣案件，再比對指定路段。資料由 GitHub Actions 每 3 小時更新一次，不使用 Netlify。</p>
+    <p>比對新北市板橋區七個指定路段的買賣案件。資料每 3 小時更新一次。</p>
     <div class="metrics">
       <div class="metric"><span>監控路段</span><strong id="mRoads">7 條</strong></div>
       <div class="metric"><span>目前上架</span><strong id="mActive">-</strong></div>
@@ -76,7 +74,7 @@
   </section>
 
   <section class="panel"><div class="stripe"></div><div class="inside"><div class="eyebrow">MONITOR STATUS</div><h2>已啟用</h2><div class="source-grid" id="sources"></div></div></section>
-  <section class="panel"><div class="stripe"></div><div class="inside"><div class="eyebrow">ROAD WATCH</div><h2>監控路段</h2><div class="roads" id="roads"></div></div></section>
+
   <section class="panel"><div class="stripe"></div><div class="inside"><div class="eyebrow">LISTINGS</div><h2>案件列表</h2>
     <div class="tools">
       <select id="source"><option>全部來源</option><option>591</option><option>信義房屋</option></select>
@@ -102,7 +100,6 @@ const sourcePublishValue=x=>{const v=x.sourcePublishedAt??x.postTime;if(!v)retur
 const sourcePublish=x=>{const v=sourcePublishValue(x);return v?fmtUnix(v):null};
 const priceValue=x=>{const m=String(x.price||'').replace(/,/g,'').match(/\d+(?:\.\d+)?/);return m?Number(m[0]):null};
 const statusOf=x=>{if(!x.active)return '已下架';if(x.newAt&&Date.now()-new Date(x.newAt).getTime()<=14*86400000)return '近期新案';return '已上架'};
-const lastSourceSeen=name=>{const ts=(DATA.listings||[]).filter(x=>x.source===name&&x.lastSeenAt).map(x=>new Date(x.lastSeenAt).getTime()).filter(Number.isFinite);return ts.length?new Date(Math.max(...ts)).toISOString():null};
 const sortItems=(items,mode)=>{const list=[...items];if(mode==='default')return list;const key=mode.startsWith('price')?priceValue:sourcePublishValue;const dir=mode.endsWith('Desc')?-1:1;return list.sort((a,b)=>{const av=key(a),bv=key(b);const aMissing=av==null,bMissing=bv==null;if(aMissing&&bMissing)return 0;if(aMissing)return 1;if(bMissing)return -1;if(av===bv)return 0;return (av-bv)*dir})};
 function mergedAudit(x){
   const members=Array.isArray(x.mergedListings)?x.mergedListings:[];
@@ -120,12 +117,10 @@ function render(){
   document.querySelector('#mActive').textContent=`${rows.filter(x=>x.active!==false).length} 筆`;
   document.querySelector('#mNew').textContent=`${rows.filter(x=>statusOf(x)==='近期新案').length} 筆`;
   document.querySelector('#mOff').textContent=`${rows.filter(x=>x.active===false).length} 筆`;
-  document.querySelector('#roads').innerHTML=roads.map(r=>`<span class="road-chip">${esc(r)}</span>`).join('');
   document.querySelector('#sources').innerHTML=['591','信義房屋'].map(name=>{
     const r=DATA.runs?.[name],ok=r?.status==='ok',cached=!!r&&!ok&&(r.totalCount??0)>0;
     const badgeClass=ok?'ok':cached?'stale':'err',badgeText=ok?'正常':cached?'沿用上次資料':r?'異常':'等待首次執行';
-    const dataSeen=lastSourceSeen(name);
-    return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${badgeClass}">${badgeText}</span></div><p>${r?`${esc(r.message||'')}<br>目前保留 ${r.totalCount??0} 筆・新案 ${r.newCount??0}・確認下架 ${r.removedCount??0}<br>${cached?`資料最後成功：${fmt(dataSeen)}<br>本次檢查：${fmt(r.checkedAt)}`:`最近更新：${fmt(r.checkedAt)}`}`:'尚未有執行紀錄'}</p></div>`
+    return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${badgeClass}">${badgeText}</span></div><p>${r?`目前保留 ${r.totalCount??0} 筆<br>最近更新：${fmt(r.checkedAt)}`:'尚未有執行紀錄'}</p></div>`
   }).join('');
   document.querySelector('#updated').textContent=`資料最近更新：${fmt(DATA.updatedAt)}。相同 591 案件會自動整併；主案件顯示最舊刊登，合併明細可展開核對。`;
   renderGroups();
