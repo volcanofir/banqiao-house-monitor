@@ -57,52 +57,63 @@ def extract(payload, house_id):
 
 async def fetch_one(browser, semaphore, house_id):
     async with semaphore:
-        context = await browser.new_context(
-            locale="zh-TW",
-            timezone_id="Asia/Taipei",
-            viewport={"width": 390, "height": 844},
-            user_agent=(
-                "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) "
-                "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 "
-                "Mobile/15E148 Safari/604.1"
-            ),
-        )
-        page = await context.new_page()
-        result_future = asyncio.get_running_loop().create_future()
-
-        async def inspect_response(response):
-            if API_NAME not in response.url or response.status != 200:
-                return
-            if result_future.done():
-                return
-            try:
-                payload = await response.json()
-                found = extract(payload, house_id)
-                if found and not result_future.done():
-                    result_future.set_result(found)
-            except Exception:
-                pass
-
-        def on_response(response):
-            asyncio.create_task(inspect_response(response))
-
-        page.on("response", on_response)
+        context = None
         try:
+            context = await browser.new_context(
+                locale="zh-TW",
+                timezone_id="Asia/Taipei",
+                viewport={"width": 390, "height": 844},
+                user_agent=(
+                    "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) "
+                    "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 "
+                    "Mobile/15E148 Safari/604.1"
+                ),
+            )
+            page = await context.new_page()
+            result_future = asyncio.get_running_loop().create_future()
+
+            async def inspect_response(response):
+                if API_NAME not in response.url or response.status != 200:
+                    return
+                if result_future.done():
+                    return
+                try:
+                    payload = await response.json()
+                    found = extract(payload, house_id)
+                    if found and not result_future.done():
+                        result_future.set_result(found)
+                except Exception:
+                    pass
+
+            def on_response(response):
+                asyncio.create_task(inspect_response(response))
+
+            page.on("response", on_response)
             url = f"https://www.sinyi.com.tw/buy/house/{house_id}?breadcrumb=list"
             await page.goto(url, wait_until="domcontentloaded", timeout=30000)
+
             try:
-                found = await asyncio.wait_for(result_future, timeout=12)
+                # shield prevents wait_for() timeout from cancelling the future itself.
+                found = await asyncio.wait_for(asyncio.shield(result_future), timeout=12)
                 return house_id, found, None
             except asyncio.TimeoutError:
-                # Give slow client-side API calls one final short window.
                 await page.wait_for_timeout(3000)
-                if result_future.done():
-                    return house_id, result_future.result(), None
+                if result_future.done() and not result_future.cancelled():
+                    try:
+                        return house_id, result_future.result(), None
+                    except Exception:
+                        pass
                 return house_id, None, "firstDisplay API response not captured"
-        except Exception as exc:
+        except BaseException as exc:
+            if isinstance(exc, (KeyboardInterrupt, SystemExit)):
+                raise
             return house_id, None, f"{type(exc).__name__}: {exc}"
         finally:
-            await context.close()
+            if context is not None:
+                try:
+                    await context.close()
+                except Exception:
+                    pass
 
 
 async def fetch_missing(missing):
@@ -116,9 +127,17 @@ async def fetch_missing(missing):
             args=["--disable-dev-shm-usage"],
         )
         try:
-            return await asyncio.gather(
-                *(fetch_one(browser, semaphore, hid) for hid in missing)
+            raw_results = await asyncio.gather(
+                *(fetch_one(browser, semaphore, hid) for hid in missing),
+                return_exceptions=True,
             )
+            results = []
+            for hid, result in zip(missing, raw_results):
+                if isinstance(result, BaseException):
+                    results.append((hid, None, f"{type(result).__name__}: {result}"))
+                else:
+                    results.append(result)
+            return results
         finally:
             await browser.close()
 
@@ -142,7 +161,15 @@ def main():
     errors = []
     fetched = 0
     if missing:
-        for hid, value, error in asyncio.run(fetch_missing(missing)):
+        try:
+            results = asyncio.run(fetch_missing(missing))
+        except BaseException as exc:
+            if isinstance(exc, (KeyboardInterrupt, SystemExit)):
+                raise
+            results = []
+            errors.append(f"batch: {type(exc).__name__}: {exc}")
+
+        for hid, value, error in results:
             if value:
                 cache[hid] = value
                 fetched += 1
@@ -156,7 +183,6 @@ def main():
         ts = hit.get("timestamp")
         if ts:
             item["sourcePublishedAt"] = ts
-            # Keep this legacy type for frontend compatibility.
             item["sourcePublishedAtType"] = "publishTime"
             item["sourcePublishedAtField"] = "firstDisplay"
             item["postTime"] = ts
@@ -171,7 +197,7 @@ def main():
         0, len(house_ids) - applied
     )
     state["timeNormalization"]["sinyiFirstDisplayErrors"] = errors[-20:]
-    state["timeNormalization"]["sinyiFirstDisplayMode"] = "playwright_network_capture"
+    state["timeNormalization"]["sinyiFirstDisplayMode"] = "playwright_network_capture_safe"
 
     CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
     CACHE_PATH.write_text(
