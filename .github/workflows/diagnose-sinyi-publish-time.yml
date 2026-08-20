@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "scripts/diagnose_sinyi_publish_time.py"
+      - "scripts/diagnose_sinyi_network.py"
       - ".github/workflows/diagnose-sinyi-publish-time.yml"
 
 permissions:
@@ -25,22 +26,27 @@ jobs:
           python-version: "3.12"
 
       - name: Install packages
-        run: pip install requests beautifulsoup4
+        run: pip install requests beautifulsoup4 playwright
 
-      - name: Diagnose Sinyi publish time fields
+      - name: Diagnose static Sinyi publish time fields
         run: python scripts/diagnose_sinyi_publish_time.py
 
-      - name: Upload diagnostic report
+      - name: Diagnose Sinyi runtime network APIs
+        run: python scripts/diagnose_sinyi_network.py
+
+      - name: Upload diagnostic reports
         uses: actions/upload-artifact@v4
         with:
           name: sinyi-publish-time-diagnostic
-          path: docs/data/sinyi-publish-time-diagnostic.json
+          path: |
+            docs/data/sinyi-publish-time-diagnostic.json
+            docs/data/sinyi-network-diagnostic.json
 
-      - name: Save diagnostic report to GitHub
+      - name: Save diagnostic reports to GitHub
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/data/sinyi-publish-time-diagnostic.json
+          git add docs/data/sinyi-publish-time-diagnostic.json docs/data/sinyi-network-diagnostic.json
           git diff --cached --quiet || git commit -m "Update Sinyi publish time diagnostic"
           git pull --rebase
           git push
