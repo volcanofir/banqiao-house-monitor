@@ -1,22 +1,15 @@
-import concurrent.futures
+import asyncio
 import json
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-import requests
+from playwright.async_api import async_playwright
 
 DATA_PATH = Path("docs/data/listings.json")
 CACHE_PATH = Path("docs/data/sinyi-first-display-cache.json")
-API_URL = "https://sinyiwebapi.sinyi.com.tw/getObjectContent.php"
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
-    "Accept": "application/json, text/plain, */*",
-    "Accept-Language": "zh-TW,zh;q=0.9,en;q=0.7",
-    "Content-Type": "application/json",
-    "Referer": "https://www.sinyi.com.tw/",
-    "Origin": "https://www.sinyi.com.tw",
-}
+API_NAME = "getObjectContent.php"
+MAX_CONCURRENCY = 8
 
 
 def load_json(path, fallback):
@@ -30,7 +23,9 @@ def parse_first_display(value):
     if not value:
         return None
     try:
-        dt = datetime.strptime(str(value), "%Y-%m-%d %H:%M:%S").replace(tzinfo=ZoneInfo("Asia/Taipei"))
+        dt = datetime.strptime(str(value), "%Y-%m-%d %H:%M:%S").replace(
+            tzinfo=ZoneInfo("Asia/Taipei")
+        )
         return int(dt.timestamp())
     except Exception:
         return None
@@ -38,7 +33,9 @@ def parse_first_display(value):
 
 def iso_from_timestamp(ts):
     try:
-        return datetime.fromtimestamp(int(ts), ZoneInfo("Asia/Taipei")).isoformat(timespec="seconds")
+        return datetime.fromtimestamp(int(ts), ZoneInfo("Asia/Taipei")).isoformat(
+            timespec="seconds"
+        )
     except Exception:
         return None
 
@@ -58,57 +55,72 @@ def extract(payload, house_id):
     return {"firstDisplay": raw, "timestamp": ts}
 
 
-def build_payload(house_id):
-    return {
-        "machineNo": "",
-        "ipAddress": "",
-        "osType": 5,
-        "model": "web",
-        "deviceVersion": "Linux",
-        "appVersion": "151.0.0.0",
-        "deviceType": 3,
-        "apType": 3,
-        "browser": 1,
-        "memberId": "",
-        "domain": "www.sinyi.com.tw",
-        "utmSource": "",
-        "utmMedium": "",
-        "utmCampaign": "",
-        "utmCode": "",
-        "requestor": 1,
-        "utmContent": "",
-        "utmTerm": "",
-        "sinyiGroup": 1,
-        "houseNo": str(house_id),
-        "agentId": "",
-        "memberPhone": "",
-        "showOff": 0,
-    }
+async def fetch_one(browser, semaphore, house_id):
+    async with semaphore:
+        context = await browser.new_context(
+            locale="zh-TW",
+            timezone_id="Asia/Taipei",
+            viewport={"width": 390, "height": 844},
+            user_agent=(
+                "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) "
+                "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 "
+                "Mobile/15E148 Safari/604.1"
+            ),
+        )
+        page = await context.new_page()
+        result_future = asyncio.get_running_loop().create_future()
 
-
-def fetch_one(house_id):
-    session = requests.Session()
-    session.headers.update(HEADERS)
-    last_error = None
-    for attempt in range(1, 4):
-        try:
-            r = session.post(API_URL, json=build_payload(house_id), timeout=15)
-            if r.status_code != 200:
-                last_error = f"HTTP {r.status_code}"
-                continue
+        async def inspect_response(response):
+            if API_NAME not in response.url or response.status != 200:
+                return
+            if result_future.done():
+                return
             try:
-                payload = r.json()
+                payload = await response.json()
+                found = extract(payload, house_id)
+                if found and not result_future.done():
+                    result_future.set_result(found)
             except Exception:
-                last_error = "non-json"
-                continue
-            found = extract(payload, house_id)
-            if found:
+                pass
+
+        def on_response(response):
+            asyncio.create_task(inspect_response(response))
+
+        page.on("response", on_response)
+        try:
+            url = f"https://www.sinyi.com.tw/buy/house/{house_id}?breadcrumb=list"
+            await page.goto(url, wait_until="domcontentloaded", timeout=30000)
+            try:
+                found = await asyncio.wait_for(result_future, timeout=12)
                 return house_id, found, None
-            message = payload.get("message") if isinstance(payload, dict) else None
-            last_error = f"house/firstDisplay not found{': ' + str(message) if message else ''}"
+            except asyncio.TimeoutError:
+                # Give slow client-side API calls one final short window.
+                await page.wait_for_timeout(3000)
+                if result_future.done():
+                    return house_id, result_future.result(), None
+                return house_id, None, "firstDisplay API response not captured"
         except Exception as exc:
-            last_error = f"{type(exc).__name__}: {exc}"
-    return house_id, None, last_error
+            return house_id, None, f"{type(exc).__name__}: {exc}"
+        finally:
+            await context.close()
+
+
+async def fetch_missing(missing):
+    if not missing:
+        return []
+    semaphore = asyncio.Semaphore(MAX_CONCURRENCY)
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(
+            channel="chrome",
+            headless=True,
+            args=["--disable-dev-shm-usage"],
+        )
+        try:
+            return await asyncio.gather(
+                *(fetch_one(browser, semaphore, hid) for hid in missing)
+            )
+        finally:
+            await browser.close()
 
 
 def main():
@@ -117,20 +129,25 @@ def main():
     if not isinstance(cache, dict):
         cache = {}
 
-    sinyi = [x for x in state.get("listings", []) if x.get("source") == "信義房屋" and x.get("houseId")]
+    sinyi = [
+        x
+        for x in state.get("listings", [])
+        if x.get("source") == "信義房屋" and x.get("houseId")
+    ]
     house_ids = sorted({str(x.get("houseId")) for x in sinyi})
-    missing = [hid for hid in house_ids if not (cache.get(hid) or {}).get("timestamp")]
+    missing = [
+        hid for hid in house_ids if not (cache.get(hid) or {}).get("timestamp")
+    ]
 
     errors = []
     fetched = 0
     if missing:
-        with concurrent.futures.ThreadPoolExecutor(max_workers=12) as pool:
-            for hid, value, error in pool.map(fetch_one, missing):
-                if value:
-                    cache[hid] = value
-                    fetched += 1
-                elif error:
-                    errors.append(f"{hid}: {error}")
+        for hid, value, error in asyncio.run(fetch_missing(missing)):
+            if value:
+                cache[hid] = value
+                fetched += 1
+            elif error:
+                errors.append(f"{hid}: {error}")
 
     applied = 0
     for item in sinyi:
@@ -139,6 +156,7 @@ def main():
         ts = hit.get("timestamp")
         if ts:
             item["sourcePublishedAt"] = ts
+            # Keep this legacy type for frontend compatibility.
             item["sourcePublishedAtType"] = "publishTime"
             item["sourcePublishedAtField"] = "firstDisplay"
             item["postTime"] = ts
@@ -149,13 +167,23 @@ def main():
     state.setdefault("timeNormalization", {})
     state["timeNormalization"]["sinyiFirstDisplayCached"] = applied
     state["timeNormalization"]["sinyiFirstDisplayFetchedThisRun"] = fetched
-    state["timeNormalization"]["sinyiFirstDisplayMissing"] = max(0, len(house_ids) - applied)
+    state["timeNormalization"]["sinyiFirstDisplayMissing"] = max(
+        0, len(house_ids) - applied
+    )
     state["timeNormalization"]["sinyiFirstDisplayErrors"] = errors[-20:]
+    state["timeNormalization"]["sinyiFirstDisplayMode"] = "playwright_network_capture"
 
     CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    CACHE_PATH.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")
-    DATA_PATH.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Sinyi firstDisplay: total={len(house_ids)}, cached/applied={applied}, fetched={fetched}, missing={len(house_ids)-applied}")
+    CACHE_PATH.write_text(
+        json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    DATA_PATH.write_text(
+        json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    print(
+        f"Sinyi firstDisplay: total={len(house_ids)}, cached/applied={applied}, "
+        f"fetched={fetched}, missing={len(house_ids)-applied}"
+    )
     for line in errors[-10:]:
         print(" -", line)
 
