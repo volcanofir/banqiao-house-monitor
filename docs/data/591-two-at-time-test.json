@@ -1,55 +1,55 @@
 {
-  "checkedAt": "2026-08-20T02:22:56.054107+00:00",
+  "checkedAt": "2026-08-20T04:06:58.745824+00:00",
   "mode": "surfshark_taiwan_wireguard_one_runner_seven_parallel",
   "vpnExpected": true,
   "vpnVerifiedForAllResults": true,
   "vpnExitIps": [
-    "45.144.227.34"
+    "89.117.42.110"
   ],
   "successCount": 7,
   "totalRoads": 7,
   "receivedResults": 7,
   "allSucceeded": true,
-  "parallelWallSeconds": 52,
-  "testSpanSeconds": 50.14,
+  "parallelWallSeconds": 32,
+  "testSpanSeconds": 31.18,
   "results": [
     {
       "road": "板橋區中山路二段",
       "streetid": "27507",
       "success": true,
-      "count": 148,
+      "count": 146,
       "pages": 5,
       "logs": [
         "暖機成功",
-        "第 1 頁 raw=30 match=30 new=30",
+        "第 1 頁 raw=31 match=30 new=30",
         "第 2 頁 raw=31 match=30 new=30",
         "第 3 頁 raw=31 match=30 new=30",
         "第 4 頁 raw=31 match=30 new=30",
-        "第 5 頁 raw=29 match=28 new=28"
+        "第 5 頁 raw=28 match=27 new=26"
       ],
-      "startedAt": "2026-08-20T02:22:05.751677+00:00",
+      "startedAt": "2026-08-20T04:06:27.497931+00:00",
       "vpnConnected": true,
-      "vpnExitIp": "45.144.227.34",
-      "finishedAt": "2026-08-20T02:22:55.866355+00:00",
-      "durationSeconds": 50.11
+      "vpnExitIp": "89.117.42.110",
+      "finishedAt": "2026-08-20T04:06:58.564707+00:00",
+      "durationSeconds": 31.07
     },
     {
       "road": "板橋區三民路二段",
       "streetid": "27485",
       "success": true,
-      "count": 65,
+      "count": 64,
       "pages": 3,
       "logs": [
         "暖機成功",
         "第 1 頁 raw=31 match=30 new=30",
         "第 2 頁 raw=31 match=30 new=30",
-        "第 3 頁 raw=6 match=5 new=5"
+        "第 3 頁 raw=6 match=5 new=4"
       ],
-      "startedAt": "2026-08-20T02:22:05.730467+00:00",
+      "startedAt": "2026-08-20T04:06:27.493445+00:00",
       "vpnConnected": true,
-      "vpnExitIp": "45.144.227.34",
-      "finishedAt": "2026-08-20T02:22:51.219496+00:00",
-      "durationSeconds": 45.49
+      "vpnExitIp": "89.117.42.110",
+      "finishedAt": "2026-08-20T04:06:53.548523+00:00",
+      "durationSeconds": 26.06
     },
     {
       "road": "板橋區光復街",
@@ -61,43 +61,43 @@
         "暖機成功",
         "第 1 頁 raw=4 match=3 new=3"
       ],
-      "startedAt": "2026-08-20T02:22:05.763045+00:00",
+      "startedAt": "2026-08-20T04:06:27.494596+00:00",
       "vpnConnected": true,
-      "vpnExitIp": "45.144.227.34",
-      "finishedAt": "2026-08-20T02:22:46.882146+00:00",
-      "durationSeconds": 41.12
+      "vpnExitIp": "89.117.42.110",
+      "finishedAt": "2026-08-20T04:06:48.484024+00:00",
+      "durationSeconds": 20.99
     },
     {
       "road": "板橋區萬安街",
       "streetid": "27630",
       "success": true,
-      "count": 9,
+      "count": 8,
       "pages": 1,
       "logs": [
         "暖機成功",
-        "第 1 頁 raw=10 match=9 new=9"
+        "第 1 頁 raw=9 match=8 new=8"
       ],
-      "startedAt": "2026-08-20T02:22:05.793134+00:00",
+      "startedAt": "2026-08-20T04:06:27.391098+00:00",
       "vpnConnected": true,
-      "vpnExitIp": "45.144.227.34",
-      "finishedAt": "2026-08-20T02:22:47.309598+00:00",
-      "durationSeconds": 41.52
+      "vpnExitIp": "89.117.42.110",
+      "finishedAt": "2026-08-20T04:06:48.913841+00:00",
+      "durationSeconds": 21.52
     },
     {
       "road": "板橋區林森街",
       "streetid": "27574",
       "success": true,
-      "count": 6,
+      "count": 7,
       "pages": 1,
       "logs": [
         "暖機成功",
-        "第 1 頁 raw=8 match=6 new=6"
+        "第 1 頁 raw=8 match=7 new=7"
       ],
-      "startedAt": "2026-08-20T02:22:05.737198+00:00",
+      "startedAt": "2026-08-20T04:06:27.381502+00:00",
       "vpnConnected": true,
-      "vpnExitIp": "45.144.227.34",
-      "finishedAt": "2026-08-20T02:22:47.153526+00:00",
-      "durationSeconds": 41.42
+      "vpnExitIp": "89.117.42.110",
+      "finishedAt": "2026-08-20T04:06:48.207390+00:00",
+      "durationSeconds": 20.83
     },
     {
       "road": "板橋區三民路一段",
@@ -110,27 +110,27 @@
         "第 1 頁 raw=31 match=30 new=30",
         "第 2 頁 raw=7 match=6 new=6"
       ],
-      "startedAt": "2026-08-20T02:22:05.798953+00:00",
+      "startedAt": "2026-08-20T04:06:27.441363+00:00",
       "vpnConnected": true,
-      "vpnExitIp": "45.144.227.34",
-      "finishedAt": "2026-08-20T02:22:49.410132+00:00",
-      "durationSeconds": 43.61
+      "vpnExitIp": "89.117.42.110",
+      "finishedAt": "2026-08-20T04:06:50.435312+00:00",
+      "durationSeconds": 22.99
     },
     {
       "road": "板橋區翠華街",
       "streetid": "27644",
       "success": true,
-      "count": 10,
+      "count": 11,
       "pages": 1,
       "logs": [
         "暖機成功",
-        "第 1 頁 raw=11 match=10 new=10"
+        "第 1 頁 raw=12 match=11 new=11"
       ],
-      "startedAt": "2026-08-20T02:22:05.797649+00:00",
+      "startedAt": "2026-08-20T04:06:27.455034+00:00",
       "vpnConnected": true,
-      "vpnExitIp": "45.144.227.34",
-      "finishedAt": "2026-08-20T02:22:47.267743+00:00",
-      "durationSeconds": 41.47
+      "vpnExitIp": "89.117.42.110",
+      "finishedAt": "2026-08-20T04:06:50.050196+00:00",
+      "durationSeconds": 22.6
     }
   ],
   "productionDataModified": false
