@@ -1,0 +1,48 @@
+name: 591 Surfshark Pure HTTP Speed Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "tests/trigger-591-http-fast.txt"
+
+permissions:
+  contents: write
+
+env:
+  PYTHONUNBUFFERED: "1"
+
+jobs:
+  http-fast:
+    name: VPN once + pure HTTP + 7 roads parallel
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Connect Surfshark Taiwan WireGuard once
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        run: bash scripts/connect_surfshark_wireguard.sh
+
+      - name: Run pure HTTP speed test
+        run: python3 scripts/test_591_http_fast.py
+
+      - name: Upload raw report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 591-http-fast-report
+          path: docs/data/591-http-fast-test.json
+          if-no-files-found: warn
+
+      - name: Save test report to GitHub
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/591-http-fast-test.json
+          git diff --cached --quiet || git commit -m "Update 591 pure HTTP speed test report"
+          git pull --rebase
+          git push
