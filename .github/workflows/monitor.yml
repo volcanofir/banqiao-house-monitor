@@ -11,6 +11,7 @@ on:
       - "scripts/dedupe_listings.py"
       - "scripts/dedupe_listings_v2.py"
       - "scripts/normalize_source_times.py"
+      - "scripts/enrich_sinyi_first_display.py"
       - "scripts/track_price_changes.py"
       - ".github/workflows/monitor.yml"
   schedule:
@@ -50,6 +51,9 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/monitor_fast.py
 
+      - name: Fill missing Sinyi firstDisplay times
+        run: python scripts/enrich_sinyi_first_display.py
+
       - name: Connect Surfshark Taiwan WireGuard
         env:
           SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
@@ -77,7 +81,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/data/listings.json
+          git add docs/data/listings.json docs/data/sinyi-first-display-cache.json
           git diff --cached --quiet || git commit -m "Update monitored listings"
           git pull --rebase
           git push
