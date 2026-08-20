@@ -8,9 +8,12 @@ DATA_PATH = Path("docs/data/listings.json")
 
 def text_key(value):
     text = str(value or "").lower()
-    # Keep Chinese characters and ASCII letters/numbers; remove emoji,
-    # punctuation, spaces and decorative symbols used in listing titles.
     return re.sub(r"[^0-9a-z\u4e00-\u9fff]+", "", text)
+
+
+def chinese_key(value):
+    text = str(value or "").lower().replace("臺", "台")
+    return re.sub(r"[^0-9\u4e00-\u9fff]+", "", text)
 
 
 def number_from_text(value):
@@ -30,6 +33,45 @@ def title_similarity(a, b):
     return SequenceMatcher(None, a, b).ratio()
 
 
+def location_key(item):
+    """Return the useful location/community part before the generic Banqiao road."""
+    address = str(item.get("address") or "").replace("臺", "台")
+    prefix = address.split("板橋區", 1)[0].replace("新北市", "").strip()
+    key = chinese_key(prefix)
+    return key if len(key) >= 2 else None
+
+
+def numbered_address_key(item):
+    address = str(item.get("address") or "").replace("臺", "台")
+    if "號" not in address:
+        return None
+    return chinese_key(address)
+
+
+def structured_hint(item, kind):
+    text = f"{item.get('title') or ''} {item.get('address') or ''}"
+    if kind == "room":
+        mapping = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
+        match = re.search(r"([1-9一二三四五六七八九])\s*房", text)
+        if not match:
+            return None
+        raw = match.group(1)
+        return int(raw) if raw.isdigit() else mapping.get(raw)
+    if kind == "floor":
+        match = re.search(r"(?<!\d)(\d{1,2})\s*樓", text)
+        return int(match.group(1)) if match else None
+    return None
+
+
+def has_conflicting_hints(a, b):
+    for kind in ("room", "floor"):
+        left = structured_hint(a, kind)
+        right = structured_hint(b, kind)
+        if left is not None and right is not None and left != right:
+            return True
+    return False
+
+
 def is_same_591_property(a, b):
     if a.get("source") != "591" or b.get("source") != "591":
         return False
@@ -45,23 +87,63 @@ def is_same_591_property(a, b):
 
     if area_a is None or area_b is None:
         return False
+    if has_conflicting_hints(a, b):
+        return False
 
     area_diff = abs(area_a - area_b)
     similarity = title_similarity(a.get("title"), b.get("title"))
+    price_diff = None if price_a is None or price_b is None else abs(price_a - price_b)
 
-    # Strong case: essentially the same title and almost the same area.
-    # Price may have changed between duplicated/reposted IDs; keep newest.
-    if title_a and title_a == title_b and area_diff <= 0.10:
+    # Same title + same size is a repost even when the asking price changed.
+    if title_a and title_a == title_b and area_diff <= 0.15:
         return True
 
-    # Normal duplicate case: same price, same-sized property and highly
-    # similar title. ±0.05坪 covers the 0.01坪 rounding differences seen on 591.
+    # Exact numbered address is very strong evidence. Allow a modest price change.
+    addr_a = numbered_address_key(a)
+    addr_b = numbered_address_key(b)
     if (
-        price_a is not None
+        addr_a
+        and addr_b
+        and addr_a == addr_b
+        and area_diff <= 0.20
+        and price_a is not None
         and price_b is not None
-        and abs(price_a - price_b) < 0.001
+        and price_diff <= max(30.0, min(price_a, price_b) * 0.02)
+    ):
+        return True
+
+    # Same community/location + virtually identical size and price.
+    # This catches the common case where many agents advertise the same home
+    # with completely different marketing titles.
+    loc_a = location_key(a)
+    loc_b = location_key(b)
+    if (
+        loc_a
+        and loc_b
+        and loc_a == loc_b
+        and price_diff is not None
+        and price_diff <= 1.0
+        and area_diff <= 0.15
+    ):
+        return True
+
+    # When 591 only exposes a generic road address, exact price + exact size is
+    # already strong evidence; use a lower title threshold than before while
+    # still requiring meaningful textual overlap.
+    if (
+        price_diff is not None
+        and price_diff <= 1.0
         and area_diff <= 0.05
-        and similarity >= 0.72
+        and similarity >= 0.40
+    ):
+        return True
+
+    # Slight rounding differences are allowed when the titles are quite close.
+    if (
+        price_diff is not None
+        and price_diff <= 1.0
+        and area_diff <= 0.15
+        and similarity >= 0.62
     ):
         return True
 
@@ -101,11 +183,39 @@ def choose_keeper(a, b):
     return merged
 
 
+def finalize_cluster(record, members):
+    merged = dict(record)
+    ids = []
+    active_count = 0
+    for item in members:
+        item_id = item.get("id")
+        if item_id and item_id not in ids:
+            ids.append(item_id)
+        if item.get("active", True):
+            active_count += 1
+
+    # Recalculate on every run so counts do not accumulate historically.
+    for key in (
+        "mergedListingCount",
+        "mergedDuplicateCount",
+        "mergedActiveListingCount",
+        "mergedListingIds",
+    ):
+        merged.pop(key, None)
+
+    if len(ids) > 1:
+        merged["mergedListingCount"] = len(ids)
+        merged["mergedDuplicateCount"] = len(ids) - 1
+        merged["mergedActiveListingCount"] = active_count
+        merged["mergedListingIds"] = ids
+
+    return merged
+
+
 def dedupe_591(rows):
     non_591 = [item for item in rows if item.get("source") != "591"]
     source_rows = [item for item in rows if item.get("source") == "591"]
 
-    # Newest first makes the retained record naturally point at the newest ID.
     source_rows.sort(
         key=lambda item: (
             int(item.get("postTime") or 0),
@@ -114,19 +224,22 @@ def dedupe_591(rows):
         reverse=True,
     )
 
-    kept = []
+    clusters = []
     for item in source_rows:
         duplicate_index = None
-        for index, existing in enumerate(kept):
-            if is_same_591_property(item, existing):
+        for index, cluster in enumerate(clusters):
+            if is_same_591_property(item, cluster["record"]):
                 duplicate_index = index
                 break
 
         if duplicate_index is None:
-            kept.append(item)
+            clusters.append({"record": item, "members": [item]})
         else:
-            kept[duplicate_index] = choose_keeper(kept[duplicate_index], item)
+            cluster = clusters[duplicate_index]
+            cluster["members"].append(item)
+            cluster["record"] = choose_keeper(cluster["record"], item)
 
+    kept = [finalize_cluster(c["record"], c["members"]) for c in clusters]
     return non_591 + kept, len(source_rows) - len(kept)
 
 
@@ -139,7 +252,6 @@ def main():
     before = state.get("listings") or []
     after, removed = dedupe_591(before)
 
-    # Preserve the site's normal sort order.
     after = sorted(
         after,
         key=lambda item: (
@@ -156,25 +268,32 @@ def main():
             1 for item in after
             if item.get("source") == "591" and item.get("active", True)
         )
+        merged_groups = sum(
+            1 for item in after
+            if item.get("source") == "591" and int(item.get("mergedListingCount") or 0) > 1
+        )
         run["totalCount"] = visible_count
         run["dedupeRemoved"] = removed
+        run["dedupeGroups"] = merged_groups
         base_message = str(run.get("message") or "").split("；顯示去重後", 1)[0]
         if removed:
             run["message"] = (
                 f"{base_message}；顯示去重後 {visible_count} 筆"
-                f"（合併 {removed} 筆重複）。"
+                f"（{merged_groups} 組案件，共合併 {removed} 筆重複刊登）。"
             )
         else:
             run["message"] = f"{base_message}；顯示去重後 {visible_count} 筆。"
         logs = run.setdefault("logs", [])
-        logs.append(f"591 物件層去重：合併 {removed} 筆重複，顯示 {visible_count} 筆。")
+        logs.append(
+            f"591 物件層去重：{merged_groups} 組案件，共合併 {removed} 筆重複刊登，顯示 {visible_count} 筆。"
+        )
         run["logs"] = logs[-60:]
 
     DATA_PATH.write_text(
         json.dumps(state, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
-    print(f"591 dedupe removed {removed} duplicate rows.")
+    print(f"591 dedupe grouped {removed} duplicate rows.")
 
 
 if __name__ == "__main__":
