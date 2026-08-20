@@ -34,7 +34,6 @@ def title_similarity(a, b):
 
 
 def location_key(item):
-    """Return the useful location/community part before the generic Banqiao road."""
     address = str(item.get("address") or "").replace("臺", "台")
     prefix = address.split("板橋區", 1)[0].replace("新北市", "").strip()
     key = chinese_key(prefix)
@@ -94,11 +93,9 @@ def is_same_591_property(a, b):
     similarity = title_similarity(a.get("title"), b.get("title"))
     price_diff = None if price_a is None or price_b is None else abs(price_a - price_b)
 
-    # Same title + same size is a repost even when the asking price changed.
     if title_a and title_a == title_b and area_diff <= 0.15:
         return True
 
-    # Exact numbered address is very strong evidence. Allow a modest price change.
     addr_a = numbered_address_key(a)
     addr_b = numbered_address_key(b)
     if (
@@ -112,9 +109,6 @@ def is_same_591_property(a, b):
     ):
         return True
 
-    # Same community/location + virtually identical size and price.
-    # This catches the common case where many agents advertise the same home
-    # with completely different marketing titles.
     loc_a = location_key(a)
     loc_b = location_key(b)
     if (
@@ -127,9 +121,6 @@ def is_same_591_property(a, b):
     ):
         return True
 
-    # When 591 only exposes a generic road address, exact price + exact size is
-    # already strong evidence; use a lower title threshold than before while
-    # still requiring meaningful textual overlap.
     if (
         price_diff is not None
         and price_diff <= 1.0
@@ -138,7 +129,6 @@ def is_same_591_property(a, b):
     ):
         return True
 
-    # Slight rounding differences are allowed when the titles are quite close.
     if (
         price_diff is not None
         and price_diff <= 1.0
@@ -194,7 +184,6 @@ def finalize_cluster(record, members):
         if item.get("active", True):
             active_count += 1
 
-    # Recalculate on every run so counts do not accumulate historically.
     for key in (
         "mergedListingCount",
         "mergedDuplicateCount",
@@ -208,6 +197,15 @@ def finalize_cluster(record, members):
         merged["mergedDuplicateCount"] = len(ids) - 1
         merged["mergedActiveListingCount"] = active_count
         merged["mergedListingIds"] = ids
+
+        # A newly posted duplicate ad must not turn an already-known property
+        # into a new property. Only keep newAt when every member of the cluster
+        # is genuinely new in this run.
+        member_new_times = [item.get("newAt") for item in members]
+        if not member_new_times or not all(member_new_times):
+            merged["newAt"] = None
+        else:
+            merged["newAt"] = min(member_new_times)
 
     return merged
 
@@ -272,7 +270,16 @@ def main():
             1 for item in after
             if item.get("source") == "591" and int(item.get("mergedListingCount") or 0) > 1
         )
+        checked_at = run.get("checkedAt")
+        distinct_new_count = sum(
+            1 for item in after
+            if item.get("source") == "591"
+            and item.get("active", True)
+            and checked_at
+            and item.get("newAt") == checked_at
+        )
         run["totalCount"] = visible_count
+        run["newCount"] = distinct_new_count
         run["dedupeRemoved"] = removed
         run["dedupeGroups"] = merged_groups
         base_message = str(run.get("message") or "").split("；顯示去重後", 1)[0]
@@ -285,7 +292,7 @@ def main():
             run["message"] = f"{base_message}；顯示去重後 {visible_count} 筆。"
         logs = run.setdefault("logs", [])
         logs.append(
-            f"591 物件層去重：{merged_groups} 組案件，共合併 {removed} 筆重複刊登，顯示 {visible_count} 筆。"
+            f"591 物件層去重：{merged_groups} 組案件，共合併 {removed} 筆重複刊登，顯示 {visible_count} 筆；本輪實際新案件 {distinct_new_count} 筆。"
         )
         run["logs"] = logs[-60:]
 
