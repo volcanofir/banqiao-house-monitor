@@ -46,7 +46,7 @@
     .item{padding:15px 0;border-bottom:1px solid #f0e5bd}.item:last-child{border:0}
     .item-title{font-weight:900;color:var(--green);text-decoration:none;line-height:1.5}
     .row{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:8px;color:#645e54;font-size:13px}
-    .pill{border-radius:999px;padding:4px 8px;background:#f0ece4}.pill.new{background:#dcefe7;color:#14503c}.pill.off{background:#f7dadd;color:#972a35}.pill.merge{background:#fff0bd;color:#755600;font-weight:900;border:1px solid #e3ca73}
+    .pill{border-radius:999px;padding:4px 8px;background:#f0ece4}.pill.new{background:#dcefe7;color:#14503c}.pill.off{background:#f7dadd;color:#972a35}.pill.merge{background:#fff0bd;color:#755600;font-weight:900;border:1px solid #e3ca73}.pill.down{background:#dcefe7;color:#14503c;font-weight:900;border:1px solid #a9d5c5}.pill.up{background:#f7dadd;color:#972a35;font-weight:900;border:1px solid #e3aeb4}
     .publish{font-weight:800;color:#315044}.empty{padding:18px;border-radius:16px;background:var(--cream);color:var(--muted)}
     .merge-audit{margin-top:12px;border:1px dashed #d8bd61;border-radius:14px;background:#fffaf0;overflow:hidden}
     .merge-audit>summary{cursor:pointer;list-style:none;padding:11px 13px;font-size:13px;font-weight:900;color:#755600;display:flex;justify-content:space-between;gap:12px;align-items:center}
@@ -93,12 +93,13 @@
 <script>
 const defaultRoads=['板橋區中山路二段','板橋區三民路二段','板橋區光復街','板橋區萬安街','板橋區林森街','板橋區三民路一段','板橋區翠華街'];
 let DATA={listings:[],runs:{},watchRoads:defaultRoads};
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
 const fmt=v=>{if(!v)return '-';const d=new Date(v);return Number.isNaN(d.getTime())?v:new Intl.DateTimeFormat('zh-TW',{dateStyle:'medium',timeStyle:'medium',timeZone:'Asia/Taipei'}).format(d)};
 const fmtUnix=v=>{if(!v)return null;const n=Number(v);if(!Number.isFinite(n))return null;return fmt(n<1e12?n*1000:n)};
 const sourcePublishValue=x=>{const v=x.sourcePublishedAt??x.postTime;if(!v)return null;if(x.source==='信義房屋'&&x.sourcePublishedAtType!=='publishTime')return null;const n=Number(v);return Number.isFinite(n)?(n<1e12?n:n/1000):null};
 const sourcePublish=x=>{const v=sourcePublishValue(x);return v?fmtUnix(v):null};
-const priceValue=x=>{const m=String(x.price||'').replace(/,/g,'').match(/\d+(?:\.\d+)?/);return m?Number(m[0]):null};
+const priceValue=x=>{if(x.effectivePrice!=null)return Number(x.effectivePrice);const m=String(x.price||'').replace(/,/g,'').match(/\d+(?:\.\d+)?/);return m?Number(m[0]):null};
+const displayPrice=x=>x.effectivePrice!=null?`${x.effectivePrice}萬`:x.price;
 const statusOf=x=>{if(!x.active)return '已下架';if(x.newAt&&Date.now()-new Date(x.newAt).getTime()<=14*86400000)return '近期新案';return '已上架'};
 const sortItems=(items,mode)=>{const list=[...items];if(mode==='default')return list;const key=mode.startsWith('price')?priceValue:sourcePublishValue;const dir=mode.endsWith('Desc')?-1:1;return list.sort((a,b)=>{const av=key(a),bv=key(b);const aMissing=av==null,bMissing=bv==null;if(aMissing&&bMissing)return 0;if(aMissing)return 1;if(bMissing)return -1;if(av===bv)return 0;return (av-bv)*dir})};
 function mergedAudit(x){
@@ -144,7 +145,10 @@ function renderGroups(){
       const systemTimeLine=hideFirstDiscovery?`<div class="row"><span>系統最後確認：${fmt(x.lastSeenAt)}</span></div>`:`<div class="row"><span>系統首次發現：${fmt(x.firstSeenAt)}</span><span>系統最後確認：${fmt(x.lastSeenAt)}</span></div>`;
       const mergedCount=Number(x.mergedListingCount||0),activeMerged=Number(x.mergedActiveListingCount||0);
       const mergePill=mergedCount>1?`<span class="pill merge" title="同一案件共找到 ${mergedCount} 筆刊登${activeMerged?`，其中目前上架 ${activeMerged} 筆`:''}">已合併 ${mergedCount} 筆</span>`:'';
-      return `<article class="item"><a class="item-title" href="${esc(x.url)}" target="_blank" rel="noreferrer">${esc(x.title)}</a><div class="row"><span class="pill">${esc(x.source)}</span><span class="pill ${cls}">${st}</span>${mergePill}${x.price?`<span>${esc(x.price)}</span>`:''}${x.size?`<span>${esc(x.size)}</span>`:''}<span>${esc(x.address||'-')}</span></div>${sourceTimeLine}${systemTimeLine}${mergedAudit(x)}</article>`
+      const changeAmount=Number(x.priceChangeAmount||0);
+      const priceChangePill=changeAmount>0&&x.priceChangeDirection==='down'?`<span class="pill down" title="前次有效價格 ${x.previousEffectivePrice??'-'} 萬">降價 ${changeAmount} 萬</span>`:changeAmount>0&&x.priceChangeDirection==='up'?`<span class="pill up" title="前次有效價格 ${x.previousEffectivePrice??'-'} 萬">漲價 ${changeAmount} 萬</span>`:'';
+      const shownPrice=displayPrice(x);
+      return `<article class="item"><a class="item-title" href="${esc(x.url)}" target="_blank" rel="noreferrer">${esc(x.title)}</a><div class="row"><span class="pill">${esc(x.source)}</span><span class="pill ${cls}">${st}</span>${mergePill}${priceChangePill}${shownPrice?`<span>${esc(shownPrice)}</span>`:''}${x.size?`<span>${esc(x.size)}</span>`:''}<span>${esc(x.address||'-')}</span></div>${sourceTimeLine}${systemTimeLine}${mergedAudit(x)}</article>`
     }).join('')}</div></details>`;
   }
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的案件。</div>';
