@@ -52,6 +52,7 @@ jobs:
         run: python scripts/monitor_fast.py
 
       - name: Fill missing Sinyi firstDisplay times
+        continue-on-error: true
         run: python scripts/enrich_sinyi_first_display.py
 
       - name: Connect Surfshark Taiwan WireGuard
