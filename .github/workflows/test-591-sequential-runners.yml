@@ -8,7 +8,7 @@ on:
       - "tests/trigger-591-sequential.txt"
 
 permissions:
-  contents: read
+  contents: write
 
 env:
   PYTHONUNBUFFERED: "1"
@@ -27,7 +27,8 @@ jobs:
         env: {ROAD: "板橋區中山路二段", STREET_ID: "27507", OUTPUT: "result.json"}
         run: python scripts/test_591_matrix_road.py
       - uses: actions/upload-artifact@v4
-        with: {name: road1, path: result.json}
+        if: always()
+        with: {name: road1, path: result.json, if-no-files-found: warn}
 
   road2:
     name: 2 三民路二段
@@ -42,7 +43,8 @@ jobs:
         env: {ROAD: "板橋區三民路二段", STREET_ID: "27485", OUTPUT: "result.json"}
         run: python scripts/test_591_matrix_road.py
       - uses: actions/upload-artifact@v4
-        with: {name: road2, path: result.json}
+        if: always()
+        with: {name: road2, path: result.json, if-no-files-found: warn}
 
   road3:
     name: 3 光復街
@@ -59,7 +61,8 @@ jobs:
         env: {ROAD: "板橋區光復街", STREET_ID: "27550", OUTPUT: "result.json"}
         run: python scripts/test_591_matrix_road.py
       - uses: actions/upload-artifact@v4
-        with: {name: road3, path: result.json}
+        if: always()
+        with: {name: road3, path: result.json, if-no-files-found: warn}
 
   road4:
     name: 4 萬安街
@@ -76,7 +79,8 @@ jobs:
         env: {ROAD: "板橋區萬安街", STREET_ID: "27630", OUTPUT: "result.json"}
         run: python scripts/test_591_matrix_road.py
       - uses: actions/upload-artifact@v4
-        with: {name: road4, path: result.json}
+        if: always()
+        with: {name: road4, path: result.json, if-no-files-found: warn}
 
   road5:
     name: 5 林森街
@@ -93,7 +97,8 @@ jobs:
         env: {ROAD: "板橋區林森街", STREET_ID: "27574", OUTPUT: "result.json"}
         run: python scripts/test_591_matrix_road.py
       - uses: actions/upload-artifact@v4
-        with: {name: road5, path: result.json}
+        if: always()
+        with: {name: road5, path: result.json, if-no-files-found: warn}
 
   road6:
     name: 6 三民路一段
@@ -110,7 +115,8 @@ jobs:
         env: {ROAD: "板橋區三民路一段", STREET_ID: "27484", OUTPUT: "result.json"}
         run: python scripts/test_591_matrix_road.py
       - uses: actions/upload-artifact@v4
-        with: {name: road6, path: result.json}
+        if: always()
+        with: {name: road6, path: result.json, if-no-files-found: warn}
 
   road7:
     name: 7 翠華街
@@ -127,7 +133,8 @@ jobs:
         env: {ROAD: "板橋區翠華街", STREET_ID: "27644", OUTPUT: "result.json"}
         run: python scripts/test_591_matrix_road.py
       - uses: actions/upload-artifact@v4
-        with: {name: road7, path: result.json}
+        if: always()
+        with: {name: road7, path: result.json, if-no-files-found: warn}
 
   summary:
     name: Summary
@@ -135,17 +142,67 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - uses: actions/download-artifact@v4
         with:
           pattern: road*
           path: results
-      - name: Print summary
+      - name: Build persistent summary
         run: |
           python - <<'PY'
-          import glob,json
-          files=glob.glob('results/**/result.json',recursive=True)
-          rows=[json.load(open(f)) for f in files]
-          print('received',len(rows),'/7')
-          for r in rows: print(('OK' if r['success'] else 'FAIL'),r['road'],r['count'],r['logs'])
-          print('success',sum(bool(r['success']) for r in rows),'/7')
+          import glob, json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          order = {
+              '板橋區中山路二段': 1,
+              '板橋區三民路二段': 2,
+              '板橋區光復街': 3,
+              '板橋區萬安街': 4,
+              '板橋區林森街': 5,
+              '板橋區三民路一段': 6,
+              '板橋區翠華街': 7,
+          }
+          files = glob.glob('results/**/result.json', recursive=True)
+          rows = []
+          for f in files:
+              try:
+                  rows.append(json.load(open(f, encoding='utf-8')))
+              except Exception as exc:
+                  rows.append({'road': f, 'success': False, 'count': 0, 'pages': 0, 'logs': [f'讀取結果失敗：{exc}']})
+          rows.sort(key=lambda r: order.get(r.get('road'), 999))
+
+          starts = [r.get('startedAt') for r in rows if r.get('startedAt')]
+          finishes = [r.get('finishedAt') for r in rows if r.get('finishedAt')]
+          total_duration = None
+          if starts and finishes:
+              try:
+                  s = min(datetime.fromisoformat(x) for x in starts)
+                  e = max(datetime.fromisoformat(x) for x in finishes)
+                  total_duration = round((e - s).total_seconds(), 2)
+              except Exception:
+                  pass
+
+          report = {
+              'checkedAt': datetime.now(timezone.utc).isoformat(),
+              'mode': 'two_at_a_time_independent_github_runners',
+              'successCount': sum(bool(r.get('success')) for r in rows),
+              'totalRoads': 7,
+              'receivedResults': len(rows),
+              'allSucceeded': len(rows) == 7 and all(bool(r.get('success')) for r in rows),
+              'totalDurationSeconds': total_duration,
+              'results': rows,
+              'productionDataModified': False,
+          }
+          out = Path('docs/data/591-two-at-time-test.json')
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
+          print(json.dumps(report, ensure_ascii=False, indent=2))
           PY
+      - name: Save test report to GitHub
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/591-two-at-time-test.json
+          git diff --cached --quiet || git commit -m "Update 591 two-at-a-time test report"
+          git push
