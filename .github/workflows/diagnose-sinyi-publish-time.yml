@@ -1,0 +1,41 @@
+name: 信義原始上架時間診斷
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install packages
+        run: pip install requests beautifulsoup4
+
+      - name: Diagnose Sinyi publish time fields
+        run: python scripts/diagnose_sinyi_publish_time.py
+
+      - name: Upload diagnostic report
+        uses: actions/upload-artifact@v4
+        with:
+          name: sinyi-publish-time-diagnostic
+          path: docs/data/sinyi-publish-time-diagnostic.json
+
+      - name: Save diagnostic report to GitHub
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/sinyi-publish-time-diagnostic.json
+          git diff --cached --quiet || git commit -m "Update Sinyi publish time diagnostic"
+          git pull --rebase
+          git push
