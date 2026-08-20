@@ -5,7 +5,9 @@ from difflib import SequenceMatcher
 from pathlib import Path
 
 DATA_PATH = Path("docs/data/listings.json")
-TRACKING_VERSION = 2
+# v3 tightens property identity matching. Bumping the version intentionally
+# rebuilds the baseline once so any false v2 price-change labels/history are cleared.
+TRACKING_VERSION = 3
 
 
 def number(value):
@@ -36,13 +38,17 @@ def group_members(item):
 def group_ids(item):
     ids = set()
     if item.get("id"):
-        ids.add(item["id"])
+        ids.add(str(item["id"]))
+    if item.get("houseId"):
+        ids.add(f'{item.get("source")}:{item["houseId"]}')
     for value in item.get("mergedListingIds") or []:
         if value:
-            ids.add(value)
+            ids.add(str(value))
     for member in group_members(item):
         if member.get("id"):
-            ids.add(member["id"])
+            ids.add(str(member["id"]))
+        elif member.get("houseId"):
+            ids.add(f'{item.get("source")}:{member["houseId"]}')
     return ids
 
 
@@ -79,33 +85,65 @@ def titles(item):
     return [v for v in values if v]
 
 
+def is_specific_address(value):
+    """Reject road-only/generic addresses that are shared by many properties."""
+    key = text_key(value)
+    if not key:
+        return False
+    # A street number / lane / alley / floor-like locator is strong evidence.
+    if re.search(r"\d", key) or any(marker in key for marker in ("巷", "弄", "號")):
+        return True
+    # Remove common administrative/road-only wording. Anything substantial left
+    # is usually a community/building name and can be used as identity evidence.
+    reduced = key
+    for marker in (
+        "新北市", "板橋區", "中山路二段", "三民路二段", "三民路一段",
+        "光復街", "萬安街", "林森街", "翠華街",
+    ):
+        reduced = reduced.replace(text_key(marker), "")
+    return len(reduced) >= 4
+
+
 def same_property(current, previous):
     if current.get("source") != previous.get("source"):
         return False
     if current.get("road") != previous.get("road"):
         return False
 
+    # Stable listing IDs (including any member of a merged 591 group) are the
+    # safest identity key and should always win.
     if group_ids(current) & group_ids(previous):
         return True
 
+    # Sinyi house IDs are stable. Never fuzzy-match one Sinyi listing to another;
+    # this was the main cause of huge false price jumps between unrelated homes.
+    if current.get("source") == "信義房屋":
+        return False
+
+    # For 591, a completely replaced advertising group can occasionally have no
+    # overlapping IDs. Only allow a fallback match with very strong evidence.
     ca, pa = area(current), area(previous)
-    if ca is None or pa is None or abs(ca - pa) > 0.20:
+    if ca is None or pa is None or abs(ca - pa) > 0.10:
         return False
 
     current_addresses = normalized_address(current)
     previous_addresses = normalized_address(previous)
     for a in current_addresses:
         for b in previous_addresses:
-            if a == b and len(a) >= 6:
+            if not (is_specific_address(a) and is_specific_address(b)):
+                continue
+            if a == b:
                 return True
-            if len(a) >= 10 and len(b) >= 10 and (a in b or b in a):
+            if len(a) >= 12 and len(b) >= 12 and (a in b or b in a):
                 return True
 
+    # Title fallback is deliberately strict. Missing a rare legitimate change is
+    # preferable to showing a wrong rise/drop badge on an unrelated property.
     best_title = 0.0
     for a in titles(current):
         for b in titles(previous):
             best_title = max(best_title, similarity(a, b))
-    return best_title >= 0.68
+    return best_title >= 0.92
 
 
 def load_previous():
@@ -156,6 +194,8 @@ def main():
     for item in current_rows:
         current_price = effective_price(item)
         if current_price is None:
+            clear_change_fields(item)
+            item.pop("priceHistory", None)
             continue
 
         item["effectivePrice"] = compact_price(current_price)
@@ -223,7 +263,7 @@ def main():
         "changedCount": changed,
         "baselineInitialized": baseline_mode,
         "message": (
-            "價格追蹤基準已建立，本輪不標示歷史價格差異。"
+            "價格追蹤基準已重新建立，本輪不標示歷史價格差異。"
             if baseline_mode
             else f"本輪偵測到 {changed} 筆案件價格異動。"
         ),
