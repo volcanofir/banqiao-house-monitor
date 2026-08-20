@@ -55,7 +55,7 @@
 <script>
 const defaultRoads=['板橋區中山路二段','板橋區三民路二段','板橋區光復街','板橋區萬安街','板橋區林森街','板橋區三民路一段','板橋區翠華街'];
 let DATA={listings:[],runs:{},watchRoads:defaultRoads};
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=v=>{if(!v)return '-';const d=new Date(v);return Number.isNaN(d.getTime())?v:new Intl.DateTimeFormat('zh-TW',{dateStyle:'medium',timeStyle:'medium',timeZone:'Asia/Taipei'}).format(d)};
 const fmtUnix=v=>{if(!v)return null;const n=Number(v);if(!Number.isFinite(n))return null;return fmt(n<1e12?n*1000:n)};
 const sourcePublishValue=x=>{const v=x.sourcePublishedAt??x.postTime;if(!v)return null;if(x.source==='信義房屋'&&x.sourcePublishedAtType!=='publishTime')return null;const n=Number(v);return Number.isFinite(n)?(n<1e12?n:n/1000):null};
