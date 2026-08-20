@@ -11,6 +11,7 @@ on:
       - "scripts/dedupe_listings.py"
       - "scripts/dedupe_listings_v2.py"
       - "scripts/normalize_source_times.py"
+      - "scripts/track_price_changes.py"
       - ".github/workflows/monitor.yml"
   schedule:
     # Asia/Taipei 00:00 / 03:00 / 06:00 / 09:00 / 12:00 / 15:00 / 18:00 / 21:00
@@ -68,6 +69,9 @@ jobs:
 
       - name: Normalize source publish times
         run: python scripts/normalize_source_times.py
+
+      - name: Track property price changes
+        run: python scripts/track_price_changes.py
 
       - name: Save latest data to GitHub
         run: |
