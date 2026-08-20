@@ -25,14 +25,19 @@ def main():
                 count_591 += 1
 
         elif source == "信義房屋":
-            # Sinyi runtime API getObjectContent.php exposes firstDisplay,
-            # which represents the property's first public display time.
-            if item.get("sourcePublishedAtType") == "firstDisplay" and item.get("sourcePublishedAt"):
+            # firstDisplay is the actual Sinyi API field. The type remains
+            # publishTime only for compatibility with the existing frontend.
+            if (
+                item.get("sourcePublishedAt")
+                and item.get("sourcePublishedAtField") == "firstDisplay"
+            ):
                 item["postTime"] = item.get("sourcePublishedAt")
+                item["sourcePublishedAtType"] = "publishTime"
                 count_sinyi += 1
             else:
                 item["sourcePublishedAt"] = None
                 item["sourcePublishedAtType"] = None
+                item["sourcePublishedAtField"] = None
                 item["postTime"] = None
                 missing_sinyi += 1
 
