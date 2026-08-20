@@ -1,0 +1,55 @@
+name: 591 Surfshark One-Browser Parallel Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "tests/trigger-591-one-browser.txt"
+
+permissions:
+  contents: write
+
+env:
+  PYTHONUNBUFFERED: "1"
+
+jobs:
+  test:
+    name: VPN once + one Chrome + 7 contexts
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python packages
+        run: pip install requests beautifulsoup4 playwright
+
+      - name: Connect Surfshark Taiwan WireGuard once
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        run: bash scripts/connect_surfshark_wireguard.sh
+
+      - name: Run one-browser parallel test
+        run: python scripts/test_591_one_browser_parallel.py
+
+      - name: Upload raw report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: one-browser-591-report
+          path: docs/data/591-one-browser-test.json
+          if-no-files-found: warn
+
+      - name: Save test report to GitHub
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/591-one-browser-test.json
+          git diff --cached --quiet || git commit -m "Update one-browser 591 test report"
+          git pull --rebase
+          git push
