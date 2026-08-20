@@ -133,6 +133,8 @@ def community(item):
 
 
 def same_property(a, b):
+    if a.get("id") and a.get("id") == b.get("id"):
+        return True
     if a.get("source") != "591" or b.get("source") != "591":
         return False
     if a.get("road") != b.get("road"):
@@ -164,6 +166,8 @@ def same_property(a, b):
     comm_a, comm_b = community(a), community(b)
     if comm_a and comm_b and comm_a == comm_b and area_diff <= 0.15 and price_diff is not None and price_diff <= 1.0:
         return True
+    if comm_a and comm_b and comm_a != comm_b:
+        return False
 
     if price_diff is None or price_diff > 1.0 or area_diff > 0.05:
         return False
@@ -171,25 +175,19 @@ def same_property(a, b):
     fa, fb = features(a), features(b)
     common = fa & fb
     high_signal = {
-        "頂加", "三面採光", "內外梯", "雙車位", "地下室",
+        "公寓", "電梯", "頂加", "三面採光", "內外梯", "雙車位", "地下室",
         "三房", "四房", "方正", "邊間", "前後陽台", "天然瓦斯",
-        "一樓", "二樓", "三樓", "店面", "透天",
+        "一樓", "二樓", "三樓", "店面", "透天", "收租",
     }
 
-    # Exact price + exact area on the same road is already a strong signature.
-    # Two shared descriptive features are enough even when agents use very
-    # different marketing titles (e.g. 埔墘+公寓, 方正+公寓).
-    if len(common) >= 2:
-        return True
-
-    # One concrete structural feature can bridge differently worded ads; the
-    # cluster matching below makes this transitive across all known members.
+    # Exact price + exact area on the same road is a strong fingerprint.
+    # One shared housing/structure feature is enough; transitive clustering
+    # then joins differently-worded ads through common intermediate members.
     if common & high_signal:
         return True
-
-    # Keep a conservative text fallback for ads whose useful features are not
-    # in the dictionary yet.
-    return title_sim >= 0.36
+    if len(common) >= 2:
+        return True
+    return title_sim >= 0.30
 
 
 def published_rank(item):
@@ -200,112 +198,122 @@ def published_rank(item):
         return 10**18
 
 
-def review_item(item):
-    return {
+def raw_row(item, parent=None):
+    parent = parent or {}
+    row = {
         "id": item.get("id"),
+        "source": item.get("source") or parent.get("source") or "591",
         "houseId": item.get("houseId"),
+        "road": item.get("road") or parent.get("road"),
         "title": item.get("title"),
-        "url": item.get("url"),
+        "address": item.get("address"),
         "price": item.get("price"),
         "size": item.get("size"),
-        "address": item.get("address"),
+        "url": item.get("url"),
         "postTime": item.get("postTime"),
         "sourcePublishedAt": item.get("sourcePublishedAt"),
         "sourcePublishedAtType": item.get("sourcePublishedAtType"),
-        "firstSeenAt": item.get("firstSeenAt"),
-        "lastSeenAt": item.get("lastSeenAt"),
-        "active": item.get("active", True),
+        "firstSeenAt": item.get("firstSeenAt") or parent.get("firstSeenAt"),
+        "lastSeenAt": item.get("lastSeenAt") or parent.get("lastSeenAt"),
+        "newAt": item.get("newAt"),
+        "active": item.get("active", parent.get("active", True)),
+        "removedAt": item.get("removedAt"),
     }
+    return row
 
 
-def expand_item(item):
-    rows = [review_item(item)]
-    if isinstance(item.get("mergedListings"), list):
-        rows.extend(item["mergedListings"])
-    out, seen = [], set()
-    for row in rows:
-        row_id = row.get("id")
-        if row_id and row_id not in seen:
-            seen.add(row_id)
-            out.append(row)
-    return out
+def merge_same_id(old, new):
+    if not old:
+        return dict(new)
+    merged = dict(old)
+    # Prefer current/top-level non-empty descriptive fields.
+    for key in ("source", "houseId", "road", "title", "address", "price", "size", "url", "postTime", "sourcePublishedAt", "sourcePublishedAtType"):
+        if new.get(key) not in (None, ""):
+            merged[key] = new.get(key)
+
+    firsts = [x for x in (old.get("firstSeenAt"), new.get("firstSeenAt")) if x]
+    lasts = [x for x in (old.get("lastSeenAt"), new.get("lastSeenAt")) if x]
+    if firsts:
+        merged["firstSeenAt"] = min(firsts)
+    if lasts:
+        merged["lastSeenAt"] = max(lasts)
+
+    old_new_at, new_new_at = old.get("newAt"), new.get("newAt")
+    if old_new_at and new_new_at:
+        merged["newAt"] = min(old_new_at, new_new_at)
+    elif old_new_at or new_new_at:
+        merged["newAt"] = old_new_at or new_new_at
+    else:
+        merged["newAt"] = None
+
+    merged["active"] = bool(old.get("active", True) or new.get("active", True))
+    merged["removedAt"] = None if merged["active"] else (new.get("removedAt") or old.get("removedAt"))
+    return merged
 
 
-def choose_oldest(members):
-    return min(
-        members,
-        key=lambda item: (
-            published_rank(item),
-            str(item.get("firstSeenAt") or ""),
-            str(item.get("id") or ""),
-        ),
-    )
+def flatten_591(source_rows):
+    by_id = {}
+    # Embedded historical members first; top-level/current rows later overwrite
+    # descriptive fields while preserving earliest firstSeen and latest lastSeen.
+    for parent in source_rows:
+        old_members = parent.get("mergedListings")
+        if isinstance(old_members, list):
+            for old in old_members:
+                row = raw_row(old, parent)
+                if row.get("id"):
+                    by_id[row["id"]] = merge_same_id(by_id.get(row["id"]), row)
+    for item in source_rows:
+        row = raw_row(item)
+        if row.get("id"):
+            by_id[row["id"]] = merge_same_id(by_id.get(row["id"]), row)
+    return list(by_id.values())
 
 
-def build_record(members, originals):
-    detailed = []
-    seen = set()
-    for member in members:
-        for row in expand_item(member):
-            row_id = row.get("id")
-            if row_id and row_id not in seen:
-                seen.add(row_id)
-                detailed.append(row)
+def cluster_matches(item, cluster):
+    return any(same_property(item, member) for member in cluster)
 
-    oldest = choose_oldest(detailed)
-    source = originals.get(oldest.get("id")) or oldest
-    merged = dict(source)
 
-    first_seen = [x.get("firstSeenAt") for x in detailed if x.get("firstSeenAt")]
-    last_seen = [x.get("lastSeenAt") for x in detailed if x.get("lastSeenAt")]
-    if first_seen:
-        merged["firstSeenAt"] = min(first_seen)
-    if last_seen:
-        merged["lastSeenAt"] = max(last_seen)
+def build_record(members):
+    members = list(members)
+    members.sort(key=lambda x: (published_rank(x), str(x.get("firstSeenAt") or ""), str(x.get("id") or "")))
+    oldest = members[0]
+    merged = dict(oldest)
 
-    any_active = any(x.get("active", True) for x in detailed)
+    firsts = [x.get("firstSeenAt") for x in members if x.get("firstSeenAt")]
+    lasts = [x.get("lastSeenAt") for x in members if x.get("lastSeenAt")]
+    if firsts:
+        merged["firstSeenAt"] = min(firsts)
+    if lasts:
+        merged["lastSeenAt"] = max(lasts)
+
+    any_active = any(x.get("active", True) for x in members)
     merged["active"] = any_active
     merged["removedAt"] = None if any_active else merged.get("removedAt")
 
     for key in ("mergedListingCount", "mergedDuplicateCount", "mergedActiveListingCount", "mergedListingIds", "mergedListings"):
         merged.pop(key, None)
 
-    detailed.sort(key=lambda x: (published_rank(x), str(x.get("firstSeenAt") or ""), str(x.get("id") or "")))
-    if len(detailed) > 1:
-        merged["mergedListingCount"] = len(detailed)
-        merged["mergedDuplicateCount"] = len(detailed) - 1
-        merged["mergedActiveListingCount"] = sum(1 for x in detailed if x.get("active", True))
-        merged["mergedListingIds"] = [x.get("id") for x in detailed if x.get("id")]
-        merged["mergedListings"] = detailed
-
-        # Reposts are not new properties. The group is new only when every
-        # top-level member entering this pass was newly discovered.
-        member_new = [x.get("newAt") for x in members]
-        merged["newAt"] = min(member_new) if member_new and all(member_new) else None
+    if len(members) > 1:
+        merged["mergedListingCount"] = len(members)
+        merged["mergedDuplicateCount"] = len(members) - 1
+        merged["mergedActiveListingCount"] = sum(1 for x in members if x.get("active", True))
+        merged["mergedListingIds"] = [x.get("id") for x in members if x.get("id")]
+        merged["mergedListings"] = [dict(x) for x in members]
+        # A repost must not turn an old property into a new property.
+        new_times = [x.get("newAt") for x in members]
+        merged["newAt"] = min(new_times) if new_times and all(new_times) else None
 
     return merged
 
 
-def cluster_matches(item, cluster):
-    candidates = []
-    for member in cluster:
-        candidates.extend(expand_item(member))
-    return any(same_property(item, candidate) for candidate in candidates)
-
-
 def dedupe(rows):
     non_591 = [x for x in rows if x.get("source") != "591"]
-    source_rows = [x for x in rows if x.get("source") == "591"]
+    top_level_591 = [x for x in rows if x.get("source") == "591"]
+    raw_591 = flatten_591(top_level_591)
 
-    originals = {}
-    for item in source_rows:
-        originals[item.get("id")] = item
-        for old in expand_item(item):
-            originals.setdefault(old.get("id"), old)
-
-    source_rows.sort(key=lambda x: (int(x.get("postTime") or 0), str(x.get("lastSeenAt") or "")), reverse=True)
+    raw_591.sort(key=lambda x: (int(x.get("postTime") or 0), str(x.get("lastSeenAt") or "")), reverse=True)
     clusters = []
-    for item in source_rows:
+    for item in raw_591:
         match = None
         for idx, cluster in enumerate(clusters):
             if cluster_matches(item, cluster):
@@ -316,15 +324,9 @@ def dedupe(rows):
         else:
             clusters[match].append(item)
 
-    kept = [build_record(cluster, originals) for cluster in clusters]
-    raw_ids = set()
-    for item in source_rows:
-        for row in expand_item(item):
-            if row.get("id"):
-                raw_ids.add(row["id"])
-    visible_ids = {x.get("id") for x in kept if x.get("id")}
-    removed = max(0, len(raw_ids) - len(visible_ids))
-    return non_591 + kept, removed
+    kept = [build_record(cluster) for cluster in clusters]
+    removed = max(0, len(raw_591) - len(kept))
+    return non_591 + kept, removed, len(raw_591)
 
 
 def main():
@@ -333,7 +335,7 @@ def main():
         return
 
     state = json.loads(DATA_PATH.read_text(encoding="utf-8"))
-    after, removed = dedupe(state.get("listings") or [])
+    after, removed, raw_count = dedupe(state.get("listings") or [])
     after.sort(key=lambda x: (0 if x.get("active", True) else 1, -(x.get("postTime") or 0), x.get("firstSeenAt") or ""))
     state["listings"] = after[:600]
 
@@ -347,14 +349,15 @@ def main():
         run["newCount"] = new_count
         run["dedupeRemoved"] = removed
         run["dedupeGroups"] = len(groups)
+        run["dedupeRawUniqueCount"] = raw_count
         base = str(run.get("message") or "").split("；顯示去重後", 1)[0]
-        run["message"] = f"{base}；顯示去重後 {len(visible)} 筆（{len(groups)} 組案件，共合併 {removed} 筆重複刊登）。"
+        run["message"] = f"{base}；原始唯一刊登 {raw_count} 筆，顯示去重後 {len(visible)} 筆（{len(groups)} 組案件，共合併 {removed} 筆重複刊登）。"
         logs = run.setdefault("logs", [])
-        logs.append(f"591 強化物件去重：{len(groups)} 組案件，共合併 {removed} 筆重複刊登，顯示 {len(visible)} 筆；本輪實際新案件 {new_count} 筆。")
+        logs.append(f"591 重建式去重：原始唯一刊登 {raw_count} 筆，{len(groups)} 組案件，共合併 {removed} 筆重複刊登，顯示 {len(visible)} 筆；本輪實際新案件 {new_count} 筆。")
         run["logs"] = logs[-60:]
 
     DATA_PATH.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"591 enhanced dedupe grouped {removed} duplicate rows.")
+    print(f"591 rebuilt dedupe: raw={raw_count}, visible={raw_count-removed}, merged={removed}.")
 
 
 if __name__ == "__main__":
