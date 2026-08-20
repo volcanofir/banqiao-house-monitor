@@ -5,6 +5,7 @@ from difflib import SequenceMatcher
 from pathlib import Path
 
 DATA_PATH = Path("docs/data/listings.json")
+TRACKING_VERSION = 2
 
 
 def number(value):
@@ -53,8 +54,7 @@ def effective_price(item):
             if value is not None and value > 0:
                 prices.append(value)
     if not prices:
-        value = number(item.get("price"))
-        return value
+        return number(item.get("price"))
     return min(prices)
 
 
@@ -98,7 +98,6 @@ def same_property(current, previous):
         for b in previous_addresses:
             if a == b and len(a) >= 6:
                 return True
-            # Exact lane/number fragments are strong even when one ad appends district text.
             if len(a) >= 10 and len(b) >= 10 and (a in b or b in a):
                 return True
 
@@ -127,6 +126,16 @@ def compact_price(value):
     return int(value) if float(value).is_integer() else round(float(value), 1)
 
 
+def clear_change_fields(item):
+    for key in (
+        "previousEffectivePrice",
+        "priceChangeAmount",
+        "priceChangeDirection",
+        "priceChangedAt",
+    ):
+        item.pop(key, None)
+
+
 def main():
     if not DATA_PATH.exists():
         print("No listings data; skip price tracking.")
@@ -136,6 +145,8 @@ def main():
     previous_state = load_previous()
     current_rows = current_state.get("listings") or []
     previous_rows = previous_state.get("listings") or []
+    previous_tracking = (previous_state.get("runs") or {}).get("priceTracking") or {}
+    baseline_mode = previous_tracking.get("version") != TRACKING_VERSION
 
     previous_by_source = {}
     for item in previous_rows:
@@ -147,30 +158,47 @@ def main():
         if current_price is None:
             continue
 
+        item["effectivePrice"] = compact_price(current_price)
         candidates = previous_by_source.get(item.get("source"), [])
         old = next((x for x in candidates if same_property(item, x)), None)
+
+        if baseline_mode:
+            clear_change_fields(item)
+            item["priceHistory"] = [{
+                "price": compact_price(current_price),
+                "at": current_state.get("updatedAt") or item.get("lastSeenAt"),
+            }]
+            continue
+
         if not old:
-            item["effectivePrice"] = compact_price(current_price)
+            clear_change_fields(item)
+            item["priceHistory"] = [{
+                "price": compact_price(current_price),
+                "at": current_state.get("updatedAt") or item.get("lastSeenAt"),
+            }]
             continue
 
         previous_price = effective_price(old)
         if previous_price is None:
-            item["effectivePrice"] = compact_price(current_price)
+            clear_change_fields(item)
+            item["priceHistory"] = [{
+                "price": compact_price(current_price),
+                "at": current_state.get("updatedAt") or item.get("lastSeenAt"),
+            }]
             continue
 
-        # Carry prior history and latest change metadata forward.
         history = list(old.get("priceHistory") or [])
-        for key in ("previousEffectivePrice", "priceChangeAmount", "priceChangeDirection", "priceChangedAt"):
-            if old.get(key) is not None:
-                item[key] = old.get(key)
-
         if not history:
             history.append({
                 "price": compact_price(previous_price),
                 "at": old.get("lastSeenAt") or previous_state.get("updatedAt"),
             })
 
-        item["effectivePrice"] = compact_price(current_price)
+        # Keep the most recent known change visible until another change occurs.
+        for key in ("previousEffectivePrice", "priceChangeAmount", "priceChangeDirection", "priceChangedAt"):
+            if old.get(key) is not None:
+                item[key] = old.get(key)
+
         diff = round(current_price - previous_price, 1)
         if abs(diff) >= 0.1:
             direction = "down" if diff < 0 else "up"
@@ -186,18 +214,27 @@ def main():
             })
             changed += 1
 
-        # Keep a compact history to prevent JSON growth forever.
         item["priceHistory"] = history[-12:]
 
     run = current_state.setdefault("runs", {}).setdefault("priceTracking", {})
     run.update({
+        "version": TRACKING_VERSION,
         "checkedAt": current_state.get("updatedAt"),
         "changedCount": changed,
-        "message": f"本輪偵測到 {changed} 筆案件價格異動。",
+        "baselineInitialized": baseline_mode,
+        "message": (
+            "價格追蹤基準已建立，本輪不標示歷史價格差異。"
+            if baseline_mode
+            else f"本輪偵測到 {changed} 筆案件價格異動。"
+        ),
     })
 
     DATA_PATH.write_text(json.dumps(current_state, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Price tracking completed: {changed} changed properties.")
+    print(
+        "Price tracking baseline initialized."
+        if baseline_mode
+        else f"Price tracking completed: {changed} changed properties."
+    )
 
 
 if __name__ == "__main__":
