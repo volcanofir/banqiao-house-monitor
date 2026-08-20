@@ -2,6 +2,11 @@ name: 信義原始上架時間診斷
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/diagnose_sinyi_publish_time.py"
+      - ".github/workflows/diagnose-sinyi-publish-time.yml"
 
 permissions:
   contents: write
