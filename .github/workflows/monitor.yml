@@ -16,8 +16,10 @@ on:
       - "scripts/remove_first_seen_ui.py"
       - ".github/workflows/monitor.yml"
   schedule:
-    # Asia/Taipei 00:00 / 03:00 / 06:00 / 09:00 / 12:00 / 15:00 / 18:00 / 21:00
-    - cron: "0 1,4,7,10,13,16,19,22 * * *"
+    # Asia/Taipei primary: 00:07 / 03:07 / 06:07 / 09:07 / 12:07 / 15:07 / 18:07 / 21:07
+    - cron: "7 1,4,7,10,13,16,19,22 * * *"
+    # Fallback at +30 minutes. It only runs the full monitor when the data is stale.
+    - cron: "37 1,4,7,10,13,16,19,22 * * *"
 
 permissions:
   contents: write
@@ -29,21 +31,62 @@ concurrency:
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Decide whether this run should fetch
+        id: gate
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+        shell: bash
+        run: |
+          if [[ "$EVENT_NAME" != "schedule" || "$EVENT_SCHEDULE" != "37 1,4,7,10,13,16,19,22 * * *" ]]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          path = Path("docs/data/listings.json")
+          should_run = True
+          reason = "fallback: data file missing or unreadable"
+          try:
+              state = json.loads(path.read_text(encoding="utf-8"))
+              raw = state.get("updatedAt")
+              dt = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+              if dt.tzinfo is None:
+                  dt = dt.replace(tzinfo=timezone.utc)
+              age_minutes = (datetime.now(timezone.utc) - dt.astimezone(timezone.utc)).total_seconds() / 60
+              should_run = age_minutes > 120
+              reason = f"fallback: data age={age_minutes:.1f} minutes"
+          except Exception as exc:
+              reason = f"fallback freshness check failed: {exc}"
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
+              f.write(f"should_run={'true' if should_run else 'false'}\n")
+              f.write(f"reason={reason}\n")
+          print(reason, "=>", "run" if should_run else "skip")
+          PY
+
       - name: Setup Python
+        if: steps.gate.outputs.should_run == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Install monitor packages
+        if: steps.gate.outputs.should_run == 'true'
         run: pip install requests beautifulsoup4 playwright
 
       - name: Fetch Sinyi listings before VPN
+        if: steps.gate.outputs.should_run == 'true'
         env:
           MONITOR_SOURCE: sinyi
           TG_TOKEN: ${{ secrets.TG_TOKEN }}
@@ -53,15 +96,52 @@ jobs:
         run: python scripts/monitor_fast.py
 
       - name: Fill missing Sinyi firstDisplay times
+        if: steps.gate.outputs.should_run == 'true'
         continue-on-error: true
         run: python scripts/enrich_sinyi_first_display.py
 
       - name: Connect Surfshark Taiwan WireGuard
+        id: vpn
+        if: steps.gate.outputs.should_run == 'true'
+        continue-on-error: true
         env:
           SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
-        run: bash scripts/connect_surfshark_wireguard.sh
+        shell: bash
+        run: |
+          for attempt in 1 2; do
+            echo "Surfshark attempt $attempt/2"
+            if bash scripts/connect_surfshark_wireguard.sh; then
+              exit 0
+            fi
+            sudo wg-quick down surfshark >/dev/null 2>&1 || true
+            sleep 5
+          done
+          exit 1
+
+      - name: Mark 591 stale when VPN is unavailable
+        if: steps.gate.outputs.should_run == 'true' && steps.vpn.outcome != 'success'
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          path = Path("docs/data/listings.json")
+          state = json.loads(path.read_text(encoding="utf-8"))
+          run = (state.setdefault("runs", {}).get("591") or {}).copy()
+          run["checkedAt"] = datetime.now(timezone.utc).isoformat()
+          run["status"] = "error"
+          run["message"] = "Surfshark VPN 連線失敗，本輪未更新 591；網站沿用上一輪 591 案件資料。"
+          run.setdefault("totalCount", len([x for x in state.get("listings", []) if x.get("source") == "591" and x.get("active", True)]))
+          run["newCount"] = 0
+          run["removedCount"] = 0
+          state["runs"]["591"] = run
+          path.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
+          PY
 
       - name: Fetch 591 with one Chrome and 7 parallel contexts
+        if: steps.gate.outputs.should_run == 'true' && steps.vpn.outcome == 'success'
         env:
           MONITOR_SOURCE: "591"
           TG_TOKEN: ${{ secrets.TG_TOKEN }}
@@ -71,18 +151,23 @@ jobs:
         run: python scripts/monitor_fast.py
 
       - name: Remove duplicate 591 properties
+        if: steps.gate.outputs.should_run == 'true'
         run: python scripts/dedupe_listings_v2.py
 
       - name: Normalize source publish times
+        if: steps.gate.outputs.should_run == 'true'
         run: python scripts/normalize_source_times.py
 
       - name: Track property price changes
+        if: steps.gate.outputs.should_run == 'true'
         run: python scripts/track_price_changes.py
 
-      - name: Remove system first-seen time from UI
+      - name: Remove internal system timestamps from UI
+        if: steps.gate.outputs.should_run == 'true'
         run: python scripts/remove_first_seen_ui.py
 
       - name: Save latest data to GitHub
+        if: steps.gate.outputs.should_run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -90,3 +175,7 @@ jobs:
           git diff --cached --quiet || git commit -m "Update monitored listings"
           git pull --rebase
           git push
+
+      - name: Fallback skipped because data is fresh
+        if: steps.gate.outputs.should_run != 'true'
+        run: echo "${{ steps.gate.outputs.reason }}; no duplicate fetch needed."
