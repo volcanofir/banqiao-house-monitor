@@ -7,6 +7,8 @@ on:
     paths:
       - ".github/workflows/yungching-preview.yml"
       - "scripts/compare_yungching_preview.py"
+      - "docs/preview/yungching-har-snapshot.json"
+      - "docs/preview/yungching-area-enrichment.json"
 
 permissions:
   contents: write
