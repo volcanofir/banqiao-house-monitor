@@ -11,6 +11,7 @@ from playwright.sync_api import sync_playwright
 
 DATA_PATH = Path("docs/data/listings.json")
 OUT_PATH = Path("docs/preview/company-gap.json")
+SNAPSHOT_PATH = Path("docs/preview/yungching-har-snapshot.json")
 
 ROAD_URLS = {
     "板橋區中山路二段": "https://buy.yungching.com.tw/list/新北市-板橋區_c/中山路二段_kw?od=80",
@@ -26,7 +27,7 @@ PROPERTY_TYPES = ("住宅大樓", "辦公商業大樓", "公寓", "華廈", "店
 STOPWORDS = {
     "板橋", "板橋區", "新北市", "永慶房屋", "專約", "專任", "推薦", "好宅", "美寓", "美屋", "美宅",
     "公寓", "華廈", "大樓", "住宅", "捷運", "邊間", "採光", "三房", "兩房", "四房", "一樓", "二樓",
-    "三樓", "四樓", "五樓", "全新", "裝潢", "首購", "成家", "稀有", "景觀", "低總價", "近捷運",
+    "三樓", "四樓", "五樓", "全新", "裝潢", "首購", "成家", "稀有", "景觀", "低總價", "近捷運", "出價可談",
 }
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1",
@@ -86,8 +87,10 @@ def meaningful_tokens(text):
             continue
         if len(chunk) >= 3:
             out.add(chunk)
-        if len(chunk) >= 5:
-            for n in (3, 4):
+        if len(chunk) >= 4:
+            for n in (3, 4, 5):
+                if len(chunk) < n:
+                    continue
                 for i in range(len(chunk) - n + 1):
                     part = chunk[i:i+n]
                     if part not in STOPWORDS:
@@ -117,6 +120,7 @@ def parse_cards(html, road, base_url):
             "price": extract_price(text),
             "url": urljoin(base_url, href),
             "text": text,
+            "sourceMode": "live_html",
         }
     return list(rows.values())
 
@@ -126,14 +130,14 @@ def fetch_requests():
     company, logs, status = [], [], {}
     for road, url in ROAD_URLS.items():
         try:
-            r = session.get(url, headers=HEADERS, timeout=25)
+            r = session.get(url, headers=HEADERS, timeout=20)
             rows = parse_cards(r.text, road, url) if r.status_code == 200 else []
             logs.append(f"requests {road}: HTTP {r.status_code}; rows={len(rows)}")
-            status[road] = {"count": len(rows), "http": r.status_code, "url": url}
+            status[road] = {"count": len(rows), "http": r.status_code, "url": url, "available": bool(rows)}
             company.extend(rows)
         except Exception as exc:
             logs.append(f"requests {road}: {type(exc).__name__}")
-            status[road] = {"count": 0, "http": None, "url": url}
+            status[road] = {"count": 0, "http": None, "url": url, "available": False}
     return company, logs, status
 
 
@@ -151,23 +155,39 @@ def fetch_browser():
             page = context.new_page()
             http_status = None
             try:
-                resp = page.goto(url, wait_until="domcontentloaded", timeout=30000)
+                resp = page.goto(url, wait_until="domcontentloaded", timeout=25000)
                 http_status = resp.status if resp else None
-                page.wait_for_timeout(2500)
+                page.wait_for_timeout(1500)
                 rows = parse_cards(page.content(), road, url)
-                body = page.locator("body").inner_text(timeout=5000)[:120].replace("\n", " ")
+                body = page.locator("body").inner_text(timeout=5000)[:100].replace("\n", " ")
                 logs.append(f"browser {road}: HTTP {http_status}; rows={len(rows)}; body={body}")
-                status[road] = {"count": len(rows), "http": http_status, "url": url}
+                status[road] = {"count": len(rows), "http": http_status, "url": url, "available": bool(rows)}
                 company.extend(rows)
             except Exception as exc:
-                logs.append(f"browser {road}: {type(exc).__name__}: {str(exc)[:100]}")
-                status[road] = {"count": 0, "http": http_status, "url": url}
+                logs.append(f"browser {road}: {type(exc).__name__}: {str(exc)[:90]}")
+                status[road] = {"count": 0, "http": http_status, "url": url, "available": False}
             finally:
                 page.close()
         browser.close()
-    # dedupe company rows across pages/roads by road+id
     deduped = {(x["road"], x["id"]): x for x in company}
     return list(deduped.values()), logs, status
+
+
+def load_har_snapshot():
+    if not SNAPSHOT_PATH.exists():
+        return [], None, []
+    snap = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
+    road = snap.get("scopeRoad")
+    rows = []
+    for x in snap.get("listings", []):
+        row = dict(x)
+        row.setdefault("road", road)
+        row.setdefault("address", "")
+        row.setdefault("area", None)
+        row.setdefault("text", row.get("title", ""))
+        row["sourceMode"] = "har_snapshot"
+        rows.append(row)
+    return rows, snap, [f"HAR snapshot {road}: {len(rows)} rows; capturedAt={snap.get('capturedAt')}"]
 
 
 def shared_token_score(a, b):
@@ -175,61 +195,102 @@ def shared_token_score(a, b):
     if not shared:
         return 0, []
     longest = max(len(x) for x in shared)
-    return (4 if longest >= 5 else 3 if longest >= 4 else 2), sorted(shared, key=lambda x: (-len(x), x))[:5]
+    return (4 if longest >= 5 else 3 if longest >= 4 else 2), sorted(shared, key=lambda x: (-len(x), x))[:6]
 
 
 def candidate_score(ext, yc):
     ext_area = parse_float(ext.get("size"))
     ext_price = ext.get("effectivePrice") if ext.get("effectivePrice") is not None else parse_float(ext.get("price"))
-    area_delta = abs(ext_area - yc["area"]) if ext_area is not None and yc.get("area") is not None else None
-    price_delta = abs(float(ext_price) - float(yc["price"])) if ext_price is not None and yc.get("price") is not None else None
+    yc_area = parse_float(yc.get("area"))
+    yc_price = parse_float(yc.get("price"))
+    area_delta = abs(ext_area - yc_area) if ext_area is not None and yc_area is not None else None
+    price_delta = abs(float(ext_price) - float(yc_price)) if ext_price is not None and yc_price is not None else None
     score = 0
+
     if area_delta is not None:
         if area_delta <= 0.12:
-            score += 4
+            score += 5
         elif area_delta <= 0.35:
-            score += 2
+            score += 3
+        elif area_delta <= 0.6:
+            score += 1
         elif area_delta > 1.0:
-            return -99, {"areaDelta": round(area_delta, 2)}
+            return -99, {"areaDelta": round(area_delta, 2), "priceDelta": price_delta, "shared": [], "titleRatio": 0}
+
     if price_delta is not None:
-        if price_delta <= 30:
+        if price_delta <= 1:
+            score += 5
+        elif price_delta <= 30:
             score += 4
         elif price_delta <= 80:
-            score += 3
+            score += 2
         elif price_delta <= 150:
             score += 1
         elif price_delta > 300:
-            score -= 2
-    ext_text = f"{ext.get('title','')} {ext.get('address','')}"
-    yc_text = f"{yc.get('title','')} {yc.get('address','')} {yc.get('text','')}"
+            score -= 3
+
+    ext_title = str(ext.get("title") or "")
+    yc_title = str(yc.get("title") or "")
+    ext_text = f"{ext_title} {ext.get('address','')}"
+    yc_text = f"{yc_title} {yc.get('address','')} {yc.get('text','')}"
     token_score, shared = shared_token_score(ext_text, yc_text)
     score += token_score
-    ratio = SequenceMatcher(None, norm(ext_text), norm(yc_text)).ratio()
-    if ratio >= 0.38:
-        score += 2
-    elif ratio >= 0.26:
+    title_ratio = SequenceMatcher(None, norm(ext_title), norm(yc_title)).ratio()
+    full_ratio = SequenceMatcher(None, norm(ext_text), norm(yc_text)).ratio()
+    if title_ratio >= 0.55:
+        score += 4
+    elif title_ratio >= 0.42:
+        score += 3
+    elif title_ratio >= 0.30:
         score += 1
+    if full_ratio >= 0.45:
+        score += 2
+    elif full_ratio >= 0.30:
+        score += 1
+
     return score, {
         "areaDelta": None if area_delta is None else round(area_delta, 2),
         "priceDelta": None if price_delta is None else round(price_delta, 1),
         "shared": shared,
-        "textRatio": round(ratio, 3),
+        "titleRatio": round(title_ratio, 3),
+        "textRatio": round(full_ratio, 3),
+        "companySourceMode": yc.get("sourceMode"),
     }
 
 
-def classify(ext, company):
+def classify(ext, company, covered_roads):
+    road = ext.get("road")
+    if road not in covered_roads:
+        return "unavailable", 0, None, {"reason": "此路段尚無永慶可用快照"}
+
     best = None
-    for yc in (x for x in company if x.get("road") == ext.get("road")):
+    for yc in (x for x in company if x.get("road") == road):
         score, info = candidate_score(ext, yc)
         if best is None or score > best[0]:
             best = (score, yc, info)
     if best is None:
         return "missing", 0, None, {}
+
     score, yc, info = best
-    ad, pd = info.get("areaDelta"), info.get("priceDelta")
-    if score >= 7 and (ad is None or ad <= 0.35) and (pd is None or pd <= 150):
+    ad = info.get("areaDelta")
+    pd = info.get("priceDelta")
+    tr = info.get("titleRatio") or 0
+    shared = info.get("shared") or []
+    max_shared = max((len(x) for x in shared), default=0)
+    snapshot = yc.get("sourceMode") == "har_snapshot"
+
+    if snapshot:
+        # HAR analytics exposes company id/name/price but not area/address.
+        # Be conservative: only label 庫存 when price is essentially identical AND title evidence is strong.
+        strong = pd is not None and pd <= 1 and (tr >= 0.42 or max_shared >= 4) and score >= 8
+        possible = pd is not None and pd <= 30 and (tr >= 0.25 or max_shared >= 3 or pd <= 1)
+    else:
+        strong = score >= 8 and (ad is None or ad <= 0.35) and (pd is None or pd <= 80)
+        possible = score >= 5 and (ad is None or ad <= 0.6) and (pd is None or pd <= 150)
+
+    if strong:
         status = "company_match"
-    elif score >= 5 and (ad is None or ad <= 0.6):
+    elif possible:
         status = "review"
     else:
         status = "missing"
@@ -240,26 +301,61 @@ def main():
     state = json.loads(DATA_PATH.read_text(encoding="utf-8"))
     company, logs, road_status = fetch_requests()
     fetch_mode = "requests"
+    snapshot_meta = None
+
     if not company:
         browser_rows, browser_logs, browser_status = fetch_browser()
         logs.extend(browser_logs)
         if browser_rows:
             company, road_status, fetch_mode = browser_rows, browser_status, "playwright"
         else:
-            road_status = browser_status
-            fetch_mode = "blocked"
+            snap_rows, snapshot_meta, snap_logs = load_har_snapshot()
+            logs.extend(snap_logs)
+            if snap_rows:
+                company = snap_rows
+                fetch_mode = "har_snapshot"
+                scope_road = snapshot_meta.get("scopeRoad")
+                road_status = {
+                    road: {
+                        "count": len(company) if road == scope_road else 0,
+                        "url": url,
+                        "available": road == scope_road,
+                        "mode": "har_snapshot" if road == scope_road else "not_captured",
+                    }
+                    for road, url in ROAD_URLS.items()
+                }
+            else:
+                road_status = browser_status
+                fetch_mode = "blocked"
 
+    covered_roads = {x.get("road") for x in company if x.get("road")}
     external = [x for x in state.get("listings", []) if x.get("active", True) and x.get("source") in {"591", "信義房屋"}]
     comparisons = []
-    counts = {"company_match": 0, "review": 0, "missing": 0}
+    counts = {"company_match": 0, "review": 0, "missing": 0, "unavailable": 0}
+
     for ext in external:
-        status, score, yc, info = classify(ext, company)
+        status, score, yc, info = classify(ext, company, covered_roads)
         counts[status] += 1
         comparisons.append({
-            "id": ext.get("id"), "source": ext.get("source"), "road": ext.get("road"), "status": status, "score": score,
+            "id": ext.get("id"),
+            "source": ext.get("source"),
+            "road": ext.get("road"),
+            "status": status,
+            "statusLabel": {
+                "company_match": "庫存",
+                "review": "待確認",
+                "missing": "公司未有",
+                "unavailable": "尚未比對",
+            }[status],
+            "score": score,
             "companyCandidate": None if not yc else {
-                "id": yc.get("id"), "title": yc.get("title"), "address": yc.get("address"),
-                "area": yc.get("area"), "price": yc.get("price"), "url": yc.get("url"),
+                "id": yc.get("id"),
+                "title": yc.get("title"),
+                "address": yc.get("address"),
+                "area": yc.get("area"),
+                "price": yc.get("price"),
+                "url": yc.get("url"),
+                "sourceMode": yc.get("sourceMode"),
             },
             "matchInfo": info,
         })
@@ -271,16 +367,18 @@ def main():
         "fetchMode": fetch_mode,
         "company": "永慶房屋",
         "companyListingCount": len(company),
+        "companySnapshotCapturedAt": snapshot_meta.get("capturedAt") if snapshot_meta else None,
+        "coveredRoads": sorted(covered_roads),
         "externalActiveCount": len(external),
         "counts": counts,
         "roadStatus": road_status,
         "comparisons": comparisons,
         "logs": logs,
-        "note": "PREVIEW 比對：company_match 會隱藏；missing 顯示為公司未比對到；review 顯示為待人工確認。公開網站比對僅供開發，不等同內部委託系統。",
+        "note": "PREVIEW：庫存=高信心比對到永慶公開案件；待確認=價格/文字疑似相同但證據不足；公司未有=在已有公司資料的路段未比對到；尚未比對=該路段目前沒有永慶快照。HAR 快照不是即時自動資料。",
     }
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps({"fetchMode": fetch_mode, "company": len(company), "external": len(external), **counts}, ensure_ascii=False))
+    print(json.dumps({"fetchMode": fetch_mode, "company": len(company), "coveredRoads": sorted(covered_roads), "external": len(external), **counts}, ensure_ascii=False))
     for line in logs:
         print(line)
 
