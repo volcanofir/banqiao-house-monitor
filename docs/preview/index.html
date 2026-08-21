@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="板橋新案監控 Preview" />
+  <meta name="application-name" content="板橋新案監控 Preview" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/banqiao-house-monitor/icon-safe-180.png?v=202608211301" />
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/banqiao-house-monitor/icon-safe-180.png?v=202608211301" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/banqiao-house-monitor/icon-safe-32.png?v=202608211301" />
+  <link rel="shortcut icon" href="/banqiao-house-monitor/favicon.ico?v=202608211301" />
+  <meta name="theme-color" content="#f5d331" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <title>Banqiao House Monitor Preview</title>
+  <style>
+    :root{--cream:#fff8df;--paper:#fffef8;--yellow:#f5d331;--green:#124b37;--red:#cf3f4a;--ink:#30312f;--muted:#756f64;--line:#e3ca73;--gray:#515861}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--cream);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif}
+    a{color:inherit}
+    .preview-banner{position:sticky;top:0;z-index:20;background:#1f2937;color:#fff;padding:10px 16px;text-align:center;font-size:14px;font-weight:900;letter-spacing:.03em}
+    header{position:sticky;top:39px;z-index:5;background:#fff;border-bottom:1px solid #eee;padding:18px;text-align:center;font-weight:800}
+    main{width:min(1180px,calc(100% - 28px));margin:auto;padding:28px 0 60px}
+    .hero{position:relative;overflow:hidden;border-radius:32px;background:var(--yellow);padding:34px}
+    .hero:after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;right:-90px;top:-120px;background:rgba(255,238,158,.55)}
+    .hero>*{position:relative;z-index:1}
+    .eyebrow{font-size:13px;font-weight:900;letter-spacing:.18em;color:#a47700}
+    .hero .eyebrow{letter-spacing:0;color:#315244;font-size:16px}
+    .hero h1{font-size:clamp(36px,7vw,58px);line-height:1.08;color:var(--green);margin:14px 0 18px}
+    .hero p{font-size:18px;line-height:1.9;color:#315244;max-width:850px}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
+    .metric{background:rgba(255,255,250,.94);border:1px solid #d6cda8;border-radius:25px;padding:18px}
+    .metric span{display:block;color:var(--muted);font-size:14px}
+    .metric strong{display:block;color:var(--green);font-size:28px;margin-top:6px}
+    .panel{background:var(--paper);border:1px solid var(--line);border-radius:30px;overflow:hidden;margin-top:20px;box-shadow:0 10px 30px rgba(80,70,30,.05)}
+    .stripe{height:8px;background:linear-gradient(90deg,var(--red) 0 66%,var(--gray) 66%)}
+    .inside{padding:25px}
+    .inside h2{font-size:27px;margin:4px 0 20px}
+    .source-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .source-card{background:var(--cream);border:1px solid #ead58b;border-radius:18px;padding:17px}
+    .source-head{display:flex;justify-content:space-between;gap:12px;align-items:center}
+    .source-head strong{color:var(--green);font-size:18px}
+    .badge{display:inline-block;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800}
+    .ok{background:#dcefe7;color:#14503c}.err{background:#f7dadd;color:#972a35}.stale{background:#fff0bd;color:#8a6500}
+    .source-card p{margin:10px 0 0;color:#625c52;line-height:1.7;font-size:14px}
+    .tools{display:grid;grid-template-columns:180px 180px minmax(220px,1fr);gap:8px;margin-bottom:16px}
+    .tools select{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px 13px;background:#fff;font:inherit}
+    .note{font-size:13px;color:var(--muted);margin-bottom:16px}
+    .road-group{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;margin:10px 0}
+    .road-group>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:16px;background:#fff4c8;color:var(--green);font-weight:900}
+    .road-group>summary::-webkit-details-marker{display:none}
+    .count{background:var(--green);color:#fff;border-radius:999px;padding:5px 10px;font-size:12px}
+    .list{padding:0 14px}
+    .item{padding:15px 0;border-bottom:1px solid #f0e5bd}.item:last-child{border:0}
+    .item-title{font-weight:900;color:var(--green);text-decoration:none;line-height:1.5}
+    .row{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:8px;color:#645e54;font-size:13px}
+    .pill{border-radius:999px;padding:4px 8px;background:#f0ece4}.pill.new{background:#dcefe7;color:#14503c}.pill.off{background:#f7dadd;color:#972a35}.pill.merge{background:#fff0bd;color:#755600;font-weight:900;border:1px solid #e3ca73}.pill.down{background:#dcefe7;color:#14503c;font-weight:900;border:1px solid #a9d5c5}.pill.up{background:#f7dadd;color:#972a35;font-weight:900;border:1px solid #e3aeb4}
+    .publish{font-weight:800;color:#315044}.empty{padding:18px;border-radius:16px;background:var(--cream);color:var(--muted)}
+    .merge-audit{margin-top:12px;border:1px dashed #d8bd61;border-radius:14px;background:#fffaf0;overflow:hidden}
+    .merge-audit>summary{cursor:pointer;list-style:none;padding:11px 13px;font-size:13px;font-weight:900;color:#755600;display:flex;justify-content:space-between;gap:12px;align-items:center}
+    .merge-audit>summary::-webkit-details-marker{display:none}.merge-audit>summary:after{content:'展開 ▾';font-weight:700;color:var(--muted)}.merge-audit[open]>summary:after{content:'收合 ▴'}
+    .merge-list{border-top:1px dashed #e1cd86;padding:4px 12px 10px}.merge-row{padding:10px 0;border-bottom:1px solid #eee2bc}.merge-row:last-child{border-bottom:0}
+    .merge-title{font-weight:800;color:var(--green);text-decoration:none;line-height:1.5}.merge-meta{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:5px;font-size:12px;color:#6d665b}
+    .merge-main{font-size:11px;font-weight:900;border-radius:999px;padding:3px 7px;background:#dcefe7;color:#14503c}.merge-other{font-size:11px;font-weight:800;border-radius:999px;padding:3px 7px;background:#eee9df;color:#625a4d}
+    @media(max-width:900px){.tools{grid-template-columns:1fr 1fr 1fr}}
+    @media(max-width:760px){header{top:39px}main{width:min(100% - 18px,1180px);padding-top:18px}.hero{padding:27px 20px;border-radius:27px}.hero p{font-size:16px}.metrics{grid-template-columns:1fr 1fr}.metric strong{font-size:25px}.source-grid{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.inside{padding:19px}.panel{border-radius:25px}}
+  </style>
+</head>
+<body>
+<div class="preview-banner">🧪 PREVIEW 測試版本｜不影響正式網站</div>
+<header>Banqiao House Monitor · Preview</header>
+<main>
+  <section class="hero">
+    <div class="eyebrow">監控來源：591、信義房屋</div>
+    <h1>指定路段追蹤上架物件</h1>
+    <p>比對新北市板橋區七個指定路段的買賣案件。<br>資料每 3 小時更新一次。</p>
+    <div class="metrics">
+      <div class="metric"><span>監控路段</span><strong id="mRoads">7 條</strong></div>
+      <div class="metric"><span>目前上架</span><strong id="mActive">-</strong></div>
+      <div class="metric"><span>近期新案</span><strong id="mNew">-</strong></div>
+      <div class="metric"><span>已確認下架</span><strong id="mOff">-</strong></div>
+    </div>
+  </section>
+
+  <section class="panel"><div class="stripe"></div><div class="inside"><div class="eyebrow">MONITOR STATUS</div><h2>已啟用</h2><div class="source-grid" id="sources"></div></div></section>
+
+  <section class="panel"><div class="stripe"></div><div class="inside"><div class="eyebrow">LISTINGS</div><h2>案件列表</h2>
+    <div class="tools">
+      <select id="source"><option>全部來源</option><option>591</option><option>信義房屋</option></select>
+      <select id="state"><option>全部狀態</option><option>近期新案</option><option>已上架</option><option>已下架</option></select>
+      <select id="sort">
+        <option value="default">預設排序</option>
+        <option value="priceDesc">售價：高 → 低</option>
+        <option value="priceAsc">售價：低 → 高</option>
+        <option value="timeDesc">上架時間：新 → 舊</option>
+        <option value="timeAsc">上架時間：舊 → 新</option>
+      </select>
+    </div>
+    <div class="note" id="updated">正在讀取最新資料…</div><div id="groups"></div>
+  </div></section>
+</main>
+<script>
+const defaultRoads=['板橋區中山路二段','板橋區三民路二段','板橋區光復街','板橋區萬安街','板橋區林森街','板橋區三民路一段','板橋區翠華街'];
+let DATA={listings:[],runs:{},watchRoads:defaultRoads};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
+const fmt=v=>{if(!v)return '-';const d=new Date(v);return Number.isNaN(d.getTime())?v:new Intl.DateTimeFormat('zh-TW',{dateStyle:'medium',timeStyle:'medium',timeZone:'Asia/Taipei'}).format(d)};
+const fmtUnix=v=>{if(!v)return null;const n=Number(v);if(!Number.isFinite(n))return null;return fmt(n<1e12?n*1000:n)};
+const sourcePublishValue=x=>{const v=x.sourcePublishedAt??x.postTime;if(!v)return null;if(x.source==='信義房屋'&&x.sourcePublishedAtType!=='publishTime')return null;const n=Number(v);return Number.isFinite(n)?(n<1e12?n:n/1000):null};
+const sourcePublish=x=>{const v=sourcePublishValue(x);return v?fmtUnix(v):null};
+const priceValue=x=>{if(x.effectivePrice!=null)return Number(x.effectivePrice);const m=String(x.price||'').replace(/,/g,'').match(/\d+(?:\.\d+)?/);return m?Number(m[0]):null};
+const displayPrice=x=>x.effectivePrice!=null?`${x.effectivePrice}萬`:x.price;
+const statusOf=x=>{if(!x.active)return '已下架';if(x.newAt&&Date.now()-new Date(x.newAt).getTime()<=14*86400000)return '近期新案';return '已上架'};
+const sortItems=(items,mode)=>{const list=[...items];if(mode==='default')return list;const key=mode.startsWith('price')?priceValue:sourcePublishValue;const dir=mode.endsWith('Desc')?-1:1;return list.sort((a,b)=>{const av=key(a),bv=key(b);const aMissing=av==null,bMissing=bv==null;if(aMissing&&bMissing)return 0;if(aMissing)return 1;if(bMissing)return -1;if(av===bv)return 0;return (av-bv)*dir})};
+function mergedAudit(x){
+  const members=Array.isArray(x.mergedListings)?x.mergedListings:[];
+  if(members.length<2)return '';
+  const rows=members.map((m,i)=>{
+    const isMain=m.id===x.id||i===0;
+    const published=fmtUnix(m.sourcePublishedAt??m.postTime);
+    return `<div class="merge-row"><div><span class="${isMain?'merge-main':'merge-other'}">${isMain?'主案件・最舊':'合併刊登'}</span></div><a class="merge-title" href="${esc(m.url||'#')}" target="_blank" rel="noreferrer">${esc(m.title||m.houseId||m.id||'591 刊登')}</a><div class="merge-meta">${m.price?`<span>${esc(m.price)}</span>`:''}${m.size?`<span>${esc(m.size)}</span>`:''}${m.address?`<span>${esc(m.address)}</span>`:''}${published?`<span>上架：${published}</span>`:''}<span>${m.active===false?'已下架':'上架中'}</span></div></div>`
+  }).join('');
+  return `<details class="merge-audit"><summary><span>查看合併的 ${members.length} 筆 591 刊登</span></summary><div class="merge-list">${rows}</div></details>`;
+}
+function render(){
+  const rows=DATA.listings||[],roads=DATA.watchRoads||defaultRoads;
+  document.querySelector('#mRoads').textContent=`${roads.length} 條`;
+  document.querySelector('#mActive').textContent=`${rows.filter(x=>x.active!==false).length} 筆`;
+  document.querySelector('#mNew').textContent=`${rows.filter(x=>statusOf(x)==='近期新案').length} 筆`;
+  document.querySelector('#mOff').textContent=`${rows.filter(x=>x.active===false).length} 筆`;
+  document.querySelector('#sources').innerHTML=['591','信義房屋'].map(name=>{
+    const r=DATA.runs?.[name],ok=r?.status==='ok',cached=!!r&&!ok&&(r.totalCount??0)>0;
+    const badgeClass=ok?'ok':cached?'stale':'err',badgeText=ok?'正常':cached?'沿用上次資料':r?'異常':'等待首次執行';
+    return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${badgeClass}">${badgeText}</span></div><p>${r?`目前保留 ${r.totalCount??0} 筆<br>最近更新：${fmt(r.checkedAt)}`:'尚未有執行紀錄'}</p></div>`
+  }).join('');
+  document.querySelector('#updated').textContent=`資料最近更新：${fmt(DATA.updatedAt)}。相同 591 案件會自動整併；主案件顯示最舊刊登，合併明細可展開核對。`;
+  renderGroups();
+}
+function renderGroups(){
+  const source=document.querySelector('#source').value;
+  const state=document.querySelector('#state').value;
+  const sortMode=document.querySelector('#sort').value;
+  const roads=DATA.watchRoads||defaultRoads;
+  let rows=(DATA.listings||[]).filter(x=>(source==='全部來源'||x.source===source)&&(state==='全部狀態'||statusOf(x)===state));
+  let html='';
+  for(const road of roads){
+    let items=sortItems(rows.filter(x=>x.road===road),sortMode);
+    if(!items.length)continue;
+    html+=`<details class="road-group"><summary><span>${esc(road)}</span><span class="count">${items.length} 筆</span></summary><div class="list">${items.map(x=>{
+      const st=statusOf(x),cls=st==='近期新案'?'new':st==='已下架'?'off':'';
+      const pub=sourcePublish(x);
+      const sourceTimeLine=pub?`<div class="row"><span class="publish">來源上架時間：${pub}</span></div>`:'';
+      const mergedCount=Number(x.mergedListingCount||0),activeMerged=Number(x.mergedActiveListingCount||0);
+      const mergePill=mergedCount>1?`<span class="pill merge" title="同一案件共找到 ${mergedCount} 筆刊登${activeMerged?`，其中目前上架 ${activeMerged} 筆`:''}">已合併 ${mergedCount} 筆</span>`:'';
+      const changeAmount=Number(x.priceChangeAmount||0);
+      const priceChangePill=changeAmount>0&&x.priceChangeDirection==='down'?`<span class="pill down" title="前次有效價格 ${x.previousEffectivePrice??'-'} 萬">降價 ${changeAmount} 萬</span>`:changeAmount>0&&x.priceChangeDirection==='up'?`<span class="pill up" title="前次有效價格 ${x.previousEffectivePrice??'-'} 萬">漲價 ${changeAmount} 萬</span>`:'';
+      const shownPrice=displayPrice(x);
+      return `<article class="item"><a class="item-title" href="${esc(x.url)}" target="_blank" rel="noreferrer">${esc(x.title)}</a><div class="row"><span class="pill">${esc(x.source)}</span><span class="pill ${cls}">${st}</span>${mergePill}${priceChangePill}${shownPrice?`<span>${esc(shownPrice)}</span>`:''}${x.size?`<span>${esc(x.size)}</span>`:''}<span>${esc(x.address||'-')}</span></div>${sourceTimeLine}${mergedAudit(x)}</article>`
+    }).join('')}</div></details>`;
+  }
+  document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的案件。</div>';
+}
+['source','state','sort'].forEach(id=>document.querySelector('#'+id).addEventListener('change',renderGroups));
+fetch(`../data/listings.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.json()).then(d=>{DATA=d;render()}).catch(()=>{document.querySelector('#updated').textContent='資料檔尚未建立，請先執行 GitHub Action。';render()});
+</script>
+</body>
+</html>
