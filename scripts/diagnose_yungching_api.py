@@ -1,3 +1,4 @@
+import base64
 import json
 import re
 from datetime import datetime, timezone
@@ -9,10 +10,19 @@ from bs4 import BeautifulSoup
 
 OUT = Path("docs/preview/yungching-api-diagnostic.json")
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
-    "Accept-Language": "zh-TW,zh;q=0.9,en;q=0.7",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "Accept": "application/json",
+    "Accept-Language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Referer": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw?pg=2",
     "Cache-Control": "no-cache",
 }
+LIST_URL = (
+    "https://buy.yungching.com.tw/api/v2/list?"
+    "area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80"
+    "&pinType=0&isAddRoom=true"
+    "&keyword=%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5"
+    "&filter=0&pg=2&ps=30"
+)
 TARGETS = [
     "https://www.yungching.com.tw/api/v1/common/version",
     "https://www.yungching.com.tw/",
@@ -26,9 +36,9 @@ API_PATTERNS = [
 ]
 
 
-def get(session, url, timeout=20):
+def get(session, url, timeout=20, headers=None):
     try:
-        r = session.get(url, headers=HEADERS, timeout=timeout, allow_redirects=True)
+        r = session.get(url, headers=headers or HEADERS, timeout=timeout, allow_redirects=True)
         return {
             "url": url,
             "status": r.status_code,
@@ -54,11 +64,46 @@ def extract_candidates(text, base_url):
     return sorted(out)
 
 
+def inspect_list_response(item):
+    summary = {k: v for k, v in item.items() if k != "text"}
+    text = item.get("text") or ""
+    if item.get("status") != 200:
+        summary["bodyPrefix"] = text[:180]
+        return summary
+    try:
+        obj = json.loads(text)
+    except Exception as exc:
+        summary["jsonError"] = str(exc)
+        summary["bodyPrefix"] = text[:180]
+        return summary
+    summary["apiStatus"] = obj.get("status")
+    summary["method"] = obj.get("method")
+    data = obj.get("data")
+    summary["dataType"] = type(data).__name__
+    if isinstance(data, str):
+        summary["dataChars"] = len(data)
+        summary["dataPrefix"] = data[:32]
+        try:
+            raw = base64.b64decode(data, validate=True)
+            summary["base64Valid"] = True
+            summary["decodedBytes"] = len(raw)
+            summary["decodedMod16"] = len(raw) % 16
+            summary["decodedPrefixHex"] = raw[:16].hex()
+        except Exception as exc:
+            summary["base64Valid"] = False
+            summary["base64Error"] = str(exc)
+    return summary
+
+
 def main():
     session = requests.Session()
+
+    # Exact public listing API captured from the user's HAR.
+    list_item = get(session, LIST_URL, timeout=25, headers=HEADERS)
+    list_api_test = inspect_list_response(list_item)
+
     checks = []
     html_sources = []
-
     for url in TARGETS:
         item = get(session, url)
         checks.append({k: v for k, v in item.items() if k != "text"})
@@ -90,37 +135,24 @@ def main():
         summary["candidates"] = found[:80]
         script_results.append(summary)
 
-    probes = []
-    for url in sorted(candidates):
-        if len(probes) >= 80:
-            break
-        parsed = urlparse(url)
-        if parsed.scheme not in {"http", "https"} or not parsed.netloc.endswith("yungching.com.tw"):
-            continue
-        # Only probe concrete GET-like URLs; skip templates/placeholders.
-        if any(ch in url for ch in "{}<>"):
-            continue
-        item = get(session, url, timeout=12)
-        probes.append({k: v for k, v in item.items() if k != "text"})
-
     payload = {
         "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "mode": "preview_diagnostic",
+        "listApiTest": list_api_test,
         "checks": checks,
         "scriptCount": len(scripts),
         "scripts": script_results,
         "candidateCount": len(candidates),
         "candidates": sorted(candidates)[:300],
-        "probes": probes,
-        "note": "只偵測永慶公開頁面/公開前端資源中出現的 API URL，未使用登入或內部系統。",
+        "note": "PREVIEW only. Exact /api/v2/list test is based on the public request captured in the user's HAR; no login/internal system is used.",
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({
+        "listApiTest": list_api_test,
         "checks": checks,
         "scriptCount": len(scripts),
         "candidateCount": len(candidates),
-        "probeCount": len(probes),
     }, ensure_ascii=False, indent=2))
 
 
