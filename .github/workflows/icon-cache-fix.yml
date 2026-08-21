@@ -1,0 +1,43 @@
+name: 手機圖示快取修復
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/icon-cache-fix.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Point all browser icons to restored asset
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('docs/index.html')
+          s = p.read_text(encoding='utf-8')
+          old = '''  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=20260821" />
+  <link rel="icon" type="image/png" sizes="180x180" href="./apple-touch-icon.png?v=20260821" />'''
+          new = '''  <link rel="apple-touch-icon" sizes="180x180" href="./home-icon-v1.png?v=202608211225" />
+  <link rel="icon" type="image/png" sizes="180x180" href="./home-icon-v1.png?v=202608211225" />
+  <link rel="shortcut icon" type="image/png" href="./home-icon-v1.png?v=202608211225" />'''
+          if old in s:
+              s = s.replace(old, new, 1)
+          else:
+              import re
+              s = re.sub(r'\s*<link rel="apple-touch-icon"[^>]*>\s*<link rel="icon"[^>]*>', '\n'+new, s, count=1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit icon reference fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/index.html
+          git diff --cached --quiet || git commit -m "Use restored mobile icon with fresh cache key"
+          git pull --rebase
+          git push
