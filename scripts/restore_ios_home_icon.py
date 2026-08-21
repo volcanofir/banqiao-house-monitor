@@ -6,7 +6,7 @@ s = p.read_text(encoding='utf-8')
 
 # Keep the iPhone setup intentionally minimal and stable.
 s = re.sub(r'^\s*<meta name="mobile-web-app-capable"[^>]*>\s*\n?', '', s, flags=re.MULTILINE)
-s = re.sub(r'^\s*<link rel="(?:apple-touch-icon|apple-touch-icon-precomposed|icon|shortcut icon|manifest)"[^>]*>\s*\n?', '', s, flags=re.MULTILINE)
+s = re.sub(r'^\s*<link\b[^>]*\brel="(?:apple-touch-icon|apple-touch-icon-precomposed|icon|shortcut icon|manifest)"[^>]*>\s*\n?', '', s, flags=re.MULTILINE)
 
 marker = '  <meta name="application-name" content="板橋新案監控" />\n'
 block = '''  <meta name="mobile-web-app-capable" content="yes" />
