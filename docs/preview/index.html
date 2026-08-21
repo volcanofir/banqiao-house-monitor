@@ -35,6 +35,11 @@
     .metric{background:rgba(255,255,250,.94);border:1px solid #d6cda8;border-radius:25px;padding:18px}
     .metric span{display:block;color:var(--muted);font-size:14px}
     .metric strong{display:block;color:var(--green);font-size:28px;margin-top:6px}
+    .compare-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:8px 0 16px}
+    .compare-card{border:1px solid #e8d791;border-radius:18px;padding:16px;background:#fff}
+    .compare-card span{display:block;color:var(--muted);font-size:13px;font-weight:800}
+    .compare-card strong{display:block;font-size:25px;margin-top:7px;color:var(--green)}
+    .compare-card.stock strong{color:#124b37}.compare-card.review strong{color:#8a6500}.compare-card.missing strong{color:#a52d39}.compare-card.unavailable strong{color:#62686e}
     .panel{background:var(--paper);border:1px solid var(--line);border-radius:30px;overflow:hidden;margin-top:20px;box-shadow:0 10px 30px rgba(80,70,30,.05)}
     .stripe{height:8px;background:linear-gradient(90deg,var(--red) 0 66%,var(--gray) 66%)}
     .inside{padding:25px}
@@ -46,7 +51,7 @@
     .badge{display:inline-block;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800}
     .ok{background:#dcefe7;color:#14503c}.err{background:#f7dadd;color:#972a35}.stale{background:#fff0bd;color:#8a6500}
     .source-card p{margin:10px 0 0;color:#625c52;line-height:1.7;font-size:14px}
-    .tools{display:grid;grid-template-columns:180px 180px minmax(220px,1fr);gap:8px;margin-bottom:16px}
+    .tools{display:grid;grid-template-columns:160px 160px 170px minmax(210px,1fr);gap:8px;margin-bottom:16px}
     .tools select{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px 13px;background:#fff;font:inherit}
     .note{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.7}
     .company-note{padding:12px 14px;border-radius:14px;background:#fff5ce;border:1px solid #e6cc72;margin-bottom:16px;color:#66571f;font-size:13px;line-height:1.7}
@@ -74,8 +79,8 @@
     .merge-list{border-top:1px dashed #e1cd86;padding:4px 12px 10px}.merge-row{padding:10px 0;border-bottom:1px solid #eee2bc}.merge-row:last-child{border-bottom:0}
     .merge-title{font-weight:800;color:var(--green);text-decoration:none;line-height:1.5}.merge-meta{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:5px;font-size:12px;color:#6d665b}
     .merge-main{font-size:11px;font-weight:900;border-radius:999px;padding:3px 7px;background:#dcefe7;color:#14503c}.merge-other{font-size:11px;font-weight:800;border-radius:999px;padding:3px 7px;background:#eee9df;color:#625a4d}
-    @media(max-width:900px){.tools{grid-template-columns:1fr 1fr 1fr}.source-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:760px){header{top:39px}main{width:min(100% - 18px,1180px);padding-top:18px}.hero{padding:27px 20px;border-radius:27px}.hero p{font-size:16px}.metrics{grid-template-columns:1fr 1fr}.metric strong{font-size:25px}.source-grid{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.inside{padding:19px}.panel{border-radius:25px}}
+    @media(max-width:980px){.tools{grid-template-columns:1fr 1fr}.source-grid{grid-template-columns:1fr 1fr}.compare-metrics{grid-template-columns:1fr 1fr}}
+    @media(max-width:760px){header{top:39px}main{width:min(100% - 18px,1180px);padding-top:18px}.hero{padding:27px 20px;border-radius:27px}.hero p{font-size:16px}.metrics,.compare-metrics{grid-template-columns:1fr 1fr}.metric strong{font-size:25px}.source-grid{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.inside{padding:19px}.panel{border-radius:25px}}
   </style>
 </head>
 <body>
@@ -83,9 +88,9 @@
 <header>Banqiao House Monitor · Preview</header>
 <main>
   <section class="hero">
-    <div class="eyebrow">監控來源：591、信義房屋｜永慶公開庫存比對測試</div>
+    <div class="eyebrow">監控來源：591、信義房屋｜永慶庫存比對測試</div>
     <h1>指定路段追蹤上架物件</h1>
-    <p>比對新北市板橋區七個指定路段的買賣案件。<br>永慶比對功能目前只在 Preview 測試，不影響正式網站。</p>
+    <p>追蹤板橋區指定路段案件，並比對永慶公開網站庫存。<br>目前功能只在 Preview 測試，不影響正式網站。</p>
     <div class="metrics">
       <div class="metric"><span>監控路段</span><strong id="mRoads">7 條</strong></div>
       <div class="metric"><span>目前上架</span><strong id="mActive">-</strong></div>
@@ -96,10 +101,28 @@
 
   <section class="panel"><div class="stripe"></div><div class="inside"><div class="eyebrow">MONITOR STATUS</div><h2>已啟用</h2><div class="source-grid" id="sources"></div></div></section>
 
+  <section class="panel"><div class="stripe"></div><div class="inside">
+    <div class="eyebrow">COMPANY MATCH</div><h2>公司委託比對</h2>
+    <div class="compare-metrics">
+      <div class="compare-card stock"><span>庫存</span><strong id="cStock">-</strong></div>
+      <div class="compare-card review"><span>待確認</span><strong id="cReview">-</strong></div>
+      <div class="compare-card missing"><span>未接回</span><strong id="cMissing">-</strong></div>
+      <div class="compare-card unavailable"><span>尚未比對</span><strong id="cUnavailable">-</strong></div>
+    </div>
+    <div class="company-note" id="companyNote">正在讀取永慶公開庫存比對資料…</div>
+  </div></section>
+
   <section class="panel"><div class="stripe"></div><div class="inside"><div class="eyebrow">LISTINGS</div><h2>案件列表</h2>
     <div class="tools">
       <select id="source"><option>全部來源</option><option>591</option><option>信義房屋</option></select>
-      <select id="state"><option>全部狀態</option><option>近期新案</option><option>已上架</option><option>已下架</option></select>
+      <select id="state"><option>全部上架狀態</option><option>近期新案</option><option>已上架</option><option>已下架</option></select>
+      <select id="companyState">
+        <option value="all">全部公司狀態</option>
+        <option value="company_match">庫存</option>
+        <option value="review">待確認</option>
+        <option value="missing">未接回</option>
+        <option value="unavailable">尚未比對</option>
+      </select>
       <select id="sort">
         <option value="default">預設排序</option>
         <option value="priceDesc">售價：高 → 低</option>
@@ -109,7 +132,6 @@
       </select>
     </div>
     <div class="note" id="updated">正在讀取最新資料…</div>
-    <div class="company-note" id="companyNote">正在讀取永慶公開庫存比對資料…</div>
     <div id="groups"></div>
   </div></section>
 </main>
@@ -127,10 +149,11 @@ const priceValue=x=>{if(x.effectivePrice!=null)return Number(x.effectivePrice);c
 const displayPrice=x=>x.effectivePrice!=null?`${x.effectivePrice}萬`:x.price;
 const statusOf=x=>{if(!x.active)return '已下架';if(x.newAt&&Date.now()-new Date(x.newAt).getTime()<=14*86400000)return '近期新案';return '已上架'};
 const sortItems=(items,mode)=>{const list=[...items];if(mode==='default')return list;const key=mode.startsWith('price')?priceValue:sourcePublishValue;const dir=mode.endsWith('Desc')?-1:1;return list.sort((a,b)=>{const av=key(a),bv=key(b);const aMissing=av==null,bMissing=bv==null;if(aMissing&&bMissing)return 0;if(aMissing)return 1;if(bMissing)return -1;if(av===bv)return 0;return (av-bv)*dir})};
+const companyLabel=status=>({company_match:'庫存',review:'待確認',missing:'未接回',unavailable:'尚未比對'}[status]||status||'尚未比對');
 function companyInfo(x){return GAPMAP.get(x.id)||null}
 function companyPill(x){
   const c=companyInfo(x);if(!c)return '';
-  const label=c.statusLabel||({'company_match':'庫存','review':'待確認','missing':'公司未有','unavailable':'尚未比對'}[c.status]||c.status);
+  const label=companyLabel(c.status);
   const cls=c.status==='company_match'?'stock':c.status==='review'?'review':c.status==='missing'?'company-missing':'company-unavailable';
   const candidate=c.companyCandidate;
   const title=candidate?`永慶候選：${candidate.title||candidate.id||''}${candidate.price!=null?`｜${candidate.price}萬`:''}`:'';
@@ -158,6 +181,11 @@ function render(){
   document.querySelector('#mActive').textContent=`${rows.filter(x=>x.active!==false).length} 筆`;
   document.querySelector('#mNew').textContent=`${rows.filter(x=>statusOf(x)==='近期新案').length} 筆`;
   document.querySelector('#mOff').textContent=`${rows.filter(x=>x.active===false).length} 筆`;
+  const c=GAP.counts||{};
+  document.querySelector('#cStock').textContent=`${c.company_match??0} 筆`;
+  document.querySelector('#cReview').textContent=`${c.review??0} 筆`;
+  document.querySelector('#cMissing').textContent=`${c.missing??0} 筆`;
+  document.querySelector('#cUnavailable').textContent=`${c.unavailable??0} 筆`;
   const sourceCards=['591','信義房屋'].map(name=>{
     const r=DATA.runs?.[name],ok=r?.status==='ok',cached=!!r&&!ok&&(r.totalCount??0)>0;
     const badgeClass=ok?'ok':cached?'stale':'err',badgeText=ok?'正常':cached?'沿用上次資料':r?'異常':'等待首次執行';
@@ -166,21 +194,29 @@ function render(){
   const covered=(GAP.coveredRoads||[]);
   const yBadge=GAP.fetchMode==='har_snapshot'?'stale':GAP.companyListingCount>0?'ok':'err';
   const yText=GAP.fetchMode==='har_snapshot'?'HAR 快照':GAP.companyListingCount>0?'已取得':'尚未取得';
-  sourceCards.push(`<div class="source-card"><div class="source-head"><strong>永慶公開庫存</strong><span class="badge ${yBadge}">${yText}</span></div><p>${GAP.companyListingCount!=null?`目前可比對 ${GAP.companyListingCount} 筆<br>涵蓋：${covered.length?covered.join('、'):'尚無路段'}`:'等待比對資料'}</p></div>`);
+  sourceCards.push(`<div class="source-card"><div class="source-head"><strong>永慶庫存比對</strong><span class="badge ${yBadge}">${yText}</span></div><p>${GAP.companyListingCount!=null?`目前可比對 ${GAP.companyListingCount} 筆<br>涵蓋：${covered.length?covered.join('、'):'尚無路段'}`:'等待比對資料'}</p></div>`);
   document.querySelector('#sources').innerHTML=sourceCards.join('');
   document.querySelector('#updated').textContent=`資料最近更新：${fmt(DATA.updatedAt)}。相同 591 案件會自動整併；主案件顯示最舊刊登，合併明細可展開核對。`;
   if(GAP.generatedAt){
-    const c=GAP.counts||{};const snap=GAP.companySnapshotCapturedAt?`永慶快照：${fmt(GAP.companySnapshotCapturedAt)}。`:'';
-    document.querySelector('#companyNote').innerHTML=`${snap}目前 Preview 比對：<strong>庫存 ${c.company_match??0}</strong>、待確認 ${c.review??0}、公司未有 ${c.missing??0}、尚未比對 ${c.unavailable??0}。<br>「庫存」只在價格與案名證據足夠強時顯示；不確定的先標「待確認」，避免誤判。`;
+    const snap=GAP.companySnapshotCapturedAt?`永慶快照：${fmt(GAP.companySnapshotCapturedAt)}。`:'';
+    const coverage=covered.length?`目前已完成 ${covered.length}/${roads.length} 條路段的公司庫存資料：${covered.join('、')}。`:'目前尚無可用的公司庫存資料。';
+    document.querySelector('#companyNote').innerHTML=`${snap}${coverage}<br><strong>庫存</strong>＝高信心比對到公司委託；<strong>待確認</strong>＝疑似同戶但證據不足；<strong>未接回</strong>＝在已取得公司資料的路段中未比對到；<strong>尚未比對</strong>＝該路段尚未取得公司資料。`;
   }else document.querySelector('#companyNote').textContent='永慶比對資料尚未產生。';
   renderGroups();
 }
 function renderGroups(){
   const source=document.querySelector('#source').value;
   const state=document.querySelector('#state').value;
+  const companyState=document.querySelector('#companyState').value;
   const sortMode=document.querySelector('#sort').value;
   const roads=DATA.watchRoads||defaultRoads;
-  let rows=(DATA.listings||[]).filter(x=>(source==='全部來源'||x.source===source)&&(state==='全部狀態'||statusOf(x)===state));
+  let rows=(DATA.listings||[]).filter(x=>{
+    const c=companyInfo(x);
+    const sourceOK=source==='全部來源'||x.source===source;
+    const stateOK=state==='全部上架狀態'||statusOf(x)===state;
+    const companyOK=companyState==='all'||c?.status===companyState;
+    return sourceOK&&stateOK&&companyOK;
+  });
   let html='';
   for(const road of roads){
     let items=sortItems(rows.filter(x=>x.road===road),sortMode);if(!items.length)continue;
@@ -197,7 +233,7 @@ function renderGroups(){
   }
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的案件。</div>';
 }
-['source','state','sort'].forEach(id=>document.querySelector('#'+id).addEventListener('change',renderGroups));
+['source','state','companyState','sort'].forEach(id=>document.querySelector('#'+id).addEventListener('change',renderGroups));
 Promise.all([
   fetch(`../data/listings.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.json()),
   fetch(`company-gap.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)
