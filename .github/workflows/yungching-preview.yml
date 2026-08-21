@@ -18,7 +18,7 @@ concurrency:
 jobs:
   compare:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -30,6 +30,11 @@ jobs:
 
       - name: Install packages
         run: pip install requests beautifulsoup4
+
+      - name: Connect Surfshark
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        run: bash scripts/connect_surfshark_wireguard.sh
 
       - name: Compare Yongching listings
         run: python scripts/compare_yungching_preview.py
