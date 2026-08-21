@@ -1,0 +1,27 @@
+name: 修復手機主畫面
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/restore-ios-home-icon.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Restore iPhone home-screen metadata
+        run: python scripts/restore_ios_home_icon.py
+      - name: Save repaired page
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/index.html
+          git diff --cached --quiet || git commit -m "Restore iPhone home-screen support"
+          git pull --rebase
+          git push
