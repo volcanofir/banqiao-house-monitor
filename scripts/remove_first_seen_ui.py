@@ -7,6 +7,7 @@ s = p.read_text(encoding="utf-8")
 # This cleanup runs on every monitor cycle, so keep it idempotent.
 # Remove both the old first-seen/last-seen variant and the current
 # "系統最後確認"-only line from listing cards.
+# 2026-08-21: harmless touch used to verify the rebuilt monitor workflow trigger.
 s = re.sub(r'^\s*const hideFirstDiscovery=.*\n', '', s, flags=re.MULTILINE)
 s = re.sub(r'^\s*const systemTimeLine=.*\n', '', s, flags=re.MULTILINE)
 s = s.replace('${sourceTimeLine}${systemTimeLine}${mergedAudit(x)}', '${sourceTimeLine}${mergedAudit(x)}')
