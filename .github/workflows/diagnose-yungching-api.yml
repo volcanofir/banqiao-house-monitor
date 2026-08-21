@@ -1,0 +1,49 @@
+name: 永慶公開 API 診斷 PREVIEW
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/diagnose-yungching-api.yml"
+      - "scripts/diagnose_yungching_api.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: banqiao-yungching-api-diagnostic
+  cancel-in-progress: true
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install packages
+        run: pip install requests beautifulsoup4
+
+      - name: Discover public API candidates
+        run: python scripts/diagnose_yungching_api.py
+
+      - name: Save diagnostic result
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/preview/yungching-api-diagnostic.json
+          if git diff --cached --quiet; then
+            echo "No diagnostic changes."
+            exit 0
+          fi
+          git commit -m "Update Yongching API diagnostic"
+          git pull --rebase
+          git push
