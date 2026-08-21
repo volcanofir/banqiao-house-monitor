@@ -5,6 +5,7 @@ on:
   push:
     branches: [main]
     paths:
+      - ".github/workflows/yungching-preview.yml"
       - "scripts/compare_yungching_preview.py"
 
 permissions:
