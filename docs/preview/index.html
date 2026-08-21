@@ -39,7 +39,7 @@
     .stripe{height:8px;background:linear-gradient(90deg,var(--red) 0 66%,var(--gray) 66%)}
     .inside{padding:25px}
     .inside h2{font-size:27px;margin:4px 0 20px}
-    .source-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
     .source-card{background:var(--cream);border:1px solid #ead58b;border-radius:18px;padding:17px}
     .source-head{display:flex;justify-content:space-between;gap:12px;align-items:center}
     .source-head strong{color:var(--green);font-size:18px}
@@ -48,7 +48,8 @@
     .source-card p{margin:10px 0 0;color:#625c52;line-height:1.7;font-size:14px}
     .tools{display:grid;grid-template-columns:180px 180px minmax(220px,1fr);gap:8px;margin-bottom:16px}
     .tools select{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px 13px;background:#fff;font:inherit}
-    .note{font-size:13px;color:var(--muted);margin-bottom:16px}
+    .note{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.7}
+    .company-note{padding:12px 14px;border-radius:14px;background:#fff5ce;border:1px solid #e6cc72;margin-bottom:16px;color:#66571f;font-size:13px;line-height:1.7}
     .road-group{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;margin:10px 0}
     .road-group>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:16px;background:#fff4c8;color:var(--green);font-weight:900}
     .road-group>summary::-webkit-details-marker{display:none}
@@ -56,8 +57,16 @@
     .list{padding:0 14px}
     .item{padding:15px 0;border-bottom:1px solid #f0e5bd}.item:last-child{border:0}
     .item-title{font-weight:900;color:var(--green);text-decoration:none;line-height:1.5}
-    .row{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:8px;color:#645e54;font-size:13px}
-    .pill{border-radius:999px;padding:4px 8px;background:#f0ece4}.pill.new{background:#dcefe7;color:#14503c}.pill.off{background:#f7dadd;color:#972a35}.pill.merge{background:#fff0bd;color:#755600;font-weight:900;border:1px solid #e3ca73}.pill.down{background:#dcefe7;color:#14503c;font-weight:900;border:1px solid #a9d5c5}.pill.up{background:#f7dadd;color:#972a35;font-weight:900;border:1px solid #e3aeb4}
+    .row{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:8px;color:#645e54;font-size:13px;align-items:center}
+    .pill{border-radius:999px;padding:4px 8px;background:#f0ece4}
+    .pill.new{background:#dcefe7;color:#14503c}.pill.off{background:#f7dadd;color:#972a35}
+    .pill.merge{background:#fff0bd;color:#755600;font-weight:900;border:1px solid #e3ca73}
+    .pill.down{background:#dcefe7;color:#14503c;font-weight:900;border:1px solid #a9d5c5}.pill.up{background:#f7dadd;color:#972a35;font-weight:900;border:1px solid #e3aeb4}
+    .pill.stock{background:#124b37;color:#fff;font-weight:900;border:1px solid #124b37}
+    .pill.review{background:#fff0bd;color:#755600;font-weight:900;border:1px solid #e3ca73}
+    .pill.company-missing{background:#f7dadd;color:#972a35;font-weight:900;border:1px solid #e3aeb4}
+    .pill.company-unavailable{background:#e9ecef;color:#5d6268;font-weight:800;border:1px solid #d4d8dc}
+    .company-candidate{font-size:12px;color:#756f64}
     .publish{font-weight:800;color:#315044}.empty{padding:18px;border-radius:16px;background:var(--cream);color:var(--muted)}
     .merge-audit{margin-top:12px;border:1px dashed #d8bd61;border-radius:14px;background:#fffaf0;overflow:hidden}
     .merge-audit>summary{cursor:pointer;list-style:none;padding:11px 13px;font-size:13px;font-weight:900;color:#755600;display:flex;justify-content:space-between;gap:12px;align-items:center}
@@ -65,7 +74,7 @@
     .merge-list{border-top:1px dashed #e1cd86;padding:4px 12px 10px}.merge-row{padding:10px 0;border-bottom:1px solid #eee2bc}.merge-row:last-child{border-bottom:0}
     .merge-title{font-weight:800;color:var(--green);text-decoration:none;line-height:1.5}.merge-meta{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:5px;font-size:12px;color:#6d665b}
     .merge-main{font-size:11px;font-weight:900;border-radius:999px;padding:3px 7px;background:#dcefe7;color:#14503c}.merge-other{font-size:11px;font-weight:800;border-radius:999px;padding:3px 7px;background:#eee9df;color:#625a4d}
-    @media(max-width:900px){.tools{grid-template-columns:1fr 1fr 1fr}}
+    @media(max-width:900px){.tools{grid-template-columns:1fr 1fr 1fr}.source-grid{grid-template-columns:1fr 1fr}}
     @media(max-width:760px){header{top:39px}main{width:min(100% - 18px,1180px);padding-top:18px}.hero{padding:27px 20px;border-radius:27px}.hero p{font-size:16px}.metrics{grid-template-columns:1fr 1fr}.metric strong{font-size:25px}.source-grid{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.inside{padding:19px}.panel{border-radius:25px}}
   </style>
 </head>
@@ -74,9 +83,9 @@
 <header>Banqiao House Monitor · Preview</header>
 <main>
   <section class="hero">
-    <div class="eyebrow">監控來源：591、信義房屋</div>
+    <div class="eyebrow">監控來源：591、信義房屋｜永慶公開庫存比對測試</div>
     <h1>指定路段追蹤上架物件</h1>
-    <p>比對新北市板橋區七個指定路段的買賣案件。<br>資料每 3 小時更新一次。</p>
+    <p>比對新北市板橋區七個指定路段的買賣案件。<br>永慶比對功能目前只在 Preview 測試，不影響正式網站。</p>
     <div class="metrics">
       <div class="metric"><span>監控路段</span><strong id="mRoads">7 條</strong></div>
       <div class="metric"><span>目前上架</span><strong id="mActive">-</strong></div>
@@ -99,12 +108,16 @@
         <option value="timeAsc">上架時間：舊 → 新</option>
       </select>
     </div>
-    <div class="note" id="updated">正在讀取最新資料…</div><div id="groups"></div>
+    <div class="note" id="updated">正在讀取最新資料…</div>
+    <div class="company-note" id="companyNote">正在讀取永慶公開庫存比對資料…</div>
+    <div id="groups"></div>
   </div></section>
 </main>
 <script>
 const defaultRoads=['板橋區中山路二段','板橋區三民路二段','板橋區光復街','板橋區萬安街','板橋區林森街','板橋區三民路一段','板橋區翠華街'];
 let DATA={listings:[],runs:{},watchRoads:defaultRoads};
+let GAP={comparisons:[],counts:{},coveredRoads:[]};
+let GAPMAP=new Map();
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
 const fmt=v=>{if(!v)return '-';const d=new Date(v);return Number.isNaN(d.getTime())?v:new Intl.DateTimeFormat('zh-TW',{dateStyle:'medium',timeStyle:'medium',timeZone:'Asia/Taipei'}).format(d)};
 const fmtUnix=v=>{if(!v)return null;const n=Number(v);if(!Number.isFinite(n))return null;return fmt(n<1e12?n*1000:n)};
@@ -114,6 +127,21 @@ const priceValue=x=>{if(x.effectivePrice!=null)return Number(x.effectivePrice);c
 const displayPrice=x=>x.effectivePrice!=null?`${x.effectivePrice}萬`:x.price;
 const statusOf=x=>{if(!x.active)return '已下架';if(x.newAt&&Date.now()-new Date(x.newAt).getTime()<=14*86400000)return '近期新案';return '已上架'};
 const sortItems=(items,mode)=>{const list=[...items];if(mode==='default')return list;const key=mode.startsWith('price')?priceValue:sourcePublishValue;const dir=mode.endsWith('Desc')?-1:1;return list.sort((a,b)=>{const av=key(a),bv=key(b);const aMissing=av==null,bMissing=bv==null;if(aMissing&&bMissing)return 0;if(aMissing)return 1;if(bMissing)return -1;if(av===bv)return 0;return (av-bv)*dir})};
+function companyInfo(x){return GAPMAP.get(x.id)||null}
+function companyPill(x){
+  const c=companyInfo(x);if(!c)return '';
+  const label=c.statusLabel||({'company_match':'庫存','review':'待確認','missing':'公司未有','unavailable':'尚未比對'}[c.status]||c.status);
+  const cls=c.status==='company_match'?'stock':c.status==='review'?'review':c.status==='missing'?'company-missing':'company-unavailable';
+  const candidate=c.companyCandidate;
+  const title=candidate?`永慶候選：${candidate.title||candidate.id||''}${candidate.price!=null?`｜${candidate.price}萬`:''}`:'';
+  return `<span class="pill ${cls}" title="${esc(title)}">${esc(label)}</span>`;
+}
+function companyCandidateLine(x){
+  const c=companyInfo(x);if(!c||!c.companyCandidate||!['company_match','review'].includes(c.status))return '';
+  const yc=c.companyCandidate;
+  const link=yc.url?`<a href="${esc(yc.url)}" target="_blank" rel="noreferrer">${esc(yc.title||yc.id||'永慶案件')}</a>`:esc(yc.title||yc.id||'永慶案件');
+  return `<div class="row company-candidate"><span>永慶候選：${link}${yc.price!=null?`｜${esc(yc.price)}萬`:''}</span></div>`;
+}
 function mergedAudit(x){
   const members=Array.isArray(x.mergedListings)?x.mergedListings:[];
   if(members.length<2)return '';
@@ -130,12 +158,21 @@ function render(){
   document.querySelector('#mActive').textContent=`${rows.filter(x=>x.active!==false).length} 筆`;
   document.querySelector('#mNew').textContent=`${rows.filter(x=>statusOf(x)==='近期新案').length} 筆`;
   document.querySelector('#mOff').textContent=`${rows.filter(x=>x.active===false).length} 筆`;
-  document.querySelector('#sources').innerHTML=['591','信義房屋'].map(name=>{
+  const sourceCards=['591','信義房屋'].map(name=>{
     const r=DATA.runs?.[name],ok=r?.status==='ok',cached=!!r&&!ok&&(r.totalCount??0)>0;
     const badgeClass=ok?'ok':cached?'stale':'err',badgeText=ok?'正常':cached?'沿用上次資料':r?'異常':'等待首次執行';
     return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${badgeClass}">${badgeText}</span></div><p>${r?`目前保留 ${r.totalCount??0} 筆<br>最近更新：${fmt(r.checkedAt)}`:'尚未有執行紀錄'}</p></div>`
-  }).join('');
+  });
+  const covered=(GAP.coveredRoads||[]);
+  const yBadge=GAP.fetchMode==='har_snapshot'?'stale':GAP.companyListingCount>0?'ok':'err';
+  const yText=GAP.fetchMode==='har_snapshot'?'HAR 快照':GAP.companyListingCount>0?'已取得':'尚未取得';
+  sourceCards.push(`<div class="source-card"><div class="source-head"><strong>永慶公開庫存</strong><span class="badge ${yBadge}">${yText}</span></div><p>${GAP.companyListingCount!=null?`目前可比對 ${GAP.companyListingCount} 筆<br>涵蓋：${covered.length?covered.join('、'):'尚無路段'}`:'等待比對資料'}</p></div>`);
+  document.querySelector('#sources').innerHTML=sourceCards.join('');
   document.querySelector('#updated').textContent=`資料最近更新：${fmt(DATA.updatedAt)}。相同 591 案件會自動整併；主案件顯示最舊刊登，合併明細可展開核對。`;
+  if(GAP.generatedAt){
+    const c=GAP.counts||{};const snap=GAP.companySnapshotCapturedAt?`永慶快照：${fmt(GAP.companySnapshotCapturedAt)}。`:'';
+    document.querySelector('#companyNote').innerHTML=`${snap}目前 Preview 比對：<strong>庫存 ${c.company_match??0}</strong>、待確認 ${c.review??0}、公司未有 ${c.missing??0}、尚未比對 ${c.unavailable??0}。<br>「庫存」只在價格與案名證據足夠強時顯示；不確定的先標「待確認」，避免誤判。`;
+  }else document.querySelector('#companyNote').textContent='永慶比對資料尚未產生。';
   renderGroups();
 }
 function renderGroups(){
@@ -146,24 +183,25 @@ function renderGroups(){
   let rows=(DATA.listings||[]).filter(x=>(source==='全部來源'||x.source===source)&&(state==='全部狀態'||statusOf(x)===state));
   let html='';
   for(const road of roads){
-    let items=sortItems(rows.filter(x=>x.road===road),sortMode);
-    if(!items.length)continue;
+    let items=sortItems(rows.filter(x=>x.road===road),sortMode);if(!items.length)continue;
     html+=`<details class="road-group"><summary><span>${esc(road)}</span><span class="count">${items.length} 筆</span></summary><div class="list">${items.map(x=>{
       const st=statusOf(x),cls=st==='近期新案'?'new':st==='已下架'?'off':'';
-      const pub=sourcePublish(x);
-      const sourceTimeLine=pub?`<div class="row"><span class="publish">來源上架時間：${pub}</span></div>`:'';
+      const pub=sourcePublish(x);const sourceTimeLine=pub?`<div class="row"><span class="publish">來源上架時間：${pub}</span></div>`:'';
       const mergedCount=Number(x.mergedListingCount||0),activeMerged=Number(x.mergedActiveListingCount||0);
       const mergePill=mergedCount>1?`<span class="pill merge" title="同一案件共找到 ${mergedCount} 筆刊登${activeMerged?`，其中目前上架 ${activeMerged} 筆`:''}">已合併 ${mergedCount} 筆</span>`:'';
       const changeAmount=Number(x.priceChangeAmount||0);
       const priceChangePill=changeAmount>0&&x.priceChangeDirection==='down'?`<span class="pill down" title="前次有效價格 ${x.previousEffectivePrice??'-'} 萬">降價 ${changeAmount} 萬</span>`:changeAmount>0&&x.priceChangeDirection==='up'?`<span class="pill up" title="前次有效價格 ${x.previousEffectivePrice??'-'} 萬">漲價 ${changeAmount} 萬</span>`:'';
       const shownPrice=displayPrice(x);
-      return `<article class="item"><a class="item-title" href="${esc(x.url)}" target="_blank" rel="noreferrer">${esc(x.title)}</a><div class="row"><span class="pill">${esc(x.source)}</span><span class="pill ${cls}">${st}</span>${mergePill}${priceChangePill}${shownPrice?`<span>${esc(shownPrice)}</span>`:''}${x.size?`<span>${esc(x.size)}</span>`:''}<span>${esc(x.address||'-')}</span></div>${sourceTimeLine}${mergedAudit(x)}</article>`
+      return `<article class="item"><a class="item-title" href="${esc(x.url)}" target="_blank" rel="noreferrer">${esc(x.title)}</a><div class="row"><span class="pill">${esc(x.source)}</span><span class="pill ${cls}">${st}</span>${companyPill(x)}${mergePill}${priceChangePill}${shownPrice?`<span>${esc(shownPrice)}</span>`:''}${x.size?`<span>${esc(x.size)}</span>`:''}<span>${esc(x.address||'-')}</span></div>${companyCandidateLine(x)}${sourceTimeLine}${mergedAudit(x)}</article>`
     }).join('')}</div></details>`;
   }
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的案件。</div>';
 }
 ['source','state','sort'].forEach(id=>document.querySelector('#'+id).addEventListener('change',renderGroups));
-fetch(`../data/listings.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.json()).then(d=>{DATA=d;render()}).catch(()=>{document.querySelector('#updated').textContent='資料檔尚未建立，請先執行 GitHub Action。';render()});
+Promise.all([
+  fetch(`../data/listings.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.json()),
+  fetch(`company-gap.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)
+]).then(([d,g])=>{DATA=d;if(g){GAP=g;GAPMAP=new Map((GAP.comparisons||[]).map(x=>[x.id,x]))}render()}).catch(()=>{document.querySelector('#updated').textContent='資料檔尚未建立，請先執行 GitHub Action。';render()});
 </script>
 </body>
 </html>
