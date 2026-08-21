@@ -1,0 +1,43 @@
+name: 套用手機圖示
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/apply-icon-head.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Replace all icon references with generated safe assets
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('docs/index.html')
+          s = p.read_text(encoding='utf-8')
+          block = '''  <link rel="apple-touch-icon" sizes="180x180" href="/banqiao-house-monitor/icon-safe-180.png?v=202608211245" />
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/banqiao-house-monitor/icon-safe-180.png?v=202608211245" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/banqiao-house-monitor/icon-safe-32.png?v=202608211245" />
+  <link rel="icon" type="image/svg+xml" href="/banqiao-house-monitor/icon-safe.svg?v=202608211245" />
+  <link rel="shortcut icon" href="/banqiao-house-monitor/favicon.ico?v=202608211245" />
+  <meta property="og:image" content="https://volcanofir.github.io/banqiao-house-monitor/icon-safe-180.png?v=202608211245" />'''
+          s = re.sub(r'\s*<link rel="apple-touch-icon"[^>]*>\s*<link rel="icon"[^>]*>\s*<link rel="shortcut icon"[^>]*>', '\n'+block, s, count=1)
+          if '/banqiao-house-monitor/icon-safe-180.png' not in s:
+              raise SystemExit('replacement failed')
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit website icon references
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/index.html
+          git diff --cached --quiet || git commit -m "Point website to safe mobile icons"
+          git pull --rebase
+          git push
