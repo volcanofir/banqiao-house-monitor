@@ -1,0 +1,48 @@
+name: 永慶公司案件比對 PREVIEW
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/compare_yungching_preview.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: banqiao-yungching-preview
+  cancel-in-progress: true
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install packages
+        run: pip install requests beautifulsoup4
+
+      - name: Compare Yongching listings
+        run: python scripts/compare_yungching_preview.py
+
+      - name: Save preview comparison
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/preview/company-gap.json
+          if git diff --cached --quiet; then
+            echo "No preview comparison changes."
+            exit 0
+          fi
+          git commit -m "Update Yongching preview comparison"
+          git pull --rebase
+          git push
