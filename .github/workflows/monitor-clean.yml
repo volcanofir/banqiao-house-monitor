@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/monitor-clean.yml"
+      - "trigger/monitor-wakeup.txt"
   schedule:
     # Taiwan time: 00:07 / 03:07 / 06:07 / 09:07 / 12:07 / 15:07 / 18:07 / 21:07
     - cron: "7 1,4,7,10,13,16,19,22 * * *"
