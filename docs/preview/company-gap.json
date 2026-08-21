@@ -1,7 +1,8 @@
 {
-  "generatedAt": "2026-08-21T14:39:49+00:00",
+  "generatedAt": "2026-08-21T14:42:35+00:00",
   "sourceDataUpdatedAt": "2026-08-21T14:27:03+00:00",
   "mode": "preview_only",
+  "fetchMode": "blocked",
   "company": "永慶房屋",
   "companyListingCount": 0,
   "externalActiveCount": 202,
@@ -13,30 +14,37 @@
   "roadStatus": {
     "板橋區中山路二段": {
       "count": 0,
+      "http": 403,
       "url": "https://buy.yungching.com.tw/list/新北市-板橋區_c/中山路二段_kw?od=80"
     },
     "板橋區三民路一段": {
       "count": 0,
+      "http": 403,
       "url": "https://buy.yungching.com.tw/list/新北市-板橋區_c/三民路一段_kw?od=80"
     },
     "板橋區萬安街": {
       "count": 0,
+      "http": 403,
       "url": "https://buy.yungching.com.tw/list/新北市-板橋區_c/萬安街_kw?od=80"
     },
     "板橋區林森街": {
       "count": 0,
+      "http": 403,
       "url": "https://buy.yungching.com.tw/list/新北市-板橋區_c/林森街_kw?od=80"
     },
     "板橋區翠華街": {
       "count": 0,
+      "http": 403,
       "url": "https://buy.yungching.com.tw/list/新北市-板橋區_c/翠華街_kw?od=80"
     },
     "板橋區光復街": {
       "count": 0,
+      "http": 403,
       "url": "https://buy.yungching.com.tw/list/新北市-板橋區_c/光復街_kw?od=80"
     },
     "板橋區三民路二段": {
       "count": 0,
+      "http": 403,
       "url": "https://buy.yungching.com.tw/list/新北市-板橋區_c/三民路二段_kw?od=80"
     }
   },
@@ -1861,13 +1869,20 @@
     }
   ],
   "logs": [
-    "板橋區中山路二段: HTTP 403",
-    "板橋區三民路一段: HTTP 403",
-    "板橋區萬安街: HTTP 403",
-    "板橋區林森街: HTTP 403",
-    "板橋區翠華街: HTTP 403",
-    "板橋區光復街: HTTP 403",
-    "板橋區三民路二段: HTTP 403"
+    "requests 板橋區中山路二段: HTTP 403; rows=0",
+    "requests 板橋區三民路一段: HTTP 403; rows=0",
+    "requests 板橋區萬安街: HTTP 403; rows=0",
+    "requests 板橋區林森街: HTTP 403; rows=0",
+    "requests 板橋區翠華街: HTTP 403; rows=0",
+    "requests 板橋區光復街: HTTP 403; rows=0",
+    "requests 板橋區三民路二段: HTTP 403; rows=0",
+    "browser 板橋區中山路二段: HTTP 403; rows=0; body=403 ERROR The request could not be satisfied. Request blocked. We can't connect to the server for this app or website at",
+    "browser 板橋區三民路一段: HTTP 403; rows=0; body=403 ERROR The request could not be satisfied. Request blocked. We can't connect to the server for this app or website at",
+    "browser 板橋區萬安街: HTTP 403; rows=0; body=403 ERROR The request could not be satisfied. Request blocked. We can't connect to the server for this app or website at",
+    "browser 板橋區林森街: HTTP 403; rows=0; body=403 ERROR The request could not be satisfied. Request blocked. We can't connect to the server for this app or website at",
+    "browser 板橋區翠華街: HTTP 403; rows=0; body=403 ERROR The request could not be satisfied. Request blocked. We can't connect to the server for this app or website at",
+    "browser 板橋區光復街: HTTP 403; rows=0; body=403 ERROR The request could not be satisfied. Request blocked. We can't connect to the server for this app or website at",
+    "browser 板橋區三民路二段: HTTP 403; rows=0; body=403 ERROR The request could not be satisfied. Request blocked. We can't connect to the server for this app or website at"
   ],
-  "note": "PREVIEW 比對：company_match 會隱藏；missing 顯示為公司未比對到；review 顯示為待人工確認。此為公開網站資料的近似比對，不等同內部委託系統。"
+  "note": "PREVIEW 比對：company_match 會隱藏；missing 顯示為公司未比對到；review 顯示為待人工確認。公開網站比對僅供開發，不等同內部委託系統。"
 }
