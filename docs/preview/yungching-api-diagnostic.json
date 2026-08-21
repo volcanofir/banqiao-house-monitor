@@ -1,6 +1,14 @@
 {
-  "generatedAt": "2026-08-21T14:53:07+00:00",
+  "generatedAt": "2026-08-21T17:25:26+00:00",
   "mode": "preview_diagnostic",
+  "listApiTest": {
+    "url": "https://buy.yungching.com.tw/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5&filter=0&pg=2&ps=30",
+    "status": 403,
+    "finalUrl": "https://buy.yungching.com.tw/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5&filter=0&pg=2&ps=30",
+    "contentType": "text/html",
+    "length": 919,
+    "bodyPrefix": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8"
+  },
   "checks": [
     {
       "url": "https://www.yungching.com.tw/api/v1/common/version",
@@ -35,6 +43,5 @@
   "scripts": [],
   "candidateCount": 0,
   "candidates": [],
-  "probes": [],
-  "note": "只偵測永慶公開頁面/公開前端資源中出現的 API URL，未使用登入或內部系統。"
+  "note": "PREVIEW only. Exact /api/v2/list test is based on the public request captured in the user's HAR; no login/internal system is used."
 }
