@@ -121,13 +121,64 @@ jobs:
           python scripts/track_price_changes.py
           python scripts/remove_first_seen_ui.py
 
+      - name: Ensure iPhone web app install assets
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq librsvg2-bin
+          rsvg-convert -w 180 -h 180 docs/icon-safe.svg -o docs/icon-safe-180.png
+          rsvg-convert -w 192 -h 192 docs/icon-safe.svg -o docs/icon-safe-192.png
+          rsvg-convert -w 512 -h 512 docs/icon-safe.svg -o docs/icon-safe-512.png
+          rsvg-convert -w 32 -h 32 docs/icon-safe.svg -o docs/icon-safe-32.png
+
+          cat > docs/manifest.webmanifest <<'EOF'
+          {
+            "name": "板橋新案監控",
+            "short_name": "板橋新案監控",
+            "description": "板橋指定路段房屋新案監控",
+            "start_url": "/banqiao-house-monitor/",
+            "scope": "/banqiao-house-monitor/",
+            "display": "standalone",
+            "background_color": "#fff8df",
+            "theme_color": "#f5d331",
+            "icons": [
+              {"src": "/banqiao-house-monitor/icon-safe-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+              {"src": "/banqiao-house-monitor/icon-safe-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+            ]
+          }
+          EOF
+
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('docs/index.html')
+          s=p.read_text(encoding='utf-8')
+          s=re.sub(r'^\s*<link rel="(?:apple-touch-icon|apple-touch-icon-precomposed|icon|shortcut icon|manifest)"[^>]*>\s*\n?', '', s, flags=re.MULTILINE)
+          s=re.sub(r'^\s*<meta property="og:image"[^>]*>\s*\n?', '', s, flags=re.MULTILINE)
+          s=re.sub(r'^\s*<meta name="mobile-web-app-capable"[^>]*>\s*\n?', '', s, flags=re.MULTILINE)
+          marker='  <meta name="application-name" content="板橋新案監控" />\n'
+          block='''  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="manifest" href="/banqiao-house-monitor/manifest.webmanifest?v=202608211255" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/banqiao-house-monitor/icon-safe-180.png?v=202608211255" />
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/banqiao-house-monitor/icon-safe-180.png?v=202608211255" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/banqiao-house-monitor/icon-safe-32.png?v=202608211255" />
+  <link rel="shortcut icon" href="/banqiao-house-monitor/favicon.ico?v=202608211255" />
+  <meta property="og:image" content="https://volcanofir.github.io/banqiao-house-monitor/icon-safe-512.png?v=202608211255" />
+'''
+          if marker not in s:
+              raise SystemExit('application-name marker not found')
+          s=s.replace(marker, marker+block, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+
       - name: Save latest data
         if: steps.gate.outputs.run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/data/listings.json docs/data/sinyi-first-display-cache.json docs/index.html
-          git diff --cached --quiet || git commit -m "Update monitored listings"
+          git add docs/data/listings.json docs/data/sinyi-first-display-cache.json docs/index.html docs/manifest.webmanifest docs/icon-safe-180.png docs/icon-safe-192.png docs/icon-safe-512.png docs/icon-safe-32.png docs/favicon.ico
+          git diff --cached --quiet || git commit -m "Update monitored listings and iPhone install assets"
           git pull --rebase
           git push
 
