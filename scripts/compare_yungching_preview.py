@@ -280,8 +280,6 @@ def classify(ext, company, covered_roads):
     snapshot = yc.get("sourceMode") == "har_snapshot"
 
     if snapshot:
-        # HAR analytics exposes company id/name/price but not area/address.
-        # Be conservative: only label 庫存 when price is essentially identical AND title evidence is strong.
         strong = pd is not None and pd <= 1 and (tr >= 0.42 or max_shared >= 4) and score >= 8
         possible = pd is not None and pd <= 30 and (tr >= 0.25 or max_shared >= 3 or pd <= 1)
     else:
@@ -344,7 +342,7 @@ def main():
             "statusLabel": {
                 "company_match": "庫存",
                 "review": "待確認",
-                "missing": "公司未有",
+                "missing": "未接回",
                 "unavailable": "尚未比對",
             }[status],
             "score": score,
@@ -374,7 +372,7 @@ def main():
         "roadStatus": road_status,
         "comparisons": comparisons,
         "logs": logs,
-        "note": "PREVIEW：庫存=高信心比對到永慶公開案件；待確認=價格/文字疑似相同但證據不足；公司未有=在已有公司資料的路段未比對到；尚未比對=該路段目前沒有永慶快照。HAR 快照不是即時自動資料。",
+        "note": "PREVIEW：庫存=高信心比對到永慶公開案件；待確認=價格/文字疑似相同但證據不足；未接回=在已有公司資料的路段未比對到；尚未比對=該路段目前沒有永慶快照。HAR 快照不是即時自動資料。",
     }
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
