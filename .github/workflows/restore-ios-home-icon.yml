@@ -25,3 +25,5 @@ jobs:
           git diff --cached --quiet || git commit -m "Restore iPhone home-screen support"
           git pull --rebase
           git push
+
+# Stable iPhone repair trigger: 2026-08-21 13:30 Asia/Taipei
