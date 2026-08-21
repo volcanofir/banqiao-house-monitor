@@ -8,10 +8,8 @@ on:
       - ".github/workflows/monitor-clean.yml"
       - "trigger/monitor-wakeup.txt"
   schedule:
-    # Taiwan time: 00:07 / 03:07 / 06:07 / 09:07 / 12:07 / 15:07 / 18:07 / 21:07
-    - cron: "7 1,4,7,10,13,16,19,22 * * *"
-    # Backup +30 minutes
-    - cron: "37 1,4,7,10,13,16,19,22 * * *"
+    # Heartbeat every 10 minutes; actual fetch only runs when data is ~3 hours old.
+    - cron: "7,17,27,37,47,57 * * * *"
 
 permissions:
   contents: write
@@ -32,10 +30,10 @@ jobs:
         id: gate
         env:
           EVENT_NAME: ${{ github.event_name }}
-          EVENT_SCHEDULE: ${{ github.event.schedule }}
         shell: bash
         run: |
-          if [[ "$EVENT_NAME" != "schedule" || "$EVENT_SCHEDULE" != "37 1,4,7,10,13,16,19,22 * * *" ]]; then
+          # Manual dispatch / relevant push should always run immediately.
+          if [[ "$EVENT_NAME" != "schedule" ]]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -43,17 +41,22 @@ jobs:
           import json, os
           from datetime import datetime, timezone
           from pathlib import Path
+
+          # Scheduled heartbeats are cheap: only do the full crawl once the
+          # last successful data update is about 3 hours old.
+          threshold_minutes = 170
           try:
               d = json.loads(Path('docs/data/listings.json').read_text(encoding='utf-8'))
               t = datetime.fromisoformat(str(d['updatedAt']).replace('Z', '+00:00'))
               if t.tzinfo is None:
                   t = t.replace(tzinfo=timezone.utc)
               age = (datetime.now(timezone.utc) - t.astimezone(timezone.utc)).total_seconds() / 60
-              run = age > 120
-              print(f'backup freshness age={age:.1f} min => {"run" if run else "skip"}')
+              run = age >= threshold_minutes
+              print(f'heartbeat freshness age={age:.1f} min; threshold={threshold_minutes} => {"run" if run else "skip"}')
           except Exception as exc:
-              print(f'freshness check failed: {exc}; running backup')
+              print(f'freshness check failed: {exc}; running monitor')
               run = True
+
           with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
               f.write(f"run={'true' if run else 'false'}\n")
           PY
@@ -161,6 +164,6 @@ jobs:
           done
           exit 1
 
-      - name: Backup skipped
+      - name: Heartbeat skipped
         if: steps.gate.outputs.run != 'true'
-        run: echo "Data is fresh; backup fetch skipped."
+        run: echo "Data is still fresh; heartbeat finished without a full fetch."
