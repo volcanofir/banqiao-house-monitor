@@ -29,6 +29,7 @@ def main():
     payload = {
         "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "previewOnly": True,
+        "probeRevision": 2,
         "network": {
             "surfsharkWorkflowOutcome": os.environ.get("YUNGCHING_PROBE_VPN_OUTCOME"),
             "vpnConnected": os.environ.get("VPN_CONNECTED") == "true",
