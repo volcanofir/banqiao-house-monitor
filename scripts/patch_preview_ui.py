@@ -9,6 +9,7 @@ replacements = {
     '591 ＋ 信義先整併，再比對永慶公司公開庫存': '比對591、信義刊登案件',
     '<h1>指定路段房屋群組</h1>': '<h1>指定路段案件比對</h1>',
     '<h2>公司委託比對（以戶數計）</h2>': '<h2>委託比對</h2>',
+    '.source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}': '.source-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}',
 }
 for old, new in replacements.items():
     text = text.replace(old, new)
@@ -20,10 +21,18 @@ text = re.sub(
     text,
 )
 
-# Keep the target node so existing JS does not error, but remove the flow box from UI.
+# Remove the flow/explanation box entirely.
 text = re.sub(
-    r'<div class="company-note" id="companyNote">.*?</div>',
-    '<div id="companyNote" hidden></div>',
+    r'\n<div class="company-note" id="companyNote">.*?</div>',
+    '',
+    text,
+    count=1,
+    flags=re.S,
+)
+text = text.replace('\n<div id="companyNote" hidden></div>', '')
+text = re.sub(
+    r"const conflict=GAP\.companyConflictDowngradedCount\?\?0;.*?(?=document\.querySelector\('#updated'\))",
+    '',
     text,
     count=1,
     flags=re.S,
