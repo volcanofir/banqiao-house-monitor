@@ -10,6 +10,7 @@ on:
       - "scripts/compare_yungching_preview_v3.py"
       - "scripts/compare_yungching_preview_v4.py"
       - "scripts/compare_yungching_preview_v5.py"
+      - "scripts/patch_preview_ui.py"
       - "docs/data/listings.json"
       - "docs/preview/yungching-har-snapshot.json"
       - "docs/preview/yungching-area-enrichment.json"
@@ -45,13 +46,17 @@ jobs:
           set -o pipefail
           python scripts/compare_yungching_preview_v5.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
+      - name: Simplify preview UI copy
+        if: always()
+        run: python scripts/patch_preview_ui.py
+
       - name: Save preview comparison and diagnostic
         if: always()
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/preview/company-gap.json docs/preview/yungching-preview-run.log || true
+          git add docs/preview/company-gap.json docs/preview/yungching-preview-run.log docs/preview/index.html || true
           if git diff --cached --quiet; then
             echo "No preview comparison changes."
             exit 0
