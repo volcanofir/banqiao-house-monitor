@@ -31,14 +31,9 @@ jobs:
           python-version: "3.12"
 
       - name: Install packages
-        run: pip install requests beautifulsoup4 playwright
+        run: pip install requests beautifulsoup4
 
-      - name: Connect Surfshark
-        env:
-          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
-        run: bash scripts/connect_surfshark_wireguard.sh
-
-      - name: Compare Yongching listings
+      - name: Compare all roads with company public proxy
         run: python scripts/compare_yungching_preview.py
 
       - name: Save preview comparison
