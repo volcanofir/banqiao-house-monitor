@@ -13,6 +13,40 @@ import yungching_dom_snapshot_v2 as v2
 import yungching_dom_snapshot as base
 
 
+def safe_parse_floor(text: str):
+    """Parse subject/total floor without letting the preceding area digits leak in.
+
+    Yongching sometimes concatenates fields like `主20.241/5樓`. A plain regex sees
+    `41/5樓`; because subject floor 41 cannot exceed total floor 5, trim leading glued
+    digits until a physically valid subject floor remains (`1/5樓`).
+    """
+    normalized = re.sub(r"\s+", "", str(text or "")).replace("～", "~")
+    for m in re.finditer(r"(\d{1,2}(?:[~-]\d{1,2})?)/(\d{1,2})樓", normalized):
+        subject = m.group(1)
+        total = int(m.group(2))
+        if not (1 <= total <= 99):
+            continue
+        if "~" in subject or "-" in subject:
+            parts = re.split(r"[~-]", subject)
+            if len(parts) == 2:
+                lo, hi = int(parts[0]), int(parts[1])
+                if 1 <= lo <= hi <= total:
+                    return f"{lo}~{hi}/{total}樓"
+            continue
+
+        n = int(subject)
+        if 1 <= n <= total:
+            return f"{n}/{total}樓"
+
+        # The common glued case is a two-digit match such as 41/5 where the leading
+        # 4 is the last decimal digit of the preceding area and the true floor is 1.
+        if len(subject) == 2:
+            suffix = int(subject[-1])
+            if 1 <= suffix <= total:
+                return f"{suffix}/{total}樓"
+    return None
+
+
 def numeric_page_target(page, target: int):
     return page.evaluate(
         """(target) => {
@@ -147,9 +181,6 @@ def click_yungching_pager_class(page, target: int):
             item.click(force=True, timeout=3000)
             activated = wait_pager_active(page, target, timeout=5000)
 
-            # Some builds bind their click handler directly on the raw DOM node.
-            # If Playwright dispatch did not switch the active page, invoke that node's
-            # native click once and verify again before reporting success.
             if not activated:
                 item.evaluate("el => el.click()")
                 activated = wait_pager_active(page, target, timeout=4000)
@@ -177,14 +208,10 @@ def click_yungching_pager_class(page, target: int):
 
 
 def click_numeric_page(page, target: int):
-    # Yongching's current production DOM exposes this exact class. Treat a click as
-    # successful only after the target pager node itself becomes active.
     action = click_yungching_pager_class(page, target)
     if action.get("clicked"):
         return action
 
-    # Keep the generic text-node/element strategy for future DOM variants, but verify
-    # the target page after it dispatches a click whenever the Yongching pager exists.
     generic = v2.click_numeric_page(page, target)
     if generic.get("clicked"):
         page.wait_for_timeout(500)
@@ -195,8 +222,6 @@ def click_numeric_page(page, target: int):
         generic["activeVerified"] = False
         generic["error"] = "generic click did not activate target Yongching page"
 
-    # Last fallback: click the exact screen coordinate occupied by numeric text and
-    # again require DOM activation before returning clicked=True.
     candidate = numeric_page_target(page, target)
     if not candidate:
         return {"clicked": False, "mode": "numeric-text-v3", "target": target, "previous": [action, generic]}
@@ -220,7 +245,6 @@ def click_numeric_page(page, target: int):
 
 
 def pager_expected(status: dict) -> bool:
-    """Return True when the rendered result clearly advertises a second page."""
     if not status:
         return False
 
@@ -283,6 +307,8 @@ def enforce_pagination_completeness():
 
 
 def main():
+    # Monkey-patch the active Preview collector only; production code remains untouched.
+    base.parse_floor = safe_parse_floor
     base.page_controls = v2.page_controls
     base.click_semantic_next = v2.click_semantic_next
     base.click_numeric_page = click_numeric_page
