@@ -9,6 +9,7 @@ on:
       - "scripts/yungching_dom_snapshot_v2.py"
       - "scripts/yungching_dom_snapshot_v3.py"
       - "scripts/yungching_page_param_probe.py"
+      - "scripts/yungching_detail_floor_enrich.py"
       - "scripts/compare_yungching_preview_v6.py"
 
 permissions:
@@ -21,7 +22,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -65,6 +66,11 @@ jobs:
         shell: bash
         run: python scripts/yungching_dom_snapshot_v3.py
 
+      - name: Enrich missing floors from official Yongching detail DOM
+        continue-on-error: true
+        shell: bash
+        run: python scripts/yungching_detail_floor_enrich.py
+
       - name: Disconnect Surfshark
         if: always()
         continue-on-error: true
@@ -85,6 +91,7 @@ jobs:
         run: |
           python - <<'PY'
           import json
+          import re
           from datetime import datetime, timezone
           from pathlib import Path
 
@@ -96,14 +103,30 @@ jobs:
           assert p.get('companyListingCount', 0) > 0, p.get('companyListingCount')
           assert p.get('companySnapshotCapturedAt') == stats.get('capturedAt'), (p.get('companySnapshotCapturedAt'), stats.get('capturedAt'))
 
-          # 中山路二段目前官方頁明確顯示第 2 頁。只有 DOM 最終確認第 2 頁
-          # 真的變為 active 才算完整，避免 click 被 AI backdrop 吃掉卻誤判成功。
           zhongshan = (snap.get('roadStatus') or {}).get('板橋區中山路二段') or {}
           if zhongshan.get('paginationExpected'):
               assert zhongshan.get('paginationComplete') is True, zhongshan
               assert int(zhongshan.get('paginationActivePage') or 0) >= 2, zhongshan
               assert int(zhongshan.get('pageRounds') or 0) >= 1, zhongshan
               assert zhongshan.get('available') is True, zhongshan
+
+          # Reject impossible subject/total floors such as the old glued parse 41/5樓.
+          invalid_floors = []
+          floor_count = 0
+          detail_floor_count = 0
+          for row in snap.get('listings') or []:
+              floor = row.get('floor')
+              if not floor:
+                  continue
+              floor_count += 1
+              if row.get('floorSourceMode') == 'yungching_official_detail_dom':
+                  detail_floor_count += 1
+              m = re.fullmatch(r'(\d{1,2})(?:~(\d{1,2}))?/(\d{1,2})樓', str(floor))
+              if m:
+                  lo = int(m.group(1)); hi = int(m.group(2) or m.group(1)); total = int(m.group(3))
+                  if not (1 <= lo <= hi <= total <= 99):
+                      invalid_floors.append({'id': row.get('id'), 'floor': floor})
+          assert not invalid_floors, invalid_floors
 
           result = {
               'verifiedAt': datetime.now(timezone.utc).isoformat(timespec='seconds'),
@@ -115,6 +138,9 @@ jobs:
               'unavailableRoadCount': stats.get('unavailableRoadCount'),
               'comparisonCounts': p.get('counts'),
               'browserListingCount': snap.get('listingCount'),
+              'floorCount': floor_count,
+              'detailFloorCount': detail_floor_count,
+              'detailFloorEnrichment': snap.get('detailFloorEnrichment'),
               'roadStatus': snap.get('roadStatus'),
           }
           Path('docs/preview/fast-verification.json').write_text(
@@ -136,9 +162,9 @@ jobs:
           cp docs/preview/yungching-browser-snapshot.json /tmp/yungching-preview-verified/yungching-browser-snapshot.json
           cp docs/preview/fast-verification.json /tmp/yungching-preview-verified/fast-verification.json
           cp docs/preview/index.html /tmp/yungching-preview-verified/index.html
-          if [[ -f docs/preview/yungching-pagination-probe.json ]]; then
-            cp docs/preview/yungching-pagination-probe.json /tmp/yungching-preview-verified/yungching-pagination-probe.json
-          fi
+          for f in yungching-pagination-probe.json yungching-detail-floor.json; do
+            if [[ -f docs/preview/$f ]]; then cp docs/preview/$f /tmp/yungching-preview-verified/$f; fi
+          done
 
           for attempt in 1 2 3; do
             git fetch origin main
@@ -148,15 +174,16 @@ jobs:
             cp /tmp/yungching-preview-verified/yungching-browser-snapshot.json docs/preview/yungching-browser-snapshot.json
             cp /tmp/yungching-preview-verified/fast-verification.json docs/preview/fast-verification.json
             cp /tmp/yungching-preview-verified/index.html docs/preview/index.html
-            if [[ -f /tmp/yungching-preview-verified/yungching-pagination-probe.json ]]; then
-              cp /tmp/yungching-preview-verified/yungching-pagination-probe.json docs/preview/yungching-pagination-probe.json
-            fi
+            for f in yungching-pagination-probe.json yungching-detail-floor.json; do
+              if [[ -f /tmp/yungching-preview-verified/$f ]]; then cp /tmp/yungching-preview-verified/$f docs/preview/$f; fi
+            done
             git add \
               docs/preview/company-gap.json \
               docs/preview/yungching-preview-run.log \
               docs/preview/yungching-browser-snapshot.json \
               docs/preview/fast-verification.json \
               docs/preview/yungching-pagination-probe.json \
+              docs/preview/yungching-detail-floor.json \
               docs/preview/index.html || true
             if git diff --cached --quiet; then
               echo "Verified Preview already matches main."
