@@ -69,9 +69,16 @@ def cross_source_info(sinyi, m591):
     longest = max((len(x) for x in shared), default=0)
     title_ratio = SequenceMatcher(None, base.norm(st), base.norm(mt)).ratio()
 
+    exact_fingerprint = bool(
+        area_delta is not None and area_delta <= 0.05 and
+        price_delta is not None and price_delta <= 1
+    )
+
     score = 0
     if area_delta is not None:
-        if area_delta <= 0.08:
+        if area_delta <= 0.05:
+            score += 12
+        elif area_delta <= 0.08:
             score += 10
         elif area_delta <= 0.15:
             score += 8
@@ -82,12 +89,13 @@ def cross_source_info(sinyi, m591):
         elif area_delta > 0.80:
             return "no", -99, {
                 "areaDelta": round(area_delta, 2), "priceDelta": price_delta,
-                "titleRatio": round(title_ratio, 3), "shared": []
+                "titleRatio": round(title_ratio, 3), "shared": [],
+                "exactFingerprint": False,
             }
 
     if price_delta is not None:
         if price_delta <= 1:
-            score += 7
+            score += 8
         elif price_delta <= 30:
             score += 5
         elif price_delta <= 80:
@@ -117,8 +125,11 @@ def cross_source_info(sinyi, m591):
     elif title_ratio >= 0.28:
         score += 1
 
-    strong = False
-    if area_delta is not None:
+    # Sinyi is the trusted primary source. When road, registered area and asking
+    # price are essentially identical, a very different marketing title alone
+    # must not prevent 591 from being merged underneath Sinyi.
+    strong = exact_fingerprint
+    if not strong and area_delta is not None:
         strong = (
             (area_delta <= 0.12 and price_delta is not None and price_delta <= 100 and (title_ratio >= 0.18 or longest >= 3)) or
             (area_delta <= 0.30 and price_delta is not None and price_delta <= 30 and (title_ratio >= 0.28 or longest >= 4)) or
@@ -138,6 +149,7 @@ def cross_source_info(sinyi, m591):
         "priceDelta": None if price_delta is None else round(price_delta, 1),
         "titleRatio": round(title_ratio, 3),
         "shared": sorted(shared, key=lambda x: (-len(x), x))[:6],
+        "exactFingerprint": exact_fingerprint,
     }
 
 
@@ -189,8 +201,8 @@ def build_groups(external):
     sinyi = [x for x in external if x.get("source") == "信義房屋"]
     m591 = [x for x in external if x.get("source") == "591"]
 
-    # Every 591 record chooses at most one Sinyi record. A Sinyi record may absorb
-    # more than one 591 record only when each match independently clears the strong threshold.
+    # First stage: compare Sinyi and 591 only. If they are the same house,
+    # Sinyi becomes the primary record and all matching 591 records are attached.
     candidates_by_591 = defaultdict(list)
     review_candidates = []
     for s in sinyi:
@@ -204,6 +216,7 @@ def build_groups(external):
                 review_candidates.append({
                     "sinyiId": s.get("id"), "listing591Id": m.get("id"),
                     "score": score, "matchInfo": info,
+                    "reason": "信義與591資料接近，但未達自動整併門檻",
                 })
 
     attached = defaultdict(list)
@@ -214,6 +227,26 @@ def build_groups(external):
         if not cands:
             continue
         cands.sort(key=lambda z: z[0], reverse=True)
+
+        # If one 591 record has multiple nearly indistinguishable exact Sinyi
+        # fingerprints, do not guess which Sinyi unit it belongs to.
+        if len(cands) > 1:
+            top_score, top_s, top_info = cands[0]
+            second_score, second_s, second_info = cands[1]
+            ambiguous_exact = (
+                top_info.get("exactFingerprint") and second_info.get("exactFingerprint") and
+                abs(top_score - second_score) <= 1 and
+                max(top_info.get("titleRatio") or 0, second_info.get("titleRatio") or 0) < 0.25 and
+                not top_info.get("shared") and not second_info.get("shared")
+            )
+            if ambiguous_exact:
+                review_candidates.append({
+                    "sinyiId": top_s.get("id"), "listing591Id": m.get("id"),
+                    "score": top_score, "matchInfo": top_info,
+                    "reason": f"591 同時符合多筆信義案件（另含 {second_s.get('id')}），暫不自動整併",
+                })
+                continue
+
         score, s, info = cands[0]
         matched_591.add(m.get("id"))
         attached[s.get("id")].append(m)
@@ -232,20 +265,45 @@ def build_groups(external):
 
 
 def classify_group(group, company, road_status):
-    best = None
+    ranked = []
     for member in group.get("sourceListings") or []:
         st, sc, yc, info = base.classify(member, company, road_status)
         rank = {"company_match": 3, "review": 2, "missing": 1, "unavailable": 0}.get(st, 0)
-        row = (rank, sc, st, yc, info, member)
-        if best is None or (rank, sc) > (best[0], best[1]):
-            best = row
-    if best is None:
+        source_priority = 1 if member.get("source") == "信義房屋" else 0
+        ranked.append((rank, source_priority, sc, st, yc, info, member))
+
+    if not ranked:
         return "unavailable", 0, None, {"reason": "群組沒有可比對來源"}, None
-    _, sc, st, yc, info, member = best
+
+    # Company match is evaluated after grouping. If both Sinyi and 591 support a
+    # match at the same status level, Sinyi evidence is always preferred.
+    ranked.sort(key=lambda z: (z[0], z[1], z[2]), reverse=True)
+    _, _, sc, st, yc, info, member = ranked[0]
     info = dict(info or {})
     info["evidenceSource"] = member.get("source")
     info["evidenceListingId"] = member.get("id")
+
+    # Normal company result is binary for the preview: high-confidence match =
+    # inventory; otherwise = not taken back. "review" is reserved for genuine
+    # conflicts created later, not merely a weak company candidate.
+    if st == "review":
+        st = "missing"
+        info["reason"] = "有相似公司候選，但未達庫存判定門檻，因此列為未接回"
+        info["weakCompanyCandidate"] = True
+
     return st, sc, yc, info, member
+
+
+def company_keeper_key(row):
+    info = row.get("matchInfo") or {}
+    ad = info.get("areaDelta")
+    pd = info.get("priceDelta")
+    exact_company = int(
+        ad is not None and ad <= 0.12 and
+        pd is not None and pd <= 1
+    )
+    sinyi_primary = int(row.get("primarySource") == "信義房屋")
+    return (sinyi_primary, exact_company, row.get("score", -999))
 
 
 def resolve_company_duplicates(comparisons):
@@ -257,13 +315,16 @@ def resolve_company_duplicates(comparisons):
     for company_id, rows in by_company.items():
         if not company_id or len(rows) <= 1:
             continue
-        rows.sort(key=lambda x: x.get("score", -999), reverse=True)
+
+        # Sinyi-primary groups own the company match before standalone 591 groups.
+        # This prevents a 591 ad from "stealing" inventory from the Sinyi record.
+        rows.sort(key=company_keeper_key, reverse=True)
         keeper = rows[0]
         for row in rows[1:]:
             row["status"] = "review"
             row["statusLabel"] = "待確認"
             info = row.setdefault("matchInfo", {})
-            info["reason"] = f"同一公司案件 {company_id} 已優先配對給 {keeper.get('groupId')}，避免庫存重複計數"
+            info["reason"] = f"同一公司案件 {company_id} 已優先配對給 {keeper.get('groupId')}；信義主來源優先，避免庫存重複計數"
             info["companyCandidateConflict"] = True
             downgraded += 1
     return downgraded
@@ -321,7 +382,7 @@ def main():
     payload = {
         "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "sourceDataUpdatedAt": state.get("updatedAt"),
-        "mode": "preview_only_sinyi_first_grouping",
+        "mode": "preview_only_sinyi_first_grouping_v2",
         "fetchMode": fetch_mode,
         "company": "永慶房屋",
         "companyDataSource": "好房網公開買屋頁（僅篩選永慶房屋(股)公司）＋必要時 HAR fallback",
@@ -341,7 +402,7 @@ def main():
         "crossSourceReviewCandidates": cross_reviews,
         "companyListings": company,
         "logs": logs,
-        "note": "PREVIEW：先整併信義房屋與 591，同戶時以信義為主資料、591 保留為補充來源；再以整併後房屋群組比對永慶公開直營庫存。公司庫存統計以房屋群組計算，同一公司候選若被多組搶到只保留最高分，其餘降為待確認。",
+        "note": "PREVIEW：第一步先比對信義房屋與591；同戶時以信義為主資料，591全部收在信義底下。第二步才以房屋群組比對公司公開直營庫存；高信心命中顯示庫存，未命中顯示未接回。若公司同一案件仍被多組命中，信義主來源優先，其餘才列待確認。",
     }
     OUT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({
