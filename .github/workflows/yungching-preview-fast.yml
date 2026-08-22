@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/yungching-preview-fast.yml"
+      - "scripts/yungching_dom_snapshot_v2.py"
       - "scripts/yungching_dom_snapshot_v3.py"
       - "scripts/compare_yungching_preview_v6.py"
 
