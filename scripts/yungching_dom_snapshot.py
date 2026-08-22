@@ -87,40 +87,58 @@ def parse_card(raw: dict, road: str):
         "type": ptype,
         "url": url,
         "sourceMode": "yungching_browser_dom",
+        "text": text[:700],
         "rawText": text[:700],
     }
 
 
-def expand_results(page):
-    """Trigger lazy/infinite loading without relying on a particular pagination selector."""
-    rounds = 0
-    stable = 0
-    last_height = 0
-    for _ in range(8):
-        rounds += 1
-        try:
-            page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-            page.wait_for_timeout(1400)
-            # Some builds expose a load-more control instead of pure infinite scroll.
-            button = page.locator("button, a").filter(has_text=re.compile(r"載入更多|查看更多|更多物件|顯示更多"))
-            if button.count() > 0:
-                try:
-                    button.first.click(timeout=1200)
-                    page.wait_for_timeout(1400)
-                except Exception:
-                    pass
-            height = page.evaluate("document.body.scrollHeight")
-            if height == last_height:
-                stable += 1
-            else:
-                stable = 0
-            last_height = height
-            if stable >= 2:
-                break
-        except Exception:
-            break
-    page.evaluate("window.scrollTo(0, 0)")
-    return rounds
+def page_controls(page):
+    return page.evaluate(
+        """() => {
+          const clean = s => (s || '').replace(/\s+/g, ' ').trim();
+          const out = [];
+          for (const el of Array.from(document.querySelectorAll('a,button'))) {
+            const text = clean(el.innerText);
+            const aria = clean(el.getAttribute('aria-label'));
+            const title = clean(el.getAttribute('title'));
+            const cls = typeof el.className === 'string' ? el.className : '';
+            const hay = [text, aria, title, cls].join(' ');
+            const paginationish = /^\d{1,2}$/.test(text) || /下一|下頁|next|上一|上頁|prev|page|pager|pagination|更多|more|›|»|‹|«/i.test(hay);
+            if (!paginationish) continue;
+            out.push({
+              tag: el.tagName,
+              text: text.slice(0,80),
+              aria: aria.slice(0,120),
+              title: title.slice(0,120),
+              className: cls.slice(0,180),
+              href: el.href || null,
+              disabled: !!el.disabled || el.getAttribute('aria-disabled') === 'true',
+            });
+          }
+          return out.slice(0,80);
+        }"""
+    )
+
+
+def click_semantic_next(page):
+    """Click only a clearly labelled next-page/load-more control; never guess arbitrary numeric buttons."""
+    return page.evaluate(
+        """() => {
+          const clean = s => (s || '').replace(/\s+/g, ' ').trim();
+          const els = Array.from(document.querySelectorAll('a,button'));
+          for (const el of els) {
+            if (el.disabled || el.getAttribute('aria-disabled') === 'true') continue;
+            const text = clean(el.innerText);
+            const aria = clean(el.getAttribute('aria-label'));
+            const title = clean(el.getAttribute('title'));
+            const hay = [text, aria, title].join(' ');
+            if (!/(下一頁|下頁|下一页|next page|load more|載入更多|查看更多|更多物件|顯示更多)/i.test(hay)) continue;
+            el.click();
+            return {clicked:true, text, aria, title, href:el.href || null};
+          }
+          return {clicked:false};
+        }"""
+    )
 
 
 def extract_cards(page, road: str):
@@ -157,25 +175,98 @@ def extract_cards(page, road: str):
               bestById.set(x.id, {url: x.href, text});
             }
           }
-
-          const pagination = [];
-          for (const a of allAnchors) {
-            const label = (a.innerText || '').replace(/\s+/g, ' ').trim();
-            const href = a.href || '';
-            if (!href.includes('/list/')) continue;
-            if (/^\d+$/.test(label) || /下一頁|下頁|next/i.test(label) || /[?&](?:page|pg|p)=\d+/i.test(href)) {
-              pagination.push({label, href});
-            }
-          }
-
-          return {
-            anchorCount: allAnchors.length,
-            cards: Array.from(bestById.values()),
-            pagination: pagination.slice(0,40),
-          };
+          return {anchorCount: allAnchors.length, cards: Array.from(bestById.values())};
         }""",
         address,
     )
+
+
+def collect_current(page, road: str):
+    raw = extract_cards(page, road)
+    rows = {}
+    for item in raw.get("cards") or []:
+        row = parse_card(item, road)
+        if row:
+            rows[row["id"]] = row
+    return rows, raw.get("anchorCount", 0)
+
+
+def collect_road(page, road: str):
+    """Collect lazy-loaded cards and follow a clearly-labelled next control when present."""
+    all_rows = {}
+    load_rounds = 0
+    page_rounds = 0
+    stable = 0
+    last_height = 0
+    anchor_count = 0
+    next_clicks = []
+
+    # First exhaust normal lazy/infinite loading.
+    for _ in range(8):
+        load_rounds += 1
+        rows, anchor_count = collect_current(page, road)
+        all_rows.update(rows)
+        page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+        page.wait_for_timeout(1300)
+        height = page.evaluate("document.body.scrollHeight")
+        if height == last_height:
+            stable += 1
+        else:
+            stable = 0
+        last_height = height
+        if stable >= 2:
+            break
+
+    # Then follow semantic next/load-more controls only, up to 4 result pages.
+    for _ in range(4):
+        controls_before = page_controls(page)
+        action = click_semantic_next(page)
+        if not action.get("clicked"):
+            break
+        page_rounds += 1
+        next_clicks.append(action)
+        page.wait_for_timeout(2400)
+        page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+        page.wait_for_timeout(1300)
+        rows, anchor_count = collect_current(page, road)
+        before = len(all_rows)
+        all_rows.update(rows)
+        if len(all_rows) == before:
+            break
+        # Keep one small diagnostic sample around the control state after a successful click.
+        if len(next_clicks) == 1:
+            next_clicks[0]["controlsBefore"] = controls_before[:20]
+
+    page.evaluate("window.scrollTo(0, 0)")
+    rows, anchor_count = collect_current(page, road)
+    all_rows.update(rows)
+    return all_rows, {
+        "loadRounds": load_rounds,
+        "pageRounds": page_rounds,
+        "nextClicks": next_clicks,
+        "anchorCount": anchor_count,
+        "controls": page_controls(page),
+    }
+
+
+def result_summary(page, road: str):
+    try:
+        body = re.sub(r"\s+", " ", page.locator("body").inner_text(timeout=8000)).strip()
+    except Exception:
+        return []
+    keyword = road.replace("板橋區", "")
+    snippets = []
+    for pat in (
+        rf".{{0,80}}{re.escape(keyword)}.{{0,140}}(?:筆|件|戶|結果).{{0,80}}",
+        r".{0,80}(?:共|全部|找到|搜尋).{0,50}\d+.{0,30}(?:筆|件|戶).{0,80}",
+    ):
+        for m in re.finditer(pat, body):
+            s = m.group(0).strip()
+            if s not in snippets:
+                snippets.append(s[:360])
+            if len(snippets) >= 6:
+                return snippets
+    return snippets
 
 
 def main():
@@ -190,28 +281,28 @@ def main():
 
         for road in ROADS:
             url = road_url(road)
-            info = {"mainHttp": None, "count": 0, "pagination": []}
+            info = {"mainHttp": None, "count": 0}
             try:
                 response = page.goto(url, wait_until="domcontentloaded", timeout=45000)
                 info["mainHttp"] = response.status if response else None
                 page.wait_for_timeout(3500)
-                info["loadRounds"] = expand_results(page)
                 info["title"] = page.title()[:160]
                 info["roadTextCount"] = page.get_by_text(road.replace("板橋區", ""), exact=False).count()
-                raw = extract_cards(page, road)
-                info["anchorCount"] = raw.get("anchorCount", 0)
-                info["pagination"] = raw.get("pagination") or []
-                for item in raw.get("cards") or []:
-                    row = parse_card(item, road)
-                    if row:
-                        listings[(road, row["id"])] = row
-                info["count"] = sum(1 for r, _ in listings if r == road)
+                info["summary"] = result_summary(page, road)
+                rows, diag = collect_road(page, road)
+                info.update(diag)
+                for row in rows.values():
+                    listings[(road, row["id"])] = row
+                info["count"] = len(rows)
                 info["available"] = info["mainHttp"] == 200 and info["count"] > 0
             except Exception as exc:
                 info["error"] = f"{type(exc).__name__}: {str(exc)[:220]}"
                 info["available"] = False
             road_status[road] = info
-            print(f"DOM snapshot {road}: HTTP {info.get('mainHttp')} / {info.get('count', 0)} listings / anchors {info.get('anchorCount', 0)}")
+            print(
+                f"DOM snapshot {road}: HTTP {info.get('mainHttp')} / {info.get('count', 0)} listings / "
+                f"pageRounds {info.get('pageRounds', 0)} / anchors {info.get('anchorCount', 0)}"
+            )
 
         browser.close()
 
