@@ -1,4 +1,5 @@
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -155,7 +156,16 @@ def structured_listing_floors(x, company=False):
     # "9/11樓" or "14~15/16樓". Include it in the existing floor-aware matcher.
     raw = x.get("floor")
     if raw not in (None, ""):
-        floors |= v5.floors_from_text(str(raw), company_text=company)
+        floor_text = str(raw)
+        floors |= v5.floors_from_text(floor_text, company_text=company)
+
+        # A split-level unit can occupy more than one subject floor. The v5 parser
+        # correctly reads the last subject floor before '/', but add the whole range
+        # here so 14~15/16樓 means subject floors {14, 15}, never total-floor 16.
+        for m in re.finditer(r"(\d{1,2})\s*[~～-]\s*(\d{1,2})\s*/\s*\d{1,2}\s*樓", floor_text):
+            lo, hi = int(m.group(1)), int(m.group(2))
+            if 1 <= lo <= hi <= 99 and hi - lo <= 5:
+                floors.update(range(lo, hi + 1))
     return floors
 
 
@@ -170,6 +180,7 @@ def main():
     payload["mode"] = "preview_only_591_then_sinyi_then_company_floor_aware_official_rendered_v6"
     payload["fetchMode"] = "yungching_official_rendered_dom_only"
     payload["companyDataSource"] = "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM"
+    payload["companySnapshotCapturedAt"] = OFFICIAL_STATS.get("capturedAt")
     payload["officialBrowserCompany"] = dict(OFFICIAL_STATS)
     payload["structuredFloorMatching"] = True
     payload["note"] = (
@@ -181,6 +192,7 @@ def main():
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({
         "fetchMode": payload["fetchMode"],
+        "companySnapshotCapturedAt": payload.get("companySnapshotCapturedAt"),
         "officialBrowserCompany": OFFICIAL_STATS,
         "companyDataGuard": payload.get("companyDataGuard"),
     }, ensure_ascii=False))
