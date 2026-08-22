@@ -33,12 +33,12 @@ def num(value):
 
 
 def parse_floor(text: str):
-    # Cards sometimes concatenate area and floor, e.g. "主20.241/5樓".
-    m = re.search(r"\d+\.\d{1,2}(\d{1,2}/\d{1,2}樓)", text)
+    # Keep the whole subject-floor expression, including split-level units such as
+    # "14~15/16樓". Cards can concatenate area + floor, e.g. "主20.241/5樓".
+    m = re.search(r"(\d{1,2}(?:\s*[~～-]\s*\d{1,2})?/\d{1,2}樓)", text)
     if m:
-        return m.group(1)
-    m = re.search(r"(?<![\d.])(\d{1,2}/\d{1,2}樓)", text)
-    return m.group(1) if m else None
+        return re.sub(r"\s+", "", m.group(1)).replace("～", "~")
+    return None
 
 
 def parse_card(raw: dict, road: str):
@@ -97,13 +97,15 @@ def page_controls(page):
         """() => {
           const clean = s => (s || '').replace(/\s+/g, ' ').trim();
           const out = [];
-          for (const el of Array.from(document.querySelectorAll('a,button'))) {
+          const selector = 'a,button,[role="button"]';
+          for (const el of Array.from(document.querySelectorAll(selector))) {
             const text = clean(el.innerText);
             const aria = clean(el.getAttribute('aria-label'));
             const title = clean(el.getAttribute('title'));
             const cls = typeof el.className === 'string' ? el.className : '';
-            const hay = [text, aria, title, cls].join(' ');
-            const paginationish = /^\d{1,2}$/.test(text) || /下一|下頁|next|上一|上頁|prev|page|pager|pagination|更多|more|›|»|‹|«/i.test(hay);
+            const current = el.getAttribute('aria-current') || '';
+            const hay = [text, aria, title, cls, current].join(' ');
+            const paginationish = /^\d{1,3}$/.test(text) || /下一|下頁|next|上一|上頁|prev|page|pager|pagination|更多|more|›|»|‹|«|current|active/i.test(hay);
             if (!paginationish) continue;
             out.push({
               tag: el.tagName,
@@ -111,21 +113,22 @@ def page_controls(page):
               aria: aria.slice(0,120),
               title: title.slice(0,120),
               className: cls.slice(0,180),
+              ariaCurrent: current,
               href: el.href || null,
               disabled: !!el.disabled || el.getAttribute('aria-disabled') === 'true',
             });
           }
-          return out.slice(0,80);
+          return out.slice(0,100);
         }"""
     )
 
 
 def click_semantic_next(page):
-    """Click only a clearly labelled next-page/load-more control; never guess arbitrary numeric buttons."""
+    """Click a clearly labelled next-page/load-more control when Yongching exposes one."""
     return page.evaluate(
         """() => {
           const clean = s => (s || '').replace(/\s+/g, ' ').trim();
-          const els = Array.from(document.querySelectorAll('a,button'));
+          const els = Array.from(document.querySelectorAll('a,button,[role="button"]'));
           for (const el of els) {
             if (el.disabled || el.getAttribute('aria-disabled') === 'true') continue;
             const text = clean(el.innerText);
@@ -134,10 +137,76 @@ def click_semantic_next(page):
             const hay = [text, aria, title].join(' ');
             if (!/(下一頁|下頁|下一页|next page|load more|載入更多|查看更多|更多物件|顯示更多)/i.test(hay)) continue;
             el.click();
-            return {clicked:true, text, aria, title, href:el.href || null};
+            return {clicked:true, mode:'semantic', text, aria, title, href:el.href || null};
           }
           return {clicked:false};
         }"""
+    )
+
+
+def click_numeric_page(page, target: int):
+    """Safely click a numeric page control only when it lives in a pagination-like group.
+
+    Yongching's rendered list often exposes only numeric controls (1,2,3...) rather than
+    an element literally labelled "下一頁". We require multiple sibling page numbers or
+    a pagination/pager/page class/role before clicking, so unrelated numeric UI is ignored.
+    """
+    return page.evaluate(
+        """(target) => {
+          const clean = s => (s || '').replace(/\s+/g, ' ').trim();
+          const selector = 'a,button,[role="button"]';
+          const wanted = String(target);
+          const candidates = Array.from(document.querySelectorAll(selector)).filter(el => {
+            if (el.disabled || el.getAttribute('aria-disabled') === 'true') return false;
+            if (clean(el.innerText) !== wanted) return false;
+            const r = el.getBoundingClientRect();
+            return r.width > 0 && r.height > 0;
+          });
+
+          function paginationScore(el) {
+            let node = el;
+            let best = 0;
+            for (let depth = 0; depth < 6 && node; depth++, node = node.parentElement) {
+              const cls = typeof node.className === 'string' ? node.className : '';
+              const id = node.id || '';
+              const role = node.getAttribute ? (node.getAttribute('role') || '') : '';
+              const aria = node.getAttribute ? (node.getAttribute('aria-label') || '') : '';
+              const hay = [cls,id,role,aria].join(' ');
+              const nums = Array.from(node.querySelectorAll ? node.querySelectorAll(selector) : [])
+                .map(x => clean(x.innerText)).filter(x => /^\d{1,3}$/.test(x));
+              const uniqueNums = new Set(nums);
+              let score = 0;
+              if (/page|pager|pagination/i.test(hay)) score += 10;
+              if (/navigation/i.test(role)) score += 6;
+              if (uniqueNums.size >= 2) score += 4;
+              if (uniqueNums.has('1') && uniqueNums.has(wanted)) score += 3;
+              if (uniqueNums.size >= 3) score += 2;
+              best = Math.max(best, score);
+            }
+            return best;
+          }
+
+          let best = null;
+          for (const el of candidates) {
+            const score = paginationScore(el);
+            if (score < 4) continue;
+            if (!best || score > best.score) best = {el, score};
+          }
+          if (!best) return {clicked:false};
+          const el = best.el;
+          const beforeUrl = location.href;
+          el.click();
+          return {
+            clicked:true,
+            mode:'numeric',
+            target,
+            score:best.score,
+            text:clean(el.innerText),
+            href:el.href || null,
+            beforeUrl,
+          };
+        }""",
+        target,
     )
 
 
@@ -191,23 +260,17 @@ def collect_current(page, road: str):
     return rows, raw.get("anchorCount", 0)
 
 
-def collect_road(page, road: str):
-    """Collect lazy-loaded cards and follow a clearly-labelled next control when present."""
-    all_rows = {}
-    load_rounds = 0
-    page_rounds = 0
+def exhaust_lazy_load(page, road: str, all_rows: dict, rounds=8):
     stable = 0
     last_height = 0
     anchor_count = 0
-    next_clicks = []
-
-    # First exhaust normal lazy/infinite loading.
-    for _ in range(8):
-        load_rounds += 1
+    used = 0
+    for _ in range(rounds):
+        used += 1
         rows, anchor_count = collect_current(page, road)
         all_rows.update(rows)
         page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-        page.wait_for_timeout(1300)
+        page.wait_for_timeout(1200)
         height = page.evaluate("document.body.scrollHeight")
         if height == last_height:
             stable += 1
@@ -216,26 +279,44 @@ def collect_road(page, road: str):
         last_height = height
         if stable >= 2:
             break
+    return used, anchor_count
 
-    # Then follow semantic next/load-more controls only, up to 4 result pages.
-    for _ in range(4):
+
+def collect_road(page, road: str):
+    """Collect rendered cards, lazy loading, and Yongching numeric/semantic pagination."""
+    all_rows = {}
+    load_rounds = 0
+    page_rounds = 0
+    anchor_count = 0
+    next_clicks = []
+
+    used, anchor_count = exhaust_lazy_load(page, road, all_rows)
+    load_rounds += used
+
+    # Follow up to four extra result pages. Prefer an explicit next/load-more control;
+    # when Yongching only renders numeric pagination, safely click 2, 3, 4, 5.
+    for target_page in range(2, 6):
         controls_before = page_controls(page)
         action = click_semantic_next(page)
         if not action.get("clicked"):
+            action = click_numeric_page(page, target_page)
+        if not action.get("clicked"):
             break
+
         page_rounds += 1
         next_clicks.append(action)
-        page.wait_for_timeout(2400)
-        page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-        page.wait_for_timeout(1300)
-        rows, anchor_count = collect_current(page, road)
-        before = len(all_rows)
-        all_rows.update(rows)
-        if len(all_rows) == before:
-            break
-        # Keep one small diagnostic sample around the control state after a successful click.
+        before_ids = set(all_rows)
+        page.wait_for_timeout(2200)
+        page.evaluate("window.scrollTo(0, 0)")
+        page.wait_for_timeout(400)
+        used, anchor_count = exhaust_lazy_load(page, road, all_rows, rounds=6)
+        load_rounds += used
+
         if len(next_clicks) == 1:
-            next_clicks[0]["controlsBefore"] = controls_before[:20]
+            next_clicks[0]["controlsBefore"] = controls_before[:30]
+        if set(all_rows) == before_ids:
+            # A click that does not produce any new listing ids is not a real next page.
+            break
 
     page.evaluate("window.scrollTo(0, 0)")
     rows, anchor_count = collect_current(page, road)
