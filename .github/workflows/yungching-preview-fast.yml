@@ -96,6 +96,15 @@ jobs:
           assert p.get('companyListingCount', 0) > 0, p.get('companyListingCount')
           assert p.get('companySnapshotCapturedAt') == stats.get('capturedAt'), (p.get('companySnapshotCapturedAt'), stats.get('capturedAt'))
 
+          # 中山路二段目前官方頁明確顯示第 2 頁。只有 DOM 最終確認第 2 頁
+          # 真的變為 active 才算完整，避免 click 被 AI backdrop 吃掉卻誤判成功。
+          zhongshan = (snap.get('roadStatus') or {}).get('板橋區中山路二段') or {}
+          if zhongshan.get('paginationExpected'):
+              assert zhongshan.get('paginationComplete') is True, zhongshan
+              assert int(zhongshan.get('paginationActivePage') or 0) >= 2, zhongshan
+              assert int(zhongshan.get('pageRounds') or 0) >= 1, zhongshan
+              assert zhongshan.get('available') is True, zhongshan
+
           result = {
               'verifiedAt': datetime.now(timezone.utc).isoformat(timespec='seconds'),
               'fetchMode': p.get('fetchMode'),
