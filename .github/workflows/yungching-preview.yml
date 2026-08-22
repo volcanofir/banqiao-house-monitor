@@ -27,7 +27,7 @@ permissions:
 
 concurrency:
   group: banqiao-yungching-preview
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   compare:
