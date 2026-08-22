@@ -13,6 +13,7 @@ on:
       - "scripts/yungching_crypto.py"
       - "scripts/yungching_official_probe.py"
       - "scripts/yungching_playwright_probe.py"
+      - "scripts/yungching_browser_preflight.py"
       - "scripts/connect_surfshark_wireguard.sh"
       - "scripts/patch_preview_ui.py"
       - "docs/data/listings.json"
@@ -29,7 +30,7 @@ concurrency:
 jobs:
   compare:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 18
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -44,20 +45,25 @@ jobs:
           pip install requests beautifulsoup4 cryptography playwright
           python -m playwright install chromium
 
-      - name: Connect Surfshark for Yongching official probe
+      - name: Find usable Surfshark exit for Yongching
         id: vpn
         continue-on-error: true
         env:
           SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
         shell: bash
         run: |
-          for attempt in 1 2; do
-            echo "Surfshark attempt $attempt/2"
+          for attempt in 1 2 3 4 5; do
+            echo "Surfshark Yongching attempt $attempt/5"
+            sudo wg-quick down surfshark >/dev/null 2>&1 || true
             if bash scripts/connect_surfshark_wireguard.sh; then
-              exit 0
+              if python scripts/yungching_browser_preflight.py; then
+                echo "Found Surfshark exit accepted by Yongching Chromium."
+                exit 0
+              fi
+              echo "This Surfshark exit is blocked or unusable for Yongching; rotating."
             fi
             sudo wg-quick down surfshark >/dev/null 2>&1 || true
-            sleep 5
+            sleep 4
           done
           exit 1
 
@@ -79,7 +85,7 @@ jobs:
         run: python scripts/yungching_playwright_probe.py
 
       - name: Disconnect Surfshark before normal company comparison
-        if: always() && steps.vpn.outcome == 'success'
+        if: always()
         continue-on-error: true
         shell: bash
         run: sudo wg-quick down surfshark || true
