@@ -46,17 +46,20 @@ def browser_row(src, road):
 
 
 def official_rendered_fetch_company():
-    """Use only the fresh rendered Yongching Chromium snapshot for Preview company matching.
+    """Return only this run's fresh Yongching rendered DOM inventory.
 
-    A road is accepted when the official page itself returned HTTP 200 and rendered at
-    least one valid listing card. We intentionally do NOT compare official counts to
-    Housefun/proxy counts anymore: the rendered Yongching page is the source of truth.
-    If a road cannot be rendered reliably in this run, mark that road unavailable so
-    Preview shows '尚未比對' instead of silently substituting proxy inventory.
+    No Housefun, HAR or previous-snapshot replacement is allowed in v6. A road is
+    accepted only when the official page returned HTTP 200, its snapshot is fresh,
+    the collector marked the road complete, and at least one listing was parsed.
     """
     logs = []
     selected_company = []
     selected_status = {}
+
+    # Reset counters because the function may be invoked more than once in diagnostics.
+    OFFICIAL_STATS["acceptedRoadCount"] = 0
+    OFFICIAL_STATS["unavailableRoadCount"] = 0
+    OFFICIAL_STATS["roads"] = {}
 
     if not BROWSER_SNAPSHOT.exists():
         for road in v5.v4.prev.base.ROADS:
@@ -85,7 +88,7 @@ def official_rendered_fetch_company():
             }
             OFFICIAL_STATS["unavailableRoadCount"] += 1
             OFFICIAL_STATS["roads"][road] = {"mode": "unavailable", "officialCount": 0, "reason": "快照讀取失敗"}
-        logs.append(f"永慶官方瀏覽器資料：快照讀取失敗（{type(exc).__name__}）；不使用代理資料。")
+        logs.append(f"永慶官方瀏覽器資料：快照讀取失敗（{type(exc).__name__}）；不使用任何替代資料。")
         return selected_company, logs, selected_status
 
     captured_at = snap.get("capturedAt")
@@ -93,8 +96,6 @@ def official_rendered_fetch_company():
     OFFICIAL_STATS["capturedAt"] = captured_at
     OFFICIAL_STATS["snapshotAgeMinutes"] = None if age is None else round(age, 1)
 
-    # The snapshot should be generated earlier in the same workflow run. Refuse stale
-    # output so a failed browser run can never reuse yesterday's company inventory.
     fresh_snapshot = age is not None and -10 <= age <= 90
     browser_status = snap.get("roadStatus") or {}
     browser_rows = snap.get("listings") or []
@@ -115,6 +116,9 @@ def official_rendered_fetch_company():
                 "mode": "yungching_official_browser",
                 "officialCount": official_count,
                 "browserCapturedAt": captured_at,
+                "paginationExpected": ost.get("paginationExpected"),
+                "paginationComplete": ost.get("paginationComplete"),
+                "paginationActivePage": ost.get("paginationActivePage"),
                 "source": "永慶房仲網官方公開搜尋頁實際渲染 DOM",
             }
             OFFICIAL_STATS["acceptedRoadCount"] += 1
@@ -122,10 +126,16 @@ def official_rendered_fetch_company():
                 "mode": "official",
                 "officialCount": official_count,
                 "http": road_http,
+                "paginationComplete": ost.get("paginationComplete"),
             }
             logs.append(f"永慶官方瀏覽器資料：{road} 採用官方渲染 DOM {official_count} 筆。")
         else:
-            reason = "官方快照過期或時間異常" if not fresh_snapshot else f"官方頁不可用（HTTP {road_http} / {official_count} 筆）"
+            if not fresh_snapshot:
+                reason = "官方快照過期或時間異常"
+            elif ost.get("paginationIncomplete"):
+                reason = "官方頁有分頁但未完成全部頁面擷取"
+            else:
+                reason = f"官方頁不可用（HTTP {road_http} / {official_count} 筆）"
             selected_status[road] = {
                 "count": 0,
                 "http": road_http,
@@ -133,6 +143,9 @@ def official_rendered_fetch_company():
                 "mode": "yungching_official_browser_unavailable",
                 "officialCount": official_count,
                 "browserCapturedAt": captured_at,
+                "paginationExpected": ost.get("paginationExpected"),
+                "paginationComplete": ost.get("paginationComplete"),
+                "paginationActivePage": ost.get("paginationActivePage"),
                 "error": reason,
             }
             OFFICIAL_STATS["unavailableRoadCount"] += 1
@@ -142,9 +155,15 @@ def official_rendered_fetch_company():
                 "http": road_http,
                 "reason": reason,
             }
-            logs.append(f"永慶官方瀏覽器資料：{road} 本輪不採用；{reason}。不回退代理資料。")
+            logs.append(f"永慶官方瀏覽器資料：{road} 本輪不採用；{reason}。不回退 HAR、代理或前次快照。")
 
     return selected_company, logs, selected_status
+
+
+def no_har_fallback(company, road_status, logs):
+    """Disable v2/v3's historical HAR replacement for official-only Preview v6."""
+    logs.append("PREVIEW v6：HAR fallback 已停用；公司資料僅允許本輪永慶官方 Chromium DOM。")
+    return company, None
 
 
 def structured_listing_floors(x, company=False):
@@ -152,16 +171,11 @@ def structured_listing_floors(x, company=False):
     if not x:
         return floors
 
-    # Rendered DOM extraction provides a dedicated subject-floor field such as
-    # "9/11樓" or "14~15/16樓". Include it in the existing floor-aware matcher.
     raw = x.get("floor")
     if raw not in (None, ""):
         floor_text = str(raw)
         floors |= v5.floors_from_text(floor_text, company_text=company)
 
-        # A split-level unit can occupy more than one subject floor. The v5 parser
-        # correctly reads the last subject floor before '/', but add the whole range
-        # here so 14~15/16樓 means subject floors {14, 15}, never total-floor 16.
         for m in re.finditer(r"(\d{1,2})\s*[~～-]\s*(\d{1,2})\s*/\s*\d{1,2}\s*樓", floor_text):
             lo, hi = int(m.group(1)), int(m.group(2))
             if 1 <= lo <= hi <= 99 and hi - lo <= 5:
@@ -171,7 +185,10 @@ def structured_listing_floors(x, company=False):
 
 def main():
     # PREVIEW only. Production crawler and production UI remain untouched.
+    # Patch every legacy escape hatch: v5 previous-snapshot guard AND v3 HAR fallback.
     v5.ORIGINAL_FETCH_COMPANY = official_rendered_fetch_company
+    v5.guarded_fetch_company = official_rendered_fetch_company
+    v5.v4.prev.base.load_har_fallback = no_har_fallback
     v5.listing_floors = structured_listing_floors
     v5.main()
 
@@ -179,15 +196,21 @@ def main():
     payload = json.loads(path.read_text(encoding="utf-8"))
     payload["mode"] = "preview_only_591_then_sinyi_then_company_floor_aware_official_rendered_v6"
     payload["fetchMode"] = "yungching_official_rendered_dom_only"
-    payload["companyDataSource"] = "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM"
+    payload["companyDataSource"] = "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM；缺樓層時同路徑開官方案件頁補值"
     payload["companySnapshotCapturedAt"] = OFFICIAL_STATS.get("capturedAt")
     payload["officialBrowserCompany"] = dict(OFFICIAL_STATS)
     payload["structuredFloorMatching"] = True
+    payload["companyDataGuard"] = {
+        "enabled": False,
+        "rule": "官方 DOM only：停用 HAR、代理與前次快照替補；不完整路段直接標示尚未比對",
+        "triggeredRoadCount": 0,
+        "roads": [],
+    }
     payload["note"] = (
         "PREVIEW v6：591先重新互相比對，再與信義整併且信義為主，最後比公司庫存。"
         "公司庫存只採用本輪 Surfshark + Chromium 成功載入的永慶官方公開搜尋頁渲染結果；"
-        "直接從 DOM 擷取案件 ID、案名、價格、坪數、樓層後進入 Preview 比對。"
-        "官方路段抓取失敗時標示尚未比對，不再用好房網或其他代理資料覆蓋。"
+        "直接從 DOM 擷取案件 ID、案名、價格、坪數、樓層，缺樓層時再開永慶官方案件頁補值。"
+        "官方路段抓取或分頁不完整時一律標示尚未比對，HAR、好房網、代理與前次快照替補全部停用。"
     )
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({
