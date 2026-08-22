@@ -8,6 +8,7 @@ on:
       - ".github/workflows/yungching-preview.yml"
       - "scripts/compare_yungching_preview_v2.py"
       - "scripts/compare_yungching_preview_v3.py"
+      - "scripts/compare_yungching_preview_v4.py"
       - "docs/data/listings.json"
       - "docs/preview/yungching-har-snapshot.json"
       - "docs/preview/yungching-area-enrichment.json"
@@ -35,13 +36,13 @@ jobs:
       - name: Install packages
         run: pip install requests beautifulsoup4
 
-      - name: Group Sinyi and 591, then compare company inventory
+      - name: Regroup 591, merge into Sinyi, then compare company inventory
         id: compare
         continue-on-error: true
         shell: bash
         run: |
           set -o pipefail
-          python scripts/compare_yungching_preview_v3.py 2>&1 | tee docs/preview/yungching-preview-run.log
+          python scripts/compare_yungching_preview_v4.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
       - name: Save preview comparison and diagnostic
         if: always()
