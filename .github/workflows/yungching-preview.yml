@@ -34,18 +34,34 @@ jobs:
         run: pip install requests beautifulsoup4
 
       - name: Compare all roads with company public proxy
-        run: python scripts/compare_yungching_preview.py
+        id: compare
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/compare_yungching_preview.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
-      - name: Save preview comparison
+      - name: Save preview comparison and diagnostic
+        if: always()
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/preview/company-gap.json
+          git add docs/preview/company-gap.json docs/preview/yungching-preview-run.log || true
           if git diff --cached --quiet; then
             echo "No preview comparison changes."
             exit 0
           fi
           git commit -m "Update Yongching preview comparison"
-          git pull --rebase
-          git push
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then
+              exit 0
+            fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep 3
+          done
+          exit 1
+
+      - name: Fail if comparison failed
+        if: steps.compare.outcome != 'success'
+        run: exit 1
