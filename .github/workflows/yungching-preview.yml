@@ -12,6 +12,7 @@ on:
       - "scripts/compare_yungching_preview_v5.py"
       - "scripts/yungching_crypto.py"
       - "scripts/yungching_official_probe.py"
+      - "scripts/connect_surfshark_wireguard.sh"
       - "scripts/patch_preview_ui.py"
       - "docs/data/listings.json"
       - "docs/preview/yungching-har-snapshot.json"
@@ -27,7 +28,7 @@ concurrency:
 jobs:
   compare:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -40,13 +41,38 @@ jobs:
       - name: Install packages
         run: pip install requests beautifulsoup4 cryptography
 
+      - name: Connect Surfshark for Yongching official probe
+        id: vpn
+        continue-on-error: true
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        shell: bash
+        run: |
+          for attempt in 1 2; do
+            echo "Surfshark attempt $attempt/2"
+            if bash scripts/connect_surfshark_wireguard.sh; then
+              exit 0
+            fi
+            sudo wg-quick down surfshark >/dev/null 2>&1 || true
+            sleep 5
+          done
+          exit 1
+
       - name: Verify Yongching crypto and probe official public source
         continue-on-error: true
+        env:
+          YUNGCHING_PROBE_VPN_OUTCOME: ${{ steps.vpn.outcome }}
         shell: bash
         run: |
           set -o pipefail
           python scripts/yungching_crypto.py --self-test
           python scripts/yungching_official_probe.py
+
+      - name: Disconnect Surfshark before normal company comparison
+        if: always() && steps.vpn.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: sudo wg-quick down surfshark || true
 
       - name: Regroup 591, merge into Sinyi, then floor-aware company compare
         id: compare
