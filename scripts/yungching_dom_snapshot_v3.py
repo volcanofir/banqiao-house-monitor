@@ -3,8 +3,12 @@
 The Yongching pager can render page numbers as bare text nodes instead of normal
 links/buttons. This version locates the visual text node for page 2/3/... and clicks
 its real screen coordinate, but only when it sits inside a compact pagination-like
-container. This keeps prices, room counts and floor numbers out of the click logic.
+container. It also refuses to mark a road complete when a second page is visibly
+present but no page transition was performed.
 """
+
+import json
+import re
 
 import yungching_dom_snapshot_v2 as v2
 import yungching_dom_snapshot as base
@@ -93,13 +97,12 @@ def numeric_page_target(page, target: int):
 
 
 def click_numeric_page(page, target: int):
-    # First keep the normal element-based strategy from v2.
+    # First keep the broader text-node/element strategy from v2.
     action = v2.click_numeric_page(page, target)
     if action.get("clicked"):
         return action
 
-    # Fallback for Yongching's bare-text pager. We click the exact visual point of
-    # the page-number text after validating its compact numeric context.
+    # Fallback: click the exact screen coordinate occupied by the numeric text.
     candidate = numeric_page_target(page, target)
     if not candidate:
         return {"clicked": False, "mode": "numeric-text-v3", "target": target}
@@ -119,11 +122,54 @@ def click_numeric_page(page, target: int):
     }
 
 
+def pager_expected(status: dict) -> bool:
+    """Return True when the rendered result clearly advertises a second page."""
+    if not status:
+        return False
+
+    # New v2 diagnostics expose the pager as element/text-node candidates.
+    controls = status.get("controls") or []
+    for c in controls:
+        text = str(c.get("text") or "").strip()
+        context = str(c.get("context") or c.get("contextText") or "")
+        if text == "2" and ("1" in context or c.get("source") == "text-node"):
+            return True
+
+    # Conservative fallback for Yongching's footer: a full first page (roughly 30
+    # parsed cards) followed by the literal sequence "1 2" means another page exists.
+    if int(status.get("count") or 0) >= 25:
+        summary = " ".join(str(x) for x in (status.get("summary") or []))
+        if re.search(r"(?:^|\s)1\s+2(?:\s|$)", summary):
+            return True
+    return False
+
+
+def enforce_pagination_completeness():
+    payload = json.loads(base.OUT.read_text(encoding="utf-8"))
+    road_status = payload.get("roadStatus") or {}
+
+    for road, status in road_status.items():
+        expected = pager_expected(status)
+        status["paginationExpected"] = expected
+        status["paginationComplete"] = not expected or int(status.get("pageRounds") or 0) > 0
+        if expected and not status["paginationComplete"]:
+            status["available"] = False
+            status["paginationIncomplete"] = True
+            status["error"] = "偵測到永慶第二頁，但本輪未完成翻頁；為避免漏案，此路段不進 Preview 公司比對"
+
+    payload["availableRoads"] = [
+        road for road, status in road_status.items() if status.get("available")
+    ]
+    payload["paginationGuard"] = True
+    base.OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
 def main():
     base.page_controls = v2.page_controls
     base.click_semantic_next = v2.click_semantic_next
     base.click_numeric_page = click_numeric_page
     base.main()
+    enforce_pagination_completeness()
 
 
 if __name__ == "__main__":
