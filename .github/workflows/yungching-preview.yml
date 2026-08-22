@@ -17,6 +17,7 @@ on:
       - "scripts/yungching_dom_snapshot.py"
       - "scripts/yungching_dom_snapshot_v2.py"
       - "scripts/yungching_dom_snapshot_v3.py"
+      - "scripts/yungching_detail_floor_enrich.py"
       - "scripts/yungching_browser_preflight.py"
       - "scripts/connect_surfshark_wireguard.sh"
       - "scripts/patch_preview_ui.py"
@@ -34,7 +35,7 @@ concurrency:
 jobs:
   compare:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -93,6 +94,11 @@ jobs:
         shell: bash
         run: python scripts/yungching_dom_snapshot_v3.py
 
+      - name: Enrich missing floors from official Yongching detail DOM
+        continue-on-error: true
+        shell: bash
+        run: python scripts/yungching_detail_floor_enrich.py
+
       - name: Disconnect Surfshark before Preview comparison
         if: always()
         continue-on-error: true
@@ -124,6 +130,7 @@ jobs:
             docs/preview/yungching-official-snapshot.json \
             docs/preview/yungching-playwright-probe.json \
             docs/preview/yungching-browser-snapshot.json \
+            docs/preview/yungching-detail-floor.json \
             docs/preview/index.html || true
           if git diff --cached --quiet; then
             echo "No preview comparison changes."
