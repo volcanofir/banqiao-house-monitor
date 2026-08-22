@@ -39,7 +39,6 @@ def number_or_none(value):
 
 
 def parse_ga4_product(raw: str) -> dict:
-    """Parse GA4 Measurement Protocol product encoding (pr1/pr2/...)."""
     raw = unquote(raw or "")
     fields = {}
     for part in raw.split("~"):
@@ -85,7 +84,7 @@ def normalize_candidate(row: dict, road: str, source_mode: str) -> dict | None:
 
 
 def merge_candidate(target: dict, incoming: dict):
-    for key in ("title", "price", "area", "floor", "address", "url"):
+    for key in ("title", "price", "area", "floor", "address", "url", "type"):
         if target.get(key) in (None, "", target.get("id")) and incoming.get(key) not in (None, ""):
             target[key] = incoming[key]
     modes = set(str(target.get("sourceMode") or "").split("+")) | set(str(incoming.get("sourceMode") or "").split("+"))
@@ -99,16 +98,8 @@ def extract_data_layer(page, road: str) -> tuple[list[dict], dict]:
           const rows = [];
           const eventNames = [];
           const seen = new Set();
-
-          function scalar(v) {
-            return (typeof v === 'string' || typeof v === 'number') ? v : null;
-          }
-          function get(o, keys) {
-            for (const k of keys) {
-              if (o && o[k] !== undefined && o[k] !== null) return o[k];
-            }
-            return null;
-          }
+          function scalar(v) { return (typeof v === 'string' || typeof v === 'number') ? v : null; }
+          function get(o, keys) { for (const k of keys) if (o && o[k] !== undefined && o[k] !== null) return o[k]; return null; }
           function maybeItem(o, path, eventName) {
             if (!o || typeof o !== 'object' || Array.isArray(o)) return;
             const id = get(o, ['item_id','itemId','caseSId','caseSid','caseId','case_id']);
@@ -127,16 +118,10 @@ def extract_data_layer(page, road: str) -> tuple[list[dict], dict]:
           }
           function walk(v, path, eventName, depth) {
             if (depth > 6 || v === null || v === undefined) return;
-            if (Array.isArray(v)) {
-              for (let i = 0; i < Math.min(v.length, 120); i++) walk(v[i], path + '[' + i + ']', eventName, depth + 1);
-              return;
-            }
+            if (Array.isArray(v)) { for (let i = 0; i < Math.min(v.length, 120); i++) walk(v[i], path + '[' + i + ']', eventName, depth + 1); return; }
             if (typeof v !== 'object') return;
             maybeItem(v, path, eventName);
-            for (const [k, child] of Object.entries(v)) {
-              if (k === 'gtm.uniqueEventId') continue;
-              walk(child, path + '.' + k, eventName, depth + 1);
-            }
+            for (const [k, child] of Object.entries(v)) { if (k !== 'gtm.uniqueEventId') walk(child, path + '.' + k, eventName, depth + 1); }
           }
           dl.forEach((entry, i) => {
             const eventName = entry && typeof entry === 'object' ? (entry.event || entry.event_name || null) : null;
@@ -146,44 +131,138 @@ def extract_data_layer(page, road: str) -> tuple[list[dict], dict]:
           return {length: dl.length, events: [...new Set(eventNames)].slice(0,80), rows: rows.slice(0,500)};
         }"""
     )
-
     rows = []
     for raw in result.get("rows") or []:
         row = normalize_candidate(raw, road, "yungching_browser_datalayer")
         if row:
             row["event"] = raw.get("event")
             rows.append(row)
-    diag = {"dataLayerLength": result.get("length", 0), "dataLayerEvents": result.get("events") or [], "dataLayerCandidateCount": len(rows)}
-    return rows, diag
+    return rows, {
+        "dataLayerLength": result.get("length", 0),
+        "dataLayerEvents": result.get("events") or [],
+        "dataLayerCandidateCount": len(rows),
+    }
 
 
-def extract_dom_diagnostics(page, road: str) -> list[dict]:
+def parse_dom_card(raw: dict, road: str) -> dict | None:
+    text = re.sub(r"\s+", " ", str(raw.get("text") or "")).strip()
+    href = str(raw.get("url") or "").strip()
+    id_match = re.search(r"/house/(\d+)", href)
+    if not id_match:
+        return None
+    hid = id_match.group(1)
+    full_address = "新北市" + road
+    marker = text.find(full_address)
+    if marker <= 0:
+        return None
+
+    title = text[:marker].strip()
+    title = re.sub(r"^(本週精選|新上|降價|專任委託)\s*", "", title).strip()
+    if not title:
+        return None
+
+    area_m = re.search(r"建坪\s*([0-9]+(?:\.[0-9]+)?)", text)
+    area = float(area_m.group(1)) if area_m else None
+
+    tail_price = re.search(r"([0-9][0-9,]*(?:\.[0-9]+)?)\s*$", text)
+    if tail_price:
+        price = number_or_none(tail_price.group(1))
+    else:
+        prices = re.findall(r"([0-9][0-9,]*(?:\.[0-9]+)?)\s*萬", text)
+        price = number_or_none(prices[-1]) if prices else None
+
+    after_addr = text[marker + len(full_address):].strip()
+    after_addr = re.sub(r"^專任委託\s*", "", after_addr)
+    type_m = re.match(r"([^0-9]{1,16}?)(?:[0-9]+(?:\.[0-9]+)?年|--年)建坪", after_addr)
+    ptype = type_m.group(1).strip() if type_m else None
+
+    floor = None
+    floor_m = re.search(r"(?:^|\s)([0-9]+(?:~[0-9]+)?/[0-9]+樓)(?:\s|$)", text)
+    if floor_m:
+        floor = floor_m.group(1)
+
+    return {
+        "id": hid,
+        "road": road,
+        "title": title[:100],
+        "price": price,
+        "area": area,
+        "floor": floor,
+        "address": full_address,
+        "type": ptype,
+        "url": href,
+        "sourceMode": "yungching_browser_dom",
+        "rawText": text[:700],
+    }
+
+
+def extract_dom_cards(page, road: str) -> tuple[list[dict], list[dict], dict]:
     road_text = road.replace("板橋區", "")
-    return page.evaluate(
+    result = page.evaluate(
         """(roadText) => {
-          const out = [];
+          const address = '新北市板橋區' + roadText;
+          const anchors = Array.from(document.querySelectorAll('a[href*="/house/"]'));
+          const cards = [];
           const seen = new Set();
-          const els = Array.from(document.querySelectorAll('article,li,a,div,section'));
-          for (const el of els) {
-            const text = (el.innerText || '').replace(/\s+/g, ' ').trim();
-            if (!text.includes(roadText) || !text.includes('萬') || !text.includes('坪')) continue;
-            if (text.length < 25 || text.length > 700 || seen.has(text)) continue;
-            seen.add(text);
-            const links = Array.from(el.querySelectorAll('a[href]')).map(a => a.href).filter(Boolean).slice(0,5);
-            out.push({text: text.slice(0,650), links});
-            if (out.length >= 12) break;
+          const pagination = [];
+
+          for (const a of anchors) {
+            const href = a.href || '';
+            const m = href.match(/\/house\/(\d+)/);
+            if (!m) continue;
+            let node = a;
+            let best = null;
+            for (let depth = 0; depth < 9 && node; depth++, node = node.parentElement) {
+              const text = (node.innerText || '').replace(/\s+/g, ' ').trim();
+              if (!text.includes(address) || !text.includes('建坪')) continue;
+              if (text.length < 20 || text.length > 900) continue;
+              if (!best || text.length < best.text.length) best = {text, url: href, id: m[1], depth};
+            }
+            if (!best) continue;
+            const key = best.id + '|' + best.text;
+            if (seen.has(key)) continue;
+            seen.add(key);
+            cards.push(best);
           }
-          return out;
+
+          for (const a of Array.from(document.querySelectorAll('a[href]'))) {
+            const href = a.href || '';
+            const label = (a.innerText || '').trim();
+            if (!href.includes('/list/') || !href.includes(encodeURIComponent(roadText)) && !decodeURIComponent(href).includes(roadText)) continue;
+            if (/^\d+$/.test(label) || /page|pg=|p=/.test(href)) pagination.push({label, href});
+          }
+          return {cards, pagination: pagination.slice(0,30), anchorCount: anchors.length};
         }""",
         road_text,
     )
+
+    parsed = []
+    for raw in result.get("cards") or []:
+        row = parse_dom_card(raw, road)
+        if row:
+            parsed.append(row)
+
+    by_id = {}
+    for row in parsed:
+        if row["id"] not in by_id:
+            by_id[row["id"]] = row
+        else:
+            merge_candidate(by_id[row["id"]], row)
+
+    sample = list(by_id.values())[:12]
+    diag = {
+        "domHouseAnchorCount": result.get("anchorCount", 0),
+        "domListingCount": len(by_id),
+        "pagination": result.get("pagination") or [],
+    }
+    return list(by_id.values()), sample, diag
 
 
 def main():
     payload = {
         "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "previewOnly": True,
-        "probeRevision": 3,
+        "probeRevision": 4,
         "network": {
             "surfsharkWorkflowOutcome": os.environ.get("YUNGCHING_PROBE_VPN_OUTCOME"),
             "vpnConnected": os.environ.get("VPN_CONNECTED") == "true",
@@ -193,9 +272,9 @@ def main():
         "browser": {"engine": "chromium", "headless": True},
         "roadStatus": {},
         "apiResponses": [],
-        "analytics": {"events": [], "items": []},
+        "analytics": {"events": []},
     }
-    all_candidates = {}
+    official_rows = {}
     current_road = {"value": None}
 
     with sync_playwright() as p:
@@ -225,31 +304,18 @@ def main():
                 for key, vals in parse_qs(request.post_data, keep_blank_values=True).items():
                     params.setdefault(key, []).extend(vals)
             event_name = (params.get("en") or [None])[0]
-            products = []
+            product_count = 0
             for key in sorted(params):
                 if not re.fullmatch(r"pr\d+", key):
                     continue
                 for raw in params[key]:
-                    parsed = parse_ga4_product(raw)
-                    if not parsed:
-                        continue
-                    products.append(parsed)
-                    row = normalize_candidate({
-                        "id": parsed.get("id"),
-                        "title": parsed.get("nm"),
-                        "price": parsed.get("pr"),
-                    }, current_road["value"] or "", "yungching_browser_ga4")
-                    if row:
-                        k = (row.get("road"), row.get("id") or row.get("title"))
-                        if k in all_candidates:
-                            merge_candidate(all_candidates[k], row)
-                        else:
-                            all_candidates[k] = row
-            if event_name or products:
+                    if parse_ga4_product(raw):
+                        product_count += 1
+            if event_name or product_count:
                 payload["analytics"]["events"].append({
                     "road": current_road["value"],
                     "event": event_name,
-                    "productCount": len(products),
+                    "productCount": product_count,
                 })
 
         page.on("response", record_api)
@@ -268,19 +334,18 @@ def main():
                 info["finalUrl"] = page.url
                 info["title"] = page.title()[:160]
                 info["contentLength"] = len(page.content())
-                info["houseLinkCount"] = page.locator('a[href*="/house/"]').count()
                 info["roadTextCount"] = page.get_by_text(road.replace("板橋區", ""), exact=False).count()
 
                 dl_rows, dl_diag = extract_data_layer(page, road)
                 info.update(dl_diag)
-                for row in dl_rows:
-                    k = (row.get("road"), row.get("id") or row.get("title"))
-                    if k in all_candidates:
-                        merge_candidate(all_candidates[k], row)
-                    else:
-                        all_candidates[k] = row
+                info["dataLayerSamples"] = dl_rows[:4]
 
-                info["domSamples"] = extract_dom_diagnostics(page, road)
+                dom_rows, dom_samples, dom_diag = extract_dom_cards(page, road)
+                info.update(dom_diag)
+                info["domSamples"] = dom_samples
+                for row in dom_rows:
+                    official_rows[(road, row["id"])] = row
+
                 new_api = payload["apiResponses"][api_start:]
                 new_analytics = payload["analytics"]["events"][analytics_start:]
                 info["apiResponseCount"] = len(new_api)
@@ -288,44 +353,41 @@ def main():
                 info["listApiStatuses"] = [x["status"] for x in new_api if "/api/v2/list" in x["url"]]
                 info["analyticsEventCount"] = len(new_analytics)
                 info["analyticsProductCount"] = sum(x.get("productCount", 0) for x in new_analytics)
-                road_candidates = [x for (r, _), x in all_candidates.items() if r == road]
-                info["browserListingCandidateCount"] = len(road_candidates)
-                info["available"] = info["mainHttp"] == 200 and len(road_candidates) > 0
+                info["available"] = info["mainHttp"] == 200 and info.get("domListingCount", 0) > 0
             except Exception as exc:
                 info["error"] = f"{type(exc).__name__}: {str(exc)[:220]}"
             payload["roadStatus"][road] = info
             print(
                 f"chromium probe {road}: HTTP {info.get('mainHttp')} / "
-                f"candidates {info.get('browserListingCandidateCount', 0)} / "
-                f"analytics products {info.get('analyticsProductCount', 0)} / APIs {info.get('apiStatuses', [])}"
+                f"DOM listings {info.get('domListingCount', 0)} / "
+                f"dataLayer {info.get('dataLayerCandidateCount', 0)} / APIs {info.get('apiStatuses', [])}"
             )
 
         browser.close()
 
-    candidates = list(all_candidates.values())
-    candidates.sort(key=lambda x: (ROADS.index(x["road"]) if x.get("road") in ROADS else 999, str(x.get("id") or "")))
-    payload["analytics"]["items"] = candidates[:500]
+    listings = list(official_rows.values())
+    listings.sort(key=lambda x: (ROADS.index(x["road"]) if x.get("road") in ROADS else 999, str(x.get("id") or "")))
     payload["availableRoadCount"] = sum(1 for x in payload["roadStatus"].values() if x.get("available"))
     payload["apiResponseCount"] = len(payload["apiResponses"])
     payload["api200Count"] = sum(1 for x in payload["apiResponses"] if x.get("status") == 200)
-    payload["browserListingCount"] = len(candidates)
-    payload["note"] = "Preview-only Surfshark + Chromium probe. Listing candidates are extracted from post-render browser dataLayer/GA4 data; this does not alter the active company comparison source."
+    payload["browserListingCount"] = len(listings)
+    payload["note"] = "Preview-only Surfshark + Chromium probe. Official listing rows are parsed from rendered Yongching result cards; dataLayer items are retained only as diagnostics because they can contain recommendations."
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
     snapshot = {
         "capturedAt": payload["generatedAt"],
         "previewOnly": True,
-        "source": "Yongching official public site via Surfshark + Chromium; post-render dataLayer/GA4 extraction",
+        "source": "Yongching official public result cards via Surfshark + Chromium",
         "network": payload["network"],
         "availableRoads": [r for r, st in payload["roadStatus"].items() if st.get("available")],
         "roadStatus": {r: {
             "mainHttp": st.get("mainHttp"),
-            "candidateCount": st.get("browserListingCandidateCount", 0),
-            "analyticsProductCount": st.get("analyticsProductCount", 0),
-            "dataLayerCandidateCount": st.get("dataLayerCandidateCount", 0),
+            "count": st.get("domListingCount", 0),
+            "roadTextCount": st.get("roadTextCount", 0),
+            "pagination": st.get("pagination") or [],
         } for r, st in payload["roadStatus"].items()},
-        "listingCount": len(candidates),
-        "listings": candidates,
+        "listingCount": len(listings),
+        "listings": listings,
     }
     SNAPSHOT.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2), encoding="utf-8")
 
