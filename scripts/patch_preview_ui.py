@@ -11,6 +11,8 @@ replacements = {
     '<h2>公司委託比對（以戶數計）</h2>': '<h2>委託比對</h2>',
     '.source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}': '.source-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}',
     '<div class="metric"><span>原始有效刊登</span><strong id="mRaw">-</strong></div>': '<div class="metric"><span>新進案件</span><strong id="mNew">-</strong></div>',
+    '<div class="metric"><span>整併後房屋</span><strong id="mGroups">-</strong></div>': '<div class="metric"><span>刊登中</span><strong id="mGroups">-</strong></div>',
+    '<div class="metric"><span>跨平台整併</span><strong id="mMerged">-</strong></div>': '<div class="metric"><span>原始刊登數量</span><strong id="mMerged">-</strong></div>',
     '<option value="new">近期新案</option>': '<option value="new">新進案件</option>',
     '<span class="pill sinyi">近期新案</span>': '<span class="pill sinyi">新進案件</span>',
 }
@@ -54,6 +56,14 @@ text = re.sub(
 text = re.sub(
     r"document\.querySelector\('#mRaw'\)\.textContent=`\$\{GAP\.rawListingCount\?\?GAP\.externalActiveCount\?\?0\} 筆`;",
     "document.querySelector('#mNew').textContent=`${groups.filter(isNew).length} 戶`;",
+    text,
+    count=1,
+)
+
+# The fourth hero metric now shows the original raw listing count rather than cross-platform merge count.
+text = re.sub(
+    r"document\.querySelector\('#mMerged'\)\.textContent=`\$\{GAP\.crossPlatformMergedGroupCount\?\?0\} 戶`;",
+    "document.querySelector('#mMerged').textContent=`${GAP.rawListingCount??GAP.externalActiveCount??0} 筆`;",
     text,
     count=1,
 )
