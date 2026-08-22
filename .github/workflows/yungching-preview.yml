@@ -12,6 +12,7 @@ on:
       - "scripts/compare_yungching_preview_v5.py"
       - "scripts/yungching_crypto.py"
       - "scripts/yungching_official_probe.py"
+      - "scripts/yungching_playwright_probe.py"
       - "scripts/connect_surfshark_wireguard.sh"
       - "scripts/patch_preview_ui.py"
       - "docs/data/listings.json"
@@ -28,7 +29,7 @@ concurrency:
 jobs:
   compare:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -39,7 +40,9 @@ jobs:
           python-version: "3.12"
 
       - name: Install packages
-        run: pip install requests beautifulsoup4 cryptography
+        run: |
+          pip install requests beautifulsoup4 cryptography playwright
+          python -m playwright install chromium
 
       - name: Connect Surfshark for Yongching official probe
         id: vpn
@@ -67,6 +70,13 @@ jobs:
           set -o pipefail
           python scripts/yungching_crypto.py --self-test
           python scripts/yungching_official_probe.py
+
+      - name: Probe Yongching with standard Chromium through Surfshark
+        continue-on-error: true
+        env:
+          YUNGCHING_PROBE_VPN_OUTCOME: ${{ steps.vpn.outcome }}
+        shell: bash
+        run: python scripts/yungching_playwright_probe.py
 
       - name: Disconnect Surfshark before normal company comparison
         if: always() && steps.vpn.outcome == 'success'
@@ -97,6 +107,7 @@ jobs:
             docs/preview/yungching-preview-run.log \
             docs/preview/yungching-official-probe.json \
             docs/preview/yungching-official-snapshot.json \
+            docs/preview/yungching-playwright-probe.json \
             docs/preview/index.html || true
           if git diff --cached --quiet; then
             echo "No preview comparison changes."
