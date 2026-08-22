@@ -7,6 +7,7 @@ on:
     paths:
       - ".github/workflows/yungching-preview.yml"
       - "scripts/compare_yungching_preview_v2.py"
+      - "scripts/run_yungching_preview.py"
       - "docs/preview/yungching-har-snapshot.json"
       - "docs/preview/yungching-area-enrichment.json"
 
@@ -39,7 +40,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          python scripts/compare_yungching_preview_v2.py 2>&1 | tee docs/preview/yungching-preview-run.log
+          python scripts/run_yungching_preview.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
       - name: Save preview comparison and diagnostic
         if: always()
