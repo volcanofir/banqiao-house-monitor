@@ -6,6 +6,8 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/yungching-preview-fast.yml"
+      - "scripts/yungching_dom_snapshot_v3.py"
+      - "scripts/compare_yungching_preview_v6.py"
 
 permissions:
   contents: write
@@ -85,11 +87,13 @@ jobs:
           stats = p.get('officialBrowserCompany') or {}
           assert stats.get('acceptedRoadCount', 0) > 0, stats
           assert p.get('companyListingCount', 0) > 0, p.get('companyListingCount')
+          assert p.get('companySnapshotCapturedAt') == stats.get('capturedAt'), (p.get('companySnapshotCapturedAt'), stats.get('capturedAt'))
 
           result = {
               'verifiedAt': datetime.now(timezone.utc).isoformat(timespec='seconds'),
               'fetchMode': p.get('fetchMode'),
               'companyDataSource': p.get('companyDataSource'),
+              'companySnapshotCapturedAt': p.get('companySnapshotCapturedAt'),
               'companyListingCount': p.get('companyListingCount'),
               'acceptedRoadCount': stats.get('acceptedRoadCount'),
               'unavailableRoadCount': stats.get('unavailableRoadCount'),
