@@ -103,6 +103,25 @@ jobs:
           assert p.get('companyListingCount', 0) > 0, p.get('companyListingCount')
           assert p.get('companySnapshotCapturedAt') == stats.get('capturedAt'), (p.get('companySnapshotCapturedAt'), stats.get('capturedAt'))
 
+          # A方案 must never silently return to HAR / Housefun / proxy / old snapshots.
+          guard = p.get('companyDataGuard') or {}
+          assert guard.get('enabled') is False, guard
+          forbidden = ('har', 'housefun', 'proxy', 'previous_snapshot', 'previous-snapshot')
+          bad_modes = []
+          for road, st in (p.get('roadStatus') or {}).items():
+              mode = str((st or {}).get('mode') or '').lower()
+              if any(token in mode for token in forbidden):
+                  bad_modes.append({'road': road, 'mode': mode})
+          assert not bad_modes, bad_modes
+          company_rows = p.get('companyListings') or []
+          assert len(company_rows) == p.get('companyListingCount'), (len(company_rows), p.get('companyListingCount'))
+          bad_company_sources = [
+              {'id': row.get('id'), 'sourceMode': row.get('sourceMode')}
+              for row in company_rows
+              if row.get('sourceMode') != 'yungching_official_browser'
+          ]
+          assert not bad_company_sources, bad_company_sources[:20]
+
           zhongshan = (snap.get('roadStatus') or {}).get('板橋區中山路二段') or {}
           if zhongshan.get('paginationExpected'):
               assert zhongshan.get('paginationComplete') is True, zhongshan
@@ -110,7 +129,6 @@ jobs:
               assert int(zhongshan.get('pageRounds') or 0) >= 1, zhongshan
               assert zhongshan.get('available') is True, zhongshan
 
-          # Reject impossible subject/total floors such as the old glued parse 41/5樓.
           invalid_floors = []
           floor_count = 0
           detail_floor_count = 0
@@ -141,6 +159,7 @@ jobs:
               'floorCount': floor_count,
               'detailFloorCount': detail_floor_count,
               'detailFloorEnrichment': snap.get('detailFloorEnrichment'),
+              'legacyFallbacks': False,
               'roadStatus': snap.get('roadStatus'),
           }
           Path('docs/preview/fast-verification.json').write_text(
@@ -148,6 +167,29 @@ jobs:
           )
           print(json.dumps(result, ensure_ascii=False))
           PY
+
+      - name: Save failure diagnostics
+        if: failure()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          mkdir -p /tmp/yungching-failure
+          for f in yungching-browser-snapshot.json yungching-pagination-probe.json yungching-detail-floor.json yungching-preview-run.log; do
+            if [[ -f docs/preview/$f ]]; then cp docs/preview/$f /tmp/yungching-failure/$f; fi
+          done
+          git reset --hard origin/main
+          for f in yungching-browser-snapshot.json yungching-pagination-probe.json yungching-detail-floor.json yungching-preview-run.log; do
+            if [[ -f /tmp/yungching-failure/$f ]]; then cp /tmp/yungching-failure/$f docs/preview/$f; fi
+          done
+          git add docs/preview/yungching-browser-snapshot.json docs/preview/yungching-pagination-probe.json docs/preview/yungching-detail-floor.json docs/preview/yungching-preview-run.log || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Save failed Yongching DOM diagnostics"
+            git push origin HEAD:main || true
+          fi
 
       - name: Save verified Preview output
         shell: bash
