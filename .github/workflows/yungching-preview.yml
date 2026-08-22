@@ -10,6 +10,7 @@ on:
       - "scripts/compare_yungching_preview_v3.py"
       - "scripts/compare_yungching_preview_v4.py"
       - "scripts/compare_yungching_preview_v5.py"
+      - "scripts/compare_yungching_preview_v6.py"
       - "scripts/yungching_crypto.py"
       - "scripts/yungching_official_probe.py"
       - "scripts/yungching_playwright_probe.py"
@@ -96,13 +97,13 @@ jobs:
         shell: bash
         run: sudo wg-quick down surfshark || true
 
-      - name: Regroup 591, merge into Sinyi, then floor-aware company compare
+      - name: Regroup 591, merge into Sinyi, then official-first floor-aware company compare
         id: compare
         continue-on-error: true
         shell: bash
         run: |
           set -o pipefail
-          python scripts/compare_yungching_preview_v5.py 2>&1 | tee docs/preview/yungching-preview-run.log
+          python scripts/compare_yungching_preview_v6.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
       - name: Simplify preview UI copy
         if: always()
