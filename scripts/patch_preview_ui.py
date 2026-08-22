@@ -7,8 +7,9 @@ text = PATH.read_text(encoding='utf-8')
 replacements = {
     '🧪 PREVIEW 測試版本｜信義優先整併測試｜不影響正式網站': '🧪 PREVIEW 測試版本｜不影響正式網站',
     '591 ＋ 信義先整併，再比對永慶公司公開庫存': '比對591、信義刊登案件',
-    '<h1>指定路段房屋群組</h1>': '<h1>指定路段刊登案件比對</h1>',
-    '<h1>指定路段案件比對</h1>': '<h1>指定路段刊登案件比對</h1>',
+    '<h1>指定路段房屋群組</h1>': '<h1>指定路段上架案件比對</h1>',
+    '<h1>指定路段案件比對</h1>': '<h1>指定路段上架案件比對</h1>',
+    '<h1>指定路段刊登案件比對</h1>': '<h1>指定路段上架案件比對</h1>',
     '<h2>公司委託比對（以戶數計）</h2>': '<h2>委託比對</h2>',
     '.source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}': '.source-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}',
     '<div class="metric"><span>原始有效刊登</span><strong id="mRaw">-</strong></div>': '<div class="metric"><span>新進案件</span><strong id="mNew">-</strong></div>',
