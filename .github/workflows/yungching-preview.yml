@@ -108,6 +108,7 @@ jobs:
             docs/preview/yungching-official-probe.json \
             docs/preview/yungching-official-snapshot.json \
             docs/preview/yungching-playwright-probe.json \
+            docs/preview/yungching-browser-snapshot.json \
             docs/preview/index.html || true
           if git diff --cached --quiet; then
             echo "No preview comparison changes."
