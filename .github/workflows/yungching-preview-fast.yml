@@ -8,6 +8,7 @@ on:
       - ".github/workflows/yungching-preview-fast.yml"
       - "scripts/yungching_dom_snapshot_v2.py"
       - "scripts/yungching_dom_snapshot_v3.py"
+      - "scripts/yungching_page_param_probe.py"
       - "scripts/compare_yungching_preview_v6.py"
 
 permissions:
@@ -54,6 +55,11 @@ jobs:
           done
           echo "No usable Surfshark exit found."
           exit 1
+
+      - name: Probe Yongching page two URL patterns
+        continue-on-error: true
+        shell: bash
+        run: python scripts/yungching_page_param_probe.py
 
       - name: Capture rendered Yongching result cards
         shell: bash
@@ -121,6 +127,9 @@ jobs:
           cp docs/preview/yungching-browser-snapshot.json /tmp/yungching-preview-verified/yungching-browser-snapshot.json
           cp docs/preview/fast-verification.json /tmp/yungching-preview-verified/fast-verification.json
           cp docs/preview/index.html /tmp/yungching-preview-verified/index.html
+          if [[ -f docs/preview/yungching-pagination-probe.json ]]; then
+            cp docs/preview/yungching-pagination-probe.json /tmp/yungching-preview-verified/yungching-pagination-probe.json
+          fi
 
           for attempt in 1 2 3; do
             git fetch origin main
@@ -130,12 +139,16 @@ jobs:
             cp /tmp/yungching-preview-verified/yungching-browser-snapshot.json docs/preview/yungching-browser-snapshot.json
             cp /tmp/yungching-preview-verified/fast-verification.json docs/preview/fast-verification.json
             cp /tmp/yungching-preview-verified/index.html docs/preview/index.html
+            if [[ -f /tmp/yungching-preview-verified/yungching-pagination-probe.json ]]; then
+              cp /tmp/yungching-preview-verified/yungching-pagination-probe.json docs/preview/yungching-pagination-probe.json
+            fi
             git add \
               docs/preview/company-gap.json \
               docs/preview/yungching-preview-run.log \
               docs/preview/yungching-browser-snapshot.json \
               docs/preview/fast-verification.json \
-              docs/preview/index.html
+              docs/preview/yungching-pagination-probe.json \
+              docs/preview/index.html || true
             if git diff --cached --quiet; then
               echo "Verified Preview already matches main."
               exit 0
