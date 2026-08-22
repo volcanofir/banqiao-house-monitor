@@ -26,10 +26,10 @@ def compact(value):
     return re.sub(r"\s+", " ", str(value or "")).strip()
 
 
-def floor_from_detail_text(text: str):
+def floor_from_detail_text(text: str, allow_unlabelled=False):
     text = compact(text).replace("／", "/").replace("～", "~")
 
-    # Prefer snippets explicitly attached to a floor label.
+    # Prefer values explicitly attached to the detail specification labels.
     labelled = []
     for m in re.finditer(r"(?:所在樓層|樓層|樓別)\s*[:：]?\s*(.{0,50})", text):
         labelled.append(m.group(0))
@@ -38,7 +38,7 @@ def floor_from_detail_text(text: str):
         if floor:
             return floor, snippet[:140], "labelled-subject-total"
 
-    # If the page separates subject and total floor labels, combine them.
+    # Some templates render subject floor and total floor as separate specification rows.
     subject = None
     total = None
     for pat in (
@@ -60,20 +60,19 @@ def floor_from_detail_text(text: str):
     if subject and total and 1 <= subject <= total <= 99:
         return f"{subject}/{total}樓", f"subject={subject}, total={total}", "separate-labels"
 
-    # Some Yongching detail templates omit a visible label but still render the normal
-    # subject/total expression in the specification area. Use only physically valid
-    # floor expressions; safe_parse_floor rejects glued area digits such as 41/5樓.
-    floor = v3.safe_parse_floor(text)
-    if floor:
-        idx = text.find(floor.replace("~", "~"))
-        snippet = text[max(0, idx - 60): idx + 80] if idx >= 0 else floor
-        return floor, snippet, "rendered-subject-total"
+    # Only the already-filtered floor-specification DOM snippets may use an unlabelled
+    # subject/total expression. Never scan the whole body this way because Yongching's
+    # detail page can contain recommended properties with unrelated floor values.
+    if allow_unlabelled:
+        floor = v3.safe_parse_floor(text)
+        if floor:
+            return floor, text[:180], "specification-subject-total"
 
     return None, None, None
 
 
 def rendered_floor_context(page):
-    """Return focused rendered-DOM snippets plus body text for floor extraction."""
+    """Return focused floor-specification snippets plus body text for labelled fallback."""
     result = page.evaluate(
         """() => {
           const clean = s => (s || '').replace(/\s+/g, ' ').trim();
@@ -135,9 +134,13 @@ def main():
                 info["http"] = response.status if response else None
                 page.wait_for_timeout(1200)
                 focused, body, snippets = rendered_floor_context(page)
-                floor, evidence, mode = floor_from_detail_text(focused)
+
+                # Focused snippets are already constrained to floor-specification DOM.
+                floor, evidence, mode = floor_from_detail_text(focused, allow_unlabelled=True)
                 if not floor:
-                    floor, evidence, mode = floor_from_detail_text(body)
+                    # Whole-body fallback accepts labelled/separate-specification formats only.
+                    floor, evidence, mode = floor_from_detail_text(body, allow_unlabelled=False)
+
                 info["floor"] = floor
                 info["mode"] = mode
                 info["evidence"] = evidence
