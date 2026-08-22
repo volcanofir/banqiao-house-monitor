@@ -10,6 +10,8 @@ on:
       - "scripts/compare_yungching_preview_v3.py"
       - "scripts/compare_yungching_preview_v4.py"
       - "scripts/compare_yungching_preview_v5.py"
+      - "scripts/yungching_crypto.py"
+      - "scripts/yungching_official_probe.py"
       - "scripts/patch_preview_ui.py"
       - "docs/data/listings.json"
       - "docs/preview/yungching-har-snapshot.json"
@@ -36,7 +38,15 @@ jobs:
           python-version: "3.12"
 
       - name: Install packages
-        run: pip install requests beautifulsoup4
+        run: pip install requests beautifulsoup4 cryptography
+
+      - name: Verify Yongching crypto and probe official public source
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/yungching_crypto.py --self-test
+          python scripts/yungching_official_probe.py
 
       - name: Regroup 591, merge into Sinyi, then floor-aware company compare
         id: compare
@@ -56,7 +66,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/preview/company-gap.json docs/preview/yungching-preview-run.log docs/preview/index.html || true
+          git add \
+            docs/preview/company-gap.json \
+            docs/preview/yungching-preview-run.log \
+            docs/preview/yungching-official-probe.json \
+            docs/preview/yungching-official-snapshot.json \
+            docs/preview/index.html || true
           if git diff --cached --quiet; then
             echo "No preview comparison changes."
             exit 0
