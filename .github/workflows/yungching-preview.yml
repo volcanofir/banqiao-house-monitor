@@ -13,6 +13,7 @@ on:
       - "scripts/yungching_crypto.py"
       - "scripts/yungching_official_probe.py"
       - "scripts/yungching_playwright_probe.py"
+      - "scripts/yungching_dom_snapshot.py"
       - "scripts/yungching_browser_preflight.py"
       - "scripts/connect_surfshark_wireguard.sh"
       - "scripts/patch_preview_ui.py"
@@ -30,7 +31,7 @@ concurrency:
 jobs:
   compare:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 20
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -83,6 +84,11 @@ jobs:
           YUNGCHING_PROBE_VPN_OUTCOME: ${{ steps.vpn.outcome }}
         shell: bash
         run: python scripts/yungching_playwright_probe.py
+
+      - name: Extract Yongching rendered result cards
+        continue-on-error: true
+        shell: bash
+        run: python scripts/yungching_dom_snapshot.py
 
       - name: Disconnect Surfshark before normal company comparison
         if: always()
