@@ -7,7 +7,7 @@ on:
     paths:
       - ".github/workflows/yungching-preview.yml"
       - "scripts/compare_yungching_preview_v2.py"
-      - "scripts/run_yungching_preview.py"
+      - "scripts/compare_yungching_preview_v3.py"
       - "docs/preview/yungching-har-snapshot.json"
       - "docs/preview/yungching-area-enrichment.json"
 
@@ -34,13 +34,13 @@ jobs:
       - name: Install packages
         run: pip install requests beautifulsoup4
 
-      - name: Compare all roads with company public proxy
+      - name: Group Sinyi and 591, then compare company inventory
         id: compare
         continue-on-error: true
         shell: bash
         run: |
           set -o pipefail
-          python scripts/run_yungching_preview.py 2>&1 | tee docs/preview/yungching-preview-run.log
+          python scripts/compare_yungching_preview_v3.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
       - name: Save preview comparison and diagnostic
         if: always()
