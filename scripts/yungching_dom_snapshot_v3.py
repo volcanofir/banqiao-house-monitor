@@ -1,10 +1,9 @@
 """PREVIEW-only Yongching DOM snapshot v3.
 
-The Yongching pager can render page numbers as bare text nodes instead of normal
-links/buttons. This version locates the visual text node for page 2/3/... and clicks
-its real screen coordinate, but only when it sits inside a compact pagination-like
-container. It also refuses to mark a road complete when a second page is visibly
-present but no page transition was performed.
+The Yongching pager can render page numbers as bare DIV/text nodes and can also be
+covered by the site's AI hint backdrop. Prefer Playwright force-click on Yongching's
+actual .paginationPageListItem element, then fall back to generic DOM discovery.
+A paginated road is accepted only when the final DOM proves that page 2 became active.
 """
 
 import json
@@ -96,13 +95,53 @@ def numeric_page_target(page, target: int):
     )
 
 
+def click_yungching_pager_class(page, target: int):
+    """Use the actual Yongching pager node and bypass overlays with force=True."""
+    try:
+        items = page.locator(".paginationPageListItem")
+        for i in range(items.count()):
+            item = items.nth(i)
+            text = re.sub(r"\s+", " ", item.inner_text(timeout=1500)).strip()
+            if text != str(target):
+                continue
+            cls = item.get_attribute("class") or ""
+            before = page.evaluate(
+                """() => Array.from(document.querySelectorAll('.paginationPageListItem')).map(x => ({text:(x.innerText||'').trim(), cls:x.className||''}))"""
+            )
+            item.scroll_into_view_if_needed(timeout=2000)
+            item.click(force=True, timeout=3000)
+            return {
+                "clicked": True,
+                "mode": "yungching-pagination-class-v3",
+                "target": target,
+                "tag": "DIV",
+                "className": cls,
+                "beforePages": before,
+            }
+    except Exception as exc:
+        return {
+            "clicked": False,
+            "mode": "yungching-pagination-class-v3",
+            "target": target,
+            "error": f"{type(exc).__name__}: {str(exc)[:180]}",
+        }
+    return {"clicked": False, "mode": "yungching-pagination-class-v3", "target": target}
+
+
 def click_numeric_page(page, target: int):
-    # First keep the broader text-node/element strategy from v2.
+    # Yongching's current production DOM exposes this exact class. Using the element
+    # itself with a Playwright force-click prevents the AI hint backdrop from stealing
+    # the mouse event.
+    action = click_yungching_pager_class(page, target)
+    if action.get("clicked"):
+        return action
+
+    # Keep the generic text-node/element strategy for future DOM variants.
     action = v2.click_numeric_page(page, target)
     if action.get("clicked"):
         return action
 
-    # Fallback: click the exact screen coordinate occupied by the numeric text.
+    # Last fallback: click the exact screen coordinate occupied by numeric text.
     candidate = numeric_page_target(page, target)
     if not candidate:
         return {"clicked": False, "mode": "numeric-text-v3", "target": target}
@@ -127,21 +166,38 @@ def pager_expected(status: dict) -> bool:
     if not status:
         return False
 
-    # New v2 diagnostics expose the pager as element/text-node candidates.
     controls = status.get("controls") or []
+    page_texts = {
+        str(c.get("text") or "").strip()
+        for c in controls
+        if "pagination" in str(c.get("className") or c.get("contextClass") or "").lower()
+    }
+    if "1" in page_texts and "2" in page_texts:
+        return True
+
     for c in controls:
         text = str(c.get("text") or "").strip()
         context = str(c.get("context") or c.get("contextText") or "")
         if text == "2" and ("1" in context or c.get("source") == "text-node"):
             return True
 
-    # Conservative fallback for Yongching's footer: a full first page (roughly 30
-    # parsed cards) followed by the literal sequence "1 2" means another page exists.
     if int(status.get("count") or 0) >= 25:
         summary = " ".join(str(x) for x in (status.get("summary") or []))
         if re.search(r"(?:^|\s)1\s+2(?:\s|$)", summary):
             return True
     return False
+
+
+def active_pager_page(status: dict):
+    for c in status.get("controls") or []:
+        text = str(c.get("text") or "").strip()
+        cls = str(c.get("className") or "").lower()
+        if text.isdigit() and ("actived" in cls or "active" in cls):
+            try:
+                return int(text)
+            except ValueError:
+                pass
+    return None
 
 
 def enforce_pagination_completeness():
@@ -150,12 +206,16 @@ def enforce_pagination_completeness():
 
     for road, status in road_status.items():
         expected = pager_expected(status)
+        active_page = active_pager_page(status)
         status["paginationExpected"] = expected
-        status["paginationComplete"] = not expected or int(status.get("pageRounds") or 0) > 0
+        status["paginationActivePage"] = active_page
+        status["paginationComplete"] = not expected or (
+            int(status.get("pageRounds") or 0) > 0 and active_page is not None and active_page >= 2
+        )
         if expected and not status["paginationComplete"]:
             status["available"] = False
             status["paginationIncomplete"] = True
-            status["error"] = "偵測到永慶第二頁，但本輪未完成翻頁；為避免漏案，此路段不進 Preview 公司比對"
+            status["error"] = "偵測到永慶第二頁，但 DOM 未證實已切到第2頁；為避免漏案，此路段不進 Preview 公司比對"
 
     payload["availableRoads"] = [
         road for road, status in road_status.items() if status.get("available")
