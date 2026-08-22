@@ -15,6 +15,8 @@ on:
       - "scripts/yungching_official_probe.py"
       - "scripts/yungching_playwright_probe.py"
       - "scripts/yungching_dom_snapshot.py"
+      - "scripts/yungching_dom_snapshot_v2.py"
+      - "scripts/yungching_dom_snapshot_v3.py"
       - "scripts/yungching_browser_preflight.py"
       - "scripts/connect_surfshark_wireguard.sh"
       - "scripts/patch_preview_ui.py"
@@ -86,18 +88,18 @@ jobs:
         shell: bash
         run: python scripts/yungching_playwright_probe.py
 
-      - name: Extract Yongching rendered result cards
+      - name: Extract Yongching rendered DOM cards and pagination
         continue-on-error: true
         shell: bash
-        run: python scripts/yungching_dom_snapshot.py
+        run: python scripts/yungching_dom_snapshot_v3.py
 
-      - name: Disconnect Surfshark before normal company comparison
+      - name: Disconnect Surfshark before Preview comparison
         if: always()
         continue-on-error: true
         shell: bash
         run: sudo wg-quick down surfshark || true
 
-      - name: Regroup 591, merge into Sinyi, then official-first floor-aware company compare
+      - name: Regroup 591, merge into Sinyi, then compare official Yongching DOM
         id: compare
         continue-on-error: true
         shell: bash
