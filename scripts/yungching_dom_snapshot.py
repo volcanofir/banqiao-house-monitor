@@ -40,12 +40,18 @@ def parse_card(raw: dict, road: str):
         return None
     hid = mid.group(1)
     address = "新北市" + road
+
+    # A real result card should describe one property only. Multi-property recommendation
+    # containers are deliberately rejected so their link IDs cannot contaminate a road.
+    if text.count("新北市") != 1 or text.count(address) != 1:
+        return None
+
     pos = text.find(address)
     if pos <= 0:
         return None
     title = text[:pos].strip()
     title = re.sub(r"^(本週精選|新上|降價|專任委託)\s*", "", title).strip()
-    if not title:
+    if not title or "新北市" in title:
         return None
 
     ma = re.search(r"建坪\s*([0-9]+(?:\.[0-9]+)?)", text)
@@ -63,7 +69,7 @@ def parse_card(raw: dict, road: str):
     mt = re.match(r"([^0-9]{1,18}?)(?:[0-9]+(?:\.[0-9]+)?年|--年)建坪", after)
     ptype = mt.group(1).strip() if mt else None
 
-    mf = re.search(r"(?:^|\s)([0-9]+(?:~[0-9]+)?/[0-9]+樓)(?:\s|$)", text)
+    mf = re.search(r"([0-9]+(?:~[0-9]+)?/[0-9]+樓)", text)
     floor = mf.group(1) if mf else None
 
     return {
@@ -85,48 +91,34 @@ def extract_cards(page, road: str):
     address = "新北市" + road
     return page.evaluate(
         """(address) => {
-          const candidates = [];
-          const seen = new Set();
           const allAnchors = Array.from(document.querySelectorAll('a[href]'));
+          const bestById = new Map();
+          const containers = Array.from(document.querySelectorAll('article,li,section,div'));
 
-          for (const a of allAnchors) {
-            const href = a.href || '';
-            const m = href.match(/\/house\/(\d+)/);
-            if (!m) continue;
-            let node = a;
-            let best = null;
-            for (let depth = 0; depth < 10 && node; depth++, node = node.parentElement) {
-              const text = (node.innerText || '').replace(/\s+/g, ' ').trim();
-              if (!text.includes(address) || !text.includes('建坪')) continue;
-              if (text.length < 20 || text.length > 950) continue;
-              if (!best || text.length < best.text.length) best = {url: href, text, depth};
-            }
-            if (best) {
-              const key = m[1] + '|' + best.text;
-              if (!seen.has(key)) {
-                seen.add(key);
-                candidates.push(best);
-              }
-            }
-          }
+          for (const el of containers) {
+            const text = (el.innerText || '').replace(/\s+/g, ' ').trim();
+            if (!text.includes(address) || !text.includes('建坪')) continue;
+            if (text.length < 20 || text.length > 760) continue;
+            if ((text.match(/新北市/g) || []).length !== 1) continue;
+            if ((text.split(address).length - 1) !== 1) continue;
 
-          // Fallback for Angular-rendered links whose raw href attributes are unusual.
-          if (candidates.length === 0) {
-            const containers = Array.from(document.querySelectorAll('article,li,section,div'));
-            for (const el of containers) {
-              const text = (el.innerText || '').replace(/\s+/g, ' ').trim();
-              if (!text.includes(address) || !text.includes('建坪')) continue;
-              if (text.length < 20 || text.length > 950) continue;
-              const links = Array.from(el.querySelectorAll('a[href]')).map(a => a.href || '').filter(h => /\/house\/\d+/.test(h));
-              if (links.length !== 1) continue;
-              const href = links[0];
-              const id = (href.match(/\/house\/(\d+)/) || [])[1];
-              if (!id) continue;
-              const key = id + '|' + text;
-              if (!seen.has(key)) {
-                seen.add(key);
-                candidates.push({url: href, text, depth: 99});
-              }
+            const houseLinks = [];
+            for (const a of Array.from(el.querySelectorAll('a[href]'))) {
+              const href = a.href || '';
+              const m = href.match(/\/house\/(\d+)/);
+              if (m) houseLinks.push({id: m[1], href});
+            }
+            const uniq = [];
+            const seenIds = new Set();
+            for (const x of houseLinks) {
+              if (!seenIds.has(x.id)) { seenIds.add(x.id); uniq.push(x); }
+            }
+            if (uniq.length !== 1) continue;
+
+            const x = uniq[0];
+            const existing = bestById.get(x.id);
+            if (!existing || text.length < existing.text.length) {
+              bestById.set(x.id, {url: x.href, text});
             }
           }
 
@@ -139,7 +131,12 @@ def extract_cards(page, road: str):
               pagination.push({label, href});
             }
           }
-          return {anchorCount: allAnchors.length, cards: candidates, pagination: pagination.slice(0,40)};
+
+          return {
+            anchorCount: allAnchors.length,
+            cards: Array.from(bestById.values()),
+            pagination: pagination.slice(0,40),
+          };
         }""",
         address,
     )
