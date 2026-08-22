@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-22T16:12:32+00:00",
-  "sourceDataUpdatedAt": "2026-08-22T15:54:14+00:00",
-  "mode": "preview_only_591_then_sinyi_then_company_floor_aware",
-  "fetchMode": "housefun_yungching_proxy",
+  "generatedAt": "2026-08-22T18:56:54+00:00",
+  "sourceDataUpdatedAt": "2026-08-22T18:49:44+00:00",
+  "mode": "preview_only_591_then_sinyi_then_company_floor_aware_official_first_v6",
+  "fetchMode": "yungching_official_browser_guarded_fallback",
   "company": "永慶房屋",
-  "companyDataSource": "好房網公開買屋頁（僅篩選永慶房屋(股)公司）＋必要時 HAR fallback",
-  "companyListingCount": 82,
+  "companyDataSource": "永慶房仲網官方公開搜尋頁（Surfshark＋Chromium）優先；路段資料不完整、被擋或異常時自動回退好房網公開買屋頁（僅篩選永慶房屋(股)公司）＋必要時 HAR fallback",
+  "companyListingCount": 88,
   "companySnapshotCapturedAt": "2026-08-21T17:07:25Z",
   "coveredRoads": [
     "板橋區中山路二段",
@@ -18,13 +18,13 @@
   ],
   "externalActiveCount": 205,
   "propertyGroupCount": 159,
-  "rawListingCount": 359,
+  "rawListingCount": 364,
   "crossPlatformMergedGroupCount": 25,
   "crossSourceReviewCount": 7,
-  "companyConflictDowngradedCount": 1,
+  "companyConflictDowngradedCount": 3,
   "counts": {
-    "company_match": 51,
-    "review": 1,
+    "company_match": 49,
+    "review": 3,
     "missing": 107,
     "unavailable": 0
   },
@@ -35,55 +35,77 @@
       "http": 200,
       "url": "https://buy.housefun.com.tw/region/新北市-板橋區_c/?kw=%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5",
       "available": true,
-      "mode": "housefun_yungching_proxy"
+      "mode": "housefun_yungching_proxy",
+      "officialBrowserFallback": true,
+      "officialCount": 30,
+      "proxyCount": 39,
+      "officialFallbackReason": "官方僅 30 筆，低於代理 39 筆的80%安全門檻（至少 32 筆）"
     },
     "板橋區三民路二段": {
-      "count": 29,
-      "allBrokerCount": 34,
+      "count": 30,
       "http": 200,
-      "url": "https://buy.housefun.com.tw/region/新北市-板橋區_c/?kw=%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5",
+      "url": "https://buy.yungching.com.tw/list/新北市-板橋區_c/?kw=%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5",
       "available": true,
-      "mode": "housefun_yungching_proxy"
+      "mode": "yungching_official_browser",
+      "officialCount": 30,
+      "proxyCount": 29,
+      "browserCapturedAt": "2026-08-22T18:55:36+00:00",
+      "completenessCheck": "官方快照通過完整性門檻"
     },
     "板橋區光復街": {
-      "count": 1,
-      "allBrokerCount": 2,
+      "count": 2,
       "http": 200,
-      "url": "https://buy.housefun.com.tw/region/新北市-板橋區_c/?kw=%E5%85%89%E5%BE%A9%E8%A1%97",
+      "url": "https://buy.yungching.com.tw/list/新北市-板橋區_c/?kw=%E5%85%89%E5%BE%A9%E8%A1%97",
       "available": true,
-      "mode": "housefun_yungching_proxy"
+      "mode": "yungching_official_browser",
+      "officialCount": 2,
+      "proxyCount": 1,
+      "browserCapturedAt": "2026-08-22T18:55:36+00:00",
+      "completenessCheck": "官方快照通過完整性門檻"
     },
     "板橋區萬安街": {
-      "count": 1,
-      "allBrokerCount": 3,
+      "count": 2,
       "http": 200,
-      "url": "https://buy.housefun.com.tw/region/新北市-板橋區_c/?kw=%E8%90%AC%E5%AE%89%E8%A1%97",
+      "url": "https://buy.yungching.com.tw/list/新北市-板橋區_c/?kw=%E8%90%AC%E5%AE%89%E8%A1%97",
       "available": true,
-      "mode": "housefun_yungching_proxy"
+      "mode": "yungching_official_browser",
+      "officialCount": 2,
+      "proxyCount": 1,
+      "browserCapturedAt": "2026-08-22T18:55:36+00:00",
+      "completenessCheck": "官方快照通過完整性門檻"
     },
     "板橋區林森街": {
-      "count": 1,
-      "allBrokerCount": 1,
+      "count": 2,
       "http": 200,
-      "url": "https://buy.housefun.com.tw/region/新北市-板橋區_c/?kw=%E6%9E%97%E6%A3%AE%E8%A1%97",
+      "url": "https://buy.yungching.com.tw/list/新北市-板橋區_c/?kw=%E6%9E%97%E6%A3%AE%E8%A1%97",
       "available": true,
-      "mode": "housefun_yungching_proxy"
+      "mode": "yungching_official_browser",
+      "officialCount": 2,
+      "proxyCount": 1,
+      "browserCapturedAt": "2026-08-22T18:55:36+00:00",
+      "completenessCheck": "官方快照通過完整性門檻"
     },
     "板橋區三民路一段": {
-      "count": 5,
-      "allBrokerCount": 10,
+      "count": 6,
       "http": 200,
-      "url": "https://buy.housefun.com.tw/region/新北市-板橋區_c/?kw=%E4%B8%89%E6%B0%91%E8%B7%AF%E4%B8%80%E6%AE%B5",
+      "url": "https://buy.yungching.com.tw/list/新北市-板橋區_c/?kw=%E4%B8%89%E6%B0%91%E8%B7%AF%E4%B8%80%E6%AE%B5",
       "available": true,
-      "mode": "housefun_yungching_proxy"
+      "mode": "yungching_official_browser",
+      "officialCount": 6,
+      "proxyCount": 5,
+      "browserCapturedAt": "2026-08-22T18:55:36+00:00",
+      "completenessCheck": "官方快照通過完整性門檻"
     },
     "板橋區翠華街": {
-      "count": 6,
-      "allBrokerCount": 8,
+      "count": 7,
       "http": 200,
-      "url": "https://buy.housefun.com.tw/region/新北市-板橋區_c/?kw=%E7%BF%A0%E8%8F%AF%E8%A1%97",
+      "url": "https://buy.yungching.com.tw/list/新北市-板橋區_c/?kw=%E7%BF%A0%E8%8F%AF%E8%A1%97",
       "available": true,
-      "mode": "housefun_yungching_proxy"
+      "mode": "yungching_official_browser",
+      "officialCount": 7,
+      "proxyCount": 6,
+      "browserCapturedAt": "2026-08-22T18:55:36+00:00",
+      "completenessCheck": "官方快照通過完整性門檻"
     }
   },
   "propertyGroups": [
@@ -660,7 +682,7 @@
               "id": "591:20738446",
               "houseId": "20738446",
               "source": "591",
-              "title": "時尚💡47.22坪💡三民路一段",
+              "title": "小資最首選~62.6萬/坪🚩4房2廳1衛",
               "url": "https://m.591.com.tw/v2/sale/20738446",
               "price": "2788萬",
               "effectivePrice": null,
@@ -883,8 +905,8 @@
           "sourcePublishedAtType": "posttime",
           "newAt": null,
           "active": true,
-          "mergedListingCount": 12,
-          "mergedActiveListingCount": 12,
+          "mergedListingCount": 13,
+          "mergedActiveListingCount": 13,
           "mergedListings": [
             {
               "id": "591:20466241",
@@ -936,6 +958,19 @@
               "size": "90坪",
               "address": "潤泰台北新大陸 板橋區-三民路二段",
               "sourcePublishedAt": 1778729371,
+              "active": true
+            },
+            {
+              "id": "591:20443891",
+              "houseId": "20443891",
+              "source": "591",
+              "title": "社區我很熟🌈潤泰新大陸🌈高樓層有裝潢樓中樓🌈坡平車位",
+              "url": "https://m.591.com.tw/v2/sale/20443891",
+              "price": "4888萬",
+              "effectivePrice": null,
+              "size": "90坪",
+              "address": "潤泰台北新大陸 板橋區-三民路二段",
+              "sourcePublishedAt": 1782357773,
               "active": true
             },
             {
@@ -1132,7 +1167,7 @@
           "listing591Floors": []
         }
       ],
-      "rawListingCount": 15
+      "rawListingCount": 16
     },
     {
       "groupId": "GROUP:信義房屋:6092QT",
@@ -5559,7 +5594,7 @@
               "id": "591:20719297",
               "houseId": "20719297",
               "source": "591",
-              "title": "時尚♂埔墘生活圈♂7800萬",
+              "title": "埔墘生活圈🎈136.78坪~超甜快約起來",
               "url": "https://m.591.com.tw/v2/sale/20719297",
               "price": "7800萬",
               "effectivePrice": null,
@@ -6255,8 +6290,8 @@
           "sourcePublishedAtType": "posttime",
           "newAt": null,
           "active": true,
-          "mergedListingCount": 11,
-          "mergedActiveListingCount": 11,
+          "mergedListingCount": 13,
+          "mergedActiveListingCount": 13,
           "mergedListings": [
             {
               "id": "591:20729207",
@@ -6298,6 +6333,19 @@
               "active": true
             },
             {
+              "id": "591:20477208",
+              "houseId": "20477208",
+              "source": "591",
+              "title": "板新捷運⭐新埔捷運🌈挑高約4米5",
+              "url": "https://m.591.com.tw/v2/sale/20477208",
+              "price": "1688萬",
+              "effectivePrice": null,
+              "size": "22.6坪",
+              "address": "天生贏家 板橋區-中山路二段",
+              "sourcePublishedAt": 1782899801,
+              "active": true
+            },
+            {
               "id": "591:20622128",
               "houseId": "20622128",
               "source": "591",
@@ -6321,6 +6369,19 @@
               "size": "22.6坪",
               "address": "天生贏家 板橋區-中山路二段",
               "sourcePublishedAt": 1785656169,
+              "active": true
+            },
+            {
+              "id": "591:20717998",
+              "houseId": "20717998",
+              "source": "591",
+              "title": "🏡天生贏家｜挑高使用×空間佳地點好×方正格局📞歡迎詢問",
+              "url": "https://m.591.com.tw/v2/sale/20717998",
+              "price": "1688萬",
+              "effectivePrice": null,
+              "size": "22.6坪",
+              "address": "天生贏家 板橋區-中山路二段",
+              "sourcePublishedAt": 1786500843,
               "active": true
             },
             {
@@ -6406,7 +6467,7 @@
       ],
       "crossPlatformMerged": false,
       "crossPlatformMatchInfo": [],
-      "rawListingCount": 11
+      "rawListingCount": 13
     },
     {
       "groupId": "GROUP:591:20723975",
@@ -6532,7 +6593,7 @@
               "id": "591:20717472",
               "houseId": "20717472",
               "source": "591",
-              "title": "✨板新捷運✨大空間美寓",
+              "title": "✨板新捷運✨大空間美寓👍",
               "url": "https://m.591.com.tw/v2/sale/20717472",
               "price": "1398萬",
               "effectivePrice": null,
@@ -7795,8 +7856,8 @@
           "sourcePublishedAtType": "posttime",
           "newAt": "2026-08-20T03:52:02+00:00",
           "active": true,
-          "mergedListingCount": 4,
-          "mergedActiveListingCount": 4,
+          "mergedListingCount": 3,
+          "mergedActiveListingCount": 3,
           "mergedListings": [
             {
               "id": "591:20612220",
@@ -7825,19 +7886,6 @@
               "active": true
             },
             {
-              "id": "591:20649136",
-              "houseId": "20649136",
-              "source": "591",
-              "title": "中山路二段🌈邊間公寓3房🌈一橋到台北",
-              "url": "https://m.591.com.tw/v2/sale/20649136",
-              "price": "1238萬",
-              "effectivePrice": null,
-              "size": "26.3坪",
-              "address": "板橋區-中山路二段",
-              "sourcePublishedAt": 1785486583,
-              "active": true
-            },
-            {
               "id": "591:20654094",
               "houseId": "20654094",
               "source": "591",
@@ -7855,7 +7903,7 @@
       ],
       "crossPlatformMerged": false,
       "crossPlatformMatchInfo": [],
-      "rawListingCount": 4
+      "rawListingCount": 3
     },
     {
       "groupId": "GROUP:591:20611124",
@@ -10919,8 +10967,8 @@
           "sourcePublishedAtType": "posttime",
           "newAt": null,
           "active": true,
-          "mergedListingCount": 16,
-          "mergedActiveListingCount": 16,
+          "mergedListingCount": 18,
+          "mergedActiveListingCount": 18,
           "mergedListings": [
             {
               "id": "591:20251660",
@@ -10946,6 +10994,19 @@
               "size": "83.8坪",
               "address": "皇冠the King 板橋區-中山路二段",
               "sourcePublishedAt": 1782467278,
+              "active": true
+            },
+            {
+              "id": "591:20468954",
+              "houseId": "20468954",
+              "source": "591",
+              "title": "皇冠KING居高臨下景觀豪宅大戶皇冠",
+              "url": "https://m.591.com.tw/v2/sale/20468954",
+              "price": "4666萬",
+              "effectivePrice": null,
+              "size": "83.8坪",
+              "address": "皇冠the King 板橋區-中山路二段",
+              "sourcePublishedAt": 1782792990,
               "active": true
             },
             {
@@ -10991,7 +11052,7 @@
               "id": "591:20569606",
               "houseId": "20569606",
               "source": "591",
-              "title": "皇冠the King☁55.7萬/坪",
+              "title": "55.7萬/坪-西南朝向🎯大搶手🎯視野好",
               "url": "https://m.591.com.tw/v2/sale/20569606",
               "price": "4666萬",
               "effectivePrice": null,
@@ -11129,13 +11190,26 @@
               "address": "皇冠 板橋區-中山路二段",
               "sourcePublishedAt": 1787105878,
               "active": true
+            },
+            {
+              "id": "591:20779409",
+              "houseId": "20779409",
+              "source": "591",
+              "title": "[來江翠北側找\"福華\"]皇冠無敵景觀邊間4房車",
+              "url": "https://m.591.com.tw/v2/sale/20779409",
+              "price": "4666萬",
+              "effectivePrice": null,
+              "size": "83.8坪",
+              "address": "皇冠 板橋區-中山路二段",
+              "sourcePublishedAt": 1787424005,
+              "active": true
             }
           ]
         }
       ],
       "crossPlatformMerged": false,
       "crossPlatformMatchInfo": [],
-      "rawListingCount": 16
+      "rawListingCount": 18
     },
     {
       "groupId": "GROUP:591:20156050",
@@ -11228,8 +11302,8 @@
           "sourcePublishedAtType": "posttime",
           "newAt": null,
           "active": true,
-          "mergedListingCount": 3,
-          "mergedActiveListingCount": 3,
+          "mergedListingCount": 4,
+          "mergedActiveListingCount": 4,
           "mergedListings": [
             {
               "id": "591:20154789",
@@ -11258,6 +11332,19 @@
               "active": true
             },
             {
+              "id": "591:24838505",
+              "houseId": "24838505",
+              "source": "591",
+              "title": "中信Bao🏠萬安美透天｜稀有釋出只要出價都可談🔥",
+              "url": "https://m.591.com.tw/v2/sale/24838505",
+              "price": "1888萬",
+              "effectivePrice": null,
+              "size": "33.8坪",
+              "address": "板橋區-萬安街",
+              "sourcePublishedAt": 1780561536,
+              "active": true
+            },
+            {
               "id": "591:20594550",
               "houseId": "20594550",
               "source": "591",
@@ -11275,7 +11362,7 @@
       ],
       "crossPlatformMerged": false,
       "crossPlatformMatchInfo": [],
-      "rawListingCount": 3
+      "rawListingCount": 4
     },
     {
       "groupId": "GROUP:591:20134351",
@@ -11787,13 +11874,13 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6848744",
-        "title": "現況辦公可隔三房坡道平面車位 方正格局方便規劃採光",
+        "id": "YC:4308114",
+        "title": "現況辦公可隔三房坡道平面車位",
         "address": "新北市板橋區光復街",
         "area": 53.21,
         "price": 2688.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6848744",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 17.45,
@@ -11803,7 +11890,8 @@
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          6
+          6,
+          46
         ],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:8478PH"
@@ -11854,25 +11942,23 @@
       "statusLabel": "庫存",
       "score": 14,
       "companyCandidate": {
-        "id": "HF:7027395",
-        "title": "近捷運明亮四房 三面採光明亮新青安首選",
+        "id": "YC:7450646",
+        "title": "近捷運明亮四房",
         "address": "新北市板橋區三民路二段",
         "area": 24.95,
         "price": 1298.0,
-        "url": "https://buy.housefun.com.tw/buy/house/7027395",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7450646",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
         "priceDelta": 0.0,
         "shared": [],
-        "titleRatio": 0.154,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.0,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          4
-        ],
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:3658LZ"
       }
@@ -11884,15 +11970,15 @@
       "road": "板橋區三民路一段",
       "status": "company_match",
       "statusLabel": "庫存",
-      "score": 19,
+      "score": 20,
       "companyCandidate": {
-        "id": "HF:6616224",
-        "title": "馥華質感生活家 高樓景觀知名馥華建設",
+        "id": "YC:7004701",
+        "title": "馥華質感生活家",
         "address": "新北市板橋區三民路一段",
         "area": 47.22,
         "price": 2788.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6616224",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7004701",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
@@ -11900,13 +11986,11 @@
         "shared": [
           "生活家"
         ],
-        "titleRatio": 0.455,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.833,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          7
-        ],
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:6630DJ"
       }
@@ -11951,25 +12035,23 @@
       "statusLabel": "未接回",
       "score": 2,
       "companyCandidate": {
-        "id": "HF:6878731",
-        "title": "近埔墘市場低樓層 低樓層免爬高機能好家樂福市場",
+        "id": "YC:7277820",
+        "title": "近埔墘市場低樓層",
         "address": "新北市板橋區三民路二段",
         "area": 27.59,
         "price": 1398.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6878731",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7277820",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.27,
         "priceDelta": 940.0,
         "shared": [],
         "titleRatio": 0.0,
-        "companySourceMode": "housefun_yungching_proxy",
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          3
-        ],
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:3860YC"
       }
@@ -12014,13 +12096,13 @@
       "statusLabel": "庫存",
       "score": 16,
       "companyCandidate": {
-        "id": "HF:6877876",
+        "id": "YC:7276912",
         "title": "板橋名宅潤泰新大陸｜SRC鋼骨耐震｜大基地低公設",
         "address": "新北市板橋區三民路二段",
         "area": 90.01,
         "price": 4888.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6877876",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7276912",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
@@ -12029,12 +12111,10 @@
           "新大陸"
         ],
         "titleRatio": 0.294,
-        "companySourceMode": "housefun_yungching_proxy",
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          20
-        ],
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:49148N"
       }
@@ -12048,29 +12128,23 @@
       "statusLabel": "庫存",
       "score": 18,
       "companyCandidate": {
-        "id": "HF:7029333",
-        "title": "國泰稀有公寓頂加 國泰建設、公寓型社區有代收垃圾",
+        "id": "YC:7452730",
+        "title": "國泰稀有公寓頂加",
         "address": "新北市板橋區三民路二段",
         "area": 33.53,
         "price": 1380.0,
-        "url": "https://buy.housefun.com.tw/buy/house/7029333",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7452730",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
         "priceDelta": 0.0,
-        "shared": [
-          "國泰建設",
-          "國泰建",
-          "泰建設"
-        ],
-        "titleRatio": 0.375,
-        "companySourceMode": "housefun_yungching_proxy",
+        "shared": [],
+        "titleRatio": 0.667,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          5
-        ],
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:6092QT"
       }
@@ -12084,25 +12158,23 @@
       "statusLabel": "未接回",
       "score": 2,
       "companyCandidate": {
-        "id": "HF:6904641",
-        "title": "近江翠首購首選免千萬頂加 格局方正好規劃",
+        "id": "YC:7271295",
+        "title": "近江翠首購首選免千萬頂加",
         "address": "新北市板橋區三民路一段",
         "area": 20.01,
         "price": 890.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6904641",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7271295",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.17,
         "priceDelta": 460.0,
         "shared": [],
         "titleRatio": 0.0,
-        "companySourceMode": "housefun_yungching_proxy",
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          4
-        ],
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:6300AU"
       }
@@ -12179,24 +12251,24 @@
       "primaryId": "信義房屋:7553TW",
       "primarySource": "信義房屋",
       "road": "板橋區三民路二段",
-      "status": "company_match",
-      "statusLabel": "庫存",
-      "score": 22,
+      "status": "missing",
+      "statusLabel": "未接回",
+      "score": 18,
       "companyCandidate": {
-        "id": "HF:6878731",
-        "title": "近埔墘市場低樓層 低樓層免爬高機能好家樂福市場",
+        "id": "YC:7359599",
+        "title": "國泰建設稀有三樓",
         "address": "新北市板橋區三民路二段",
-        "area": 27.59,
-        "price": 1398.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6878731",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 27.63,
+        "price": 1330.0,
+        "url": "https://buy.yungching.com.tw/house/7359599",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 0.0,
-        "priceDelta": 0.0,
+        "areaDelta": 0.04,
+        "priceDelta": 68.0,
         "shared": [],
-        "titleRatio": 0.069,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.267,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "match",
         "externalFloors": [
           3
@@ -12206,7 +12278,9 @@
         ],
         "floorMatch": true,
         "evidenceSource": "信義房屋",
-        "evidenceListingId": "信義房屋:7553TW"
+        "evidenceListingId": "信義房屋:7553TW",
+        "reason": "有相似公司候選，但未達庫存判定門檻，因此列為未接回",
+        "weakCompanyCandidate": true
       }
     },
     {
@@ -12250,25 +12324,23 @@
       "statusLabel": "未接回",
       "score": -1,
       "companyCandidate": {
-        "id": "HF:6616224",
-        "title": "馥華質感生活家 高樓景觀知名馥華建設",
+        "id": "YC:7004701",
+        "title": "馥華質感生活家",
         "address": "新北市板橋區三民路一段",
         "area": 47.22,
         "price": 2788.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6616224",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7004701",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.39,
         "priceDelta": 1052.0,
         "shared": [],
         "titleRatio": 0.0,
-        "companySourceMode": "housefun_yungching_proxy",
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          7
-        ],
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:8593LS"
       }
@@ -12316,20 +12388,20 @@
       "statusLabel": "庫存",
       "score": 14,
       "companyCandidate": {
-        "id": "HF:6827213",
-        "title": "稀有純一樓連鎖店 正三民路連鎖店面面寬大空間",
+        "id": "YC:5289717",
+        "title": "稀有純一樓連鎖店",
         "address": "新北市板橋區三民路一段",
         "area": 130.18,
         "price": 7128.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6827213",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/5289717",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
         "priceDelta": 0.0,
         "shared": [],
-        "titleRatio": 0.143,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.133,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
@@ -12348,13 +12420,13 @@
       "statusLabel": "未接回",
       "score": -91,
       "companyCandidate": {
-        "id": "HF:6827213",
-        "title": "稀有純一樓連鎖店 正三民路連鎖店面面寬大空間",
+        "id": "YC:5289717",
+        "title": "稀有純一樓連鎖店",
         "address": "新北市板橋區三民路一段",
         "area": 130.18,
         "price": 7128.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6827213",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/5289717",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 47.62,
@@ -12485,20 +12557,20 @@
       "statusLabel": "未接回",
       "score": -1,
       "companyCandidate": {
-        "id": "HF:6917619",
-        "title": "適合三代同堂輕裝潢透天出價就談 天然瓦斯",
+        "id": "YC:4308114",
+        "title": "適合三代同堂輕裝潢透天出價就談",
         "address": "新北市板橋區萬安街",
         "area": 27.59,
         "price": 1980.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6917619",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.36,
         "priceDelta": 500.0,
         "shared": [],
-        "titleRatio": 0.138,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.16,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
@@ -12515,15 +12587,15 @@
       "road": "板橋區三民路二段",
       "status": "company_match",
       "statusLabel": "庫存",
-      "score": 17,
+      "score": 19,
       "companyCandidate": {
-        "id": "HF:6743070",
-        "title": "埔墘面寬6.3米正馬路金店面 商圈內連鎖店林立有人",
+        "id": "YC:6724191",
+        "title": "埔墘面寬6.3米正馬路金店面",
         "address": "新北市板橋區三民路二段",
         "area": 29.33,
         "price": 4888.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6743070",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/6724191",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
@@ -12531,13 +12603,11 @@
         "shared": [
           "金店面"
         ],
-        "titleRatio": 0.312,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.455,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          1
-        ],
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:6956FJ"
       }
@@ -12551,24 +12621,25 @@
       "statusLabel": "庫存",
       "score": 14,
       "companyCandidate": {
-        "id": "HF:6848744",
-        "title": "現況辦公可隔三房坡道平面車位 方正格局方便規劃採光",
+        "id": "YC:4308114",
+        "title": "現況辦公可隔三房坡道平面車位",
         "address": "新北市板橋區光復街",
         "area": 53.21,
         "price": 2688.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6848744",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
         "priceDelta": 0.0,
         "shared": [],
-        "titleRatio": 0.062,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.0,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          6
+          6,
+          46
         ],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:1402SL"
@@ -12612,15 +12683,15 @@
       "road": "板橋區三民路二段",
       "status": "company_match",
       "statusLabel": "庫存",
-      "score": 24,
+      "score": 25,
       "companyCandidate": {
-        "id": "HF:6749188",
-        "title": "雙捷精品9樓兩房 全新未住過新成屋",
+        "id": "YC:7145115",
+        "title": "雙捷精品9樓兩房",
         "address": "新北市板橋區三民路二段",
         "area": 30.04,
         "price": 2313.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6749188",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7145115",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
@@ -12628,8 +12699,8 @@
         "shared": [
           "樓兩房"
         ],
-        "titleRatio": 0.261,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.4,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "match",
         "externalFloors": [
           9
@@ -12651,13 +12722,13 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6848744",
-        "title": "現況辦公可隔三房坡道平面車位 方正格局方便規劃採光",
+        "id": "YC:4308114",
+        "title": "現況辦公可隔三房坡道平面車位",
         "address": "新北市板橋區光復街",
         "area": 53.21,
         "price": 2688.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6848744",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 18.07,
@@ -12667,7 +12738,8 @@
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          6
+          6,
+          46
         ],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:2664TV"
@@ -12750,25 +12822,23 @@
       "statusLabel": "未接回",
       "score": 0,
       "companyCandidate": {
-        "id": "HF:6529444",
-        "title": "光復學區邊間頂加公寓 邊間採光好通風佳",
+        "id": "YC:6913447",
+        "title": "光復學區邊間頂加公寓",
         "address": "新北市板橋區三民路二段",
         "area": 23.43,
         "price": 1058.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6529444",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/6913447",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.6,
         "priceDelta": 292.0,
         "shared": [],
-        "titleRatio": 0.148,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.211,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          5
-        ],
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:5660VN"
       }
@@ -12780,27 +12850,25 @@
       "road": "板橋區三民路二段",
       "status": "company_match",
       "statusLabel": "庫存",
-      "score": 15,
+      "score": 17,
       "companyCandidate": {
-        "id": "HF:6749390",
-        "title": "三珉築琚露臺戶 全新未住過新成屋",
+        "id": "YC:7145066",
+        "title": "三珉築琚露臺戶",
         "address": "新北市板橋區三民路二段",
         "area": 34.91,
         "price": 3043.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6749390",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7145066",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
         "priceDelta": 0.0,
         "shared": [],
-        "titleRatio": 0.32,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.471,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          11
-        ],
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:3860VH"
       }
@@ -12812,22 +12880,22 @@
       "road": "板橋區三民路二段",
       "status": "company_match",
       "statusLabel": "庫存",
-      "score": 14,
+      "score": 15,
       "companyCandidate": {
-        "id": "HF:6812583",
-        "title": "三珉築琚3房5樓 全新未住過新成屋",
+        "id": "YC:7145039",
+        "title": "三珉築琚3房5樓",
         "address": "新北市板橋區三民路二段",
         "area": 38.17,
         "price": 2862.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6812583",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7145039",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
         "priceDelta": 0.0,
         "shared": [],
-        "titleRatio": 0.231,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.333,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
@@ -12846,20 +12914,20 @@
       "statusLabel": "庫存",
       "score": 14,
       "companyCandidate": {
-        "id": "HF:6749166",
-        "title": "雙捷幸福十樓兩房 全新未住過新成屋",
+        "id": "YC:7145128",
+        "title": "雙捷幸福十樓兩房",
         "address": "新北市板橋區三民路二段",
         "area": 30.04,
         "price": 2315.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6749166",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7145128",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
         "priceDelta": 0.0,
         "shared": [],
-        "titleRatio": 0.154,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.222,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
@@ -12878,20 +12946,20 @@
       "statusLabel": "待確認",
       "score": 12,
       "companyCandidate": {
-        "id": "HF:6749188",
-        "title": "雙捷精品9樓兩房 全新未住過新成屋",
+        "id": "YC:7145115",
+        "title": "雙捷精品9樓兩房",
         "address": "新北市板橋區三民路二段",
         "area": 30.04,
         "price": 2313.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6749188",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7145115",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.02,
         "priceDelta": 28.0,
         "shared": [],
-        "titleRatio": 0.154,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.222,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
@@ -12899,7 +12967,7 @@
         ],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:6218YW",
-        "reason": "同一公司案件 HF:6749188 已優先配對給 GROUP:信義房屋:0886ZW；信義主來源優先，避免庫存重複計數",
+        "reason": "同一公司案件 YC:7145115 已優先配對給 GROUP:信義房屋:0886ZW；信義主來源優先，避免庫存重複計數",
         "companyCandidateConflict": true
       }
     },
@@ -12912,13 +12980,13 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6917619",
-        "title": "適合三代同堂輕裝潢透天出價就談 天然瓦斯",
+        "id": "YC:4308114",
+        "title": "適合三代同堂輕裝潢透天出價就談",
         "address": "新北市板橋區萬安街",
         "area": 27.59,
         "price": 1980.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6917619",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 7.15,
@@ -12941,30 +13009,25 @@
       "road": "板橋區三民路二段",
       "status": "company_match",
       "statusLabel": "庫存",
-      "score": 17,
+      "score": 15,
       "companyCandidate": {
-        "id": "HF:6322272",
-        "title": "大馬路大空間金店 正三民路稀有釋出黃金店面",
+        "id": "YC:6700174",
+        "title": "大馬路大空間金店",
         "address": "新北市板橋區三民路二段",
         "area": 54.03,
         "price": 7000.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6322272",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/6700174",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
         "priceDelta": 0.0,
-        "shared": [
-          "三民路",
-          "金店面"
-        ],
-        "titleRatio": 0.414,
-        "companySourceMode": "housefun_yungching_proxy",
+        "shared": [],
+        "titleRatio": 0.353,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          2
-        ],
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:63549G"
       }
@@ -13114,13 +13177,13 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6848744",
-        "title": "現況辦公可隔三房坡道平面車位 方正格局方便規劃採光",
+        "id": "YC:4308114",
+        "title": "現況辦公可隔三房坡道平面車位",
         "address": "新北市板橋區光復街",
         "area": 53.21,
         "price": 2688.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6848744",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 34.03,
@@ -13132,7 +13195,8 @@
           1
         ],
         "companyFloors": [
-          6
+          6,
+          46
         ],
         "floorConflict": true,
         "reason": "外部案件與公司候選樓層明確不同",
@@ -13149,27 +13213,24 @@
       "statusLabel": "庫存",
       "score": 20,
       "companyCandidate": {
-        "id": "HF:6965195",
-        "title": "國泰建設稀有三樓 國泰方正三樓免爬高",
+        "id": "YC:7359599",
+        "title": "國泰建設稀有三樓",
         "address": "新北市板橋區三民路二段",
         "area": 27.63,
         "price": 1330.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6965195",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7359599",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.29,
         "priceDelta": 258.0,
         "shared": [
           "國泰建設",
-          "方正三樓",
           "國泰建",
-          "方正三",
-          "正三樓",
           "泰建設"
         ],
-        "titleRatio": 0.593,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.667,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "match",
         "externalFloors": [
           3
@@ -13189,30 +13250,27 @@
       "road": "板橋區三民路二段",
       "status": "company_match",
       "statusLabel": "庫存",
-      "score": 22,
+      "score": 14,
       "companyCandidate": {
-        "id": "HF:6727508",
-        "title": "板橋大空間好停車 門前好停車 增建空間大",
+        "id": "YC:7122798",
+        "title": "板橋大空間好停車",
         "address": "新北市板橋區三民路二段",
         "area": 20.62,
         "price": 1680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6727508",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7122798",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
         "priceDelta": 0.0,
         "shared": [],
         "titleRatio": 0.0,
-        "companySourceMode": "housefun_yungching_proxy",
-        "floorRelation": "match",
+        "companySourceMode": "yungching_official_browser",
+        "floorRelation": "unknown",
         "externalFloors": [
           1
         ],
-        "companyFloors": [
-          1
-        ],
-        "floorMatch": true,
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:9435YK"
       }
@@ -13224,29 +13282,27 @@
       "road": "板橋區三民路二段",
       "status": "missing",
       "statusLabel": "未接回",
-      "score": -91,
+      "score": -1,
       "companyCandidate": {
-        "id": "HF:6878731",
-        "title": "近埔墘市場低樓層 低樓層免爬高機能好家樂福市場",
+        "id": "YC:7452730",
+        "title": "國泰稀有公寓頂加",
         "address": "新北市板橋區三民路二段",
-        "area": 27.59,
-        "price": 1398.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6878731",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 33.53,
+        "price": 1380.0,
+        "url": "https://buy.yungching.com.tw/house/7452730",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 6.29,
-        "priceDelta": 360.0,
+        "areaDelta": 0.35,
+        "priceDelta": 378.0,
         "shared": [],
-        "titleRatio": 0,
-        "floorRelation": "match",
+        "titleRatio": 0.0,
+        "companySourceMode": "yungching_official_browser",
+        "floorRelation": "unknown",
         "externalFloors": [
           3
         ],
-        "companyFloors": [
-          3
-        ],
-        "floorMatch": true,
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:8352FP"
       }
@@ -13260,13 +13316,13 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:7031121",
-        "title": "埔墘小資方正頂家 格局方正採光通風佳",
+        "id": "YC:4308114",
+        "title": "埔墘小資方正頂家",
         "address": "新北市板橋區林森街",
         "area": 21.27,
         "price": 938.0,
-        "url": "https://buy.housefun.com.tw/buy/house/7031121",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 3.92,
@@ -13276,7 +13332,8 @@
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          4
+          4,
+          74
         ],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:5916JZ"
@@ -13357,25 +13414,23 @@
       "statusLabel": "未接回",
       "score": 5,
       "companyCandidate": {
-        "id": "HF:6806130",
-        "title": "國泰名宅正泰靜巷 邊間大坪數 空間明亮 通風佳",
+        "id": "YC:7198515",
+        "title": "國泰名宅正泰靜巷",
         "address": "新北市板橋區三民路二段",
         "area": 36.55,
         "price": 1638.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6806130",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7198515",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.1,
         "priceDelta": 2242.0,
         "shared": [],
-        "titleRatio": 0.065,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.105,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          5
-        ],
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:0390CW"
       }
@@ -13389,20 +13444,20 @@
       "statusLabel": "庫存",
       "score": 22,
       "companyCandidate": {
-        "id": "HF:6685434",
-        "title": "住一樓舒適生活 雙店面自住營業皆適合門前好停車",
+        "id": "YC:7078318",
+        "title": "住一樓舒適生活",
         "address": "新北市板橋區三民路二段",
         "area": 52.52,
         "price": 2688.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6685434",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7078318",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
         "priceDelta": 0.0,
         "shared": [],
-        "titleRatio": 0.138,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.286,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "match",
         "externalFloors": [
           1
@@ -13519,13 +13574,13 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6917619",
-        "title": "適合三代同堂輕裝潢透天出價就談 天然瓦斯",
+        "id": "YC:4308114",
+        "title": "適合三代同堂輕裝潢透天出價就談",
         "address": "新北市板橋區萬安街",
         "area": 27.59,
         "price": 1980.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6917619",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 27.59,
@@ -13648,23 +13703,24 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6627811",
-        "title": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派",
+        "id": "YC:4308114",
+        "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
         "address": "新北市板橋區三民路一段",
-        "area": 69.92,
-        "price": 3680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6627811",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 89.82,
+        "price": 3600.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 60.67,
-        "priceDelta": 3550.0,
+        "areaDelta": 80.57,
+        "priceDelta": 3470.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          7
+          7,
+          77
         ],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:0496JB"
@@ -13713,25 +13769,23 @@
       "statusLabel": "未接回",
       "score": 2,
       "companyCandidate": {
-        "id": "HF:6904641",
-        "title": "近江翠首購首選免千萬頂加 格局方正好規劃",
+        "id": "YC:7271295",
+        "title": "近江翠首購首選免千萬頂加",
         "address": "新北市板橋區三民路一段",
         "area": 20.01,
         "price": 890.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6904641",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7271295",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.15,
         "priceDelta": 900.0,
         "shared": [],
         "titleRatio": 0.0,
-        "companySourceMode": "housefun_yungching_proxy",
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          4
-        ],
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:5347JQ"
       }
@@ -13841,23 +13895,24 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6627811",
-        "title": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派",
+        "id": "YC:4308114",
+        "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
         "address": "新北市板橋區三民路一段",
-        "area": 69.92,
-        "price": 3680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6627811",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 89.82,
+        "price": 3600.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 5.37,
-        "priceDelta": 900.0,
+        "areaDelta": 25.27,
+        "priceDelta": 820.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          7
+          7,
+          77
         ],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:7288WM"
@@ -13870,26 +13925,22 @@
       "road": "板橋區三民路二段",
       "status": "company_match",
       "statusLabel": "庫存",
-      "score": 17,
+      "score": 15,
       "companyCandidate": {
-        "id": "HF:6214472",
-        "title": "經典國泰三房一樓好停 國泰建設邊間好停車、有代收垃",
+        "id": "YC:6586357",
+        "title": "經典國泰三房一樓好停",
         "address": "新北市板橋區三民路二段",
         "area": 31.03,
         "price": 2349.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6214472",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/6586357",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
         "priceDelta": 0.0,
-        "shared": [
-          "國泰建設",
-          "國泰建",
-          "泰建設"
-        ],
-        "titleRatio": 0.242,
-        "companySourceMode": "housefun_yungching_proxy",
+        "shared": [],
+        "titleRatio": 0.3,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
@@ -14036,17 +14087,17 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6627811",
-        "title": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派",
+        "id": "YC:4308114",
+        "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
         "address": "新北市板橋區三民路一段",
-        "area": 69.92,
-        "price": 3680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6627811",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 89.82,
+        "price": 3600.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 31.06,
-        "priceDelta": 1070.0,
+        "areaDelta": 11.16,
+        "priceDelta": 1150.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "conflict",
@@ -14054,7 +14105,8 @@
           10
         ],
         "companyFloors": [
-          7
+          7,
+          77
         ],
         "floorConflict": true,
         "reason": "外部案件與公司候選樓層明確不同",
@@ -14268,25 +14320,23 @@
       "statusLabel": "未接回",
       "score": 4,
       "companyCandidate": {
-        "id": "HF:6979480",
-        "title": "家樂福商圈一橋之隔就進台北國泰格局前後大陽台 埔墘",
+        "id": "YC:7396443",
+        "title": "家樂福商圈一橋之隔就進台北國泰格局前後大陽台",
         "address": "新北市板橋區三民路二段",
         "area": 29.92,
         "price": 1580.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6979480",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7396443",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.34,
         "priceDelta": 70.0,
         "shared": [],
         "titleRatio": 0.0,
-        "companySourceMode": "housefun_yungching_proxy",
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          4
-        ],
+        "companyFloors": [],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:33277Z"
       }
@@ -14335,20 +14385,20 @@
       "statusLabel": "未接回",
       "score": 8,
       "companyCandidate": {
-        "id": "HF:6214472",
-        "title": "經典國泰三房一樓好停 國泰建設邊間好停車、有代收垃",
+        "id": "YC:6586357",
+        "title": "經典國泰三房一樓好停",
         "address": "新北市板橋區三民路二段",
         "area": 31.03,
         "price": 2349.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6214472",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/6586357",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.77,
         "priceDelta": 249.0,
         "shared": [],
-        "titleRatio": 0.1,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.148,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "match",
         "externalFloors": [
           1
@@ -14370,17 +14420,17 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6627811",
-        "title": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派",
+        "id": "YC:4308114",
+        "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
         "address": "新北市板橋區三民路一段",
-        "area": 69.92,
-        "price": 3680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6627811",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 89.82,
+        "price": 3600.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 43.72,
-        "priceDelta": 2200.0,
+        "areaDelta": 63.62,
+        "priceDelta": 2120.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "conflict",
@@ -14388,7 +14438,8 @@
           3
         ],
         "companyFloors": [
-          7
+          7,
+          77
         ],
         "floorConflict": true,
         "reason": "外部案件與公司候選樓層明確不同",
@@ -14403,30 +14454,27 @@
       "road": "板橋區三民路二段",
       "status": "missing",
       "statusLabel": "未接回",
-      "score": 18,
+      "score": 11,
       "companyCandidate": {
-        "id": "HF:6529444",
-        "title": "光復學區邊間頂加公寓 邊間採光好通風佳",
+        "id": "YC:6913447",
+        "title": "光復學區邊間頂加公寓",
         "address": "新北市板橋區三民路二段",
         "area": 23.43,
         "price": 1058.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6529444",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/6913447",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.03,
         "priceDelta": 40.0,
         "shared": [],
-        "titleRatio": 0.258,
-        "companySourceMode": "housefun_yungching_proxy",
-        "floorRelation": "match",
+        "titleRatio": 0.348,
+        "companySourceMode": "yungching_official_browser",
+        "floorRelation": "unknown",
         "externalFloors": [
           5
         ],
-        "companyFloors": [
-          5
-        ],
-        "floorMatch": true,
+        "companyFloors": [],
         "evidenceSource": "591",
         "evidenceListingId": "591:20738181",
         "reason": "有相似公司候選，但未達庫存判定門檻，因此列為未接回",
@@ -14442,13 +14490,13 @@
       "statusLabel": "庫存",
       "score": 18,
       "companyCandidate": {
-        "id": "HF:6849902",
-        "title": "近江翠收租金雞母 穩定收租",
+        "id": "YC:7244147",
+        "title": "近江翠收租金雞母",
         "address": "新北市板橋區翠華街",
         "area": 26.2,
         "price": 1750.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6849902",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7244147",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
@@ -14458,13 +14506,11 @@
           "江翠收",
           "翠收租"
         ],
-        "titleRatio": 0.333,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.4,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          5
-        ],
+        "companyFloors": [],
         "evidenceSource": "591",
         "evidenceListingId": "591:20737473"
       }
@@ -14474,33 +14520,31 @@
       "primaryId": "591:20734554",
       "primarySource": "591",
       "road": "板橋區三民路二段",
-      "status": "missing",
-      "statusLabel": "未接回",
-      "score": 10,
+      "status": "review",
+      "statusLabel": "待確認",
+      "score": 12,
       "companyCandidate": {
-        "id": "HF:7027395",
-        "title": "近捷運明亮四房 三面採光明亮新青安首選",
+        "id": "YC:7450646",
+        "title": "近捷運明亮四房",
         "address": "新北市板橋區三民路二段",
         "area": 24.95,
         "price": 1298.0,
-        "url": "https://buy.housefun.com.tw/buy/house/7027395",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7450646",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.05,
         "priceDelta": 90.0,
         "shared": [],
-        "titleRatio": 0.308,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.533,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          4
-        ],
+        "companyFloors": [],
         "evidenceSource": "591",
         "evidenceListingId": "591:20734554",
-        "reason": "有相似公司候選，但未達庫存判定門檻，因此列為未接回",
-        "weakCompanyCandidate": true
+        "reason": "同一公司案件 YC:7450646 已優先配對給 GROUP:信義房屋:3658LZ；信義主來源優先，避免庫存重複計數",
+        "companyCandidateConflict": true
       }
     },
     {
@@ -14575,23 +14619,24 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6627811",
-        "title": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派",
+        "id": "YC:4308114",
+        "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
         "address": "新北市板橋區三民路一段",
-        "area": 69.92,
-        "price": 3680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6627811",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 89.82,
+        "price": 3600.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 30.02,
-        "priceDelta": 1330.0,
+        "areaDelta": 49.92,
+        "priceDelta": 1250.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          7
+          7,
+          77
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20723975"
@@ -14638,20 +14683,20 @@
       "statusLabel": "未接回",
       "score": 17,
       "companyCandidate": {
-        "id": "HF:6214472",
-        "title": "經典國泰三房一樓好停 國泰建設邊間好停車、有代收垃",
+        "id": "YC:6586357",
+        "title": "經典國泰三房一樓好停",
         "address": "新北市板橋區三民路二段",
         "area": 31.03,
         "price": 2349.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6214472",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/6586357",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.03,
         "priceDelta": 149.0,
         "shared": [],
-        "titleRatio": 0.174,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.121,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "match",
         "externalFloors": [
           1
@@ -14675,23 +14720,24 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6627811",
-        "title": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派",
+        "id": "YC:4308114",
+        "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
         "address": "新北市板橋區三民路一段",
-        "area": 69.92,
-        "price": 3680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6627811",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 89.82,
+        "price": 3600.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 30.02,
-        "priceDelta": 1580.0,
+        "areaDelta": 49.92,
+        "priceDelta": 1500.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          7
+          7,
+          77
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20711895"
@@ -14706,25 +14752,23 @@
       "statusLabel": "未接回",
       "score": 5,
       "companyCandidate": {
-        "id": "HF:6085510",
-        "title": "榮耀經典採光四房 全新未住過知名建商無樑柱設計",
+        "id": "YC:6456220",
+        "title": "榮耀經典採光四房",
         "address": "新北市板橋區三民路二段",
         "area": 65.1,
         "price": 4298.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6085510",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/6456220",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.0,
         "priceDelta": 318.0,
         "shared": [],
-        "titleRatio": 0.089,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.129,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          2
-        ],
+        "companyFloors": [],
         "evidenceSource": "591",
         "evidenceListingId": "591:20710447"
       }
@@ -14738,23 +14782,24 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6923936",
-        "title": "靜謐裝潢質感美寓 社區24小時警衛安全不打烊",
+        "id": "YC:4308114",
+        "title": "正隆國泰美妝頂加",
         "address": "新北市板橋區三民路二段",
-        "area": 31.69,
-        "price": 1480.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6923936",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 29.53,
+        "price": 1598.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 30.11,
-        "priceDelta": 2300.0,
+        "areaDelta": 32.27,
+        "priceDelta": 2182.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          4
+          5,
+          35
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20710444"
@@ -14797,31 +14842,33 @@
       "primaryId": "591:20698557",
       "primarySource": "591",
       "road": "板橋區萬安街",
-      "status": "company_match",
-      "statusLabel": "庫存",
+      "status": "review",
+      "statusLabel": "待確認",
       "score": 14,
       "companyCandidate": {
-        "id": "HF:6917619",
-        "title": "適合三代同堂輕裝潢透天出價就談 天然瓦斯",
+        "id": "YC:4308114",
+        "title": "適合三代同堂輕裝潢透天出價就談",
         "address": "新北市板橋區萬安街",
         "area": 27.59,
         "price": 1980.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6917619",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.01,
         "priceDelta": 0.0,
         "shared": [],
-        "titleRatio": 0.111,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.125,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
           2
         ],
         "evidenceSource": "591",
-        "evidenceListingId": "591:20698557"
+        "evidenceListingId": "591:20698557",
+        "reason": "同一公司案件 YC:4308114 已優先配對給 GROUP:信義房屋:1402SL；信義主來源優先，避免庫存重複計數",
+        "companyCandidateConflict": true
       }
     },
     {
@@ -14833,24 +14880,25 @@
       "statusLabel": "未接回",
       "score": 3,
       "companyCandidate": {
-        "id": "HF:7031121",
-        "title": "埔墘小資方正頂家 格局方正採光通風佳",
+        "id": "YC:4308114",
+        "title": "埔墘小資方正頂家",
         "address": "新北市板橋區林森街",
         "area": 21.27,
         "price": 938.0,
-        "url": "https://buy.housefun.com.tw/buy/house/7031121",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.37,
         "priceDelta": 112.0,
         "shared": [],
-        "titleRatio": 0.108,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.071,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          4
+          4,
+          74
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20689112"
@@ -14865,25 +14913,23 @@
       "statusLabel": "未接回",
       "score": 9,
       "companyCandidate": {
-        "id": "HF:6923936",
-        "title": "靜謐裝潢質感美寓 社區24小時警衛安全不打烊",
+        "id": "YC:7327746",
+        "title": "靜謐裝潢質感美寓",
         "address": "新北市板橋區三民路二段",
         "area": 31.69,
         "price": 1480.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6923936",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7327746",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.01,
         "priceDelta": 100.0,
         "shared": [],
-        "titleRatio": 0.05,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.074,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          4
-        ],
+        "companyFloors": [],
         "evidenceSource": "591",
         "evidenceListingId": "591:20681756",
         "reason": "有相似公司候選，但未達庫存判定門檻，因此列為未接回",
@@ -14899,13 +14945,13 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:7031121",
-        "title": "埔墘小資方正頂家 格局方正採光通風佳",
+        "id": "YC:4308114",
+        "title": "埔墘小資方正頂家",
         "address": "新北市板橋區林森街",
         "area": 21.27,
         "price": 938.0,
-        "url": "https://buy.housefun.com.tw/buy/house/7031121",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 1.27,
@@ -14915,7 +14961,8 @@
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          4
+          4,
+          74
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20675948"
@@ -14930,23 +14977,24 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6759961",
-        "title": "超低總價翠華一樓 邊間條件進出便利長輩首選",
+        "id": "YC:4308114",
+        "title": "大面寬x稀有雙拼x方正格局x黃金一樓x使用近60",
         "address": "新北市板橋區翠華街",
-        "area": 23.37,
-        "price": 1498.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6759961",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 59.37,
+        "price": 4280.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 1.37,
-        "priceDelta": 290.0,
+        "areaDelta": 37.37,
+        "priceDelta": 2492.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          1
+          1,
+          81
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20674223"
@@ -14961,23 +15009,24 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6627811",
-        "title": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派",
+        "id": "YC:4308114",
+        "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
         "address": "新北市板橋區三民路一段",
-        "area": 69.92,
-        "price": 3680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6627811",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 89.82,
+        "price": 3600.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 39.72,
-        "priceDelta": 2080.0,
+        "areaDelta": 59.62,
+        "priceDelta": 2000.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          7
+          7,
+          77
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20660640"
@@ -15085,23 +15134,24 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6627811",
-        "title": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派",
+        "id": "YC:4308114",
+        "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
         "address": "新北市板橋區三民路一段",
-        "area": 69.92,
-        "price": 3680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6627811",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 89.82,
+        "price": 3600.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 37.92,
-        "priceDelta": 1880.0,
+        "areaDelta": 57.82,
+        "priceDelta": 1800.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          7
+          7,
+          77
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20639444"
@@ -15315,17 +15365,17 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6627811",
-        "title": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派",
+        "id": "YC:4308114",
+        "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
         "address": "新北市板橋區三民路一段",
-        "area": 69.92,
-        "price": 3680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6627811",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 89.82,
+        "price": 3600.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 48.32,
-        "priceDelta": 2500.0,
+        "areaDelta": 68.22,
+        "priceDelta": 2420.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "conflict",
@@ -15333,7 +15383,8 @@
           3
         ],
         "companyFloors": [
-          7
+          7,
+          77
         ],
         "floorConflict": true,
         "reason": "外部案件與公司候選樓層明確不同",
@@ -15350,13 +15401,13 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6848744",
-        "title": "現況辦公可隔三房坡道平面車位 方正格局方便規劃採光",
+        "id": "YC:4308114",
+        "title": "現況辦公可隔三房坡道平面車位",
         "address": "新北市板橋區光復街",
         "area": 53.21,
         "price": 2688.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6848744",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 7.71,
@@ -15366,7 +15417,8 @@
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          6
+          6,
+          46
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20599659"
@@ -15381,23 +15433,24 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6627811",
-        "title": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派",
+        "id": "YC:4308114",
+        "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
         "address": "新北市板橋區三民路一段",
-        "area": 69.92,
-        "price": 3680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6627811",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 89.82,
+        "price": 3600.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 48.32,
-        "priceDelta": 2600.0,
+        "areaDelta": 68.22,
+        "priceDelta": 2520.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          7
+          7,
+          77
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20595368"
@@ -15572,24 +15625,25 @@
       "statusLabel": "未接回",
       "score": -3,
       "companyCandidate": {
-        "id": "HF:7031121",
-        "title": "埔墘小資方正頂家 格局方正採光通風佳",
+        "id": "YC:4308114",
+        "title": "埔墘小資方正頂家",
         "address": "新北市板橋區林森街",
         "area": 21.27,
         "price": 938.0,
-        "url": "https://buy.housefun.com.tw/buy/house/7031121",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.87,
         "priceDelta": 2562.0,
         "shared": [],
         "titleRatio": 0.0,
-        "companySourceMode": "housefun_yungching_proxy",
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          4
+          4,
+          74
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20557506"
@@ -15602,29 +15656,25 @@
       "road": "板橋區三民路二段",
       "status": "missing",
       "statusLabel": "未接回",
-      "score": 1,
+      "score": -1,
       "companyCandidate": {
-        "id": "HF:6878731",
-        "title": "近埔墘市場低樓層 低樓層免爬高機能好家樂福市場",
+        "id": "YC:7277820",
+        "title": "近埔墘市場低樓層",
         "address": "新北市板橋區三民路二段",
         "area": 27.59,
         "price": 1398.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6878731",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7277820",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.41,
         "priceDelta": 982.0,
-        "shared": [
-          "家樂福"
-        ],
-        "titleRatio": 0.233,
-        "companySourceMode": "housefun_yungching_proxy",
+        "shared": [],
+        "titleRatio": 0.138,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          3
-        ],
+        "companyFloors": [],
         "evidenceSource": "591",
         "evidenceListingId": "591:20554659"
       }
@@ -15636,29 +15686,27 @@
       "road": "板橋區翠華街",
       "status": "missing",
       "statusLabel": "未接回",
-      "score": -91,
+      "score": -3,
       "companyCandidate": {
-        "id": "HF:6852242",
-        "title": "華翠方正邊間3樓低樓層免爬高 國泰格局，前陽台進出",
+        "id": "YC:7244147",
+        "title": "近江翠收租金雞母",
         "address": "新北市板橋區翠華街",
-        "area": 27.29,
-        "price": 1288.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6852242",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 26.2,
+        "price": 1750.0,
+        "url": "https://buy.yungching.com.tw/house/7244147",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 1.89,
-        "priceDelta": 102.0,
+        "areaDelta": 0.8,
+        "priceDelta": 360.0,
         "shared": [],
-        "titleRatio": 0,
-        "floorRelation": "match",
+        "titleRatio": 0.0,
+        "companySourceMode": "yungching_official_browser",
+        "floorRelation": "unknown",
         "externalFloors": [
           3
         ],
-        "companyFloors": [
-          3
-        ],
-        "floorMatch": true,
+        "companyFloors": [],
         "evidenceSource": "591",
         "evidenceListingId": "591:20552240"
       }
@@ -15670,29 +15718,27 @@
       "road": "板橋區翠華街",
       "status": "missing",
       "statusLabel": "未接回",
-      "score": -91,
+      "score": -3,
       "companyCandidate": {
-        "id": "HF:6852242",
-        "title": "華翠方正邊間3樓低樓層免爬高 國泰格局，前陽台進出",
+        "id": "YC:7244147",
+        "title": "近江翠收租金雞母",
         "address": "新北市板橋區翠華街",
-        "area": 27.29,
-        "price": 1288.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6852242",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 26.2,
+        "price": 1750.0,
+        "url": "https://buy.yungching.com.tw/house/7244147",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 1.89,
-        "priceDelta": 2.0,
+        "areaDelta": 0.8,
+        "priceDelta": 460.0,
         "shared": [],
-        "titleRatio": 0,
-        "floorRelation": "match",
+        "titleRatio": 0.125,
+        "companySourceMode": "yungching_official_browser",
+        "floorRelation": "unknown",
         "externalFloors": [
           3
         ],
-        "companyFloors": [
-          3
-        ],
-        "floorMatch": true,
+        "companyFloors": [],
         "evidenceSource": "591",
         "evidenceListingId": "591:20547657"
       }
@@ -15706,25 +15752,23 @@
       "statusLabel": "未接回",
       "score": 4,
       "companyCandidate": {
-        "id": "HF:7027395",
-        "title": "近捷運明亮四房 三面採光明亮新青安首選",
+        "id": "YC:7450646",
+        "title": "近捷運明亮四房",
         "address": "新北市板橋區三民路二段",
         "area": 24.95,
         "price": 1298.0,
-        "url": "https://buy.housefun.com.tw/buy/house/7027395",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7450646",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.65,
         "priceDelta": 30.0,
         "shared": [],
         "titleRatio": 0.0,
-        "companySourceMode": "housefun_yungching_proxy",
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          4
-        ],
+        "companyFloors": [],
         "evidenceSource": "591",
         "evidenceListingId": "591:20537650"
       }
@@ -15738,25 +15782,23 @@
       "statusLabel": "未接回",
       "score": 3,
       "companyCandidate": {
-        "id": "HF:6529444",
-        "title": "光復學區邊間頂加公寓 邊間採光好通風佳",
+        "id": "YC:6913447",
+        "title": "光復學區邊間頂加公寓",
         "address": "新北市板橋區三民路二段",
         "area": 23.43,
         "price": 1058.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6529444",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/6913447",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.47,
         "priceDelta": 140.0,
         "shared": [],
-        "titleRatio": 0.133,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.182,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          5
-        ],
+        "companyFloors": [],
         "evidenceSource": "591",
         "evidenceListingId": "591:20531017"
       }
@@ -15768,29 +15810,27 @@
       "road": "板橋區三民路二段",
       "status": "missing",
       "statusLabel": "未接回",
-      "score": -91,
+      "score": 2,
       "companyCandidate": {
-        "id": "HF:6727508",
-        "title": "板橋大空間好停車 門前好停車 增建空間大",
+        "id": "YC:7145066",
+        "title": "三珉築琚露臺戶",
         "address": "新北市板橋區三民路二段",
-        "area": 20.62,
-        "price": 1680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6727508",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 34.91,
+        "price": 3043.0,
+        "url": "https://buy.yungching.com.tw/house/7145066",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 14.58,
-        "priceDelta": 608.0,
+        "areaDelta": 0.29,
+        "priceDelta": 755.0,
         "shared": [],
-        "titleRatio": 0,
-        "floorRelation": "match",
+        "titleRatio": 0.067,
+        "companySourceMode": "yungching_official_browser",
+        "floorRelation": "unknown",
         "externalFloors": [
           1
         ],
-        "companyFloors": [
-          1
-        ],
-        "floorMatch": true,
+        "companyFloors": [],
         "evidenceSource": "591",
         "evidenceListingId": "591:20523222"
       }
@@ -15802,22 +15842,22 @@
       "road": "板橋區翠華街",
       "status": "company_match",
       "statusLabel": "庫存",
-      "score": 22,
+      "score": 23,
       "companyCandidate": {
-        "id": "HF:6759961",
-        "title": "超低總價翠華一樓 邊間條件進出便利長輩首選",
+        "id": "YC:7156611",
+        "title": "超低總價翠華一樓",
         "address": "新北市板橋區翠華街",
         "area": 23.37,
         "price": 1498.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6759961",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7156611",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.03,
         "priceDelta": 0.0,
         "shared": [],
-        "titleRatio": 0.242,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.381,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "match",
         "externalFloors": [
           1
@@ -15839,23 +15879,24 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6923936",
-        "title": "靜謐裝潢質感美寓 社區24小時警衛安全不打烊",
+        "id": "YC:4308114",
+        "title": "正隆國泰美妝頂加",
         "address": "新北市板橋區三民路二段",
-        "area": 31.69,
-        "price": 1480.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6923936",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 29.53,
+        "price": 1598.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 19.79,
-        "priceDelta": 1100.0,
+        "areaDelta": 17.63,
+        "priceDelta": 982.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          4
+          5,
+          35
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20501478"
@@ -15870,25 +15911,23 @@
       "statusLabel": "庫存",
       "score": 14,
       "companyCandidate": {
-        "id": "HF:6806130",
-        "title": "國泰名宅正泰靜巷 邊間大坪數 空間明亮 通風佳",
+        "id": "YC:7198515",
+        "title": "國泰名宅正泰靜巷",
         "address": "新北市板橋區三民路二段",
         "area": 36.55,
         "price": 1638.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6806130",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7198515",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.05,
         "priceDelta": 0.0,
         "shared": [],
-        "titleRatio": 0.27,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.16,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          5
-        ],
+        "companyFloors": [],
         "evidenceSource": "591",
         "evidenceListingId": "591:20459506"
       }
@@ -15965,15 +16004,15 @@
       "road": "板橋區三民路二段",
       "status": "company_match",
       "statusLabel": "庫存",
-      "score": 16,
+      "score": 17,
       "companyCandidate": {
-        "id": "HF:6749408",
-        "title": "三珉築琚挑高店辦 全新未住過新成屋",
+        "id": "YC:7144949",
+        "title": "三珉築琚挑高店辦",
         "address": "新北市板橋區三民路二段",
         "area": 24.48,
         "price": 2815.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6749408",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7144949",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.02,
@@ -15983,13 +16022,11 @@
           "三珉築",
           "珉築琚"
         ],
-        "titleRatio": 0.538,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.778,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          1
-        ],
+        "companyFloors": [],
         "evidenceSource": "591",
         "evidenceListingId": "591:20503413"
       }
@@ -16003,25 +16040,23 @@
       "statusLabel": "庫存",
       "score": 12,
       "companyCandidate": {
-        "id": "HF:6923936",
-        "title": "靜謐裝潢質感美寓 社區24小時警衛安全不打烊",
+        "id": "YC:7327746",
+        "title": "靜謐裝潢質感美寓",
         "address": "新北市板橋區三民路二段",
         "area": 31.69,
         "price": 1480.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6923936",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7327746",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.01,
         "priceDelta": 8.0,
         "shared": [],
-        "titleRatio": 0.133,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.0,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [
-          4
-        ],
+        "companyFloors": [],
         "evidenceSource": "591",
         "evidenceListingId": "591:20494293"
       }
@@ -16067,13 +16102,13 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6848744",
-        "title": "現況辦公可隔三房坡道平面車位 方正格局方便規劃採光",
+        "id": "YC:4308114",
+        "title": "現況辦公可隔三房坡道平面車位",
         "address": "新北市板橋區光復街",
         "area": 53.21,
         "price": 2688.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6848744",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 27.51,
@@ -16083,7 +16118,8 @@
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          6
+          6,
+          46
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20480274"
@@ -16098,20 +16134,20 @@
       "statusLabel": "未接回",
       "score": 9,
       "companyCandidate": {
-        "id": "HF:6214472",
-        "title": "經典國泰三房一樓好停 國泰建設邊間好停車、有代收垃",
+        "id": "YC:6586357",
+        "title": "經典國泰三房一樓好停",
         "address": "新北市板橋區三民路二段",
         "area": 31.03,
         "price": 2349.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6214472",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/6586357",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.73,
         "priceDelta": 149.0,
         "shared": [],
-        "titleRatio": 0.118,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.19,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "match",
         "externalFloors": [
           1
@@ -16199,17 +16235,17 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6627811",
-        "title": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派",
+        "id": "YC:4308114",
+        "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
         "address": "新北市板橋區三民路一段",
-        "area": 69.92,
-        "price": 3680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6627811",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 89.82,
+        "price": 3600.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 43.72,
-        "priceDelta": 2100.0,
+        "areaDelta": 63.62,
+        "priceDelta": 2020.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "conflict",
@@ -16217,7 +16253,8 @@
           3
         ],
         "companyFloors": [
-          7
+          7,
+          77
         ],
         "floorConflict": true,
         "reason": "外部案件與公司候選樓層明確不同",
@@ -16234,23 +16271,24 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6627811",
-        "title": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派",
+        "id": "YC:4308114",
+        "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
         "address": "新北市板橋區三民路一段",
-        "area": 69.92,
-        "price": 3680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6627811",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 89.82,
+        "price": 3600.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 12.22,
-        "priceDelta": 722.0,
+        "areaDelta": 32.12,
+        "priceDelta": 642.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          7
+          7,
+          77
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20436236"
@@ -16297,20 +16335,20 @@
       "statusLabel": "未接回",
       "score": 2,
       "companyCandidate": {
-        "id": "HF:6749410",
-        "title": "三珉築琚3房4樓 全新未住過新成屋",
+        "id": "YC:7145002",
+        "title": "三珉築琚3房4樓",
         "address": "新北市板橋區三民路二段",
         "area": 38.17,
         "price": 3283.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6749410",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/7145002",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.43,
         "priceDelta": 217.0,
         "shared": [],
-        "titleRatio": 0.057,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.074,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
@@ -16361,20 +16399,20 @@
       "statusLabel": "未接回",
       "score": -1,
       "companyCandidate": {
-        "id": "HF:6917619",
-        "title": "適合三代同堂輕裝潢透天出價就談 天然瓦斯",
+        "id": "YC:4308114",
+        "title": "適合三代同堂輕裝潢透天出價就談",
         "address": "新北市板橋區萬安街",
         "area": 27.59,
         "price": 1980.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6917619",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.41,
         "priceDelta": 500.0,
         "shared": [],
-        "titleRatio": 0.114,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.129,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
@@ -16393,23 +16431,24 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6627811",
-        "title": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派",
+        "id": "YC:4308114",
+        "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
         "address": "新北市板橋區三民路一段",
-        "area": 69.92,
-        "price": 3680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6627811",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 89.82,
+        "price": 3600.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 35.92,
-        "priceDelta": 1700.0,
+        "areaDelta": 55.82,
+        "priceDelta": 1620.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          7
+          7,
+          77
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20427242"
@@ -16616,17 +16655,17 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6627811",
-        "title": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派",
+        "id": "YC:4308114",
+        "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
         "address": "新北市板橋區三民路一段",
-        "area": 69.92,
-        "price": 3680.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6627811",
-        "sourceMode": "housefun_yungching_proxy"
+        "area": 89.82,
+        "price": 3600.0,
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 44.42,
-        "priceDelta": 2112.0,
+        "areaDelta": 64.32,
+        "priceDelta": 2032.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "conflict",
@@ -16634,7 +16673,8 @@
           2
         ],
         "companyFloors": [
-          7
+          7,
+          77
         ],
         "floorConflict": true,
         "reason": "外部案件與公司候選樓層明確不同",
@@ -16651,13 +16691,13 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6917619",
-        "title": "適合三代同堂輕裝潢透天出價就談 天然瓦斯",
+        "id": "YC:4308114",
+        "title": "適合三代同堂輕裝潢透天出價就談",
         "address": "新北市板橋區萬安街",
         "area": 27.59,
         "price": 1980.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6917619",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 7.99,
@@ -16779,13 +16819,13 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "HF:6917619",
-        "title": "適合三代同堂輕裝潢透天出價就談 天然瓦斯",
+        "id": "YC:4308114",
+        "title": "適合三代同堂輕裝潢透天出價就談",
         "address": "新北市板橋區萬安街",
         "area": 27.59,
         "price": 1980.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6917619",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 6.21,
@@ -16842,20 +16882,20 @@
       "statusLabel": "未接回",
       "score": -1,
       "companyCandidate": {
-        "id": "HF:6917619",
-        "title": "適合三代同堂輕裝潢透天出價就談 天然瓦斯",
+        "id": "YC:4308114",
+        "title": "適合三代同堂輕裝潢透天出價就談",
         "address": "新北市板橋區萬安街",
         "area": 27.59,
         "price": 1980.0,
-        "url": "https://buy.housefun.com.tw/buy/house/6917619",
-        "sourceMode": "housefun_yungching_proxy"
+        "url": "https://buy.yungching.com.tw/house/4308114",
+        "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
         "areaDelta": 0.41,
         "priceDelta": 580.0,
         "shared": [],
-        "titleRatio": 0.195,
-        "companySourceMode": "housefun_yungching_proxy",
+        "titleRatio": 0.162,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
@@ -17094,7 +17134,7 @@
       "area": 63.25,
       "price": 3458.0,
       "url": "https://buy.housefun.com.tw/buy/house/6111265",
-      "text": "大空間商業用途好貸 正路邊無巷弄室內無樑柱好規劃 新北市板橋區中山路二段 看地圖 63.25 坪 1房(室)3廳1衛 2/12 樓 6小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 54.67萬/坪，誠意屋主，降很大！ 17.4% 4,188 萬 3,458 萬",
+      "text": "大空間商業用途好貸 正路邊無巷弄室內無樑柱好規劃 新北市板橋區中山路二段 看地圖 63.25 坪 1房(室)3廳1衛 2/12 樓 9小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 54.67萬/坪，誠意屋主，降很大！ 17.4% 4,188 萬 3,458 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17106,7 +17146,7 @@
       "area": 25.2,
       "price": 1398.0,
       "url": "https://buy.housefun.com.tw/buy/house/6923635",
-      "text": "埔墘巷寬溫馨美寓 4樓RC頂加，屋況極佳 新北市板橋區中山路二段 看地圖 25.2 坪 4房(室)4廳2衛(含加蓋2房(室)2廳1衛) 4/4 樓 7小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 單價 55.48萬/坪 4.1% 1,458 萬 1,398 萬",
+      "text": "埔墘巷寬溫馨美寓 4樓RC頂加，屋況極佳 新北市板橋區中山路二段 看地圖 25.2 坪 4房(室)4廳2衛(含加蓋2房(室)2廳1衛) 4/4 樓 9小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 單價 55.48萬/坪 4.1% 1,458 萬 1,398 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17118,7 +17158,7 @@
       "area": 37.4,
       "price": 2091.0,
       "url": "https://buy.housefun.com.tw/buy/house/6551365",
-      "text": "經典吉美建設面中庭附車 一層五戶-24小時管理 新北市板橋區中山路二段 看地圖 37.4 坪 1房(室)1廳1衛 3/14 樓 含車位 8小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 含車位單價計算方式請洽業務，誠意屋主，降很大！ 19% 2,580 萬 2,091 萬",
+      "text": "經典吉美建設面中庭附車 一層五戶-24小時管理 新北市板橋區中山路二段 看地圖 37.4 坪 1房(室)1廳1衛 3/14 樓 含車位 11小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 含車位單價計算方式請洽業務，誠意屋主，降很大！ 19% 2,580 萬 2,091 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17130,7 +17170,7 @@
       "area": 36.63,
       "price": 2388.0,
       "url": "https://buy.housefun.com.tw/buy/house/6587262",
-      "text": "墨韻大器景觀兩房 捷運市心隱奢大面採光精緻裝潢 新北市板橋區中山路二段 看地圖 36.63 坪 2房(室)2廳1衛 7/13 樓 含車位 8小時前刷新 永慶房屋(股)公司 經紀人員 吳智翔 已認證 優質 單價 含車位單價計算方式請洽業務 3.2% 2,468 萬 2,388 萬",
+      "text": "墨韻大器景觀兩房 捷運市心隱奢大面採光精緻裝潢 新北市板橋區中山路二段 看地圖 36.63 坪 2房(室)2廳1衛 7/13 樓 含車位 11小時前刷新 永慶房屋(股)公司 經紀人員 吳智翔 已認證 優質 單價 含車位單價計算方式請洽業務 3.2% 2,468 萬 2,388 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17142,7 +17182,7 @@
       "area": 25.0,
       "price": 1198.0,
       "url": "https://buy.housefun.com.tw/buy/house/5954351",
-      "text": "近北市埔墘溫馨美寓出價可談 近光復學區、家樂福、興 新北市板橋區中山路二段 看地圖 25 坪 3房(室)2廳1衛 5/5 樓 9小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 47.92萬/坪 6.4% 1,280 萬 1,198 萬",
+      "text": "近北市埔墘溫馨美寓出價可談 近光復學區、家樂福、興 新北市板橋區中山路二段 看地圖 25 坪 3房(室)2廳1衛 5/5 樓 12小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 47.92萬/坪 6.4% 1,280 萬 1,198 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17154,7 +17194,7 @@
       "area": 23.37,
       "price": 2500.0,
       "url": "https://buy.housefun.com.tw/buy/house/6561286",
-      "text": "近北市使用大空間 面寬好停車、室內使用空間大 新北市板橋區中山路二段 看地圖 23.37 坪 1房(室)2廳1衛(含加蓋1廳1衛) 1/4 樓 13小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 106.97萬/坪 3.8% 2,600 萬 2,500 萬",
+      "text": "近北市使用大空間 面寬好停車、室內使用空間大 新北市板橋區中山路二段 看地圖 23.37 坪 1房(室)2廳1衛(含加蓋1廳1衛) 1/4 樓 15小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 106.97萬/坪 3.8% 2,600 萬 2,500 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17166,7 +17206,7 @@
       "area": 37.27,
       "price": 1498.0,
       "url": "https://buy.housefun.com.tw/buy/house/7020846",
-      "text": "邊間三面採光x超大露臺x棟距超寬 邊間三面採光頂加 新北市板橋區中山路二段 看地圖 37.27 坪 4房(室)4廳3衛(含加蓋2房(室)2廳1衛) 5/5 樓 13小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 40.19萬/坪 1,498 萬",
+      "text": "邊間三面採光x超大露臺x棟距超寬 邊間三面採光頂加 新北市板橋區中山路二段 看地圖 37.27 坪 4房(室)4廳3衛(含加蓋2房(室)2廳1衛) 5/5 樓 16小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 40.19萬/坪 1,498 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17178,7 +17218,7 @@
       "area": 26.79,
       "price": 1425.0,
       "url": "https://buy.housefun.com.tw/buy/house/6969286",
-      "text": "板新捷運邊間二樓 捷運步行約兩分鐘，海山國中學區 新北市板橋區中山路二段 看地圖 26.79 坪 3房(室)2廳1衛 2/5 樓 14分鐘前刷新 永慶房屋(股)公司 經紀人員 吳智翔 已認證 優質 單價 53.19萬/坪 4.2% 1,488 萬 1,425 萬",
+      "text": "板新捷運邊間二樓 捷運步行約兩分鐘，海山國中學區 新北市板橋區中山路二段 看地圖 26.79 坪 3房(室)2廳1衛 2/5 樓 3小時前刷新 永慶房屋(股)公司 經紀人員 吳智翔 已認證 優質 單價 53.19萬/坪 4.2% 1,488 萬 1,425 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17190,7 +17230,7 @@
       "area": 33.73,
       "price": 2798.0,
       "url": "https://buy.housefun.com.tw/buy/house/6904530",
-      "text": "稀有邊間大面寬住辦廠房 住店辦皆宜，門口可停雙車位 新北市板橋區中山路二段 看地圖 33.73 坪 3房(室)1廳2衛(含加蓋1衛) 1/5 樓 3小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 82.95萬/坪，誠意屋主，降很大！ 12.5% 3,199 萬 2,798 萬",
+      "text": "稀有邊間大面寬住辦廠房 住店辦皆宜，門口可停雙車位 新北市板橋區中山路二段 看地圖 33.73 坪 3房(室)1廳2衛(含加蓋1衛) 1/5 樓 6小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 82.95萬/坪，誠意屋主，降很大！ 12.5% 3,199 萬 2,798 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17202,7 +17242,7 @@
       "area": 37.83,
       "price": 1688.0,
       "url": "https://buy.housefun.com.tw/buy/house/6992098",
-      "text": "板橋大坪數三樓 近台北市一橋之隔前後棟距通風佳 新北市板橋區中山路二段 看地圖 37.83 坪 5房(室)2廳2衛 3/4 樓 5小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 44.62萬/坪 5.6% 1,788 萬 1,688 萬",
+      "text": "板橋大坪數三樓 近台北市一橋之隔前後棟距通風佳 新北市板橋區中山路二段 看地圖 37.83 坪 5房(室)2廳2衛 3/4 樓 8小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 44.62萬/坪 5.6% 1,788 萬 1,688 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17214,7 +17254,7 @@
       "area": 32.33,
       "price": 1380.0,
       "url": "https://buy.housefun.com.tw/buy/house/6316645",
-      "text": "埔墘中山路稀有三樓頂加出價可談 三樓頂加免爬高大空 新北市板橋區中山路二段 看地圖 32.33 坪 6房(室)4廳2衛(含加蓋3房(室)2廳1衛) 3/3 樓 8小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 42.68萬/坪 6.8% 1,480 萬 1,380 萬",
+      "text": "埔墘中山路稀有三樓頂加出價可談 三樓頂加免爬高大空 新北市板橋區中山路二段 看地圖 32.33 坪 6房(室)4廳2衛(含加蓋3房(室)2廳1衛) 3/3 樓 11小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 42.68萬/坪 6.8% 1,480 萬 1,380 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17226,7 +17266,7 @@
       "area": 30.78,
       "price": 1488.0,
       "url": "https://buy.housefun.com.tw/buy/house/6327024",
-      "text": "收租置產商辦首選 生活機能良好 交通四通八達 新北市板橋區中山路二段 看地圖 30.78 坪 2房(室)2廳1衛 6/12 樓 含車位 10小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 含車位單價計算方式請洽業務 6.3% 1,588 萬 1,488 萬",
+      "text": "收租置產商辦首選 生活機能良好 交通四通八達 新北市板橋區中山路二段 看地圖 30.78 坪 2房(室)2廳1衛 6/12 樓 含車位 12小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 含車位單價計算方式請洽業務 6.3% 1,588 萬 1,488 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17238,7 +17278,7 @@
       "area": 26.14,
       "price": 1198.0,
       "url": "https://buy.housefun.com.tw/buy/house/6907916",
-      "text": "中山輕裝低樓三樓棟距寬 全室電線更新低樓層樓梯好爬 新北市板橋區中山路二段 看地圖 26.14 坪 4房(室)2廳1衛 3/4 樓 10小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 45.83萬/坪 6.4% 1,280 萬 1,198 萬",
+      "text": "中山輕裝低樓三樓棟距寬 全室電線更新低樓層樓梯好爬 新北市板橋區中山路二段 看地圖 26.14 坪 4房(室)2廳1衛 3/4 樓 13小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 45.83萬/坪 6.4% 1,280 萬 1,198 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17250,7 +17290,7 @@
       "area": 52.02,
       "price": 3800.0,
       "url": "https://buy.housefun.com.tw/buy/house/6498045",
-      "text": "近北市大面寬店辦 邊間大面寬、可隔雙店面，有增建 新北市板橋區中山路二段 看地圖 52.02 坪 1廳1衛 1/7 樓 12小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 73.05萬/坪，誠意屋主，降很大！ 10.8% 4,260 萬 3,800 萬",
+      "text": "近北市大面寬店辦 邊間大面寬、可隔雙店面，有增建 新北市板橋區中山路二段 看地圖 52.02 坪 1廳1衛 1/7 樓 15小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 73.05萬/坪，誠意屋主，降很大！ 10.8% 4,260 萬 3,800 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17262,7 +17302,7 @@
       "area": 79.49,
       "price": 4500.0,
       "url": "https://buy.housefun.com.tw/buy/house/5818308",
-      "text": "近麥當勞大地透店 家樂福商圈生活機能佳 新北市板橋區中山路二段 看地圖 79.49 坪 3房(室)3廳2衛 1~2/2 樓 15小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 56.61萬/坪，誠意屋主，降很大！ 16.4% 5,380 萬 4,500 萬",
+      "text": "近麥當勞大地透店 家樂福商圈生活機能佳 新北市板橋區中山路二段 看地圖 79.49 坪 3房(室)3廳2衛 1~2/2 樓 18小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 56.61萬/坪，誠意屋主，降很大！ 16.4% 5,380 萬 4,500 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17274,7 +17314,7 @@
       "area": 25.41,
       "price": 1935.0,
       "url": "https://buy.housefun.com.tw/buy/house/6702761",
-      "text": "低總價正馬路店面 正中山路、埔墘核心地點 新北市板橋區中山路二段 看地圖 25.41 坪 1廳1衛 1/8 樓 1小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 單價 76.15萬/坪 1,935 萬",
+      "text": "低總價正馬路店面 正中山路、埔墘核心地點 新北市板橋區中山路二段 看地圖 25.41 坪 1廳1衛 1/8 樓 4小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 單價 76.15萬/坪 1,935 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17286,7 +17326,7 @@
       "area": 29.94,
       "price": 2280.0,
       "url": "https://buy.housefun.com.tw/buy/house/6419549",
-      "text": "埔墘正中山路金店 正中山路、埔墘核心地點 新北市板橋區中山路二段 看地圖 29.94 坪 1廳1衛 1/8 樓 1小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 76.15萬/坪，誠意屋主，降很大！ 15.2% 2,688 萬 2,280 萬",
+      "text": "埔墘正中山路金店 正中山路、埔墘核心地點 新北市板橋區中山路二段 看地圖 29.94 坪 1廳1衛 1/8 樓 4小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 76.15萬/坪，誠意屋主，降很大！ 15.2% 2,688 萬 2,280 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17298,7 +17338,7 @@
       "area": 30.36,
       "price": 2180.0,
       "url": "https://buy.housefun.com.tw/buy/house/6112645",
-      "text": "正中山路人潮店面 低總價、臨中山路 新北市板橋區中山路二段 看地圖 30.36 坪 1廳1衛 1/8 樓 1小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 71.81萬/坪 8.7% 2,388 萬 2,180 萬",
+      "text": "正中山路人潮店面 低總價、臨中山路 新北市板橋區中山路二段 看地圖 30.36 坪 1廳1衛 1/8 樓 4小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 71.81萬/坪 8.7% 2,388 萬 2,180 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17310,7 +17350,7 @@
       "area": 35.68,
       "price": 1580.0,
       "url": "https://buy.housefun.com.tw/buy/house/7036305",
-      "text": "中山路邊間大公寓 衛浴開窗天然瓦斯方正格局 新北市板橋區中山路二段 看地圖 35.68 坪 3房(室)2廳2衛 4/5 樓 3小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 44.28萬/坪 1,580 萬",
+      "text": "中山路邊間大公寓 衛浴開窗天然瓦斯方正格局 新北市板橋區中山路二段 看地圖 35.68 坪 3房(室)2廳2衛 4/5 樓 5小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 44.28萬/坪 1,580 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17322,7 +17362,7 @@
       "area": 13.28,
       "price": 1580.0,
       "url": "https://buy.housefun.com.tw/buy/house/6471393",
-      "text": "新板微風一樓面寬黃金店面 邊間店面門前好停車 新北市板橋區中山路二段 看地圖 13.28 坪 1房(室)1廳1衛(含加蓋1房(室)) 1/10 樓 6小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 118.98萬/坪，誠意屋主，降很大！ 20.5% 1,988 萬 1,580 萬",
+      "text": "新板微風一樓面寬黃金店面 邊間店面門前好停車 新北市板橋區中山路二段 看地圖 13.28 坪 1房(室)1廳1衛(含加蓋1房(室)) 1/10 樓 8小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 118.98萬/坪，誠意屋主，降很大！ 20.5% 1,988 萬 1,580 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17334,7 +17374,7 @@
       "area": 28.41,
       "price": 1380.0,
       "url": "https://buy.housefun.com.tw/buy/house/6924719",
-      "text": "靜謐時光靜巷雅居 天然瓦斯房間開窗近台北 新北市板橋區中山路二段 看地圖 28.41 坪 3房(室)2廳2衛 4/5 樓 8小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 48.57萬/坪 1,380 萬",
+      "text": "靜謐時光靜巷雅居 天然瓦斯房間開窗近台北 新北市板橋區中山路二段 看地圖 28.41 坪 3房(室)2廳2衛 4/5 樓 11小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 48.57萬/坪 1,380 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17346,7 +17386,7 @@
       "area": 63.47,
       "price": 3688.0,
       "url": "https://buy.housefun.com.tw/buy/house/6908526",
-      "text": "馥華極緻綠意臻品 馥華建設 精工打造 綠意盎然 新北市板橋區中山路二段 看地圖 63.47 坪 4房(室)2廳2衛 3/14 樓 含車位 8小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 含車位單價計算方式請洽業務 3,688 萬",
+      "text": "馥華極緻綠意臻品 馥華建設 精工打造 綠意盎然 新北市板橋區中山路二段 看地圖 63.47 坪 4房(室)2廳2衛 3/14 樓 含車位 11小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 含車位單價計算方式請洽業務 3,688 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17358,7 +17398,7 @@
       "area": 46.3,
       "price": 13300.0,
       "url": "https://buy.housefun.com.tw/buy/house/6396020",
-      "text": "中山富匯聚財金店 興隆市場周邊機能高人潮多 新北市板橋區中山路二段 看地圖 46.3 坪 3房(室)3廳2衛(含加蓋1廳2衛) 1~2/2 樓 10小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 單價 287.26萬/坪 3.6% 13,800 萬 13,300 萬",
+      "text": "中山富匯聚財金店 興隆市場周邊機能高人潮多 新北市板橋區中山路二段 看地圖 46.3 坪 3房(室)3廳2衛(含加蓋1廳2衛) 1~2/2 樓 13小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 單價 287.26萬/坪 3.6% 13,800 萬 13,300 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17370,7 +17410,7 @@
       "area": 66.88,
       "price": 5598.0,
       "url": "https://buy.housefun.com.tw/buy/house/5778082",
-      "text": "市場透天出價可談 正市場人潮匯集商圈生活機能高 新北市板橋區中山路二段 看地圖 66.88 坪 7房(室)8廳3.5衛(含加蓋7房(室)8廳3.5衛) 1~3/3 樓 12小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 83.7萬/坪，誠意屋主，降很大！ 42.6% 9,758 萬 5,598 萬",
+      "text": "市場透天出價可談 正市場人潮匯集商圈生活機能高 新北市板橋區中山路二段 看地圖 66.88 坪 7房(室)8廳3.5衛(含加蓋7房(室)8廳3.5衛) 1~3/3 樓 15小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 83.7萬/坪，誠意屋主，降很大！ 42.6% 9,758 萬 5,598 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17382,7 +17422,7 @@
       "area": 23.01,
       "price": 1038.0,
       "url": "https://buy.housefun.com.tw/buy/house/6953450",
-      "text": "低總價採光三房 房間皆開窗、採光佳 新北市板橋區中山路二段 看地圖 23.01 坪 3房(室)2廳1衛 5/5 樓 13小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 45.11萬/坪 5.5% 1,098 萬 1,038 萬",
+      "text": "低總價採光三房 房間皆開窗、採光佳 新北市板橋區中山路二段 看地圖 23.01 坪 3房(室)2廳1衛 5/5 樓 15小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 45.11萬/坪 5.5% 1,098 萬 1,038 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17394,7 +17434,7 @@
       "area": 15.52,
       "price": 1858.0,
       "url": "https://buy.housefun.com.tw/buy/house/6608516",
-      "text": "板新捷運艾美酒店興隆市場旁店面 近興隆市場人潮眾多 新北市板橋區中山路二段 看地圖 15.52 坪 1廳1衛 1/14 樓 13小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 119.72萬/坪，誠意屋主，降很大！ 14.8% 2,180 萬 1,858 萬",
+      "text": "板新捷運艾美酒店興隆市場旁店面 近興隆市場人潮眾多 新北市板橋區中山路二段 看地圖 15.52 坪 1廳1衛 1/14 樓 16小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 119.72萬/坪，誠意屋主，降很大！ 14.8% 2,180 萬 1,858 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17406,7 +17446,7 @@
       "area": 26.54,
       "price": 1698.0,
       "url": "https://buy.housefun.com.tw/buy/house/7045966",
-      "text": "捷運好近邊間三樓 近板新捷運 馥華艾美 板橋車站 新北市板橋區中山路二段 看地圖 26.54 坪 3房(室)2廳2衛 3/5 樓 2小時前刷新 永慶房屋(股)公司 經紀人員 吳智翔 已認證 優質 單價 63.98萬/坪 1,698 萬",
+      "text": "捷運好近邊間三樓 近板新捷運 馥華艾美 板橋車站 新北市板橋區中山路二段 看地圖 26.54 坪 3房(室)2廳2衛 3/5 樓 5小時前刷新 永慶房屋(股)公司 經紀人員 吳智翔 已認證 優質 單價 63.98萬/坪 1,698 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17418,7 +17458,7 @@
       "area": 27.92,
       "price": 2280.0,
       "url": "https://buy.housefun.com.tw/buy/house/7031457",
-      "text": "捷運面寬停車一樓 捷運步行約5分鐘，面寬約8米 新北市板橋區中山路二段 看地圖 27.92 坪 1房(室)1廳2衛(含加蓋2衛) 1/5 樓 5小時前刷新 永慶房屋(股)公司 經紀人員 吳智翔 已認證 優質 單價 81.66萬/坪 2,280 萬",
+      "text": "捷運面寬停車一樓 捷運步行約5分鐘，面寬約8米 新北市板橋區中山路二段 看地圖 27.92 坪 1房(室)1廳2衛(含加蓋2衛) 1/5 樓 8小時前刷新 永慶房屋(股)公司 經紀人員 吳智翔 已認證 優質 單價 81.66萬/坪 2,280 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17430,7 +17470,7 @@
       "area": 19.9,
       "price": 1488.0,
       "url": "https://buy.housefun.com.tw/buy/house/6897808",
-      "text": "大吉地好用辦公 交通便利可當辦公個人工作室 新北市板橋區中山路二段 看地圖 19.9 坪 2房(室)1廳 3/14 樓 9小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 單價 74.77萬/坪 1,488 萬",
+      "text": "大吉地好用辦公 交通便利可當辦公個人工作室 新北市板橋區中山路二段 看地圖 19.9 坪 2房(室)1廳 3/14 樓 11小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 單價 74.77萬/坪 1,488 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17442,7 +17482,7 @@
       "area": 26.46,
       "price": 1580.0,
       "url": "https://buy.housefun.com.tw/buy/house/7021257",
-      "text": "萬家福旁頂加空間 採光通風良好 交通便利機能完整 新北市板橋區中山路二段 看地圖 26.46 坪 7房(室)7衛(含加蓋2房(室)2衛) 4/4 樓 9小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 單價 59.71萬/坪 1,580 萬",
+      "text": "萬家福旁頂加空間 採光通風良好 交通便利機能完整 新北市板橋區中山路二段 看地圖 26.46 坪 7房(室)7衛(含加蓋2房(室)2衛) 4/4 樓 12小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 單價 59.71萬/坪 1,580 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17454,7 +17494,7 @@
       "area": 44.81,
       "price": 3290.0,
       "url": "https://buy.housefun.com.tw/buy/house/6657927",
-      "text": "中山路靜巷透天 自住置產相宜興隆市場採買方便 新北市板橋區中山路二段 看地圖 44.81 坪 5房(室)3廳3衛(含加蓋1衛) 1~3/3 樓 10小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 73.42萬/坪 8.4% 3,590 萬 3,290 萬",
+      "text": "中山路靜巷透天 自住置產相宜興隆市場採買方便 新北市板橋區中山路二段 看地圖 44.81 坪 5房(室)3廳3衛(含加蓋1衛) 1~3/3 樓 13小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 73.42萬/坪 8.4% 3,590 萬 3,290 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17466,7 +17506,7 @@
       "area": 36.12,
       "price": 3388.0,
       "url": "https://buy.housefun.com.tw/buy/house/5571370",
-      "text": "北市旁面寬金店 租客穩定承租近北市商圈機能高 新北市板橋區中山路二段 看地圖 36.12 坪 2房(室)2廳3衛(含加蓋2衛) 1~2/5 樓 6小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 93.8萬/坪，誠意屋主，降很大！ 14.9% 3,980 萬 3,388 萬",
+      "text": "北市旁面寬金店 租客穩定承租近北市商圈機能高 新北市板橋區中山路二段 看地圖 36.12 坪 2房(室)2廳3衛(含加蓋2衛) 1~2/5 樓 8小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 93.8萬/坪，誠意屋主，降很大！ 14.9% 3,980 萬 3,388 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17478,7 +17518,7 @@
       "area": 21.31,
       "price": 1388.0,
       "url": "https://buy.housefun.com.tw/buy/house/6725995",
-      "text": "稀有釋出中山三樓 生活機能好 新北市板橋區中山路二段 看地圖 21.31 坪 3房(室)2廳1衛(含加蓋1房(室)) 3/5 樓 6小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 65.13萬/坪 1,388 萬",
+      "text": "稀有釋出中山三樓 生活機能好 新北市板橋區中山路二段 看地圖 21.31 坪 3房(室)2廳1衛(含加蓋1房(室)) 3/5 樓 8小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 65.13萬/坪 1,388 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17490,7 +17530,7 @@
       "area": 20.24,
       "price": 2280.0,
       "url": "https://buy.housefun.com.tw/buy/house/7047262",
-      "text": "稀有正大馬路商業用低總價純一樓金店面自用收租皆可 新北市板橋區中山路二段 看地圖 20.24 坪 1廳1衛 1/5 樓 6小時前刷新 永慶房屋(股)公司 經紀人員 吳竹武 已認證 優質 單價 112.65萬/坪 2,280 萬",
+      "text": "稀有正大馬路商業用低總價純一樓金店面自用收租皆可 新北市板橋區中山路二段 看地圖 20.24 坪 1廳1衛 1/5 樓 9小時前刷新 永慶房屋(股)公司 經紀人員 吳竹武 已認證 優質 單價 112.65萬/坪 2,280 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17502,7 +17542,7 @@
       "area": 187.88,
       "price": 23800.0,
       "url": "https://buy.housefun.com.tw/buy/house/6825324",
-      "text": "連鎖三角窗黃金店 現租全國電子顯眼路口人車流密集 新北市板橋區中山路二段 看地圖 187.88 坪 2廳3衛 1~2/7 樓 7小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 單價 126.68萬/坪 23,800 萬",
+      "text": "連鎖三角窗黃金店 現租全國電子顯眼路口人車流密集 新北市板橋區中山路二段 看地圖 187.88 坪 2廳3衛 1~2/7 樓 9小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 單價 126.68萬/坪 23,800 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17514,7 +17554,7 @@
       "area": 26.27,
       "price": 1238.0,
       "url": "https://buy.housefun.com.tw/buy/house/7023974",
-      "text": "出價談大陽台公寓 靜巷路寬大四樓 新北市板橋區中山路二段 看地圖 26.27 坪 3房(室)2廳1衛 4/5 樓 7小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 47.13萬/坪 1,238 萬",
+      "text": "出價談大陽台公寓 靜巷路寬大四樓 新北市板橋區中山路二段 看地圖 26.27 坪 3房(室)2廳1衛 4/5 樓 10小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 47.13萬/坪 1,238 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17526,7 +17566,7 @@
       "area": 136.79,
       "price": 7800.0,
       "url": "https://buy.housefun.com.tw/buy/house/6151115",
-      "text": "中山路大坪數店辦 使用空間大 新北市板橋區中山路二段 看地圖 136.79 坪 3房(室)2廳2衛 1/7 樓 含車位 8小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 單價 含車位單價計算方式請洽業務 7,800 萬",
+      "text": "中山路大坪數店辦 使用空間大 新北市板橋區中山路二段 看地圖 136.79 坪 3房(室)2廳2衛 1/7 樓 含車位 11小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 單價 含車位單價計算方式請洽業務 7,800 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17538,7 +17578,7 @@
       "area": 25.41,
       "price": 5900.0,
       "url": "https://buy.housefun.com.tw/buy/house/4727006",
-      "text": "中山透天金雞母 近埔墘家樂福中山路二段 新北市板橋區中山路二段 看地圖 25.41 坪 10房(室)1廳11衛(含加蓋4房(室)4衛) 1~2/2 樓 12小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 單價 232.19萬/坪 5,900 萬",
+      "text": "中山透天金雞母 近埔墘家樂福中山路二段 新北市板橋區中山路二段 看地圖 25.41 坪 10房(室)1廳11衛(含加蓋4房(室)4衛) 1~2/2 樓 15小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 單價 232.19萬/坪 5,900 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
@@ -17550,524 +17590,743 @@
       "area": 35.19,
       "price": 6900.0,
       "url": "https://buy.housefun.com.tw/buy/house/4725436",
-      "text": "中山收租透天住店 近家樂福中山路二段 新北市板橋區中山路二段 看地圖 35.19 坪 18房(室)1廳19衛(含加蓋8房(室)8衛) 1~2/2 樓 14小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 單價 196.08萬/坪 6,900 萬",
+      "text": "中山收租透天住店 近家樂福中山路二段 新北市板橋區中山路二段 看地圖 35.19 坪 18房(室)1廳19衛(含加蓋8房(室)8衛) 1~2/2 樓 17小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 單價 196.08萬/坪 6,900 萬",
       "sourceMode": "housefun_yungching_proxy"
     },
     {
-      "id": "HF:6923936",
-      "proxyId": "6923936",
+      "id": "YC:4308114",
       "road": "板橋區三民路二段",
-      "title": "靜謐裝潢質感美寓 社區24小時警衛安全不打烊",
-      "address": "新北市板橋區三民路二段",
-      "area": 31.69,
-      "price": 1480.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6923936",
-      "text": "靜謐裝潢質感美寓 社區24小時警衛安全不打烊 新北市板橋區三民路二段 看地圖 31.69 坪 2房(室)2廳1衛 4/5 樓 1小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 降價 單價 46.7萬/坪 6.8% 1,588 萬 1,480 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6727508",
-      "proxyId": "6727508",
-      "road": "板橋區三民路二段",
-      "title": "板橋大空間好停車 門前好停車 增建空間大",
-      "address": "新北市板橋區三民路二段",
-      "area": 20.62,
-      "price": 1680.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6727508",
-      "text": "板橋大空間好停車 門前好停車 增建空間大 新北市板橋區三民路二段 看地圖 20.62 坪 3房(室)1廳1衛 1/4 樓 2小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 降價 單價 81.47萬/坪，誠意屋主，降很大！ 10.6% 1,880 萬 1,680 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6085510",
-      "proxyId": "6085510",
-      "road": "板橋區三民路二段",
-      "title": "榮耀經典採光四房 全新未住過知名建商無樑柱設計",
-      "address": "新北市板橋區三民路二段",
-      "area": 65.1,
-      "price": 4298.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6085510",
-      "text": "榮耀經典採光四房 全新未住過知名建商無樑柱設計 新北市板橋區三民路二段 看地圖 65.1 坪 4房(室)2廳2衛 2/12 樓 含車位 6小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 含車位單價計算方式請洽業務 6.3% 4,588 萬 4,298 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6529444",
-      "proxyId": "6529444",
-      "road": "板橋區三民路二段",
-      "title": "光復學區邊間頂加公寓 邊間採光好通風佳",
-      "address": "新北市板橋區三民路二段",
-      "area": 23.43,
-      "price": 1058.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6529444",
-      "text": "光復學區邊間頂加公寓 邊間採光好通風佳 新北市板橋區三民路二段 看地圖 23.43 坪 7房(室)3廳2衛(含加蓋4房(室)1廳1衛) 5/5 樓 8小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 降價 單價 45.16萬/坪，誠意屋主，降很大！ 17.9% 1,288 萬 1,058 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6806130",
-      "proxyId": "6806130",
-      "road": "板橋區三民路二段",
-      "title": "國泰名宅正泰靜巷 邊間大坪數 空間明亮 通風佳",
-      "address": "新北市板橋區三民路二段",
-      "area": 36.55,
-      "price": 1638.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6806130",
-      "text": "國泰名宅正泰靜巷 邊間大坪數 空間明亮 通風佳 新北市板橋區三民路二段正泰七巷 看地圖 36.55 坪 4房(室)3廳2衛(含加蓋1廳) 5/5 樓 12小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 44.82萬/坪，誠意屋主，降很大！ 12.9% 1,880 萬 1,638 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6878731",
-      "proxyId": "6878731",
-      "road": "板橋區三民路二段",
-      "title": "近埔墘市場低樓層 低樓層免爬高機能好家樂福市場",
-      "address": "新北市板橋區三民路二段",
-      "area": 27.59,
-      "price": 1398.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6878731",
-      "text": "近埔墘市場低樓層 低樓層免爬高機能好家樂福市場 新北市板橋區三民路二段 看地圖 27.59 坪 3房(室)2廳1衛 3/5 樓 14小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 降價 單價 50.67萬/坪 6% 1,488 萬 1,398 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6685434",
-      "proxyId": "6685434",
-      "road": "板橋區三民路二段",
-      "title": "住一樓舒適生活 雙店面自住營業皆適合門前好停車",
-      "address": "新北市板橋區三民路二段",
-      "area": 52.52,
-      "price": 2688.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6685434",
-      "text": "住一樓舒適生活 雙店面自住營業皆適合門前好停車 新北市板橋區三民路二段 看地圖 52.52 坪 3房(室)2廳2衛(含加蓋2房(室)) B1~1/5 樓 15小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 降價 單價 51.18萬/坪 6.9% 2,888 萬 2,688 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6997729",
-      "proxyId": "6997729",
-      "road": "板橋區三民路二段",
-      "title": "埔墘公園好停三房 門口好停、屋況佳",
-      "address": "新北市板橋區三民路二段",
-      "area": 25.27,
-      "price": 1890.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6997729",
-      "text": "埔墘公園好停三房 門口好停、屋況佳 新北市板橋區三民路二段 看地圖 25.27 坪 3房(室)2廳1衛 1/4 樓 15小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 單價 74.79萬/坪 4.5% 1,980 萬 1,890 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6749411",
-      "proxyId": "6749411",
-      "road": "板橋區三民路二段",
-      "title": "全新可談8樓三房 全新未住過新成屋",
-      "address": "新北市板橋區三民路二段",
-      "area": 38.17,
-      "price": 2940.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6749411",
-      "text": "全新可談8樓三房 全新未住過新成屋 新北市板橋區三民路二段 看地圖 38.17 坪 3房(室)2廳1衛 8/11 樓 35分鐘前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 降價 單價 77.02萬/坪 7.2% 3,168 萬 2,940 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6214472",
-      "proxyId": "6214472",
-      "road": "板橋區三民路二段",
-      "title": "經典國泰三房一樓好停 國泰建設邊間好停車、有代收垃",
-      "address": "新北市板橋區三民路二段",
-      "area": 31.03,
-      "price": 2349.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6214472",
-      "text": "經典國泰三房一樓好停 國泰建設邊間好停車、有代收垃 新北市板橋區三民路二段正泰三巷 看地圖 31.03 坪 3房(室)2廳2衛 1/5 樓 8小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 75.7萬/坪 6% 2,498 萬 2,349 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6979480",
-      "proxyId": "6979480",
-      "road": "板橋區三民路二段",
-      "title": "家樂福商圈一橋之隔就進台北國泰格局前後大陽台 埔墘",
-      "address": "新北市板橋區三民路二段",
-      "area": 29.92,
-      "price": 1580.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6979480",
-      "text": "家樂福商圈一橋之隔就進台北國泰格局前後大陽台 埔墘 新北市板橋區三民路二段正泰二巷 看地圖 29.92 坪 3房(室)2廳2衛 4/5 樓 10小時前刷新 永慶房屋(股)公司 經紀人員 張睿杰 已認證 優質 降價 單價 52.81萬/坪 9.7% 1,750 萬 1,580 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6812583",
-      "proxyId": "6812583",
-      "road": "板橋區三民路二段",
-      "title": "三珉築琚3房5樓 全新未住過新成屋",
-      "address": "新北市板橋區三民路二段",
-      "area": 38.17,
-      "price": 2862.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6812583",
-      "text": "三珉築琚3房5樓 全新未住過新成屋 新北市板橋區三民路二段 看地圖 38.17 坪 3房(室)2廳2衛 5/11 樓 11小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 降價 單價 74.98萬/坪 7.4% 3,092 萬 2,862 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6951731",
-      "proxyId": "6951731",
-      "road": "板橋區三民路二段",
-      "title": "國泰建設公寓稀有打通戶條件適合三代同堂大家庭 三樓",
-      "address": "新北市板橋區三民路二段",
-      "area": 55.26,
-      "price": 2660.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6951731",
-      "text": "國泰建設公寓稀有打通戶條件適合三代同堂大家庭 三樓 新北市板橋區三民路二段 看地圖 55.26 坪 4房(室)2廳2衛 3/5 樓 12小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 單價 48.14萬/坪 2,660 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6965195",
-      "proxyId": "6965195",
-      "road": "板橋區三民路二段",
-      "title": "國泰建設稀有三樓 國泰方正三樓免爬高",
-      "address": "新北市板橋區三民路二段",
-      "area": 27.63,
-      "price": 1330.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6965195",
-      "text": "國泰建設稀有三樓 國泰方正三樓免爬高 新北市板橋區三民路二段 看地圖 27.63 坪 2房(室)1廳1衛 3/5 樓 13小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 單價 48.14萬/坪 1,330 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6965194",
-      "proxyId": "6965194",
-      "road": "板橋區三民路二段",
-      "title": "國泰建設首購首選 國泰建設",
-      "address": "新北市板橋區三民路二段",
-      "area": 27.63,
-      "price": 1330.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6965194",
-      "text": "國泰建設首購首選 國泰建設 新北市板橋區三民路二段 看地圖 27.63 坪 2房(室)1廳1衛 3/5 樓 13小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 單價 48.14萬/坪 1,330 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6749410",
-      "proxyId": "6749410",
-      "road": "板橋區三民路二段",
-      "title": "三珉築琚3房4樓 全新未住過新成屋",
-      "address": "新北市板橋區三民路二段",
-      "area": 38.17,
-      "price": 3283.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6749410",
-      "text": "三珉築琚3房4樓 全新未住過新成屋 新北市板橋區三民路二段 看地圖 38.17 坪 3房(室)2廳2衛 4/11 樓 13小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 單價 86.01萬/坪 3,283 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:7023034",
-      "proxyId": "7023034",
-      "road": "板橋區三民路二段",
-      "title": "大坪數頂加好規劃 36.8坪大空間邊間採光佳",
-      "address": "新北市板橋區三民路二段",
-      "area": 36.8,
+      "title": "正隆國泰美妝頂加",
       "price": 1598.0,
-      "url": "https://buy.housefun.com.tw/buy/house/7023034",
-      "text": "大坪數頂加好規劃 36.8坪大空間邊間採光佳 新北市板橋區三民路二段 看地圖 36.82 坪 5房(室)2廳2衛(含加蓋2房(室)1衛) 5/5 樓 14小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 單價 43.4萬/坪 1,598 萬",
-      "sourceMode": "housefun_yungching_proxy"
+      "area": 29.53,
+      "floor": "5/5樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/4308114",
+      "sourceMode": "yungching_official_browser",
+      "text": "正隆國泰美妝頂加新北市板橋區三民路二段專任委託公寓41.9年建坪29.53主+陽29.535/5樓3房(室)3廳3衛 美妝頂加5+6永慶房屋新上廁所有窗有天然瓦斯房間都有窗近捷運板新站1,598",
+      "rawText": "正隆國泰美妝頂加新北市板橋區三民路二段專任委託公寓41.9年建坪29.53主+陽29.535/5樓3房(室)3廳3衛 美妝頂加5+6永慶房屋新上廁所有窗有天然瓦斯房間都有窗近捷運板新站1,598",
+      "officialId": "4308114"
     },
     {
-      "id": "HF:6905364",
-      "proxyId": "6905364",
+      "id": "YC:6456220",
       "road": "板橋區三民路二段",
-      "title": "近北市精裝透天 近興隆市場家樂福生活機能完善",
+      "title": "榮耀經典採光四房",
+      "price": 4298.0,
+      "area": 65.1,
+      "floor": null,
       "address": "新北市板橋區三民路二段",
-      "area": 22.01,
-      "price": 1980.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6905364",
-      "text": "近北市精裝透天 近興隆市場家樂福生活機能完善 新北市板橋區三民路二段 看地圖 22.01 坪 1房(室)3廳2衛(含加蓋1廳2衛) 1~2/3 樓 14小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 降價 單價 89.96萬/坪，誠意屋主，降很大！ 13.2% 2,280 萬 1,980 萬",
-      "sourceMode": "housefun_yungching_proxy"
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/6456220",
+      "sourceMode": "yungching_official_browser",
+      "text": "榮耀經典採光四房 新北市板橋區三民路二段 住宅大樓12.2年建坪65.10 4房(室)2廳2衛塔式車位 4,588萬含車位價 290萬 4,298",
+      "rawText": "榮耀經典採光四房 新北市板橋區三民路二段 住宅大樓12.2年建坪65.10 4房(室)2廳2衛塔式車位 4,588萬含車位價 290萬 4,298",
+      "officialId": "6456220"
     },
     {
-      "id": "HF:6749391",
-      "proxyId": "6749391",
+      "id": "YC:6586357",
       "road": "板橋區三民路二段",
-      "title": "全新雙捷幸福3房 全新未住過新成屋",
+      "title": "經典國泰三房一樓好停",
+      "price": 2349.0,
+      "area": 31.03,
+      "floor": null,
       "address": "新北市板橋區三民路二段",
-      "area": 38.17,
-      "price": 2596.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6749391",
-      "text": "全新雙捷幸福3房 全新未住過新成屋 新北市板橋區三民路二段 看地圖 38.17 坪 3房(室)2廳2衛 2/11 樓 14小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 降價 單價 68.01萬/坪，誠意屋主，降很大！ 10.5% 2,901 萬 2,596 萬",
-      "sourceMode": "housefun_yungching_proxy"
+      "type": "正泰三巷 公寓",
+      "url": "https://buy.yungching.com.tw/house/6586357",
+      "sourceMode": "yungching_official_browser",
+      "text": "經典國泰三房一樓好停 新北市板橋區三民路二段正泰三巷 公寓41.4年建坪31.03 3房(室)2廳2衛 2,498萬 149萬 2,349",
+      "rawText": "經典國泰三房一樓好停 新北市板橋區三民路二段正泰三巷 公寓41.4年建坪31.03 3房(室)2廳2衛 2,498萬 149萬 2,349",
+      "officialId": "6586357"
     },
     {
-      "id": "HF:6749390",
-      "proxyId": "6749390",
+      "id": "YC:6700174",
       "road": "板橋區三民路二段",
-      "title": "三珉築琚露臺戶 全新未住過新成屋",
+      "title": "大馬路大空間金店",
+      "price": 7000.0,
+      "area": 54.03,
+      "floor": null,
       "address": "新北市板橋區三民路二段",
-      "area": 34.91,
-      "price": 3043.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6749390",
-      "text": "三珉築琚露臺戶 全新未住過新成屋 新北市板橋區三民路二段 看地圖 34.91 坪 3房(室)2廳1衛 11/11 樓 14小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 降價 單價 87.17萬/坪 7.3% 3,282 萬 3,043 萬",
-      "sourceMode": "housefun_yungching_proxy"
+      "type": "店面",
+      "url": "https://buy.yungching.com.tw/house/6700174",
+      "sourceMode": "yungching_official_browser",
+      "text": "大馬路大空間金店 新北市板橋區三民路二段 店面40.3年建坪54.03 --房(室)1廳1衛 7,500萬 500萬 7,000",
+      "rawText": "大馬路大空間金店 新北市板橋區三民路二段 店面40.3年建坪54.03 --房(室)1廳1衛 7,500萬 500萬 7,000",
+      "officialId": "6700174"
     },
     {
-      "id": "HF:6749188",
-      "proxyId": "6749188",
+      "id": "YC:6724191",
       "road": "板橋區三民路二段",
-      "title": "雙捷精品9樓兩房 全新未住過新成屋",
-      "address": "新北市板橋區三民路二段",
-      "area": 30.04,
-      "price": 2313.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6749188",
-      "text": "雙捷精品9樓兩房 全新未住過新成屋 新北市板橋區三民路二段 看地圖 30.04 坪 2房(室)2廳2衛 9/11 樓 14小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 降價 單價 77萬/坪 8.3% 2,523 萬 2,313 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6749166",
-      "proxyId": "6749166",
-      "road": "板橋區三民路二段",
-      "title": "雙捷幸福十樓兩房 全新未住過新成屋",
-      "address": "新北市板橋區三民路二段",
-      "area": 30.04,
-      "price": 2315.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6749166",
-      "text": "雙捷幸福十樓兩房 全新未住過新成屋 新北市板橋區三民路二段 看地圖 30.04 坪 2房(室)2廳2衛 10/11 樓 15小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 降價 單價 77.06萬/坪 8.2% 2,523 萬 2,315 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6743070",
-      "proxyId": "6743070",
-      "road": "板橋區三民路二段",
-      "title": "埔墘面寬6.3米正馬路金店面 商圈內連鎖店林立有人",
-      "address": "新北市板橋區三民路二段",
-      "area": 29.33,
+      "title": "埔墘面寬6.3米正馬路金店面",
       "price": 4888.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6743070",
-      "text": "埔墘面寬6.3米正馬路金店面 商圈內連鎖店林立有人 新北市板橋區三民路二段 看地圖 29.33 坪 2房(室)2廳2衛(含加蓋1房(室)1廳2衛) 1/5 樓 43分鐘前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 降價 單價 166.66萬/坪 9.1% 5,380 萬 4,888 萬",
-      "sourceMode": "housefun_yungching_proxy"
+      "area": 29.33,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/6724191",
+      "sourceMode": "yungching_official_browser",
+      "text": "埔墘面寬6.3米正馬路金店面 新北市板橋區三民路二段 專任委託 公寓46.8年建坪29.33 2房(室)2廳2衛(含加蓋1房(室)1廳2衛) 5,380萬 492萬 4,888",
+      "rawText": "埔墘面寬6.3米正馬路金店面 新北市板橋區三民路二段 專任委託 公寓46.8年建坪29.33 2房(室)2廳2衛(含加蓋1房(室)1廳2衛) 5,380萬 492萬 4,888",
+      "officialId": "6724191"
     },
     {
-      "id": "HF:6877876",
-      "proxyId": "6877876",
+      "id": "YC:6913447",
+      "road": "板橋區三民路二段",
+      "title": "光復學區邊間頂加公寓",
+      "price": 1058.0,
+      "area": 23.43,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/6913447",
+      "sourceMode": "yungching_official_browser",
+      "text": "光復學區邊間頂加公寓 新北市板橋區三民路二段 公寓46.8年建坪23.43 7房(室)3廳2衛(含加蓋4房(室)1廳1衛) 1,288萬 230萬 1,058",
+      "rawText": "光復學區邊間頂加公寓 新北市板橋區三民路二段 公寓46.8年建坪23.43 7房(室)3廳2衛(含加蓋4房(室)1廳1衛) 1,288萬 230萬 1,058",
+      "officialId": "6913447"
+    },
+    {
+      "id": "YC:7078318",
+      "road": "板橋區三民路二段",
+      "title": "住一樓舒適生活",
+      "price": 2688.0,
+      "area": 52.52,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "華廈",
+      "url": "https://buy.yungching.com.tw/house/7078318",
+      "sourceMode": "yungching_official_browser",
+      "text": "住一樓舒適生活 新北市板橋區三民路二段 華廈28.1年建坪52.52 3房(室)2廳2衛(含加蓋2房(室)--廳--衛) 2,888萬 200萬 2,688",
+      "rawText": "住一樓舒適生活 新北市板橋區三民路二段 華廈28.1年建坪52.52 3房(室)2廳2衛(含加蓋2房(室)--廳--衛) 2,888萬 200萬 2,688",
+      "officialId": "7078318"
+    },
+    {
+      "id": "YC:7122798",
+      "road": "板橋區三民路二段",
+      "title": "板橋大空間好停車",
+      "price": 1680.0,
+      "area": 20.62,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7122798",
+      "sourceMode": "yungching_official_browser",
+      "text": "板橋大空間好停車 新北市板橋區三民路二段 公寓48.9年建坪20.62 3房(室)1廳1衛 1,880萬 200萬 1,680",
+      "rawText": "板橋大空間好停車 新北市板橋區三民路二段 公寓48.9年建坪20.62 3房(室)1廳1衛 1,880萬 200萬 1,680",
+      "officialId": "7122798"
+    },
+    {
+      "id": "YC:7144949",
+      "road": "板橋區三民路二段",
+      "title": "三珉築琚挑高店辦",
+      "price": 2815.0,
+      "area": 24.48,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "店面",
+      "url": "https://buy.yungching.com.tw/house/7144949",
+      "sourceMode": "yungching_official_browser",
+      "text": "三珉築琚挑高店辦 新北市板橋區三民路二段 店面5.9年建坪24.48 --房(室)1廳1衛 2,938萬 123萬 2,815",
+      "rawText": "三珉築琚挑高店辦 新北市板橋區三民路二段 店面5.9年建坪24.48 --房(室)1廳1衛 2,938萬 123萬 2,815",
+      "officialId": "7144949"
+    },
+    {
+      "id": "YC:7144966",
+      "road": "板橋區三民路二段",
+      "title": "全新雙捷幸福3房",
+      "price": 2596.0,
+      "area": 38.17,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "華廈",
+      "url": "https://buy.yungching.com.tw/house/7144966",
+      "sourceMode": "yungching_official_browser",
+      "text": "全新雙捷幸福3房 新北市板橋區三民路二段 華廈6.1年建坪38.17 3房(室)2廳2衛 2,901萬 305萬 2,596",
+      "rawText": "全新雙捷幸福3房 新北市板橋區三民路二段 華廈6.1年建坪38.17 3房(室)2廳2衛 2,901萬 305萬 2,596",
+      "officialId": "7144966"
+    },
+    {
+      "id": "YC:7145002",
+      "road": "板橋區三民路二段",
+      "title": "三珉築琚3房4樓",
+      "price": 3283.0,
+      "area": 38.17,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7145002",
+      "sourceMode": "yungching_official_browser",
+      "text": "三珉築琚3房4樓 新北市板橋區三民路二段 住宅大樓5.9年建坪38.17 3房(室)2廳2衛 3,283",
+      "rawText": "三珉築琚3房4樓 新北市板橋區三民路二段 住宅大樓5.9年建坪38.17 3房(室)2廳2衛 3,283",
+      "officialId": "7145002"
+    },
+    {
+      "id": "YC:7145039",
+      "road": "板橋區三民路二段",
+      "title": "三珉築琚3房5樓",
+      "price": 2862.0,
+      "area": 38.17,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7145039",
+      "sourceMode": "yungching_official_browser",
+      "text": "三珉築琚3房5樓 新北市板橋區三民路二段 住宅大樓5.9年建坪38.17 3房(室)2廳2衛 3,092萬 230萬 2,862",
+      "rawText": "三珉築琚3房5樓 新北市板橋區三民路二段 住宅大樓5.9年建坪38.17 3房(室)2廳2衛 3,092萬 230萬 2,862",
+      "officialId": "7145039"
+    },
+    {
+      "id": "YC:7145052",
+      "road": "板橋區三民路二段",
+      "title": "全新可談8樓三房",
+      "price": 2940.0,
+      "area": 38.17,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7145052",
+      "sourceMode": "yungching_official_browser",
+      "text": "全新可談8樓三房 新北市板橋區三民路二段 住宅大樓6.0年建坪38.17 3房(室)2廳1衛 3,168萬 228萬 2,940",
+      "rawText": "全新可談8樓三房 新北市板橋區三民路二段 住宅大樓6.0年建坪38.17 3房(室)2廳1衛 3,168萬 228萬 2,940",
+      "officialId": "7145052"
+    },
+    {
+      "id": "YC:7145066",
+      "road": "板橋區三民路二段",
+      "title": "三珉築琚露臺戶",
+      "price": 3043.0,
+      "area": 34.91,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7145066",
+      "sourceMode": "yungching_official_browser",
+      "text": "三珉築琚露臺戶 新北市板橋區三民路二段 住宅大樓5.9年建坪34.91 3房(室)2廳1衛 3,282萬 239萬 3,043",
+      "rawText": "三珉築琚露臺戶 新北市板橋區三民路二段 住宅大樓5.9年建坪34.91 3房(室)2廳1衛 3,282萬 239萬 3,043",
+      "officialId": "7145066"
+    },
+    {
+      "id": "YC:7145115",
+      "road": "板橋區三民路二段",
+      "title": "雙捷精品9樓兩房",
+      "price": 2313.0,
+      "area": 30.04,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7145115",
+      "sourceMode": "yungching_official_browser",
+      "text": "雙捷精品9樓兩房 新北市板橋區三民路二段 住宅大樓6.1年建坪30.04 2房(室)2廳2衛 2,523萬 210萬 2,313",
+      "rawText": "雙捷精品9樓兩房 新北市板橋區三民路二段 住宅大樓6.1年建坪30.04 2房(室)2廳2衛 2,523萬 210萬 2,313",
+      "officialId": "7145115"
+    },
+    {
+      "id": "YC:7145128",
+      "road": "板橋區三民路二段",
+      "title": "雙捷幸福十樓兩房",
+      "price": 2315.0,
+      "area": 30.04,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7145128",
+      "sourceMode": "yungching_official_browser",
+      "text": "雙捷幸福十樓兩房 新北市板橋區三民路二段 住宅大樓6.1年建坪30.04 2房(室)2廳2衛 2,523萬 208萬 2,315",
+      "rawText": "雙捷幸福十樓兩房 新北市板橋區三民路二段 住宅大樓6.1年建坪30.04 2房(室)2廳2衛 2,523萬 208萬 2,315",
+      "officialId": "7145128"
+    },
+    {
+      "id": "YC:7198515",
+      "road": "板橋區三民路二段",
+      "title": "國泰名宅正泰靜巷",
+      "price": 1638.0,
+      "area": 36.55,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "正泰七巷 公寓",
+      "url": "https://buy.yungching.com.tw/house/7198515",
+      "sourceMode": "yungching_official_browser",
+      "text": "國泰名宅正泰靜巷 新北市板橋區三民路二段正泰七巷 公寓41.9年建坪36.55 4房(室)3廳2衛(含加蓋--房(室)1廳--衛) 1,880萬 242萬 1,638",
+      "rawText": "國泰名宅正泰靜巷 新北市板橋區三民路二段正泰七巷 公寓41.9年建坪36.55 4房(室)3廳2衛(含加蓋--房(室)1廳--衛) 1,880萬 242萬 1,638",
+      "officialId": "7198515"
+    },
+    {
+      "id": "YC:7276912",
       "road": "板橋區三民路二段",
       "title": "板橋名宅潤泰新大陸｜SRC鋼骨耐震｜大基地低公設",
-      "address": "新北市板橋區三民路二段",
-      "area": 90.01,
       "price": 4888.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6877876",
-      "text": "板橋名宅潤泰新大陸｜SRC鋼骨耐震｜大基地低公設 新北市板橋區三民路二段 看地圖 90.01 坪 5房(室)2廳2衛(含加蓋1房(室)) 19~20/21 樓 含車位 56分鐘前刷新 永慶房屋(股)公司 經紀人員 張睿杰 已認證 優質 降價 單價 含車位單價計算方式請洽業務 5.6% 5,180 萬 4,888 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:7027395",
-      "proxyId": "7027395",
-      "road": "板橋區三民路二段",
-      "title": "近捷運明亮四房 三面採光明亮新青安首選",
+      "area": 90.01,
+      "floor": null,
       "address": "新北市板橋區三民路二段",
-      "area": 24.95,
-      "price": 1298.0,
-      "url": "https://buy.housefun.com.tw/buy/house/7027395",
-      "text": "近捷運明亮四房 三面採光明亮新青安首選 新北市板橋區三民路二段 看地圖 24.95 坪 4房(室)2廳1衛 4/5 樓 11小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 降價 單價 52.02萬/坪 6.5% 1,388 萬 1,298 萬",
-      "sourceMode": "housefun_yungching_proxy"
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7276912",
+      "sourceMode": "yungching_official_browser",
+      "text": "板橋名宅潤泰新大陸｜SRC鋼骨耐震｜大基地低公設 新北市板橋區三民路二段 住宅大樓34.5年建坪90.01 5房(室)2廳2衛(含加蓋1房(室)--廳--衛)坡道平面車位 5,180萬含車位價300萬元 292萬 4,888",
+      "rawText": "板橋名宅潤泰新大陸｜SRC鋼骨耐震｜大基地低公設 新北市板橋區三民路二段 住宅大樓34.5年建坪90.01 5房(室)2廳2衛(含加蓋1房(室)--廳--衛)坡道平面車位 5,180萬含車位價300萬元 292萬 4,888",
+      "officialId": "7276912"
     },
     {
-      "id": "HF:6749408",
-      "proxyId": "6749408",
+      "id": "YC:7277820",
       "road": "板橋區三民路二段",
-      "title": "三珉築琚挑高店辦 全新未住過新成屋",
-      "address": "新北市板橋區三民路二段",
-      "area": 24.48,
-      "price": 2815.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6749408",
-      "text": "三珉築琚挑高店辦 全新未住過新成屋 新北市板橋區三民路二段 看地圖 24.48 坪 1廳1衛 1/11 樓 13小時前刷新 永慶房屋(股)公司 經紀人員 劉得楷 已認證 優質 單價 114.99萬/坪 4.2% 2,938 萬 2,815 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6322272",
-      "proxyId": "6322272",
-      "road": "板橋區三民路二段",
-      "title": "大馬路大空間金店 正三民路稀有釋出黃金店面",
-      "address": "新北市板橋區三民路二段",
-      "area": 54.03,
-      "price": 7000.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6322272",
-      "text": "大馬路大空間金店 正三民路稀有釋出黃金店面 新北市板橋區三民路二段 看地圖 54.03 坪 1廳1衛 1~2/5 樓 7小時前刷新 永慶房屋(股)公司 經紀人員 張睿杰 已認證 優質 降價 單價 129.56萬/坪 6.7% 7,500 萬 7,000 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:7054464",
-      "proxyId": "7054464",
-      "road": "板橋區三民路二段",
-      "title": "正隆國泰美妝頂加 美妝頂加5+6",
-      "address": "新北市板橋區三民路二段",
-      "area": 29.53,
-      "price": 1598.0,
-      "url": "https://buy.housefun.com.tw/buy/house/7054464",
-      "text": "正隆國泰美妝頂加 美妝頂加5+6 新北市板橋區三民路二段 看地圖 29.53 坪 3房(室)3廳3衛 5/5 樓 3小時前刷新 永慶房屋(股)公司 經紀人員 吳智翔 已認證 優質 新上架 單價 54.11萬/坪 1,598 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:7029333",
-      "proxyId": "7029333",
-      "road": "板橋區三民路二段",
-      "title": "國泰稀有公寓頂加 國泰建設、公寓型社區有代收垃圾",
-      "address": "新北市板橋區三民路二段",
-      "area": 33.53,
-      "price": 1380.0,
-      "url": "https://buy.housefun.com.tw/buy/house/7029333",
-      "text": "國泰稀有公寓頂加 國泰建設、公寓型社區有代收垃圾 新北市板橋區三民路二段 看地圖 33.53 坪 6房(室)4廳3衛(含加蓋3房(室)2廳1衛) 5/5 樓 14小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 單價 41.16萬/坪 1,380 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6848744",
-      "proxyId": "6848744",
-      "road": "板橋區光復街",
-      "title": "現況辦公可隔三房坡道平面車位 方正格局方便規劃採光",
-      "address": "新北市板橋區光復街",
-      "area": 53.21,
-      "price": 2688.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6848744",
-      "text": "現況辦公可隔三房坡道平面車位 方正格局方便規劃採光 新北市板橋區光復街 看地圖 53.21 坪 1房(室)2廳1衛 6/7 樓 含車位 15小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 含車位單價計算方式請洽業務 7.3% 2,900 萬 2,688 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6917619",
-      "proxyId": "6917619",
-      "road": "板橋區萬安街",
-      "title": "適合三代同堂輕裝潢透天出價就談 天然瓦斯",
-      "address": "新北市板橋區萬安街",
+      "title": "近埔墘市場低樓層",
+      "price": 1398.0,
       "area": 27.59,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7277820",
+      "sourceMode": "yungching_official_browser",
+      "text": "近埔墘市場低樓層 新北市板橋區三民路二段 專任委託 公寓46.4年建坪27.59 3房(室)2廳1衛 1,488萬 90萬 1,398",
+      "rawText": "近埔墘市場低樓層 新北市板橋區三民路二段 專任委託 公寓46.4年建坪27.59 3房(室)2廳1衛 1,488萬 90萬 1,398",
+      "officialId": "7277820"
+    },
+    {
+      "id": "YC:7307177",
+      "road": "板橋區三民路二段",
+      "title": "近北市精裝透天",
       "price": 1980.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6917619",
-      "text": "適合三代同堂輕裝潢透天出價就談 天然瓦斯 新北市板橋區萬安街 看地圖 27.59 坪 3房(室)4廳2衛(含加蓋1房(室)2廳1衛) 1~2/2 樓 23分鐘前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 71.77萬/坪 1,980 萬",
-      "sourceMode": "housefun_yungching_proxy"
+      "area": 22.01,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "透天厝",
+      "url": "https://buy.yungching.com.tw/house/7307177",
+      "sourceMode": "yungching_official_browser",
+      "text": "近北市精裝透天 新北市板橋區三民路二段 專任委託 透天厝58.7年建坪22.01 1房(室)3廳2衛(含加蓋--房(室)1廳2衛) 2,280萬 300萬 1,980",
+      "rawText": "近北市精裝透天 新北市板橋區三民路二段 專任委託 透天厝58.7年建坪22.01 1房(室)3廳2衛(含加蓋--房(室)1廳2衛) 2,280萬 300萬 1,980",
+      "officialId": "7307177"
     },
     {
-      "id": "HF:7031121",
-      "proxyId": "7031121",
+      "id": "YC:7327746",
+      "road": "板橋區三民路二段",
+      "title": "靜謐裝潢質感美寓",
+      "price": 1480.0,
+      "area": 31.69,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7327746",
+      "sourceMode": "yungching_official_browser",
+      "text": "靜謐裝潢質感美寓 新北市板橋區三民路二段 公寓39.4年建坪31.69 2房(室)2廳1衛 1,588萬 108萬 1,480",
+      "rawText": "靜謐裝潢質感美寓 新北市板橋區三民路二段 公寓39.4年建坪31.69 2房(室)2廳1衛 1,588萬 108萬 1,480",
+      "officialId": "7327746"
+    },
+    {
+      "id": "YC:7359562",
+      "road": "板橋區三民路二段",
+      "title": "國泰建設公寓稀有打通戶條件適合三代同堂大家庭",
+      "price": 2660.0,
+      "area": 55.26,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7359562",
+      "sourceMode": "yungching_official_browser",
+      "text": "國泰建設公寓稀有打通戶條件適合三代同堂大家庭 新北市板橋區三民路二段 專任委託 公寓47.1年建坪55.26 4房(室)2廳2衛 2,660",
+      "rawText": "國泰建設公寓稀有打通戶條件適合三代同堂大家庭 新北市板橋區三民路二段 專任委託 公寓47.1年建坪55.26 4房(室)2廳2衛 2,660",
+      "officialId": "7359562"
+    },
+    {
+      "id": "YC:7359599",
+      "road": "板橋區三民路二段",
+      "title": "國泰建設稀有三樓",
+      "price": 1330.0,
+      "area": 27.63,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7359599",
+      "sourceMode": "yungching_official_browser",
+      "text": "國泰建設稀有三樓 新北市板橋區三民路二段 專任委託 公寓47.1年建坪27.63 2房(室)1廳1衛 1,330",
+      "rawText": "國泰建設稀有三樓 新北市板橋區三民路二段 專任委託 公寓47.1年建坪27.63 2房(室)1廳1衛 1,330",
+      "officialId": "7359599"
+    },
+    {
+      "id": "YC:7359618",
+      "road": "板橋區三民路二段",
+      "title": "國泰建設首購首選",
+      "price": 1330.0,
+      "area": 27.63,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7359618",
+      "sourceMode": "yungching_official_browser",
+      "text": "國泰建設首購首選 新北市板橋區三民路二段 專任委託 公寓47.1年建坪27.63 2房(室)1廳1衛 1,330",
+      "rawText": "國泰建設首購首選 新北市板橋區三民路二段 專任委託 公寓47.1年建坪27.63 2房(室)1廳1衛 1,330",
+      "officialId": "7359618"
+    },
+    {
+      "id": "YC:7396443",
+      "road": "板橋區三民路二段",
+      "title": "家樂福商圈一橋之隔就進台北國泰格局前後大陽台",
+      "price": 1580.0,
+      "area": 29.92,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "正泰二巷 專任委託 公寓",
+      "url": "https://buy.yungching.com.tw/house/7396443",
+      "sourceMode": "yungching_official_browser",
+      "text": "家樂福商圈一橋之隔就進台北國泰格局前後大陽台 新北市板橋區三民路二段正泰二巷 專任委託 公寓40.3年建坪29.92 3房(室)2廳2衛 1,750萬 170萬 1,580",
+      "rawText": "家樂福商圈一橋之隔就進台北國泰格局前後大陽台 新北市板橋區三民路二段正泰二巷 專任委託 公寓40.3年建坪29.92 3房(室)2廳2衛 1,750萬 170萬 1,580",
+      "officialId": "7396443"
+    },
+    {
+      "id": "YC:7417762",
+      "road": "板橋區三民路二段",
+      "title": "埔墘公園好停三房",
+      "price": 1890.0,
+      "area": 25.27,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7417762",
+      "sourceMode": "yungching_official_browser",
+      "text": "埔墘公園好停三房 新北市板橋區三民路二段 公寓48.1年建坪25.27 3房(室)2廳1衛 1,980萬 90萬 1,890",
+      "rawText": "埔墘公園好停三房 新北市板橋區三民路二段 公寓48.1年建坪25.27 3房(室)2廳1衛 1,980萬 90萬 1,890",
+      "officialId": "7417762"
+    },
+    {
+      "id": "YC:7445785",
+      "road": "板橋區三民路二段",
+      "title": "大坪數頂加好規劃",
+      "price": 1598.0,
+      "area": 36.82,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7445785",
+      "sourceMode": "yungching_official_browser",
+      "text": "大坪數頂加好規劃 新北市板橋區三民路二段 專任委託 公寓43.7年建坪36.82 5房(室)2廳2衛(含加蓋2房(室)--廳1衛) 1,598",
+      "rawText": "大坪數頂加好規劃 新北市板橋區三民路二段 專任委託 公寓43.7年建坪36.82 5房(室)2廳2衛(含加蓋2房(室)--廳1衛) 1,598",
+      "officialId": "7445785"
+    },
+    {
+      "id": "YC:7450646",
+      "road": "板橋區三民路二段",
+      "title": "近捷運明亮四房",
+      "price": 1298.0,
+      "area": 24.95,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7450646",
+      "sourceMode": "yungching_official_browser",
+      "text": "近捷運明亮四房 新北市板橋區三民路二段 公寓44.7年建坪24.95 4房(室)2廳1衛 1,388萬 90萬 1,298",
+      "rawText": "近捷運明亮四房 新北市板橋區三民路二段 公寓44.7年建坪24.95 4房(室)2廳1衛 1,388萬 90萬 1,298",
+      "officialId": "7450646"
+    },
+    {
+      "id": "YC:7452730",
+      "road": "板橋區三民路二段",
+      "title": "國泰稀有公寓頂加",
+      "price": 1380.0,
+      "area": 33.53,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7452730",
+      "sourceMode": "yungching_official_browser",
+      "text": "國泰稀有公寓頂加 新北市板橋區三民路二段 公寓39.8年建坪33.53 6房(室)4廳3衛(含加蓋3房(室)2廳1衛) 1,380",
+      "rawText": "國泰稀有公寓頂加 新北市板橋區三民路二段 公寓39.8年建坪33.53 6房(室)4廳3衛(含加蓋3房(室)2廳1衛) 1,380",
+      "officialId": "7452730"
+    },
+    {
+      "id": "YC:7481499",
+      "road": "板橋區三民路二段",
+      "title": "正隆國泰美妝頂加",
+      "price": 1598.0,
+      "area": 29.53,
+      "floor": null,
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7481499",
+      "sourceMode": "yungching_official_browser",
+      "text": "正隆國泰美妝頂加 新北市板橋區三民路二段 專任委託 公寓41.9年建坪29.53 3房(室)3廳3衛 1,598",
+      "rawText": "正隆國泰美妝頂加 新北市板橋區三民路二段 專任委託 公寓41.9年建坪29.53 3房(室)3廳3衛 1,598",
+      "officialId": "7481499"
+    },
+    {
+      "id": "YC:4308114",
+      "road": "板橋區光復街",
+      "title": "現況辦公可隔三房坡道平面車位",
+      "price": 2688.0,
+      "area": 53.21,
+      "floor": "6/7樓",
+      "address": "新北市板橋區光復街",
+      "type": "光復新座 華廈",
+      "url": "https://buy.yungching.com.tw/house/4308114",
+      "sourceMode": "yungching_official_browser",
+      "text": "現況辦公可隔三房坡道平面車位新北市板橋區光復街 光復新座 華廈30.2年建坪53.21主+陽34.146/7樓1房(室)2廳1衛坡道平面車位 方正格局方便規劃採光通風良好永慶房屋廁所有窗有天然瓦斯房間都有窗2,900萬含車位價212萬2,688",
+      "rawText": "現況辦公可隔三房坡道平面車位新北市板橋區光復街 光復新座 華廈30.2年建坪53.21主+陽34.146/7樓1房(室)2廳1衛坡道平面車位 方正格局方便規劃採光通風良好永慶房屋廁所有窗有天然瓦斯房間都有窗2,900萬含車位價212萬2,688",
+      "officialId": "4308114"
+    },
+    {
+      "id": "YC:7242793",
+      "road": "板橋區光復街",
+      "title": "現況辦公可隔三房坡道平面車位",
+      "price": 2688.0,
+      "area": 53.21,
+      "floor": null,
+      "address": "新北市板橋區光復街",
+      "type": "華廈",
+      "url": "https://buy.yungching.com.tw/house/7242793",
+      "sourceMode": "yungching_official_browser",
+      "text": "現況辦公可隔三房坡道平面車位 新北市板橋區光復街 華廈30.2年建坪53.21 1房(室)2廳1衛坡道平面車位 2,900萬含車位價 212萬 2,688",
+      "rawText": "現況辦公可隔三房坡道平面車位 新北市板橋區光復街 華廈30.2年建坪53.21 1房(室)2廳1衛坡道平面車位 2,900萬含車位價 212萬 2,688",
+      "officialId": "7242793"
+    },
+    {
+      "id": "YC:4308114",
+      "road": "板橋區萬安街",
+      "title": "適合三代同堂輕裝潢透天出價就談",
+      "price": 1980.0,
+      "area": 27.59,
+      "floor": "2/2樓",
+      "address": "新北市板橋區萬安街",
+      "type": "透天厝",
+      "url": "https://buy.yungching.com.tw/house/4308114",
+      "sourceMode": "yungching_official_browser",
+      "text": "適合三代同堂輕裝潢透天出價就談新北市板橋區萬安街透天厝52.9年建坪27.59主27.591~2/2樓3房(室)4廳2衛(含加蓋1房(室)2廳1衛) 天然瓦斯永慶房屋廁所有窗房間都有窗1,980",
+      "rawText": "適合三代同堂輕裝潢透天出價就談新北市板橋區萬安街透天厝52.9年建坪27.59主27.591~2/2樓3房(室)4廳2衛(含加蓋1房(室)2廳1衛) 天然瓦斯永慶房屋廁所有窗房間都有窗1,980",
+      "officialId": "4308114"
+    },
+    {
+      "id": "YC:7320894",
+      "road": "板橋區萬安街",
+      "title": "適合三代同堂輕裝潢透天出價就談",
+      "price": 1980.0,
+      "area": 27.59,
+      "floor": null,
+      "address": "新北市板橋區萬安街",
+      "type": "透天厝",
+      "url": "https://buy.yungching.com.tw/house/7320894",
+      "sourceMode": "yungching_official_browser",
+      "text": "適合三代同堂輕裝潢透天出價就談 新北市板橋區萬安街 透天厝52.9年建坪27.59 3房(室)4廳2衛(含加蓋1房(室)2廳1衛) 1,980",
+      "rawText": "適合三代同堂輕裝潢透天出價就談 新北市板橋區萬安街 透天厝52.9年建坪27.59 3房(室)4廳2衛(含加蓋1房(室)2廳1衛) 1,980",
+      "officialId": "7320894"
+    },
+    {
+      "id": "YC:4308114",
       "road": "板橋區林森街",
-      "title": "埔墘小資方正頂家 格局方正採光通風佳",
-      "address": "新北市板橋區林森街",
-      "area": 21.27,
+      "title": "埔墘小資方正頂家",
       "price": 938.0,
-      "url": "https://buy.housefun.com.tw/buy/house/7031121",
-      "text": "埔墘小資方正頂家 格局方正採光通風佳 新北市板橋區林森街 看地圖 21.27 坪 4房(室)3廳2衛(含加蓋1房(室)1廳1衛) 4/4 樓 8小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 44.1萬/坪 938 萬",
-      "sourceMode": "housefun_yungching_proxy"
+      "area": 21.27,
+      "floor": "4/4樓",
+      "address": "新北市板橋區林森街",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/4308114",
+      "sourceMode": "yungching_official_browser",
+      "text": "埔墘小資方正頂家新北市板橋區林森街專任委託公寓50.9年建坪21.27主21.274/4樓4房(室)3廳2衛(含加蓋1房(室)1廳1衛) 格局方正採光通風佳永慶房屋有天然瓦斯房間都有窗938",
+      "rawText": "埔墘小資方正頂家新北市板橋區林森街專任委託公寓50.9年建坪21.27主21.274/4樓4房(室)3廳2衛(含加蓋1房(室)1廳1衛) 格局方正採光通風佳永慶房屋有天然瓦斯房間都有窗938",
+      "officialId": "4308114"
     },
     {
-      "id": "HF:6627811",
-      "proxyId": "6627811",
-      "road": "板橋區三民路一段",
-      "title": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派",
-      "address": "新北市板橋區三民路一段",
-      "area": 69.92,
-      "price": 3680.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6627811",
-      "text": "首都天廈世外桃源 大坪數規劃、挑高大廳超氣派 新北市板橋區三民路一段 看地圖 69.92 坪 6房(室)4廳4衛(含加蓋3房(室)1廳1衛) 6~7/7 樓 14小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 含車位單價計算方式請洽業務，誠意屋主，降很大！ 16.1% 4,388 萬 3,680 萬",
-      "sourceMode": "housefun_yungching_proxy"
+      "id": "YC:7450882",
+      "road": "板橋區林森街",
+      "title": "埔墘小資方正頂家",
+      "price": 938.0,
+      "area": 21.27,
+      "floor": null,
+      "address": "新北市板橋區林森街",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7450882",
+      "sourceMode": "yungching_official_browser",
+      "text": "埔墘小資方正頂家 新北市板橋區林森街 專任委託 公寓50.9年建坪21.27 4房(室)3廳2衛(含加蓋1房(室)1廳1衛) 938",
+      "rawText": "埔墘小資方正頂家 新北市板橋區林森街 專任委託 公寓50.9年建坪21.27 4房(室)3廳2衛(含加蓋1房(室)1廳1衛) 938",
+      "officialId": "7450882"
     },
     {
-      "id": "HF:6616224",
-      "proxyId": "6616224",
+      "id": "YC:4308114",
       "road": "板橋區三民路一段",
-      "title": "馥華質感生活家 高樓景觀知名馥華建設",
-      "address": "新北市板橋區三民路一段",
-      "area": 47.22,
-      "price": 2788.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6616224",
-      "text": "馥華質感生活家 高樓景觀知名馥華建設 新北市板橋區三民路一段 看地圖 47.22 坪 4房(室)2廳1衛 7/13 樓 含車位 15小時前刷新 永慶房屋(股)公司 經紀人員 陳姵君 已認證 優質 降價 單價 含車位單價計算方式請洽業務 5.8% 2,960 萬 2,788 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6904641",
-      "proxyId": "6904641",
-      "road": "板橋區三民路一段",
-      "title": "近江翠首購首選免千萬頂加 格局方正好規劃",
-      "address": "新北市板橋區三民路一段",
-      "area": 20.01,
-      "price": 890.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6904641",
-      "text": "近江翠首購首選免千萬頂加 格局方正好規劃 新北市板橋區三民路一段 看地圖 20.01 坪 3房(室)2廳1衛 4/4 樓 3小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 44.48萬/坪 9.2% 980 萬 890 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6827213",
-      "proxyId": "6827213",
-      "road": "板橋區三民路一段",
-      "title": "稀有純一樓連鎖店 正三民路連鎖店面面寬大空間",
-      "address": "新北市板橋區三民路一段",
-      "area": 130.18,
-      "price": 7128.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6827213",
-      "text": "稀有純一樓連鎖店 正三民路連鎖店面面寬大空間 新北市板橋區三民路一段 看地圖 130.18 坪 2廳3衛 1/12 樓 5小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 54.75萬/坪，誠意屋主，降很大！ 19.8% 8,888 萬 7,128 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6992746",
-      "proxyId": "6992746",
-      "road": "板橋區三民路一段",
-      "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳 高",
-      "address": "新北市板橋區三民路一段",
-      "area": 89.82,
+      "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
       "price": 3600.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6992746",
-      "text": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳 高 新北市板橋區三民路一段 看地圖 89.82 坪 3房(室)1衛 7/10 樓 12小時前刷新 永慶房屋(股)公司 經紀人員 高柏原 已認證 優質 單價 40.08萬/坪，比實價便宜20.2萬/坪！ 3,600 萬",
-      "sourceMode": "housefun_yungching_proxy"
+      "area": 89.82,
+      "floor": "7/10樓",
+      "address": "新北市板橋區三民路一段",
+      "type": "廠辦",
+      "url": "https://buy.yungching.com.tw/house/4308114",
+      "sourceMode": "yungching_official_browser",
+      "text": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳新北市板橋區三民路一段廠辦35.1年建坪89.82主+陽73.077/10樓3房(室)--廳1衛 高樓層採光好，使用空間超大永慶房屋3,600",
+      "rawText": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳新北市板橋區三民路一段廠辦35.1年建坪89.82主+陽73.077/10樓3房(室)--廳1衛 高樓層採光好，使用空間超大永慶房屋3,600",
+      "officialId": "4308114"
     },
     {
-      "id": "HF:6759961",
-      "proxyId": "6759961",
-      "road": "板橋區翠華街",
-      "title": "超低總價翠華一樓 邊間條件進出便利長輩首選",
-      "address": "新北市板橋區翠華街",
-      "area": 23.37,
-      "price": 1498.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6759961",
-      "text": "超低總價翠華一樓 邊間條件進出便利長輩首選 新北市板橋區翠華街 看地圖 23.37 坪 3房(室)2廳2衛(含加蓋1衛) 1/4 樓 8小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 64.1萬/坪 9.7% 1,658 萬 1,498 萬",
-      "sourceMode": "housefun_yungching_proxy"
+      "id": "YC:5289717",
+      "road": "板橋區三民路一段",
+      "title": "稀有純一樓連鎖店",
+      "price": 7128.0,
+      "area": 130.18,
+      "floor": null,
+      "address": "新北市板橋區三民路一段",
+      "type": "店面",
+      "url": "https://buy.yungching.com.tw/house/5289717",
+      "sourceMode": "yungching_official_browser",
+      "text": "稀有純一樓連鎖店 新北市板橋區三民路一段 店面29.5年建坪130.18 --房(室)2廳3衛 8,888萬 1,760萬 7,128",
+      "rawText": "稀有純一樓連鎖店 新北市板橋區三民路一段 店面29.5年建坪130.18 --房(室)2廳3衛 8,888萬 1,760萬 7,128",
+      "officialId": "5289717"
     },
     {
-      "id": "HF:7032173",
-      "proxyId": "7032173",
+      "id": "YC:7004701",
+      "road": "板橋區三民路一段",
+      "title": "馥華質感生活家",
+      "price": 2788.0,
+      "area": 47.22,
+      "floor": null,
+      "address": "新北市板橋區三民路一段",
+      "type": "辦公商業大樓",
+      "url": "https://buy.yungching.com.tw/house/7004701",
+      "sourceMode": "yungching_official_browser",
+      "text": "馥華質感生活家 新北市板橋區三民路一段 辦公商業大樓21.5年建坪47.22 4房(室)2廳1衛坡道機械車位 2,960萬含車位價200萬元 172萬 2,788",
+      "rawText": "馥華質感生活家 新北市板橋區三民路一段 辦公商業大樓21.5年建坪47.22 4房(室)2廳1衛坡道機械車位 2,960萬含車位價200萬元 172萬 2,788",
+      "officialId": "7004701"
+    },
+    {
+      "id": "YC:7017292",
+      "road": "板橋區三民路一段",
+      "title": "首都天廈世外桃源",
+      "price": 3680.0,
+      "area": 69.92,
+      "floor": null,
+      "address": "新北市板橋區三民路一段",
+      "type": "廠辦",
+      "url": "https://buy.yungching.com.tw/house/7017292",
+      "sourceMode": "yungching_official_browser",
+      "text": "首都天廈世外桃源 新北市板橋區三民路一段 廠辦35.7年建坪69.92 6房(室)4廳4衛(含加蓋3房(室)1廳1衛) 4,388萬 708萬 3,680",
+      "rawText": "首都天廈世外桃源 新北市板橋區三民路一段 廠辦35.7年建坪69.92 6房(室)4廳4衛(含加蓋3房(室)1廳1衛) 4,388萬 708萬 3,680",
+      "officialId": "7017292"
+    },
+    {
+      "id": "YC:7271295",
+      "road": "板橋區三民路一段",
+      "title": "近江翠首購首選免千萬頂加",
+      "price": 890.0,
+      "area": 20.01,
+      "floor": null,
+      "address": "新北市板橋區三民路一段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7271295",
+      "sourceMode": "yungching_official_browser",
+      "text": "近江翠首購首選免千萬頂加 新北市板橋區三民路一段 專任委託 公寓49.3年建坪20.01 3房(室)2廳1衛 980萬 90萬 890",
+      "rawText": "近江翠首購首選免千萬頂加 新北市板橋區三民路一段 專任委託 公寓49.3年建坪20.01 3房(室)2廳1衛 980萬 90萬 890",
+      "officialId": "7271295"
+    },
+    {
+      "id": "YC:7410779",
+      "road": "板橋區三民路一段",
+      "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
+      "price": 3600.0,
+      "area": 89.82,
+      "floor": null,
+      "address": "新北市板橋區三民路一段",
+      "type": "廠辦",
+      "url": "https://buy.yungching.com.tw/house/7410779",
+      "sourceMode": "yungching_official_browser",
+      "text": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳 新北市板橋區三民路一段 廠辦35.1年建坪89.82 3房(室)--廳1衛 3,600",
+      "rawText": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳 新北市板橋區三民路一段 廠辦35.1年建坪89.82 3房(室)--廳1衛 3,600",
+      "officialId": "7410779"
+    },
+    {
+      "id": "YC:4308114",
       "road": "板橋區翠華街",
       "title": "大面寬x稀有雙拼x方正格局x黃金一樓x使用近60",
-      "address": "新北市板橋區翠華街",
-      "area": 59.37,
       "price": 4280.0,
-      "url": "https://buy.housefun.com.tw/buy/house/7032173",
-      "text": "大面寬x稀有雙拼x方正格局x黃金一樓x使用近60 新北市板橋區翠華街 看地圖 59.37 坪 5房(室)4廳4衛(含加蓋1房(室)2廳1衛) 1/5 樓 11小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 降價 單價 72.09萬/坪 6.1% 4,560 萬 4,280 萬",
-      "sourceMode": "housefun_yungching_proxy"
+      "area": 59.37,
+      "floor": "1/5樓",
+      "address": "新北市板橋區翠華街",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/4308114",
+      "sourceMode": "yungching_official_browser",
+      "text": "大面寬x稀有雙拼x方正格局x黃金一樓x使用近60新北市板橋區翠華街專任委託公寓45.0年建坪59.37主+平59.381/5樓5房(室)4廳4衛(含加蓋1房(室)2廳1衛) 面寬近十米方正好停靜巷一樓永慶房屋新上4,560萬280萬4,280",
+      "rawText": "大面寬x稀有雙拼x方正格局x黃金一樓x使用近60新北市板橋區翠華街專任委託公寓45.0年建坪59.37主+平59.381/5樓5房(室)4廳4衛(含加蓋1房(室)2廳1衛) 面寬近十米方正好停靜巷一樓永慶房屋新上4,560萬280萬4,280",
+      "officialId": "4308114"
     },
     {
-      "id": "HF:6961865",
-      "proxyId": "6961865",
+      "id": "YC:7156611",
       "road": "板橋區翠華街",
-      "title": "板橋翠華大面寬好停一樓住辦皆宜好選擇稀有釋出 方正",
+      "title": "超低總價翠華一樓",
+      "price": 1498.0,
+      "area": 23.37,
+      "floor": null,
       "address": "新北市板橋區翠華街",
-      "area": 29.73,
-      "price": 2280.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6961865",
-      "text": "板橋翠華大面寬好停一樓住辦皆宜好選擇稀有釋出 方正 新北市板橋區翠華街 看地圖 29.73 坪 3房(室)1廳4衛(含加蓋1廳1衛) 1/5 樓 14小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 76.69萬/坪 2,280 萬",
-      "sourceMode": "housefun_yungching_proxy"
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7156611",
+      "sourceMode": "yungching_official_browser",
+      "text": "超低總價翠華一樓 新北市板橋區翠華街 公寓48.9年建坪23.37 3房(室)2廳2衛(含加蓋--房(室)--廳1衛) 1,658萬 160萬 1,498",
+      "rawText": "超低總價翠華一樓 新北市板橋區翠華街 公寓48.9年建坪23.37 3房(室)2廳2衛(含加蓋--房(室)--廳1衛) 1,658萬 160萬 1,498",
+      "officialId": "7156611"
     },
     {
-      "id": "HF:6964707",
-      "proxyId": "6964707",
+      "id": "YC:7244147",
       "road": "板橋區翠華街",
-      "title": "翠華稀有超大面寬一樓方正格局超好規劃住辦皆好用 方",
-      "address": "新北市板橋區翠華街",
-      "area": 29.64,
-      "price": 2280.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6964707",
-      "text": "翠華稀有超大面寬一樓方正格局超好規劃住辦皆好用 方 新北市板橋區翠華街 看地圖 29.64 坪 2房(室)3廳(含加蓋1房(室)1廳) 1/5 樓 15小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 76.92萬/坪 2,280 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6852242",
-      "proxyId": "6852242",
-      "road": "板橋區翠華街",
-      "title": "華翠方正邊間3樓低樓層免爬高 國泰格局，前陽台進出",
-      "address": "新北市板橋區翠華街",
-      "area": 27.29,
-      "price": 1288.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6852242",
-      "text": "華翠方正邊間3樓低樓層免爬高 國泰格局，前陽台進出 新北市板橋區翠華街 看地圖 27.29 坪 3房(室)2廳1衛 3/4 樓 9小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 優質 單價 47.2萬/坪 1,288 萬",
-      "sourceMode": "housefun_yungching_proxy"
-    },
-    {
-      "id": "HF:6849902",
-      "proxyId": "6849902",
-      "road": "板橋區翠華街",
-      "title": "近江翠收租金雞母 穩定收租",
-      "address": "新北市板橋區翠華街",
-      "area": 26.2,
+      "title": "近江翠收租金雞母",
       "price": 1750.0,
-      "url": "https://buy.housefun.com.tw/buy/house/6849902",
-      "text": "近江翠收租金雞母 穩定收租 新北市板橋區翠華街 看地圖 26.2 坪 9房(室)4廳5衛(含加蓋4房(室)2廳2衛) 5/5 樓 3小時前刷新 永慶房屋(股)公司 經紀人員 吳承澤 已認證 降價 單價 66.79萬/坪 6.9% 1,880 萬 1,750 萬",
-      "sourceMode": "housefun_yungching_proxy"
+      "area": 26.2,
+      "floor": null,
+      "address": "新北市板橋區翠華街",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7244147",
+      "sourceMode": "yungching_official_browser",
+      "text": "近江翠收租金雞母 新北市板橋區翠華街 公寓40.4年建坪26.20 9房(室)4廳5衛(含加蓋4房(室)2廳2衛) 1,880萬 130萬 1,750",
+      "rawText": "近江翠收租金雞母 新北市板橋區翠華街 公寓40.4年建坪26.20 9房(室)4廳5衛(含加蓋4房(室)2廳2衛) 1,880萬 130萬 1,750",
+      "officialId": "7244147"
+    },
+    {
+      "id": "YC:7246221",
+      "road": "板橋區翠華街",
+      "title": "華翠方正邊間3樓低樓層免爬高",
+      "price": 1288.0,
+      "area": 27.29,
+      "floor": null,
+      "address": "新北市板橋區翠華街",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7246221",
+      "sourceMode": "yungching_official_browser",
+      "text": "華翠方正邊間3樓低樓層免爬高 新北市板橋區翠華街 專任委託 公寓48.9年建坪27.29 3房(室)2廳1衛 1,288",
+      "rawText": "華翠方正邊間3樓低樓層免爬高 新北市板橋區翠華街 專任委託 公寓48.9年建坪27.29 3房(室)2廳1衛 1,288",
+      "officialId": "7246221"
+    },
+    {
+      "id": "YC:7373642",
+      "road": "板橋區翠華街",
+      "title": "板橋翠華大面寬好停一樓住辦皆宜好選擇稀有釋出",
+      "price": 2280.0,
+      "area": 29.73,
+      "floor": null,
+      "address": "新北市板橋區翠華街",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7373642",
+      "sourceMode": "yungching_official_browser",
+      "text": "板橋翠華大面寬好停一樓住辦皆宜好選擇稀有釋出 新北市板橋區翠華街 專任委託 公寓45.0年建坪29.73 3房(室)1廳4衛(含加蓋--房(室)1廳1衛) 2,280",
+      "rawText": "板橋翠華大面寬好停一樓住辦皆宜好選擇稀有釋出 新北市板橋區翠華街 專任委託 公寓45.0年建坪29.73 3房(室)1廳4衛(含加蓋--房(室)1廳1衛) 2,280",
+      "officialId": "7373642"
+    },
+    {
+      "id": "YC:7376941",
+      "road": "板橋區翠華街",
+      "title": "翠華稀有超大面寬一樓方正格局超好規劃住辦皆好用",
+      "price": 2280.0,
+      "area": 29.64,
+      "floor": null,
+      "address": "新北市板橋區翠華街",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7376941",
+      "sourceMode": "yungching_official_browser",
+      "text": "翠華稀有超大面寬一樓方正格局超好規劃住辦皆好用 新北市板橋區翠華街 專任委託 公寓45.0年建坪29.64 2房(室)3廳--衛(含加蓋1房(室)1廳--衛) 2,280",
+      "rawText": "翠華稀有超大面寬一樓方正格局超好規劃住辦皆好用 新北市板橋區翠華街 專任委託 公寓45.0年建坪29.64 2房(室)3廳--衛(含加蓋1房(室)1廳--衛) 2,280",
+      "officialId": "7376941"
+    },
+    {
+      "id": "YC:7455915",
+      "road": "板橋區翠華街",
+      "title": "大面寬x稀有雙拼x方正格局x黃金一樓x使用近60",
+      "price": 4280.0,
+      "area": 59.37,
+      "floor": null,
+      "address": "新北市板橋區翠華街",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7455915",
+      "sourceMode": "yungching_official_browser",
+      "text": "大面寬x稀有雙拼x方正格局x黃金一樓x使用近60 新北市板橋區翠華街 專任委託 公寓45.0年建坪59.37 5房(室)4廳4衛(含加蓋1房(室)2廳1衛) 4,560萬 280萬 4,280",
+      "rawText": "大面寬x稀有雙拼x方正格局x黃金一樓x使用近60 新北市板橋區翠華街 專任委託 公寓45.0年建坪59.37 5房(室)4廳4衛(含加蓋1房(室)2廳1衛) 4,560萬 280萬 4,280",
+      "officialId": "7455915"
     }
   ],
   "logs": [
@@ -18079,9 +18338,16 @@
     "板橋區萬安街 p1: 永慶直營 1，新增 1，全部仲介 3",
     "板橋區林森街 p1: 永慶直營 1，新增 1，全部仲介 1",
     "板橋區三民路一段 p1: 永慶直營 5，新增 5，全部仲介 10",
-    "板橋區翠華街 p1: 永慶直營 6，新增 6，全部仲介 8"
+    "板橋區翠華街 p1: 永慶直營 6，新增 6，全部仲介 8",
+    "永慶官方瀏覽器資料：板橋區中山路二段 暫不採用官方，沿用代理 39 筆；官方僅 30 筆，低於代理 39 筆的80%安全門檻（至少 32 筆）。",
+    "永慶官方瀏覽器資料：板橋區三民路二段 採用官方 30 筆（代理 29 筆）。",
+    "永慶官方瀏覽器資料：板橋區光復街 採用官方 2 筆（代理 1 筆）。",
+    "永慶官方瀏覽器資料：板橋區萬安街 採用官方 2 筆（代理 1 筆）。",
+    "永慶官方瀏覽器資料：板橋區林森街 採用官方 2 筆（代理 1 筆）。",
+    "永慶官方瀏覽器資料：板橋區三民路一段 採用官方 6 筆（代理 5 筆）。",
+    "永慶官方瀏覽器資料：板橋區翠華街 採用官方 7 筆（代理 6 筆）。"
   ],
-  "note": "PREVIEW：591先重新互相比對，再與信義整併且信義為主，最後比公司庫存。樓層列為重要比對條件：明確樓層衝突不合併、不配對；樓層一致會提高優先權。591間若坪數幾乎相同、價差30萬內且有共同物件特徵，可再整併。公司公開資料若某路段在技術上成功但數量異常縮水，會沿用前次正常路段快照，避免大量誤判未接回。",
+  "note": "PREVIEW v6：591先重新互相比對，再與信義整併且信義為主，最後比公司庫存。公司來源優先使用永慶官方公開搜尋頁的 Chromium 渲染結果；每條路先做完整性檢查，不完整或被擋時只回退該路段到既有代理資料。公司資料異常保護仍保留。官方 DOM 的結構化樓層欄位也納入樓層比對。",
   "preview591Regroup": {
     "original591TopLevel": 128,
     "regrouped591TopLevel": 108,
@@ -18094,5 +18360,57 @@
     "rule": "前次至少8筆且本次下降50%以上並少至少5筆，或前次至少5筆但本次變0筆時，沿用前次正常路段公司資料",
     "triggeredRoadCount": 0,
     "roads": []
-  }
+  },
+  "officialBrowserCompany": {
+    "enabled": true,
+    "capturedAt": "2026-08-22T18:55:36+00:00",
+    "snapshotAgeMinutes": 1.3,
+    "acceptedRoadCount": 6,
+    "fallbackRoadCount": 1,
+    "roads": {
+      "板橋區中山路二段": {
+        "mode": "proxy_fallback",
+        "officialCount": 30,
+        "proxyCount": 39,
+        "reason": "官方僅 30 筆，低於代理 39 筆的80%安全門檻（至少 32 筆）"
+      },
+      "板橋區三民路二段": {
+        "mode": "official",
+        "officialCount": 30,
+        "proxyCount": 29,
+        "reason": "官方快照通過完整性門檻"
+      },
+      "板橋區光復街": {
+        "mode": "official",
+        "officialCount": 2,
+        "proxyCount": 1,
+        "reason": "官方快照通過完整性門檻"
+      },
+      "板橋區萬安街": {
+        "mode": "official",
+        "officialCount": 2,
+        "proxyCount": 1,
+        "reason": "官方快照通過完整性門檻"
+      },
+      "板橋區林森街": {
+        "mode": "official",
+        "officialCount": 2,
+        "proxyCount": 1,
+        "reason": "官方快照通過完整性門檻"
+      },
+      "板橋區三民路一段": {
+        "mode": "official",
+        "officialCount": 6,
+        "proxyCount": 5,
+        "reason": "官方快照通過完整性門檻"
+      },
+      "板橋區翠華街": {
+        "mode": "official",
+        "officialCount": 7,
+        "proxyCount": 6,
+        "reason": "官方快照通過完整性門檻"
+      }
+    }
+  },
+  "structuredFloorMatching": true
 }
