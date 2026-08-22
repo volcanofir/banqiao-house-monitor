@@ -1,11 +1,12 @@
-{"company": 79, "externalTopLevel": 205, "groups": 159, "rawListings": 364, "crossPlatformMerged": 25, "crossSourceReview": 7, "companyConflictDowngraded": 3, "company_match": 40, "review": 3, "missing": 116, "unavailable": 0}
-永慶官方瀏覽器資料：板橋區中山路二段 採用官方渲染 DOM 30 筆。
+{"company": 84, "externalTopLevel": 205, "groups": 159, "rawListings": 364, "crossPlatformMerged": 25, "crossSourceReview": 7, "companyConflictDowngraded": 4, "company_match": 31, "review": 4, "missing": 124, "unavailable": 0}
+永慶官方瀏覽器資料：板橋區中山路二段 本輪不採用；官方頁不可用（HTTP 200 / 29 筆）。不回退代理資料。
 永慶官方瀏覽器資料：板橋區三民路二段 採用官方渲染 DOM 30 筆。
 永慶官方瀏覽器資料：板橋區光復街 採用官方渲染 DOM 2 筆。
 永慶官方瀏覽器資料：板橋區萬安街 採用官方渲染 DOM 2 筆。
 永慶官方瀏覽器資料：板橋區林森街 採用官方渲染 DOM 2 筆。
 永慶官方瀏覽器資料：板橋區三民路一段 採用官方渲染 DOM 6 筆。
 永慶官方瀏覽器資料：板橋區翠華街 採用官方渲染 DOM 7 筆。
+HAR fallback added 35
 {"preview591Regroup": {"original591TopLevel": 128, "regrouped591TopLevel": 108, "regrouped591ClusterCount": 17, "regrouped591AbsorbedCount": 20}}
 {"floorAwareMatching": true, "companyDataGuard": {"enabled": true, "rule": "前次至少8筆且本次下降50%以上並少至少5筆，或前次至少5筆但本次變0筆時，沿用前次正常路段公司資料", "triggeredRoadCount": 0, "roads": []}}
-{"fetchMode": "yungching_official_rendered_dom_only", "companySnapshotCapturedAt": "2026-08-22T19:04:58+00:00", "officialBrowserCompany": {"enabled": true, "capturedAt": "2026-08-22T19:04:58+00:00", "snapshotAgeMinutes": 1.3, "acceptedRoadCount": 7, "unavailableRoadCount": 0, "roads": {"板橋區中山路二段": {"mode": "official", "officialCount": 30, "http": 200}, "板橋區三民路二段": {"mode": "official", "officialCount": 30, "http": 200}, "板橋區光復街": {"mode": "official", "officialCount": 2, "http": 200}, "板橋區萬安街": {"mode": "official", "officialCount": 2, "http": 200}, "板橋區林森街": {"mode": "official", "officialCount": 2, "http": 200}, "板橋區三民路一段": {"mode": "official", "officialCount": 6, "http": 200}, "板橋區翠華街": {"mode": "official", "officialCount": 7, "http": 200}}}, "companyDataGuard": {"enabled": true, "rule": "前次至少8筆且本次下降50%以上並少至少5筆，或前次至少5筆但本次變0筆時，沿用前次正常路段公司資料", "triggeredRoadCount": 0, "roads": []}}
+{"fetchMode": "yungching_official_rendered_dom_only", "companySnapshotCapturedAt": "2026-08-22T19:12:44+00:00", "officialBrowserCompany": {"enabled": true, "capturedAt": "2026-08-22T19:12:44+00:00", "snapshotAgeMinutes": 1.2, "acceptedRoadCount": 6, "unavailableRoadCount": 1, "roads": {"板橋區中山路二段": {"mode": "unavailable", "officialCount": 29, "http": 200, "reason": "官方頁不可用（HTTP 200 / 29 筆）"}, "板橋區三民路二段": {"mode": "official", "officialCount": 30, "http": 200}, "板橋區光復街": {"mode": "official", "officialCount": 2, "http": 200}, "板橋區萬安街": {"mode": "official", "officialCount": 2, "http": 200}, "板橋區林森街": {"mode": "official", "officialCount": 2, "http": 200}, "板橋區三民路一段": {"mode": "official", "officialCount": 6, "http": 200}, "板橋區翠華街": {"mode": "official", "officialCount": 7, "http": 200}}}, "companyDataGuard": {"enabled": true, "rule": "前次至少8筆且本次下降50%以上並少至少5筆，或前次至少5筆但本次變0筆時，沿用前次正常路段公司資料", "triggeredRoadCount": 0, "roads": []}}
