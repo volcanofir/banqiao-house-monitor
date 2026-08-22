@@ -8,6 +8,7 @@ on:
       - ".github/workflows/yungching-preview.yml"
       - "scripts/compare_yungching_preview_v2.py"
       - "scripts/compare_yungching_preview_v3.py"
+      - "docs/data/listings.json"
       - "docs/preview/yungching-har-snapshot.json"
       - "docs/preview/yungching-area-enrichment.json"
 
