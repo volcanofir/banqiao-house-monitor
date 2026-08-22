@@ -54,7 +54,7 @@ jobs:
 
       - name: Capture rendered Yongching result cards
         shell: bash
-        run: python scripts/yungching_dom_snapshot_v2.py
+        run: python scripts/yungching_dom_snapshot_v3.py
 
       - name: Disconnect Surfshark
         if: always()
