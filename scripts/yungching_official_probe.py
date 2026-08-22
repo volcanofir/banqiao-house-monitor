@@ -1,4 +1,5 @@
 import json
+import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path
@@ -148,6 +149,13 @@ def main() -> None:
     road_status = {}
     listings = []
 
+    network = {
+        "surfsharkWorkflowOutcome": os.environ.get("YUNGCHING_PROBE_VPN_OUTCOME"),
+        "vpnConnected": os.environ.get("VPN_CONNECTED") == "true",
+        "beforeIp": os.environ.get("VPN_BEFORE_IP") or None,
+        "exitIp": os.environ.get("VPN_EXIT_IP") or None,
+    }
+
     for road in ROADS:
         rows, info = fetch_one(session, road)
         road_status[road] = info
@@ -166,6 +174,7 @@ def main() -> None:
     payload = {
         "generatedAt": now,
         "previewOnly": True,
+        "network": network,
         "crypto": crypto,
         "frontendChunk": chunk,
         "roadStatus": road_status,
@@ -180,6 +189,7 @@ def main() -> None:
         "capturedAt": now,
         "source": "Yongching official public HTML probe",
         "previewOnly": True,
+        "network": network,
         "availableRoads": available_roads,
         "roadStatus": road_status,
         "listingCount": len(listings),
@@ -189,6 +199,7 @@ def main() -> None:
 
     print(json.dumps({
         "cryptoOk": crypto["knownVectorMatch"] and crypto["roundtripOk"],
+        "vpnConnected": network["vpnConnected"],
         "availableRoadCount": len(available_roads),
         "listingCount": len(listings),
         "chunkHttp": chunk.get("http"),
