@@ -8,15 +8,94 @@ import compare_yungching_preview_v4 as v4
 # - Add floor as a first-class matching signal.
 # - Add a conservative 591 regroup rule for near-identical area/price when
 #   both titles share a meaningful property keyword such as 收租.
+# - Protect company matching from a partial-but-HTTP-200 company fetch by
+#   reusing the previous healthy road snapshot when the fresh road count
+#   collapses abnormally.
 
 ORIGINAL_591_PAIR = v4.pair_591_info
 ORIGINAL_CROSS_SOURCE = v4.cross_source_cluster_info
 ORIGINAL_COMPANY_SCORE = v4.prev.base.score
+ORIGINAL_FETCH_COMPANY = v4.prev.base.fetch_company
 
 KEYWORDS = {
     "收租", "頂加", "露台", "露臺", "店面", "店辦", "透天", "邊間", "河景",
     "景觀", "採光", "三房", "四房", "兩房", "公寓", "電梯", "一樓", "頂樓",
 }
+
+COMPANY_GUARD_STATS = {
+    "enabled": True,
+    "rule": "前次至少8筆且本次下降50%以上並少至少5筆，或前次至少5筆但本次變0筆時，沿用前次正常路段公司資料",
+    "triggeredRoadCount": 0,
+    "roads": [],
+}
+
+
+def guarded_fetch_company():
+    company, logs, status = ORIGINAL_FETCH_COMPANY()
+    path = v4.prev.OUT_PATH
+    if not path.exists():
+        return company, logs, status
+
+    try:
+        previous = json.loads(path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        logs.append(f"公司資料異常保護：無法讀取前次 Preview 快照，略過保護（{type(exc).__name__}）")
+        return company, logs, status
+
+    previous_status = previous.get("roadStatus") or {}
+    previous_listings = previous.get("companyListings") or []
+
+    for road in v4.prev.base.ROADS:
+        fresh_status = status.get(road) or {}
+        old_status = previous_status.get(road) or {}
+
+        # This guard is specifically for partial responses that still look
+        # technically successful. Real fetch failures continue through the
+        # existing HAR fallback / unavailable logic.
+        if not fresh_status.get("available") or not old_status.get("available"):
+            continue
+
+        fresh_rows = [x for x in company if x.get("road") == road]
+        old_rows = [dict(x) for x in previous_listings if x.get("road") == road]
+        if not old_rows:
+            continue
+
+        fresh_count = len(fresh_rows)
+        old_count = len(old_rows)
+        drop = old_count - fresh_count
+
+        large_collapse = old_count >= 8 and fresh_count * 2 <= old_count and drop >= 5
+        zero_collapse = old_count >= 5 and fresh_count == 0
+        if not (large_collapse or zero_collapse):
+            continue
+
+        # Replace only the anomalous road. Other roads keep the fresh result.
+        company = [x for x in company if x.get("road") != road]
+        for row in old_rows:
+            row["guardedFromPreviousSnapshot"] = True
+            company.append(row)
+
+        fresh_status.update({
+            "available": True,
+            "count": old_count,
+            "mode": "previous_snapshot_guard",
+            "guarded": True,
+            "freshCount": fresh_count,
+            "previousCount": old_count,
+            "guardReason": "公司公開資料本輪數量異常縮水，沿用前次正常路段快照避免誤判未接回",
+        })
+        COMPANY_GUARD_STATS["roads"].append({
+            "road": road,
+            "freshCount": fresh_count,
+            "previousCount": old_count,
+            "drop": drop,
+        })
+        logs.append(
+            f"公司資料異常保護：{road} 前次 {old_count} 筆，本次僅 {fresh_count} 筆；沿用前次正常資料。"
+        )
+
+    COMPANY_GUARD_STATS["triggeredRoadCount"] = len(COMPANY_GUARD_STATS["roads"])
+    return company, logs, status
 
 
 def chinese_floor_number(raw):
@@ -191,10 +270,11 @@ def company_score(ext, yc):
 
 
 def main():
-    # Patch only PREVIEW matching functions. Production crawler/data are untouched.
+    # Patch only PREVIEW matching/fetch functions. Production crawler/data are untouched.
     v4.pair_591_info = pair_591_info
     v4.cross_source_cluster_info = cross_source_cluster_info
     v4.prev.base.score = company_score
+    v4.prev.base.fetch_company = guarded_fetch_company
     v4.main()
 
     path = v4.prev.OUT_PATH
@@ -204,10 +284,15 @@ def main():
         "PREVIEW：591先重新互相比對，再與信義整併且信義為主，最後比公司庫存。"
         "樓層列為重要比對條件：明確樓層衝突不合併、不配對；樓層一致會提高優先權。"
         "591間若坪數幾乎相同、價差30萬內且有共同物件特徵，可再整併。"
+        "公司公開資料若某路段在技術上成功但數量異常縮水，會沿用前次正常路段快照，避免大量誤判未接回。"
     )
     payload["floorAwareMatching"] = True
+    payload["companyDataGuard"] = dict(COMPANY_GUARD_STATS)
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps({"floorAwareMatching": True}, ensure_ascii=False))
+    print(json.dumps({
+        "floorAwareMatching": True,
+        "companyDataGuard": COMPANY_GUARD_STATS,
+    }, ensure_ascii=False))
 
 
 if __name__ == "__main__":
