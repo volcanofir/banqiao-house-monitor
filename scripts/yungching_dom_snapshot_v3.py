@@ -95,8 +95,45 @@ def numeric_page_target(page, target: int):
     )
 
 
+def pager_state(page):
+    try:
+        return page.evaluate(
+            """() => Array.from(document.querySelectorAll('.paginationPageListItem')).map(x => ({
+              text:(x.innerText||'').replace(/\s+/g,' ').trim(),
+              cls:x.className||''
+            }))"""
+        )
+    except Exception:
+        return []
+
+
+def pager_is_active(page, target: int) -> bool:
+    wanted = str(target)
+    for row in pager_state(page):
+        cls = str(row.get("cls") or "").lower()
+        if str(row.get("text") or "") == wanted and ("actived" in cls or "active" in cls):
+            return True
+    return False
+
+
+def wait_pager_active(page, target: int, timeout=5000) -> bool:
+    try:
+        page.wait_for_function(
+            """target => Array.from(document.querySelectorAll('.paginationPageListItem')).some(x => {
+              const text=(x.innerText||'').replace(/\s+/g,' ').trim();
+              const cls=String(x.className||'').toLowerCase();
+              return text===String(target) && (cls.includes('actived') || cls.includes('active'));
+            })""",
+            target,
+            timeout=timeout,
+        )
+        return True
+    except Exception:
+        return pager_is_active(page, target)
+
+
 def click_yungching_pager_class(page, target: int):
-    """Use the actual Yongching pager node and bypass overlays with force=True."""
+    """Force-click the real Yongching pager and return success only after DOM activation."""
     try:
         items = page.locator(".paginationPageListItem")
         for i in range(items.count()):
@@ -105,18 +142,29 @@ def click_yungching_pager_class(page, target: int):
             if text != str(target):
                 continue
             cls = item.get_attribute("class") or ""
-            before = page.evaluate(
-                """() => Array.from(document.querySelectorAll('.paginationPageListItem')).map(x => ({text:(x.innerText||'').trim(), cls:x.className||''}))"""
-            )
+            before = pager_state(page)
             item.scroll_into_view_if_needed(timeout=2000)
             item.click(force=True, timeout=3000)
+            activated = wait_pager_active(page, target, timeout=5000)
+
+            # Some builds bind their click handler directly on the raw DOM node.
+            # If Playwright dispatch did not switch the active page, invoke that node's
+            # native click once and verify again before reporting success.
+            if not activated:
+                item.evaluate("el => el.click()")
+                activated = wait_pager_active(page, target, timeout=4000)
+
+            after = pager_state(page)
             return {
-                "clicked": True,
+                "clicked": bool(activated),
                 "mode": "yungching-pagination-class-v3",
                 "target": target,
                 "tag": "DIV",
                 "className": cls,
                 "beforePages": before,
+                "afterPages": after,
+                "activeVerified": bool(activated),
+                "error": None if activated else "pager click dispatched but target page never became active",
             }
     except Exception as exc:
         return {
@@ -129,26 +177,34 @@ def click_yungching_pager_class(page, target: int):
 
 
 def click_numeric_page(page, target: int):
-    # Yongching's current production DOM exposes this exact class. Using the element
-    # itself with a Playwright force-click prevents the AI hint backdrop from stealing
-    # the mouse event.
+    # Yongching's current production DOM exposes this exact class. Treat a click as
+    # successful only after the target pager node itself becomes active.
     action = click_yungching_pager_class(page, target)
     if action.get("clicked"):
         return action
 
-    # Keep the generic text-node/element strategy for future DOM variants.
-    action = v2.click_numeric_page(page, target)
-    if action.get("clicked"):
-        return action
+    # Keep the generic text-node/element strategy for future DOM variants, but verify
+    # the target page after it dispatches a click whenever the Yongching pager exists.
+    generic = v2.click_numeric_page(page, target)
+    if generic.get("clicked"):
+        page.wait_for_timeout(500)
+        if not page.locator(".paginationPageListItem").count() or wait_pager_active(page, target, timeout=3500):
+            generic["activeVerified"] = True
+            return generic
+        generic["clicked"] = False
+        generic["activeVerified"] = False
+        generic["error"] = "generic click did not activate target Yongching page"
 
-    # Last fallback: click the exact screen coordinate occupied by numeric text.
+    # Last fallback: click the exact screen coordinate occupied by numeric text and
+    # again require DOM activation before returning clicked=True.
     candidate = numeric_page_target(page, target)
     if not candidate:
-        return {"clicked": False, "mode": "numeric-text-v3", "target": target}
+        return {"clicked": False, "mode": "numeric-text-v3", "target": target, "previous": [action, generic]}
 
     page.mouse.click(candidate["x"], candidate["y"])
+    activated = wait_pager_active(page, target, timeout=3500) if page.locator(".paginationPageListItem").count() else True
     return {
-        "clicked": True,
+        "clicked": bool(activated),
         "mode": "numeric-text-v3",
         "target": target,
         "score": candidate.get("score"),
@@ -158,6 +214,8 @@ def click_numeric_page(page, target: int):
         "hitClass": candidate.get("hitClass"),
         "parentTag": candidate.get("parentTag"),
         "parentClass": candidate.get("parentClass"),
+        "activeVerified": bool(activated),
+        "previous": [action, generic],
     }
 
 
