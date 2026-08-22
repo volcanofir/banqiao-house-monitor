@@ -32,6 +32,15 @@ def num(value):
     return float(m.group(0)) if m else None
 
 
+def parse_floor(text: str):
+    # Cards sometimes concatenate area and floor, e.g. "主20.241/5樓".
+    m = re.search(r"\d+\.\d{1,2}(\d{1,2}/\d{1,2}樓)", text)
+    if m:
+        return m.group(1)
+    m = re.search(r"(?<![\d.])(\d{1,2}/\d{1,2}樓)", text)
+    return m.group(1) if m else None
+
+
 def parse_card(raw: dict, road: str):
     text = re.sub(r"\s+", " ", str(raw.get("text") or "")).strip()
     url = str(raw.get("url") or "")
@@ -41,8 +50,6 @@ def parse_card(raw: dict, road: str):
     hid = mid.group(1)
     address = "新北市" + road
 
-    # A real result card should describe one property only. Multi-property recommendation
-    # containers are deliberately rejected so their link IDs cannot contaminate a road.
     if text.count("新北市") != 1 or text.count(address) != 1:
         return None
 
@@ -69,22 +76,51 @@ def parse_card(raw: dict, road: str):
     mt = re.match(r"([^0-9]{1,18}?)(?:[0-9]+(?:\.[0-9]+)?年|--年)建坪", after)
     ptype = mt.group(1).strip() if mt else None
 
-    mf = re.search(r"([0-9]+(?:~[0-9]+)?/[0-9]+樓)", text)
-    floor = mf.group(1) if mf else None
-
     return {
         "id": hid,
         "road": road,
         "title": title[:100],
         "price": price,
         "area": area,
-        "floor": floor,
+        "floor": parse_floor(text),
         "address": address,
         "type": ptype,
         "url": url,
         "sourceMode": "yungching_browser_dom",
         "rawText": text[:700],
     }
+
+
+def expand_results(page):
+    """Trigger lazy/infinite loading without relying on a particular pagination selector."""
+    rounds = 0
+    stable = 0
+    last_height = 0
+    for _ in range(8):
+        rounds += 1
+        try:
+            page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+            page.wait_for_timeout(1400)
+            # Some builds expose a load-more control instead of pure infinite scroll.
+            button = page.locator("button, a").filter(has_text=re.compile(r"載入更多|查看更多|更多物件|顯示更多"))
+            if button.count() > 0:
+                try:
+                    button.first.click(timeout=1200)
+                    page.wait_for_timeout(1400)
+                except Exception:
+                    pass
+            height = page.evaluate("document.body.scrollHeight")
+            if height == last_height:
+                stable += 1
+            else:
+                stable = 0
+            last_height = height
+            if stable >= 2:
+                break
+        except Exception:
+            break
+    page.evaluate("window.scrollTo(0, 0)")
+    return rounds
 
 
 def extract_cards(page, road: str):
@@ -158,7 +194,8 @@ def main():
             try:
                 response = page.goto(url, wait_until="domcontentloaded", timeout=45000)
                 info["mainHttp"] = response.status if response else None
-                page.wait_for_timeout(5500)
+                page.wait_for_timeout(3500)
+                info["loadRounds"] = expand_results(page)
                 info["title"] = page.title()[:160]
                 info["roadTextCount"] = page.get_by_text(road.replace("板橋區", ""), exact=False).count()
                 raw = extract_cards(page, road)
