@@ -76,41 +76,69 @@ jobs:
         run: |
           python - <<'PY'
           import json
+          from datetime import datetime, timezone
           from pathlib import Path
+
           p = json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
+          snap = json.loads(Path('docs/preview/yungching-browser-snapshot.json').read_text(encoding='utf-8'))
           assert p.get('fetchMode') == 'yungching_official_rendered_dom_only', p.get('fetchMode')
           stats = p.get('officialBrowserCompany') or {}
           assert stats.get('acceptedRoadCount', 0) > 0, stats
           assert p.get('companyListingCount', 0) > 0, p.get('companyListingCount')
-          print(json.dumps({
+
+          result = {
+              'verifiedAt': datetime.now(timezone.utc).isoformat(timespec='seconds'),
               'fetchMode': p.get('fetchMode'),
+              'companyDataSource': p.get('companyDataSource'),
               'companyListingCount': p.get('companyListingCount'),
               'acceptedRoadCount': stats.get('acceptedRoadCount'),
               'unavailableRoadCount': stats.get('unavailableRoadCount'),
-              'counts': p.get('counts'),
-          }, ensure_ascii=False))
+              'comparisonCounts': p.get('counts'),
+              'browserListingCount': snap.get('listingCount'),
+              'roadStatus': snap.get('roadStatus'),
+          }
+          Path('docs/preview/fast-verification.json').write_text(
+              json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8'
+          )
+          print(json.dumps(result, ensure_ascii=False))
           PY
 
       - name: Save verified Preview output
         shell: bash
         run: |
+          set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            docs/preview/company-gap.json \
-            docs/preview/yungching-preview-run.log \
-            docs/preview/yungching-browser-snapshot.json \
-            docs/preview/index.html
-          if git diff --cached --quiet; then
-            echo "No verified Preview changes."
-            exit 0
-          fi
-          git commit -m "Update verified Yongching DOM Preview"
+
+          mkdir -p /tmp/yungching-preview-verified
+          cp docs/preview/company-gap.json /tmp/yungching-preview-verified/company-gap.json
+          cp docs/preview/yungching-preview-run.log /tmp/yungching-preview-verified/yungching-preview-run.log
+          cp docs/preview/yungching-browser-snapshot.json /tmp/yungching-preview-verified/yungching-browser-snapshot.json
+          cp docs/preview/fast-verification.json /tmp/yungching-preview-verified/fast-verification.json
+          cp docs/preview/index.html /tmp/yungching-preview-verified/index.html
+
           for attempt in 1 2 3; do
-            if git pull --rebase && git push; then
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/yungching-preview-verified/company-gap.json docs/preview/company-gap.json
+            cp /tmp/yungching-preview-verified/yungching-preview-run.log docs/preview/yungching-preview-run.log
+            cp /tmp/yungching-preview-verified/yungching-browser-snapshot.json docs/preview/yungching-browser-snapshot.json
+            cp /tmp/yungching-preview-verified/fast-verification.json docs/preview/fast-verification.json
+            cp /tmp/yungching-preview-verified/index.html docs/preview/index.html
+            git add \
+              docs/preview/company-gap.json \
+              docs/preview/yungching-preview-run.log \
+              docs/preview/yungching-browser-snapshot.json \
+              docs/preview/fast-verification.json \
+              docs/preview/index.html
+            if git diff --cached --quiet; then
+              echo "Verified Preview already matches main."
               exit 0
             fi
-            git rebase --abort >/dev/null 2>&1 || true
+            git commit -m "Update verified Yongching DOM Preview"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
             sleep 3
           done
           exit 1
