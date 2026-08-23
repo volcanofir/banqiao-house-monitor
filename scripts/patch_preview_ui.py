@@ -5,8 +5,8 @@ import re
 PATH = Path('docs/preview/index.html')
 GAP_PATH = Path('docs/preview/company-gap.json')
 SNAPSHOT_PATH = Path('docs/preview/yungching-browser-snapshot.json')
+RUN_LOG = Path('docs/preview/yungching-preview-run.log')
 
-# Attach human-verifiable fields from the exact official snapshot used by v6.
 if GAP_PATH.exists() and SNAPSHOT_PATH.exists():
     gap = json.loads(GAP_PATH.read_text(encoding='utf-8'))
     snap = json.loads(SNAPSHOT_PATH.read_text(encoding='utf-8'))
@@ -51,8 +51,6 @@ text = re.sub(r";const covered=GAP\.coveredRoads\|\|\[\];cards\.push\(.*?\);docu
 text = re.sub(r"document\.querySelector\('#mRaw'\)\.textContent=`\$\{GAP\.rawListingCount\?\?GAP\.externalActiveCount\?\?0\} 筆`;", "document.querySelector('#mNew').textContent=`${groups.filter(isNew).length} 戶`;", text, count=1)
 text = re.sub(r"document\.querySelector\('#mMerged'\)\.textContent=`\$\{GAP\.crossPlatformMergedGroupCount\?\?0\} 戶`;", "document.querySelector('#mMerged').textContent=`${GAP.rawListingCount??GAP.externalActiveCount??0} 筆`;", text, count=1)
 
-# Runtime verification state is silent when valid; it only disables company-match
-# statuses if canonical files are ever served from different workflow runs.
 text = text.replace(
     "let DATA={listings:[],runs:{},watchRoads:defaultRoads};let GAP={propertyGroups:[],comparisons:[],counts:{},coveredRoads:[]};let CMAP=new Map();let SOURCE_FILTER='all';",
     "let DATA={listings:[],runs:{},watchRoads:defaultRoads};let GAP={propertyGroups:[],comparisons:[],counts:{},coveredRoads:[]};let VERIFY=null;let CMAP=new Map();let SOURCE_FILTER='all';",
@@ -102,5 +100,13 @@ text = re.sub(
 PATH.write_text(text, encoding='utf-8')
 print('Preview UI patched')
 
-import validate_scheme_a_preview
-validate_scheme_a_preview.main()
+try:
+    import validate_scheme_a_preview_v2 as validator
+    validator.main()
+except Exception as exc:
+    try:
+        with RUN_LOG.open('a', encoding='utf-8') as f:
+            f.write(f"\nVALIDATION_ERROR {type(exc).__name__}: {exc}\n")
+    except Exception:
+        pass
+    raise
