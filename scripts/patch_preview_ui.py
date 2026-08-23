@@ -39,9 +39,17 @@ replacements = {
     '<div class="metric"><span>跨平台整併</span><strong id="mMerged">-</strong></div>': '<div class="metric"><span>原始刊登數量</span><strong id="mMerged">-</strong></div>',
     '<option value="new">近期新案</option>': '<option value="new">新進案件</option>',
     '<span class="pill sinyi">近期新案</span>': '<span class="pill sinyi">新進案件</span>',
+    '<div class="note" id="updated">': '<div class="note" id="updated" aria-live="polite">',
 }
 for old, new in replacements.items():
     text = text.replace(old, new)
+
+# Attribute-safe escaping and tab hardening. The old template used "&quot" without
+# the semicolon, which browsers usually tolerate but is not safe enough for hrefs.
+old_esc = '''const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));'''
+new_esc = '''const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));'''
+text = text.replace(old_esc, new_esc)
+text = text.replace('rel="noreferrer"', 'rel="noopener noreferrer"')
 
 text = re.sub(r'\n<p>同一戶若同時出現在信義房屋與 591，Preview 會優先以信義資料顯示，591 收進同一戶下方；整併完成後再依坪數、價格、案名與樓層比對公司庫存。</p>', '', text)
 text = re.sub(r'\n<div class="company-note" id="companyNote">.*?</div>', '', text, count=1, flags=re.S)
@@ -60,25 +68,40 @@ company_candidate_fn = r'''function candidateLine(g){
   const c=cmp(g);
   if(!c||!c.companyCandidate||!['company_match','review'].includes(c.status))return '';
   const y=c.companyCandidate;
-  const link=y.url?`<a href="${esc(y.url)}" target="_blank" rel="noreferrer">${esc(y.title||y.id)}</a>`:esc(y.title||y.id);
+  const link=y.url?`<a href="${esc(y.url)}" target="_blank" rel="noopener noreferrer">${esc(y.title||y.id)}</a>`:esc(y.title||y.id);
   const id=y.officialCaseId||y.officialId||String(y.id||'').replace(/^YC:/,'');
   return `<div class="row candidate">比對庫存：<span class="pill primary">永慶 ID ${esc(id||'-')}</span>${link}${y.price!=null?`｜${esc(y.price)}萬`:''}${y.area!=null?`｜${esc(y.area)}坪`:''}${y.floor?`｜${esc(y.floor)}`:'｜樓層未取得'}</div>`;
 }'''
 text = re.sub(r"function candidateLine\(g\)\{.*?\}(?=\nfunction sortGroups)", company_candidate_fn, text, count=1, flags=re.S)
 
-runtime_loader = r'''function verificationMatches(g,v){
-  return !!(g&&v&&v.valid===true&&v.scheme==='A'&&v.canonicalPublisher==='yungching-preview.yml'&&
+runtime_loader = r'''function sameCounts(a,b){
+  return ['company_match','review','missing','unavailable'].every(k=>Number((a||{})[k]??-1)===Number((b||{})[k]??-2));
+}
+function verificationMatches(d,g,v){
+  return !!(d&&g&&v&&v.valid===true&&v.scheme==='A'&&v.canonicalPublisher==='yungching-preview.yml'&&
+    v.integrityVersion==='scheme-a-canonical-v3-sinyi-floor-neartie'&&v.fetchMode==='yungching_official_rendered_dom_only'&&
     v.snapshotCapturedAt===g.companySnapshotCapturedAt&&v.companyGapGeneratedAt===g.generatedAt&&
-    Number(v.companyListingCount)===Number(g.companyListingCount)&&Number(v.propertyGroupCount)===Number(g.propertyGroupCount));
+    v.sourceDataUpdatedAt===g.sourceDataUpdatedAt&&(!d.updatedAt||d.updatedAt===g.sourceDataUpdatedAt)&&
+    Number(v.companyListingCount)===Number(g.companyListingCount)&&Number(v.propertyGroupCount)===Number(g.propertyGroupCount)&&
+    Number(v.rawListingCount)===Number(g.rawListingCount)&&Number(v.comparisonCount)===Number((g.comparisons||[]).length)&&
+    sameCounts(v.counts,g.counts)&&(v.sinyiFloorEnrichment||{}).complete===true);
+}
+async function fetchJson(url,label){
+  const ctl=new AbortController();
+  const timer=setTimeout(()=>ctl.abort(),12000);
+  try{
+    const r=await fetch(url,{cache:'no-store',signal:ctl.signal});
+    if(!r.ok)throw new Error(`${label} HTTP ${r.status}`);
+    return await r.json();
+  }finally{clearTimeout(timer)}
 }
 Promise.all([
-  fetch(`../data/listings.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.json()),
-  fetch(`company-gap.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.ok?r.json():null),
-  fetch(`scheme-a-verification.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.ok?r.json():null),
+  fetchJson(`../data/listings.json?ts=${Date.now()}`,'監控資料'),
+  fetchJson(`company-gap.json?ts=${Date.now()}`,'比對資料'),
+  fetchJson(`scheme-a-verification.json?ts=${Date.now()}`,'驗證資料'),
 ]).then(([d,g,v])=>{
-  DATA=d; VERIFY=v;
-  if(g)GAP=g;
-  const verified=verificationMatches(GAP,VERIFY);
+  DATA=d; GAP=g; VERIFY=v;
+  const verified=verificationMatches(DATA,GAP,VERIFY);
   if(!verified){
     const n=Number(GAP.propertyGroupCount??(GAP.propertyGroups||[]).length)||0;
     GAP={...GAP,comparisons:[],counts:{company_match:0,review:0,missing:0,unavailable:n}};
@@ -86,19 +109,50 @@ Promise.all([
   CMAP=new Map((GAP.comparisons||[]).map(x=>[x.groupId,x]));
   render();
   if(!verified){
-    document.querySelector('#updated').textContent=`來源資料最近更新：${fmt(DATA.updatedAt)}｜公司比對完整性驗證未通過，暫不顯示委託狀態。`;
+    document.querySelector('#updated').textContent=`來源資料最近更新：${fmt(DATA.updatedAt)}｜比對資料同步中，委託狀態暫停顯示。`;
   }
-}).catch(e=>{document.querySelector('#updated').textContent='Preview 資料讀取失敗：'+e;});'''
+}).catch(e=>{
+  console.error(e);
+  document.querySelector('#updated').textContent='Preview 資料讀取失敗，請重新整理後再試。';
+  document.querySelector('#groups').innerHTML='<div class="empty">目前無法完整載入監控資料，為避免顯示錯誤比對結果，案件列表已暫停顯示。</div>';
+});'''
 text = re.sub(
-    r"Promise\.all\(\[fetch\(`\.\./data/listings\.json\?ts=\$\{Date\.now\(\)\}`.*?\.catch\(e=>\{document\.querySelector\('#updated'\)\.textContent='Preview 資料讀取失敗：'\+e;\}\);",
+    r"function verificationMatches\(g,v\)\{.*?\.catch\(e=>\{document\.querySelector\('#updated'\)\.textContent='Preview 資料讀取失敗：'\+e;\}\);",
     runtime_loader,
     text,
     count=1,
     flags=re.S,
 )
+# Compatibility with an older generated file that did not yet contain verificationMatches.
+if 'async function fetchJson(url,label)' not in text:
+    text = re.sub(
+        r"Promise\.all\(\[fetch\(`\.\./data/listings\.json\?ts=\$\{Date\.now\(\)\}`.*?\.catch\(e=>\{document\.querySelector\('#updated'\)\.textContent='Preview 資料讀取失敗：'\+e;\}\);",
+        runtime_loader,
+        text,
+        count=1,
+        flags=re.S,
+    )
+
+# Fail the build instead of silently publishing a partially patched UI if the base
+# template changes underneath these regex transforms.
+required_fragments = [
+    'id="mNew"',
+    'id="mGroups"',
+    'id="mMerged"',
+    'function verificationMatches(d,g,v)',
+    'async function fetchJson(url,label)',
+    "v.sourceDataUpdatedAt===g.sourceDataUpdatedAt",
+    'rel="noopener noreferrer"',
+    'aria-live="polite"',
+]
+missing = [x for x in required_fragments if x not in text]
+if missing:
+    raise RuntimeError(f'Preview UI patch contract failed; missing fragments: {missing}')
+if 'id="companyNote"' in text or 'id="mRaw"' in text:
+    raise RuntimeError('Preview UI patch contract failed; legacy UI fragments remain')
 
 PATH.write_text(text, encoding='utf-8')
-print('Preview UI patched')
+print('Preview UI patched and hardened')
 
 try:
     import validate_scheme_a_preview_v3 as validator
