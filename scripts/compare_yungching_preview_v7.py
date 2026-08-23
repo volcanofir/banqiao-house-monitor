@@ -1,12 +1,13 @@
-"""Scheme A Preview v7: safe floor parsing across 591/Sinyi/company matching.
+"""Scheme A Preview v7: safe floor parsing and one-to-one company matches.
 
 Prevents concatenated DOM strings such as `主32.333/3樓` from becoming floor 33.
-Company rows still prefer their structured official `floor`; this wrapper also makes the
-shared 591/Sinyi floor parser physically validate subject/total expressions.
+Company rows prefer their structured official `floor`. A single Yongching company
+listing may not automatically mark multiple external property groups as inventory.
 """
 
 import json
 import re
+from collections import Counter, defaultdict
 
 import compare_yungching_preview_v4 as v4
 import compare_yungching_preview_v5 as v5
@@ -17,16 +18,10 @@ def safe_floor_numbers(text, company_text=False):
     text = str(text or "").replace("～", "~")
     floors = set()
     spans = []
-
-    # subject/total. Validate subject <= total. In glued cases such as 33/3,
-    # only the final digit can be the subject floor (3/3).
     for m in re.finditer(r"(\d{1,2})(?:\s*[~-]\s*(\d{1,2}))?\s*/\s*(\d{1,2})\s*樓", text):
-        raw_lo = m.group(1)
-        raw_hi = m.group(2)
-        total = int(m.group(3))
+        raw_lo, raw_hi, total = m.group(1), m.group(2), int(m.group(3))
         if not (1 <= total <= 99):
             continue
-
         if raw_hi is not None:
             lo, hi = int(raw_lo), int(raw_hi)
             if 1 <= lo <= hi <= total and hi - lo <= 10:
@@ -41,8 +36,6 @@ def safe_floor_numbers(text, company_text=False):
                     floors.add(suffix)
         spans.append(m.span())
 
-    # Remove slash expressions before matching ordinary `X樓`; otherwise the total
-    # floor can be interpreted as another subject floor.
     if spans:
         chars = list(text)
         for start, end in spans:
@@ -50,7 +43,6 @@ def safe_floor_numbers(text, company_text=False):
                 chars[i] = " "
         text = "".join(chars)
 
-    # Explicit subject range without total, e.g. 1~2樓.
     range_spans = []
     for m in re.finditer(r"(?<!\d)(\d{1,2})\s*[~-]\s*(\d{1,2})\s*樓", text):
         lo, hi = int(m.group(1)), int(m.group(2))
@@ -95,8 +87,50 @@ def safe_listing_floor_tokens(x):
     return floors
 
 
+def guard_company_candidate_reuse(payload):
+    """Downgrade duplicate automatic company matches to review.
+
+    If one official Yongching ID is the candidate for two different external groups,
+    the external grouping is ambiguous. Neither group is allowed to stay auto-stock.
+    """
+    by_candidate = defaultdict(list)
+    for row in payload.get("comparisons") or []:
+        if row.get("status") != "company_match":
+            continue
+        candidate = row.get("companyCandidate") or {}
+        cid = str(candidate.get("id") or "")
+        if cid:
+            by_candidate[cid].append(row)
+
+    duplicated = {cid: rows for cid, rows in by_candidate.items() if len(rows) > 1}
+    affected = 0
+    for cid, rows in duplicated.items():
+        group_ids = [x.get("groupId") for x in rows]
+        for row in rows:
+            row["status"] = "review"
+            row["statusLabel"] = "待確認"
+            row["companyCandidateReuseReview"] = True
+            row["companyCandidateReuseGroupIds"] = group_ids
+            row["reason"] = (str(row.get("reason") or "") + "；同一永慶公司案件同時命中多個外部群組，禁止自動計入庫存").strip("；")
+            affected += 1
+
+    counts = Counter(str(x.get("status") or "unavailable") for x in (payload.get("comparisons") or []))
+    payload["counts"] = {
+        "company_match": counts.get("company_match", 0),
+        "review": counts.get("review", 0),
+        "missing": counts.get("missing", 0),
+        "unavailable": counts.get("unavailable", 0),
+    }
+    payload["companyCandidateReuseGuard"] = {
+        "enabled": True,
+        "duplicateCandidateCount": len(duplicated),
+        "affectedGroupCount": affected,
+        "candidateIds": sorted(duplicated),
+        "rule": "同一永慶官方案件不得自動把多個外部群組同時判定為庫存；重複命中全部降為待確認",
+    }
+
+
 def main():
-    # Patch the shared parsers before v6 invokes v5/v4 grouping.
     v5.floors_from_text = safe_floor_numbers
     v4.title_floor_tokens = safe_floor_numbers
     v4.listing_floor_tokens = safe_listing_floor_tokens
@@ -104,11 +138,17 @@ def main():
 
     path = v5.v4.prev.OUT_PATH
     payload = json.loads(path.read_text(encoding="utf-8"))
+    guard_company_candidate_reuse(payload)
     payload["mode"] = "preview_only_591_then_sinyi_then_company_floor_aware_official_rendered_v7"
     payload["safeFloorParser"] = True
     payload["safeFloorParserRule"] = "subject floor must be physically valid against total floor; glued area digits are trimmed instead of becoming impossible floors"
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps({"safeFloorParser": True, "mode": payload["mode"]}, ensure_ascii=False))
+    print(json.dumps({
+        "safeFloorParser": True,
+        "companyCandidateReuseGuard": payload.get("companyCandidateReuseGuard"),
+        "counts": payload.get("counts"),
+        "mode": payload["mode"],
+    }, ensure_ascii=False))
 
 
 if __name__ == "__main__":
