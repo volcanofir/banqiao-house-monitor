@@ -18,6 +18,7 @@ if GAP_PATH.exists() and SNAPSHOT_PATH.exists():
         src = official.get(str(c.get('id')))
         if not src:
             continue
+        c['officialId'] = src.get('id')
         c['officialCaseId'] = src.get('officialCaseId')
         c['floor'] = src.get('floor')
         c['floorSourceMode'] = src.get('floorSourceMode')
@@ -50,6 +51,13 @@ text = re.sub(r";const covered=GAP\.coveredRoads\|\|\[\];cards\.push\(.*?\);docu
 text = re.sub(r"document\.querySelector\('#mRaw'\)\.textContent=`\$\{GAP\.rawListingCount\?\?GAP\.externalActiveCount\?\?0\} 筆`;", "document.querySelector('#mNew').textContent=`${groups.filter(isNew).length} 戶`;", text, count=1)
 text = re.sub(r"document\.querySelector\('#mMerged'\)\.textContent=`\$\{GAP\.crossPlatformMergedGroupCount\?\?0\} 戶`;", "document.querySelector('#mMerged').textContent=`${GAP.rawListingCount??GAP.externalActiveCount??0} 筆`;", text, count=1)
 
+# Runtime verification state is silent when valid; it only disables company-match
+# statuses if canonical files are ever served from different workflow runs.
+text = text.replace(
+    "let DATA={listings:[],runs:{},watchRoads:defaultRoads};let GAP={propertyGroups:[],comparisons:[],counts:{},coveredRoads:[]};let CMAP=new Map();let SOURCE_FILTER='all';",
+    "let DATA={listings:[],runs:{},watchRoads:defaultRoads};let GAP={propertyGroups:[],comparisons:[],counts:{},coveredRoads:[]};let VERIFY=null;let CMAP=new Map();let SOURCE_FILTER='all';",
+)
+
 company_candidate_fn = r'''function candidateLine(g){
   const c=cmp(g);
   if(!c||!c.companyCandidate||!['company_match','review'].includes(c.status))return '';
@@ -59,6 +67,37 @@ company_candidate_fn = r'''function candidateLine(g){
   return `<div class="row candidate">比對庫存：<span class="pill primary">永慶 ID ${esc(id||'-')}</span>${link}${y.price!=null?`｜${esc(y.price)}萬`:''}${y.area!=null?`｜${esc(y.area)}坪`:''}${y.floor?`｜${esc(y.floor)}`:'｜樓層未取得'}</div>`;
 }'''
 text = re.sub(r"function candidateLine\(g\)\{.*?\}(?=\nfunction sortGroups)", company_candidate_fn, text, count=1, flags=re.S)
+
+runtime_loader = r'''function verificationMatches(g,v){
+  return !!(g&&v&&v.valid===true&&v.scheme==='A'&&v.canonicalPublisher==='yungching-preview.yml'&&
+    v.snapshotCapturedAt===g.companySnapshotCapturedAt&&v.companyGapGeneratedAt===g.generatedAt&&
+    Number(v.companyListingCount)===Number(g.companyListingCount)&&Number(v.propertyGroupCount)===Number(g.propertyGroupCount));
+}
+Promise.all([
+  fetch(`../data/listings.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.json()),
+  fetch(`company-gap.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.ok?r.json():null),
+  fetch(`scheme-a-verification.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.ok?r.json():null),
+]).then(([d,g,v])=>{
+  DATA=d; VERIFY=v;
+  if(g)GAP=g;
+  const verified=verificationMatches(GAP,VERIFY);
+  if(!verified){
+    const n=Number(GAP.propertyGroupCount??(GAP.propertyGroups||[]).length)||0;
+    GAP={...GAP,comparisons:[],counts:{company_match:0,review:0,missing:0,unavailable:n}};
+  }
+  CMAP=new Map((GAP.comparisons||[]).map(x=>[x.groupId,x]));
+  render();
+  if(!verified){
+    document.querySelector('#updated').textContent=`來源資料最近更新：${fmt(DATA.updatedAt)}｜公司比對完整性驗證未通過，暫不顯示委託狀態。`;
+  }
+}).catch(e=>{document.querySelector('#updated').textContent='Preview 資料讀取失敗：'+e;});'''
+text = re.sub(
+    r"Promise\.all\(\[fetch\(`\.\./data/listings\.json\?ts=\$\{Date\.now\(\)\}`.*?\.catch\(e=>\{document\.querySelector\('#updated'\)\.textContent='Preview 資料讀取失敗：'\+e;\}\);",
+    runtime_loader,
+    text,
+    count=1,
+    flags=re.S,
+)
 
 PATH.write_text(text, encoding='utf-8')
 print('Preview UI patched')
