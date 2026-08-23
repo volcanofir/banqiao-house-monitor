@@ -1,0 +1,111 @@
+name: 方案 A 已驗證官方快照比對測試
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/scheme-a-current-snapshot-test.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: banqiao-scheme-a-current-snapshot-test
+  cancel-in-progress: true
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install comparison dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Compare verified official DOM snapshot
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/compare_yungching_preview_v6.py 2>&1 | tee docs/preview/yungching-preview-run.log
+          python scripts/patch_preview_ui.py
+
+      - name: Assert scheme A result
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          p = json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
+          s = json.loads(Path('docs/preview/yungching-browser-snapshot.json').read_text(encoding='utf-8'))
+          z = (s.get('roadStatus') or {}).get('板橋區中山路二段') or {}
+
+          assert p.get('fetchMode') == 'yungching_official_rendered_dom_only', p.get('fetchMode')
+          assert (p.get('companyDataGuard') or {}).get('enabled') is False, p.get('companyDataGuard')
+          assert z.get('count') == 39, z
+          assert z.get('paginationComplete') is True, z
+          assert int(z.get('paginationActivePage') or 0) == 2, z
+          direct = [x for x in (z.get('nextClicks') or []) if x.get('mode') == 'yungching-direct-pg-v4']
+          assert direct and direct[0].get('http') == 200 and direct[0].get('activeVerified') is True, direct
+
+          company = p.get('companyListings') or []
+          assert company, 'companyListings empty'
+          assert len(company) == p.get('companyListingCount'), (len(company), p.get('companyListingCount'))
+          assert all(x.get('sourceMode') == 'yungching_official_browser' for x in company), 'non-official company row exists'
+
+          bad = []
+          for road, st in (p.get('roadStatus') or {}).items():
+              mode = str((st or {}).get('mode') or '').lower()
+              if any(token in mode for token in ('har','housefun','proxy','previous_snapshot','previous-snapshot')):
+                  bad.append({'road': road, 'mode': mode})
+          assert not bad, bad
+
+          z_company = [x for x in company if x.get('road') == '板橋區中山路二段']
+          assert len(z_company) == 39, len(z_company)
+
+          out = {
+              'verifiedAt': datetime.now(timezone.utc).isoformat(timespec='seconds'),
+              'scheme': 'A',
+              'source': 'verified Surfshark + Chromium rendered DOM snapshot',
+              'fetchMode': p.get('fetchMode'),
+              'browserListingCount': s.get('listingCount'),
+              'companyListingCount': p.get('companyListingCount'),
+              'zhongshanBrowserCount': z.get('count'),
+              'zhongshanCompanyCount': len(z_company),
+              'coveredRoads': p.get('coveredRoads'),
+              'counts': p.get('counts'),
+              'officialBrowserCompany': p.get('officialBrowserCompany'),
+              'legacyFallbacks': False,
+          }
+          Path('docs/preview/scheme-a-verification.json').write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding='utf-8')
+          print(json.dumps(out, ensure_ascii=False))
+          PY
+
+      - name: Save verified scheme A comparison
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p /tmp/scheme-a
+          for f in company-gap.json yungching-preview-run.log scheme-a-verification.json index.html; do
+            cp docs/preview/$f /tmp/scheme-a/$f
+          done
+          git fetch origin main
+          git reset --hard origin/main
+          for f in company-gap.json yungching-preview-run.log scheme-a-verification.json index.html; do
+            cp /tmp/scheme-a/$f docs/preview/$f
+          done
+          git add docs/preview/company-gap.json docs/preview/yungching-preview-run.log docs/preview/scheme-a-verification.json docs/preview/index.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Save verified scheme A comparison"
+          git push origin HEAD:main
