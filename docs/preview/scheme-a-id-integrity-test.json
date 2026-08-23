@@ -1,0 +1,110 @@
+{
+  "listingCount": 81,
+  "roadCounts": {
+    "板橋區中山路二段": 38,
+    "板橋區三民路一段": 5,
+    "板橋區三民路二段": 29,
+    "板橋區翠華街": 6,
+    "板橋區林森街": 1,
+    "板橋區萬安街": 1,
+    "板橋區光復街": 1
+  },
+  "idIntegrityGuard": {
+    "enabled": true,
+    "beforeCount": 88,
+    "afterCount": 81,
+    "removedCount": 7,
+    "collisionIds": [
+      "4308114"
+    ],
+    "remainingCollisionIds": [],
+    "removed": [
+      {
+        "id": "4308114",
+        "road": "板橋區中山路二段",
+        "title": "埔墘中山路稀有三樓頂加出價可談",
+        "area": 32.33,
+        "price": 1380.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "6693666"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區三民路一段",
+        "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
+        "area": 89.82,
+        "price": 3600.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7410779"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區三民路二段",
+        "title": "正隆國泰美妝頂加",
+        "area": 29.53,
+        "price": 1598.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7481499"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區翠華街",
+        "title": "大面寬x稀有雙拼x方正格局x黃金一樓x使用近60",
+        "area": 59.37,
+        "price": 4280.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7455915"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區林森街",
+        "title": "埔墘小資方正頂家",
+        "area": 21.27,
+        "price": 938.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7450882"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區萬安街",
+        "title": "適合三代同堂輕裝潢透天出價就談",
+        "area": 27.59,
+        "price": 1980.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7320894"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區光復街",
+        "title": "現況辦公可隔三房坡道平面車位",
+        "area": 53.21,
+        "price": 2688.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7242793"
+        ],
+        "replacementFound": true
+      }
+    ],
+    "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
+  },
+  "passed": true
+}
