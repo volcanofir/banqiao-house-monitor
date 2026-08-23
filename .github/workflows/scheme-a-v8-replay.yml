@@ -1,0 +1,75 @@
+name: Scheme A v8 replay
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/scheme-a-v8-replay.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scheme-a-v8-replay
+  cancel-in-progress: true
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install requests beautifulsoup4 cryptography
+      - name: Run v8 against current verified snapshot
+        shell: bash
+        run: |
+          python scripts/sinyi_preview_floor_enrich.py
+          python scripts/compare_yungching_preview_v8.py
+          python scripts/validate_scheme_a_preview_v3.py
+          python scripts/audit_scheme_a_ambiguity_v2.py
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          p=json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
+          a=json.loads(Path('docs/preview/scheme-a-ambiguity-audit.json').read_text(encoding='utf-8'))
+          s=json.loads(Path('docs/preview/sinyi-floor-enrichment.json').read_text(encoding='utf-8'))
+          rows={x.get('groupId'):x for x in p.get('comparisons') or []}
+          out={
+            'auditedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
+            'passed':True,
+            'mode':p.get('mode'),
+            'companyListingCount':p.get('companyListingCount'),
+            'propertyGroupCount':p.get('propertyGroupCount'),
+            'counts':p.get('counts'),
+            'sinyiFloorEnrichment':s,
+            'companyNearTieGuard':p.get('companyNearTieGuard'),
+            'ambiguityAudit':{
+              'companyNearTieStrongCount':a.get('companyNearTieStrongCount'),
+              'chosenCandidateRecomputeMismatchCount':a.get('chosenCandidateRecomputeMismatchCount'),
+              'weakIdentityAlreadyMergedPairCount':a.get('weakIdentityAlreadyMergedPairCount'),
+            },
+            'knownCases':{
+              '5818CQ': next((x for x in p.get('comparisons') or [] if x.get('groupId')=='GROUP:信義房屋:5818CQ'),None),
+              '5368YG': next((x for x in p.get('comparisons') or [] if x.get('groupId')=='GROUP:信義房屋:5368YG'),None),
+            },
+          }
+          Path('docs/preview/scheme-a-v8-replay.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          PY
+      - name: Save replay result
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp docs/preview/scheme-a-v8-replay.json /tmp/replay.json
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/replay.json docs/preview/scheme-a-v8-replay.json
+          git add docs/preview/scheme-a-v8-replay.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Save scheme A v8 replay"
+          git push origin HEAD:main
