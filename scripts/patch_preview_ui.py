@@ -70,5 +70,22 @@ text = re.sub(
     count=1,
 )
 
+# Human-verifiable company match details for scheme A: exact Yongching ID + floor.
+company_candidate_fn = r'''function candidateLine(g){
+  const c=cmp(g);
+  if(!c||!c.companyCandidate||!['company_match','review'].includes(c.status))return '';
+  const y=c.companyCandidate;
+  const link=y.url?`<a href="${esc(y.url)}" target="_blank" rel="noreferrer">${esc(y.title||y.id)}</a>`:esc(y.title||y.id);
+  const id=y.officialId||String(y.id||'').replace(/^YC:/,'');
+  return `<div class="row candidate">比對庫存：<span class="pill primary">永慶 ID ${esc(id||'-')}</span>${link}${y.price!=null?`｜${esc(y.price)}萬`:''}${y.area!=null?`｜${esc(y.area)}坪`:''}${y.floor?`｜${esc(y.floor)}`:'｜樓層未取得'}</div>`;
+}'''
+text = re.sub(
+    r"function candidateLine\(g\)\{.*?\}(?=\nfunction sortGroups)",
+    company_candidate_fn,
+    text,
+    count=1,
+    flags=re.S,
+)
+
 PATH.write_text(text, encoding='utf-8')
 print('Preview UI patched')
