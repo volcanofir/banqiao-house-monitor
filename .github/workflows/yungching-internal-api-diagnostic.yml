@@ -10,6 +10,7 @@ on:
       - "scripts/yungching_browser_preflight.py"
       - "scripts/connect_surfshark_wireguard.sh"
 
+# Diagnostic-only workflow; never publishes canonical Preview files.
 permissions:
   contents: write
 
