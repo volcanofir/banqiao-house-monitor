@@ -104,7 +104,11 @@ def official_rendered_fetch_company():
         official_rows = [browser_row(x, road) for x in browser_rows if x.get("road") == road]
         official_count = len(official_rows)
         road_http = ost.get("mainHttp")
-        road_ok = bool(fresh_snapshot and road_http == 200 and ost.get("available") and official_count > 0)
+        pagination_ok = (not ost.get("paginationExpected")) or ost.get("paginationComplete") is True
+        road_ok = bool(
+            fresh_snapshot and road_http == 200 and ost.get("available") and
+            official_count > 0 and pagination_ok
+        )
 
         if road_ok:
             selected_company.extend(official_rows)
@@ -131,7 +135,7 @@ def official_rendered_fetch_company():
         else:
             if not fresh_snapshot:
                 reason = "官方快照過期或時間異常"
-            elif ost.get("paginationIncomplete"):
+            elif ost.get("paginationExpected") and ost.get("paginationComplete") is not True:
                 reason = "官方頁有分頁但未完成全部頁面擷取"
             else:
                 reason = f"官方頁不可用（HTTP {road_http} / {official_count} 筆）"
@@ -165,20 +169,38 @@ def no_har_fallback(company, road_status, logs):
     return company, None
 
 
-def structured_listing_floors(x, company=False):
-    floors = set(ORIGINAL_LISTING_FLOORS(x, company=company))
-    if not x:
+def floors_from_structured_value(raw):
+    floors = set()
+    if raw in (None, ""):
         return floors
+    floor_text = str(raw)
+    floors |= v5.floors_from_text(floor_text, company_text=True)
+    for m in re.finditer(r"(\d{1,2})\s*[~～-]\s*(\d{1,2})\s*/\s*\d{1,2}\s*樓", floor_text):
+        lo, hi = int(m.group(1)), int(m.group(2))
+        if 1 <= lo <= hi <= 99 and hi - lo <= 5:
+            floors.update(range(lo, hi + 1))
+    return floors
+
+
+def structured_listing_floors(x, company=False):
+    """Use Yongching's structured floor as the sole company-floor truth when present.
+
+    The official list DOM can concatenate area and floor text (for example
+    `主32.333/3樓`). Scanning the entire company text can therefore invent a fake
+    33rd floor. Once a structured `floor` field exists, do not union text-inferred
+    company floors back into it. External 591/Sinyi matching keeps the legacy title
+    inference because those feeds do not have the same structured field guarantee.
+    """
+    if not x:
+        return set()
 
     raw = x.get("floor")
-    if raw not in (None, ""):
-        floor_text = str(raw)
-        floors |= v5.floors_from_text(floor_text, company_text=company)
+    if company and raw not in (None, ""):
+        return floors_from_structured_value(raw)
 
-        for m in re.finditer(r"(\d{1,2})\s*[~～-]\s*(\d{1,2})\s*/\s*\d{1,2}\s*樓", floor_text):
-            lo, hi = int(m.group(1)), int(m.group(2))
-            if 1 <= lo <= hi <= 99 and hi - lo <= 5:
-                floors.update(range(lo, hi + 1))
+    floors = set(ORIGINAL_LISTING_FLOORS(x, company=company))
+    if raw not in (None, ""):
+        floors |= floors_from_structured_value(raw)
     return floors
 
 
@@ -193,6 +215,7 @@ def expose_company_candidate_fields(payload):
         if not source:
             continue
         candidate["officialId"] = source.get("officialId") or str(source.get("id") or "").removeprefix("YC:")
+        candidate["officialCaseId"] = source.get("officialCaseId")
         candidate["floor"] = source.get("floor")
         candidate["floorSourceMode"] = source.get("floorSourceMode")
         candidate["floorEvidence"] = source.get("floorEvidence")
