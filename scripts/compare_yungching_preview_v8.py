@@ -7,6 +7,8 @@ points is downgraded to review instead of guessing.
 """
 
 import json
+import subprocess
+import sys
 from collections import Counter
 from pathlib import Path
 
@@ -190,6 +192,11 @@ def main():
         "分差<=2，不自動猜測，直接列待確認。正式監控資料 docs/data/listings.json 不被改寫。"
     )
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    # Add a grouped 10-day off-market history without changing active company counts.
+    subprocess.run([sys.executable, "scripts/add_recent_offmarket.py"], check=True)
+    payload = json.loads(path.read_text(encoding="utf-8"))
+
     print(json.dumps({
         "mode": payload["mode"],
         "sinyiFloorEnrichment": {
@@ -199,6 +206,8 @@ def main():
         },
         "companyNearTieGuard": payload.get("companyNearTieGuard"),
         "counts": payload.get("counts"),
+        "recentOffMarketCount": payload.get("recentOffMarketCount"),
+        "recentOffMarketRetentionDays": payload.get("recentOffMarketRetentionDays"),
     }, ensure_ascii=False))
 
 
