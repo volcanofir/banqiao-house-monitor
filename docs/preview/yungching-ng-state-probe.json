@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-08-23T02:06:44+00:00",
+  "capturedAt": "2026-08-23T02:10:09+00:00",
   "previewOnly": true,
   "road": "板橋區中山路二段",
   "cryptoSelfTest": true,
@@ -7,7 +7,7 @@
     "searchPage1": {
       "http": 200,
       "transferState": {
-        "ngStateChars": 119812,
+        "ngStateChars": 119828,
         "topLevelKeys": [
           "__nghData__",
           "app-setting",
@@ -24,9 +24,22 @@
               "originalType": "str",
               "decodeMode": "none",
               "stringChars": 65820,
-              "cryptoError": "Error",
-              "jsonError": "JSONDecodeError",
-              "looksBase64": false
+              "stringLengthMod4": 0,
+              "looksBase64": false,
+              "looksBase64Url": false,
+              "hasPercentEscapes": false,
+              "attemptErrors": [
+                "yungching-aes-256-cbc:Error",
+                "nested-json:JSONDecodeError"
+              ],
+              "distinctCharCount": 65,
+              "nonBase64UrlChars": [
+                ",",
+                ":",
+                ">",
+                "[",
+                "{"
+              ]
             },
             "decodedPayloadBytesUtf8": 65822,
             "structure": {
@@ -62,9 +75,22 @@
               "originalType": "str",
               "decodeMode": "none",
               "stringChars": 28160,
-              "cryptoError": "Error",
-              "jsonError": "JSONDecodeError",
-              "looksBase64": false
+              "stringLengthMod4": 0,
+              "looksBase64": false,
+              "looksBase64Url": false,
+              "hasPercentEscapes": false,
+              "attemptErrors": [
+                "yungching-aes-256-cbc:Error",
+                "nested-json:JSONDecodeError"
+              ],
+              "distinctCharCount": 65,
+              "nonBase64UrlChars": [
+                ",",
+                ":",
+                ">",
+                "[",
+                "{"
+              ]
             },
             "decodedPayloadBytesUtf8": 28162,
             "structure": {
@@ -84,7 +110,7 @@
       "http": 200,
       "expectedHouseId": "5289400",
       "transferState": {
-        "ngStateChars": 13493,
+        "ngStateChars": 13504,
         "topLevelKeys": [
           "__nghData__",
           "app-setting",
@@ -99,9 +125,22 @@
               "originalType": "str",
               "decodeMode": "none",
               "stringChars": 8100,
-              "cryptoError": "Error",
-              "jsonError": "JSONDecodeError",
-              "looksBase64": false
+              "stringLengthMod4": 0,
+              "looksBase64": false,
+              "looksBase64Url": false,
+              "hasPercentEscapes": false,
+              "attemptErrors": [
+                "yungching-aes-256-cbc:Error",
+                "nested-json:JSONDecodeError"
+              ],
+              "distinctCharCount": 65,
+              "nonBase64UrlChars": [
+                ",",
+                ":",
+                ">",
+                "[",
+                "{"
+              ]
             },
             "decodedPayloadBytesUtf8": 8102,
             "structure": {
