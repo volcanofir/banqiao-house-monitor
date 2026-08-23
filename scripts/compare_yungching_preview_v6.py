@@ -56,7 +56,6 @@ def official_rendered_fetch_company():
     selected_company = []
     selected_status = {}
 
-    # Reset counters because the function may be invoked more than once in diagnostics.
     OFFICIAL_STATS["acceptedRoadCount"] = 0
     OFFICIAL_STATS["unavailableRoadCount"] = 0
     OFFICIAL_STATS["roads"] = {}
@@ -183,6 +182,23 @@ def structured_listing_floors(x, company=False):
     return floors
 
 
+def expose_company_candidate_fields(payload):
+    """Expose the exact official ID/floor used by the matcher for human Preview review."""
+    by_id = {str(x.get("id")): x for x in (payload.get("companyListings") or []) if x.get("id")}
+    for cmp_row in payload.get("comparisons") or []:
+        candidate = cmp_row.get("companyCandidate")
+        if not candidate:
+            continue
+        source = by_id.get(str(candidate.get("id")))
+        if not source:
+            continue
+        candidate["officialId"] = source.get("officialId") or str(source.get("id") or "").removeprefix("YC:")
+        candidate["floor"] = source.get("floor")
+        candidate["floorSourceMode"] = source.get("floorSourceMode")
+        candidate["floorEvidence"] = source.get("floorEvidence")
+        candidate["type"] = source.get("type")
+
+
 def main():
     # PREVIEW only. Production crawler and production UI remain untouched.
     # Patch every legacy escape hatch: v5 previous-snapshot guard AND v3 HAR fallback.
@@ -206,6 +222,7 @@ def main():
         "triggeredRoadCount": 0,
         "roads": [],
     }
+    expose_company_candidate_fields(payload)
     payload["note"] = (
         "PREVIEW v6：591先重新互相比對，再與信義整併且信義為主，最後比公司庫存。"
         "公司庫存只採用本輪 Surfshark + Chromium 成功載入的永慶官方公開搜尋頁渲染結果；"
