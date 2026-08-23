@@ -1,0 +1,116 @@
+{
+  "generatedAt": "2026-08-23T00:57:43+00:00",
+  "previewOnly": true,
+  "network": {
+    "surfsharkWorkflowOutcome": "success",
+    "vpnConnected": true,
+    "beforeIp": "4.246.135.195",
+    "exitIp": "89.117.42.38"
+  },
+  "crypto": {
+    "service": "YungChing.Buy",
+    "algorithm": "AES-256-CBC",
+    "kdf": "SHA-256(service) -> PBKDF2-HMAC-SHA1(iterations=1000, salt=0207000501030800, dkLen=48)",
+    "keyHex": "936b60d69a2ae5668dcb279eabf5e76a64a2669d216da291c4ed71dbc4d3d9ae",
+    "ivHex": "3aab9af1a3d329ee4026b809990ae35b",
+    "knownVectorMatch": true,
+    "roundtripOk": true
+  },
+  "frontendChunk": {
+    "url": "https://buy.yungching.com.tw/mansion/chunk-B7SBOXYM.js",
+    "http": 200,
+    "contentLength": 8883,
+    "hasAesCbc": true,
+    "hasPbkdf2": true
+  },
+  "roadStatus": {
+    "板橋區中山路二段": {
+      "road": "板橋區中山路二段",
+      "url": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw?od=80",
+      "http": 200,
+      "count": 0,
+      "available": false,
+      "mode": "official_html_probe",
+      "finalUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw?od=80",
+      "contentLength": 671701,
+      "contentType": "text/html;charset=UTF-8",
+      "error": "HTTP 200 but no reliable official listing cards parsed"
+    },
+    "板橋區三民路一段": {
+      "road": "板橋區三民路一段",
+      "url": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%89%E6%B0%91%E8%B7%AF%E4%B8%80%E6%AE%B5_kw?od=80",
+      "http": 200,
+      "count": 0,
+      "available": false,
+      "mode": "official_html_probe",
+      "finalUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%89%E6%B0%91%E8%B7%AF%E4%B8%80%E6%AE%B5_kw?od=80",
+      "contentLength": 508839,
+      "contentType": "text/html;charset=UTF-8",
+      "error": "HTTP 200 but no reliable official listing cards parsed"
+    },
+    "板橋區三民路二段": {
+      "road": "板橋區三民路二段",
+      "url": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw?od=80",
+      "http": 200,
+      "count": 0,
+      "available": false,
+      "mode": "official_html_probe",
+      "finalUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw?od=80",
+      "contentLength": 664995,
+      "contentType": "text/html;charset=UTF-8",
+      "error": "HTTP 200 but no reliable official listing cards parsed"
+    },
+    "板橋區翠華街": {
+      "road": "板橋區翠華街",
+      "url": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E7%BF%A0%E8%8F%AF%E8%A1%97_kw?od=80",
+      "http": 200,
+      "count": 0,
+      "available": false,
+      "mode": "official_html_probe",
+      "finalUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E7%BF%A0%E8%8F%AF%E8%A1%97_kw?od=80",
+      "contentLength": 515853,
+      "contentType": "text/html;charset=UTF-8",
+      "error": "HTTP 200 but no reliable official listing cards parsed"
+    },
+    "板橋區林森街": {
+      "road": "板橋區林森街",
+      "url": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E6%9E%97%E6%A3%AE%E8%A1%97_kw?od=80",
+      "http": 200,
+      "count": 0,
+      "available": false,
+      "mode": "official_html_probe",
+      "finalUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E6%9E%97%E6%A3%AE%E8%A1%97_kw?od=80",
+      "contentLength": 482362,
+      "contentType": "text/html;charset=UTF-8",
+      "error": "HTTP 200 but no reliable official listing cards parsed"
+    },
+    "板橋區萬安街": {
+      "road": "板橋區萬安街",
+      "url": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E8%90%AC%E5%AE%89%E8%A1%97_kw?od=80",
+      "http": 200,
+      "count": 0,
+      "available": false,
+      "mode": "official_html_probe",
+      "finalUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E8%90%AC%E5%AE%89%E8%A1%97_kw?od=80",
+      "contentLength": 482209,
+      "contentType": "text/html;charset=UTF-8",
+      "error": "HTTP 200 but no reliable official listing cards parsed"
+    },
+    "板橋區光復街": {
+      "road": "板橋區光復街",
+      "url": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E5%85%89%E5%BE%A9%E8%A1%97_kw?od=80",
+      "http": 200,
+      "count": 0,
+      "available": false,
+      "mode": "official_html_probe",
+      "finalUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E5%85%89%E5%BE%A9%E8%A1%97_kw?od=80",
+      "contentLength": 484470,
+      "contentType": "text/html;charset=UTF-8",
+      "error": "HTTP 200 but no reliable official listing cards parsed"
+    }
+  },
+  "availableRoadCount": 0,
+  "listingCount": 0,
+  "readyForComparison": false,
+  "note": "Preview-only official Yongching acquisition probe. It does not replace the current Housefun proxy unless a later guarded integration explicitly accepts the official snapshot."
+}
