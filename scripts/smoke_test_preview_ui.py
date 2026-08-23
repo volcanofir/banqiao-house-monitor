@@ -2,9 +2,12 @@
 
 Serves docs/ locally, opens /preview/ in Chromium, and verifies that the canonical
 Preview renders without JavaScript/runtime-integrity errors before GitHub Pages
-files are published. This is Preview-only and never mutates production data.
+files are published. It also simulates a newer monitor snapshot and requires the UI
+to hide stale grouped/comparison results while the canonical comparison catches up.
+This is Preview-only and never mutates production data.
 """
 
+import json
 import re
 import subprocess
 import sys
@@ -17,6 +20,7 @@ from playwright.sync_api import sync_playwright
 PORT = 8765
 ROOT = Path("docs")
 URL = f"http://127.0.0.1:{PORT}/preview/"
+SOURCE_DATA = ROOT / "data" / "listings.json"
 
 
 def wait_server():
@@ -41,7 +45,7 @@ def main():
         ROOT / "preview" / "index.html",
         ROOT / "preview" / "company-gap.json",
         ROOT / "preview" / "scheme-a-verification.json",
-        ROOT / "data" / "listings.json",
+        SOURCE_DATA,
     ]
     missing = [str(p) for p in required if not p.exists()]
     if missing:
@@ -105,13 +109,43 @@ def main():
             page.locator('.source-tab[data-source="all"]').click()
 
             assert not page_errors, page_errors
-            # Ignore only repository-prefix icon requests in the local test server.
             meaningful_failed = [x for x in failed_requests if not any(k in x for k in ("favicon", "icon-safe"))]
             assert not meaningful_failed, meaningful_failed
             assert not console_errors, console_errors
+
+            # Negative-path regression: make only listings.json appear newer than the
+            # comparison output. The UI must refuse to show the previous grouping or
+            # company counts as though they were current.
+            stale_page = browser.new_page(viewport={"width": 390, "height": 844}, locale="zh-TW")
+            stale_errors = []
+            stale_page.on("pageerror", lambda exc: stale_errors.append(str(exc)))
+            source_payload = json.loads(SOURCE_DATA.read_text(encoding="utf-8"))
+            source_payload["updatedAt"] = "2099-01-01T00:00:00+00:00"
+
+            def serve_newer_source(route):
+                route.fulfill(
+                    status=200,
+                    content_type="application/json; charset=utf-8",
+                    body=json.dumps(source_payload, ensure_ascii=False),
+                )
+
+            stale_page.route("**/data/listings.json*", serve_newer_source)
+            stale_response = stale_page.goto(URL, wait_until="networkidle", timeout=30000)
+            assert stale_response is not None and stale_response.status == 200
+            stale_page.wait_for_function(
+                "document.querySelector('#updated')?.textContent.includes('公司比對資料同步中')",
+                timeout=15000,
+            )
+            assert "案件清單暫停顯示" in stale_page.locator("#groups").inner_text()
+            for selector in ("#mGroups", "#mNew", "#mMerged", "#cStock", "#cReview", "#cMissing", "#cUnavailable"):
+                assert stale_page.locator(selector).inner_text().strip() == "—", selector
+            assert stale_page.locator("#groups .road-group").count() == 0
+            assert not stale_errors, stale_errors
+            stale_page.close()
+
             browser.close()
 
-        print("Preview UI smoke test passed")
+        print("Preview UI smoke test passed, including stale-source suppression")
     finally:
         server.terminate()
         try:
