@@ -4,6 +4,9 @@ The Yongching production search page was verified to expose real result paginati
 through the `pg` query parameter. For example, `?od=80&pg=2` returned a distinct
 second result page with new house IDs. Prefer direct Chromium navigation to `pg=N`
 instead of clicking the visual pager, which can be covered by the site's AI overlay.
+
+This file is intentionally isolated in Preview so the verified direct-pagination path
+can be tested independently before replacing the older visual-click workflow.
 """
 
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
