@@ -22,6 +22,7 @@ on:
       - "scripts/yungching_browser_preflight.py"
       - "scripts/connect_surfshark_wireguard.sh"
       - "scripts/patch_preview_ui.py"
+      - "scripts/validate_scheme_a_preview.py"
       - "docs/data/listings.json"
 
 permissions:
@@ -98,34 +99,13 @@ jobs:
           set -o pipefail
           python scripts/compare_yungching_preview_v6.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
-      - name: Simplify Preview UI
+      - name: Simplify Preview UI and validate scheme A
         run: python scripts/patch_preview_ui.py
 
       - name: Validate scheme A source chain
         shell: bash
         run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          p = json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
-          s = json.loads(Path('docs/preview/yungching-browser-snapshot.json').read_text(encoding='utf-8'))
-          assert p.get('fetchMode') == 'yungching_official_rendered_dom_only', p.get('fetchMode')
-          assert (p.get('companyDataGuard') or {}).get('enabled') is False
-          bad = []
-          for road, st in (p.get('roadStatus') or {}).items():
-              mode = str((st or {}).get('mode') or '').lower()
-              if any(x in mode for x in ('har','housefun','proxy','previous_snapshot')):
-                  bad.append((road, mode))
-          assert not bad, bad
-          assert all(x.get('sourceMode') == 'yungching_official_browser' for x in (p.get('companyListings') or []))
-
-          z = (s.get('roadStatus') or {}).get('板橋區中山路二段') or {}
-          direct = [x for x in (z.get('nextClicks') or []) if x.get('mode') == 'yungching-direct-pg-v4' and int(x.get('target') or 0) == 2]
-          assert z.get('paginationComplete') is True, z
-          assert int(z.get('count') or 0) >= 39, z
-          assert direct and direct[0].get('http') == 200 and direct[0].get('activeVerified') is True, direct
-          print(json.dumps({'scheme':'A','zhongshanCount':z.get('count'),'companyListingCount':p.get('companyListingCount'),'counts':p.get('counts')}, ensure_ascii=False))
-          PY
+          python scripts/validate_scheme_a_preview.py
 
       - name: Save verified Preview output
         if: success()
@@ -153,7 +133,7 @@ jobs:
           done
           exit 1
 
-      - name: Save failed scheme A diagnostics only
+      - name: Save failed scheme A diagnostics separately
         if: failure()
         continue-on-error: true
         shell: bash
@@ -162,16 +142,22 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p /tmp/yungching-preview-failed
-          for f in yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json; do
-            if [[ -f docs/preview/$f ]]; then cp docs/preview/$f /tmp/yungching-preview-failed/$f; fi
-          done
+          [[ -f docs/preview/yungching-preview-run.log ]] && cp docs/preview/yungching-preview-run.log /tmp/yungching-preview-failed/yungching-preview-run-failed.log || true
+          [[ -f docs/preview/yungching-official-probe.json ]] && cp docs/preview/yungching-official-probe.json /tmp/yungching-preview-failed/yungching-official-probe-failed.json || true
+          [[ -f docs/preview/yungching-official-snapshot.json ]] && cp docs/preview/yungching-official-snapshot.json /tmp/yungching-preview-failed/yungching-official-snapshot-failed.json || true
+          [[ -f docs/preview/yungching-playwright-probe.json ]] && cp docs/preview/yungching-playwright-probe.json /tmp/yungching-preview-failed/yungching-playwright-probe-failed.json || true
+          [[ -f docs/preview/yungching-browser-snapshot.json ]] && cp docs/preview/yungching-browser-snapshot.json /tmp/yungching-preview-failed/yungching-browser-snapshot-failed.json || true
+          [[ -f docs/preview/yungching-detail-floor.json ]] && cp docs/preview/yungching-detail-floor.json /tmp/yungching-preview-failed/yungching-detail-floor-failed.json || true
+          [[ -f docs/preview/yungching-pagination-probe.json ]] && cp docs/preview/yungching-pagination-probe.json /tmp/yungching-preview-failed/yungching-pagination-probe-failed.json || true
+
           git fetch origin main
           git reset --hard origin/main
-          for f in yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json; do
-            if [[ -f /tmp/yungching-preview-failed/$f ]]; then cp /tmp/yungching-preview-failed/$f docs/preview/$f; fi
+          for f in /tmp/yungching-preview-failed/*; do
+            [[ -e "$f" ]] || continue
+            cp "$f" "docs/preview/$(basename "$f")"
           done
-          git add docs/preview || true
+          git add docs/preview/*-failed.json docs/preview/*-failed.log 2>/dev/null || true
           if ! git diff --cached --quiet; then
-            git commit -m "Save failed scheme A diagnostics"
+            git commit -m "Save failed scheme A diagnostics separately"
             git push origin HEAD:main || true
           fi
