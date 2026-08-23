@@ -1,0 +1,42 @@
+{
+  "auditedAt": "2026-08-23T01:14:55+00:00",
+  "passed": false,
+  "error": "AssertionError: yungching_official_rendered_dom_only 永慶房仲網官方公開搜尋頁：surfshark → chromium → 實際渲染 dom；缺樓層時同路徑開官方案件頁補值 yungching_official_browser yungching_official_browser yungching_official_browser yungching_official_browser yungching_official_browser yungching_official_browser yungching_official_browser",
+  "browserListingCount": 81,
+  "companyListingCount": 81,
+  "propertyGroupCount": 159,
+  "rawListingCount": 367,
+  "counts": {
+    "company_match": 50,
+    "review": 2,
+    "missing": 107,
+    "unavailable": 0
+  },
+  "preview591Regroup": {
+    "original591TopLevel": 128,
+    "regrouped591TopLevel": 108,
+    "regrouped591ClusterCount": 17,
+    "regrouped591AbsorbedCount": 20,
+    "clusterFloorConflictBlocked": 0
+  },
+  "schemeAGroupIntegrity": {
+    "crossSourceMultiAttachFloorConflictBlocked": 0
+  },
+  "safeFloorParser": true,
+  "companyCandidateReuseGuard": {
+    "enabled": true,
+    "duplicateCandidateCount": 0,
+    "affectedGroupCount": 0,
+    "candidateIds": [],
+    "rule": "同一永慶官方案件不得自動把多個外部群組同時判定為庫存；重複命中全部降為待確認"
+  },
+  "traceTail": [
+    "Traceback (most recent call last):",
+    "  File \"<stdin>\", line 23, in <module>",
+    "  File \"/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/validate_scheme_a_preview.py\", line 129, in main",
+    "    assert not any(token in forbidden_text for token in FORBIDDEN_MODES), forbidden_text",
+    "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "AssertionError: yungching_official_rendered_dom_only 永慶房仲網官方公開搜尋頁：surfshark → chromium → 實際渲染 dom；缺樓層時同路徑開官方案件頁補值 yungching_official_browser yungching_official_browser yungching_official_browser yungching_official_browser yungching_official_browser yungching_official_browser yungching_official_browser"
+  ],
+  "runLog": "{\"company\": 81, \"externalTopLevel\": 205, \"groups\": 159, \"rawListings\": 367, \"crossPlatformMerged\": 25, \"crossSourceReview\": 7, \"companyConflictDowngraded\": 2, \"company_match\": 50, \"review\": 2, \"missing\": 107, \"unavailable\": 0}\n永慶官方瀏覽器資料：板橋區中山路二段 採用官方渲染 DOM 38 筆。\n永慶官方瀏覽器資料：板橋區三民路二段 採用官方渲染 DOM 29 筆。\n永慶官方瀏覽器資料：板橋區光復街 採用官方渲染 DOM 1 筆。\n永慶官方瀏覽器資料：板橋區萬安街 採用官方渲染 DOM 1 筆。\n永慶官方瀏覽器資料：板橋區林森街 採用官方渲染 DOM 1 筆。\n永慶官方瀏覽器資料：板橋區三民路一段 採用官方渲染 DOM 5 筆。\n永慶官方瀏覽器資料：板橋區翠華街 採用官方渲染 DOM 6 筆。\nPREVIEW v6：HAR fallback 已停用；公司資料僅允許本輪永慶官方 Chromium DOM。\n{\"preview591Regroup\": {\"original591TopLevel\": 128, \"regrouped591TopLevel\": 108, \"regrouped591ClusterCount\": 17, \"regrouped591AbsorbedCount\": 20, \"clusterFloorConflictBlocked\": 0}, \"schemeAGroupIntegrity\": {\"crossSourceMultiAttachFloorConflictBlocked\": 0}}\n{\"floorAwareMatching\": true, \"companyDataGuard\": {\"enabled\": true, \"rule\": \"前次至少8筆且本次下降50%以上並少至少5筆，或前次至少5筆但本次變0筆時，沿用前次正常路段公司資料\", \"triggeredRoadCount\": 0, \"roads\": []}}\n{\"fetchMode\": \"yungching_official_rendered_dom_only\", \"companySnapshotCapturedAt\": \"2026-08-23T00:59:47+00:00\", \"officialBrowserCompany\": {\"enabled\": true, \"capturedAt\": \"2026-08-23T00:59:47+00:00\", \"snapshotAgeMinutes\": 15.1, \"acceptedRoadCount\": 7, \"unavailableRoadCount\": 0, \"roads\": {\"板橋區中山路二段\": {\"mode\": \"official\", \"officialCount\": 38, \"http\": 200, \"paginationComplete\": true}, \"板橋區三民路二段\": {\"mode\": \"official\", \"officialCount\": 29, \"http\": 200, \"paginationComplete\": true}, \"板橋區光復街\": {\"mode\": \"official\", \"officialCount\": 1, \"http\": 200, \"paginationComplete\": true}, \"板橋區萬安街\": {\"mode\": \"official\", \"officialCount\": 1, \"http\": 200, \"paginationComplete\": true}, \"板橋區林森街\": {\"mode\": \"official\", \"officialCount\": 1, \"http\": 200, \"paginationComplete\": true}, \"板橋區三民路一段\": {\"mode\": \"official\", \"officialCount\": 5, \"http\": 200, \"paginationComplete\": true}, \"板橋區翠華街\": {\"mode\": \"official\", \"officialCount\": 6, \"http\": 200, \"paginationComplete\": true}}}, \"companyDataGuard\": {\"enabled\": false, \"rule\": \"官方 DOM only：停用 HAR、代理與前次快照替補；不完整路段直接標示尚未比對\", \"triggeredRoadCount\": 0, \"roads\": []}}\n{\"safeFloorParser\": true, \"companyCandidateReuseGuard\": {\"enabled\": true, \"duplicateCandidateCount\": 0, \"affectedGroupCount\": 0, \"candidateIds\": [], \"rule\": \"同一永慶官方案件不得自動把多個外部群組同時判定為庫存；重複命中全部降為待確認\"}, \"counts\": {\"company_match\": 50, \"review\": 2, \"missing\": 107, \"unavailable\": 0}, \"mode\": \"preview_only_591_then_sinyi_then_company_floor_aware_official_rendered_v7\"}\n"
+}
