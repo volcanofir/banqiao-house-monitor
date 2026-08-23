@@ -1,5 +1,6 @@
 name: 方案 A 邏輯完整性 Regression
 
+# Stable-baseline verification: logic + canonical validator + Chromium Preview smoke.
 on:
   workflow_dispatch:
   push:
