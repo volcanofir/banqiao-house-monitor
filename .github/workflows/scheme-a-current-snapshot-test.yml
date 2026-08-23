@@ -15,8 +15,9 @@ on:
 permissions:
   contents: write
 
+# Diagnostic only. Never writes canonical Preview files.
 concurrency:
-  group: banqiao-scheme-a-current-snapshot-test
+  group: banqiao-scheme-a-current-snapshot-diagnostic
   cancel-in-progress: true
 
 jobs:
@@ -37,7 +38,7 @@ jobs:
           pip install requests beautifulsoup4 playwright cryptography
           python -m playwright install chromium
 
-      - name: Remove impossible cross-road Yongching IDs from verified list snapshot
+      - name: Remove impossible cross-road Yongching IDs from current snapshot copy
         run: python scripts/yungching_dom_snapshot_v4.py --sanitize-existing
 
       - name: Connect Surfshark for official Yongching detail pages
@@ -53,7 +54,7 @@ jobs:
           done
           exit 1
 
-      - name: Enrich floors and YC case IDs on cleaned official snapshot
+      - name: Enrich floors and YC case IDs on cleaned snapshot copy
         run: python scripts/yungching_detail_floor_enrich.py
 
       - name: Disconnect Surfshark
@@ -61,16 +62,15 @@ jobs:
         continue-on-error: true
         run: sudo wg-quick down surfshark || true
 
-      - name: Run scheme A comparison
+      - name: Run scheme A comparison in diagnostic workspace
         shell: bash
         run: |
           set -o pipefail
           python scripts/compare_yungching_preview_v6.py 2>&1 | tee docs/preview/yungching-preview-run.log
+          python scripts/patch_preview_ui.py
+          python scripts/validate_scheme_a_preview.py
 
-      - name: Patch Preview UI and run hard release validator
-        run: python scripts/patch_preview_ui.py
-
-      - name: Write final scheme A verification
+      - name: Write snapshot diagnostic verification
         shell: bash
         run: |
           python - <<'PY'
@@ -83,11 +83,15 @@ jobs:
           out={
             'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
             'scheme':'A',
-            'source':'Surfshark + Chromium official Yongching DOM + direct pg pagination + official detail pages',
+            'diagnosticOnly':True,
+            'source':'current saved official snapshot copy + official detail pages',
+            'snapshotCapturedAt':s.get('capturedAt'),
+            'companySnapshotCapturedAt':p.get('companySnapshotCapturedAt'),
             'fetchMode':p.get('fetchMode'),
             'browserListingCount':s.get('listingCount'),
             'companyListingCount':p.get('companyListingCount'),
-            'coveredRoads':p.get('coveredRoads'),
+            'propertyGroupCount':p.get('propertyGroupCount'),
+            'rawListingCount':p.get('rawListingCount'),
             'counts':p.get('counts'),
             'roadCounts':{r:(st or {}).get('count') for r,st in (s.get('roadStatus') or {}).items()},
             'idIntegrityGuard':s.get('idIntegrityGuard'),
@@ -96,25 +100,23 @@ jobs:
             'candidatesWithYcCaseId':sum(1 for x in candidates if x.get('officialCaseId')),
             'detailFloorEnrichment':s.get('detailFloorEnrichment'),
             'legacyFallbacks':False,
+            'passed':True,
           }
-          Path('docs/preview/scheme-a-verification.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          Path('docs/preview/scheme-a-snapshot-verification.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(out,ensure_ascii=False))
           PY
 
-      - name: Save final verified scheme A Preview
+      - name: Save snapshot diagnostic only
         shell: bash
         run: |
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          mkdir -p /tmp/scheme-a-final
-          for f in company-gap.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-preview-run.log scheme-a-verification.json index.html; do
-            cp docs/preview/$f /tmp/scheme-a-final/$f
-          done
+          cp docs/preview/scheme-a-snapshot-verification.json /tmp/scheme-a-snapshot-verification.json
           git fetch origin main
           git reset --hard origin/main
-          for f in /tmp/scheme-a-final/*; do cp "$f" "docs/preview/$(basename "$f")"; done
-          git add docs/preview/company-gap.json docs/preview/yungching-browser-snapshot.json docs/preview/yungching-detail-floor.json docs/preview/yungching-preview-run.log docs/preview/scheme-a-verification.json docs/preview/index.html
+          cp /tmp/scheme-a-snapshot-verification.json docs/preview/scheme-a-snapshot-verification.json
+          git add docs/preview/scheme-a-snapshot-verification.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Finalize verified scheme A Preview"
+          git commit -m "Save scheme A snapshot diagnostic"
           git push origin HEAD:main
