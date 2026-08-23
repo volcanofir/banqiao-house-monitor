@@ -21,71 +21,53 @@ replacements = {
 for old, new in replacements.items():
     text = text.replace(old, new)
 
-# Hero explanatory paragraph: remove from display.
 text = re.sub(
     r'\n<p>同一戶若同時出現在信義房屋與 591，Preview 會優先以信義資料顯示，591 收進同一戶下方；整併完成後再依坪數、價格、案名與樓層比對公司庫存。</p>',
-    '',
-    text,
+    '', text,
 )
-
-# Remove the flow/explanation box entirely.
 text = re.sub(
     r'\n<div class="company-note" id="companyNote">.*?</div>',
-    '',
-    text,
-    count=1,
-    flags=re.S,
+    '', text, count=1, flags=re.S,
 )
 text = text.replace('\n<div id="companyNote" hidden></div>', '')
 text = re.sub(
     r"const conflict=GAP\.companyConflictDowngradedCount\?\?0;.*?(?=document\.querySelector\('#updated'\))",
-    '',
-    text,
-    count=1,
-    flags=re.S,
+    '', text, count=1, flags=re.S,
 )
-
-# Data source section should only show 591 and Sinyi. Remove the Yongching source card.
 text = re.sub(
     r";const covered=GAP\.coveredRoads\|\|\[\];cards\.push\(.*?\);document\.querySelector\('#sources'\)\.innerHTML=cards\.join\(''\);",
     ";document.querySelector('#sources').innerHTML=cards.join('');",
-    text,
-    count=1,
-    flags=re.S,
+    text, count=1, flags=re.S,
 )
-
-# Replace raw-listing metric with count of deduplicated property groups first seen within 14 days.
 text = re.sub(
     r"document\.querySelector\('#mRaw'\)\.textContent=`\$\{GAP\.rawListingCount\?\?GAP\.externalActiveCount\?\?0\} 筆`;",
     "document.querySelector('#mNew').textContent=`${groups.filter(isNew).length} 戶`;",
-    text,
-    count=1,
+    text, count=1,
 )
-
-# The fourth hero metric now shows the original raw listing count rather than cross-platform merge count.
 text = re.sub(
     r"document\.querySelector\('#mMerged'\)\.textContent=`\$\{GAP\.crossPlatformMergedGroupCount\?\?0\} 戶`;",
     "document.querySelector('#mMerged').textContent=`${GAP.rawListingCount??GAP.externalActiveCount??0} 筆`;",
-    text,
-    count=1,
+    text, count=1,
 )
 
-# Human-verifiable company match details for scheme A: exact Yongching ID + floor.
 company_candidate_fn = r'''function candidateLine(g){
   const c=cmp(g);
   if(!c||!c.companyCandidate||!['company_match','review'].includes(c.status))return '';
   const y=c.companyCandidate;
   const link=y.url?`<a href="${esc(y.url)}" target="_blank" rel="noreferrer">${esc(y.title||y.id)}</a>`:esc(y.title||y.id);
-  const id=y.officialId||String(y.id||'').replace(/^YC:/,'');
+  const id=y.officialCaseId||y.officialId||String(y.id||'').replace(/^YC:/,'');
   return `<div class="row candidate">比對庫存：<span class="pill primary">永慶 ID ${esc(id||'-')}</span>${link}${y.price!=null?`｜${esc(y.price)}萬`:''}${y.area!=null?`｜${esc(y.area)}坪`:''}${y.floor?`｜${esc(y.floor)}`:'｜樓層未取得'}</div>`;
 }'''
 text = re.sub(
     r"function candidateLine\(g\)\{.*?\}(?=\nfunction sortGroups)",
-    company_candidate_fn,
-    text,
-    count=1,
-    flags=re.S,
+    company_candidate_fn, text, count=1, flags=re.S,
 )
 
 PATH.write_text(text, encoding='utf-8')
 print('Preview UI patched')
+
+# Final release gate. This runs after the comparison and detail-floor enrichment in
+# both Preview workflows; any official-source, pagination, or known-floor regression
+# stops publication before a bad Preview can replace the last verified output.
+import validate_scheme_a_preview
+validate_scheme_a_preview.main()
