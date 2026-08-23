@@ -1,9 +1,10 @@
 """PREVIEW-only Yongching official detail-page floor enrichment.
 
-Input: docs/preview/yungching-browser-snapshot.json produced through Surfshark + Chromium.
-For rendered list cards that do not expose a subject floor, open the official Yongching
-house detail page in the same network path and extract the current property's floor from
-its rendered/current-response basic information. No third-party inventory is used.
+The list snapshot is captured through Surfshark + Chromium. For rows without a floor,
+open that exact official Yongching house page in Chromium and accept floor data only
+from the current property's header or 基本資訊 section. Never scan recommendation
+sections for a floor. The same Chromium HTTP 200 response may be used as a fallback
+when its current-property section is clearer than the live DOM.
 """
 
 import json
@@ -61,24 +62,23 @@ def floor_from_detail_text(text: str, allow_unlabelled=False):
         floor = v3.safe_parse_floor(text)
         if floor:
             pos = text.find(floor)
-            evidence = text[max(0, pos - 80):pos + 100] if pos >= 0 else text[:180]
+            evidence = text[max(0, pos - 90):pos + 110] if pos >= 0 else text[:200]
             return floor, evidence, "current-property-section"
 
     return None, None, None
 
 
 def slice_basic_info(body: str):
-    """Isolate the current property's 基本資訊 block before recommendation content."""
     body = compact(body)
     start = body.find("基本資訊")
     if start < 0:
         return ""
-    end_candidates = []
+    ends = []
     for marker in ("特色說明", "房屋特色", "周邊環境", "實價登錄", "附近成交"):
         p = body.find(marker, start + 4)
         if p > start:
-            end_candidates.append(p)
-    end = min(end_candidates) if end_candidates else min(len(body), start + 6000)
+            ends.append(p)
+    end = min(ends) if ends else min(len(body), start + 6500)
     return body[start:end]
 
 
@@ -97,7 +97,55 @@ def official_case_id(text: str):
     return m.group(1).upper() if m else None
 
 
+def chinese_floor_number(raw):
+    if not raw:
+        return None
+    if raw.isdigit():
+        return int(raw)
+    d = {"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"九":9}
+    if raw == "十":
+        return 10
+    if "十" in raw:
+        left, right = raw.split("十", 1)
+        tens = d.get(left, 1) if left else 1
+        ones = d.get(right, 0) if right else 0
+        return tens * 10 + ones
+    return d.get(raw)
+
+
+def explicit_title_floors(title):
+    text = str(title or "")
+    floors = set()
+    for raw in re.findall(r"(?<!\d)(\d{1,2})\s*樓", text):
+        n = int(raw)
+        if 1 <= n <= 99:
+            floors.add(n)
+    for raw in re.findall(r"([一二三四五六七八九十]{1,3})樓", text):
+        n = chinese_floor_number(raw)
+        if n:
+            floors.add(n)
+    return floors
+
+
+def subject_floors(floor):
+    text = str(floor or "")
+    m = re.fullmatch(r"(\d{1,2})(?:~(\d{1,2}))?/(\d{1,2})樓", text)
+    if not m:
+        return set()
+    lo = int(m.group(1)); hi = int(m.group(2) or m.group(1)); total = int(m.group(3))
+    if not (1 <= lo <= hi <= total <= 99):
+        return set()
+    return set(range(lo, hi + 1))
+
+
+def title_floor_conflict(title, floor):
+    expected = explicit_title_floors(title)
+    actual = subject_floors(floor)
+    return bool(expected and actual and expected.isdisjoint(actual)), sorted(expected), sorted(actual)
+
+
 def rendered_floor_context(page):
+    """Diagnostic helper kept for the focused test; matching never trusts global snippets."""
     result = page.evaluate(
         """() => {
           const clean = s => (s || '').replace(/\s+/g, ' ').trim();
@@ -112,10 +160,7 @@ def rendered_floor_context(page):
             snippets.push(text);
             if (snippets.length >= 60) break;
           }
-          return {
-            snippets,
-            body: clean(document.body ? document.body.innerText : '').slice(0,140000),
-          };
+          return {snippets, body:clean(document.body ? document.body.innerText : '').slice(0,140000)};
         }"""
     )
     snippets = result.get("snippets") or []
@@ -124,7 +169,6 @@ def rendered_floor_context(page):
 
 
 def response_text(response):
-    """Return readable text from the same official HTTP 200 loaded by Chromium."""
     if not response:
         return ""
     try:
@@ -143,7 +187,6 @@ def response_text(response):
 
 
 def render_full_detail(page):
-    """Wait for current listing specs, then trigger lazy rendered sections by scrolling."""
     try:
         page.wait_for_function(
             "() => document.body && /基本資訊|樓層/.test(document.body.innerText || '')",
@@ -151,7 +194,6 @@ def render_full_detail(page):
         )
     except Exception:
         pass
-
     page.wait_for_timeout(800)
     for ratio in (0.2, 0.45, 0.7, 1.0):
         try:
@@ -167,49 +209,27 @@ def render_full_detail(page):
 
 
 def should_enrich(row):
-    if row.get("floor") not in (None, ""):
-        return False
-    if not row.get("url"):
-        return False
-    if str(row.get("type") or "").strip() in SKIP_TYPES:
-        return False
-    return True
+    return bool(
+        row.get("floor") in (None, "")
+        and row.get("url")
+        and str(row.get("type") or "").strip() not in SKIP_TYPES
+    )
 
 
 def find_floor(dom_focused, dom_body, official_response_text):
-    """Prefer rendered DOM; use only the same Chromium official response as fallback."""
-    dom_basic = slice_basic_info(dom_body)
-    floor, evidence, mode = floor_from_detail_text(dom_basic, allow_unlabelled=True)
-    if floor:
-        return floor, evidence, "dom-basic-info"
-
-    floor, evidence, mode = floor_from_detail_text(dom_focused, allow_unlabelled=False)
-    if floor:
-        return floor, evidence, "dom-labelled"
-
-    floor, evidence, mode = floor_from_detail_text(dom_body, allow_unlabelled=False)
-    if floor:
-        return floor, evidence, "dom-body-labelled"
-
-    header = current_header(dom_body)
-    floor, evidence, mode = floor_from_detail_text(header, allow_unlabelled=True)
-    if floor:
-        return floor, evidence, "dom-current-header"
-
-    response_basic = slice_basic_info(official_response_text)
-    floor, evidence, mode = floor_from_detail_text(response_basic, allow_unlabelled=True)
-    if floor:
-        return floor, evidence, "chromium-response-basic-info"
-
-    floor, evidence, mode = floor_from_detail_text(official_response_text, allow_unlabelled=False)
-    if floor:
-        return floor, evidence, "chromium-response-labelled"
-
-    response_header = current_header(official_response_text)
-    floor, evidence, mode = floor_from_detail_text(response_header, allow_unlabelled=True)
-    if floor:
-        return floor, evidence, "chromium-response-current-header"
-
+    """Accept only sections belonging to the current listing; never global recommendation text."""
+    candidates = (
+        ("dom-current-header", current_header(dom_body)),
+        ("dom-basic-info", slice_basic_info(dom_body)),
+        ("chromium-response-current-header", current_header(official_response_text)),
+        ("chromium-response-basic-info", slice_basic_info(official_response_text)),
+    )
+    for mode, section in candidates:
+        if not section:
+            continue
+        floor, evidence, _ = floor_from_detail_text(section, allow_unlabelled=True)
+        if floor:
+            return floor, evidence, mode
     return None, None, None
 
 
@@ -220,6 +240,7 @@ def main():
     diagnostics = []
     enriched = 0
     case_ids = 0
+    rejected_conflicts = 0
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
@@ -228,12 +249,8 @@ def main():
 
         for index, row in enumerate(targets, 1):
             info = {
-                "id": row.get("id"),
-                "road": row.get("road"),
-                "title": row.get("title"),
-                "url": row.get("url"),
-                "http": None,
-                "floor": None,
+                "id": row.get("id"), "road": row.get("road"), "title": row.get("title"),
+                "url": row.get("url"), "http": None, "floor": None,
             }
             try:
                 response = page.goto(row["url"], wait_until="domcontentloaded", timeout=35000)
@@ -244,24 +261,32 @@ def main():
 
                 floor, evidence, mode = find_floor(focused, body, official_text)
                 case_id = official_case_id(body) or official_case_id(official_text)
+                conflict, expected_floors, actual_floors = title_floor_conflict(row.get("title"), floor)
+                if conflict:
+                    info["rejectedFloor"] = floor
+                    info["titleExpectedFloors"] = expected_floors
+                    info["parsedFloors"] = actual_floors
+                    floor = None
+                    mode = "rejected-title-floor-conflict"
+                    evidence = "案名有明確樓層且與詳情頁解析結果衝突，為避免抓到推薦物件樓層而拒絕補值"
+                    rejected_conflicts += 1
 
-                info["floor"] = floor
-                info["mode"] = mode
-                info["evidence"] = evidence
-                info["officialCaseId"] = case_id
-                info["domHasBasicInfo"] = "基本資訊" in body
-                info["responseHasBasicInfo"] = "基本資訊" in official_text
-                info["domBasicInfo"] = slice_basic_info(body)[:700]
-                info["responseBasicInfo"] = slice_basic_info(official_text)[:700]
-                info["snippets"] = snippets[:8]
-                info["finalUrl"] = page.url
+                info.update({
+                    "floor": floor, "mode": mode, "evidence": evidence,
+                    "officialCaseId": case_id,
+                    "domHasBasicInfo": "基本資訊" in body,
+                    "responseHasBasicInfo": "基本資訊" in official_text,
+                    "domHeader": current_header(body)[-700:],
+                    "responseHeader": current_header(official_text)[-700:],
+                    "finalUrl": page.url,
+                })
 
                 if info["http"] == 200 and case_id:
                     row["officialCaseId"] = case_id
                     case_ids += 1
                 if info["http"] == 200 and floor:
                     row["floor"] = floor
-                    row["floorSourceMode"] = "yungching_official_detail_dom" if str(mode).startswith("dom-") else "yungching_official_detail_chromium_response"
+                    row["floorSourceMode"] = "yungching_official_detail_dom" if mode.startswith("dom-") else "yungching_official_detail_chromium_response"
                     row["floorEvidence"] = evidence
                     enriched += 1
             except Exception as exc:
@@ -274,22 +299,20 @@ def main():
     stamp = datetime.now(timezone.utc).isoformat(timespec="seconds")
     payload["detailFloorEnrichment"] = {
         "generatedAt": stamp,
-        "source": "Yongching official detail via Surfshark + Chromium; rendered DOM first, same Chromium HTTP response fallback",
+        "source": "Yongching official detail via Surfshark + Chromium; current listing header/basic-info only",
         "attempted": len(targets),
         "enriched": enriched,
         "officialCaseIdEnriched": case_ids,
+        "rejectedTitleFloorConflicts": rejected_conflicts,
         "remainingMissing": sum(1 for row in listings if should_enrich(row)),
         "skippedTypes": sorted(SKIP_TYPES),
-        "method": "rendered DOM basic-info/header first; same Chromium official response basic-info/header fallback",
+        "method": "current listing DOM header/basic-info first; same Chromium response current header/basic-info fallback; no global recommendation floor parsing",
     }
     SNAPSHOT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     DIAG.write_text(json.dumps({
-        "generatedAt": stamp,
-        "previewOnly": True,
-        "attempted": len(targets),
-        "enriched": enriched,
-        "officialCaseIdEnriched": case_ids,
-        "rows": diagnostics,
+        "generatedAt": stamp, "previewOnly": True, "attempted": len(targets),
+        "enriched": enriched, "officialCaseIdEnriched": case_ids,
+        "rejectedTitleFloorConflicts": rejected_conflicts, "rows": diagnostics,
     }, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(payload["detailFloorEnrichment"], ensure_ascii=False))
 
