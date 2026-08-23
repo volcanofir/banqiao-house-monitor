@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: banqiao-house-monitor-clean
@@ -163,6 +164,18 @@ jobs:
             sleep 3
           done
           exit 1
+
+      # Commits pushed with GITHUB_TOKEN do not recursively trigger on: push
+      # workflows. Explicit workflow_dispatch is the supported exception, so the
+      # Preview comparison always catches up after a successful monitor refresh.
+      - name: Dispatch canonical Preview verification
+        if: steps.gate.outputs.run == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh workflow run yungching-preview.yml --ref main
+          echo "Canonical Preview verification dispatched."
 
       - name: Heartbeat skipped
         if: steps.gate.outputs.run != 'true'
