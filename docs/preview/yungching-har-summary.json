@@ -1,11 +1,11 @@
 {
-  "capturedAt": "2026-08-23T01:33:53+00:00",
+  "capturedAt": "2026-08-23T01:59:09+00:00",
   "previewOnly": true,
   "road": "板橋區中山路二段",
   "harStoredInGit": false,
   "harArtifactName": "yungching-network-har",
-  "requestEntryCount": 452,
-  "uniqueEndpointShapeCount": 173,
+  "requestEntryCount": 438,
+  "uniqueEndpointShapeCount": 171,
   "navigation": {
     "page1": {
       "url": {
@@ -41,7 +41,7 @@
       "source": "verified-snapshot-fallback"
     }
   },
-  "candidateApiEndpointCount": 16,
+  "candidateApiEndpointCount": 15,
   "candidateApiEndpoints": [
     {
       "method": "GET",
@@ -218,6 +218,56 @@
       "queryKeys": [
         "_eu",
         "_p",
+        "_prs",
+        "_s",
+        "_tu",
+        "are",
+        "cid",
+        "dl",
+        "dma",
+        "dt",
+        "frm",
+        "gaf",
+        "gcd",
+        "gcs",
+        "gtm",
+        "npa",
+        "pscdl",
+        "rcb",
+        "sct",
+        "seg",
+        "sid",
+        "sr",
+        "tag_exp",
+        "tfd",
+        "tid",
+        "uaa",
+        "uab",
+        "uafvl",
+        "uam",
+        "uamb",
+        "uap",
+        "uapv",
+        "uaw",
+        "ul",
+        "v"
+      ],
+      "resourceType": "fetch",
+      "count": 1,
+      "statuses": [
+        204
+      ],
+      "mimeTypes": [
+        "text/plain"
+      ]
+    },
+    {
+      "method": "POST",
+      "origin": "https://analytics.google.com",
+      "path": "/g/collect",
+      "queryKeys": [
+        "_eu",
+        "_p",
         "_s",
         "_tu",
         "are",
@@ -255,56 +305,6 @@
         "uaw",
         "ul",
         "up.custom_client_id",
-        "v"
-      ],
-      "resourceType": "fetch",
-      "count": 2,
-      "statuses": [
-        204
-      ],
-      "mimeTypes": [
-        "text/plain"
-      ]
-    },
-    {
-      "method": "POST",
-      "origin": "https://analytics.google.com",
-      "path": "/g/collect",
-      "queryKeys": [
-        "_eu",
-        "_p",
-        "_prs",
-        "_s",
-        "_tu",
-        "are",
-        "cid",
-        "dl",
-        "dma",
-        "dt",
-        "frm",
-        "gaf",
-        "gcd",
-        "gcs",
-        "gtm",
-        "npa",
-        "pscdl",
-        "rcb",
-        "sct",
-        "seg",
-        "sid",
-        "sr",
-        "tag_exp",
-        "tfd",
-        "tid",
-        "uaa",
-        "uab",
-        "uafvl",
-        "uam",
-        "uamb",
-        "uap",
-        "uapv",
-        "uaw",
-        "ul",
         "v"
       ],
       "resourceType": "fetch",
@@ -405,24 +405,10 @@
       "path": "/collect",
       "queryKeys": [],
       "resourceType": "xhr",
-      "count": 3,
+      "count": 2,
       "statuses": [
         -1,
         204
-      ],
-      "mimeTypes": [
-        "x-unknown"
-      ]
-    },
-    {
-      "method": "POST",
-      "origin": "https://r.clarity.ms",
-      "path": "/collect",
-      "queryKeys": [],
-      "resourceType": "xhr",
-      "count": 1,
-      "statuses": [
-        -1
       ],
       "mimeTypes": [
         "x-unknown"
@@ -696,6 +682,56 @@
       "queryKeys": [
         "_eu",
         "_p",
+        "_prs",
+        "_s",
+        "_tu",
+        "are",
+        "cid",
+        "dl",
+        "dma",
+        "dt",
+        "frm",
+        "gaf",
+        "gcd",
+        "gcs",
+        "gtm",
+        "npa",
+        "pscdl",
+        "rcb",
+        "sct",
+        "seg",
+        "sid",
+        "sr",
+        "tag_exp",
+        "tfd",
+        "tid",
+        "uaa",
+        "uab",
+        "uafvl",
+        "uam",
+        "uamb",
+        "uap",
+        "uapv",
+        "uaw",
+        "ul",
+        "v"
+      ],
+      "resourceType": "fetch",
+      "count": 1,
+      "statuses": [
+        204
+      ],
+      "mimeTypes": [
+        "text/plain"
+      ]
+    },
+    {
+      "method": "POST",
+      "origin": "https://analytics.google.com",
+      "path": "/g/collect",
+      "queryKeys": [
+        "_eu",
+        "_p",
         "_s",
         "_tu",
         "are",
@@ -733,56 +769,6 @@
         "uaw",
         "ul",
         "up.custom_client_id",
-        "v"
-      ],
-      "resourceType": "fetch",
-      "count": 2,
-      "statuses": [
-        204
-      ],
-      "mimeTypes": [
-        "text/plain"
-      ]
-    },
-    {
-      "method": "POST",
-      "origin": "https://analytics.google.com",
-      "path": "/g/collect",
-      "queryKeys": [
-        "_eu",
-        "_p",
-        "_prs",
-        "_s",
-        "_tu",
-        "are",
-        "cid",
-        "dl",
-        "dma",
-        "dt",
-        "frm",
-        "gaf",
-        "gcd",
-        "gcs",
-        "gtm",
-        "npa",
-        "pscdl",
-        "rcb",
-        "sct",
-        "seg",
-        "sid",
-        "sr",
-        "tag_exp",
-        "tfd",
-        "tid",
-        "uaa",
-        "uab",
-        "uafvl",
-        "uam",
-        "uamb",
-        "uap",
-        "uapv",
-        "uaw",
-        "ul",
         "v"
       ],
       "resourceType": "fetch",
@@ -883,24 +869,10 @@
       "path": "/collect",
       "queryKeys": [],
       "resourceType": "xhr",
-      "count": 3,
+      "count": 2,
       "statuses": [
         -1,
         204
-      ],
-      "mimeTypes": [
-        "x-unknown"
-      ]
-    },
-    {
-      "method": "POST",
-      "origin": "https://r.clarity.ms",
-      "path": "/collect",
-      "queryKeys": [],
-      "resourceType": "xhr",
-      "count": 1,
-      "statuses": [
-        -1
       ],
       "mimeTypes": [
         "x-unknown"
@@ -2760,44 +2732,11 @@
       "resourceType": "stylesheet",
       "count": 3,
       "statuses": [
+        -1,
         200
       ],
       "mimeTypes": [
-        "text/css; charset=utf-8"
-      ]
-    },
-    {
-      "method": "GET",
-      "origin": "https://cdn.yungching.com.tw",
-      "path": "/fp/yc/ad/04_pc_buydetail-1200X110.webp",
-      "queryKeys": [
-        "v"
-      ],
-      "resourceType": "image",
-      "count": 1,
-      "statuses": [
-        200
-      ],
-      "mimeTypes": [
-        "image/webp"
-      ]
-    },
-    {
-      "method": "GET",
-      "origin": "https://c.bing.com",
-      "path": "/c.gif",
-      "queryKeys": [
-        "CtsSyncId",
-        "MXFR",
-        "RedC",
-        "ctsa"
-      ],
-      "resourceType": "image",
-      "count": 1,
-      "statuses": [
-        302
-      ],
-      "mimeTypes": [
+        "text/css; charset=utf-8",
         "x-unknown"
       ]
     },
@@ -2809,28 +2748,10 @@
       "resourceType": "image",
       "count": 1,
       "statuses": [
-        302
+        -1
       ],
       "mimeTypes": [
         "x-unknown"
-      ]
-    },
-    {
-      "method": "GET",
-      "origin": "https://c.clarity.ms",
-      "path": "/c.gif",
-      "queryKeys": [
-        "CtsSyncId",
-        "MUID",
-        "ctsa"
-      ],
-      "resourceType": "image",
-      "count": 1,
-      "statuses": [
-        200
-      ],
-      "mimeTypes": [
-        "image/gif"
       ]
     },
     {
@@ -2843,10 +2764,12 @@
       "resourceType": "script",
       "count": 3,
       "statuses": [
+        -1,
         200
       ],
       "mimeTypes": [
-        "text/javascript"
+        "text/javascript",
+        "x-unknown"
       ]
     },
     {
@@ -2859,10 +2782,12 @@
       "resourceType": "script",
       "count": 3,
       "statuses": [
+        -1,
         200
       ],
       "mimeTypes": [
-        "text/javascript"
+        "text/javascript",
+        "x-unknown"
       ]
     },
     {
@@ -2925,16 +2850,34 @@
     },
     {
       "method": "GET",
+      "origin": "https://cloudcdn.yungching.com.tw",
+      "path": "/yc-cloudcdn/image/3e3c9b149057454e8eea7d48e9ca92a1_1200x110.webp",
+      "queryKeys": [
+        "v"
+      ],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/webp"
+      ]
+    },
+    {
+      "method": "GET",
       "origin": "https://connect.facebook.net",
       "path": "/en_US/fbevents.js",
       "queryKeys": [],
       "resourceType": "script",
       "count": 3,
       "statuses": [
+        -1,
         200
       ],
       "mimeTypes": [
-        "application/x-javascript; charset=utf-8"
+        "application/x-javascript; charset=utf-8",
+        "x-unknown"
       ]
     },
     {
@@ -2949,7 +2892,7 @@
         "v"
       ],
       "resourceType": "script",
-      "count": 3,
+      "count": 2,
       "statuses": [
         200
       ],
@@ -2967,10 +2910,12 @@
       "resourceType": "script",
       "count": 3,
       "statuses": [
+        -1,
         200
       ],
       "mimeTypes": [
-        "application/javascript; charset=utf-8"
+        "application/javascript; charset=utf-8",
+        "x-unknown"
       ]
     },
     {
@@ -2982,7 +2927,7 @@
         "topUrl"
       ],
       "resourceType": "document",
-      "count": 3,
+      "count": 2,
       "statuses": [
         200
       ],
@@ -3032,10 +2977,12 @@
       "resourceType": "script",
       "count": 3,
       "statuses": [
+        -1,
         200
       ],
       "mimeTypes": [
-        "application/javascript"
+        "application/javascript",
+        "x-unknown"
       ]
     },
     {
@@ -3062,10 +3009,11 @@
         "res",
         "s",
         "send_image",
+        "uid",
         "url"
       ],
       "resourceType": "image",
-      "count": 1,
+      "count": 2,
       "statuses": [
         200
       ],
@@ -3102,43 +3050,7 @@
         "url"
       ],
       "resourceType": "image",
-      "count": 8,
-      "statuses": [
-        200
-      ],
-      "mimeTypes": [
-        "image/gif"
-      ]
-    },
-    {
-      "method": "GET",
-      "origin": "https://piwik.gadatatracking.com",
-      "path": "/piwik.php",
-      "queryKeys": [
-        "_id",
-        "_idn",
-        "_idts",
-        "_idvc",
-        "_refts",
-        "_viewts",
-        "action_name",
-        "cookie",
-        "dimension1",
-        "gt_ms",
-        "h",
-        "idsite",
-        "m",
-        "pv_id",
-        "r",
-        "rec",
-        "res",
-        "s",
-        "send_image",
-        "uid",
-        "url"
-      ],
-      "resourceType": "image",
-      "count": 2,
+      "count": 4,
       "statuses": [
         200
       ],
@@ -3186,10 +3098,10 @@
     {
       "method": "GET",
       "origin": "https://scripts.clarity.ms",
-      "path": "/0.8.69-beta/clarity.js",
+      "path": "/0.8.69/clarity.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 3,
+      "count": 2,
       "statuses": [
         200
       ],
@@ -3209,12 +3121,36 @@
         "p0",
         "p1",
         "p2",
+        "tld",
+        "v"
+      ],
+      "resourceType": "script",
+      "count": 1,
+      "statuses": [
+        302
+      ],
+      "mimeTypes": [
+        "x-unknown"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://sslwidget.criteo.com",
+      "path": "/event",
+      "queryKeys": [
+        "a",
+        "ceid",
+        "dy",
+        "fu",
+        "p0",
+        "p1",
+        "p2",
         "sc",
         "tld",
         "v"
       ],
       "resourceType": "script",
-      "count": 2,
+      "count": 1,
       "statuses": [
         302
       ],
@@ -3255,12 +3191,38 @@
       "path": "/GetUCV",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 1,
+      "count": 2,
       "statuses": [
+        -1,
         200
       ],
       "mimeTypes": [
-        "text/html"
+        "text/html",
+        "x-unknown"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://widget.as.criteo.com",
+      "path": "/event",
+      "queryKeys": [
+        "a",
+        "ceid",
+        "dy",
+        "fu",
+        "p0",
+        "p1",
+        "p2",
+        "tld",
+        "v"
+      ],
+      "resourceType": "script",
+      "count": 1,
+      "statuses": [
+        -1
+      ],
+      "mimeTypes": [
+        "x-unknown"
       ]
     },
     {
@@ -3280,7 +3242,7 @@
         "v"
       ],
       "resourceType": "script",
-      "count": 2,
+      "count": 1,
       "statuses": [
         200
       ],
@@ -3296,10 +3258,12 @@
       "resourceType": "script",
       "count": 3,
       "statuses": [
+        -1,
         200
       ],
       "mimeTypes": [
-        "application/x-javascript"
+        "application/x-javascript",
+        "x-unknown"
       ]
     },
     {
@@ -3345,10 +3309,12 @@
       "resourceType": "script",
       "count": 3,
       "statuses": [
+        -1,
         200
       ],
       "mimeTypes": [
-        "application/javascript; charset=UTF-8"
+        "application/javascript; charset=UTF-8",
+        "x-unknown"
       ]
     },
     {
@@ -3377,7 +3343,7 @@
         "width"
       ],
       "resourceType": "image",
-      "count": 69,
+      "count": 67,
       "statuses": [
         -1,
         200
@@ -3389,5 +3355,5 @@
     }
   ],
   "privacy": "summary excludes request/response headers, cookies, query values and request bodies",
-  "harBytes": 20656163
+  "harBytes": 17459996
 }
