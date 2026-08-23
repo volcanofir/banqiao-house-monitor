@@ -1,0 +1,64 @@
+{
+  "auditedAt": "2026-08-23T01:04:41+00:00",
+  "scheme": "A",
+  "target": "current saved canonical Preview files",
+  "passed": false,
+  "error": "AssertionError: ('2026-08-23T00:25:05+00:00', '2026-08-23T00:28:59+00:00')",
+  "traceTail": [
+    "Traceback (most recent call last):",
+    "  File \"<stdin>\", line 14, in <module>",
+    "  File \"/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/validate_scheme_a_preview.py\", line 111, in main",
+    "    assert p.get(\"companySnapshotCapturedAt\") == s.get(\"capturedAt\"), (",
+    "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "AssertionError: ('2026-08-23T00:25:05+00:00', '2026-08-23T00:28:59+00:00')"
+  ],
+  "companyGap": {
+    "generatedAt": "2026-08-23T00:27:51+00:00",
+    "capturedAt": null,
+    "verifiedAt": null,
+    "companySnapshotCapturedAt": "2026-08-23T00:25:05+00:00",
+    "listingCount": null,
+    "companyListingCount": 88,
+    "propertyGroupCount": 159,
+    "counts": {
+      "company_match": 48,
+      "review": 3,
+      "missing": 108,
+      "unavailable": 0
+    },
+    "idIntegrityGuard": null,
+    "canonicalPublisher": null,
+    "valid": null
+  },
+  "browserSnapshot": {
+    "generatedAt": null,
+    "capturedAt": "2026-08-23T00:28:59+00:00",
+    "verifiedAt": null,
+    "companySnapshotCapturedAt": null,
+    "listingCount": 88,
+    "companyListingCount": null,
+    "propertyGroupCount": null,
+    "counts": null,
+    "idIntegrityGuard": null,
+    "canonicalPublisher": null,
+    "valid": null
+  },
+  "verification": {
+    "generatedAt": null,
+    "capturedAt": null,
+    "verifiedAt": "2026-08-23T00:33:43+00:00",
+    "companySnapshotCapturedAt": null,
+    "listingCount": null,
+    "companyListingCount": 88,
+    "propertyGroupCount": null,
+    "counts": {
+      "company_match": 49,
+      "review": 3,
+      "missing": 107,
+      "unavailable": 0
+    },
+    "idIntegrityGuard": null,
+    "canonicalPublisher": null,
+    "valid": null
+  }
+}
