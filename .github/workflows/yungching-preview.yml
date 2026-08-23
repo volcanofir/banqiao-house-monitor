@@ -1,4 +1,4 @@
-# Stable baseline verification trigger: clean-state run after repository cleanup.
+# Stable canonical Preview publisher. Bot-pushed canonical commits explicitly request a Pages rebuild.
 name: 永慶公司案件比對 PREVIEW
 
 on:
@@ -36,6 +36,7 @@ on:
 
 permissions:
   contents: write
+  pages: write
 
 concurrency:
   group: banqiao-scheme-a-preview-canonical
@@ -248,14 +249,27 @@ jobs:
           done
           exit 1
 
+      - name: Request GitHub Pages build for canonical commit
+        id: pages
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh api --method POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            "repos/${GITHUB_REPOSITORY}/pages/builds"
+          echo "GitHub Pages rebuild queued for canonical Preview."
+
       - name: Save failed scheme A diagnostics separately
-        if: failure()
+        if: failure() && steps.pages.outcome != 'failure'
         continue-on-error: true
         shell: bash
         run: |
           set -e
           if [[ -f /tmp/canonical-source-changed ]]; then
-            echo "Source data changed during build; a fresh run will be triggered by the monitor commit. No failure snapshot saved."
+            echo "Source data changed during build; a fresh run will be explicitly dispatched by the monitor workflow. No failure snapshot saved."
             exit 0
           fi
           git config user.name "github-actions[bot]"
