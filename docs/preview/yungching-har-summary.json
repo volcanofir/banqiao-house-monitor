@@ -1,11 +1,11 @@
 {
-  "capturedAt": "2026-08-23T01:31:22+00:00",
+  "capturedAt": "2026-08-23T01:33:53+00:00",
   "previewOnly": true,
   "road": "板橋區中山路二段",
   "harStoredInGit": false,
   "harArtifactName": "yungching-network-har",
-  "requestEntryCount": 322,
-  "uniqueEndpointShapeCount": 135,
+  "requestEntryCount": 452,
+  "uniqueEndpointShapeCount": 173,
   "navigation": {
     "page1": {
       "url": {
@@ -31,10 +31,17 @@
       "activePagerText": "2"
     },
     "detail": {
-      "error": "no visible /house/ link found on page 2"
+      "url": {
+        "origin": "https://buy.yungching.com.tw",
+        "path": "/house/5289400",
+        "queryKeys": []
+      },
+      "http": 200,
+      "title": "中山收租透天住店 | 新北市板橋區中山路二段店面 | 買房 | 永慶房屋",
+      "source": "verified-snapshot-fallback"
     }
   },
-  "candidateApiEndpointCount": 13,
+  "candidateApiEndpointCount": 16,
   "candidateApiEndpoints": [
     {
       "method": "GET",
@@ -78,7 +85,7 @@
       "path": "/common/api/v1/member/check",
       "queryKeys": [],
       "resourceType": "fetch",
-      "count": 4,
+      "count": 6,
       "statuses": [
         200
       ],
@@ -94,7 +101,7 @@
         "id"
       ],
       "resourceType": "fetch",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -108,7 +115,7 @@
       "path": "/api/v1/common/scrolling",
       "queryKeys": [],
       "resourceType": "fetch",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -122,7 +129,7 @@
       "path": "/api/v1/common/version",
       "queryKeys": [],
       "resourceType": "fetch",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -136,7 +143,7 @@
       "path": "/api/v1/common/webbeltdata",
       "queryKeys": [],
       "resourceType": "fetch",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -211,56 +218,6 @@
       "queryKeys": [
         "_eu",
         "_p",
-        "_prs",
-        "_s",
-        "_tu",
-        "are",
-        "cid",
-        "dl",
-        "dma",
-        "dt",
-        "frm",
-        "gaf",
-        "gcd",
-        "gcs",
-        "gtm",
-        "npa",
-        "pscdl",
-        "rcb",
-        "sct",
-        "seg",
-        "sid",
-        "sr",
-        "tag_exp",
-        "tfd",
-        "tid",
-        "uaa",
-        "uab",
-        "uafvl",
-        "uam",
-        "uamb",
-        "uap",
-        "uapv",
-        "uaw",
-        "ul",
-        "v"
-      ],
-      "resourceType": "fetch",
-      "count": 2,
-      "statuses": [
-        204
-      ],
-      "mimeTypes": [
-        "text/plain"
-      ]
-    },
-    {
-      "method": "POST",
-      "origin": "https://analytics.google.com",
-      "path": "/g/collect",
-      "queryKeys": [
-        "_eu",
-        "_p",
         "_s",
         "_tu",
         "are",
@@ -301,6 +258,123 @@
         "v"
       ],
       "resourceType": "fetch",
+      "count": 2,
+      "statuses": [
+        204
+      ],
+      "mimeTypes": [
+        "text/plain"
+      ]
+    },
+    {
+      "method": "POST",
+      "origin": "https://analytics.google.com",
+      "path": "/g/collect",
+      "queryKeys": [
+        "_eu",
+        "_p",
+        "_prs",
+        "_s",
+        "_tu",
+        "are",
+        "cid",
+        "dl",
+        "dma",
+        "dt",
+        "frm",
+        "gaf",
+        "gcd",
+        "gcs",
+        "gtm",
+        "npa",
+        "pscdl",
+        "rcb",
+        "sct",
+        "seg",
+        "sid",
+        "sr",
+        "tag_exp",
+        "tfd",
+        "tid",
+        "uaa",
+        "uab",
+        "uafvl",
+        "uam",
+        "uamb",
+        "uap",
+        "uapv",
+        "uaw",
+        "ul",
+        "v"
+      ],
+      "resourceType": "fetch",
+      "count": 1,
+      "statuses": [
+        204
+      ],
+      "mimeTypes": [
+        "text/plain"
+      ]
+    },
+    {
+      "method": "POST",
+      "origin": "https://analytics.google.com",
+      "path": "/g/collect",
+      "queryKeys": [
+        "_c",
+        "_et",
+        "_eu",
+        "_p",
+        "_prs",
+        "_s",
+        "_tu",
+        "are",
+        "cid",
+        "cu",
+        "dl",
+        "dma",
+        "dt",
+        "en",
+        "ep.content_group",
+        "ep.custom_hour",
+        "ep.event_category",
+        "ep.item_age",
+        "ep.item_area_city_district",
+        "ep.item_brand",
+        "ep.item_floor",
+        "ep.item_mrt",
+        "ep.item_pin",
+        "ep.item_purpose",
+        "ep.item_room",
+        "ep.login_status",
+        "frm",
+        "gaf",
+        "gcd",
+        "gcs",
+        "gtm",
+        "npa",
+        "pr1",
+        "pscdl",
+        "rcb",
+        "sct",
+        "seg",
+        "sid",
+        "sr",
+        "tag_exp",
+        "tfd",
+        "tid",
+        "uaa",
+        "uab",
+        "uafvl",
+        "uam",
+        "uamb",
+        "uap",
+        "uapv",
+        "uaw",
+        "ul",
+        "v"
+      ],
+      "resourceType": "fetch",
       "count": 1,
       "statuses": [
         204
@@ -317,7 +391,7 @@
         "v"
       ],
       "resourceType": "fetch",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -328,6 +402,21 @@
     {
       "method": "POST",
       "origin": "https://i.clarity.ms",
+      "path": "/collect",
+      "queryKeys": [],
+      "resourceType": "xhr",
+      "count": 3,
+      "statuses": [
+        -1,
+        204
+      ],
+      "mimeTypes": [
+        "x-unknown"
+      ]
+    },
+    {
+      "method": "POST",
+      "origin": "https://r.clarity.ms",
       "path": "/collect",
       "queryKeys": [],
       "resourceType": "xhr",
@@ -376,7 +465,53 @@
         "url"
       ],
       "resourceType": "fetch",
-      "count": 3,
+      "count": 2,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "x-unknown"
+      ]
+    },
+    {
+      "method": "POST",
+      "origin": "https://www.google.com",
+      "path": "/measurement/conversion",
+      "queryKeys": [
+        "_tu",
+        "auid",
+        "currency_code",
+        "cv",
+        "dma",
+        "en",
+        "fmt",
+        "frm",
+        "fst",
+        "gacid",
+        "gcd",
+        "gcs",
+        "gtm",
+        "npa",
+        "pscdl",
+        "random",
+        "rcb",
+        "tag_exp",
+        "tiba",
+        "tid",
+        "u_h",
+        "u_w",
+        "uaa",
+        "uab",
+        "uafvl",
+        "uam",
+        "uamb",
+        "uap",
+        "uapv",
+        "uaw",
+        "url"
+      ],
+      "resourceType": "fetch",
+      "count": 1,
       "statuses": [
         200
       ],
@@ -428,7 +563,7 @@
       "path": "/common/api/v1/member/check",
       "queryKeys": [],
       "resourceType": "fetch",
-      "count": 4,
+      "count": 6,
       "statuses": [
         200
       ],
@@ -444,7 +579,7 @@
         "id"
       ],
       "resourceType": "fetch",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -458,7 +593,7 @@
       "path": "/api/v1/common/scrolling",
       "queryKeys": [],
       "resourceType": "fetch",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -472,7 +607,7 @@
       "path": "/api/v1/common/version",
       "queryKeys": [],
       "resourceType": "fetch",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -486,7 +621,7 @@
       "path": "/api/v1/common/webbeltdata",
       "queryKeys": [],
       "resourceType": "fetch",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -561,56 +696,6 @@
       "queryKeys": [
         "_eu",
         "_p",
-        "_prs",
-        "_s",
-        "_tu",
-        "are",
-        "cid",
-        "dl",
-        "dma",
-        "dt",
-        "frm",
-        "gaf",
-        "gcd",
-        "gcs",
-        "gtm",
-        "npa",
-        "pscdl",
-        "rcb",
-        "sct",
-        "seg",
-        "sid",
-        "sr",
-        "tag_exp",
-        "tfd",
-        "tid",
-        "uaa",
-        "uab",
-        "uafvl",
-        "uam",
-        "uamb",
-        "uap",
-        "uapv",
-        "uaw",
-        "ul",
-        "v"
-      ],
-      "resourceType": "fetch",
-      "count": 2,
-      "statuses": [
-        204
-      ],
-      "mimeTypes": [
-        "text/plain"
-      ]
-    },
-    {
-      "method": "POST",
-      "origin": "https://analytics.google.com",
-      "path": "/g/collect",
-      "queryKeys": [
-        "_eu",
-        "_p",
         "_s",
         "_tu",
         "are",
@@ -651,6 +736,123 @@
         "v"
       ],
       "resourceType": "fetch",
+      "count": 2,
+      "statuses": [
+        204
+      ],
+      "mimeTypes": [
+        "text/plain"
+      ]
+    },
+    {
+      "method": "POST",
+      "origin": "https://analytics.google.com",
+      "path": "/g/collect",
+      "queryKeys": [
+        "_eu",
+        "_p",
+        "_prs",
+        "_s",
+        "_tu",
+        "are",
+        "cid",
+        "dl",
+        "dma",
+        "dt",
+        "frm",
+        "gaf",
+        "gcd",
+        "gcs",
+        "gtm",
+        "npa",
+        "pscdl",
+        "rcb",
+        "sct",
+        "seg",
+        "sid",
+        "sr",
+        "tag_exp",
+        "tfd",
+        "tid",
+        "uaa",
+        "uab",
+        "uafvl",
+        "uam",
+        "uamb",
+        "uap",
+        "uapv",
+        "uaw",
+        "ul",
+        "v"
+      ],
+      "resourceType": "fetch",
+      "count": 1,
+      "statuses": [
+        204
+      ],
+      "mimeTypes": [
+        "text/plain"
+      ]
+    },
+    {
+      "method": "POST",
+      "origin": "https://analytics.google.com",
+      "path": "/g/collect",
+      "queryKeys": [
+        "_c",
+        "_et",
+        "_eu",
+        "_p",
+        "_prs",
+        "_s",
+        "_tu",
+        "are",
+        "cid",
+        "cu",
+        "dl",
+        "dma",
+        "dt",
+        "en",
+        "ep.content_group",
+        "ep.custom_hour",
+        "ep.event_category",
+        "ep.item_age",
+        "ep.item_area_city_district",
+        "ep.item_brand",
+        "ep.item_floor",
+        "ep.item_mrt",
+        "ep.item_pin",
+        "ep.item_purpose",
+        "ep.item_room",
+        "ep.login_status",
+        "frm",
+        "gaf",
+        "gcd",
+        "gcs",
+        "gtm",
+        "npa",
+        "pr1",
+        "pscdl",
+        "rcb",
+        "sct",
+        "seg",
+        "sid",
+        "sr",
+        "tag_exp",
+        "tfd",
+        "tid",
+        "uaa",
+        "uab",
+        "uafvl",
+        "uam",
+        "uamb",
+        "uap",
+        "uapv",
+        "uaw",
+        "ul",
+        "v"
+      ],
+      "resourceType": "fetch",
       "count": 1,
       "statuses": [
         204
@@ -667,7 +869,7 @@
         "v"
       ],
       "resourceType": "fetch",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -678,6 +880,21 @@
     {
       "method": "POST",
       "origin": "https://i.clarity.ms",
+      "path": "/collect",
+      "queryKeys": [],
+      "resourceType": "xhr",
+      "count": 3,
+      "statuses": [
+        -1,
+        204
+      ],
+      "mimeTypes": [
+        "x-unknown"
+      ]
+    },
+    {
+      "method": "POST",
+      "origin": "https://r.clarity.ms",
       "path": "/collect",
       "queryKeys": [],
       "resourceType": "xhr",
@@ -726,12 +943,72 @@
         "url"
       ],
       "resourceType": "fetch",
-      "count": 3,
+      "count": 2,
       "statuses": [
         200
       ],
       "mimeTypes": [
         "x-unknown"
+      ]
+    },
+    {
+      "method": "POST",
+      "origin": "https://www.google.com",
+      "path": "/measurement/conversion",
+      "queryKeys": [
+        "_tu",
+        "auid",
+        "currency_code",
+        "cv",
+        "dma",
+        "en",
+        "fmt",
+        "frm",
+        "fst",
+        "gacid",
+        "gcd",
+        "gcs",
+        "gtm",
+        "npa",
+        "pscdl",
+        "random",
+        "rcb",
+        "tag_exp",
+        "tiba",
+        "tid",
+        "u_h",
+        "u_w",
+        "uaa",
+        "uab",
+        "uafvl",
+        "uam",
+        "uamb",
+        "uap",
+        "uapv",
+        "uaw",
+        "url"
+      ],
+      "resourceType": "fetch",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "x-unknown"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/house/5289400",
+      "queryKeys": [],
+      "resourceType": "document",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "text/html;charset=UTF-8"
       ]
     },
     {
@@ -787,7 +1064,7 @@
       "path": "/mansion/chunk-3IKAXKWR.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -801,7 +1078,7 @@
       "path": "/mansion/chunk-3PH2YWOD.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -829,7 +1106,7 @@
       "path": "/mansion/chunk-6ATXNMP2.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -843,7 +1120,7 @@
       "path": "/mansion/chunk-6L7KAHDP.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -857,7 +1134,7 @@
       "path": "/mansion/chunk-7GKDJXZU.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -871,7 +1148,7 @@
       "path": "/mansion/chunk-7MPSUI5L.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -896,10 +1173,24 @@
     {
       "method": "GET",
       "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/chunk-AEBIC5VA.js",
+      "queryKeys": [],
+      "resourceType": "script",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "text/javascript; charset=utf-8"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
       "path": "/mansion/chunk-ARI4OJ6I.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -913,7 +1204,7 @@
       "path": "/mansion/chunk-B7SBOXYM.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -927,7 +1218,7 @@
       "path": "/mansion/chunk-BP2QEKMM.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -941,7 +1232,35 @@
       "path": "/mansion/chunk-BZNACKJH.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "text/javascript; charset=utf-8"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/chunk-CATKNY7K.js",
+      "queryKeys": [],
+      "resourceType": "script",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "text/javascript; charset=utf-8"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/chunk-CR4HH4X7.js",
+      "queryKeys": [],
+      "resourceType": "script",
+      "count": 1,
       "statuses": [
         200
       ],
@@ -969,7 +1288,7 @@
       "path": "/mansion/chunk-E7VQMFIH.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -983,7 +1302,35 @@
       "path": "/mansion/chunk-EEF7KQ73.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "text/javascript; charset=utf-8"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/chunk-F3SUZFNC.js",
+      "queryKeys": [],
+      "resourceType": "script",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "text/javascript; charset=utf-8"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/chunk-FFXS4D3Z.js",
+      "queryKeys": [],
+      "resourceType": "script",
+      "count": 1,
       "statuses": [
         200
       ],
@@ -997,7 +1344,7 @@
       "path": "/mansion/chunk-FLWDHMRQ.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1011,7 +1358,7 @@
       "path": "/mansion/chunk-FYY52LBC.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1025,7 +1372,7 @@
       "path": "/mansion/chunk-G7FPC5SN.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1039,7 +1386,7 @@
       "path": "/mansion/chunk-GA57MXYT.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1053,7 +1400,21 @@
       "path": "/mansion/chunk-GXOG6DQ4.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "text/javascript; charset=utf-8"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/chunk-H7GH3VNS.js",
+      "queryKeys": [],
+      "resourceType": "script",
+      "count": 1,
       "statuses": [
         200
       ],
@@ -1081,7 +1442,7 @@
       "path": "/mansion/chunk-HEJ3QQ7A.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1095,7 +1456,7 @@
       "path": "/mansion/chunk-HFPBDOCK.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1109,7 +1470,7 @@
       "path": "/mansion/chunk-HJ62RK64.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1151,7 +1512,7 @@
       "path": "/mansion/chunk-JRXU4LHR.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1165,7 +1526,7 @@
       "path": "/mansion/chunk-KMIH7UK6.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1193,7 +1554,7 @@
       "path": "/mansion/chunk-LWHROLZ4.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1207,7 +1568,7 @@
       "path": "/mansion/chunk-LYE7J2SF.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1221,7 +1582,7 @@
       "path": "/mansion/chunk-MF2WPFIH.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1235,7 +1596,7 @@
       "path": "/mansion/chunk-NNUFOQLY.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1249,7 +1610,7 @@
       "path": "/mansion/chunk-NRWC6TDG.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1263,7 +1624,7 @@
       "path": "/mansion/chunk-NZO5ZNED.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1277,7 +1638,7 @@
       "path": "/mansion/chunk-O2BOFZLB.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1305,7 +1666,7 @@
       "path": "/mansion/chunk-PCETGO47.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1347,7 +1708,7 @@
       "path": "/mansion/chunk-QJMTAOFR.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1375,7 +1736,7 @@
       "path": "/mansion/chunk-SFP64BXQ.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1389,7 +1750,21 @@
       "path": "/mansion/chunk-TT3SXNH7.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "text/javascript; charset=utf-8"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/chunk-U7YR2SEO.js",
+      "queryKeys": [],
+      "resourceType": "script",
+      "count": 1,
       "statuses": [
         200
       ],
@@ -1403,7 +1778,7 @@
       "path": "/mansion/chunk-UD3GLKFI.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1417,7 +1792,21 @@
       "path": "/mansion/chunk-UQGOQCUW.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "text/javascript; charset=utf-8"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/chunk-VFPZNJVN.js",
+      "queryKeys": [],
+      "resourceType": "script",
+      "count": 1,
       "statuses": [
         200
       ],
@@ -1431,7 +1820,7 @@
       "path": "/mansion/chunk-VIG36PCP.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1445,7 +1834,21 @@
       "path": "/mansion/chunk-VODBH6EP.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "text/javascript; charset=utf-8"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/chunk-WFF3PHPB.js",
+      "queryKeys": [],
+      "resourceType": "script",
+      "count": 1,
       "statuses": [
         200
       ],
@@ -1473,7 +1876,7 @@
       "path": "/mansion/chunk-WPXGMQVF.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1487,7 +1890,35 @@
       "path": "/mansion/chunk-WZ3SQURK.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "text/javascript; charset=utf-8"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/chunk-XGME2PBF.js",
+      "queryKeys": [],
+      "resourceType": "script",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "text/javascript; charset=utf-8"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/chunk-XICWXJXL.js",
+      "queryKeys": [],
+      "resourceType": "script",
+      "count": 1,
       "statuses": [
         200
       ],
@@ -1501,7 +1932,7 @@
       "path": "/mansion/chunk-YEVCQMZW.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1515,7 +1946,7 @@
       "path": "/mansion/chunk-YF5SMAQB.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1529,7 +1960,7 @@
       "path": "/mansion/chunk-YFWT6MF3.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1543,7 +1974,7 @@
       "path": "/mansion/chunk-ZHJY5Z23.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1557,12 +1988,26 @@
       "path": "/mansion/main-ZNWPTI42.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
       "mimeTypes": [
         "text/javascript; charset=utf-8"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/age-F6HQMUSA.svg",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/svg+xml"
       ]
     },
     {
@@ -1638,10 +2083,38 @@
     {
       "method": "GET",
       "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/building-2TFYFA77.svg",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/svg+xml"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/calculate-tag-6GCPCL7C.svg",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/svg+xml"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
       "path": "/mansion/media/call-CFQWNLSH.svg",
       "queryKeys": [],
       "resourceType": "image",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1697,7 +2170,7 @@
       "path": "/mansion/media/down-trig-MJT7NV5C.svg",
       "queryKeys": [],
       "resourceType": "image",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1711,7 +2184,7 @@
       "path": "/mansion/media/email-fill-VQQGESDT.svg",
       "queryKeys": [],
       "resourceType": "image",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1725,7 +2198,35 @@
       "path": "/mansion/media/facebook-fill-CUNFXR62.svg",
       "queryKeys": [],
       "resourceType": "image",
-      "count": 2,
+      "count": 3,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/svg+xml"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/floor-FVM2WAPQ.svg",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/svg+xml"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/floor-plan-5QFY3JFG.svg",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
       "statuses": [
         200
       ],
@@ -1750,10 +2251,94 @@
     {
       "method": "GET",
       "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/icon-default-avatar-NYLYTA62.svg",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/svg+xml"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/icon-not-haunted-pc-4TNH3Y4D.webp",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/webp"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/icon-not-radiant-pc-6SOXMFE3.webp",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/webp"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/icon-not-short-pc-WZ7QNITX.webp",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/webp"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/icon-water-leakage-warranty-pc-JVQHOURQ.webp",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/webp"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
       "path": "/mansion/media/im-solid-JPZVN27Y.svg",
       "queryKeys": [],
       "resourceType": "image",
-      "count": 2,
+      "count": 3,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/svg+xml"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/info-M7NS74EG.svg",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
       "statuses": [
         200
       ],
@@ -1767,7 +2352,21 @@
       "path": "/mansion/media/instagram-fill-YG5HOEAA.svg",
       "queryKeys": [],
       "resourceType": "image",
-      "count": 2,
+      "count": 3,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/svg+xml"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/like-S5PB3TU6.svg",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
       "statuses": [
         200
       ],
@@ -1795,7 +2394,7 @@
       "path": "/mansion/media/line-fill-HPRK6R7O.svg",
       "queryKeys": [],
       "resourceType": "image",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1862,6 +2461,20 @@
     {
       "method": "GET",
       "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/measure-full-QFV2UCUG.svg",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/svg+xml"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
       "path": "/mansion/media/metro-D7YLF4DY.svg",
       "queryKeys": [],
       "resourceType": "image",
@@ -1893,7 +2506,7 @@
       "path": "/mansion/media/more-PPBMIQQV.svg",
       "queryKeys": [],
       "resourceType": "image",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -1907,7 +2520,21 @@
       "path": "/mansion/media/next-6JN2C6UM.svg",
       "queryKeys": [],
       "resourceType": "image",
-      "count": 2,
+      "count": 3,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/svg+xml"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/phone-WFOHVMWX.svg",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
       "statuses": [
         200
       ],
@@ -1932,10 +2559,66 @@
     {
       "method": "GET",
       "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/price-6UTKIQJB.svg",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/svg+xml"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/price-reduction-c-L7NXYACS.svg",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/svg+xml"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/print-KF6O2ZYO.svg",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/svg+xml"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
       "path": "/mansion/media/search-3B47BGWO.svg",
       "queryKeys": [],
       "resourceType": "image",
       "count": 2,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/svg+xml"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://buy.yungching.com.tw",
+      "path": "/mansion/media/share-DQMROQS3.svg",
+      "queryKeys": [],
+      "resourceType": "image",
+      "count": 1,
       "statuses": [
         200
       ],
@@ -2005,7 +2688,7 @@
       "path": "/mansion/media/top-trig-24KVOE27.svg",
       "queryKeys": [],
       "resourceType": "image",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -2033,7 +2716,7 @@
       "path": "/mansion/media/yc-logo-group-FG6VCWKD.svg",
       "queryKeys": [],
       "resourceType": "image",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -2047,7 +2730,7 @@
       "path": "/mansion/media/yc-logo-web-5R5I7MDZ.svg",
       "queryKeys": [],
       "resourceType": "image",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -2061,7 +2744,7 @@
       "path": "/mansion/media/youtube-fill-SA7TMEU7.svg",
       "queryKeys": [],
       "resourceType": "image",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -2075,12 +2758,28 @@
       "path": "/mansion/styles-AUY6QK36.css",
       "queryKeys": [],
       "resourceType": "stylesheet",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
       "mimeTypes": [
         "text/css; charset=utf-8"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://cdn.yungching.com.tw",
+      "path": "/fp/yc/ad/04_pc_buydetail-1200X110.webp",
+      "queryKeys": [
+        "v"
+      ],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/webp"
       ]
     },
     {
@@ -2096,7 +2795,7 @@
       "resourceType": "image",
       "count": 1,
       "statuses": [
-        -1
+        302
       ],
       "mimeTypes": [
         "x-unknown"
@@ -2118,13 +2817,31 @@
     },
     {
       "method": "GET",
+      "origin": "https://c.clarity.ms",
+      "path": "/c.gif",
+      "queryKeys": [
+        "CtsSyncId",
+        "MUID",
+        "ctsa"
+      ],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/gif"
+      ]
+    },
+    {
+      "method": "GET",
       "origin": "https://cdn.yungching.com.tw",
       "path": "/fp/gtm/common.js",
       "queryKeys": [
         "v"
       ],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -2140,7 +2857,7 @@
         "v"
       ],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -2170,7 +2887,7 @@
       "path": "/fp/yc/common/fonts/oswald.woff2",
       "queryKeys": [],
       "resourceType": "font",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -2184,7 +2901,7 @@
       "path": "/fp/yc/common/fonts/poppins.woff2",
       "queryKeys": [],
       "resourceType": "font",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -2208,27 +2925,11 @@
     },
     {
       "method": "GET",
-      "origin": "https://cloudcdn.yungching.com.tw",
-      "path": "/yc-cloudcdn/image/3e3c9b149057454e8eea7d48e9ca92a1_1200x110.webp",
-      "queryKeys": [
-        "v"
-      ],
-      "resourceType": "image",
-      "count": 1,
-      "statuses": [
-        200
-      ],
-      "mimeTypes": [
-        "image/webp"
-      ]
-    },
-    {
-      "method": "GET",
       "origin": "https://connect.facebook.net",
       "path": "/en_US/fbevents.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -2248,7 +2949,7 @@
         "v"
       ],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -2264,7 +2965,7 @@
         "a"
       ],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -2281,7 +2982,7 @@
         "topUrl"
       ],
       "resourceType": "document",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -2291,16 +2992,122 @@
     },
     {
       "method": "GET",
+      "origin": "https://mapi.yungching.com.tw",
+      "path": "/QRCode/ImgMaker.ashx",
+      "queryKeys": [
+        "key",
+        "logo_url",
+        "val"
+      ],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/png"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://pic.yungching.com.tw",
+      "path": "/res/DrawImage/ShowPic/0/140/HF00/1050830ht10evjjn.jpg",
+      "queryKeys": [
+        "t"
+      ],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/jpeg"
+      ]
+    },
+    {
+      "method": "GET",
       "origin": "https://piwik.gadatatracking.com",
       "path": "/piwik.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
       "mimeTypes": [
         "application/javascript"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://piwik.gadatatracking.com",
+      "path": "/piwik.php",
+      "queryKeys": [
+        "_id",
+        "_idn",
+        "_idts",
+        "_idvc",
+        "_refts",
+        "_viewts",
+        "action_name",
+        "cookie",
+        "dimension1",
+        "gt_ms",
+        "h",
+        "idsite",
+        "m",
+        "pv_id",
+        "r",
+        "rec",
+        "res",
+        "s",
+        "send_image",
+        "url"
+      ],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/gif"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://piwik.gadatatracking.com",
+      "path": "/piwik.php",
+      "queryKeys": [
+        "_id",
+        "_idn",
+        "_idts",
+        "_idvc",
+        "_refts",
+        "_viewts",
+        "action_name",
+        "cookie",
+        "dimension1",
+        "dimension31",
+        "gt_ms",
+        "h",
+        "idsite",
+        "m",
+        "pv_id",
+        "r",
+        "rec",
+        "res",
+        "s",
+        "send_image",
+        "uid",
+        "url"
+      ],
+      "resourceType": "image",
+      "count": 8,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/gif"
       ]
     },
     {
@@ -2353,7 +3160,7 @@
         "action_name",
         "cookie",
         "dimension1",
-        "dimension31",
+        "dimension14",
         "gt_ms",
         "h",
         "idsite",
@@ -2368,30 +3175,26 @@
         "url"
       ],
       "resourceType": "image",
-      "count": 6,
+      "count": 1,
       "statuses": [
-        -1,
         200
       ],
       "mimeTypes": [
-        "image/gif",
-        "x-unknown"
+        "image/gif"
       ]
     },
     {
       "method": "GET",
       "origin": "https://scripts.clarity.ms",
-      "path": "/0.8.69/clarity.js",
+      "path": "/0.8.69-beta/clarity.js",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
-        -1,
         200
       ],
       "mimeTypes": [
-        "application/javascript;charset=utf-8",
-        "x-unknown"
+        "application/javascript;charset=utf-8"
       ]
     },
     {
@@ -2413,7 +3216,6 @@
       "resourceType": "script",
       "count": 2,
       "statuses": [
-        -1,
         302
       ],
       "mimeTypes": [
@@ -2478,7 +3280,7 @@
         "v"
       ],
       "resourceType": "script",
-      "count": 1,
+      "count": 2,
       "statuses": [
         200
       ],
@@ -2492,7 +3294,7 @@
       "path": "/tag/wmbagc9zxy",
       "queryKeys": [],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -2541,7 +3343,7 @@
         "id"
       ],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -2557,7 +3359,7 @@
         "id"
       ],
       "resourceType": "script",
-      "count": 2,
+      "count": 3,
       "statuses": [
         200
       ],
@@ -2575,15 +3377,17 @@
         "width"
       ],
       "resourceType": "image",
-      "count": 59,
+      "count": 69,
       "statuses": [
+        -1,
         200
       ],
       "mimeTypes": [
-        "image/jpeg"
+        "image/jpeg",
+        "x-unknown"
       ]
     }
   ],
   "privacy": "summary excludes request/response headers, cookies, query values and request bodies",
-  "harBytes": 13456684
+  "harBytes": 20656163
 }
