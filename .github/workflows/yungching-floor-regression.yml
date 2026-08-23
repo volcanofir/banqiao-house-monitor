@@ -1,0 +1,103 @@
+name: 永慶樓層固定案例 Regression
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/yungching-floor-regression.yml"
+      - "scripts/yungching_detail_floor_enrich.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: banqiao-yungching-floor-regression
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: |
+          pip install playwright requests beautifulsoup4
+          python -m playwright install chromium
+      - name: Connect Surfshark
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        shell: bash
+        run: |
+          for attempt in 1 2 3 4 5; do
+            sudo wg-quick down surfshark >/dev/null 2>&1 || true
+            if bash scripts/connect_surfshark_wireguard.sh && python scripts/yungching_browser_preflight.py; then exit 0; fi
+            sudo wg-quick down surfshark >/dev/null 2>&1 || true
+            sleep 3
+          done
+          exit 1
+      - name: Verify fixed current-property floors
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, sys
+          from datetime import datetime, timezone
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          sys.path.insert(0, str(Path('scripts').resolve()))
+          import yungching_detail_floor_enrich as f
+
+          cases=[
+            {'id':'6935425','expected_floor':'3/14樓','expected_case':'YC1239410'},
+            {'id':'6857079','expected_subject':1},
+            {'id':'6693666','expected_subject':3},
+          ]
+          results=[]
+          with sync_playwright() as p:
+            b=p.chromium.launch(headless=True)
+            c=b.new_context(locale='zh-TW', timezone_id='Asia/Taipei')
+            page=c.new_page()
+            for case in cases:
+              url=f"https://buy.yungching.com.tw/house/{case['id']}"
+              r=page.goto(url, wait_until='domcontentloaded', timeout=35000)
+              official=f.response_text(r)
+              f.render_full_detail(page)
+              focused,body,_=f.rendered_floor_context(page)
+              floor,evidence,mode=f.find_floor(focused,body,official)
+              yc=f.official_case_id(body) or f.official_case_id(official)
+              subjects=sorted(f.subject_floors(floor))
+              row={'id':case['id'],'http':r.status if r else None,'floor':floor,'subjects':subjects,'officialCaseId':yc,'mode':mode,'evidence':evidence}
+              results.append(row)
+              assert row['http']==200, row
+              assert floor, row
+              if case.get('expected_floor'):
+                assert floor==case['expected_floor'], row
+              if case.get('expected_subject'):
+                assert case['expected_subject'] in subjects, row
+              if case.get('expected_case'):
+                assert yc==case['expected_case'], row
+            b.close()
+          out={'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),'passed':True,'results':results}
+          Path('docs/preview/yungching-floor-regression.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False))
+          PY
+      - if: always()
+        continue-on-error: true
+        run: sudo wg-quick down surfshark || true
+      - name: Save regression result
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp docs/preview/yungching-floor-regression.json /tmp/regression.json
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/regression.json docs/preview/yungching-floor-regression.json
+          git add docs/preview/yungching-floor-regression.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Save verified Yongching floor regression"
+          git push origin HEAD:main
