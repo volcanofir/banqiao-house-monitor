@@ -1,5 +1,5 @@
 {
-  "auditedAt": "2026-08-23T02:30:42+00:00",
+  "auditedAt": "2026-08-23T02:32:19+00:00",
   "passed": true,
   "mode": "preview_only_591_then_sinyi_structured_floor_then_company_neartie_guard_v8",
   "companyListingCount": 81,
@@ -11,7 +11,7 @@
     "unavailable": 0
   },
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-08-23T02:30:40+00:00",
+    "generatedAt": "2026-08-23T02:32:17+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 77,
@@ -129,6 +129,118 @@
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
     "weakIdentityAlreadyMergedPairCount": 220
+  },
+  "groupDiffFromPreviousCanonical": {
+    "oldGroupCount": 159,
+    "newGroupCount": 160,
+    "addedGroups": [
+      {
+        "groupId": "GROUP:591:20557857",
+        "road": "板橋區中山路二段",
+        "title": "✨中山路頂加五樓✨",
+        "floors": [],
+        "memberIds": [
+          "591:20439633",
+          "591:20480993",
+          "591:20557857",
+          "591:20563739"
+        ]
+      }
+    ],
+    "removedGroups": [],
+    "changedMembershipGroups": [
+      {
+        "groupId": "GROUP:591:20251660",
+        "road": "板橋區中山路二段",
+        "title": "😍江翠北側光復橋河岸景觀電梯4房雙車位❤️兩戶可選❤️",
+        "beforeMemberIds": [
+          "591:20251660",
+          "591:20319462",
+          "591:20468954",
+          "591:20531407",
+          "591:20553281",
+          "591:20555870",
+          "591:20569606",
+          "591:20611790",
+          "591:20613238",
+          "591:20647208",
+          "591:20658864",
+          "591:20660519",
+          "591:20675578",
+          "591:20679014",
+          "591:20686126",
+          "591:20721501",
+          "591:20758719",
+          "591:20779409"
+        ],
+        "afterMemberIds": [
+          "591:20251660",
+          "591:20319462",
+          "591:20468954",
+          "591:20531407",
+          "591:20553281",
+          "591:20555870",
+          "591:20569606",
+          "591:20611790",
+          "591:20613238",
+          "591:20647208",
+          "591:20658864",
+          "591:20660519",
+          "591:20675578",
+          "591:20679014",
+          "591:20686126",
+          "591:20721501",
+          "591:20758719",
+          "591:20779409",
+          "591:20779553"
+        ],
+        "removedMemberIds": [],
+        "addedMemberIds": [
+          "591:20779553"
+        ],
+        "structuredFloor": null
+      },
+      {
+        "groupId": "GROUP:591:20674223",
+        "road": "板橋區翠華街",
+        "title": "賣房阿信✅ 全新落成金堡翠華(可以看屋）",
+        "beforeMemberIds": [
+          "591:20674223",
+          "591:24930997"
+        ],
+        "afterMemberIds": [
+          "591:20674223"
+        ],
+        "removedMemberIds": [
+          "591:24930997"
+        ],
+        "addedMemberIds": [],
+        "structuredFloor": null
+      },
+      {
+        "groupId": "GROUP:信義房屋:4833HN",
+        "road": "板橋區中山路二段",
+        "title": "近北市正馬路便利公寓",
+        "beforeMemberIds": [
+          "591:20439633",
+          "591:20480993",
+          "591:20557857",
+          "591:20563739",
+          "信義房屋:4833HN"
+        ],
+        "afterMemberIds": [
+          "信義房屋:4833HN"
+        ],
+        "removedMemberIds": [
+          "591:20439633",
+          "591:20480993",
+          "591:20557857",
+          "591:20563739"
+        ],
+        "addedMemberIds": [],
+        "structuredFloor": "3/5樓"
+      }
+    ]
   },
   "knownCases": {
     "5818CQ": {
