@@ -1,4 +1,4 @@
-"""Write a canonical saved-output audit using the strict v2 scheme A validator.
+"""Write a canonical saved-output audit using the strict v3 scheme A validator.
 
 This runs inside the canonical publisher before commit so the verification manifest
 and the audit are published atomically from the exact same files.
@@ -9,7 +9,7 @@ import traceback
 from datetime import datetime, timezone
 from pathlib import Path
 
-import validate_scheme_a_preview_v2 as validator
+import validate_scheme_a_preview_v3 as validator
 
 
 OUT = Path("docs/preview/scheme-a-saved-output-audit.json")
@@ -31,6 +31,9 @@ def compact(path: str) -> dict:
         "valid": x.get("valid"),
         "integrityVersion": x.get("integrityVersion"),
         "safeFloorParser": x.get("safeFloorParser"),
+        "sinyiStructuredFloorMatching": x.get("sinyiStructuredFloorMatching"),
+        "sinyiFloorEnrichment": x.get("sinyiFloorEnrichment"),
+        "companyNearTieGuard": x.get("companyNearTieGuard"),
     }
 
 
@@ -39,7 +42,7 @@ def main():
         "auditedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "scheme": "A",
         "target": "exact canonical Preview files before atomic publish",
-        "validator": "validate_scheme_a_preview_v2",
+        "validator": "validate_scheme_a_preview_v3",
         "passed": False,
         "error": None,
     }
