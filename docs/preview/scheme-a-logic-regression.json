@@ -1,7 +1,37 @@
 {
-  "verifiedAt": "2026-08-23T01:08:23+00:00",
-  "returncode": 1,
-  "stdout": "",
-  "stderr": "Traceback (most recent call last):\n  File \"/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/test_scheme_a_integrity.py\", line 104, in <module>\n    main()\n  File \"/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/test_scheme_a_integrity.py\", line 97, in main\n    \"structuredCompanyFloor\": test_structured_company_floor_wins(),\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/test_scheme_a_integrity.py\", line 89, in test_structured_company_floor_wins\n    assert raw_helper == {3}, raw_helper\n           ^^^^^^^^^^^^^^^^^\nAssertionError: {33}\n",
-  "passed": false
+  "verifiedAt": "2026-08-23T01:11:38+00:00",
+  "returncode": 0,
+  "stdout": "{\"transitive591FloorBridge\": {\"groupCount\": 2, \"blocked\": 1, \"clusterFloors\": [[2], [3]]}, \"sinyiUnknownFloorMultiAttach\": {\"groupCount\": 2, \"sinyiAttached591\": 1, \"blocked\": 1, \"reviewCount\": 1}, \"structuredCompanyFloor\": {\"structuredFloors\": [3], \"gluedDomFloors\": [3], \"rangeFloors\": [1, 2]}, \"passed\": true}\n",
+  "stderr": "",
+  "passed": true,
+  "transitive591FloorBridge": {
+    "groupCount": 2,
+    "blocked": 1,
+    "clusterFloors": [
+      [
+        2
+      ],
+      [
+        3
+      ]
+    ]
+  },
+  "sinyiUnknownFloorMultiAttach": {
+    "groupCount": 2,
+    "sinyiAttached591": 1,
+    "blocked": 1,
+    "reviewCount": 1
+  },
+  "structuredCompanyFloor": {
+    "structuredFloors": [
+      3
+    ],
+    "gluedDomFloors": [
+      3
+    ],
+    "rangeFloors": [
+      1,
+      2
+    ]
+  }
 }
