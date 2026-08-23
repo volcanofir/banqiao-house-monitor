@@ -3,6 +3,7 @@
 The HAR itself is intentionally kept out of git and uploaded only as a short-lived
 GitHub Actions artifact. A sanitized JSON summary is written to docs/preview so we can
 inspect endpoint shapes without persisting cookies, authorization headers or bodies.
+This file is also the explicit push trigger for the isolated HAR diagnostic workflow.
 """
 
 import json
@@ -146,8 +147,6 @@ def main():
             "activePagerText": active2.first.inner_text(timeout=2000).strip() if active2.count() else None,
         }
 
-        # Pick a real visible result link on page 2. The HAR investigation is about
-        # network behavior, so this does not feed any company matching output.
         detail_link = None
         links = page.locator('a[href*="/house/"]')
         for i in range(min(links.count(), 80)):
@@ -168,7 +167,6 @@ def main():
         else:
             navigation["detail"] = {"error": "no visible /house/ link found on page 2"}
 
-        # HAR is finalized only when the browser context closes.
         context.close()
         browser.close()
 
