@@ -6,16 +6,18 @@ PRODUCTION = Path('docs/index.html')
 VERIFY = Path('docs/preview/scheme-a-verification.json')
 SOURCE = Path('docs/data/listings.json')
 AUDIT = Path('docs/preview/scheme-a-saved-output-audit.json')
+GAP = Path('docs/preview/company-gap.json')
 
 
 def main():
-    for p in (PREVIEW, VERIFY, SOURCE, AUDIT):
+    for p in (PREVIEW, VERIFY, SOURCE, AUDIT, GAP):
         if not p.exists():
             raise RuntimeError(f'Missing production promotion prerequisite: {p}')
 
     verify = json.loads(VERIFY.read_text(encoding='utf-8'))
     source = json.loads(SOURCE.read_text(encoding='utf-8'))
     audit = json.loads(AUDIT.read_text(encoding='utf-8'))
+    gap = json.loads(GAP.read_text(encoding='utf-8'))
 
     if verify.get('valid') is not True:
         raise RuntimeError('Canonical verification is not valid')
@@ -29,6 +31,17 @@ def main():
         raise RuntimeError('Unexpected canonical publisher')
     if verify.get('integrityVersion') != 'scheme-a-canonical-v3-sinyi-floor-neartie':
         raise RuntimeError('Unexpected canonical integrity version')
+
+    # Off-market history is display-only and must not mutate active company counts.
+    if gap.get('recentOffMarketRetentionDays') != 10:
+        raise RuntimeError(f"Unexpected off-market retention: {gap.get('recentOffMarketRetentionDays')}")
+    offmarket = gap.get('recentOffMarketGroups')
+    if not isinstance(offmarket, list):
+        raise RuntimeError('Canonical off-market group list is missing')
+    if int(gap.get('recentOffMarketCount') or 0) != len(offmarket):
+        raise RuntimeError('Canonical off-market count/list mismatch')
+    if any(x.get('offMarket') is not True or x.get('active') is not False or not x.get('removedAt') for x in offmarket):
+        raise RuntimeError('Canonical off-market group contract failed')
 
     text = PREVIEW.read_text(encoding='utf-8')
     text = text.replace('<meta name="robots" content="noindex,nofollow" />\n', '')
@@ -58,6 +71,11 @@ def main():
         '`preview/scheme-a-verification.json?ts=${Date.now()}`',
         'function verificationMatches(d,g,v)',
         '案件清單暫停顯示',
+        '<span>已下架</span><strong id="cUnavailable">',
+        '<option value="removed">已下架</option>',
+        'GAP.recentOffMarketCount??0',
+        'GAP.recentOffMarketGroups||[]',
+        '下架：${fmt(g.removedAt)}',
     ]
     missing = [x for x in required if x not in text]
     if missing:
@@ -80,6 +98,8 @@ def main():
         'companyListingCount': verify.get('companyListingCount'),
         'propertyGroupCount': verify.get('propertyGroupCount'),
         'counts': verify.get('counts'),
+        'recentOffMarketCount': gap.get('recentOffMarketCount'),
+        'recentOffMarketRetentionDays': gap.get('recentOffMarketRetentionDays'),
     }, ensure_ascii=False))
 
 
