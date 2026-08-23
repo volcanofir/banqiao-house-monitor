@@ -1,35 +1,115 @@
 {
-  "capturedAt": "2026-08-23T02:03:10+00:00",
+  "capturedAt": "2026-08-23T02:04:37+00:00",
   "previewOnly": true,
   "sourceDiscovery": "Angular SSR ng-state TransferState keys",
   "road": "板橋區中山路二段",
   "requests": {
     "listPage1": {
-      "status": 403,
-      "ok": false,
-      "contentType": "text/html",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
       "urlPath": "/api/v2/list",
-      "responseBytesUtf8": 919,
-      "jsonError": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
-      "textPrefix": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>ERROR"
+      "responseBytesUtf8": 66467,
+      "structure": {
+        "type": "object",
+        "keys": [
+          "apiVersion",
+          "data",
+          "id",
+          "method",
+          "status"
+        ]
+      },
+      "signals": {
+        "jsonBytesUtf8": 66467,
+        "houseUrlIds": [],
+        "houseUrlIdCount": 0,
+        "ycCaseIds": [],
+        "ycCaseIdCount": 0,
+        "floorTokens": [],
+        "floorTokenCount": 0,
+        "candidateNumericIds": [
+          "06254",
+          "43094",
+          "931827"
+        ],
+        "fieldSamples": [
+          {
+            "path": "id",
+            "value": "038c737b-a1bf-468f-946a-f4db0672eb64"
+          }
+        ]
+      }
     },
     "listPage2": {
-      "status": 403,
-      "ok": false,
-      "contentType": "text/html",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
       "urlPath": "/api/v2/list",
-      "responseBytesUtf8": 919,
-      "jsonError": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
-      "textPrefix": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>ERROR"
+      "responseBytesUtf8": 28535,
+      "structure": {
+        "type": "object",
+        "keys": [
+          "apiVersion",
+          "data",
+          "id",
+          "method",
+          "status"
+        ]
+      },
+      "signals": {
+        "jsonBytesUtf8": 28535,
+        "houseUrlIds": [],
+        "houseUrlIdCount": 0,
+        "ycCaseIds": [],
+        "ycCaseIdCount": 0,
+        "floorTokens": [],
+        "floorTokenCount": 0,
+        "candidateNumericIds": [
+          "434849"
+        ],
+        "fieldSamples": [
+          {
+            "path": "id",
+            "value": "230d8e93-d0c4-43d3-bc47-6f5f4c8eecce"
+          }
+        ]
+      }
     },
     "detail": {
-      "status": 403,
-      "ok": false,
-      "contentType": "text/html",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
       "urlPath": "/api/v2/house",
-      "responseBytesUtf8": 919,
-      "jsonError": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
-      "textPrefix": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>ERROR",
+      "responseBytesUtf8": 8248,
+      "structure": {
+        "type": "object",
+        "keys": [
+          "apiVersion",
+          "data",
+          "id",
+          "method",
+          "status"
+        ]
+      },
+      "signals": {
+        "jsonBytesUtf8": 8248,
+        "houseUrlIds": [],
+        "houseUrlIdCount": 0,
+        "ycCaseIds": [],
+        "ycCaseIdCount": 0,
+        "floorTokens": [],
+        "floorTokenCount": 0,
+        "candidateNumericIds": [
+          "10666"
+        ],
+        "fieldSamples": [
+          {
+            "path": "id",
+            "value": "10666aa1-c5e9-4e0b-87b9-cca3bfaf4af8"
+          }
+        ]
+      },
       "expectedHouseId": "5289400"
     }
   },
