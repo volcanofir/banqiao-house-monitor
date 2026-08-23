@@ -1,0 +1,7 @@
+{
+  "verifiedAt": "2026-08-23T01:08:23+00:00",
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/test_scheme_a_integrity.py\", line 104, in <module>\n    main()\n  File \"/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/test_scheme_a_integrity.py\", line 97, in main\n    \"structuredCompanyFloor\": test_structured_company_floor_wins(),\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/test_scheme_a_integrity.py\", line 89, in test_structured_company_floor_wins\n    assert raw_helper == {3}, raw_helper\n           ^^^^^^^^^^^^^^^^^\nAssertionError: {33}\n",
+  "passed": false
+}
