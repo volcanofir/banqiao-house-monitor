@@ -43,11 +43,12 @@ jobs:
         shell: bash
         run: |
           python - <<'PY'
-          import json
+          import json, sys, re
           from datetime import datetime, timezone
           from pathlib import Path
           from playwright.sync_api import sync_playwright
-          import scripts.yungching_detail_floor_enrich as f
+          sys.path.insert(0, str(Path('scripts').resolve()))
+          import yungching_detail_floor_enrich as f
 
           url='https://buy.yungching.com.tw/house/6935425'
           out={'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),'url':url}
@@ -80,7 +81,7 @@ jobs:
                       'snippets':snippets[:20],
                       'bodyHasBasicInfo':'基本資訊' in body,
                       'bodyHasFloorLabel':'樓層' in body,
-                      'bodyFloorExpressions':__import__('re').findall(r'\d{1,2}(?:[~～-]\d{1,2})?/\d{1,2}樓', body)[:30],
+                      'bodyFloorExpressions':re.findall(r'\d{1,2}(?:[~～-]\d{1,2})?/\d{1,2}樓', body)[:30],
                   })
                   b.close()
           except Exception as exc:
