@@ -1,14 +1,14 @@
 {
-  "verifiedAt": "2026-08-23T04:07:31+00:00",
+  "verifiedAt": "2026-08-23T04:37:19+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + Chromium official Yongching DOM + all-pages direct pg pagination + official detail pages",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-08-23T02:09:48+00:00",
+  "sourceDataUpdatedAt": "2026-08-23T04:26:39+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-08-23T04:07:29+00:00",
+    "generatedAt": "2026-08-23T04:37:16+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 77,
@@ -123,21 +123,21 @@
     ]
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-08-23T04:07:31+00:00",
+    "auditedAt": "2026-08-23T04:37:19+00:00",
     "propertyGroupCount": 160,
     "companyListingCount": 81,
     "companyMatchCount": 49,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 220
+    "weakIdentityAlreadyMergedPairCount": 207
   },
-  "snapshotCapturedAt": "2026-08-23T03:59:24+00:00",
-  "companySnapshotCapturedAt": "2026-08-23T03:59:24+00:00",
-  "companyGapGeneratedAt": "2026-08-23T04:07:30+00:00",
+  "snapshotCapturedAt": "2026-08-23T04:28:37+00:00",
+  "companySnapshotCapturedAt": "2026-08-23T04:28:37+00:00",
+  "companyGapGeneratedAt": "2026-08-23T04:37:18+00:00",
   "browserListingCount": 81,
   "companyListingCount": 81,
   "propertyGroupCount": 160,
-  "rawListingCount": 367,
+  "rawListingCount": 368,
   "comparisonCount": 160,
   "coveredRoads": [
     "板橋區中山路二段",
@@ -210,10 +210,10 @@
   "crossPlatformMergedGroupCount": 24,
   "crossSourceReviewCount": 7,
   "preview591Regroup": {
-    "original591TopLevel": 128,
+    "original591TopLevel": 129,
     "regrouped591TopLevel": 108,
-    "regrouped591ClusterCount": 17,
-    "regrouped591AbsorbedCount": 20,
+    "regrouped591ClusterCount": 18,
+    "regrouped591AbsorbedCount": 21,
     "clusterFloorConflictBlocked": 0
   },
   "schemeAGroupIntegrity": {
@@ -317,16 +317,16 @@
     "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
   },
   "candidateCount": 160,
-  "candidatesWithFloor": 130,
-  "candidatesWithYcCaseId": 130,
+  "candidatesWithFloor": 128,
+  "candidatesWithYcCaseId": 128,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-08-23T04:07:18+00:00",
+    "generatedAt": "2026-08-23T04:37:04+00:00",
     "source": "Yongching official detail via Surfshark + Chromium; current listing header/basic-info only",
     "attempted": 74,
-    "enriched": 74,
-    "officialCaseIdEnriched": 74,
+    "enriched": 73,
+    "officialCaseIdEnriched": 73,
     "rejectedTitleFloorConflicts": 0,
-    "remainingMissing": 0,
+    "remainingMissing": 1,
     "skippedTypes": [
       "土地",
       "透天厝"
