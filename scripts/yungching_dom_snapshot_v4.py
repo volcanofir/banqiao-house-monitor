@@ -14,6 +14,9 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 import yungching_dom_snapshot_v3 as v3
 
 
+ORIGINAL_V3_CLICK_NUMERIC_PAGE = v3.click_numeric_page
+
+
 def pg_url(url: str, target: int) -> str:
     parts = urlsplit(url)
     query = [(k, v) for k, v in parse_qsl(parts.query, keep_blank_values=True) if k != "pg"]
@@ -79,8 +82,9 @@ def click_numeric_page(page, target: int):
     if action.get("clicked"):
         return action
 
-    # Keep v3's strict click implementation only as a future DOM fallback.
-    fallback = v3.click_numeric_page(page, target)
+    # Keep the original v3 strict click implementation only as a future DOM fallback.
+    # Capture it before monkey-patching v3 to avoid recursive self-calls when no page 3 exists.
+    fallback = ORIGINAL_V3_CLICK_NUMERIC_PAGE(page, target)
     fallback.setdefault("previousDirectPg", action)
     return fallback
 
