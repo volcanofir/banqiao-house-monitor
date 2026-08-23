@@ -58,11 +58,15 @@ jobs:
               'attempted': diag.get('attempted'),
               'enriched': diag.get('enriched'),
               'officialCaseIdEnriched': diag.get('officialCaseIdEnriched'),
+              'rejectedTitleFloorConflicts': diag.get('rejectedTitleFloorConflicts'),
               'rows': [
                   {
                       'id': x.get('id'), 'title': x.get('title'), 'http': x.get('http'),
                       'floor': x.get('floor'), 'mode': x.get('mode'),
                       'officialCaseId': x.get('officialCaseId'),
+                      'rejectedFloor': x.get('rejectedFloor'),
+                      'titleExpectedFloors': x.get('titleExpectedFloors'),
+                      'parsedFloors': x.get('parsedFloors'),
                       'domHasBasicInfo': x.get('domHasBasicInfo'),
                       'responseHasBasicInfo': x.get('responseHasBasicInfo'),
                   }
@@ -90,7 +94,7 @@ jobs:
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Save Yongching floor batch verification"
           git push origin HEAD:main
-      - name: Assert useful floor coverage
+      - name: Assert floor correctness and coverage
         shell: bash
         run: |
           python - <<'PY'
@@ -98,6 +102,14 @@ jobs:
           from pathlib import Path
           x=json.loads(Path('docs/preview/yungching-floor-batch-test.json').read_text(encoding='utf-8'))
           assert x.get('attempted') == 12, x
-          assert x.get('officialCaseIdEnriched',0) >= 6, x
-          assert x.get('enriched',0) >= 6, x
+          assert x.get('officialCaseIdEnriched',0) >= 10, x
+          assert x.get('enriched',0) >= 9, x
+          rows={str(r.get('id')):r for r in x.get('rows') or []}
+          known=rows.get('6935425') or {}
+          assert known.get('floor') == '3/14樓', known
+          assert known.get('officialCaseId') == 'YC1239410', known
+          one=rows.get('6857079') or {}
+          assert str(one.get('floor') or '').startswith('1/'), one
+          three=rows.get('6693666') or {}
+          assert str(three.get('floor') or '').startswith('3/'), three
           PY
