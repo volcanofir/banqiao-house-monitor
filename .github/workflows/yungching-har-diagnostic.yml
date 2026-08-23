@@ -40,11 +40,12 @@ jobs:
           SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
         shell: bash
         run: |
+          set -o pipefail
           for attempt in 1 2 3 4 5; do
-            echo "Surfshark HAR attempt $attempt/5"
+            echo "Surfshark HAR attempt $attempt/5" | tee -a /tmp/yungching-har-run.log
             sudo wg-quick down surfshark >/dev/null 2>&1 || true
-            if bash scripts/connect_surfshark_wireguard.sh && python scripts/yungching_browser_preflight.py; then
-              echo "Surfshark exit accepted by Yongching Chromium."
+            if bash scripts/connect_surfshark_wireguard.sh 2>&1 | tee -a /tmp/yungching-har-run.log && python scripts/yungching_browser_preflight.py 2>&1 | tee -a /tmp/yungching-har-run.log; then
+              echo "Surfshark exit accepted by Yongching Chromium." | tee -a /tmp/yungching-har-run.log
               exit 0
             fi
             sudo wg-quick down surfshark >/dev/null 2>&1 || true
@@ -53,7 +54,10 @@ jobs:
           exit 1
 
       - name: Record search page 1, page 2 and one detail page to HAR
-        run: python scripts/record_yungching_har.py
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/record_yungching_har.py 2>&1 | tee -a /tmp/yungching-har-run.log
 
       - name: Disconnect Surfshark
         if: always()
@@ -84,3 +88,33 @@ jobs:
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Save sanitized Yongching HAR diagnostic summary"
           git push origin HEAD:main
+
+      - name: Save HAR failure diagnostic
+        if: failure()
+        continue-on-error: true
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          log=Path('/tmp/yungching-har-run.log').read_text(encoding='utf-8') if Path('/tmp/yungching-har-run.log').exists() else ''
+          out={
+            'capturedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
+            'passed':False,
+            'logTail':log[-12000:],
+            'harExists':Path('artifacts/yungching-har/yungching-network.har').exists(),
+            'harBytes':Path('artifacts/yungching-har/yungching-network.har').stat().st_size if Path('artifacts/yungching-har/yungching-network.har').exists() else 0,
+          }
+          Path('/tmp/yungching-har-failed.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/yungching-har-failed.json docs/preview/yungching-har-failed.json
+          git add docs/preview/yungching-har-failed.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Save failed Yongching HAR diagnostic"
+            git push origin HEAD:main || true
+          fi
