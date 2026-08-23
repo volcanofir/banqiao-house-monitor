@@ -27,6 +27,7 @@ jobs:
       - name: Run v8 against current verified snapshot
         shell: bash
         run: |
+          cp docs/preview/company-gap.json /tmp/company-gap-before-v8.json
           python scripts/sinyi_preview_floor_enrich.py
           python scripts/compare_yungching_preview_v8.py
           python scripts/validate_scheme_a_preview_v3.py
@@ -35,10 +36,45 @@ jobs:
           import json
           from datetime import datetime, timezone
           from pathlib import Path
+
+          old=json.loads(Path('/tmp/company-gap-before-v8.json').read_text(encoding='utf-8'))
           p=json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
           a=json.loads(Path('docs/preview/scheme-a-ambiguity-audit.json').read_text(encoding='utf-8'))
           s=json.loads(Path('docs/preview/sinyi-floor-enrichment.json').read_text(encoding='utf-8'))
-          rows={x.get('groupId'):x for x in p.get('comparisons') or []}
+
+          def member_ids(g):
+            ids=[]
+            for src in g.get('sourceListings') or []:
+              merged=src.get('mergedListings') or []
+              if merged:
+                ids.extend(str(x.get('id') or x.get('houseId')) for x in merged if x.get('id') or x.get('houseId'))
+              elif src.get('id') or src.get('houseId'):
+                ids.append(str(src.get('id') or src.get('houseId')))
+            return sorted(set(ids))
+
+          oldg={x.get('groupId'):x for x in old.get('propertyGroups') or []}
+          newg={x.get('groupId'):x for x in p.get('propertyGroups') or []}
+          added=[]
+          removed=[]
+          changed=[]
+          for gid in sorted(set(newg)-set(oldg)):
+            g=newg[gid]
+            added.append({'groupId':gid,'road':g.get('road'),'title':g.get('title'),'floors':[x.get('floor') for x in g.get('sourceListings') or [] if x.get('floor')],'memberIds':member_ids(g)})
+          for gid in sorted(set(oldg)-set(newg)):
+            g=oldg[gid]
+            removed.append({'groupId':gid,'road':g.get('road'),'title':g.get('title'),'memberIds':member_ids(g)})
+          for gid in sorted(set(oldg)&set(newg)):
+            before=member_ids(oldg[gid]); after=member_ids(newg[gid])
+            if before!=after:
+              g=newg[gid]
+              changed.append({
+                'groupId':gid,'road':g.get('road'),'title':g.get('title'),
+                'beforeMemberIds':before,'afterMemberIds':after,
+                'removedMemberIds':sorted(set(before)-set(after)),
+                'addedMemberIds':sorted(set(after)-set(before)),
+                'structuredFloor':next((x.get('floor') for x in g.get('sourceListings') or [] if x.get('source')=='信義房屋' and x.get('floor')),None),
+              })
+
           out={
             'auditedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
             'passed':True,
@@ -52,6 +88,13 @@ jobs:
               'companyNearTieStrongCount':a.get('companyNearTieStrongCount'),
               'chosenCandidateRecomputeMismatchCount':a.get('chosenCandidateRecomputeMismatchCount'),
               'weakIdentityAlreadyMergedPairCount':a.get('weakIdentityAlreadyMergedPairCount'),
+            },
+            'groupDiffFromPreviousCanonical':{
+              'oldGroupCount':old.get('propertyGroupCount'),
+              'newGroupCount':p.get('propertyGroupCount'),
+              'addedGroups':added,
+              'removedGroups':removed,
+              'changedMembershipGroups':changed,
             },
             'knownCases':{
               '5818CQ': next((x for x in p.get('comparisons') or [] if x.get('groupId')=='GROUP:信義房屋:5818CQ'),None),
