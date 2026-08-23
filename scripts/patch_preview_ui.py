@@ -101,7 +101,7 @@ PATH.write_text(text, encoding='utf-8')
 print('Preview UI patched')
 
 try:
-    import validate_scheme_a_preview_v2 as validator
+    import validate_scheme_a_preview_v3 as validator
     validator.main()
 except Exception as exc:
     try:
