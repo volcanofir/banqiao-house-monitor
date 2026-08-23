@@ -1,6 +1,8 @@
 from pathlib import Path
 import json
 import re
+import subprocess
+import sys
 
 PATH = Path('docs/preview/index.html')
 GAP_PATH = Path('docs/preview/company-gap.json')
@@ -157,6 +159,7 @@ if 'id="companyNote"' in text or 'id="mRaw"' in text:
     raise RuntimeError('Preview UI patch contract failed; legacy UI fragments remain')
 
 PATH.write_text(text, encoding='utf-8')
+subprocess.run([sys.executable, 'scripts/patch_offmarket_ui.py'], check=True)
 print('Preview UI patched and hardened')
 
 try:
