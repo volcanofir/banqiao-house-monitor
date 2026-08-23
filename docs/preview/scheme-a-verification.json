@@ -1,0 +1,77 @@
+{
+  "verifiedAt": "2026-08-23T00:27:52+00:00",
+  "scheme": "A",
+  "source": "verified Surfshark + Chromium rendered DOM snapshot",
+  "fetchMode": "yungching_official_rendered_dom_only",
+  "browserListingCount": 88,
+  "companyListingCount": 88,
+  "zhongshanBrowserCount": 39,
+  "zhongshanCompanyCount": 39,
+  "coveredRoads": [
+    "板橋區中山路二段",
+    "板橋區三民路二段",
+    "板橋區光復街",
+    "板橋區萬安街",
+    "板橋區林森街",
+    "板橋區三民路一段",
+    "板橋區翠華街"
+  ],
+  "counts": {
+    "company_match": 48,
+    "review": 3,
+    "missing": 108,
+    "unavailable": 0
+  },
+  "officialBrowserCompany": {
+    "enabled": true,
+    "capturedAt": "2026-08-23T00:25:05+00:00",
+    "snapshotAgeMinutes": 2.8,
+    "acceptedRoadCount": 7,
+    "unavailableRoadCount": 0,
+    "roads": {
+      "板橋區中山路二段": {
+        "mode": "official",
+        "officialCount": 39,
+        "http": 200,
+        "paginationComplete": true
+      },
+      "板橋區三民路二段": {
+        "mode": "official",
+        "officialCount": 30,
+        "http": 200,
+        "paginationComplete": true
+      },
+      "板橋區光復街": {
+        "mode": "official",
+        "officialCount": 2,
+        "http": 200,
+        "paginationComplete": true
+      },
+      "板橋區萬安街": {
+        "mode": "official",
+        "officialCount": 2,
+        "http": 200,
+        "paginationComplete": true
+      },
+      "板橋區林森街": {
+        "mode": "official",
+        "officialCount": 2,
+        "http": 200,
+        "paginationComplete": true
+      },
+      "板橋區三民路一段": {
+        "mode": "official",
+        "officialCount": 6,
+        "http": 200,
+        "paginationComplete": true
+      },
+      "板橋區翠華街": {
+        "mode": "official",
+        "officialCount": 7,
+        "http": 200,
+        "paginationComplete": true
+      }
+    }
+  },
+  "legacyFallbacks": false
+}
