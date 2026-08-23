@@ -28,8 +28,9 @@ on:
 permissions:
   contents: write
 
+# This is the only workflow allowed to publish canonical Preview files.
 concurrency:
-  group: banqiao-yungching-preview
+  group: banqiao-scheme-a-preview-canonical
   cancel-in-progress: true
 
 jobs:
@@ -79,12 +80,11 @@ jobs:
           python scripts/yungching_playwright_probe.py
           python scripts/yungching_page_param_probe.py
 
-      - name: Extract official rendered DOM with direct pg pagination
+      - name: Extract official rendered DOM with direct pg pagination and ID integrity guard
         shell: bash
         run: python scripts/yungching_dom_snapshot_v4.py
 
       - name: Enrich missing floors from official detail DOM
-        continue-on-error: true
         run: python scripts/yungching_detail_floor_enrich.py
 
       - name: Disconnect Surfshark before Preview comparison
@@ -99,15 +99,62 @@ jobs:
           set -o pipefail
           python scripts/compare_yungching_preview_v6.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
-      - name: Simplify Preview UI and validate scheme A
+      - name: Simplify Preview UI and run hard scheme A validator
         run: python scripts/patch_preview_ui.py
 
-      - name: Validate scheme A source chain
+      - name: Validate scheme A again before manifest
+        run: python scripts/validate_scheme_a_preview.py
+
+      - name: Write canonical scheme A verification manifest
         shell: bash
         run: |
-          python scripts/validate_scheme_a_preview.py
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
 
-      - name: Save verified Preview output
+          p=json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
+          s=json.loads(Path('docs/preview/yungching-browser-snapshot.json').read_text(encoding='utf-8'))
+          comparisons=p.get('comparisons') or []
+          candidates=[x.get('companyCandidate') for x in comparisons if x.get('companyCandidate')]
+          manifest={
+            'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
+            'scheme':'A',
+            'integrityVersion':'scheme-a-canonical-v1',
+            'source':'Surfshark + Chromium official Yongching DOM + direct pg pagination + official detail pages',
+            'fetchMode':p.get('fetchMode'),
+            'snapshotCapturedAt':s.get('capturedAt'),
+            'companySnapshotCapturedAt':p.get('companySnapshotCapturedAt'),
+            'companyGapGeneratedAt':p.get('generatedAt'),
+            'browserListingCount':s.get('listingCount'),
+            'companyListingCount':p.get('companyListingCount'),
+            'propertyGroupCount':p.get('propertyGroupCount'),
+            'rawListingCount':p.get('rawListingCount'),
+            'comparisonCount':len(comparisons),
+            'coveredRoads':p.get('coveredRoads'),
+            'roadCounts':{r:(st or {}).get('count') for r,st in (s.get('roadStatus') or {}).items()},
+            'counts':p.get('counts'),
+            'crossPlatformMergedGroupCount':p.get('crossPlatformMergedGroupCount'),
+            'crossSourceReviewCount':p.get('crossSourceReviewCount'),
+            'idIntegrityGuard':s.get('idIntegrityGuard'),
+            'candidateCount':len(candidates),
+            'candidatesWithFloor':sum(1 for x in candidates if x.get('floor')),
+            'candidatesWithYcCaseId':sum(1 for x in candidates if x.get('officialCaseId')),
+            'detailFloorEnrichment':s.get('detailFloorEnrichment'),
+            'legacyFallbacks':False,
+            'canonicalPublisher':'yungching-preview.yml',
+            'valid':True,
+          }
+          assert manifest['snapshotCapturedAt'] == manifest['companySnapshotCapturedAt'], manifest
+          assert manifest['browserListingCount'] == manifest['companyListingCount'], manifest
+          assert manifest['propertyGroupCount'] == manifest['comparisonCount'], manifest
+          Path('docs/preview/scheme-a-verification.json').write_text(
+              json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8'
+          )
+          print(json.dumps(manifest,ensure_ascii=False))
+          PY
+
+      - name: Save verified canonical Preview output
         if: success()
         shell: bash
         run: |
@@ -115,17 +162,28 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p /tmp/yungching-preview-output
-          for f in company-gap.json yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json index.html; do
+          for f in company-gap.json yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json scheme-a-verification.json index.html; do
             if [[ -f docs/preview/$f ]]; then cp docs/preview/$f /tmp/yungching-preview-output/$f; fi
           done
           git fetch origin main
           git reset --hard origin/main
-          for f in company-gap.json yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json index.html; do
-            if [[ -f /tmp/yungching-preview-output/$f ]]; then cp /tmp/yungching-preview-output/$f docs/preview/$f; fi
+          for f in /tmp/yungching-preview-output/*; do
+            [[ -e "$f" ]] || continue
+            cp "$f" "docs/preview/$(basename "$f")"
           done
-          git add docs/preview || true
+          git add \
+            docs/preview/company-gap.json \
+            docs/preview/yungching-preview-run.log \
+            docs/preview/yungching-official-probe.json \
+            docs/preview/yungching-official-snapshot.json \
+            docs/preview/yungching-playwright-probe.json \
+            docs/preview/yungching-browser-snapshot.json \
+            docs/preview/yungching-detail-floor.json \
+            docs/preview/yungching-pagination-probe.json \
+            docs/preview/scheme-a-verification.json \
+            docs/preview/index.html 2>/dev/null || true
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Update verified scheme A Preview"
+          git commit -m "Publish canonical verified scheme A Preview"
           for attempt in 1 2 3; do
             if git pull --rebase && git push; then exit 0; fi
             git rebase --abort >/dev/null 2>&1 || true
