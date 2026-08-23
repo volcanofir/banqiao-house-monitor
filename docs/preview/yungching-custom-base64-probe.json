@@ -1,0 +1,699 @@
+{
+  "capturedAt": "2026-08-23T02:21:17+00:00",
+  "previewOnly": true,
+  "hypothesis": "custom substitutions for missing Base64 symbols A,a,+,/,=",
+  "pages": {
+    "search": {
+      "http": 200,
+      "key": "transfer-buy:/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5&filter=0&od=80&pg=1&ps=30",
+      "inputChars": 65820,
+      "trialCount": 24,
+      "successCount": 0,
+      "successes": [],
+      "trials": [
+        {
+          "mapping": {
+            "{": "A",
+            "[": "a",
+            ":": "+",
+            ",": "/",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "A",
+            "[": "a",
+            ":": "/",
+            ",": "+",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "A",
+            "[": "+",
+            ":": "a",
+            ",": "/",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "A",
+            "[": "+",
+            ":": "/",
+            ",": "a",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "A",
+            "[": "/",
+            ":": "a",
+            ",": "+",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "A",
+            "[": "/",
+            ":": "+",
+            ",": "a",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "a",
+            "[": "A",
+            ":": "+",
+            ",": "/",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "a",
+            "[": "A",
+            ":": "/",
+            ",": "+",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "a",
+            "[": "+",
+            ":": "A",
+            ",": "/",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "a",
+            "[": "+",
+            ":": "/",
+            ",": "A",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "a",
+            "[": "/",
+            ":": "A",
+            ",": "+",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "a",
+            "[": "/",
+            ":": "+",
+            ",": "A",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "+",
+            "[": "A",
+            ":": "a",
+            ",": "/",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "+",
+            "[": "A",
+            ":": "/",
+            ",": "a",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "+",
+            "[": "a",
+            ":": "A",
+            ",": "/",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "+",
+            "[": "a",
+            ":": "/",
+            ",": "A",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "+",
+            "[": "/",
+            ":": "A",
+            ",": "a",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "+",
+            "[": "/",
+            ":": "a",
+            ",": "A",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "/",
+            "[": "A",
+            ":": "a",
+            ",": "+",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "/",
+            "[": "A",
+            ":": "+",
+            ",": "a",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "/",
+            "[": "a",
+            ":": "A",
+            ",": "+",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "/",
+            "[": "a",
+            ":": "+",
+            ",": "A",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "/",
+            "[": "+",
+            ":": "A",
+            ",": "a",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "/",
+            "[": "+",
+            ":": "a",
+            ",": "A",
+            ">": "="
+          },
+          "base64DecodedBytes": 49363,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        }
+      ]
+    },
+    "detail": {
+      "http": 200,
+      "key": "transfer-buy:/api/v2/house?id=5289400",
+      "inputChars": 8100,
+      "trialCount": 24,
+      "successCount": 0,
+      "successes": [],
+      "trials": [
+        {
+          "mapping": {
+            "{": "A",
+            "[": "a",
+            ":": "+",
+            ",": "/",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "A",
+            "[": "a",
+            ":": "/",
+            ",": "+",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "A",
+            "[": "+",
+            ":": "a",
+            ",": "/",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "A",
+            "[": "+",
+            ":": "/",
+            ",": "a",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "A",
+            "[": "/",
+            ":": "a",
+            ",": "+",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "A",
+            "[": "/",
+            ":": "+",
+            ",": "a",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "a",
+            "[": "A",
+            ":": "+",
+            ",": "/",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "a",
+            "[": "A",
+            ":": "/",
+            ",": "+",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "a",
+            "[": "+",
+            ":": "A",
+            ",": "/",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "a",
+            "[": "+",
+            ":": "/",
+            ",": "A",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "a",
+            "[": "/",
+            ":": "A",
+            ",": "+",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "a",
+            "[": "/",
+            ":": "+",
+            ",": "A",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "+",
+            "[": "A",
+            ":": "a",
+            ",": "/",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "+",
+            "[": "A",
+            ":": "/",
+            ",": "a",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "+",
+            "[": "a",
+            ":": "A",
+            ",": "/",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "+",
+            "[": "a",
+            ":": "/",
+            ",": "A",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "+",
+            "[": "/",
+            ":": "A",
+            ",": "a",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "+",
+            "[": "/",
+            ":": "a",
+            ",": "A",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "/",
+            "[": "A",
+            ":": "a",
+            ",": "+",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "/",
+            "[": "A",
+            ":": "+",
+            ",": "a",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "/",
+            "[": "a",
+            ":": "A",
+            ",": "+",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "/",
+            "[": "a",
+            ":": "+",
+            ",": "A",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "/",
+            "[": "+",
+            ":": "A",
+            ",": "a",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        },
+        {
+          "mapping": {
+            "{": "/",
+            "[": "+",
+            ":": "a",
+            ",": "A",
+            ">": "="
+          },
+          "base64DecodedBytes": 6074,
+          "base64FirstByte": 127,
+          "aesError": "ValueError",
+          "success": false,
+          "decodeMode": null
+        }
+      ]
+    }
+  }
+}
