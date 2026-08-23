@@ -7,6 +7,7 @@ on:
     paths:
       - ".github/workflows/yungching-har-diagnostic.yml"
       - "scripts/record_yungching_har.py"
+      - "scripts/analyze_yungching_har_bundles.py"
       - "scripts/yungching_html_transport_probe.py"
       - "scripts/yungching_browser_preflight.py"
       - "scripts/connect_surfshark_wireguard.sh"
@@ -60,6 +61,12 @@ jobs:
           set -o pipefail
           python scripts/record_yungching_har.py 2>&1 | tee -a /tmp/yungching-har-run.log
 
+      - name: Discover hidden public routes from captured JavaScript bundles
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/analyze_yungching_har_bundles.py 2>&1 | tee -a /tmp/yungching-har-run.log
+
       - name: Deep inspect server HTML versus rendered DOM
         shell: bash
         run: |
@@ -89,12 +96,14 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           cp docs/preview/yungching-har-summary.json /tmp/yungching-har-summary.json
+          cp docs/preview/yungching-har-bundle-routes.json /tmp/yungching-har-bundle-routes.json
           cp docs/preview/yungching-html-transport-probe.json /tmp/yungching-html-transport-probe.json
           git fetch origin main
           git reset --hard origin/main
           cp /tmp/yungching-har-summary.json docs/preview/yungching-har-summary.json
+          cp /tmp/yungching-har-bundle-routes.json docs/preview/yungching-har-bundle-routes.json
           cp /tmp/yungching-html-transport-probe.json docs/preview/yungching-html-transport-probe.json
-          git add docs/preview/yungching-har-summary.json docs/preview/yungching-html-transport-probe.json
+          git add docs/preview/yungching-har-summary.json docs/preview/yungching-har-bundle-routes.json docs/preview/yungching-html-transport-probe.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Save deep Yongching transport diagnostic"
           git push origin HEAD:main
@@ -115,6 +124,7 @@ jobs:
             'logTail':log[-12000:],
             'harExists':Path('artifacts/yungching-har/yungching-network.har').exists(),
             'harBytes':Path('artifacts/yungching-har/yungching-network.har').stat().st_size if Path('artifacts/yungching-har/yungching-network.har').exists() else 0,
+            'bundleRouteProbeExists':Path('docs/preview/yungching-har-bundle-routes.json').exists(),
             'htmlTransportProbeExists':Path('docs/preview/yungching-html-transport-probe.json').exists(),
           }
           Path('/tmp/yungching-har-failed.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
