@@ -54,6 +54,8 @@ jobs:
             'stderr':p.stderr[-12000:],
             'logicPassed':False,
             'uiSmokePassed':False,
+            'uiSmokeReturncode':None,
+            'uiSmokeLogTail':'',
             'passed':False,
           }
           if p.returncode==0:
@@ -71,26 +73,41 @@ jobs:
 
       - name: Validate saved canonical output and run Chromium Preview smoke test
         id: ui
-        continue-on-error: true
         shell: bash
         run: |
+          set +e
           set -o pipefail
-          python scripts/patch_preview_ui.py
-          python scripts/validate_scheme_a_preview_v3.py
-          python scripts/smoke_test_preview_ui.py
+          {
+            echo '=== patch_preview_ui ==='
+            python scripts/patch_preview_ui.py
+            echo '=== validate_scheme_a_preview_v3 ==='
+            python scripts/validate_scheme_a_preview_v3.py
+            echo '=== smoke_test_preview_ui ==='
+            python scripts/smoke_test_preview_ui.py
+          } 2>&1 | tee /tmp/preview-ui-smoke.log
+          rc=${PIPESTATUS[0]}
+          echo "returncode=$rc" >> "$GITHUB_OUTPUT"
+          exit 0
 
       - name: Record full stability result
         if: always()
         shell: bash
         env:
-          UI_OUTCOME: ${{ steps.ui.outcome }}
+          UI_RETURN_CODE: ${{ steps.ui.outputs.returncode }}
         run: |
           python - <<'PY'
           import json, os
           from pathlib import Path
           path=Path('docs/preview/scheme-a-logic-regression.json')
           out=json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
-          out['uiSmokePassed']=os.environ.get('UI_OUTCOME')=='success'
+          try:
+              rc=int(os.environ.get('UI_RETURN_CODE') or 999)
+          except Exception:
+              rc=999
+          log=Path('/tmp/preview-ui-smoke.log').read_text(encoding='utf-8',errors='replace') if Path('/tmp/preview-ui-smoke.log').exists() else ''
+          out['uiSmokeReturncode']=rc
+          out['uiSmokeLogTail']=log[-12000:]
+          out['uiSmokePassed']=rc==0
           out['passed']=bool(out.get('logicPassed') is True and out.get('uiSmokePassed') is True)
           path.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(out,ensure_ascii=False))
