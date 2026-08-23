@@ -42,6 +42,7 @@ jobs:
           from pathlib import Path
           sys.path.insert(0,str(Path('scripts').resolve()))
           import validate_scheme_a_preview as v
+          v.FORBIDDEN_MODES=("har_fallback","yungching_har","housefun","proxy","previous_snapshot","previous-snapshot")
           p=json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
           s=json.loads(Path('docs/preview/yungching-browser-snapshot.json').read_text(encoding='utf-8'))
           out={
