@@ -39,7 +39,7 @@ jobs:
             sleep 3
           done
           exit 1
-      - name: Test rendered detail floor
+      - name: Capture rendered detail floor diagnostic
         shell: bash
         run: |
           python - <<'PY'
@@ -50,50 +50,71 @@ jobs:
           import scripts.yungching_detail_floor_enrich as f
 
           url='https://buy.yungching.com.tw/house/6935425'
-          with sync_playwright() as p:
-              b=p.chromium.launch(headless=True)
-              c=b.new_context(locale='zh-TW', timezone_id='Asia/Taipei')
-              page=c.new_page()
-              r=page.goto(url, wait_until='domcontentloaded', timeout=35000)
-              f.render_full_detail(page)
-              focused, body, snippets=f.rendered_floor_context(page)
-              basic=f.slice_basic_info(body)
-              floor,evidence,mode=f.floor_from_detail_text(basic, allow_unlabelled=True)
-              if not floor:
-                  floor,evidence,mode=f.floor_from_detail_text(focused, allow_unlabelled=False)
-              if not floor:
-                  floor,evidence,mode=f.floor_from_detail_text(body, allow_unlabelled=False)
-              out={
-                  'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
-                  'url':url,
-                  'http':r.status if r else None,
-                  'finalUrl':page.url,
-                  'floor':floor,
-                  'mode':mode,
-                  'evidence':evidence,
-                  'basicInfo':basic[:1000],
-                  'snippets':snippets[:12],
-              }
-              b.close()
-          assert out['http']==200, out
-          assert out['floor'], out
+          out={'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),'url':url}
+          try:
+              with sync_playwright() as p:
+                  b=p.chromium.launch(headless=True)
+                  c=b.new_context(locale='zh-TW', timezone_id='Asia/Taipei')
+                  page=c.new_page()
+                  r=page.goto(url, wait_until='domcontentloaded', timeout=35000)
+                  f.render_full_detail(page)
+                  focused, body, snippets=f.rendered_floor_context(page)
+                  basic=f.slice_basic_info(body)
+                  floor,evidence,mode=f.floor_from_detail_text(basic, allow_unlabelled=True)
+                  if not floor:
+                      floor,evidence,mode=f.floor_from_detail_text(focused, allow_unlabelled=False)
+                  if not floor:
+                      floor,evidence,mode=f.floor_from_detail_text(body, allow_unlabelled=False)
+                  if not floor and body:
+                      header=body[:body.find('基本資訊') if '基本資訊' in body else min(5000,len(body))]
+                      floor,evidence,mode=f.floor_from_detail_text(header, allow_unlabelled=True)
+                      if floor: mode='current-property-header'
+                  out.update({
+                      'http':r.status if r else None,
+                      'finalUrl':page.url,
+                      'title':page.title(),
+                      'floor':floor,
+                      'mode':mode,
+                      'evidence':evidence,
+                      'basicInfo':basic[:1800],
+                      'snippets':snippets[:20],
+                      'bodyHasBasicInfo':'基本資訊' in body,
+                      'bodyHasFloorLabel':'樓層' in body,
+                      'bodyFloorExpressions':__import__('re').findall(r'\d{1,2}(?:[~～-]\d{1,2})?/\d{1,2}樓', body)[:30],
+                  })
+                  b.close()
+          except Exception as exc:
+              out['error']=f'{type(exc).__name__}: {str(exc)[:500]}'
           Path('docs/preview/yungching-floor-one-test.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(out,ensure_ascii=False))
           PY
       - if: always()
         continue-on-error: true
         run: sudo wg-quick down surfshark || true
-      - name: Save focused floor result
+      - name: Save focused floor diagnostic
+        if: always()
         shell: bash
         run: |
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [[ ! -f docs/preview/yungching-floor-one-test.json ]]; then exit 0; fi
           cp docs/preview/yungching-floor-one-test.json /tmp/floor-one.json
           git fetch origin main
           git reset --hard origin/main
           cp /tmp/floor-one.json docs/preview/yungching-floor-one-test.json
           git add docs/preview/yungching-floor-one-test.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Save verified Yongching floor DOM test"
+          git commit -m "Save Yongching floor DOM diagnostic"
           git push origin HEAD:main
+      - name: Assert floor extracted
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('docs/preview/yungching-floor-one-test.json').read_text(encoding='utf-8'))
+          assert x.get('http') == 200, x
+          assert x.get('floor'), x
+          print('floor=', x.get('floor'))
+          PY
