@@ -1,140 +1,21 @@
 {
   "detailFloorEnrichment": {
-    "generatedAt": "2026-08-23T00:38:09+00:00",
-    "source": "Yongching official detail via Surfshark + Chromium; rendered DOM first, same Chromium HTTP response fallback",
-    "attempted": 12,
-    "enriched": 12,
-    "officialCaseIdEnriched": 12,
-    "remainingMissing": 61,
+    "generatedAt": "2026-08-23T00:40:57+00:00",
+    "source": "Yongching official detail via Surfshark + Chromium; current listing header/basic-info only",
+    "attempted": 0,
+    "enriched": 0,
+    "officialCaseIdEnriched": 0,
+    "rejectedTitleFloorConflicts": 0,
+    "remainingMissing": 0,
     "skippedTypes": [
       "土地",
       "透天厝"
     ],
-    "method": "rendered DOM basic-info/header first; same Chromium official response basic-info/header fallback"
+    "method": "current listing DOM header/basic-info first; same Chromium response current header/basic-info fallback; no global recommendation floor parsing"
   },
-  "attempted": 12,
-  "enriched": 12,
-  "officialCaseIdEnriched": 12,
-  "rows": [
-    {
-      "id": "5945842",
-      "title": "北市旁面寬金店",
-      "http": 200,
-      "floor": "1/7樓",
-      "mode": "dom-labelled",
-      "officialCaseId": "YC1184308",
-      "domHasBasicInfo": true,
-      "responseHasBasicInfo": true
-    },
-    {
-      "id": "6156655",
-      "title": "市場透天出價可談",
-      "http": 200,
-      "floor": "3/4樓",
-      "mode": "dom-labelled",
-      "officialCaseId": "YC1144919",
-      "domHasBasicInfo": true,
-      "responseHasBasicInfo": true
-    },
-    {
-      "id": "6327691",
-      "title": "近北市埔墘溫馨美寓出價可談",
-      "http": 200,
-      "floor": "4/4樓",
-      "mode": "dom-labelled",
-      "officialCaseId": "YC1203022",
-      "domHasBasicInfo": true,
-      "responseHasBasicInfo": true
-    },
-    {
-      "id": "6481434",
-      "title": "大空間商業用途好貸",
-      "http": 200,
-      "floor": "8/12樓",
-      "mode": "dom-labelled",
-      "officialCaseId": "YC1190304",
-      "domHasBasicInfo": true,
-      "responseHasBasicInfo": true
-    },
-    {
-      "id": "6482848",
-      "title": "正中山路人潮店面",
-      "http": 200,
-      "floor": "1/8樓",
-      "mode": "dom-labelled",
-      "officialCaseId": "YC1205089",
-      "domHasBasicInfo": true,
-      "responseHasBasicInfo": true
-    },
-    {
-      "id": "6521665",
-      "title": "中山路大坪數店辦",
-      "http": 200,
-      "floor": "4/7樓",
-      "mode": "dom-labelled",
-      "officialCaseId": "YC1222023",
-      "domHasBasicInfo": true,
-      "responseHasBasicInfo": true
-    },
-    {
-      "id": "6693666",
-      "title": "埔墘中山路稀有三樓頂加出價可談",
-      "http": 200,
-      "floor": "3/4樓",
-      "mode": "dom-labelled",
-      "officialCaseId": "YC1225662",
-      "domHasBasicInfo": true,
-      "responseHasBasicInfo": true
-    },
-    {
-      "id": "6705632",
-      "title": "收租置產商辦首選",
-      "http": 200,
-      "floor": "1/4樓",
-      "mode": "dom-labelled",
-      "officialCaseId": "YC1200374",
-      "domHasBasicInfo": true,
-      "responseHasBasicInfo": true
-    },
-    {
-      "id": "6803143",
-      "title": "埔墘正中山路金店",
-      "http": 200,
-      "floor": "1/8樓",
-      "mode": "dom-labelled",
-      "officialCaseId": "YC1224084",
-      "domHasBasicInfo": true,
-      "responseHasBasicInfo": true
-    },
-    {
-      "id": "6857079",
-      "title": "新板微風一樓面寬黃金店面",
-      "http": 200,
-      "floor": "9/10樓",
-      "mode": "dom-labelled",
-      "officialCaseId": "YC1229952",
-      "domHasBasicInfo": true,
-      "responseHasBasicInfo": true
-    },
-    {
-      "id": "6883302",
-      "title": "近北市大面寬店辦",
-      "http": 200,
-      "floor": "9/10樓",
-      "mode": "dom-labelled",
-      "officialCaseId": "YC1224080",
-      "domHasBasicInfo": true,
-      "responseHasBasicInfo": true
-    },
-    {
-      "id": "6935425",
-      "title": "經典吉美建設面中庭附車",
-      "http": 200,
-      "floor": "13/14樓",
-      "mode": "dom-labelled",
-      "officialCaseId": "YC1239410",
-      "domHasBasicInfo": true,
-      "responseHasBasicInfo": true
-    }
-  ]
+  "attempted": 0,
+  "enriched": 0,
+  "officialCaseIdEnriched": 0,
+  "rejectedTitleFloorConflicts": 0,
+  "rows": []
 }
