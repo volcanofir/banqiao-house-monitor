@@ -19,6 +19,7 @@ import yungching_dom_snapshot as base
 OUT_DIR = Path("artifacts/yungching-har")
 HAR_PATH = OUT_DIR / "yungching-network.har"
 SUMMARY_PATH = Path("docs/preview/yungching-har-summary.json")
+SNAPSHOT_PATH = Path("docs/preview/yungching-browser-snapshot.json")
 ROAD = "板橋區中山路二段"
 
 
@@ -40,6 +41,19 @@ def sanitized_url(url: str) -> dict:
         }
     except Exception:
         return {"origin": None, "path": str(url)[:300], "queryKeys": []}
+
+
+def detail_from_snapshot():
+    if not SNAPSHOT_PATH.exists():
+        return None
+    try:
+        snap = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    for row in snap.get("listings") or []:
+        if row.get("road") == ROAD and row.get("id"):
+            return f"{base.BASE}/house/{row['id']}"
+    return None
 
 
 def summarize_har(path: Path, navigation: dict) -> dict:
@@ -154,6 +168,10 @@ def main():
             if href and "/house/" in href:
                 detail_link = href
                 break
+        detail_source = "page2-anchor"
+        if not detail_link:
+            detail_link = detail_from_snapshot()
+            detail_source = "verified-snapshot-fallback"
         if detail_link:
             if detail_link.startswith("/"):
                 detail_link = base.BASE + detail_link
@@ -163,9 +181,10 @@ def main():
                 "url": sanitized_url(page.url),
                 "http": rd.status if rd else None,
                 "title": page.title()[:160],
+                "source": detail_source,
             }
         else:
-            navigation["detail"] = {"error": "no visible /house/ link found on page 2"}
+            navigation["detail"] = {"error": "no /house/ link and no verified snapshot fallback"}
 
         context.close()
         browser.close()
