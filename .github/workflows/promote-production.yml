@@ -1,0 +1,90 @@
+name: 發布正式版網站
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/promote-production.yml"
+      - "scripts/promote_preview_to_production.py"
+      - "scripts/smoke_test_production_ui.py"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: banqiao-production-promotion
+  cancel-in-progress: true
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install browser test dependency
+        run: |
+          pip install playwright
+          python -m playwright install chromium
+
+      - name: Verify canonical is current and build production homepage
+        run: python scripts/promote_preview_to_production.py
+
+      - name: Open production homepage in Chromium
+        run: python scripts/smoke_test_production_ui.py
+
+      - name: Publish verified production homepage
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp docs/index.html /tmp/production-index.html
+          git fetch origin main
+
+          # Refuse to publish if monitor/canonical changed while this promotion was running.
+          python - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          local_v=json.loads(Path('docs/preview/scheme-a-verification.json').read_text(encoding='utf-8'))
+          latest_source=json.loads(subprocess.check_output(['git','show','origin/main:docs/data/listings.json'], text=True))
+          latest_verify=json.loads(subprocess.check_output(['git','show','origin/main:docs/preview/scheme-a-verification.json'], text=True))
+          assert local_v.get('valid') is True, local_v
+          assert latest_verify.get('valid') is True, latest_verify
+          assert local_v.get('verifiedAt') == latest_verify.get('verifiedAt'), (local_v.get('verifiedAt'), latest_verify.get('verifiedAt'))
+          assert latest_source.get('updatedAt') == latest_verify.get('sourceDataUpdatedAt'), (latest_source.get('updatedAt'), latest_verify.get('sourceDataUpdatedAt'))
+          PY
+
+          git reset --hard origin/main
+          cp /tmp/production-index.html docs/index.html
+          git add docs/index.html
+          if git diff --cached --quiet; then
+            echo "Production homepage already matches verified stable version."
+          else
+            git commit -m "Promote verified v8 Preview to production"
+            for attempt in 1 2 3; do
+              if git pull --rebase && git push; then break; fi
+              git rebase --abort >/dev/null 2>&1 || true
+              sleep 3
+              [[ "$attempt" == "3" ]] && exit 1
+            done
+          fi
+
+      - name: Request GitHub Pages rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh api --method POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            "repos/${GITHUB_REPOSITORY}/pages/builds"
+          echo "GitHub Pages rebuild queued for production homepage."
