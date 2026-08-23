@@ -99,6 +99,8 @@ jobs:
           PY
 
       - name: Save diagnostics without publishing canonical Preview
+        if: always()
+        continue-on-error: true
         shell: bash
         run: |
           set -e
@@ -108,10 +110,11 @@ jobs:
           for f in 591-medium-field-probe.json 591-detail-network-probe.json 591-detail-floor-enrichment.json scheme-a-v9-run.log scheme-a-v9-replay.json scheme-a-v9-company-gap.json scheme-a-v9-weak-group-audit.json scheme-a-v9-validation.json; do
             [[ -f docs/preview/$f ]] && cp docs/preview/$f /tmp/v9-output/$f
           done
+          [[ -f docs/preview/591-detail-floor-enrichment.json ]] || echo '{"diagnostic":"v9 did not reach detail-floor output"}' > /tmp/v9-output/scheme-a-v9-failure-marker.json
           git fetch origin main
           git reset --hard origin/main
-          for f in /tmp/v9-output/*; do cp "$f" "docs/preview/$(basename "$f")"; done
-          git add docs/preview/591-medium-field-probe.json docs/preview/591-detail-network-probe.json docs/preview/591-detail-floor-enrichment.json docs/preview/scheme-a-v9-run.log docs/preview/scheme-a-v9-replay.json docs/preview/scheme-a-v9-company-gap.json docs/preview/scheme-a-v9-weak-group-audit.json docs/preview/scheme-a-v9-validation.json
+          for f in /tmp/v9-output/*; do [[ -e "$f" ]] && cp "$f" "docs/preview/$(basename "$f")"; done
+          for f in /tmp/v9-output/*; do [[ -e "$f" ]] && git add "docs/preview/$(basename "$f")"; done
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Save isolated Scheme A v9 detail-floor replay"
-          git push origin HEAD:main
+          git push origin HEAD:main || true
