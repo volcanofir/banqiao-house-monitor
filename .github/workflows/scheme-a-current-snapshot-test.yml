@@ -6,6 +6,11 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/scheme-a-current-snapshot-test.yml"
+      - "scripts/yungching_dom_snapshot_v4.py"
+      - "scripts/yungching_detail_floor_enrich.py"
+      - "scripts/compare_yungching_preview_v6.py"
+      - "scripts/patch_preview_ui.py"
+      - "scripts/validate_scheme_a_preview.py"
 
 permissions:
   contents: write
@@ -17,7 +22,7 @@ concurrency:
 jobs:
   finalize:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -32,6 +37,9 @@ jobs:
           pip install requests beautifulsoup4 playwright cryptography
           python -m playwright install chromium
 
+      - name: Remove impossible cross-road Yongching IDs from verified list snapshot
+        run: python scripts/yungching_dom_snapshot_v4.py --sanitize-existing
+
       - name: Connect Surfshark for official Yongching detail pages
         env:
           SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
@@ -45,7 +53,7 @@ jobs:
           done
           exit 1
 
-      - name: Enrich floors and YC case IDs on verified 88-listing snapshot
+      - name: Enrich floors and YC case IDs on cleaned official snapshot
         run: python scripts/yungching_detail_floor_enrich.py
 
       - name: Disconnect Surfshark
@@ -71,18 +79,18 @@ jobs:
           from pathlib import Path
           p=json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
           s=json.loads(Path('docs/preview/yungching-browser-snapshot.json').read_text(encoding='utf-8'))
-          z=(s.get('roadStatus') or {}).get('板橋區中山路二段') or {}
           candidates=[x.get('companyCandidate') for x in (p.get('comparisons') or []) if x.get('companyCandidate')]
           out={
             'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
             'scheme':'A',
-            'source':'verified Surfshark + Chromium official DOM snapshot + official detail pages',
+            'source':'Surfshark + Chromium official Yongching DOM + direct pg pagination + official detail pages',
             'fetchMode':p.get('fetchMode'),
             'browserListingCount':s.get('listingCount'),
             'companyListingCount':p.get('companyListingCount'),
-            'zhongshanBrowserCount':z.get('count'),
             'coveredRoads':p.get('coveredRoads'),
             'counts':p.get('counts'),
+            'roadCounts':{r:(st or {}).get('count') for r,st in (s.get('roadStatus') or {}).items()},
+            'idIntegrityGuard':s.get('idIntegrityGuard'),
             'candidateCount':len(candidates),
             'candidatesWithFloor':sum(1 for x in candidates if x.get('floor')),
             'candidatesWithYcCaseId':sum(1 for x in candidates if x.get('officialCaseId')),
