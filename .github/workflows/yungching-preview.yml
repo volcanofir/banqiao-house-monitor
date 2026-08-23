@@ -26,6 +26,7 @@ on:
       - "scripts/patch_preview_ui.py"
       - "scripts/validate_scheme_a_preview.py"
       - "scripts/validate_scheme_a_preview_v2.py"
+      - "scripts/write_scheme_a_saved_output_audit.py"
       - "docs/data/listings.json"
 
 permissions:
@@ -165,6 +166,9 @@ jobs:
           print(json.dumps(manifest,ensure_ascii=False))
           PY
 
+      - name: Audit exact canonical files before atomic publish
+        run: python scripts/write_scheme_a_saved_output_audit.py
+
       - name: Save verified canonical Preview output
         if: success()
         shell: bash
@@ -173,7 +177,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p /tmp/yungching-preview-output
-          for f in company-gap.json yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json scheme-a-verification.json index.html; do
+          for f in company-gap.json yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html; do
             if [[ -f docs/preview/$f ]]; then cp docs/preview/$f /tmp/yungching-preview-output/$f; fi
           done
           git fetch origin main
@@ -182,7 +186,7 @@ jobs:
             [[ -e "$f" ]] || continue
             cp "$f" "docs/preview/$(basename "$f")"
           done
-          for f in company-gap.json yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json scheme-a-verification.json index.html; do
+          for f in company-gap.json yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html; do
             [[ -f docs/preview/$f ]] && git add "docs/preview/$f"
           done
           if git diff --cached --quiet; then exit 0; fi
@@ -211,6 +215,7 @@ jobs:
           [[ -f docs/preview/yungching-browser-snapshot.json ]] && cp docs/preview/yungching-browser-snapshot.json /tmp/yungching-preview-failed/yungching-browser-snapshot-failed.json || true
           [[ -f docs/preview/yungching-detail-floor.json ]] && cp docs/preview/yungching-detail-floor.json /tmp/yungching-preview-failed/yungching-detail-floor-failed.json || true
           [[ -f docs/preview/yungching-pagination-probe.json ]] && cp docs/preview/yungching-pagination-probe.json /tmp/yungching-preview-failed/yungching-pagination-probe-failed.json || true
+          [[ -f docs/preview/scheme-a-saved-output-audit.json ]] && cp docs/preview/scheme-a-saved-output-audit.json /tmp/yungching-preview-failed/scheme-a-saved-output-audit-failed.json || true
 
           git fetch origin main
           git reset --hard origin/main
