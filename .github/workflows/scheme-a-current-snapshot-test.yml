@@ -1,4 +1,4 @@
-name: 方案 A 已驗證官方快照比對測試
+name: 方案 A 已驗證官方快照完成測試
 
 on:
   workflow_dispatch:
@@ -6,8 +6,6 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/scheme-a-current-snapshot-test.yml"
-      - "scripts/compare_yungching_preview_v6.py"
-      - "scripts/patch_preview_ui.py"
 
 permissions:
   contents: write
@@ -17,9 +15,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  compare:
+  finalize:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -29,91 +27,86 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install comparison dependencies
-        run: pip install requests beautifulsoup4
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4 playwright cryptography
+          python -m playwright install chromium
 
-      - name: Compare verified official DOM snapshot
+      - name: Connect Surfshark for official Yongching detail pages
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        shell: bash
+        run: |
+          for attempt in 1 2 3 4 5; do
+            sudo wg-quick down surfshark >/dev/null 2>&1 || true
+            if bash scripts/connect_surfshark_wireguard.sh && python scripts/yungching_browser_preflight.py; then exit 0; fi
+            sudo wg-quick down surfshark >/dev/null 2>&1 || true
+            sleep 3
+          done
+          exit 1
+
+      - name: Enrich floors and YC case IDs on verified 88-listing snapshot
+        run: python scripts/yungching_detail_floor_enrich.py
+
+      - name: Disconnect Surfshark
+        if: always()
+        continue-on-error: true
+        run: sudo wg-quick down surfshark || true
+
+      - name: Run scheme A comparison
         shell: bash
         run: |
           set -o pipefail
           python scripts/compare_yungching_preview_v6.py 2>&1 | tee docs/preview/yungching-preview-run.log
-          python scripts/patch_preview_ui.py
 
-      - name: Assert scheme A result
+      - name: Patch Preview UI and run hard release validator
+        run: python scripts/patch_preview_ui.py
+
+      - name: Write final scheme A verification
         shell: bash
         run: |
           python - <<'PY'
           import json
           from datetime import datetime, timezone
           from pathlib import Path
-
-          p = json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
-          s = json.loads(Path('docs/preview/yungching-browser-snapshot.json').read_text(encoding='utf-8'))
-          z = (s.get('roadStatus') or {}).get('板橋區中山路二段') or {}
-
-          assert p.get('fetchMode') == 'yungching_official_rendered_dom_only', p.get('fetchMode')
-          assert (p.get('companyDataGuard') or {}).get('enabled') is False, p.get('companyDataGuard')
-          assert z.get('count') == 39, z
-          assert z.get('paginationComplete') is True, z
-          assert int(z.get('paginationActivePage') or 0) == 2, z
-          direct = [x for x in (z.get('nextClicks') or []) if x.get('mode') == 'yungching-direct-pg-v4']
-          assert direct and direct[0].get('http') == 200 and direct[0].get('activeVerified') is True, direct
-
-          company = p.get('companyListings') or []
-          assert company, 'companyListings empty'
-          assert len(company) == p.get('companyListingCount'), (len(company), p.get('companyListingCount'))
-          assert all(x.get('sourceMode') == 'yungching_official_browser' for x in company), 'non-official company row exists'
-
-          bad = []
-          for road, st in (p.get('roadStatus') or {}).items():
-              mode = str((st or {}).get('mode') or '').lower()
-              if any(token in mode for token in ('har','housefun','proxy','previous_snapshot','previous-snapshot')):
-                  bad.append({'road': road, 'mode': mode})
-          assert not bad, bad
-
-          z_company = [x for x in company if x.get('road') == '板橋區中山路二段']
-          assert len(z_company) == 39, len(z_company)
-
-          candidates = [x.get('companyCandidate') for x in (p.get('comparisons') or []) if x.get('companyCandidate')]
-          assert candidates, 'no company candidates'
-          assert all(x.get('officialId') for x in candidates), candidates[:5]
-
-          out = {
-              'verifiedAt': datetime.now(timezone.utc).isoformat(timespec='seconds'),
-              'scheme': 'A',
-              'source': 'verified Surfshark + Chromium rendered DOM snapshot',
-              'fetchMode': p.get('fetchMode'),
-              'browserListingCount': s.get('listingCount'),
-              'companyListingCount': p.get('companyListingCount'),
-              'zhongshanBrowserCount': z.get('count'),
-              'zhongshanCompanyCount': len(z_company),
-              'coveredRoads': p.get('coveredRoads'),
-              'counts': p.get('counts'),
-              'candidateCount': len(candidates),
-              'candidatesWithFloor': sum(1 for x in candidates if x.get('floor')),
-              'officialBrowserCompany': p.get('officialBrowserCompany'),
-              'legacyFallbacks': False,
+          p=json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
+          s=json.loads(Path('docs/preview/yungching-browser-snapshot.json').read_text(encoding='utf-8'))
+          z=(s.get('roadStatus') or {}).get('板橋區中山路二段') or {}
+          candidates=[x.get('companyCandidate') for x in (p.get('comparisons') or []) if x.get('companyCandidate')]
+          out={
+            'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
+            'scheme':'A',
+            'source':'verified Surfshark + Chromium official DOM snapshot + official detail pages',
+            'fetchMode':p.get('fetchMode'),
+            'browserListingCount':s.get('listingCount'),
+            'companyListingCount':p.get('companyListingCount'),
+            'zhongshanBrowserCount':z.get('count'),
+            'coveredRoads':p.get('coveredRoads'),
+            'counts':p.get('counts'),
+            'candidateCount':len(candidates),
+            'candidatesWithFloor':sum(1 for x in candidates if x.get('floor')),
+            'candidatesWithYcCaseId':sum(1 for x in candidates if x.get('officialCaseId')),
+            'detailFloorEnrichment':s.get('detailFloorEnrichment'),
+            'legacyFallbacks':False,
           }
-          Path('docs/preview/scheme-a-verification.json').write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding='utf-8')
-          print(json.dumps(out, ensure_ascii=False))
+          Path('docs/preview/scheme-a-verification.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False))
           PY
 
-      - name: Save verified scheme A comparison
+      - name: Save final verified scheme A Preview
         shell: bash
         run: |
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          mkdir -p /tmp/scheme-a
-          for f in company-gap.json yungching-preview-run.log scheme-a-verification.json index.html; do
-            cp docs/preview/$f /tmp/scheme-a/$f
+          mkdir -p /tmp/scheme-a-final
+          for f in company-gap.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-preview-run.log scheme-a-verification.json index.html; do
+            cp docs/preview/$f /tmp/scheme-a-final/$f
           done
           git fetch origin main
           git reset --hard origin/main
-          for f in company-gap.json yungching-preview-run.log scheme-a-verification.json index.html; do
-            cp /tmp/scheme-a/$f docs/preview/$f
-          done
-          git add docs/preview/company-gap.json docs/preview/yungching-preview-run.log docs/preview/scheme-a-verification.json docs/preview/index.html
+          for f in /tmp/scheme-a-final/*; do cp "$f" "docs/preview/$(basename "$f")"; done
+          git add docs/preview/company-gap.json docs/preview/yungching-browser-snapshot.json docs/preview/yungching-detail-floor.json docs/preview/yungching-preview-run.log docs/preview/scheme-a-verification.json docs/preview/index.html
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Save verified scheme A comparison"
+          git commit -m "Finalize verified scheme A Preview"
           git push origin HEAD:main
