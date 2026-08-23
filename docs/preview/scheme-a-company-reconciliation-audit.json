@@ -1,0 +1,34 @@
+{
+  "auditedAt": "2026-08-23T02:42:52+00:00",
+  "mode": "preview_only_591_then_sinyi_structured_floor_then_company_neartie_guard_v8",
+  "caseCount": 1,
+  "safeCandidateCount": 1,
+  "cases": [
+    {
+      "companyId": "YC:7450646",
+      "keeperGroupId": "GROUP:信義房屋:3658LZ",
+      "reviewGroupId": "GROUP:591:20734554",
+      "sinyiId": "信義房屋:3658LZ",
+      "sinyiTitle": "埔墘邊間採光美寓",
+      "sinyiArea": 24.95,
+      "sinyiPrice": 1298.0,
+      "sinyiFloors": [
+        4
+      ],
+      "listing591Id": "591:20734554",
+      "listing591Title": "🎄捷運中原明亮好宅🎄",
+      "listing591Area": 25.0,
+      "listing591Price": 1388.0,
+      "listing591Floors": [],
+      "companyTitle": "近捷運明亮四房",
+      "companyFloors": [
+        4
+      ],
+      "areaDelta": 0.05,
+      "priceDelta": 90.0,
+      "floorConflict": false,
+      "safeReconciliationCandidate": true,
+      "reviewReason": "同一公司案件 YC:7450646 已優先配對給 GROUP:信義房屋:3658LZ；信義主來源優先，避免庫存重複計數"
+    }
+  ]
+}
