@@ -228,11 +228,10 @@ def run_sinyi():
     checked_at = core.now_iso()
     state = core.load_state()
     rows_sinyi, ok_sinyi, msg_sinyi, logs_sinyi = core.fetch_sinyi()
-    new_sinyi, _ = core.merge_source(
+    core.merge_source(
         state, "信義房屋", rows_sinyi, ok_sinyi, msg_sinyi, logs_sinyi, checked_at
     )
     save_state(state, checked_at)
-    core.send_telegram(state, new_sinyi)
 
     print("信義:", msg_sinyi)
     for line in logs_sinyi:
@@ -255,11 +254,10 @@ def run_591():
         ]
         state.setdefault("runs", {})["591"] = {}
 
-    new_591, _ = core.merge_source(
+    core.merge_source(
         state, "591", rows_591, ok_591, msg_591, logs_591, checked_at
     )
     save_state(state, checked_at)
-    core.send_telegram(state, new_591)
 
     print("591:", msg_591)
     for line in logs_591:
