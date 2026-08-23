@@ -1,0 +1,86 @@
+name: 永慶 HAR API 診斷
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/yungching-har-diagnostic.yml"
+      - "scripts/record_yungching_har.py"
+      - "scripts/yungching_browser_preflight.py"
+      - "scripts/connect_surfshark_wireguard.sh"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: banqiao-yungching-har-diagnostic
+  cancel-in-progress: true
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install Playwright
+        run: |
+          pip install playwright requests beautifulsoup4
+          python -m playwright install chromium
+
+      - name: Connect Surfshark and verify Yongching Chromium
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        shell: bash
+        run: |
+          for attempt in 1 2 3 4 5; do
+            echo "Surfshark HAR attempt $attempt/5"
+            sudo wg-quick down surfshark >/dev/null 2>&1 || true
+            if bash scripts/connect_surfshark_wireguard.sh && python scripts/yungching_browser_preflight.py; then
+              echo "Surfshark exit accepted by Yongching Chromium."
+              exit 0
+            fi
+            sudo wg-quick down surfshark >/dev/null 2>&1 || true
+            sleep 3
+          done
+          exit 1
+
+      - name: Record search page 1, page 2 and one detail page to HAR
+        run: python scripts/record_yungching_har.py
+
+      - name: Disconnect Surfshark
+        if: always()
+        continue-on-error: true
+        run: sudo wg-quick down surfshark || true
+
+      - name: Upload full HAR as short-lived diagnostic artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: yungching-network-har
+          path: artifacts/yungching-har/yungching-network.har
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Save sanitized HAR summary only
+        if: success()
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp docs/preview/yungching-har-summary.json /tmp/yungching-har-summary.json
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/yungching-har-summary.json docs/preview/yungching-har-summary.json
+          git add docs/preview/yungching-har-summary.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Save sanitized Yongching HAR diagnostic summary"
+          git push origin HEAD:main
