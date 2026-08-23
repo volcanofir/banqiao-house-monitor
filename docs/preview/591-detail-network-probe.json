@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-08-23T03:04:31+00:00",
+  "capturedAt": "2026-08-23T03:08:42+00:00",
   "previewOnly": true,
   "samples": [
     {
@@ -7,7 +7,7 @@
       "url": "https://m.591.com.tw/v2/sale/20251660",
       "responses": [
         {
-          "url": "https://bff-house.591.com.tw/v1/touch/sale/detail?id=S20251660&is_business=0&ai_title_id=&ai=&device_id=604bc808-e6d1-4b5a-c713-da924c171d56&utm_source=&is_from_agent=0&__v__=1&region_id=1&device=touch",
+          "url": "https://bff-house.591.com.tw/v1/touch/sale/detail?id=S20251660&is_business=0&ai_title_id=&ai=&device_id=c1099dbe-3813-4c67-86a9-930216c0589f&utm_source=&is_from_agent=0&__v__=1&region_id=1&device=touch",
           "status": 200,
           "resourceType": "xhr",
           "contentType": "application/json",
@@ -263,19 +263,29 @@
               "value": "0"
             },
             {
-              "path": "$.data.foot_news_list[0].show_type",
-              "key": "show_type",
+              "path": "$.data.foot_news_list[0].type",
+              "key": "type",
               "value": "1"
             },
             {
-              "path": "$.data.foot_news_list[0].type",
-              "key": "type",
+              "path": "$.data.foot_news_list[0].show_type",
+              "key": "show_type",
               "value": "1"
             },
             {
               "path": "$.data.foot_news_list[0].type_name",
               "key": "type_name",
               "value": "即時新聞"
+            },
+            {
+              "path": "$.data.foot_news_list[1].author_type",
+              "key": "author_type",
+              "value": "0"
+            },
+            {
+              "path": "$.data.foot_news_list[1].show_type",
+              "key": "show_type",
+              "value": "1"
             },
             {
               "path": "$.data.foot_news_list[1].type",
@@ -288,12 +298,7 @@
               "value": "即時新聞"
             },
             {
-              "path": "$.data.foot_news_list[1].show_type",
-              "key": "show_type",
-              "value": "1"
-            },
-            {
-              "path": "$.data.foot_news_list[1].author_type",
+              "path": "$.data.foot_news_list[2].author_type",
               "key": "author_type",
               "value": "0"
             },
@@ -303,18 +308,13 @@
               "value": "即時新聞"
             },
             {
-              "path": "$.data.foot_news_list[2].author_type",
-              "key": "author_type",
-              "value": "0"
+              "path": "$.data.foot_news_list[2].show_type",
+              "key": "show_type",
+              "value": "1"
             },
             {
               "path": "$.data.foot_news_list[2].type",
               "key": "type",
-              "value": "1"
-            },
-            {
-              "path": "$.data.foot_news_list[2].show_type",
-              "key": "show_type",
               "value": "1"
             },
             {
@@ -424,6 +424,170 @@
             }
           ],
           "containsId": true
+        },
+        {
+          "url": "https://bff-house.591.com.tw/v2/web/community/sale/detail?id=20251660&timestamp=1787454521023&region_id=1&device=touch",
+          "status": 200,
+          "resourceType": "xhr",
+          "contentType": "application/json",
+          "fields": [
+            {
+              "path": "$.data.bar.market_price_type",
+              "key": "market_price_type",
+              "value": 1
+            },
+            {
+              "path": "$.data.info.housing_type",
+              "key": "housing_type",
+              "value": 0
+            },
+            {
+              "path": "$.data.info.housing_type_str",
+              "key": "housing_type_str",
+              "value": "12年社區"
+            },
+            {
+              "path": "$.data.info.house_holds",
+              "key": "house_holds",
+              "value": ""
+            },
+            {
+              "path": "$.data.info.build_type_str",
+              "key": "build_type_str",
+              "value": "中古社區"
+            },
+            {
+              "path": "$.data.info.park_type",
+              "key": "park_type",
+              "value": 1
+            },
+            {
+              "path": "$.data.info.address",
+              "key": "address",
+              "value": "板橋區中山路二段412巷29弄8號"
+            },
+            {
+              "path": "$.data.info.sale.sale_house_owner",
+              "key": "sale_house_owner",
+              "value": 0
+            },
+            {
+              "path": "$.data.info.market_price_list[0].layout",
+              "key": "layout",
+              "value": "3房2廳"
+            },
+            {
+              "path": "$.data.info.market_price_list[0].floor.floor",
+              "key": "floor",
+              "value": "13"
+            },
+            {
+              "path": "$.data.info.market_price_list[0].floor.simple_floor",
+              "key": "simple_floor",
+              "value": "13"
+            },
+            {
+              "path": "$.data.info.market_price_list[1].layout",
+              "key": "layout",
+              "value": "2房1廳"
+            },
+            {
+              "path": "$.data.info.market_price_list[1].floor.floor",
+              "key": "floor",
+              "value": "9"
+            },
+            {
+              "path": "$.data.info.market_price_list[1].floor.simple_floor",
+              "key": "simple_floor",
+              "value": "9"
+            },
+            {
+              "path": "$.data.info.cover.type",
+              "key": "type",
+              "value": 0
+            },
+            {
+              "path": "$.data.info.sale_data.rooms[0].room",
+              "key": "room",
+              "value": 2
+            },
+            {
+              "path": "$.data.info.sale_data.rooms[1].room",
+              "key": "room",
+              "value": 4
+            },
+            {
+              "path": "$.data.info.same_info.room",
+              "key": "room",
+              "value": 4
+            },
+            {
+              "path": "$.data.info.same_info.same_type",
+              "key": "same_type",
+              "value": "same_layout"
+            },
+            {
+              "path": "$.data.info.latest_market_price.items[0].layout",
+              "key": "layout",
+              "value": "4房2廳"
+            },
+            {
+              "path": "$.data.info.latest_market_price.items[0].shift_floor",
+              "key": "shift_floor",
+              "value": "17樓"
+            },
+            {
+              "path": "$.data.info.latest_market_price.items[1].layout",
+              "key": "layout",
+              "value": "4房2廳"
+            },
+            {
+              "path": "$.data.info.latest_market_price.items[1].shift_floor",
+              "key": "shift_floor",
+              "value": "18樓"
+            },
+            {
+              "path": "$.data.info.latest_sale.items[0].type",
+              "key": "type",
+              "value": 2
+            },
+            {
+              "path": "$.data.info.latest_sale.items[0].post_id",
+              "key": "post_id",
+              "value": 20779553
+            },
+            {
+              "path": "$.data.info.latest_sale.items[0].layout",
+              "key": "layout",
+              "value": "4房2廳"
+            },
+            {
+              "path": "$.data.info.latest_sale.items[0].floor_en",
+              "key": "floor_en",
+              "value": "19F/21F"
+            },
+            {
+              "path": "$.data.info.latest_sale.items[1].type",
+              "key": "type",
+              "value": 2
+            },
+            {
+              "path": "$.data.info.latest_sale.items[1].post_id",
+              "key": "post_id",
+              "value": 20721501
+            },
+            {
+              "path": "$.data.info.latest_sale.items[1].layout",
+              "key": "layout",
+              "value": "4房2廳"
+            },
+            {
+              "path": "$.data.info.latest_sale.items[1].floor_en",
+              "key": "floor_en",
+              "value": "19F/21F"
+            }
+          ],
+          "containsId": false
         }
       ],
       "http": 200,
@@ -431,14 +595,14 @@
         "坪 瀏覽**人·收藏**人 皇冠the King 最新成交51.2萬/坪 現況 住宅 用途 住家用 樓層 陽台 2個 裝潢 高檔裝潢 帶租約 否 屋齡 12年 型態 電梯大樓 公設比 32% 主建物 查看坪數說明 車位 20.32坪，平面式，已含售金內 首付 2成"
       ],
       "bodyHasFloorLabel": true,
-      "responseCount": 1
+      "responseCount": 2
     },
     {
       "id": "20729207",
       "url": "https://m.591.com.tw/v2/sale/20729207",
       "responses": [
         {
-          "url": "https://bff-house.591.com.tw/v1/touch/sale/detail?id=S20729207&is_business=0&ai_title_id=&ai=&device_id=40159039-f75f-42eb-e6d1-2a3034b769c4&utm_source=&is_from_agent=0&__v__=1&region_id=1&device=touch",
+          "url": "https://bff-house.591.com.tw/v1/touch/sale/detail?id=S20729207&is_business=0&ai_title_id=&ai=&device_id=c9b82cf7-ac43-4374-e1cf-a8f77d51dbc6&utm_source=&is_from_agent=0&__v__=1&region_id=1&device=touch",
           "status": 200,
           "resourceType": "xhr",
           "contentType": "application/json",
@@ -574,11 +738,6 @@
               "value": ""
             },
             {
-              "path": "$.data.foot_news_list[0].type_name",
-              "key": "type_name",
-              "value": "即時新聞"
-            },
-            {
               "path": "$.data.foot_news_list[0].type",
               "key": "type",
               "value": "1"
@@ -594,14 +753,9 @@
               "value": "0"
             },
             {
-              "path": "$.data.foot_news_list[1].type_name",
+              "path": "$.data.foot_news_list[0].type_name",
               "key": "type_name",
               "value": "即時新聞"
-            },
-            {
-              "path": "$.data.foot_news_list[1].author_type",
-              "key": "author_type",
-              "value": "0"
             },
             {
               "path": "$.data.foot_news_list[1].type",
@@ -609,19 +763,29 @@
               "value": "1"
             },
             {
+              "path": "$.data.foot_news_list[1].author_type",
+              "key": "author_type",
+              "value": "0"
+            },
+            {
+              "path": "$.data.foot_news_list[1].type_name",
+              "key": "type_name",
+              "value": "即時新聞"
+            },
+            {
               "path": "$.data.foot_news_list[1].show_type",
               "key": "show_type",
               "value": "1"
             },
             {
-              "path": "$.data.foot_news_list[2].author_type",
-              "key": "author_type",
-              "value": "0"
-            },
-            {
               "path": "$.data.foot_news_list[2].type_name",
               "key": "type_name",
               "value": "即時新聞"
+            },
+            {
+              "path": "$.data.foot_news_list[2].author_type",
+              "key": "author_type",
+              "value": "0"
             },
             {
               "path": "$.data.foot_news_list[2].type",
@@ -661,12 +825,12 @@
             {
               "path": "$.data.community_address.type",
               "key": "type",
-              "value": "surround"
+              "value": "full"
             },
             {
               "path": "$.data.community_address.type_name",
               "key": "type_name",
-              "value": "配備"
+              "value": "街景"
             },
             {
               "path": "$.data.price_data.type",
@@ -735,23 +899,203 @@
             }
           ],
           "containsId": true
+        },
+        {
+          "url": "https://bff-house.591.com.tw/v2/web/community/sale/detail?id=20729207&timestamp=1787454521363&region_id=1&device=touch",
+          "status": 200,
+          "resourceType": "xhr",
+          "contentType": "application/json",
+          "fields": [
+            {
+              "path": "$.data.bar.market_price_type",
+              "key": "market_price_type",
+              "value": 1
+            },
+            {
+              "path": "$.data.info.housing_type",
+              "key": "housing_type",
+              "value": 0
+            },
+            {
+              "path": "$.data.info.housing_type_str",
+              "key": "housing_type_str",
+              "value": "29年社區"
+            },
+            {
+              "path": "$.data.info.house_holds",
+              "key": "house_holds",
+              "value": ""
+            },
+            {
+              "path": "$.data.info.build_type_str",
+              "key": "build_type_str",
+              "value": "中古社區"
+            },
+            {
+              "path": "$.data.info.park_type",
+              "key": "park_type",
+              "value": 0
+            },
+            {
+              "path": "$.data.info.address",
+              "key": "address",
+              "value": "板橋區中山路二段89巷27號"
+            },
+            {
+              "path": "$.data.info.sale.sale_house_owner",
+              "key": "sale_house_owner",
+              "value": 2
+            },
+            {
+              "path": "$.data.info.market_price_list[0].layout",
+              "key": "layout",
+              "value": "1房1廳"
+            },
+            {
+              "path": "$.data.info.market_price_list[0].floor.floor",
+              "key": "floor",
+              "value": "13"
+            },
+            {
+              "path": "$.data.info.market_price_list[0].floor.simple_floor",
+              "key": "simple_floor",
+              "value": "13"
+            },
+            {
+              "path": "$.data.info.market_price_list[1].layout",
+              "key": "layout",
+              "value": "1房1廳"
+            },
+            {
+              "path": "$.data.info.market_price_list[1].floor.floor",
+              "key": "floor",
+              "value": "11"
+            },
+            {
+              "path": "$.data.info.market_price_list[1].floor.simple_floor",
+              "key": "simple_floor",
+              "value": "11"
+            },
+            {
+              "path": "$.data.info.cover.type",
+              "key": "type",
+              "value": 0
+            },
+            {
+              "path": "$.data.info.sale_data.rooms[0].room",
+              "key": "room",
+              "value": 1
+            },
+            {
+              "path": "$.data.info.sale_data.rooms[1].room",
+              "key": "room",
+              "value": 2
+            },
+            {
+              "path": "$.data.info.sale_data.rooms[2].room",
+              "key": "room",
+              "value": 3
+            },
+            {
+              "path": "$.data.info.sale_data.rooms[3].room",
+              "key": "room",
+              "value": 4
+            },
+            {
+              "path": "$.data.info.sale_data.rooms[4].room",
+              "key": "room",
+              "value": 5
+            },
+            {
+              "path": "$.data.info.same_info.room",
+              "key": "room",
+              "value": 2
+            },
+            {
+              "path": "$.data.info.same_info.same_type",
+              "key": "same_type",
+              "value": "same_layout"
+            },
+            {
+              "path": "$.data.info.latest_market_price.items[0].layout",
+              "key": "layout",
+              "value": "2房2廳"
+            },
+            {
+              "path": "$.data.info.latest_market_price.items[0].shift_floor",
+              "key": "shift_floor",
+              "value": "15樓"
+            },
+            {
+              "path": "$.data.info.latest_market_price.items[1].layout",
+              "key": "layout",
+              "value": "2房1廳"
+            },
+            {
+              "path": "$.data.info.latest_market_price.items[1].shift_floor",
+              "key": "shift_floor",
+              "value": "5樓"
+            },
+            {
+              "path": "$.data.info.latest_sale.items[0].type",
+              "key": "type",
+              "value": 2
+            },
+            {
+              "path": "$.data.info.latest_sale.items[0].post_id",
+              "key": "post_id",
+              "value": 20766244
+            },
+            {
+              "path": "$.data.info.latest_sale.items[0].layout",
+              "key": "layout",
+              "value": "2房1廳"
+            },
+            {
+              "path": "$.data.info.latest_sale.items[0].floor_en",
+              "key": "floor_en",
+              "value": "22F/24F"
+            },
+            {
+              "path": "$.data.info.latest_sale.items[1].type",
+              "key": "type",
+              "value": 2
+            },
+            {
+              "path": "$.data.info.latest_sale.items[1].post_id",
+              "key": "post_id",
+              "value": 20776793
+            },
+            {
+              "path": "$.data.info.latest_sale.items[1].layout",
+              "key": "layout",
+              "value": "2房1廳"
+            },
+            {
+              "path": "$.data.info.latest_sale.items[1].floor_en",
+              "key": "floor_en",
+              "value": "22F/24F"
+            }
+          ],
+          "containsId": false
         }
       ],
       "http": 200,
       "domFloorSnippets": [
-        "生贏家｜屋主自售｜板新站5分鐘｜溫馨成家2房 單價 75萬/坪 瀏覽**人·收藏**人 現況 住宅 樓層 裝潢 簡易裝潢 帶租約 否 屋齡 29年 型態 電梯大樓 管理費 1128元/月 公設比 21% 主建物 查看坪數說明 車位 無 首付 2成約338萬，月還款",
+        "｜溫馨成家2房 單價 75萬/坪 瀏覽**人·收藏**人 天生贏家 2房歷史成交32筆 現況 住宅 樓層 裝潢 簡易裝潢 帶租約 否 屋齡 29年 型態 電梯大樓 管理費 1128元/月 公設比 21% 主建物 查看坪數說明 車位 無 首付 2成約338萬，月還款",
         "為主，請先透過591房聊聯絡並確認時間，謝謝。 【房屋資料】 • 社區：板橋「天生贏家」 • 樓層：5樓 • 權狀：22.56坪 • 格局：2房1廳1衛 • 車位：無 • 售價：1,692萬元，看屋後可談 目前由屋主自住，並非空屋簡單整理後出售，適",
+        "1廳1衛17.74坪板橋區-民生路三段 近捷運 1,268萬 71.48萬/坪 專約~凱悅廣場🍀次高樓層邊間三房🍀住商陳柏年 3房2廳2衛39.01坪中和區-中正路 近捷運 1,888萬 48.4萬/坪 捷運萬大即將完工✨北市套房低總價✨收租高投報首選 1房1廳1",
         "請先透過591房聊聯絡並確認時間，謝謝。 【房屋資料】 • 社區：板橋「天生贏家」 • 樓層：5樓 • 權狀：22.56坪 • 格局：2房1廳1衛 • 車位：無 • 售價：1,692萬元，看"
       ],
       "bodyHasFloorLabel": true,
-      "responseCount": 1
+      "responseCount": 2
     },
     {
       "id": "20731702",
       "url": "https://m.591.com.tw/v2/sale/20731702",
       "responses": [
         {
-          "url": "https://bff-house.591.com.tw/v1/touch/sale/detail?id=S20731702&is_business=0&ai_title_id=&ai=&device_id=442fae2a-b0f5-49aa-dd79-0f9d2f86e1e1&utm_source=&is_from_agent=0&__v__=1&region_id=1&device=touch",
+          "url": "https://bff-house.591.com.tw/v1/touch/sale/detail?id=S20731702&is_business=0&ai_title_id=&ai=&device_id=d78b0516-6aec-430e-ea80-89670260ee73&utm_source=&is_from_agent=0&__v__=1&region_id=1&device=touch",
           "status": 200,
           "resourceType": "xhr",
           "contentType": "application/json",
@@ -932,13 +1276,23 @@
               "value": "0"
             },
             {
+              "path": "$.data.foot_news_list[0].type",
+              "key": "type",
+              "value": "1"
+            },
+            {
               "path": "$.data.foot_news_list[0].type_name",
               "key": "type_name",
               "value": "即時新聞"
             },
             {
-              "path": "$.data.foot_news_list[0].type",
-              "key": "type",
+              "path": "$.data.foot_news_list[1].type_name",
+              "key": "type_name",
+              "value": "即時新聞"
+            },
+            {
+              "path": "$.data.foot_news_list[1].show_type",
+              "key": "show_type",
               "value": "1"
             },
             {
@@ -952,16 +1306,6 @@
               "value": "1"
             },
             {
-              "path": "$.data.foot_news_list[1].show_type",
-              "key": "show_type",
-              "value": "1"
-            },
-            {
-              "path": "$.data.foot_news_list[1].type_name",
-              "key": "type_name",
-              "value": "即時新聞"
-            },
-            {
               "path": "$.data.foot_news_list[2].type",
               "key": "type",
               "value": "1"
@@ -972,14 +1316,14 @@
               "value": "即時新聞"
             },
             {
-              "path": "$.data.foot_news_list[2].author_type",
-              "key": "author_type",
-              "value": "0"
-            },
-            {
               "path": "$.data.foot_news_list[2].show_type",
               "key": "show_type",
               "value": "1"
+            },
+            {
+              "path": "$.data.foot_news_list[2].author_type",
+              "key": "author_type",
+              "value": "0"
             },
             {
               "path": "$.data.certificate_type",
@@ -1014,12 +1358,12 @@
             {
               "path": "$.data.community_address.type",
               "key": "type",
-              "value": "surround"
+              "value": "full"
             },
             {
               "path": "$.data.community_address.type_name",
               "key": "type_name",
-              "value": "配備"
+              "value": "街景"
             },
             {
               "path": "$.data.price_data.type",
@@ -1088,24 +1432,182 @@
             }
           ],
           "containsId": true
+        },
+        {
+          "url": "https://bff-house.591.com.tw/v2/web/community/sale/detail?id=20731702&timestamp=1787454521005&region_id=1&device=touch",
+          "status": 200,
+          "resourceType": "xhr",
+          "contentType": "application/json",
+          "fields": [
+            {
+              "path": "$.data.bar.market_price_type",
+              "key": "market_price_type",
+              "value": 1
+            },
+            {
+              "path": "$.data.info.housing_type",
+              "key": "housing_type",
+              "value": 0
+            },
+            {
+              "path": "$.data.info.housing_type_str",
+              "key": "housing_type_str",
+              "value": "28年社區"
+            },
+            {
+              "path": "$.data.info.house_holds",
+              "key": "house_holds",
+              "value": ""
+            },
+            {
+              "path": "$.data.info.build_type_str",
+              "key": "build_type_str",
+              "value": "中古社區"
+            },
+            {
+              "path": "$.data.info.park_type",
+              "key": "park_type",
+              "value": 0
+            },
+            {
+              "path": "$.data.info.address",
+              "key": "address",
+              "value": "板橋區中山路二段412巷21弄21號"
+            },
+            {
+              "path": "$.data.info.sale.sale_house_owner",
+              "key": "sale_house_owner",
+              "value": 0
+            },
+            {
+              "path": "$.data.info.market_price_list[0].layout",
+              "key": "layout",
+              "value": "1房0廳"
+            },
+            {
+              "path": "$.data.info.market_price_list[0].floor.floor",
+              "key": "floor",
+              "value": "3"
+            },
+            {
+              "path": "$.data.info.market_price_list[0].floor.simple_floor",
+              "key": "simple_floor",
+              "value": "3"
+            },
+            {
+              "path": "$.data.info.market_price_list[1].layout",
+              "key": "layout",
+              "value": "1房1廳"
+            },
+            {
+              "path": "$.data.info.market_price_list[1].floor.floor",
+              "key": "floor",
+              "value": "5"
+            },
+            {
+              "path": "$.data.info.market_price_list[1].floor.simple_floor",
+              "key": "simple_floor",
+              "value": "5"
+            },
+            {
+              "path": "$.data.info.cover.type",
+              "key": "type",
+              "value": 0
+            },
+            {
+              "path": "$.data.info.sale_data.rooms[0].room",
+              "key": "room",
+              "value": 1
+            },
+            {
+              "path": "$.data.info.same_info.room",
+              "key": "room",
+              "value": 1
+            },
+            {
+              "path": "$.data.info.same_info.same_type",
+              "key": "same_type",
+              "value": "same_layout"
+            },
+            {
+              "path": "$.data.info.latest_market_price.items[0].layout",
+              "key": "layout",
+              "value": "1房0廳"
+            },
+            {
+              "path": "$.data.info.latest_market_price.items[0].shift_floor",
+              "key": "shift_floor",
+              "value": "3樓"
+            },
+            {
+              "path": "$.data.info.latest_market_price.items[1].layout",
+              "key": "layout",
+              "value": "1房1廳"
+            },
+            {
+              "path": "$.data.info.latest_market_price.items[1].shift_floor",
+              "key": "shift_floor",
+              "value": "5樓"
+            },
+            {
+              "path": "$.data.info.latest_sale.items[0].type",
+              "key": "type",
+              "value": 2
+            },
+            {
+              "path": "$.data.info.latest_sale.items[0].post_id",
+              "key": "post_id",
+              "value": 20731720
+            },
+            {
+              "path": "$.data.info.latest_sale.items[0].layout",
+              "key": "layout",
+              "value": "1房2廳"
+            },
+            {
+              "path": "$.data.info.latest_sale.items[0].floor_en",
+              "key": "floor_en",
+              "value": "B1/5F"
+            },
+            {
+              "path": "$.data.info.latest_sale.items[1].type",
+              "key": "type",
+              "value": 2
+            },
+            {
+              "path": "$.data.info.latest_sale.items[1].post_id",
+              "key": "post_id",
+              "value": 20657871
+            },
+            {
+              "path": "$.data.info.latest_sale.items[1].layout",
+              "key": "layout",
+              "value": "1房1廳"
+            },
+            {
+              "path": "$.data.info.latest_sale.items[1].floor_en",
+              "key": "floor_en",
+              "value": "B1/5F"
+            }
+          ],
+          "containsId": false
         }
       ],
       "http": 200,
       "domFloorSnippets": [
         "67.87萬/坪 瀏覽**人·收藏**人 雅舍大樓 最新成交63.8萬/坪 現況 其他 用途 店舖 樓層 裝潢 簡易裝潢 帶租約 否 屋齡 29年 型態 華廈 管理費 600元/月 公設比 38% 主建物 查看坪數說明 車位 無 首付 2成約128萬，月還款16,",
         "值班人員 住商不動產-板橋海山加盟店 屋況特色 本標的使用分區為住宅區.用途為店鋪.現做住家使用.樓層為B1樓 自用收租全皆宜(亦可個人工作室).層層陽光稀有釋出.有電梯.低總價 屋主夾層加蓋無產權登記(有挑高4米6) ◆住商板橋海山加盟店◆ ◆聯絡方式",
-        "寓】101黑黑 3房2廳1衛26.81坪中和區-民樂路 降價 998萬 37.22萬/坪 台北晶麒高樓層景觀低總價套房-庭 1房1廳1衛15.74坪萬華區-康定路 近捷運 獨家專任 1,395萬 88.63萬/坪 中和環球歐洲漂亮三房+車位~出價好談 3房2廳2衛",
         "住商不動產-板橋海山加盟店 屋況特色 本標的使用分區為住宅區.用途為店鋪.現做住家使用.樓層為B1樓 自用收租全皆宜(亦可個人工作室).層層陽光稀有釋出.有電梯.低總價 屋主夾層加蓋無產權登記(有"
       ],
       "bodyHasFloorLabel": true,
-      "responseCount": 1
+      "responseCount": 2
     },
     {
       "id": "20523222",
       "url": "https://m.591.com.tw/v2/sale/20523222",
       "responses": [
         {
-          "url": "https://bff-house.591.com.tw/v1/touch/sale/detail?id=S20523222&is_business=0&ai_title_id=&ai=&device_id=68aff5c5-a8f2-433a-e386-e79299ca7fcc&utm_source=&is_from_agent=0&__v__=1&region_id=1&device=touch",
+          "url": "https://bff-house.591.com.tw/v1/touch/sale/detail?id=S20523222&is_business=0&ai_title_id=&ai=&device_id=5b1e46a0-23d8-4152-a90e-77f9d9ea3995&utm_source=&is_from_agent=0&__v__=1&region_id=1&device=touch",
           "status": 200,
           "resourceType": "xhr",
           "contentType": "application/json",
@@ -1276,19 +1778,9 @@
               "value": ""
             },
             {
-              "path": "$.data.foot_news_list[0].type",
-              "key": "type",
-              "value": "1"
-            },
-            {
               "path": "$.data.foot_news_list[0].show_type",
               "key": "show_type",
               "value": "1"
-            },
-            {
-              "path": "$.data.foot_news_list[0].author_type",
-              "key": "author_type",
-              "value": "0"
             },
             {
               "path": "$.data.foot_news_list[0].type_name",
@@ -1296,9 +1788,14 @@
               "value": "即時新聞"
             },
             {
-              "path": "$.data.foot_news_list[1].type",
+              "path": "$.data.foot_news_list[0].type",
               "key": "type",
               "value": "1"
+            },
+            {
+              "path": "$.data.foot_news_list[0].author_type",
+              "key": "author_type",
+              "value": "0"
             },
             {
               "path": "$.data.foot_news_list[1].author_type",
@@ -1311,12 +1808,12 @@
               "value": "1"
             },
             {
-              "path": "$.data.foot_news_list[1].type_name",
-              "key": "type_name",
-              "value": "即時新聞"
+              "path": "$.data.foot_news_list[1].type",
+              "key": "type",
+              "value": "1"
             },
             {
-              "path": "$.data.foot_news_list[2].type_name",
+              "path": "$.data.foot_news_list[1].type_name",
               "key": "type_name",
               "value": "即時新聞"
             },
@@ -1326,14 +1823,19 @@
               "value": "1"
             },
             {
-              "path": "$.data.foot_news_list[2].author_type",
-              "key": "author_type",
-              "value": "0"
+              "path": "$.data.foot_news_list[2].type_name",
+              "key": "type_name",
+              "value": "即時新聞"
             },
             {
               "path": "$.data.foot_news_list[2].type",
               "key": "type",
               "value": "1"
+            },
+            {
+              "path": "$.data.foot_news_list[2].author_type",
+              "key": "author_type",
+              "value": "0"
             },
             {
               "path": "$.data.certificate_type",
@@ -1426,9 +1928,7 @@
       ],
       "http": 200,
       "domFloorSnippets": [
-        "方便停車 單價 64.93萬/坪 瀏覽**人·收藏**人 現況 住宅 朝向 坐北朝南 用途 住家用 樓層 裝潢 簡易裝潢 帶租約 否 屋齡 39年 型態 公寓 管理費 無 主建物 查看坪數說明 車位 無 首付 2成約458萬，月還款59,383元 地址 預約賞屋",
-        "房1廳1衛19坪板橋區-後菜園街 7日上新 788萬 41.47萬/坪 現在不買等房價飆漲在買嗎?高樓層電梯3房1888萬 3房2廳2衛39.01坪中和區-中正路 降價 1,888萬 48.4萬/坪 🍎青茵悅電梯三房車🍎 3房2廳2衛40.06坪板橋區-萬板路 獨",
-        "家專任 2,380萬 59.41萬/坪 🔥巨蛋東京花園廣場🔥高樓層景觀採光精美套房❤️ 1房1廳1衛17.73坪板橋區-民生路三段 1,268萬 71.52萬/坪 大家都在讀 央行Q3理監事會在即 建商呼籲鬆綁房市管制 412"
+        "方便停車 單價 64.93萬/坪 瀏覽**人·收藏**人 現況 住宅 朝向 坐北朝南 用途 住家用 樓層 裝潢 簡易裝潢 帶租約 否 屋齡 39年 型態 公寓 管理費 無 主建物 查看坪數說明 車位 無 首付 2成約458萬，月還款59,383元 地址 預約賞屋"
       ],
       "bodyHasFloorLabel": true,
       "responseCount": 1

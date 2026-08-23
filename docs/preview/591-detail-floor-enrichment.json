@@ -1,23 +1,34 @@
 {
-  "generatedAt": "2026-08-23T03:04:53+00:00",
+  "generatedAt": "2026-08-23T03:09:07+00:00",
   "previewOnly": true,
-  "source": "591 public detail JSON /v1/touch/sale/detail via Surfshark + Chromium session",
+  "source": "591 public detail JSON /v1/touch/sale/detail via Surfshark + Chromium session; direct request with real-page fallback",
   "targetMediumGroupCount": 20,
   "targetIdCount": 106,
   "detailSuccessCount": 105,
   "detailErrorCount": 1,
-  "withStructuredFloorCount": 95,
+  "withStructuredFloorCount": 98,
   "errors": [
     {
       "id": "20612220",
-      "error": "detail data missing"
+      "error": "detail data missing",
+      "retry": {
+        "navHttp": 200,
+        "bodyMarker": null,
+        "fallbackError": null
+      }
     }
   ],
+  "fetchModes": {
+    "direct": 104,
+    "pageFallback": 0,
+    "pageBootstrap": 1,
+    "failed": 1
+  },
   "mediumTopLevelExpandedCount": 34,
   "raw591ReexpandedCount": 106,
   "nonMediumTopLevelPreservedCount": 94,
   "detailAppliedToV9Count": 105,
-  "withFloorAppliedToV9Count": 95,
+  "withFloorAppliedToV9Count": 98,
   "complete": false,
   "details": {
     "20120678": {
@@ -49,7 +60,7 @@
       "parkingKind": "無"
     },
     "20154789": {
-      "floor": null,
+      "floor": "1~2/2樓",
       "rawFloor": "1F~2F/2F",
       "originFloor": "1",
       "layout": "3房2廳2衛",
@@ -133,7 +144,7 @@
       "parkingKind": "平面式，已含售金內"
     },
     "20327196": {
-      "floor": null,
+      "floor": "1~2/2樓",
       "rawFloor": "1F~2F/2F",
       "originFloor": "1",
       "layout": "2房2廳2衛",
@@ -651,7 +662,7 @@
       "parkingKind": "無"
     },
     "20594550": {
-      "floor": null,
+      "floor": "1~2/2樓",
       "rawFloor": "1F~2F/2F",
       "originFloor": "1",
       "layout": "4房2廳2衛",
