@@ -41,6 +41,36 @@ jobs:
       - name: Open production homepage in Chromium
         run: python scripts/smoke_test_production_ui.py
 
+      - name: Record successful production browser verification
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          v=json.loads(Path('docs/preview/scheme-a-verification.json').read_text(encoding='utf-8'))
+          g=json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
+          out={
+            'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
+            'productionUi':'Banqiao House Monitor',
+            'scheme':'A-v8-stable',
+            'sourceDataUpdatedAt':v.get('sourceDataUpdatedAt'),
+            'canonicalVerifiedAt':v.get('verifiedAt'),
+            'canonicalValid':v.get('valid') is True,
+            'chromiumSmokePassed':True,
+            'offMarketRetentionDays':g.get('recentOffMarketRetentionDays'),
+            'recentOffMarketCount':g.get('recentOffMarketCount'),
+            'offMarketDetailCount':len(g.get('recentOffMarketGroups') or []),
+            'offMarketFilterTested':True,
+            'staleSourceSuppressionTested':True,
+          }
+          assert out['canonicalValid'] is True
+          assert out['offMarketRetentionDays'] == 10
+          assert out['recentOffMarketCount'] == out['offMarketDetailCount']
+          Path('docs/production-verification.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False))
+          PY
+
       - name: Publish verified production homepage
         shell: bash
         run: |
@@ -48,6 +78,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           cp docs/index.html /tmp/production-index.html
+          cp docs/production-verification.json /tmp/production-verification.json
           git fetch origin main
 
           # Refuse to publish if monitor/canonical changed while this promotion was running.
@@ -65,11 +96,12 @@ jobs:
 
           git reset --hard origin/main
           cp /tmp/production-index.html docs/index.html
-          git add docs/index.html
+          cp /tmp/production-verification.json docs/production-verification.json
+          git add docs/index.html docs/production-verification.json
           if git diff --cached --quiet; then
             echo "Production homepage already matches verified stable version."
           else
-            git commit -m "Promote verified v8 Preview to production"
+            git commit -m "Verify production v8 off-market UI"
             for attempt in 1 2 3; do
               if git pull --rebase && git push; then break; fi
               git rebase --abort >/dev/null 2>&1 || true
