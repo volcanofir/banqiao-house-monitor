@@ -1,0 +1,90 @@
+name: 方案 A 目前發布資料完整性 Audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/scheme-a-saved-output-audit.yml"
+      - "scripts/validate_scheme_a_preview.py"
+      - "docs/preview/company-gap.json"
+      - "docs/preview/yungching-browser-snapshot.json"
+      - "docs/preview/scheme-a-verification.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: banqiao-scheme-a-saved-output-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Audit the exact saved canonical files
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, sys, traceback
+          from datetime import datetime, timezone
+          from pathlib import Path
+          sys.path.insert(0, str(Path('scripts').resolve()))
+          import validate_scheme_a_preview as v
+          out={
+            'auditedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
+            'scheme':'A',
+            'target':'current saved canonical Preview files',
+            'passed':False,
+            'error':None,
+          }
+          try:
+            v.main()
+            out['passed']=True
+          except Exception as exc:
+            out['error']=f'{type(exc).__name__}: {exc}'
+            out['traceTail']=traceback.format_exc().splitlines()[-8:]
+          for name,path in {
+            'companyGap':'docs/preview/company-gap.json',
+            'browserSnapshot':'docs/preview/yungching-browser-snapshot.json',
+            'verification':'docs/preview/scheme-a-verification.json',
+          }.items():
+            try:
+              x=json.loads(Path(path).read_text(encoding='utf-8'))
+              out[name]={
+                'generatedAt':x.get('generatedAt'),
+                'capturedAt':x.get('capturedAt'),
+                'verifiedAt':x.get('verifiedAt'),
+                'companySnapshotCapturedAt':x.get('companySnapshotCapturedAt'),
+                'listingCount':x.get('listingCount'),
+                'companyListingCount':x.get('companyListingCount'),
+                'propertyGroupCount':x.get('propertyGroupCount'),
+                'counts':x.get('counts'),
+                'idIntegrityGuard':x.get('idIntegrityGuard'),
+                'canonicalPublisher':x.get('canonicalPublisher'),
+                'valid':x.get('valid'),
+              }
+            except Exception as exc:
+              out[name]={'readError':f'{type(exc).__name__}: {exc}'}
+          Path('docs/preview/scheme-a-saved-output-audit.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False))
+          PY
+      - name: Save audit diagnostic only
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp docs/preview/scheme-a-saved-output-audit.json /tmp/audit.json
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/audit.json docs/preview/scheme-a-saved-output-audit.json
+          git add docs/preview/scheme-a-saved-output-audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Save scheme A saved output audit"
+          git push origin HEAD:main
