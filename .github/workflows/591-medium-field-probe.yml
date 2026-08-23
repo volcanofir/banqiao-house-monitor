@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths:
       - "scripts/probe_591_medium_fields.py"
+      - "scripts/probe_591_detail_network.py"
       - ".github/workflows/591-medium-field-probe.yml"
 
 permissions:
@@ -40,7 +41,9 @@ jobs:
           done
           exit 1
       - name: Probe 591 structured fields for medium-risk groups
-        run: python scripts/probe_591_medium_fields.py
+        run: |
+          python scripts/probe_591_medium_fields.py
+          python scripts/probe_591_detail_network.py
       - name: Disconnect VPN
         if: always()
         continue-on-error: true
@@ -50,7 +53,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/preview/591-medium-field-probe.json
+          git add docs/preview/591-medium-field-probe.json docs/preview/591-detail-network-probe.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Save 591 medium-risk field probe"
           git pull --rebase
