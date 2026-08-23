@@ -1,15 +1,15 @@
 {
-  "auditedAt": "2026-08-23T01:58:59+00:00",
+  "auditedAt": "2026-08-23T02:10:10+00:00",
   "scheme": "A",
-  "target": "current saved canonical Preview files",
+  "target": "exact canonical Preview files before atomic publish",
   "validator": "validate_scheme_a_preview_v2",
   "passed": true,
   "error": null,
   "companyGap": {
-    "generatedAt": "2026-08-23T01:28:35+00:00",
+    "generatedAt": "2026-08-23T02:10:10+00:00",
     "capturedAt": null,
     "verifiedAt": null,
-    "companySnapshotCapturedAt": "2026-08-23T01:20:09+00:00",
+    "companySnapshotCapturedAt": "2026-08-23T02:01:45+00:00",
     "listingCount": null,
     "companyListingCount": 81,
     "propertyGroupCount": 159,
@@ -21,11 +21,13 @@
     },
     "idIntegrityGuard": null,
     "canonicalPublisher": null,
-    "valid": null
+    "valid": null,
+    "integrityVersion": null,
+    "safeFloorParser": true
   },
   "browserSnapshot": {
     "generatedAt": null,
-    "capturedAt": "2026-08-23T01:20:09+00:00",
+    "capturedAt": "2026-08-23T02:01:45+00:00",
     "verifiedAt": null,
     "companySnapshotCapturedAt": null,
     "listingCount": 81,
@@ -130,13 +132,15 @@
       "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
     },
     "canonicalPublisher": null,
-    "valid": null
+    "valid": null,
+    "integrityVersion": null,
+    "safeFloorParser": null
   },
   "verification": {
     "generatedAt": null,
     "capturedAt": null,
-    "verifiedAt": "2026-08-23T01:28:35+00:00",
-    "companySnapshotCapturedAt": "2026-08-23T01:20:09+00:00",
+    "verifiedAt": "2026-08-23T02:10:10+00:00",
+    "companySnapshotCapturedAt": "2026-08-23T02:01:45+00:00",
     "listingCount": null,
     "companyListingCount": 81,
     "propertyGroupCount": 159,
@@ -244,6 +248,8 @@
       "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
     },
     "canonicalPublisher": "yungching-preview.yml",
-    "valid": true
+    "valid": true,
+    "integrityVersion": "scheme-a-canonical-v2-all-pages-safe-floor",
+    "safeFloorParser": true
   }
 }
