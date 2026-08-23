@@ -1,6 +1,7 @@
 """Probe Sinyi official __NEXT_DATA__ list payload for floor fields.
 
 PREVIEW diagnostic only. Does not modify docs/data/listings.json.
+This file is the explicit push trigger for the isolated floor probe workflow.
 """
 
 import json
