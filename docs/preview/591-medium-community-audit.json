@@ -1,10 +1,10 @@
 {
-  "auditedAt": "2026-08-23T02:51:48+00:00",
+  "auditedAt": "2026-08-23T02:54:40+00:00",
   "previewOnly": true,
   "groupCount": 20,
   "riskCounts": {
-    "no_community_anchor": 14,
-    "same_community_unit_ambiguous": 6
+    "no_community_anchor": 13,
+    "same_community_unit_ambiguous": 7
   },
   "rows": [
     {
@@ -752,6 +752,80 @@
       "unanchoredMembers": []
     },
     {
+      "groupId": "GROUP:591:20711895",
+      "road": "板橋區三民路一段",
+      "title": "板橋公寓房東開心满租美室～乙工",
+      "memberCount": 4,
+      "matchedCurrentCount": 4,
+      "missingCurrentIds": [],
+      "distinctCommunityIds": [
+        "2033906"
+      ],
+      "communityCount": 1,
+      "risk": "same_community_unit_ambiguous",
+      "recommendedAction": "keep_pending_detail_floor",
+      "communities": [
+        {
+          "communityId": "2033906",
+          "count": 1,
+          "communityAddrs": [
+            "三民路一段149號"
+          ],
+          "layouts": [
+            "8房0廳"
+          ],
+          "members": [
+            {
+              "id": "20572773",
+              "communityId": "2033906",
+              "communityAddr": "三民路一段149號",
+              "layout": "8房0廳",
+              "kind": "住宅",
+              "price": "2,100萬元",
+              "area": "39.9坪",
+              "carport": 0,
+              "title": "板橋埔墘收租8套房"
+            }
+          ]
+        }
+      ],
+      "unanchoredMembers": [
+        {
+          "id": "20627234",
+          "communityId": null,
+          "communityAddr": "三民路一段",
+          "layout": "8房0廳",
+          "kind": "套房",
+          "price": "2,100萬元",
+          "area": "39.9坪",
+          "carport": 0,
+          "title": "【板橋埔墘】高投報8套房｜正三民路全聯旁｜領現金流👍"
+        },
+        {
+          "id": "20711895",
+          "communityId": null,
+          "communityAddr": "三民路一段",
+          "layout": "8房0廳",
+          "kind": "住宅",
+          "price": "2,100萬元",
+          "area": "39.9坪",
+          "carport": 0,
+          "title": "板橋公寓房東開心满租美室～乙工"
+        },
+        {
+          "id": "20765893",
+          "communityId": null,
+          "communityAddr": "三民路一段",
+          "layout": "8房0廳",
+          "kind": "住宅",
+          "price": "2,100萬元",
+          "area": "39.9坪",
+          "carport": 0,
+          "title": "住商仁愛光復店~板橋埔墘收租8套房"
+        }
+      ]
+    },
+    {
       "groupId": "GROUP:591:20565656",
       "road": "板橋區中山路二段",
       "title": "🌈租不如買🌈電梯套房🌈埔墘商圈",
@@ -1057,25 +1131,6 @@
       ]
     },
     {
-      "groupId": "GROUP:591:20711895",
-      "road": "板橋區三民路一段",
-      "title": "板橋公寓房東開心满租美室～乙工",
-      "memberCount": 4,
-      "matchedCurrentCount": 0,
-      "missingCurrentIds": [
-        "20572773",
-        "20627234",
-        "20711895",
-        "20765893"
-      ],
-      "distinctCommunityIds": [],
-      "communityCount": 0,
-      "risk": "no_community_anchor",
-      "recommendedAction": "keep_pending_more_evidence",
-      "communities": [],
-      "unanchoredMembers": []
-    },
-    {
       "groupId": "GROUP:591:20612220",
       "road": "板橋區中山路二段",
       "title": "💎【芒果地產】💎光復橋超美屋",
@@ -1237,18 +1292,48 @@
       "road": "板橋區三民路一段",
       "title": "金牌業務推薦~518板橋方便二樓",
       "memberCount": 3,
-      "matchedCurrentCount": 0,
-      "missingCurrentIds": [
-        "20411403",
-        "20443586",
-        "20711374"
-      ],
+      "matchedCurrentCount": 3,
+      "missingCurrentIds": [],
       "distinctCommunityIds": [],
       "communityCount": 0,
       "risk": "no_community_anchor",
       "recommendedAction": "keep_pending_more_evidence",
       "communities": [],
-      "unanchoredMembers": []
+      "unanchoredMembers": [
+        {
+          "id": "20411403",
+          "communityId": null,
+          "communityAddr": "三民路一段",
+          "layout": "3房2廳",
+          "kind": "住宅",
+          "price": "1,568萬元",
+          "area": "25.5坪",
+          "carport": 0,
+          "title": "金牌業務推薦~518板橋方便二樓"
+        },
+        {
+          "id": "20443586",
+          "communityId": null,
+          "communityAddr": "三民路一段",
+          "layout": "3房2廳",
+          "kind": "住宅",
+          "price": "1,568萬元",
+          "area": "25.5坪",
+          "carport": 0,
+          "title": "518板橋方便二樓"
+        },
+        {
+          "id": "20711374",
+          "communityId": null,
+          "communityAddr": "三民路一段",
+          "layout": "3房2廳",
+          "kind": "住宅",
+          "price": "1,568萬元",
+          "area": "25.5坪",
+          "carport": 0,
+          "title": "💎💎💎三民路公寓2樓"
+        }
+      ]
     },
     {
       "groupId": "GROUP:591:20154789",
