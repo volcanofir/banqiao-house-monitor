@@ -14,6 +14,7 @@ on:
       - "scripts/yungching_detail_floor_enrich.py"
       - "scripts/compare_yungching_preview_v6.py"
       - "scripts/patch_preview_ui.py"
+      - "scripts/validate_scheme_a_preview.py"
       - "docs/data/listings.json"
 
 permissions:
@@ -56,7 +57,6 @@ jobs:
             sudo wg-quick down surfshark >/dev/null 2>&1 || true
             sleep 3
           done
-          echo "No usable Surfshark exit found."
           exit 1
 
       - name: Probe Yongching page parameter
@@ -81,103 +81,32 @@ jobs:
           set -o pipefail
           python scripts/compare_yungching_preview_v6.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
-      - name: Patch Preview UI
+      - name: Patch Preview UI and validate scheme A
         run: python scripts/patch_preview_ui.py
 
-      - name: Assert scheme A official-only result
+      - name: Write verification summary
         shell: bash
         run: |
           python - <<'PY'
           import json
-          import re
           from datetime import datetime, timezone
           from pathlib import Path
-
-          p = json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
-          snap = json.loads(Path('docs/preview/yungching-browser-snapshot.json').read_text(encoding='utf-8'))
-
-          assert p.get('fetchMode') == 'yungching_official_rendered_dom_only', p.get('fetchMode')
-          stats = p.get('officialBrowserCompany') or {}
-          assert stats.get('acceptedRoadCount', 0) > 0, stats
-          assert p.get('companyListingCount', 0) > 0, p.get('companyListingCount')
-          assert p.get('companySnapshotCapturedAt') == stats.get('capturedAt')
-
-          guard = p.get('companyDataGuard') or {}
-          assert guard.get('enabled') is False, guard
-          forbidden = ('har', 'housefun', 'proxy', 'previous_snapshot', 'previous-snapshot')
-          bad_modes = []
-          for road, st in (p.get('roadStatus') or {}).items():
-              mode = str((st or {}).get('mode') or '').lower()
-              if any(token in mode for token in forbidden):
-                  bad_modes.append({'road': road, 'mode': mode})
-          assert not bad_modes, bad_modes
-
-          company_rows = p.get('companyListings') or []
-          assert len(company_rows) == p.get('companyListingCount')
-          bad_company_sources = [
-              {'id': r.get('id'), 'sourceMode': r.get('sourceMode')}
-              for r in company_rows if r.get('sourceMode') != 'yungching_official_browser'
-          ]
-          assert not bad_company_sources, bad_company_sources[:20]
-
-          z = (snap.get('roadStatus') or {}).get('板橋區中山路二段') or {}
-          direct = [
-              x for x in (z.get('nextClicks') or [])
-              if x.get('mode') == 'yungching-direct-pg-v4' and int(x.get('target') or 0) == 2
-          ]
-          assert z.get('mainHttp') == 200, z
-          assert z.get('available') is True, z
-          assert z.get('paginationExpected') is True, z
-          assert z.get('paginationComplete') is True, z
-          assert int(z.get('paginationActivePage') or 0) >= 2, z
-          assert int(z.get('pageRounds') or 0) >= 1, z
-          assert int(z.get('count') or 0) >= 39, z
-          assert direct, z.get('nextClicks')
-          assert direct[0].get('http') == 200, direct[0]
-          assert direct[0].get('activeVerified') is True, direct[0]
-          assert 'pg=2' in str(direct[0].get('finalUrl') or direct[0].get('targetUrl') or ''), direct[0]
-
-          invalid_floors = []
-          floor_count = 0
-          detail_floor_count = 0
-          for row in snap.get('listings') or []:
-              floor = row.get('floor')
-              if not floor:
-                  continue
-              floor_count += 1
-              if row.get('floorSourceMode') == 'yungching_official_detail_dom':
-                  detail_floor_count += 1
-              m = re.fullmatch(r'(\d{1,2})(?:~(\d{1,2}))?/(\d{1,2})樓', str(floor))
-              if m:
-                  lo = int(m.group(1)); hi = int(m.group(2) or m.group(1)); total = int(m.group(3))
-                  if not (1 <= lo <= hi <= total <= 99):
-                      invalid_floors.append({'id': row.get('id'), 'floor': floor})
-          assert not invalid_floors, invalid_floors
-
-          result = {
-              'verifiedAt': datetime.now(timezone.utc).isoformat(timespec='seconds'),
-              'scheme': 'A',
-              'fetchMode': p.get('fetchMode'),
-              'companyDataSource': p.get('companyDataSource'),
-              'companyListingCount': p.get('companyListingCount'),
-              'acceptedRoadCount': stats.get('acceptedRoadCount'),
-              'unavailableRoadCount': stats.get('unavailableRoadCount'),
-              'comparisonCounts': p.get('counts'),
-              'browserListingCount': snap.get('listingCount'),
-              'zhongshanCount': z.get('count'),
-              'zhongshanDirectPg2': direct[0],
-              'floorCount': floor_count,
-              'detailFloorCount': detail_floor_count,
-              'detailFloorEnrichment': snap.get('detailFloorEnrichment'),
-              'legacyFallbacks': False,
+          p=json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
+          s=json.loads(Path('docs/preview/yungching-browser-snapshot.json').read_text(encoding='utf-8'))
+          z=(s.get('roadStatus') or {}).get('板橋區中山路二段') or {}
+          out={
+            'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
+            'scheme':'A','fetchMode':p.get('fetchMode'),'companyListingCount':p.get('companyListingCount'),
+            'comparisonCounts':p.get('counts'),'browserListingCount':s.get('listingCount'),
+            'zhongshanCount':z.get('count'),'detailFloorEnrichment':s.get('detailFloorEnrichment'),
+            'legacyFallbacks':False,
           }
-          Path('docs/preview/fast-verification.json').write_text(
-              json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8'
-          )
-          print(json.dumps(result, ensure_ascii=False))
+          Path('docs/preview/fast-verification.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False))
           PY
 
       - name: Save verified Preview output
+        if: success()
         shell: bash
         run: |
           set -e
@@ -185,14 +114,14 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p /tmp/yungching-preview-verified
           for f in company-gap.json yungching-preview-run.log yungching-browser-snapshot.json fast-verification.json index.html yungching-pagination-probe.json yungching-detail-floor.json; do
-            if [[ -f docs/preview/$f ]]; then cp docs/preview/$f /tmp/yungching-preview-verified/$f; fi
+            [[ -f docs/preview/$f ]] && cp docs/preview/$f /tmp/yungching-preview-verified/$f || true
           done
-
           for attempt in 1 2 3; do
             git fetch origin main
             git reset --hard origin/main
-            for f in company-gap.json yungching-preview-run.log yungching-browser-snapshot.json fast-verification.json index.html yungching-pagination-probe.json yungching-detail-floor.json; do
-              if [[ -f /tmp/yungching-preview-verified/$f ]]; then cp /tmp/yungching-preview-verified/$f docs/preview/$f; fi
+            for f in /tmp/yungching-preview-verified/*; do
+              [[ -e "$f" ]] || continue
+              cp "$f" "docs/preview/$(basename "$f")"
             done
             git add docs/preview || true
             if git diff --cached --quiet; then exit 0; fi
@@ -202,7 +131,7 @@ jobs:
           done
           exit 1
 
-      - name: Save failed scheme A diagnostics
+      - name: Save failed fast diagnostics separately
         if: failure()
         continue-on-error: true
         shell: bash
@@ -210,17 +139,19 @@ jobs:
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          mkdir -p /tmp/yungching-preview-failed
-          for f in yungching-browser-snapshot.json yungching-pagination-probe.json yungching-detail-floor.json yungching-preview-run.log; do
-            if [[ -f docs/preview/$f ]]; then cp docs/preview/$f /tmp/yungching-preview-failed/$f; fi
-          done
+          mkdir -p /tmp/yungching-fast-failed
+          [[ -f docs/preview/yungching-browser-snapshot.json ]] && cp docs/preview/yungching-browser-snapshot.json /tmp/yungching-fast-failed/yungching-browser-snapshot-fast-failed.json || true
+          [[ -f docs/preview/yungching-pagination-probe.json ]] && cp docs/preview/yungching-pagination-probe.json /tmp/yungching-fast-failed/yungching-pagination-probe-fast-failed.json || true
+          [[ -f docs/preview/yungching-detail-floor.json ]] && cp docs/preview/yungching-detail-floor.json /tmp/yungching-fast-failed/yungching-detail-floor-fast-failed.json || true
+          [[ -f docs/preview/yungching-preview-run.log ]] && cp docs/preview/yungching-preview-run.log /tmp/yungching-fast-failed/yungching-preview-run-fast-failed.log || true
           git fetch origin main
           git reset --hard origin/main
-          for f in yungching-browser-snapshot.json yungching-pagination-probe.json yungching-detail-floor.json yungching-preview-run.log; do
-            if [[ -f /tmp/yungching-preview-failed/$f ]]; then cp /tmp/yungching-preview-failed/$f docs/preview/$f; fi
+          for f in /tmp/yungching-fast-failed/*; do
+            [[ -e "$f" ]] || continue
+            cp "$f" "docs/preview/$(basename "$f")"
           done
-          git add docs/preview || true
+          git add docs/preview/*-fast-failed.json docs/preview/*-fast-failed.log 2>/dev/null || true
           if ! git diff --cached --quiet; then
-            git commit -m "Save failed scheme A diagnostics"
+            git commit -m "Save failed fast scheme A diagnostics separately"
             git push origin HEAD:main || true
           fi
