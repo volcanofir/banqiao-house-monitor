@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-08-23T01:11:38+00:00",
+  "verifiedAt": "2026-08-23T02:33:35+00:00",
   "returncode": 0,
-  "stdout": "{\"transitive591FloorBridge\": {\"groupCount\": 2, \"blocked\": 1, \"clusterFloors\": [[2], [3]]}, \"sinyiUnknownFloorMultiAttach\": {\"groupCount\": 2, \"sinyiAttached591\": 1, \"blocked\": 1, \"reviewCount\": 1}, \"structuredCompanyFloor\": {\"structuredFloors\": [3], \"gluedDomFloors\": [3], \"rangeFloors\": [1, 2]}, \"passed\": true}\n",
+  "stdout": "{\"transitive591FloorBridge\": {\"groupCount\": 2, \"blocked\": 1, \"clusterFloors\": [[2], [3]]}, \"sinyiUnknownFloorMultiAttach\": {\"groupCount\": 2, \"sinyiAttached591\": 1, \"blocked\": 1, \"reviewCount\": 1}, \"structuredCompanyFloor\": {\"structuredFloors\": [3], \"gluedDomFloors\": [3], \"rangeFloors\": [1, 2]}, \"structuredSinyiFloorConflict\": {\"groupCount\": 2, \"sinyiFloor\": [3], \"wrongFloorAttached\": 0, \"reviewCount\": 0}, \"companyNearTieGuard\": {\"status\": \"review\", \"downgraded\": 1, \"remainingAutoNearTie\": 0}, \"passed\": true}\n",
   "stderr": "",
   "passed": true,
   "transitive591FloorBridge": {
@@ -33,5 +33,18 @@
       1,
       2
     ]
+  },
+  "structuredSinyiFloorConflict": {
+    "groupCount": 2,
+    "sinyiFloor": [
+      3
+    ],
+    "wrongFloorAttached": 0,
+    "reviewCount": 0
+  },
+  "companyNearTieGuard": {
+    "status": "review",
+    "downgraded": 1,
+    "remainingAutoNearTie": 0
   }
 }
