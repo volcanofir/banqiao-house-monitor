@@ -1,12 +1,13 @@
 {
-  "capturedAt": "2026-08-23T02:03:40+00:00",
+  "capturedAt": "2026-08-23T02:06:44+00:00",
   "previewOnly": true,
   "road": "板橋區中山路二段",
+  "cryptoSelfTest": true,
   "pages": {
     "searchPage1": {
       "http": 200,
       "transferState": {
-        "ngStateChars": 118530,
+        "ngStateChars": 119812,
         "topLevelKeys": [
           "__nghData__",
           "app-setting",
@@ -18,7 +19,16 @@
         "transfers": [
           {
             "key": "transfer-buy:/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5&filter=0&od=80&pg=1&ps=30",
-            "payloadBytesUtf8": 65822,
+            "encodedPayloadBytesUtf8": 65822,
+            "decode": {
+              "originalType": "str",
+              "decodeMode": "none",
+              "stringChars": 65820,
+              "cryptoError": "Error",
+              "jsonError": "JSONDecodeError",
+              "looksBase64": false
+            },
+            "decodedPayloadBytesUtf8": 65822,
             "structure": {
               "type": "str"
             },
@@ -47,7 +57,16 @@
         "transfers": [
           {
             "key": "transfer-buy:/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5&filter=0&od=80&pg=2&ps=30",
-            "payloadBytesUtf8": 28162,
+            "encodedPayloadBytesUtf8": 28162,
+            "decode": {
+              "originalType": "str",
+              "decodeMode": "none",
+              "stringChars": 28160,
+              "cryptoError": "Error",
+              "jsonError": "JSONDecodeError",
+              "looksBase64": false
+            },
+            "decodedPayloadBytesUtf8": 28162,
             "structure": {
               "type": "str"
             },
@@ -65,7 +84,7 @@
       "http": 200,
       "expectedHouseId": "5289400",
       "transferState": {
-        "ngStateChars": 13504,
+        "ngStateChars": 13493,
         "topLevelKeys": [
           "__nghData__",
           "app-setting",
@@ -75,7 +94,16 @@
         "transfers": [
           {
             "key": "transfer-buy:/api/v2/house?id=5289400",
-            "payloadBytesUtf8": 8102,
+            "encodedPayloadBytesUtf8": 8102,
+            "decode": {
+              "originalType": "str",
+              "decodeMode": "none",
+              "stringChars": 8100,
+              "cryptoError": "Error",
+              "jsonError": "JSONDecodeError",
+              "looksBase64": false
+            },
+            "decodedPayloadBytesUtf8": 8102,
             "structure": {
               "type": "str"
             },
