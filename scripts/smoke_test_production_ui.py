@@ -14,6 +14,7 @@ PORT = 8766
 ROOT = Path('docs')
 URL = f'http://127.0.0.1:{PORT}/'
 SOURCE_DATA = ROOT / 'data' / 'listings.json'
+GAP_DATA = ROOT / 'preview' / 'company-gap.json'
 
 
 def wait_server():
@@ -36,7 +37,7 @@ def number(text):
 def main():
     required = [
         ROOT / 'index.html',
-        ROOT / 'preview' / 'company-gap.json',
+        GAP_DATA,
         ROOT / 'preview' / 'scheme-a-verification.json',
         SOURCE_DATA,
     ]
@@ -45,12 +46,21 @@ def main():
         raise RuntimeError(f'Production smoke prerequisites missing: {missing}')
 
     html = (ROOT / 'index.html').read_text(encoding='utf-8')
+    gap_payload = json.loads(GAP_DATA.read_text(encoding='utf-8'))
+    offmarket_count = int(gap_payload.get('recentOffMarketCount') or 0)
+    assert gap_payload.get('recentOffMarketRetentionDays') == 10
+    assert offmarket_count == len(gap_payload.get('recentOffMarketGroups') or [])
+
     assert 'noindex,nofollow' not in html
     assert 'PREVIEW 測試版本' not in html
     assert 'Banqiao House Monitor · Preview' not in html
     assert '`data/listings.json?ts=${Date.now()}`' in html
     assert '`preview/company-gap.json?ts=${Date.now()}`' in html
     assert '`preview/scheme-a-verification.json?ts=${Date.now()}`' in html
+    assert '<span>已下架</span><strong id="cUnavailable">' in html
+    assert '<option value="removed">已下架</option>' in html
+    assert 'GAP.recentOffMarketCount??0' in html
+    assert 'GAP.recentOffMarketGroups||[]' in html
 
     server = subprocess.Popen(
         [sys.executable, '-m', 'http.server', str(PORT), '--bind', '127.0.0.1', '--directory', str(ROOT)],
@@ -94,16 +104,32 @@ def main():
                 assert value not in ('', '-'), (selector, value)
                 assert number(value) is not None, (selector, value)
 
+            assert number(page.locator('#cUnavailable').inner_text()) == offmarket_count
             assert page.locator('#sources .source-card').count() >= 2
             assert page.locator('#groups .road-group').count() >= 1
             assert page.evaluate('VERIFY && VERIFY.valid === true') is True
             assert page.evaluate('verificationMatches(DATA, GAP, VERIFY)') is True
 
+            # Exercise active filters.
             page.locator('.source-tab[data-source="591"]').click()
             page.select_option('#sort', 'priceDesc')
             page.select_option('#companyState', 'missing')
             page.select_option('#companyState', 'all')
             page.locator('.source-tab[data-source="all"]').click()
+
+            # Exercise the new off-market history. It must show only canonical
+            # groups retained for the configured ten-day window.
+            page.select_option('#state', 'removed')
+            if offmarket_count:
+                page.wait_for_function("document.querySelectorAll('#groups .item').length > 0", timeout=5000)
+                assert page.locator('#groups .item').count() == offmarket_count
+                removed_text = page.locator('#groups').inner_text()
+                assert '已下架' in removed_text
+                assert '下架：' in removed_text
+            else:
+                assert page.locator('#groups .road-group').count() == 0
+                assert '目前沒有符合條件' in page.locator('#groups').inner_text()
+            page.select_option('#state', 'all')
 
             assert not page_errors, page_errors
             meaningful_failed = [x for x in failed_requests if not any(k in x for k in ('favicon', 'icon-safe'))]
@@ -140,7 +166,7 @@ def main():
 
             browser.close()
 
-        print('Production UI smoke test passed, including stale-source suppression')
+        print(f'Production UI smoke test passed, including {offmarket_count} off-market group(s) and stale-source suppression')
     finally:
         server.terminate()
         try:
