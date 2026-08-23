@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/yungching-preview.yml"
+      - "scripts/compare_yungching_preview.py"
       - "scripts/compare_yungching_preview_v2.py"
       - "scripts/compare_yungching_preview_v3.py"
       - "scripts/compare_yungching_preview_v4.py"
@@ -16,9 +17,6 @@ on:
       - "scripts/sinyi_preview_floor_enrich.py"
       - "scripts/audit_scheme_a_ambiguity.py"
       - "scripts/audit_scheme_a_ambiguity_v2.py"
-      - "scripts/yungching_crypto.py"
-      - "scripts/yungching_official_probe.py"
-      - "scripts/yungching_playwright_probe.py"
       - "scripts/yungching_dom_snapshot.py"
       - "scripts/yungching_dom_snapshot_v2.py"
       - "scripts/yungching_dom_snapshot_v3.py"
@@ -28,6 +26,7 @@ on:
       - "scripts/yungching_browser_preflight.py"
       - "scripts/connect_surfshark_wireguard.sh"
       - "scripts/patch_preview_ui.py"
+      - "scripts/smoke_test_preview_ui.py"
       - "scripts/validate_scheme_a_preview.py"
       - "scripts/validate_scheme_a_preview_v2.py"
       - "scripts/validate_scheme_a_preview_v3.py"
@@ -60,7 +59,6 @@ jobs:
           python -m playwright install chromium
 
       - name: Find usable Surfshark exit for Yongching
-        id: vpn
         env:
           SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
         shell: bash
@@ -76,17 +74,6 @@ jobs:
             sleep 4
           done
           exit 1
-
-      - name: Probe official Yongching source
-        continue-on-error: true
-        env:
-          YUNGCHING_PROBE_VPN_OUTCOME: ${{ steps.vpn.outcome }}
-        shell: bash
-        run: |
-          python scripts/yungching_crypto.py --self-test
-          python scripts/yungching_official_probe.py
-          python scripts/yungching_playwright_probe.py
-          python scripts/yungching_page_param_probe.py
 
       - name: Extract official DOM through the actual last page and sanitize IDs
         shell: bash
@@ -105,19 +92,18 @@ jobs:
         run: python scripts/sinyi_preview_floor_enrich.py
 
       - name: Regroup 591, merge with structured Sinyi floors, then compare Yongching
-        id: compare
         shell: bash
         run: |
           set -o pipefail
           python scripts/compare_yungching_preview_v8.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
-      - name: Simplify Preview UI and run hard scheme A validator
+      - name: Harden Preview UI and validate scheme A
         run: python scripts/patch_preview_ui.py
 
       - name: Validate scheme A v3 again before audit and manifest
         run: python scripts/validate_scheme_a_preview_v3.py
 
-      - name: Re-run 159-group ambiguity audit with structured floors
+      - name: Re-run ambiguity audit with structured floors
         run: python scripts/audit_scheme_a_ambiguity_v2.py
 
       - name: Write canonical scheme A verification manifest
@@ -132,6 +118,7 @@ jobs:
           s=json.loads(Path('docs/preview/yungching-browser-snapshot.json').read_text(encoding='utf-8'))
           sf=json.loads(Path('docs/preview/sinyi-floor-enrichment.json').read_text(encoding='utf-8'))
           aa=json.loads(Path('docs/preview/scheme-a-ambiguity-audit.json').read_text(encoding='utf-8'))
+          d=json.loads(Path('docs/data/listings.json').read_text(encoding='utf-8'))
           comparisons=p.get('comparisons') or []
           candidates=[x.get('companyCandidate') for x in comparisons if x.get('companyCandidate')]
           near=p.get('companyNearTieGuard') or {}
@@ -141,6 +128,7 @@ jobs:
             'integrityVersion':'scheme-a-canonical-v3-sinyi-floor-neartie',
             'source':'Sinyi official __NEXT_DATA__ structured floors + Surfshark + Chromium official Yongching DOM + all-pages direct pg pagination + official detail pages',
             'fetchMode':p.get('fetchMode'),
+            'sourceDataUpdatedAt':p.get('sourceDataUpdatedAt'),
             'safeFloorParser':p.get('safeFloorParser'),
             'sinyiStructuredFloorMatching':p.get('sinyiStructuredFloorMatching'),
             'sinyiFloorEnrichment':sf,
@@ -184,6 +172,7 @@ jobs:
             'canonicalPublisher':'yungching-preview.yml',
             'valid':True,
           }
+          assert manifest['sourceDataUpdatedAt'] and manifest['sourceDataUpdatedAt'] == d.get('updatedAt'), (manifest['sourceDataUpdatedAt'], d.get('updatedAt'))
           assert manifest['safeFloorParser'] is True, manifest
           assert manifest['sinyiStructuredFloorMatching'] is True, manifest
           assert sf.get('complete') is True, sf
@@ -202,6 +191,9 @@ jobs:
       - name: Audit exact canonical files before atomic publish
         run: python scripts/write_scheme_a_saved_output_audit.py
 
+      - name: Open generated Preview in Chromium before publish
+        run: python scripts/smoke_test_preview_ui.py
+
       - name: Save verified canonical Preview output
         if: success()
         shell: bash
@@ -210,17 +202,41 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p /tmp/yungching-preview-output
-          for f in company-gap.json yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json sinyi-floor-enrichment.json scheme-a-ambiguity-audit.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html; do
-            if [[ -f docs/preview/$f ]]; then cp docs/preview/$f /tmp/yungching-preview-output/$f; fi
+          core_files=(
+            company-gap.json
+            yungching-preview-run.log
+            yungching-browser-snapshot.json
+            yungching-detail-floor.json
+            sinyi-floor-enrichment.json
+            scheme-a-ambiguity-audit.json
+            scheme-a-verification.json
+            scheme-a-saved-output-audit.json
+            index.html
+          )
+          for f in "${core_files[@]}"; do
+            [[ -f "docs/preview/$f" ]] || { echo "Missing canonical output: $f"; exit 1; }
+            cp "docs/preview/$f" "/tmp/yungching-preview-output/$f"
           done
+
+          # Never atomically publish a comparison made from an older monitor snapshot.
           git fetch origin main
+          python - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          v=json.loads(Path('/tmp/yungching-preview-output/scheme-a-verification.json').read_text(encoding='utf-8'))
+          raw=subprocess.check_output(['git','show','origin/main:docs/data/listings.json'], text=True)
+          latest=json.loads(raw)
+          if latest.get('updatedAt') != v.get('sourceDataUpdatedAt'):
+              Path('/tmp/canonical-source-changed').write_text('1')
+              raise SystemExit(f"Monitor source changed during Preview build: {v.get('sourceDataUpdatedAt')} -> {latest.get('updatedAt')}; skip stale publish")
+          PY
+
           git reset --hard origin/main
           for f in /tmp/yungching-preview-output/*; do
-            [[ -e "$f" ]] || continue
             cp "$f" "docs/preview/$(basename "$f")"
           done
-          for f in company-gap.json yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json sinyi-floor-enrichment.json scheme-a-ambiguity-audit.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html; do
-            [[ -f docs/preview/$f ]] && git add "docs/preview/$f"
+          for f in "${core_files[@]}"; do
+            git add "docs/preview/$f"
           done
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Publish canonical verified scheme A Preview"
@@ -237,28 +253,32 @@ jobs:
         shell: bash
         run: |
           set -e
+          if [[ -f /tmp/canonical-source-changed ]]; then
+            echo "Source data changed during build; a fresh run will be triggered by the monitor commit. No failure snapshot saved."
+            exit 0
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p /tmp/yungching-preview-failed
           [[ -f docs/preview/yungching-preview-run.log ]] && cp docs/preview/yungching-preview-run.log /tmp/yungching-preview-failed/yungching-preview-run-failed.log || true
           [[ -f docs/preview/company-gap.json ]] && cp docs/preview/company-gap.json /tmp/yungching-preview-failed/company-gap-failed.json || true
-          [[ -f docs/preview/yungching-official-probe.json ]] && cp docs/preview/yungching-official-probe.json /tmp/yungching-preview-failed/yungching-official-probe-failed.json || true
-          [[ -f docs/preview/yungching-official-snapshot.json ]] && cp docs/preview/yungching-official-snapshot.json /tmp/yungching-preview-failed/yungching-official-snapshot-failed.json || true
-          [[ -f docs/preview/yungching-playwright-probe.json ]] && cp docs/preview/yungching-playwright-probe.json /tmp/yungching-preview-failed/yungching-playwright-probe-failed.json || true
           [[ -f docs/preview/yungching-browser-snapshot.json ]] && cp docs/preview/yungching-browser-snapshot.json /tmp/yungching-preview-failed/yungching-browser-snapshot-failed.json || true
           [[ -f docs/preview/yungching-detail-floor.json ]] && cp docs/preview/yungching-detail-floor.json /tmp/yungching-preview-failed/yungching-detail-floor-failed.json || true
-          [[ -f docs/preview/yungching-pagination-probe.json ]] && cp docs/preview/yungching-pagination-probe.json /tmp/yungching-preview-failed/yungching-pagination-probe-failed.json || true
           [[ -f docs/preview/sinyi-floor-enrichment.json ]] && cp docs/preview/sinyi-floor-enrichment.json /tmp/yungching-preview-failed/sinyi-floor-enrichment-failed.json || true
           [[ -f docs/preview/scheme-a-ambiguity-audit.json ]] && cp docs/preview/scheme-a-ambiguity-audit.json /tmp/yungching-preview-failed/scheme-a-ambiguity-audit-failed.json || true
           [[ -f docs/preview/scheme-a-saved-output-audit.json ]] && cp docs/preview/scheme-a-saved-output-audit.json /tmp/yungching-preview-failed/scheme-a-saved-output-audit-failed.json || true
 
           git fetch origin main
           git reset --hard origin/main
+          changed=()
           for f in /tmp/yungching-preview-failed/*; do
             [[ -e "$f" ]] || continue
-            cp "$f" "docs/preview/$(basename "$f")"
+            name="$(basename "$f")"
+            cp "$f" "docs/preview/$name"
+            changed+=("docs/preview/$name")
           done
-          git add docs/preview/*-failed.json docs/preview/*-failed.log 2>/dev/null || true
+          ((${#changed[@]})) || exit 0
+          git add "${changed[@]}"
           if ! git diff --cached --quiet; then
             git commit -m "Save failed scheme A diagnostics separately"
             git push origin HEAD:main || true
