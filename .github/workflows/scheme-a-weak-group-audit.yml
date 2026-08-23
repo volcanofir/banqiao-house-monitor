@@ -1,0 +1,46 @@
+name: Scheme A weak-group audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/scheme-a-weak-group-audit.yml"
+      - "scripts/audit_scheme_a_weak_groups.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scheme-a-weak-group-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install requests beautifulsoup4 cryptography
+      - name: Rebuild v8 using current verified Yongching snapshot and audit groups
+        run: |
+          python scripts/sinyi_preview_floor_enrich.py
+          python scripts/compare_yungching_preview_v8.py
+          python scripts/validate_scheme_a_preview_v3.py
+          python scripts/audit_scheme_a_weak_groups.py
+      - name: Save audit
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp docs/preview/scheme-a-weak-group-audit.json /tmp/audit.json
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/audit.json docs/preview/scheme-a-weak-group-audit.json
+          git add docs/preview/scheme-a-weak-group-audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Save scheme A weak-group audit"
+          git push origin HEAD:main
