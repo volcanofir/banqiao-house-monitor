@@ -60,13 +60,13 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}.hero{b
 <select id="companyState"><option value="all">全部公司狀態</option><option value="company_match">庫存</option><option value="review">待確認</option><option value="missing">未接回</option><option value="unavailable">尚未比對</option></select>
 <select id="sort"><option value="default">預設排序</option><option value="priceDesc">售價：高 → 低</option><option value="priceAsc">售價：低 → 高</option><option value="timeDesc">上架時間：新 → 舊</option><option value="timeAsc">上架時間：舊 → 新</option></select>
 </div>
-<div class="note" id="updated">正在讀取資料…</div><div id="groups"></div>
+<div class="note" id="updated" aria-live="polite">正在讀取資料…</div><div id="groups"></div>
 </div></section>
 </main>
 <script>
 const defaultRoads=['板橋區中山路二段','板橋區三民路二段','板橋區光復街','板橋區萬安街','板橋區林森街','板橋區三民路一段','板橋區翠華街'];
 let DATA={listings:[],runs:{},watchRoads:defaultRoads};let GAP={propertyGroups:[],comparisons:[],counts:{},coveredRoads:[]};let VERIFY=null;let CMAP=new Map();let SOURCE_FILTER='all';
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=v=>{if(!v)return '-';const d=new Date(v);return Number.isNaN(d.getTime())?String(v):new Intl.DateTimeFormat('zh-TW',{dateStyle:'medium',timeStyle:'medium',timeZone:'Asia/Taipei'}).format(d)};
 const fmtUnix=v=>{if(!v)return '-';const n=Number(v);return Number.isFinite(n)?fmt(n<1e12?n*1000:n):fmt(v)};
 const priceValue=x=>{if(x.effectivePrice!=null)return Number(x.effectivePrice);const m=String(x.price||'').replace(/,/g,'').match(/\d+(?:\.\d+)?/);return m?Number(m[0]):null};
@@ -76,12 +76,12 @@ const cmp=x=>CMAP.get(x.groupId)||null;
 const companyLabel=s=>({company_match:'庫存',review:'待確認',missing:'未接回',unavailable:'尚未比對'}[s]||s||'尚未比對');
 const companyClass=s=>s==='company_match'?'stock':s==='review'?'review':s==='missing'?'missing':'unavailable';
 function sourcePills(g){return (g.sources||[]).map(s=>`<span class="pill ${s==='信義房屋'?'sinyi':'m591'}">${esc(s)}</span>`).join('')}
-function sourceDetails(g){const rows=(g.sourceListings||[]).map((m,i)=>{const primary=m.id===g.primaryId;const nested=(m.mergedListings||[]);const nestedHtml=nested.length>1?`<ul class="sublist">${nested.map(n=>`<li><a href="${esc(n.url||'#')}" target="_blank" rel="noreferrer">${esc(n.title||n.houseId||n.id||'591刊登')}</a>｜${esc(n.price||'')} ${esc(n.size||'')}</li>`).join('')}</ul>`:'';return `<div class="merge-row"><div>${primary?'<span class="pill primary">主資料</span>':''}<span class="pill ${m.source==='信義房屋'?'sinyi':'m591'}">${esc(m.source)}</span></div><a class="merge-title" href="${esc(m.url||'#')}" target="_blank" rel="noreferrer">${esc(m.title||m.id)}</a><div class="merge-meta"><span>${esc(displayPrice(m))}</span><span>${esc(m.size||'-')}</span><span>${esc(m.address||'-')}</span><span>上架：${fmtUnix(m.sourcePublishedAt)}</span>${m.source==='591'&&nested.length?`<span>591原始刊登 ${nested.length} 筆</span>`:''}</div>${nestedHtml}</div>`}).join('');return `<details class="merge-details"><summary>查看來源整併明細（${g.rawListingCount||1} 筆原始刊登）</summary><div class="merge-list">${rows}</div></details>`}
+function sourceDetails(g){const rows=(g.sourceListings||[]).map((m,i)=>{const primary=m.id===g.primaryId;const nested=(m.mergedListings||[]);const nestedHtml=nested.length>1?`<ul class="sublist">${nested.map(n=>`<li><a href="${esc(n.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(n.title||n.houseId||n.id||'591刊登')}</a>｜${esc(n.price||'')} ${esc(n.size||'')}</li>`).join('')}</ul>`:'';return `<div class="merge-row"><div>${primary?'<span class="pill primary">主資料</span>':''}<span class="pill ${m.source==='信義房屋'?'sinyi':'m591'}">${esc(m.source)}</span></div><a class="merge-title" href="${esc(m.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(m.title||m.id)}</a><div class="merge-meta"><span>${esc(displayPrice(m))}</span><span>${esc(m.size||'-')}</span><span>${esc(m.address||'-')}</span><span>上架：${fmtUnix(m.sourcePublishedAt)}</span>${m.source==='591'&&nested.length?`<span>591原始刊登 ${nested.length} 筆</span>`:''}</div>${nestedHtml}</div>`}).join('');return `<details class="merge-details"><summary>查看來源整併明細（${g.rawListingCount||1} 筆原始刊登）</summary><div class="merge-list">${rows}</div></details>`}
 function candidateLine(g){
   const c=cmp(g);
   if(!c||!c.companyCandidate||!['company_match','review'].includes(c.status))return '';
   const y=c.companyCandidate;
-  const link=y.url?`<a href="${esc(y.url)}" target="_blank" rel="noreferrer">${esc(y.title||y.id)}</a>`:esc(y.title||y.id);
+  const link=y.url?`<a href="${esc(y.url)}" target="_blank" rel="noopener noreferrer">${esc(y.title||y.id)}</a>`:esc(y.title||y.id);
   const id=y.officialCaseId||y.officialId||String(y.id||'').replace(/^YC:/,'');
   return `<div class="row candidate">比對庫存：<span class="pill primary">永慶 ID ${esc(id||'-')}</span>${link}${y.price!=null?`｜${esc(y.price)}萬`:''}${y.area!=null?`｜${esc(y.area)}坪`:''}${y.floor?`｜${esc(y.floor)}`:'｜樓層未取得'}</div>`;
 }
@@ -91,32 +91,54 @@ const c=GAP.counts||{};document.querySelector('#cStock').textContent=`${c.compan
 const cards=['591','信義房屋'].map(name=>{const r=DATA.runs?.[name],ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${ok?'ok':'err'}">${ok?'正常':'異常/沿用'}</span></div><div class="note">目前保留 ${r?.totalCount??0} 筆<br>最近更新：${fmt(r?.checkedAt)}</div></div>`});document.querySelector('#sources').innerHTML=cards.join('');
 document.querySelector('#updated').textContent=`來源資料最近更新：${fmt(DATA.updatedAt)}｜Preview 比對：${fmt(GAP.generatedAt)}。`;
 renderGroups()}
-function renderGroups(){const source=SOURCE_FILTER,state=document.querySelector('#state').value,cs=document.querySelector('#companyState').value,sort=document.querySelector('#sort').value;let rows=(GAP.propertyGroups||[]).filter(g=>{const c=cmp(g);const sourceOK=source==='all'||(source==='sinyi'&&(g.sources||[]).includes('信義房屋'))||(source==='591'&&(g.sources||[]).includes('591'));const stateOK=state==='all'||(state==='new'&&isNew(g))||(state==='active'&&!isNew(g));const compOK=cs==='all'||c?.status===cs;return sourceOK&&stateOK&&compOK});let html='';for(const road of (DATA.watchRoads||defaultRoads)){const items=sortGroups(rows.filter(g=>g.road===road),sort);if(!items.length)continue;html+=`<details class="road-group"><summary><span>${esc(road)}</span><span class="count">${items.length} 戶</span></summary><div class="list">${items.map(g=>{const c=cmp(g),st=c?.status||'unavailable';return `<article class="item"><a class="item-title" href="${esc(g.url||'#')}" target="_blank" rel="noreferrer">${esc(g.title||g.primaryId)}</a><div class="row">${sourcePills(g)}<span class="pill ${companyClass(st)}">${companyLabel(st)}</span>${g.crossPlatformMerged?'<span class="pill merged">信義主資料＋591整併</span>':''}${isNew(g)?'<span class="pill sinyi">新進案件</span>':''}<span>${esc(displayPrice(g))}</span><span>${esc(g.size||'-')}</span><span>${esc(g.address||'-')}</span></div>${candidateLine(g)}${sourceDetails(g)}</article>`}).join('')}</div></details>`}document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的房屋群組。</div>'}
+function renderGroups(){const source=SOURCE_FILTER,state=document.querySelector('#state').value,cs=document.querySelector('#companyState').value,sort=document.querySelector('#sort').value;let rows=(GAP.propertyGroups||[]).filter(g=>{const c=cmp(g);const sourceOK=source==='all'||(source==='sinyi'&&(g.sources||[]).includes('信義房屋'))||(source==='591'&&(g.sources||[]).includes('591'));const stateOK=state==='all'||(state==='new'&&isNew(g))||(state==='active'&&!isNew(g));const compOK=cs==='all'||c?.status===cs;return sourceOK&&stateOK&&compOK});let html='';for(const road of (DATA.watchRoads||defaultRoads)){const items=sortGroups(rows.filter(g=>g.road===road),sort);if(!items.length)continue;html+=`<details class="road-group"><summary><span>${esc(road)}</span><span class="count">${items.length} 戶</span></summary><div class="list">${items.map(g=>{const c=cmp(g),st=c?.status||'unavailable';return `<article class="item"><a class="item-title" href="${esc(g.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(g.title||g.primaryId)}</a><div class="row">${sourcePills(g)}<span class="pill ${companyClass(st)}">${companyLabel(st)}</span>${g.crossPlatformMerged?'<span class="pill merged">信義主資料＋591整併</span>':''}${isNew(g)?'<span class="pill sinyi">新進案件</span>':''}<span>${esc(displayPrice(g))}</span><span>${esc(g.size||'-')}</span><span>${esc(g.address||'-')}</span></div>${candidateLine(g)}${sourceDetails(g)}</article>`}).join('')}</div></details>`}document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的房屋群組。</div>'}
 document.querySelectorAll('.source-tab').forEach(btn=>btn.addEventListener('click',()=>{SOURCE_FILTER=btn.dataset.source||'all';document.querySelectorAll('.source-tab').forEach(x=>x.classList.toggle('active',x===btn));renderGroups()}));
 ['state','companyState','sort'].forEach(id=>document.querySelector('#'+id).addEventListener('change',renderGroups));
-function verificationMatches(g,v){
-  return !!(g&&v&&v.valid===true&&v.scheme==='A'&&v.canonicalPublisher==='yungching-preview.yml'&&
+function sameCounts(a,b){
+  return ['company_match','review','missing','unavailable'].every(k=>Number((a||{})[k]??-1)===Number((b||{})[k]??-2));
+}
+function verificationMatches(d,g,v){
+  return !!(d&&g&&v&&v.valid===true&&v.scheme==='A'&&v.canonicalPublisher==='yungching-preview.yml'&&
+    v.integrityVersion==='scheme-a-canonical-v3-sinyi-floor-neartie'&&v.fetchMode==='yungching_official_rendered_dom_only'&&
     v.snapshotCapturedAt===g.companySnapshotCapturedAt&&v.companyGapGeneratedAt===g.generatedAt&&
-    Number(v.companyListingCount)===Number(g.companyListingCount)&&Number(v.propertyGroupCount)===Number(g.propertyGroupCount));
+    v.sourceDataUpdatedAt===g.sourceDataUpdatedAt&&d.updatedAt===g.sourceDataUpdatedAt&&
+    Number(v.companyListingCount)===Number(g.companyListingCount)&&Number(v.propertyGroupCount)===Number(g.propertyGroupCount)&&
+    Number(v.rawListingCount)===Number(g.rawListingCount)&&Number(v.comparisonCount)===Number((g.comparisons||[]).length)&&
+    sameCounts(v.counts,g.counts)&&(v.sinyiFloorEnrichment||{}).complete===true);
+}
+async function fetchJson(url,label){
+  const ctl=new AbortController();
+  const timer=setTimeout(()=>ctl.abort(),12000);
+  try{
+    const r=await fetch(url,{cache:'no-store',signal:ctl.signal});
+    if(!r.ok)throw new Error(`${label} HTTP ${r.status}`);
+    return await r.json();
+  }finally{clearTimeout(timer)}
 }
 Promise.all([
-  fetch(`../data/listings.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.json()),
-  fetch(`company-gap.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.ok?r.json():null),
-  fetch(`scheme-a-verification.json?ts=${Date.now()}`,{cache:'no-store'}).then(r=>r.ok?r.json():null),
+  fetchJson(`../data/listings.json?ts=${Date.now()}`,'監控資料'),
+  fetchJson(`company-gap.json?ts=${Date.now()}`,'比對資料'),
+  fetchJson(`scheme-a-verification.json?ts=${Date.now()}`,'驗證資料'),
 ]).then(([d,g,v])=>{
-  DATA=d; VERIFY=v;
-  if(g)GAP=g;
-  const verified=verificationMatches(GAP,VERIFY);
+  DATA=d; GAP=g; VERIFY=v;
+  const verified=verificationMatches(DATA,GAP,VERIFY);
   if(!verified){
-    const n=Number(GAP.propertyGroupCount??(GAP.propertyGroups||[]).length)||0;
-    GAP={...GAP,comparisons:[],counts:{company_match:0,review:0,missing:0,unavailable:n}};
+    GAP={...GAP,propertyGroups:[],comparisons:[],propertyGroupCount:0,rawListingCount:0,crossPlatformMergedGroupCount:0,counts:{company_match:0,review:0,missing:0,unavailable:0}};
   }
   CMAP=new Map((GAP.comparisons||[]).map(x=>[x.groupId,x]));
   render();
   if(!verified){
-    document.querySelector('#updated').textContent=`來源資料最近更新：${fmt(DATA.updatedAt)}｜公司比對完整性驗證未通過，暫不顯示委託狀態。`;
+    for(const id of ['mGroups','mNew','mMerged','cStock','cReview','cMissing','cUnavailable']){
+      const el=document.getElementById(id); if(el)el.textContent='—';
+    }
+    document.querySelector('#groups').innerHTML='<div class="empty">比對資料同步中。為避免把上一輪案件誤當成最新結果，案件清單暫停顯示。</div>';
+    document.querySelector('#updated').textContent=`來源資料最近更新：${fmt(DATA.updatedAt)}｜公司比對資料同步中，完成後會自動恢復顯示。`;
   }
-}).catch(e=>{document.querySelector('#updated').textContent='Preview 資料讀取失敗：'+e;});
+}).catch(e=>{
+  console.error(e);
+  document.querySelector('#updated').textContent='Preview 資料讀取失敗，請重新整理後再試。';
+  document.querySelector('#groups').innerHTML='<div class="empty">目前無法完整載入監控資料，為避免顯示錯誤比對結果，案件列表已暫停顯示。</div>';
+});
 </script>
 </body>
 </html>
