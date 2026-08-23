@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-23T00:27:51+00:00",
+  "generatedAt": "2026-08-23T00:33:13+00:00",
   "sourceDataUpdatedAt": "2026-08-22T21:51:46+00:00",
   "mode": "preview_only_591_then_sinyi_then_company_floor_aware_official_rendered_v6",
   "fetchMode": "yungching_official_rendered_dom_only",
   "company": "永慶房屋",
   "companyDataSource": "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM；缺樓層時同路徑開官方案件頁補值",
   "companyListingCount": 88,
-  "companySnapshotCapturedAt": "2026-08-23T00:25:05+00:00",
+  "companySnapshotCapturedAt": "2026-08-23T00:28:59+00:00",
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -23,9 +23,9 @@
   "crossSourceReviewCount": 7,
   "companyConflictDowngradedCount": 3,
   "counts": {
-    "company_match": 48,
+    "company_match": 49,
     "review": 3,
-    "missing": 108,
+    "missing": 107,
     "unavailable": 0
   },
   "roadStatus": {
@@ -35,7 +35,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 39,
-      "browserCapturedAt": "2026-08-23T00:25:05+00:00",
+      "browserCapturedAt": "2026-08-23T00:28:59+00:00",
       "paginationExpected": true,
       "paginationComplete": true,
       "paginationActivePage": 2,
@@ -47,7 +47,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 30,
-      "browserCapturedAt": "2026-08-23T00:25:05+00:00",
+      "browserCapturedAt": "2026-08-23T00:28:59+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -59,7 +59,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 2,
-      "browserCapturedAt": "2026-08-23T00:25:05+00:00",
+      "browserCapturedAt": "2026-08-23T00:28:59+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -71,7 +71,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 2,
-      "browserCapturedAt": "2026-08-23T00:25:05+00:00",
+      "browserCapturedAt": "2026-08-23T00:28:59+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -83,7 +83,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 2,
-      "browserCapturedAt": "2026-08-23T00:25:05+00:00",
+      "browserCapturedAt": "2026-08-23T00:28:59+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -95,7 +95,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 6,
-      "browserCapturedAt": "2026-08-23T00:25:05+00:00",
+      "browserCapturedAt": "2026-08-23T00:28:59+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -107,7 +107,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 7,
-      "browserCapturedAt": "2026-08-23T00:25:05+00:00",
+      "browserCapturedAt": "2026-08-23T00:28:59+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -12091,7 +12091,9 @@
         "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [],
+        "companyFloors": [
+          3
+        ],
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:3860YC"
       }
@@ -12290,23 +12292,23 @@
       "primaryId": "信義房屋:7553TW",
       "primarySource": "信義房屋",
       "road": "板橋區三民路二段",
-      "status": "missing",
-      "statusLabel": "未接回",
-      "score": 18,
+      "status": "company_match",
+      "statusLabel": "庫存",
+      "score": 22,
       "companyCandidate": {
-        "id": "YC:7359599",
-        "title": "國泰建設稀有三樓",
+        "id": "YC:7277820",
+        "title": "近埔墘市場低樓層",
         "address": "新北市板橋區三民路二段",
-        "area": 27.63,
-        "price": 1330.0,
-        "url": "https://buy.yungching.com.tw/house/7359599",
+        "area": 27.59,
+        "price": 1398.0,
+        "url": "https://buy.yungching.com.tw/house/7277820",
         "sourceMode": "yungching_official_browser"
       },
       "matchInfo": {
-        "areaDelta": 0.04,
-        "priceDelta": 68.0,
+        "areaDelta": 0.0,
+        "priceDelta": 0.0,
         "shared": [],
-        "titleRatio": 0.267,
+        "titleRatio": 0.133,
         "companySourceMode": "yungching_official_browser",
         "floorRelation": "match",
         "externalFloors": [
@@ -12317,9 +12319,7 @@
         ],
         "floorMatch": true,
         "evidenceSource": "信義房屋",
-        "evidenceListingId": "信義房屋:7553TW",
-        "reason": "有相似公司候選，但未達庫存判定門檻，因此列為未接回",
-        "weakCompanyCandidate": true
+        "evidenceListingId": "信義房屋:7553TW"
       }
     },
     {
@@ -15657,7 +15657,9 @@
         "companySourceMode": "yungching_official_browser",
         "floorRelation": "unknown",
         "externalFloors": [],
-        "companyFloors": [],
+        "companyFloors": [
+          3
+        ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20554659"
       }
@@ -17785,8 +17787,8 @@
       "type": "華廈",
       "url": "https://buy.yungching.com.tw/house/7078318",
       "sourceMode": "yungching_official_browser",
-      "text": "住一樓舒適生活 新北市板橋區三民路二段 華廈28.1年建坪52.52 3房(室)2廳2衛(含加蓋2房(室)--廳--衛) 2,888萬 200萬 2,688",
-      "rawText": "住一樓舒適生活 新北市板橋區三民路二段 華廈28.1年建坪52.52 3房(室)2廳2衛(含加蓋2房(室)--廳--衛) 2,888萬 200萬 2,688",
+      "text": "住一樓舒適生活 新北市板橋區三民路二段 華廈28.1年建坪52.52 2,888萬 200萬 2,688",
+      "rawText": "住一樓舒適生活 新北市板橋區三民路二段 華廈28.1年建坪52.52 2,888萬 200萬 2,688",
       "officialId": "7078318"
     },
     {
@@ -17960,13 +17962,15 @@
       "title": "近埔墘市場低樓層",
       "price": 1398.0,
       "area": 27.59,
-      "floor": null,
+      "floor": "3/5樓",
       "address": "新北市板橋區三民路二段",
       "type": "公寓",
       "url": "https://buy.yungching.com.tw/house/7277820",
       "sourceMode": "yungching_official_browser",
       "text": "近埔墘市場低樓層 新北市板橋區三民路二段 專任委託 公寓46.4年建坪27.59 3房(室)2廳1衛 1,488萬 90萬 1,398",
       "rawText": "近埔墘市場低樓層 新北市板橋區三民路二段 專任委託 公寓46.4年建坪27.59 3房(室)2廳1衛 1,488萬 90萬 1,398",
+      "floorSourceMode": "yungching_official_detail_dom",
+      "floorEvidence": "專任委託 近埔墘市場低樓層 新北市板橋區三民路二段 1,488萬 90萬 1,398 萬 單價50.67萬/坪 公寓 屋齡46.4 年 3/5樓 建物27.59坪 主27.59 坪 3房(室)2廳1衛 劉得楷 線上問 永慶房屋(股)公司 板橋三民直營店 02-33169999 分機 13572 預約賞屋 預約賞屋或來電即視同意 永慶會員網友同意條款 ，並成為",
       "officialId": "7277820"
     },
     {
@@ -18446,8 +18450,8 @@
   },
   "officialBrowserCompany": {
     "enabled": true,
-    "capturedAt": "2026-08-23T00:25:05+00:00",
-    "snapshotAgeMinutes": 2.8,
+    "capturedAt": "2026-08-23T00:28:59+00:00",
+    "snapshotAgeMinutes": 4.2,
     "acceptedRoadCount": 7,
     "unavailableRoadCount": 0,
     "roads": {
