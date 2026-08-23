@@ -39,7 +39,7 @@ jobs:
             sleep 3
           done
           exit 1
-      - name: Verify fixed current-property floors
+      - name: Capture fixed current-property floors
         shell: bash
         run: |
           python - <<'PY'
@@ -61,33 +61,28 @@ jobs:
             c=b.new_context(locale='zh-TW', timezone_id='Asia/Taipei')
             page=c.new_page()
             for case in cases:
-              url=f"https://buy.yungching.com.tw/house/{case['id']}"
-              r=page.goto(url, wait_until='domcontentloaded', timeout=35000)
-              official=f.response_text(r)
-              f.render_full_detail(page)
-              focused,body,_=f.rendered_floor_context(page)
-              floor,evidence,mode=f.find_floor(focused,body,official)
-              yc=f.official_case_id(body) or f.official_case_id(official)
-              subjects=sorted(f.subject_floors(floor))
-              row={'id':case['id'],'http':r.status if r else None,'floor':floor,'subjects':subjects,'officialCaseId':yc,'mode':mode,'evidence':evidence}
+              row={'id':case['id']}
+              try:
+                url=f"https://buy.yungching.com.tw/house/{case['id']}"
+                r=page.goto(url, wait_until='domcontentloaded', timeout=35000)
+                official=f.response_text(r)
+                f.render_full_detail(page)
+                focused,body,_=f.rendered_floor_context(page)
+                floor,evidence,mode=f.find_floor(focused,body,official)
+                yc=f.official_case_id(body) or f.official_case_id(official)
+                row.update({'http':r.status if r else None,'floor':floor,'subjects':sorted(f.subject_floors(floor)),'officialCaseId':yc,'mode':mode,'evidence':evidence,'title':page.title()})
+              except Exception as exc:
+                row['error']=f'{type(exc).__name__}: {str(exc)[:300]}'
               results.append(row)
-              assert row['http']==200, row
-              assert floor, row
-              if case.get('expected_floor'):
-                assert floor==case['expected_floor'], row
-              if case.get('expected_subject'):
-                assert case['expected_subject'] in subjects, row
-              if case.get('expected_case'):
-                assert yc==case['expected_case'], row
             b.close()
-          out={'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),'passed':True,'results':results}
+          out={'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),'cases':cases,'results':results}
           Path('docs/preview/yungching-floor-regression.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(out,ensure_ascii=False))
           PY
       - if: always()
         continue-on-error: true
         run: sudo wg-quick down surfshark || true
-      - name: Save regression result
+      - name: Save regression diagnostic
         shell: bash
         run: |
           set -e
@@ -99,5 +94,19 @@ jobs:
           cp /tmp/regression.json docs/preview/yungching-floor-regression.json
           git add docs/preview/yungching-floor-regression.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Save verified Yongching floor regression"
+          git commit -m "Save Yongching floor regression diagnostic"
           git push origin HEAD:main
+      - name: Assert regression cases
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('docs/preview/yungching-floor-regression.json').read_text(encoding='utf-8'))
+          rows={r['id']:r for r in x.get('results') or []}
+          a=rows.get('6935425') or {}; b=rows.get('6857079') or {}; c=rows.get('6693666') or {}
+          assert a.get('http')==200 and a.get('floor')=='3/14樓' and a.get('officialCaseId')=='YC1239410', a
+          assert b.get('http')==200 and 1 in (b.get('subjects') or []), b
+          assert c.get('http')==200 and 3 in (c.get('subjects') or []), c
+          print('Yongching floor regression passed')
+          PY
