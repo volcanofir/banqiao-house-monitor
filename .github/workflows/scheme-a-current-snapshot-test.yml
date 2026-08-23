@@ -6,6 +6,8 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/scheme-a-current-snapshot-test.yml"
+      - "scripts/compare_yungching_preview_v6.py"
+      - "scripts/patch_preview_ui.py"
 
 permissions:
   contents: write
@@ -72,6 +74,10 @@ jobs:
           z_company = [x for x in company if x.get('road') == '板橋區中山路二段']
           assert len(z_company) == 39, len(z_company)
 
+          candidates = [x.get('companyCandidate') for x in (p.get('comparisons') or []) if x.get('companyCandidate')]
+          assert candidates, 'no company candidates'
+          assert all(x.get('officialId') for x in candidates), candidates[:5]
+
           out = {
               'verifiedAt': datetime.now(timezone.utc).isoformat(timespec='seconds'),
               'scheme': 'A',
@@ -83,6 +89,8 @@ jobs:
               'zhongshanCompanyCount': len(z_company),
               'coveredRoads': p.get('coveredRoads'),
               'counts': p.get('counts'),
+              'candidateCount': len(candidates),
+              'candidatesWithFloor': sum(1 for x in candidates if x.get('floor')),
               'officialBrowserCompany': p.get('officialBrowserCompany'),
               'legacyFallbacks': False,
           }
