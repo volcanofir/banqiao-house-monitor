@@ -12,6 +12,11 @@ on:
       - "scripts/compare_yungching_preview_v6.py"
       - "scripts/compare_yungching_preview_v7.py"
       - "scripts/compare_yungching_preview_v8.py"
+      - "scripts/patch_preview_ui.py"
+      - "scripts/smoke_test_preview_ui.py"
+      - "scripts/validate_scheme_a_preview.py"
+      - "scripts/validate_scheme_a_preview_v2.py"
+      - "scripts/validate_scheme_a_preview_v3.py"
 
 permissions:
   contents: write
@@ -23,15 +28,18 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - name: Install import dependencies
-        run: pip install requests beautifulsoup4
-      - name: Run and capture deterministic integrity tests
+      - name: Install regression dependencies
+        run: |
+          pip install requests beautifulsoup4 playwright cryptography
+          python -m playwright install chromium
+
+      - name: Run deterministic v8 integrity tests
         shell: bash
         run: |
           python - <<'PY'
@@ -44,6 +52,8 @@ jobs:
             'returncode':p.returncode,
             'stdout':p.stdout[-12000:],
             'stderr':p.stderr[-12000:],
+            'logicPassed':False,
+            'uiSmokePassed':False,
             'passed':False,
           }
           if p.returncode==0:
@@ -51,13 +61,43 @@ jobs:
             try:
               result=json.loads(lines[-1]) if lines else {}
               out.update(result)
-              out['passed']=result.get('passed') is True
+              out['logicPassed']=result.get('passed') is True
+              out['passed']=False
             except Exception as exc:
               out['parseError']=f'{type(exc).__name__}: {exc}'
           Path('docs/preview/scheme-a-logic-regression.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(out,ensure_ascii=False))
           PY
+
+      - name: Validate saved canonical output and run Chromium Preview smoke test
+        id: ui
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/patch_preview_ui.py
+          python scripts/validate_scheme_a_preview_v3.py
+          python scripts/smoke_test_preview_ui.py
+
+      - name: Record full stability result
+        if: always()
+        shell: bash
+        env:
+          UI_OUTCOME: ${{ steps.ui.outcome }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          path=Path('docs/preview/scheme-a-logic-regression.json')
+          out=json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
+          out['uiSmokePassed']=os.environ.get('UI_OUTCOME')=='success'
+          out['passed']=bool(out.get('logicPassed') is True and out.get('uiSmokePassed') is True)
+          path.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False))
+          PY
+
       - name: Save regression diagnostic
+        if: always()
         shell: bash
         run: |
           set -e
@@ -69,15 +109,20 @@ jobs:
           cp /tmp/result.json docs/preview/scheme-a-logic-regression.json
           git add docs/preview/scheme-a-logic-regression.json
           if ! git diff --cached --quiet; then
-            git commit -m "Save scheme A logic regression"
+            git commit -m "Save scheme A stable regression"
             git push origin HEAD:main
           fi
-      - name: Fail if regression did not pass
+
+      - name: Fail if stable regression did not pass
+        if: always()
         shell: bash
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
           x=json.loads(Path('docs/preview/scheme-a-logic-regression.json').read_text(encoding='utf-8'))
+          assert x.get('logicPassed') is True, x
+          assert x.get('uiSmokePassed') is True, x
           assert x.get('passed') is True, x
+          print('Stable v8 regression passed: logic + validator + Chromium UI smoke')
           PY
