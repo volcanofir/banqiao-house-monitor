@@ -1,0 +1,58 @@
+name: 方案 A 永慶 ID 完整性快速驗算
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/scheme-a-id-integrity-test.yml"
+      - "scripts/yungching_dom_snapshot_v4.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: banqiao-scheme-a-id-integrity-test
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Sanitize a working copy of current verified snapshot
+        shell: bash
+        run: |
+          cp docs/preview/yungching-browser-snapshot.json /tmp/original.json
+          python scripts/yungching_dom_snapshot_v4.py --sanitize-existing
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          s=json.loads(Path('docs/preview/yungching-browser-snapshot.json').read_text(encoding='utf-8'))
+          out={
+            'listingCount':s.get('listingCount'),
+            'roadCounts':{r:(x or {}).get('count') for r,x in (s.get('roadStatus') or {}).items()},
+            'idIntegrityGuard':s.get('idIntegrityGuard'),
+          }
+          Path('docs/preview/scheme-a-id-integrity-test.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False))
+          PY
+          cp /tmp/original.json docs/preview/yungching-browser-snapshot.json
+      - name: Save diagnostic only
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp docs/preview/scheme-a-id-integrity-test.json /tmp/result.json
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/result.json docs/preview/scheme-a-id-integrity-test.json
+          git add docs/preview/scheme-a-id-integrity-test.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Save scheme A ID integrity calculation"
+          git push origin HEAD:main
