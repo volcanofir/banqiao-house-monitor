@@ -11,6 +11,7 @@ on:
       - "scripts/compare_yungching_preview_v4.py"
       - "scripts/compare_yungching_preview_v5.py"
       - "scripts/compare_yungching_preview_v6.py"
+      - "scripts/compare_yungching_preview_v7.py"
       - "scripts/yungching_crypto.py"
       - "scripts/yungching_official_probe.py"
       - "scripts/yungching_playwright_probe.py"
@@ -24,6 +25,7 @@ on:
       - "scripts/connect_surfshark_wireguard.sh"
       - "scripts/patch_preview_ui.py"
       - "scripts/validate_scheme_a_preview.py"
+      - "scripts/validate_scheme_a_preview_v2.py"
       - "docs/data/listings.json"
 
 permissions:
@@ -97,13 +99,13 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          python scripts/compare_yungching_preview_v6.py 2>&1 | tee docs/preview/yungching-preview-run.log
+          python scripts/compare_yungching_preview_v7.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
       - name: Simplify Preview UI and run hard scheme A validator
         run: python scripts/patch_preview_ui.py
 
       - name: Validate scheme A again before manifest
-        run: python scripts/validate_scheme_a_preview.py
+        run: python scripts/validate_scheme_a_preview_v2.py
 
       - name: Write canonical scheme A verification manifest
         shell: bash
@@ -120,9 +122,10 @@ jobs:
           manifest={
             'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
             'scheme':'A',
-            'integrityVersion':'scheme-a-canonical-v2-all-pages',
+            'integrityVersion':'scheme-a-canonical-v2-all-pages-safe-floor',
             'source':'Surfshark + Chromium official Yongching DOM + all-pages direct pg pagination + official detail pages',
             'fetchMode':p.get('fetchMode'),
+            'safeFloorParser':p.get('safeFloorParser'),
             'snapshotCapturedAt':s.get('capturedAt'),
             'companySnapshotCapturedAt':p.get('companySnapshotCapturedAt'),
             'companyGapGeneratedAt':p.get('generatedAt'),
@@ -153,6 +156,7 @@ jobs:
             'canonicalPublisher':'yungching-preview.yml',
             'valid':True,
           }
+          assert manifest['safeFloorParser'] is True, manifest
           assert manifest['snapshotCapturedAt'] == manifest['companySnapshotCapturedAt'], manifest
           assert manifest['browserListingCount'] == manifest['companyListingCount'], manifest
           assert manifest['propertyGroupCount'] == manifest['comparisonCount'], manifest
@@ -200,6 +204,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p /tmp/yungching-preview-failed
           [[ -f docs/preview/yungching-preview-run.log ]] && cp docs/preview/yungching-preview-run.log /tmp/yungching-preview-failed/yungching-preview-run-failed.log || true
+          [[ -f docs/preview/company-gap.json ]] && cp docs/preview/company-gap.json /tmp/yungching-preview-failed/company-gap-failed.json || true
           [[ -f docs/preview/yungching-official-probe.json ]] && cp docs/preview/yungching-official-probe.json /tmp/yungching-preview-failed/yungching-official-probe-failed.json || true
           [[ -f docs/preview/yungching-official-snapshot.json ]] && cp docs/preview/yungching-official-snapshot.json /tmp/yungching-preview-failed/yungching-official-snapshot-failed.json || true
           [[ -f docs/preview/yungching-playwright-probe.json ]] && cp docs/preview/yungching-playwright-probe.json /tmp/yungching-preview-failed/yungching-playwright-probe-failed.json || true
