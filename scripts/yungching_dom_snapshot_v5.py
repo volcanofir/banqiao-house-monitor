@@ -10,7 +10,6 @@ import json
 import yungching_dom_snapshot_v3 as v3
 import yungching_dom_snapshot_v4 as v4
 
-
 SNAPSHOT = v4.SNAPSHOT
 MAX_PAGES = 30
 
@@ -171,11 +170,10 @@ def enforce_all_pages():
 
 def main():
     v3.base.collect_road = collect_road_all_pages
+    # v4.main performs the one and only ID sanitizer pass, preserving the original
+    # before/after evidence (e.g. 88 -> 81) in idIntegrityGuard.
     v4.main()
     enforce_all_pages()
-    # v4 already sanitized once. Re-run after pagination metadata enforcement so
-    # the final saved file carries both all-page and ID-integrity guarantees.
-    v4.sanitize_snapshot_integrity()
 
 
 if __name__ == "__main__":
