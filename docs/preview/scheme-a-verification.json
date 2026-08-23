@@ -1,14 +1,14 @@
 {
-  "verifiedAt": "2026-08-23T17:09:01+00:00",
+  "verifiedAt": "2026-08-23T20:02:18+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + Chromium official Yongching DOM + all-pages direct pg pagination + official detail pages",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-08-23T16:59:04+00:00",
+  "sourceDataUpdatedAt": "2026-08-23T19:52:18+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-08-23T17:08:57+00:00",
+    "generatedAt": "2026-08-23T20:02:15+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 77,
@@ -123,21 +123,21 @@
     ]
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-08-23T17:09:00+00:00",
+    "auditedAt": "2026-08-23T20:02:18+00:00",
     "propertyGroupCount": 160,
     "companyListingCount": 81,
     "companyMatchCount": 49,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 206
+    "weakIdentityAlreadyMergedPairCount": 196
   },
-  "snapshotCapturedAt": "2026-08-23T17:00:49+00:00",
-  "companySnapshotCapturedAt": "2026-08-23T17:00:49+00:00",
-  "companyGapGeneratedAt": "2026-08-23T17:08:59+00:00",
+  "snapshotCapturedAt": "2026-08-23T19:53:53+00:00",
+  "companySnapshotCapturedAt": "2026-08-23T19:53:53+00:00",
+  "companyGapGeneratedAt": "2026-08-23T20:02:17+00:00",
   "browserListingCount": 81,
   "companyListingCount": 81,
   "propertyGroupCount": 160,
-  "rawListingCount": 366,
+  "rawListingCount": 370,
   "comparisonCount": 160,
   "coveredRoads": [
     "板橋區中山路二段",
@@ -320,7 +320,7 @@
   "candidatesWithFloor": 130,
   "candidatesWithYcCaseId": 130,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-08-23T17:08:46+00:00",
+    "generatedAt": "2026-08-23T20:02:03+00:00",
     "source": "Yongching official detail via Surfshark + Chromium; current listing header/basic-info only",
     "attempted": 74,
     "enriched": 74,
