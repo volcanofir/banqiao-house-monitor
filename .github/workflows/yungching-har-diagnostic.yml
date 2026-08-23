@@ -9,6 +9,7 @@ on:
       - "scripts/record_yungching_har.py"
       - "scripts/analyze_yungching_har_bundles.py"
       - "scripts/yungching_html_transport_probe.py"
+      - "scripts/yungching_internal_api_probe.py"
       - "scripts/yungching_browser_preflight.py"
       - "scripts/connect_surfshark_wireguard.sh"
 
@@ -73,6 +74,12 @@ jobs:
           set -o pipefail
           python scripts/yungching_html_transport_probe.py 2>&1 | tee -a /tmp/yungching-har-run.log
 
+      - name: Probe SSR-exposed Yongching APIs directly
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/yungching_internal_api_probe.py 2>&1 | tee -a /tmp/yungching-har-run.log
+
       - name: Disconnect Surfshark
         if: always()
         continue-on-error: true
@@ -98,12 +105,14 @@ jobs:
           cp docs/preview/yungching-har-summary.json /tmp/yungching-har-summary.json
           cp docs/preview/yungching-har-bundle-routes.json /tmp/yungching-har-bundle-routes.json
           cp docs/preview/yungching-html-transport-probe.json /tmp/yungching-html-transport-probe.json
+          cp docs/preview/yungching-internal-api-probe.json /tmp/yungching-internal-api-probe.json
           git fetch origin main
           git reset --hard origin/main
           cp /tmp/yungching-har-summary.json docs/preview/yungching-har-summary.json
           cp /tmp/yungching-har-bundle-routes.json docs/preview/yungching-har-bundle-routes.json
           cp /tmp/yungching-html-transport-probe.json docs/preview/yungching-html-transport-probe.json
-          git add docs/preview/yungching-har-summary.json docs/preview/yungching-har-bundle-routes.json docs/preview/yungching-html-transport-probe.json
+          cp /tmp/yungching-internal-api-probe.json docs/preview/yungching-internal-api-probe.json
+          git add docs/preview/yungching-har-summary.json docs/preview/yungching-har-bundle-routes.json docs/preview/yungching-html-transport-probe.json docs/preview/yungching-internal-api-probe.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Save deep Yongching transport diagnostic"
           git push origin HEAD:main
@@ -126,6 +135,7 @@ jobs:
             'harBytes':Path('artifacts/yungching-har/yungching-network.har').stat().st_size if Path('artifacts/yungching-har/yungching-network.har').exists() else 0,
             'bundleRouteProbeExists':Path('docs/preview/yungching-har-bundle-routes.json').exists(),
             'htmlTransportProbeExists':Path('docs/preview/yungching-html-transport-probe.json').exists(),
+            'internalApiProbeExists':Path('docs/preview/yungching-internal-api-probe.json').exists(),
           }
           Path('/tmp/yungching-har-failed.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
           PY
