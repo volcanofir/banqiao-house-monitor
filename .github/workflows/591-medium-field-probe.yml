@@ -1,5 +1,4 @@
 name: 591 medium-risk field probe
-# trigger: 2026-08-23 medium-risk audit rerun
 
 on:
   workflow_dispatch:
@@ -8,6 +7,10 @@ on:
     paths:
       - "scripts/probe_591_medium_fields.py"
       - "scripts/probe_591_detail_network.py"
+      - "scripts/enrich_591_preview_detail_floor.py"
+      - "scripts/compare_yungching_preview_v9.py"
+      - "scripts/validate_scheme_a_preview_v4.py"
+      - "scripts/summarize_scheme_a_v9_replay.py"
       - ".github/workflows/591-medium-field-probe.yml"
 
 permissions:
@@ -20,15 +23,23 @@ concurrency:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - run: |
-          pip install requests beautifulsoup4 playwright
+          pip install requests beautifulsoup4 cryptography playwright
           python -m playwright install chromium
+
+      - name: Preserve current canonical baseline and build Preview Sinyi floors
+        shell: bash
+        run: |
+          cp docs/preview/company-gap.json /tmp/scheme-a-v8-baseline.json
+          cp docs/preview/scheme-a-weak-group-audit.json /tmp/scheme-a-v8-weak.json
+          python scripts/sinyi_preview_floor_enrich.py
+
       - name: Connect Surfshark
         env:
           SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
@@ -40,21 +51,67 @@ jobs:
             sleep 4
           done
           exit 1
-      - name: Probe 591 structured fields for medium-risk groups
+
+      - name: Probe and enrich 591 medium-risk detail floors
         run: |
           python scripts/probe_591_medium_fields.py
           python scripts/probe_591_detail_network.py
+          python scripts/enrich_591_preview_detail_floor.py
+
       - name: Disconnect VPN
         if: always()
         continue-on-error: true
         run: sudo wg-quick down surfshark || true
-      - name: Save diagnostic
+
+      - name: Run isolated v9 regroup and hard validator
         shell: bash
         run: |
+          set -o pipefail
+          python scripts/compare_yungching_preview_v9.py 2>&1 | tee docs/preview/scheme-a-v9-run.log
+          python scripts/validate_scheme_a_preview_v4.py
+          python scripts/audit_scheme_a_weak_groups.py
+          V8_BASELINE=/tmp/scheme-a-v8-baseline.json V8_WEAK_BASELINE=/tmp/scheme-a-v8-weak.json python scripts/summarize_scheme_a_v9_replay.py
+          cp docs/preview/company-gap.json docs/preview/scheme-a-v9-company-gap.json
+          cp docs/preview/scheme-a-weak-group-audit.json docs/preview/scheme-a-v9-weak-group-audit.json
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          p=json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
+          f=json.loads(Path('docs/preview/591-detail-floor-enrichment.json').read_text(encoding='utf-8'))
+          r=json.loads(Path('docs/preview/scheme-a-v9-replay.json').read_text(encoding='utf-8'))
+          out={
+            'validatedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
+            'validator':'validate_scheme_a_preview_v4',
+            'passed':True,
+            'mode':p.get('mode'),
+            'propertyGroupCount':p.get('propertyGroupCount'),
+            'counts':p.get('counts'),
+            'detailFloorComplete':f.get('complete'),
+            'detailTarget':f.get('targetIdCount'),
+            'detailSuccess':f.get('detailSuccessCount'),
+            'detailWithFloor':f.get('withStructuredFloorCount'),
+            'mediumGroupsSplit':r.get('mediumGroupsSplitByExplicitV9Regroup'),
+            'v9WeakAudit':r.get('v9WeakAudit'),
+            'remainingAutoNearTie':(p.get('companyNearTieGuard') or {}).get('remainingAutoNearTieCount'),
+          }
+          Path('docs/preview/scheme-a-v9-validation.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          PY
+
+      - name: Save diagnostics without publishing canonical Preview
+        shell: bash
+        run: |
+          set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/preview/591-medium-field-probe.json docs/preview/591-detail-network-probe.json
+          mkdir -p /tmp/v9-output
+          for f in 591-medium-field-probe.json 591-detail-network-probe.json 591-detail-floor-enrichment.json scheme-a-v9-run.log scheme-a-v9-replay.json scheme-a-v9-company-gap.json scheme-a-v9-weak-group-audit.json scheme-a-v9-validation.json; do
+            [[ -f docs/preview/$f ]] && cp docs/preview/$f /tmp/v9-output/$f
+          done
+          git fetch origin main
+          git reset --hard origin/main
+          for f in /tmp/v9-output/*; do cp "$f" "docs/preview/$(basename "$f")"; done
+          git add docs/preview/591-medium-field-probe.json docs/preview/591-detail-network-probe.json docs/preview/591-detail-floor-enrichment.json docs/preview/scheme-a-v9-run.log docs/preview/scheme-a-v9-replay.json docs/preview/scheme-a-v9-company-gap.json docs/preview/scheme-a-v9-weak-group-audit.json docs/preview/scheme-a-v9-validation.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Save 591 medium-risk field probe"
-          git pull --rebase
-          git push
+          git commit -m "Save isolated Scheme A v9 detail-floor replay"
+          git push origin HEAD:main
