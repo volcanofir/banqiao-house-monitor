@@ -1,6 +1,5 @@
 import html
 import json
-import os
 import re
 import time
 from datetime import datetime, timezone
@@ -507,34 +506,6 @@ def merge_source(state, source, current, success, message, logs, checked_at):
     return new_ids, removed_ids
 
 
-def send_telegram(state, new_ids):
-    token = os.environ.get("TG_TOKEN") or os.environ.get("TELEGRAM_BOT_TOKEN")
-    chat_id = os.environ.get("TG_CHAT_ID") or os.environ.get("TELEGRAM_CHAT_ID")
-    if not token or not chat_id or not new_ids:
-        return
-
-    lookup = {item.get("id"): item for item in state.get("listings", [])}
-    fresh = [lookup[item_id] for item_id in new_ids if item_id in lookup]
-    lines = ["板橋指定路段新案件", ""]
-    for index, item in enumerate(fresh[:10], 1):
-        lines.extend([
-            f"{index}. [{item.get('source')}] {item.get('road')}",
-            item.get("title") or "",
-            " / ".join(str(v) for v in (item.get("price"), item.get("size"), item.get("address")) if v),
-            item.get("url") or "",
-            "",
-        ])
-
-    try:
-        requests.post(
-            f"https://api.telegram.org/bot{token}/sendMessage",
-            json={"chat_id": chat_id, "text": "\n".join(lines)[:4000], "disable_web_page_preview": True},
-            timeout=10,
-        )
-    except Exception:
-        pass
-
-
 def main():
     DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
     checked_at = now_iso()
@@ -543,8 +514,8 @@ def main():
     rows_591, ok_591, msg_591, logs_591 = fetch_591()
     rows_sinyi, ok_sinyi, msg_sinyi, logs_sinyi = fetch_sinyi()
 
-    new_591, _ = merge_source(state, "591", rows_591, ok_591, msg_591, logs_591, checked_at)
-    new_sinyi, _ = merge_source(state, "信義房屋", rows_sinyi, ok_sinyi, msg_sinyi, logs_sinyi, checked_at)
+    merge_source(state, "591", rows_591, ok_591, msg_591, logs_591, checked_at)
+    merge_source(state, "信義房屋", rows_sinyi, ok_sinyi, msg_sinyi, logs_sinyi, checked_at)
 
     state["updatedAt"] = checked_at
     state["watchRoads"] = list(WATCH_ROADS.keys())
@@ -558,7 +529,6 @@ def main():
     )[:600]
 
     DATA_PATH.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
-    send_telegram(state, new_591 + new_sinyi)
 
     print("591:", msg_591)
     for line in logs_591:
