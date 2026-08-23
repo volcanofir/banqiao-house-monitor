@@ -117,6 +117,7 @@ jobs:
               if any(x in mode for x in ('har','housefun','proxy','previous_snapshot')):
                   bad.append((road, mode))
           assert not bad, bad
+          assert all(x.get('sourceMode') == 'yungching_official_browser' for x in (p.get('companyListings') or []))
 
           z = (s.get('roadStatus') or {}).get('板橋區中山路二段') or {}
           direct = [x for x in (z.get('nextClicks') or []) if x.get('mode') == 'yungching-direct-pg-v4' and int(x.get('target') or 0) == 2]
@@ -126,8 +127,8 @@ jobs:
           print(json.dumps({'scheme':'A','zhongshanCount':z.get('count'),'companyListingCount':p.get('companyListingCount'),'counts':p.get('counts')}, ensure_ascii=False))
           PY
 
-      - name: Save Preview comparison and diagnostics
-        if: always()
+      - name: Save verified Preview output
+        if: success()
         shell: bash
         run: |
           set -e
@@ -144,10 +145,33 @@ jobs:
           done
           git add docs/preview || true
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Update scheme A Preview comparison"
+          git commit -m "Update verified scheme A Preview"
           for attempt in 1 2 3; do
             if git pull --rebase && git push; then exit 0; fi
             git rebase --abort >/dev/null 2>&1 || true
             sleep 3
           done
           exit 1
+
+      - name: Save failed scheme A diagnostics only
+        if: failure()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p /tmp/yungching-preview-failed
+          for f in yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json; do
+            if [[ -f docs/preview/$f ]]; then cp docs/preview/$f /tmp/yungching-preview-failed/$f; fi
+          done
+          git fetch origin main
+          git reset --hard origin/main
+          for f in yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json; do
+            if [[ -f /tmp/yungching-preview-failed/$f ]]; then cp /tmp/yungching-preview-failed/$f docs/preview/$f; fi
+          done
+          git add docs/preview || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Save failed scheme A diagnostics"
+            git push origin HEAD:main || true
+          fi
