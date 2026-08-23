@@ -1,4 +1,5 @@
 import json
+import re
 from collections import defaultdict
 from difflib import SequenceMatcher
 
@@ -15,6 +16,10 @@ REGROUP_STATS = {
     "regrouped591TopLevel": 0,
     "regrouped591ClusterCount": 0,
     "regrouped591AbsorbedCount": 0,
+    "clusterFloorConflictBlocked": 0,
+}
+GROUP_INTEGRITY_STATS = {
+    "crossSourceMultiAttachFloorConflictBlocked": 0,
 }
 
 
@@ -26,19 +31,64 @@ def price_of(x):
     return prev.price_of(x)
 
 
-def title_floor_tokens(title):
-    # Only use explicit "X樓" mentions as a conflict guard. Words such as 三房
-    # are intentionally ignored.
-    import re
-    text = str(title or "")
+def chinese_floor_number(raw):
+    if not raw:
+        return None
+    if raw.isdigit():
+        return int(raw)
+    d = {"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"九":9}
+    if raw == "十":
+        return 10
+    if "十" in raw:
+        left, right = raw.split("十", 1)
+        return d.get(left, 1) * 10 + d.get(right, 0)
+    return d.get(raw)
+
+
+def title_floor_tokens(text):
+    """Extract only subject floors, never the total floor from `3/14樓`."""
+    text = str(text or "")
     nums = set()
-    cn = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9, "十": 10}
-    for raw in re.findall(r"([一二三四五六七八九十]|\d{1,2})樓", text):
-        if raw.isdigit():
-            nums.add(int(raw))
-        elif raw in cn:
-            nums.add(cn[raw])
+
+    spans = []
+    for m in re.finditer(r"(\d{1,2})(?:\s*[~～-]\s*(\d{1,2}))?\s*/\s*\d{1,2}\s*樓", text):
+        lo = int(m.group(1)); hi = int(m.group(2) or m.group(1))
+        if 1 <= lo <= hi <= 99 and hi - lo <= 10:
+            nums.update(range(lo, hi + 1))
+        spans.append(m.span())
+    if spans:
+        chars = list(text)
+        for start, end in spans:
+            for i in range(start, end):
+                chars[i] = " "
+        text = "".join(chars)
+
+    for m in re.finditer(r"(?<!\d)(\d{1,2})\s*[~～-]\s*(\d{1,2})\s*樓", text):
+        lo, hi = int(m.group(1)), int(m.group(2))
+        if 1 <= lo <= hi <= 99 and hi - lo <= 10:
+            nums.update(range(lo, hi + 1))
+
+    for raw in re.findall(r"(?<!\d)(\d{1,2})\s*樓", text):
+        n = int(raw)
+        if 1 <= n <= 99:
+            nums.add(n)
+    for raw in re.findall(r"([一二三四五六七八九十]{1,3})樓", text):
+        n = chinese_floor_number(raw)
+        if n:
+            nums.add(n)
     return nums
+
+
+def listing_floor_tokens(x):
+    floors = set()
+    if not x:
+        return floors
+    floors |= title_floor_tokens(x.get("title"))
+    floors |= title_floor_tokens(x.get("address"))
+    for m in (x.get("mergedListings") or []):
+        floors |= title_floor_tokens(m.get("title"))
+        floors |= title_floor_tokens(m.get("address"))
+    return floors
 
 
 def pair_591_info(a, b):
@@ -56,8 +106,8 @@ def pair_591_info(a, b):
     longest = max((len(x) for x in shared), default=0)
     ratio = SequenceMatcher(None, prev.base.norm(at), prev.base.norm(bt)).ratio()
 
-    af = title_floor_tokens(at)
-    bf = title_floor_tokens(bt)
+    af = listing_floor_tokens(a)
+    bf = listing_floor_tokens(b)
     floor_conflict = bool(af and bf and af.isdisjoint(bf))
 
     exact_fingerprint = bool(
@@ -79,6 +129,8 @@ def pair_591_info(a, b):
         "titleRatio": round(ratio, 3),
         "shared": sorted(shared, key=lambda x: (-len(x), x))[:6],
         "floorConflict": floor_conflict,
+        "floorsA": sorted(af),
+        "floorsB": sorted(bf),
         "exactFingerprint": exact_fingerprint,
     }
 
@@ -109,7 +161,9 @@ def flatten_raw_591(x):
 def regroup_591(m591):
     n = len(m591)
     REGROUP_STATS["original591TopLevel"] = n
+    REGROUP_STATS["clusterFloorConflictBlocked"] = 0
     parent = list(range(n))
+    cluster_floors = {i: set(listing_floor_tokens(m591[i])) for i in range(n)}
 
     def find(i):
         while parent[i] != i:
@@ -117,10 +171,21 @@ def regroup_591(m591):
             i = parent[i]
         return i
 
-    def union(i, j):
+    def union_if_floor_safe(i, j):
         ri, rj = find(i), find(j)
-        if ri != rj:
-            parent[rj] = ri
+        if ri == rj:
+            return True
+        fi = cluster_floors.get(ri, set())
+        fj = cluster_floors.get(rj, set())
+        # Critical transitive guard: unknown-floor rows may connect compatible data,
+        # but they may never bridge two clusters that already state disjoint floors.
+        if fi and fj and fi.isdisjoint(fj):
+            REGROUP_STATS["clusterFloorConflictBlocked"] += 1
+            return False
+        parent[rj] = ri
+        cluster_floors[ri] = set(fi) | set(fj)
+        cluster_floors.pop(rj, None)
+        return True
 
     pair_evidence = defaultdict(list)
     for i in range(n):
@@ -128,7 +193,8 @@ def regroup_591(m591):
             ok, info = pair_591_info(m591[i], m591[j])
             if not ok:
                 continue
-            union(i, j)
+            if not union_if_floor_safe(i, j):
+                continue
             pair_evidence[i].append({"otherId": m591[j].get("id"), **info})
             pair_evidence[j].append({"otherId": m591[i].get("id"), **info})
 
@@ -141,8 +207,6 @@ def regroup_591(m591):
     absorbed = 0
 
     for indices in clusters.values():
-        # Prefer the newest/current representative only for display. The raw ads
-        # from every member are retained underneath it.
         indices.sort(
             key=lambda i: (
                 m591[i].get("sourcePublishedAt")
@@ -175,6 +239,7 @@ def regroup_591(m591):
         rep["preview591TopLevelCount"] = len(indices)
         rep["preview591TopLevelIds"] = [x for x in top_ids if x]
         rep["preview591RegroupEvidence"] = evidence[:20]
+        rep["preview591ClusterFloors"] = sorted(set().union(*(listing_floor_tokens(m591[i]) for i in indices)))
 
         if len(indices) > 1:
             merged_cluster_count += 1
@@ -191,10 +256,6 @@ def cross_source_cluster_info(sinyi, m591_group):
     level, score, info = prev.cross_source_info(sinyi, m591_group)
     info = dict(info or {})
 
-    # Multiple independent 591 ads with the same 591 fingerprint are stronger
-    # evidence than one marketing title. If the regrouped 591 property and Sinyi
-    # are almost identical in area and within 30萬 in asking price, allow the
-    # cluster to merge under Sinyi even when titles are very different.
     top_count = int(m591_group.get("preview591TopLevelCount") or 1)
     ad = info.get("areaDelta")
     pd = info.get("priceDelta")
@@ -216,6 +277,7 @@ def build_groups(external):
     raw_591 = [x for x in external if x.get("source") == "591"]
     m591 = regroup_591(raw_591)
 
+    GROUP_INTEGRITY_STATS["crossSourceMultiAttachFloorConflictBlocked"] = 0
     candidates_by_591 = defaultdict(list)
     review_candidates = []
 
@@ -237,6 +299,7 @@ def build_groups(external):
 
     attached = defaultdict(list)
     attached_info = defaultdict(list)
+    attached_floors = defaultdict(set)
     matched_591 = set()
 
     for m in m591:
@@ -245,8 +308,6 @@ def build_groups(external):
             continue
         cands.sort(key=lambda z: z[0], reverse=True)
 
-        # Do not guess when one 591 property group is equally compatible with
-        # multiple Sinyi rows and there is no textual evidence separating them.
         if len(cands) > 1:
             top_score, top_s, top_info = cands[0]
             second_score, second_s, second_info = cands[1]
@@ -269,15 +330,34 @@ def build_groups(external):
                 continue
 
         score, s, info = cands[0]
+        sid = s.get("id")
+        m_floors = set(info.get("listing591Floors") or m.get("preview591ClusterFloors") or [])
+        s_floors = set(info.get("sinyiFloors") or listing_floor_tokens(s))
+        already = attached_floors[sid]
+        # If Sinyi itself does not state a floor, do not let it become a bridge that
+        # absorbs multiple explicit, mutually exclusive 591 floors.
+        if not s_floors and already and m_floors and already.isdisjoint(m_floors):
+            GROUP_INTEGRITY_STATS["crossSourceMultiAttachFloorConflictBlocked"] += 1
+            review_candidates.append({
+                "sinyiId": sid,
+                "listing591Id": m.get("id"),
+                "score": score,
+                "matchInfo": info,
+                "reason": "同一筆樓層未知的信義案件已連結其他明確樓層591；本筆樓層不同，暫不自動整併",
+            })
+            continue
+
         matched_591.add(m.get("id"))
-        attached[s.get("id")].append(m)
-        attached_info[s.get("id")].append({
+        attached[sid].append(m)
+        attached_info[sid].append({
             "listing591Id": m.get("id"),
             "score": score,
             "preview591TopLevelCount": m.get("preview591TopLevelCount") or 1,
             "preview591TopLevelIds": m.get("preview591TopLevelIds") or [m.get("id")],
             **info,
         })
+        if m_floors:
+            attached_floors[sid].update(m_floors)
 
     groups = []
     for s in sinyi:
@@ -290,8 +370,6 @@ def build_groups(external):
 
 
 def main():
-    # Monkey-patch only the grouping stage. v3 still handles the final company
-    # comparison, Sinyi company priority, conflict protection, and output format.
     prev.build_groups = build_groups
     prev.main()
 
@@ -299,12 +377,16 @@ def main():
     payload = json.loads(path.read_text(encoding="utf-8"))
     payload["mode"] = "preview_only_591_then_sinyi_then_company"
     payload["preview591Regroup"] = dict(REGROUP_STATS)
+    payload["schemeAGroupIntegrity"] = dict(GROUP_INTEGRITY_STATS)
     payload["note"] = (
         "PREVIEW：先讓591重新互相比對並整併，再與信義房屋比對；同戶一律以信義為主資料、591保留在來源明細；"
-        "最後才拿整併後的房屋群組比對永慶公開直營庫存。弱公司候選列未接回；真正公司候選衝突才列待確認。"
+        "最後才拿整併後的房屋群組比對永慶公開直營庫存。群組層級禁止透過樓層未知資料橋接兩個明確不同樓層。"
     )
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps({"preview591Regroup": REGROUP_STATS}, ensure_ascii=False))
+    print(json.dumps({
+        "preview591Regroup": REGROUP_STATS,
+        "schemeAGroupIntegrity": GROUP_INTEGRITY_STATS,
+    }, ensure_ascii=False))
 
 
 if __name__ == "__main__":
