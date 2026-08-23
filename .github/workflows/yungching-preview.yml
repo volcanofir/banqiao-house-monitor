@@ -12,6 +12,10 @@ on:
       - "scripts/compare_yungching_preview_v5.py"
       - "scripts/compare_yungching_preview_v6.py"
       - "scripts/compare_yungching_preview_v7.py"
+      - "scripts/compare_yungching_preview_v8.py"
+      - "scripts/sinyi_preview_floor_enrich.py"
+      - "scripts/audit_scheme_a_ambiguity.py"
+      - "scripts/audit_scheme_a_ambiguity_v2.py"
       - "scripts/yungching_crypto.py"
       - "scripts/yungching_official_probe.py"
       - "scripts/yungching_playwright_probe.py"
@@ -26,6 +30,7 @@ on:
       - "scripts/patch_preview_ui.py"
       - "scripts/validate_scheme_a_preview.py"
       - "scripts/validate_scheme_a_preview_v2.py"
+      - "scripts/validate_scheme_a_preview_v3.py"
       - "scripts/write_scheme_a_saved_output_audit.py"
       - "docs/data/listings.json"
 
@@ -95,18 +100,25 @@ jobs:
         continue-on-error: true
         run: sudo wg-quick down surfshark || true
 
-      - name: Regroup 591, merge into Sinyi, then compare official Yongching DOM
+      - name: Build Preview-only Sinyi structured floor snapshot
+        shell: bash
+        run: python scripts/sinyi_preview_floor_enrich.py
+
+      - name: Regroup 591, merge with structured Sinyi floors, then compare Yongching
         id: compare
         shell: bash
         run: |
           set -o pipefail
-          python scripts/compare_yungching_preview_v7.py 2>&1 | tee docs/preview/yungching-preview-run.log
+          python scripts/compare_yungching_preview_v8.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
       - name: Simplify Preview UI and run hard scheme A validator
         run: python scripts/patch_preview_ui.py
 
-      - name: Validate scheme A again before manifest
-        run: python scripts/validate_scheme_a_preview_v2.py
+      - name: Validate scheme A v3 again before audit and manifest
+        run: python scripts/validate_scheme_a_preview_v3.py
+
+      - name: Re-run 159-group ambiguity audit with structured floors
+        run: python scripts/audit_scheme_a_ambiguity_v2.py
 
       - name: Write canonical scheme A verification manifest
         shell: bash
@@ -118,15 +130,30 @@ jobs:
 
           p=json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
           s=json.loads(Path('docs/preview/yungching-browser-snapshot.json').read_text(encoding='utf-8'))
+          sf=json.loads(Path('docs/preview/sinyi-floor-enrichment.json').read_text(encoding='utf-8'))
+          aa=json.loads(Path('docs/preview/scheme-a-ambiguity-audit.json').read_text(encoding='utf-8'))
           comparisons=p.get('comparisons') or []
           candidates=[x.get('companyCandidate') for x in comparisons if x.get('companyCandidate')]
+          near=p.get('companyNearTieGuard') or {}
           manifest={
             'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
             'scheme':'A',
-            'integrityVersion':'scheme-a-canonical-v2-all-pages-safe-floor',
-            'source':'Surfshark + Chromium official Yongching DOM + all-pages direct pg pagination + official detail pages',
+            'integrityVersion':'scheme-a-canonical-v3-sinyi-floor-neartie',
+            'source':'Sinyi official __NEXT_DATA__ structured floors + Surfshark + Chromium official Yongching DOM + all-pages direct pg pagination + official detail pages',
             'fetchMode':p.get('fetchMode'),
             'safeFloorParser':p.get('safeFloorParser'),
+            'sinyiStructuredFloorMatching':p.get('sinyiStructuredFloorMatching'),
+            'sinyiFloorEnrichment':sf,
+            'companyNearTieGuard':near,
+            'ambiguityAudit':{
+                'auditedAt':aa.get('auditedAt'),
+                'propertyGroupCount':aa.get('propertyGroupCount'),
+                'companyListingCount':aa.get('companyListingCount'),
+                'companyMatchCount':aa.get('companyMatchCount'),
+                'companyNearTieStrongCount':aa.get('companyNearTieStrongCount'),
+                'chosenCandidateRecomputeMismatchCount':aa.get('chosenCandidateRecomputeMismatchCount'),
+                'weakIdentityAlreadyMergedPairCount':aa.get('weakIdentityAlreadyMergedPairCount'),
+            },
             'snapshotCapturedAt':s.get('capturedAt'),
             'companySnapshotCapturedAt':p.get('companySnapshotCapturedAt'),
             'companyGapGeneratedAt':p.get('generatedAt'),
@@ -158,6 +185,12 @@ jobs:
             'valid':True,
           }
           assert manifest['safeFloorParser'] is True, manifest
+          assert manifest['sinyiStructuredFloorMatching'] is True, manifest
+          assert sf.get('complete') is True, sf
+          assert sf.get('activeSinyiCount') == sf.get('matchedOfficialCount') == sf.get('appliedCount'), sf
+          assert int(near.get('remainingAutoNearTieCount') or 0) == 0, near
+          assert int(aa.get('companyNearTieStrongCount') or 0) == 0, aa
+          assert int(aa.get('chosenCandidateRecomputeMismatchCount') or 0) == 0, aa
           assert manifest['snapshotCapturedAt'] == manifest['companySnapshotCapturedAt'], manifest
           assert manifest['browserListingCount'] == manifest['companyListingCount'], manifest
           assert manifest['propertyGroupCount'] == manifest['comparisonCount'], manifest
@@ -177,7 +210,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p /tmp/yungching-preview-output
-          for f in company-gap.json yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html; do
+          for f in company-gap.json yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json sinyi-floor-enrichment.json scheme-a-ambiguity-audit.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html; do
             if [[ -f docs/preview/$f ]]; then cp docs/preview/$f /tmp/yungching-preview-output/$f; fi
           done
           git fetch origin main
@@ -186,7 +219,7 @@ jobs:
             [[ -e "$f" ]] || continue
             cp "$f" "docs/preview/$(basename "$f")"
           done
-          for f in company-gap.json yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html; do
+          for f in company-gap.json yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json sinyi-floor-enrichment.json scheme-a-ambiguity-audit.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html; do
             [[ -f docs/preview/$f ]] && git add "docs/preview/$f"
           done
           if git diff --cached --quiet; then exit 0; fi
@@ -215,6 +248,8 @@ jobs:
           [[ -f docs/preview/yungching-browser-snapshot.json ]] && cp docs/preview/yungching-browser-snapshot.json /tmp/yungching-preview-failed/yungching-browser-snapshot-failed.json || true
           [[ -f docs/preview/yungching-detail-floor.json ]] && cp docs/preview/yungching-detail-floor.json /tmp/yungching-preview-failed/yungching-detail-floor-failed.json || true
           [[ -f docs/preview/yungching-pagination-probe.json ]] && cp docs/preview/yungching-pagination-probe.json /tmp/yungching-preview-failed/yungching-pagination-probe-failed.json || true
+          [[ -f docs/preview/sinyi-floor-enrichment.json ]] && cp docs/preview/sinyi-floor-enrichment.json /tmp/yungching-preview-failed/sinyi-floor-enrichment-failed.json || true
+          [[ -f docs/preview/scheme-a-ambiguity-audit.json ]] && cp docs/preview/scheme-a-ambiguity-audit.json /tmp/yungching-preview-failed/scheme-a-ambiguity-audit-failed.json || true
           [[ -f docs/preview/scheme-a-saved-output-audit.json ]] && cp docs/preview/scheme-a-saved-output-audit.json /tmp/yungching-preview-failed/scheme-a-saved-output-audit-failed.json || true
 
           git fetch origin main
