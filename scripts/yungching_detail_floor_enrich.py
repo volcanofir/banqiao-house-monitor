@@ -2,8 +2,8 @@
 
 Input: docs/preview/yungching-browser-snapshot.json produced through Surfshark + Chromium.
 For rendered list cards that do not expose a subject floor, open the official Yongching
-house detail page in the same network path and extract floor text from rendered DOM.
-No third-party inventory is used.
+house detail page in the same network path and extract the current property's floor from
+its rendered 基本資訊 section. No third-party inventory is used.
 """
 
 import json
@@ -29,16 +29,13 @@ def compact(value):
 def floor_from_detail_text(text: str, allow_unlabelled=False):
     text = compact(text).replace("／", "/").replace("～", "~")
 
-    # Prefer values explicitly attached to the detail specification labels.
-    labelled = []
-    for m in re.finditer(r"(?:所在樓層|樓層|樓別)\s*[:：]?\s*(.{0,50})", text):
-        labelled.append(m.group(0))
-    for snippet in labelled:
+    # Highest confidence: value rendered beside a floor specification label.
+    for m in re.finditer(r"(?:所在樓層|樓層|樓別)\s*[:：]?\s*(.{0,60})", text):
+        snippet = m.group(0)
         floor = v3.safe_parse_floor(snippet)
         if floor:
-            return floor, snippet[:140], "labelled-subject-total"
+            return floor, snippet[:160], "labelled-subject-total"
 
-    # Some templates render subject floor and total floor as separate specification rows.
     subject = None
     total = None
     for pat in (
@@ -60,19 +57,33 @@ def floor_from_detail_text(text: str, allow_unlabelled=False):
     if subject and total and 1 <= subject <= total <= 99:
         return f"{subject}/{total}樓", f"subject={subject}, total={total}", "separate-labels"
 
-    # Only the already-filtered floor-specification DOM snippets may use an unlabelled
-    # subject/total expression. Never scan the whole body this way because Yongching's
-    # detail page can contain recommended properties with unrelated floor values.
+    # Safe only inside the current property's own header/basic-info section.
     if allow_unlabelled:
         floor = v3.safe_parse_floor(text)
         if floor:
-            return floor, text[:180], "specification-subject-total"
+            pos = text.find(floor)
+            evidence = text[max(0, pos - 80):pos + 100] if pos >= 0 else text[:180]
+            return floor, evidence, "current-property-section"
 
     return None, None, None
 
 
+def slice_basic_info(body: str):
+    """Isolate the current property's rendered 基本資訊 block before recommendation content."""
+    body = compact(body)
+    start = body.find("基本資訊")
+    if start < 0:
+        return ""
+    end_candidates = []
+    for marker in ("特色說明", "房屋特色", "周邊環境", "實價登錄", "附近成交"):
+        p = body.find(marker, start + 4)
+        if p > start:
+            end_candidates.append(p)
+    end = min(end_candidates) if end_candidates else min(len(body), start + 6000)
+    return body[start:end]
+
+
 def rendered_floor_context(page):
-    """Return focused floor-specification snippets plus body text for labelled fallback."""
     result = page.evaluate(
         """() => {
           const clean = s => (s || '').replace(/\s+/g, ' ').trim();
@@ -80,22 +91,46 @@ def rendered_floor_context(page):
           const seen = new Set();
           for (const el of Array.from(document.querySelectorAll('body *'))) {
             const text = clean(el.innerText);
-            if (!text || text.length > 240) continue;
-            if (!/(所在樓層|樓層|樓別|總樓層|總樓高)/.test(text)) continue;
+            if (!text || text.length > 320) continue;
+            if (!/(所在樓層|樓層|樓別|總樓層|總樓高|基本資訊)/.test(text)) continue;
             if (seen.has(text)) continue;
             seen.add(text);
             snippets.push(text);
-            if (snippets.length >= 40) break;
+            if (snippets.length >= 60) break;
           }
           return {
             snippets,
-            body: clean(document.body ? document.body.innerText : '').slice(0,120000),
+            body: clean(document.body ? document.body.innerText : '').slice(0,140000),
           };
         }"""
     )
-    focused = " | ".join(result.get("snippets") or [])
+    snippets = result.get("snippets") or []
     body = result.get("body") or ""
-    return focused, body, (result.get("snippets") or [])[:20]
+    return " | ".join(snippets), body, snippets[:20]
+
+
+def render_full_detail(page):
+    """Wait for the current listing specs, then trigger lazy rendered sections by scrolling."""
+    try:
+        page.wait_for_function(
+            "() => document.body && /基本資訊|樓層/.test(document.body.innerText || '')",
+            timeout=9000,
+        )
+    except Exception:
+        pass
+
+    page.wait_for_timeout(800)
+    for ratio in (0.2, 0.45, 0.7, 1.0):
+        try:
+            page.evaluate("r => window.scrollTo(0, Math.max(0, document.body.scrollHeight * r))", ratio)
+        except Exception:
+            pass
+        page.wait_for_timeout(650)
+    try:
+        page.evaluate("window.scrollTo(0,0)")
+    except Exception:
+        pass
+    page.wait_for_timeout(500)
 
 
 def should_enrich(row):
@@ -132,18 +167,29 @@ def main():
             try:
                 response = page.goto(row["url"], wait_until="domcontentloaded", timeout=35000)
                 info["http"] = response.status if response else None
-                page.wait_for_timeout(1200)
+                render_full_detail(page)
                 focused, body, snippets = rendered_floor_context(page)
+                basic = slice_basic_info(body)
 
-                # Focused snippets are already constrained to floor-specification DOM.
-                floor, evidence, mode = floor_from_detail_text(focused, allow_unlabelled=True)
+                # 1) Current property's 基本資訊 block: safe to accept an unlabelled X/Y樓.
+                floor, evidence, mode = floor_from_detail_text(basic, allow_unlabelled=True)
+                # 2) DOM snippets containing explicit floor/basic-info labels.
                 if not floor:
-                    # Whole-body fallback accepts labelled/separate-specification formats only.
+                    floor, evidence, mode = floor_from_detail_text(focused, allow_unlabelled=False)
+                # 3) Whole body only accepts explicitly labelled floor formats.
+                if not floor:
                     floor, evidence, mode = floor_from_detail_text(body, allow_unlabelled=False)
+                # 4) Header fallback: before 基本資訊, still belongs to the current property.
+                if not floor and body:
+                    header = body[:body.find("基本資訊") if "基本資訊" in body else min(5000, len(body))]
+                    floor, evidence, mode = floor_from_detail_text(header, allow_unlabelled=True)
+                    if floor:
+                        mode = "current-property-header"
 
                 info["floor"] = floor
                 info["mode"] = mode
                 info["evidence"] = evidence
+                info["basicInfo"] = basic[:700]
                 info["snippets"] = snippets[:8]
                 info["finalUrl"] = page.url
                 if info["http"] == 200 and floor:
@@ -166,6 +212,7 @@ def main():
         "enriched": enriched,
         "remainingMissing": sum(1 for row in listings if should_enrich(row)),
         "skippedTypes": sorted(SKIP_TYPES),
+        "method": "wait basic info + full scroll + current property basic-info/header parsing",
     }
     SNAPSHOT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     DIAG.write_text(json.dumps({
