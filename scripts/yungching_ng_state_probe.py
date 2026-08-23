@@ -13,6 +13,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 from playwright.sync_api import sync_playwright
 
 import yungching_dom_snapshot as base
+import yungching_crypto as yc_crypto
 
 
 OUT = Path("docs/preview/yungching-ng-state-probe.json")
@@ -116,7 +117,7 @@ def relevant_scalars(root, known_ids):
     matched_known_ids = set()
 
     def walk(x, path="", depth=0):
-        if depth > 9 or len(rows) >= 300:
+        if depth > 9 or len(rows) >= 500:
             return
         if isinstance(x, dict):
             for k, v in x.items():
@@ -133,11 +134,40 @@ def relevant_scalars(root, known_ids):
                         rows.append({"path": p, "value": v})
                 walk(v, p, depth + 1)
         elif isinstance(x, list):
-            for i, v in enumerate(x[:12]):
+            for i, v in enumerate(x[:40]):
                 walk(v, f"{path}[{i}]", depth + 1)
 
     walk(root)
     return rows, sorted(matched_known_ids)
+
+
+def decode_transfer_value(value):
+    meta = {"originalType": type(value).__name__, "decodeMode": "none"}
+    if not isinstance(value, str):
+        return value, meta
+
+    meta["stringChars"] = len(value)
+    # Yongching's public frontend encrypts API payloads with the same AES scheme
+    # mirrored in yungching_crypto.py. Try that first, then ordinary nested JSON.
+    try:
+        decoded = yc_crypto.decrypt_value(value)
+        meta["decodeMode"] = "yungching-aes-256-cbc"
+        meta["decodedType"] = type(decoded).__name__
+        return decoded, meta
+    except Exception as exc:
+        meta["cryptoError"] = type(exc).__name__
+
+    try:
+        decoded = json.loads(value)
+        meta["decodeMode"] = "nested-json"
+        meta["decodedType"] = type(decoded).__name__
+        return decoded, meta
+    except Exception as exc:
+        meta["jsonError"] = type(exc).__name__
+
+    # Persist no raw ciphertext or plaintext prefix; only safe format diagnostics.
+    meta["looksBase64"] = bool(re.fullmatch(r"[A-Za-z0-9+/=\r\n]+", value))
+    return value, meta
 
 
 def extract_transfer(page, known_ids):
@@ -153,13 +183,16 @@ def extract_transfer(page, known_ids):
     for key, value in state.items():
         if not str(key).startswith("transfer-buy:/api/v2/"):
             continue
-        scalars, known = relevant_scalars(value, known_ids)
-        raw = json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+        decoded, decode_meta = decode_transfer_value(value)
+        scalars, known = relevant_scalars(decoded, known_ids)
+        raw = json.dumps(decoded, ensure_ascii=False, separators=(",", ":"))
         transfers.append({
             "key": str(key),
-            "payloadBytesUtf8": len(raw.encode("utf-8")),
-            "structure": structure(value),
-            "candidateArrays": candidate_arrays(value),
+            "encodedPayloadBytesUtf8": len(json.dumps(value, ensure_ascii=False).encode("utf-8")),
+            "decode": decode_meta,
+            "decodedPayloadBytesUtf8": len(raw.encode("utf-8")),
+            "structure": structure(decoded),
+            "candidateArrays": candidate_arrays(decoded),
             "relevantScalars": scalars,
             "matchedCanonicalHouseIds": known,
             "matchedCanonicalHouseIdCount": len(known),
@@ -175,11 +208,13 @@ def extract_transfer(page, known_ids):
 
 
 def main():
+    yc_crypto.self_test()
     known_ids, detail_id = snapshot_ids()
     out = {
         "capturedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "previewOnly": True,
         "road": ROAD,
+        "cryptoSelfTest": True,
         "pages": {},
     }
     with sync_playwright() as p:
@@ -221,7 +256,10 @@ def main():
     print(json.dumps({
         name: {
             "http": data.get("http"),
-            "transferCount": ((data.get("transferState") or {}).get("transferCount")),
+            "decode": [
+                t.get("decode")
+                for t in ((data.get("transferState") or {}).get("transfers") or [])
+            ],
             "matchedCanonical": [
                 t.get("matchedCanonicalHouseIdCount")
                 for t in ((data.get("transferState") or {}).get("transfers") or [])
