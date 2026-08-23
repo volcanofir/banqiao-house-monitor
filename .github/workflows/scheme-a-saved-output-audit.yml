@@ -7,6 +7,7 @@ on:
     paths:
       - ".github/workflows/scheme-a-saved-output-audit.yml"
       - "scripts/validate_scheme_a_preview.py"
+      - "scripts/validate_scheme_a_preview_v2.py"
       - "docs/preview/company-gap.json"
       - "docs/preview/yungching-browser-snapshot.json"
       - "docs/preview/scheme-a-verification.json"
@@ -35,11 +36,12 @@ jobs:
           from datetime import datetime, timezone
           from pathlib import Path
           sys.path.insert(0, str(Path('scripts').resolve()))
-          import validate_scheme_a_preview as v
+          import validate_scheme_a_preview_v2 as v
           out={
             'auditedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
             'scheme':'A',
             'target':'current saved canonical Preview files',
+            'validator':'validate_scheme_a_preview_v2',
             'passed':False,
             'error':None,
           }
