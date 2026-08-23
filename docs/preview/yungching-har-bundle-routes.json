@@ -1,0 +1,1248 @@
+{
+  "capturedAt": "2026-08-23T02:02:45+00:00",
+  "previewOnly": true,
+  "privacy": "Only public route strings and bundle paths are persisted.",
+  "scriptBundleCountAnalyzed": 167,
+  "discoveredRouteCount": 70,
+  "interestingHousingRouteCount": 30,
+  "interestingHousingRoutes": [
+    {
+      "route": "/Searching/Order",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-BZNACKJH.js"
+      ],
+      "approxOccurrences": 3
+    },
+    {
+      "route": "/api/v1/common/ai/chat/list",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-D3MCDZH6.js"
+      ],
+      "approxOccurrences": 4
+    },
+    {
+      "route": "/api/v1/common/shop/list",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/follow/houses",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-FYY52LBC.js"
+      ],
+      "approxOccurrences": 12
+    },
+    {
+      "route": "/api/v2/follow/housesearch",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-P5YEMSDT.js"
+      ],
+      "approxOccurrences": 4
+    },
+    {
+      "route": "/api/v2/house",
+      "sourceBundleCount": 2,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js",
+        "/mansion/main-ZNWPTI42.js"
+      ],
+      "approxOccurrences": 66
+    },
+    {
+      "route": "/api/v2/house/ai",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/house/clear",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/house/introvideo",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/house/ivr",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/house/newest",
+      "sourceBundleCount": 2,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js",
+        "/mansion/main-ZNWPTI42.js"
+      ],
+      "approxOccurrences": 15
+    },
+    {
+      "route": "/api/v2/house/render",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/house/vr",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/list",
+      "sourceBundleCount": 2,
+      "sourceBundles": [
+        "/mansion/chunk-PVBL4MWB.js",
+        "/mansion/main-ZNWPTI42.js"
+      ],
+      "approxOccurrences": 13
+    },
+    {
+      "route": "/api/v2/mansion",
+      "sourceBundleCount": 2,
+      "sourceBundles": [
+        "/mansion/chunk-PVBL4MWB.js",
+        "/mansion/main-ZNWPTI42.js"
+      ],
+      "approxOccurrences": 7
+    },
+    {
+      "route": "/api/v2/recommend/casehotpromote",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-NNUFOQLY.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/recommend/caseidlepromote",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-NNUFOQLY.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/recommend/communitypromote",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-NNUFOQLY.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/recommend/listpromote",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-NNUFOQLY.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/recommend/personalpromote",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-NNUFOQLY.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/recommend/removedpromote",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-NNUFOQLY.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/house/${r?.caseSId}=…",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-4VPZXZT6.js"
+      ],
+      "approxOccurrences": 2
+    },
+    {
+      "route": "/house/${this.buyDetailData",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-XGME2PBF.js"
+      ],
+      "approxOccurrences": 1
+    },
+    {
+      "route": "/house/${this.data",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-AEBIC5VA.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/house/${this.item",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-A56WRQK4.js"
+      ],
+      "approxOccurrences": 2
+    },
+    {
+      "route": "/houseloan",
+      "sourceBundleCount": 4,
+      "sourceBundles": [
+        "/mansion/chunk-BZNACKJH.js",
+        "/mansion/chunk-F3SUZFNC.js",
+        "/mansion/chunk-H7GWVBCK.js",
+        "/mansion/chunk-JFPLV2Y6.js"
+      ],
+      "approxOccurrences": 11
+    },
+    {
+      "route": "/housenote",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-NZO5ZNED.js"
+      ],
+      "approxOccurrences": 3
+    },
+    {
+      "route": "/list",
+      "sourceBundleCount": 2,
+      "sourceBundles": [
+        "/mansion/chunk-4VPZXZT6.js",
+        "/mansion/chunk-XGME2PBF.js"
+      ],
+      "approxOccurrences": 13
+    },
+    {
+      "route": "/list/${o}",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-4VPZXZT6.js"
+      ],
+      "approxOccurrences": 2
+    },
+    {
+      "route": "/list/${this.buyDetailData",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-XGME2PBF.js"
+      ],
+      "approxOccurrences": 4
+    }
+  ],
+  "allDiscoveredRoutes": [
+    {
+      "route": "/Searching/Order",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-BZNACKJH.js"
+      ],
+      "approxOccurrences": 3
+    },
+    {
+      "route": "/api/js?key=…&libraries=…",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-UD3GLKFI.js"
+      ],
+      "approxOccurrences": 3
+    },
+    {
+      "route": "/api/v1",
+      "sourceBundleCount": 2,
+      "sourceBundles": [
+        "/mansion/chunk-ARI4OJ6I.js",
+        "/mansion/main-ZNWPTI42.js"
+      ],
+      "approxOccurrences": 30
+    },
+    {
+      "route": "/api/v1/common/ai/chat/check",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-D3MCDZH6.js"
+      ],
+      "approxOccurrences": 4
+    },
+    {
+      "route": "/api/v1/common/ai/chat/feeling",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-D3MCDZH6.js"
+      ],
+      "approxOccurrences": 4
+    },
+    {
+      "route": "/api/v1/common/ai/chat/list",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-D3MCDZH6.js"
+      ],
+      "approxOccurrences": 4
+    },
+    {
+      "route": "/api/v1/common/ai/chat/talk",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-D3MCDZH6.js"
+      ],
+      "approxOccurrences": 4
+    },
+    {
+      "route": "/api/v1/common/area",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/common/campaign/log/click",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-UQGOQCUW.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/common/campaign/placement",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-UQGOQCUW.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/common/coordinate",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/common/county",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/common/district",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/common/googlejskey",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/common/road",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/common/scrolling",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/common/shop/count",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 12
+    },
+    {
+      "route": "/api/v1/common/shop/county",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/common/shop/district",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/common/shop/list",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/common/shop/road",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/common/splitaddress",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/common/version",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/common/webbeltdata",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-HEJ3QQ7A.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/follow/community",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-FYY52LBC.js"
+      ],
+      "approxOccurrences": 18
+    },
+    {
+      "route": "/api/v1/follow/houses",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-FYY52LBC.js"
+      ],
+      "approxOccurrences": 12
+    },
+    {
+      "route": "/api/v1/follow/trade",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-FYY52LBC.js"
+      ],
+      "approxOccurrences": 12
+    },
+    {
+      "route": "/api/v1/login/line",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/main-ZNWPTI42.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/login/sms",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/main-ZNWPTI42.js"
+      ],
+      "approxOccurrences": 12
+    },
+    {
+      "route": "/api/v1/login/sms/code",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/main-ZNWPTI42.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v1/member/check",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-UD3GLKFI.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/follow/housesearch",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-P5YEMSDT.js"
+      ],
+      "approxOccurrences": 4
+    },
+    {
+      "route": "/api/v2/house",
+      "sourceBundleCount": 2,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js",
+        "/mansion/main-ZNWPTI42.js"
+      ],
+      "approxOccurrences": 66
+    },
+    {
+      "route": "/api/v2/house/ai",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/house/clear",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/house/introvideo",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/house/ivr",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/house/newest",
+      "sourceBundleCount": 2,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js",
+        "/mansion/main-ZNWPTI42.js"
+      ],
+      "approxOccurrences": 15
+    },
+    {
+      "route": "/api/v2/house/render",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/house/vr",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-JRXU4LHR.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/information/autocomplete",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-PV5PHSKW.js"
+      ],
+      "approxOccurrences": 4
+    },
+    {
+      "route": "/api/v2/information/poi",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-PV5PHSKW.js"
+      ],
+      "approxOccurrences": 4
+    },
+    {
+      "route": "/api/v2/information/report",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-PV5PHSKW.js"
+      ],
+      "approxOccurrences": 4
+    },
+    {
+      "route": "/api/v2/information/share/forward",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-PV5PHSKW.js"
+      ],
+      "approxOccurrences": 4
+    },
+    {
+      "route": "/api/v2/leavemessage",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-VIG36PCP.js"
+      ],
+      "approxOccurrences": 36
+    },
+    {
+      "route": "/api/v2/leavemessage/candy",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-VIG36PCP.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/leavemessage/check",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-VIG36PCP.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/leavemessage/line",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-VIG36PCP.js"
+      ],
+      "approxOccurrences": 12
+    },
+    {
+      "route": "/api/v2/leavemessage/linecandy",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-VIG36PCP.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/leavemessage/sms/code",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-VIG36PCP.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/list",
+      "sourceBundleCount": 2,
+      "sourceBundles": [
+        "/mansion/chunk-PVBL4MWB.js",
+        "/mansion/main-ZNWPTI42.js"
+      ],
+      "approxOccurrences": 13
+    },
+    {
+      "route": "/api/v2/mansion",
+      "sourceBundleCount": 2,
+      "sourceBundles": [
+        "/mansion/chunk-PVBL4MWB.js",
+        "/mansion/main-ZNWPTI42.js"
+      ],
+      "approxOccurrences": 7
+    },
+    {
+      "route": "/api/v2/nos",
+      "sourceBundleCount": 2,
+      "sourceBundles": [
+        "/mansion/chunk-PVBL4MWB.js",
+        "/mansion/main-ZNWPTI42.js"
+      ],
+      "approxOccurrences": 13
+    },
+    {
+      "route": "/api/v2/photo/render",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-AEBIC5VA.js"
+      ],
+      "approxOccurrences": 4
+    },
+    {
+      "route": "/api/v2/photo/renderstyle",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-AEBIC5VA.js"
+      ],
+      "approxOccurrences": 2
+    },
+    {
+      "route": "/api/v2/recommend/casehotpromote",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-NNUFOQLY.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/recommend/caseidlepromote",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-NNUFOQLY.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/recommend/communitypromote",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-NNUFOQLY.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/recommend/listpromote",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-NNUFOQLY.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/recommend/personalpromote",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-NNUFOQLY.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/api/v2/recommend/removedpromote",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-NNUFOQLY.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/house/${r?.caseSId}=…",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-4VPZXZT6.js"
+      ],
+      "approxOccurrences": 2
+    },
+    {
+      "route": "/house/${this.buyDetailData",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-XGME2PBF.js"
+      ],
+      "approxOccurrences": 1
+    },
+    {
+      "route": "/house/${this.data",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-AEBIC5VA.js"
+      ],
+      "approxOccurrences": 6
+    },
+    {
+      "route": "/house/${this.item",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-A56WRQK4.js"
+      ],
+      "approxOccurrences": 2
+    },
+    {
+      "route": "/houseloan",
+      "sourceBundleCount": 4,
+      "sourceBundles": [
+        "/mansion/chunk-BZNACKJH.js",
+        "/mansion/chunk-F3SUZFNC.js",
+        "/mansion/chunk-H7GWVBCK.js",
+        "/mansion/chunk-JFPLV2Y6.js"
+      ],
+      "approxOccurrences": 11
+    },
+    {
+      "route": "/housenote",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-NZO5ZNED.js"
+      ],
+      "approxOccurrences": 3
+    },
+    {
+      "route": "/list",
+      "sourceBundleCount": 2,
+      "sourceBundles": [
+        "/mansion/chunk-4VPZXZT6.js",
+        "/mansion/chunk-XGME2PBF.js"
+      ],
+      "approxOccurrences": 13
+    },
+    {
+      "route": "/list/${o}",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-4VPZXZT6.js"
+      ],
+      "approxOccurrences": 2
+    },
+    {
+      "route": "/list/${this.buyDetailData",
+      "sourceBundleCount": 1,
+      "sourceBundles": [
+        "/mansion/chunk-XGME2PBF.js"
+      ],
+      "approxOccurrences": 4
+    }
+  ],
+  "bundlesWithRoutes": [
+    {
+      "path": "/mansion/chunk-HEJ3QQ7A.js",
+      "bytesUtf8": 12417,
+      "routeCount": 15,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-HEJ3QQ7A.js",
+      "bytesUtf8": 12417,
+      "routeCount": 15,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-HEJ3QQ7A.js",
+      "bytesUtf8": 12417,
+      "routeCount": 15,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/main-ZNWPTI42.js",
+      "bytesUtf8": 19422,
+      "routeCount": 9,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/main-ZNWPTI42.js",
+      "bytesUtf8": 19422,
+      "routeCount": 9,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/main-ZNWPTI42.js",
+      "bytesUtf8": 19422,
+      "routeCount": 9,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-JRXU4LHR.js",
+      "bytesUtf8": 4231,
+      "routeCount": 8,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-JRXU4LHR.js",
+      "bytesUtf8": 4231,
+      "routeCount": 8,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-JRXU4LHR.js",
+      "bytesUtf8": 4231,
+      "routeCount": 8,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-NNUFOQLY.js",
+      "bytesUtf8": 3853,
+      "routeCount": 6,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-NNUFOQLY.js",
+      "bytesUtf8": 3853,
+      "routeCount": 6,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-NNUFOQLY.js",
+      "bytesUtf8": 3853,
+      "routeCount": 6,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-VIG36PCP.js",
+      "bytesUtf8": 10026,
+      "routeCount": 6,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-VIG36PCP.js",
+      "bytesUtf8": 10026,
+      "routeCount": 6,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-VIG36PCP.js",
+      "bytesUtf8": 10026,
+      "routeCount": 6,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-D3MCDZH6.js",
+      "bytesUtf8": 2244,
+      "routeCount": 4,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-D3MCDZH6.js",
+      "bytesUtf8": 2244,
+      "routeCount": 4,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-PV5PHSKW.js",
+      "bytesUtf8": 2382,
+      "routeCount": 4,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-PV5PHSKW.js",
+      "bytesUtf8": 2382,
+      "routeCount": 4,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-4VPZXZT6.js",
+      "bytesUtf8": 18627,
+      "routeCount": 3,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-4VPZXZT6.js",
+      "bytesUtf8": 18627,
+      "routeCount": 3,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-AEBIC5VA.js",
+      "bytesUtf8": 107891,
+      "routeCount": 3,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-FYY52LBC.js",
+      "bytesUtf8": 3658,
+      "routeCount": 3,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-FYY52LBC.js",
+      "bytesUtf8": 3658,
+      "routeCount": 3,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-FYY52LBC.js",
+      "bytesUtf8": 3658,
+      "routeCount": 3,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-PVBL4MWB.js",
+      "bytesUtf8": 2710,
+      "routeCount": 3,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-PVBL4MWB.js",
+      "bytesUtf8": 2710,
+      "routeCount": 3,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-XGME2PBF.js",
+      "bytesUtf8": 216766,
+      "routeCount": 3,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-BZNACKJH.js",
+      "bytesUtf8": 114277,
+      "routeCount": 2,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-BZNACKJH.js",
+      "bytesUtf8": 114277,
+      "routeCount": 2,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-BZNACKJH.js",
+      "bytesUtf8": 114277,
+      "routeCount": 2,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-UD3GLKFI.js",
+      "bytesUtf8": 2121,
+      "routeCount": 2,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-UD3GLKFI.js",
+      "bytesUtf8": 2121,
+      "routeCount": 2,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-UD3GLKFI.js",
+      "bytesUtf8": 2121,
+      "routeCount": 2,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-UQGOQCUW.js",
+      "bytesUtf8": 6574,
+      "routeCount": 2,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-UQGOQCUW.js",
+      "bytesUtf8": 6574,
+      "routeCount": 2,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-UQGOQCUW.js",
+      "bytesUtf8": 6574,
+      "routeCount": 2,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-A56WRQK4.js",
+      "bytesUtf8": 106030,
+      "routeCount": 1,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-A56WRQK4.js",
+      "bytesUtf8": 106030,
+      "routeCount": 1,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-ARI4OJ6I.js",
+      "bytesUtf8": 3298,
+      "routeCount": 1,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-ARI4OJ6I.js",
+      "bytesUtf8": 3298,
+      "routeCount": 1,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-ARI4OJ6I.js",
+      "bytesUtf8": 3298,
+      "routeCount": 1,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-F3SUZFNC.js",
+      "bytesUtf8": 40863,
+      "routeCount": 1,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-H7GWVBCK.js",
+      "bytesUtf8": 55401,
+      "routeCount": 1,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-H7GWVBCK.js",
+      "bytesUtf8": 55401,
+      "routeCount": 1,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-JFPLV2Y6.js",
+      "bytesUtf8": 21568,
+      "routeCount": 1,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-JFPLV2Y6.js",
+      "bytesUtf8": 21568,
+      "routeCount": 1,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-NZO5ZNED.js",
+      "bytesUtf8": 32619,
+      "routeCount": 1,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-NZO5ZNED.js",
+      "bytesUtf8": 32619,
+      "routeCount": 1,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-NZO5ZNED.js",
+      "bytesUtf8": 32619,
+      "routeCount": 1,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-P5YEMSDT.js",
+      "bytesUtf8": 95626,
+      "routeCount": 1,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    },
+    {
+      "path": "/mansion/chunk-P5YEMSDT.js",
+      "bytesUtf8": 95626,
+      "routeCount": 1,
+      "hasFetchToken": false,
+      "hasAxiosToken": false,
+      "hasGraphqlToken": false
+    }
+  ]
+}

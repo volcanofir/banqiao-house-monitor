@@ -1,0 +1,104 @@
+{
+  "capturedAt": "2026-08-23T02:03:10+00:00",
+  "previewOnly": true,
+  "sourceDiscovery": "Angular SSR ng-state TransferState keys",
+  "road": "板橋區中山路二段",
+  "requests": {
+    "listPage1": {
+      "status": 403,
+      "ok": false,
+      "contentType": "text/html",
+      "urlPath": "/api/v2/list",
+      "responseBytesUtf8": 919,
+      "jsonError": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "textPrefix": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>ERROR"
+    },
+    "listPage2": {
+      "status": 403,
+      "ok": false,
+      "contentType": "text/html",
+      "urlPath": "/api/v2/list",
+      "responseBytesUtf8": 919,
+      "jsonError": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "textPrefix": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>ERROR"
+    },
+    "detail": {
+      "status": 403,
+      "ok": false,
+      "contentType": "text/html",
+      "urlPath": "/api/v2/house",
+      "responseBytesUtf8": 919,
+      "jsonError": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "textPrefix": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>ERROR",
+      "expectedHouseId": "5289400"
+    }
+  },
+  "seedPageStatus": 200,
+  "comparisons": {
+    "page1": {
+      "apiHouseUrlIdCount": 0,
+      "serverHtmlHouseIdCount": 34,
+      "apiOnly": [],
+      "htmlOnly": [
+        "4308114",
+        "6705632",
+        "6778412",
+        "6803143",
+        "6857079",
+        "6883302",
+        "6935425",
+        "6945344",
+        "6956945",
+        "6973967",
+        "6996810",
+        "7048626",
+        "7096507",
+        "7110135",
+        "7121158",
+        "7219043",
+        "7251880",
+        "7299014",
+        "7306232",
+        "7309950",
+        "7310666",
+        "7327430",
+        "7328624",
+        "7346529",
+        "7359219",
+        "7384283",
+        "7410045",
+        "7443524",
+        "7443995",
+        "7455140",
+        "7460476",
+        "7472136",
+        "7473603",
+        "7479407"
+      ],
+      "intersectionCount": 0
+    },
+    "page2": {
+      "apiHouseUrlIdCount": 0,
+      "serverHtmlHouseIdCount": 15,
+      "apiOnly": [],
+      "htmlOnly": [
+        "4308114",
+        "5289400",
+        "5290520",
+        "5945842",
+        "6156655",
+        "6195588",
+        "6327691",
+        "6481434",
+        "6482848",
+        "6521665",
+        "6599716",
+        "6693666",
+        "7252089",
+        "7346529",
+        "7479407"
+      ],
+      "intersectionCount": 0
+    }
+  }
+}

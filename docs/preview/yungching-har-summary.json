@@ -1,11 +1,11 @@
 {
-  "capturedAt": "2026-08-23T01:59:09+00:00",
+  "capturedAt": "2026-08-23T02:02:45+00:00",
   "previewOnly": true,
   "road": "板橋區中山路二段",
   "harStoredInGit": false,
   "harArtifactName": "yungching-network-har",
-  "requestEntryCount": 438,
-  "uniqueEndpointShapeCount": 171,
+  "requestEntryCount": 439,
+  "uniqueEndpointShapeCount": 170,
   "navigation": {
     "page1": {
       "url": {
@@ -41,7 +41,7 @@
       "source": "verified-snapshot-fallback"
     }
   },
-  "candidateApiEndpointCount": 15,
+  "candidateApiEndpointCount": 16,
   "candidateApiEndpoints": [
     {
       "method": "GET",
@@ -149,6 +149,20 @@
       ],
       "mimeTypes": [
         "application/json; charset=utf-8"
+      ]
+    },
+    {
+      "method": "POST",
+      "origin": "https://a.clarity.ms",
+      "path": "/collect",
+      "queryKeys": [],
+      "resourceType": "xhr",
+      "count": 2,
+      "statuses": [
+        -1
+      ],
+      "mimeTypes": [
+        "x-unknown"
       ]
     },
     {
@@ -401,14 +415,13 @@
     },
     {
       "method": "POST",
-      "origin": "https://i.clarity.ms",
+      "origin": "https://r.clarity.ms",
       "path": "/collect",
       "queryKeys": [],
       "resourceType": "xhr",
-      "count": 2,
+      "count": 1,
       "statuses": [
-        -1,
-        204
+        -1
       ],
       "mimeTypes": [
         "x-unknown"
@@ -617,6 +630,20 @@
     },
     {
       "method": "POST",
+      "origin": "https://a.clarity.ms",
+      "path": "/collect",
+      "queryKeys": [],
+      "resourceType": "xhr",
+      "count": 2,
+      "statuses": [
+        -1
+      ],
+      "mimeTypes": [
+        "x-unknown"
+      ]
+    },
+    {
+      "method": "POST",
       "origin": "https://analytics.google.com",
       "path": "/g/collect",
       "queryKeys": [
@@ -865,14 +892,13 @@
     },
     {
       "method": "POST",
-      "origin": "https://i.clarity.ms",
+      "origin": "https://r.clarity.ms",
       "path": "/collect",
       "queryKeys": [],
       "resourceType": "xhr",
-      "count": 2,
+      "count": 1,
       "statuses": [
-        -1,
-        204
+        -1
       ],
       "mimeTypes": [
         "x-unknown"
@@ -2732,12 +2758,26 @@
       "resourceType": "stylesheet",
       "count": 3,
       "statuses": [
-        -1,
         200
       ],
       "mimeTypes": [
-        "text/css; charset=utf-8",
-        "x-unknown"
+        "text/css; charset=utf-8"
+      ]
+    },
+    {
+      "method": "GET",
+      "origin": "https://cdn.yungching.com.tw",
+      "path": "/fp/yc/ad/buylist_PC_bottom.webp",
+      "queryKeys": [
+        "v"
+      ],
+      "resourceType": "image",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "mimeTypes": [
+        "image/webp"
       ]
     },
     {
@@ -2841,22 +2881,6 @@
       "queryKeys": [],
       "resourceType": "image",
       "count": 2,
-      "statuses": [
-        200
-      ],
-      "mimeTypes": [
-        "image/webp"
-      ]
-    },
-    {
-      "method": "GET",
-      "origin": "https://cloudcdn.yungching.com.tw",
-      "path": "/yc-cloudcdn/image/3e3c9b149057454e8eea7d48e9ca92a1_1200x110.webp",
-      "queryKeys": [
-        "v"
-      ],
-      "resourceType": "image",
-      "count": 1,
       "statuses": [
         200
       ],
@@ -2999,6 +3023,7 @@
         "action_name",
         "cookie",
         "dimension1",
+        "dimension31",
         "gt_ms",
         "h",
         "idsite",
@@ -3013,7 +3038,7 @@
         "url"
       ],
       "resourceType": "image",
-      "count": 2,
+      "count": 4,
       "statuses": [
         200
       ],
@@ -3035,7 +3060,6 @@
         "action_name",
         "cookie",
         "dimension1",
-        "dimension31",
         "gt_ms",
         "h",
         "idsite",
@@ -3050,7 +3074,7 @@
         "url"
       ],
       "resourceType": "image",
-      "count": 4,
+      "count": 2,
       "statuses": [
         200
       ],
@@ -3121,36 +3145,12 @@
         "p0",
         "p1",
         "p2",
-        "tld",
-        "v"
-      ],
-      "resourceType": "script",
-      "count": 1,
-      "statuses": [
-        302
-      ],
-      "mimeTypes": [
-        "x-unknown"
-      ]
-    },
-    {
-      "method": "GET",
-      "origin": "https://sslwidget.criteo.com",
-      "path": "/event",
-      "queryKeys": [
-        "a",
-        "ceid",
-        "dy",
-        "fu",
-        "p0",
-        "p1",
-        "p2",
         "sc",
         "tld",
         "v"
       ],
       "resourceType": "script",
-      "count": 1,
+      "count": 2,
       "statuses": [
         302
       ],
@@ -3213,36 +3213,12 @@
         "p0",
         "p1",
         "p2",
-        "tld",
-        "v"
-      ],
-      "resourceType": "script",
-      "count": 1,
-      "statuses": [
-        -1
-      ],
-      "mimeTypes": [
-        "x-unknown"
-      ]
-    },
-    {
-      "method": "GET",
-      "origin": "https://widget.as.criteo.com",
-      "path": "/event",
-      "queryKeys": [
-        "a",
-        "ceid",
-        "dy",
-        "fu",
-        "p0",
-        "p1",
-        "p2",
         "sc",
         "tld",
         "v"
       ],
       "resourceType": "script",
-      "count": 1,
+      "count": 2,
       "statuses": [
         200
       ],
@@ -3355,5 +3331,5 @@
     }
   ],
   "privacy": "summary excludes request/response headers, cookies, query values and request bodies",
-  "harBytes": 17459996
+  "harBytes": 18474879
 }
