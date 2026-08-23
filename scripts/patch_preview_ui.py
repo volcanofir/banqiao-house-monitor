@@ -81,7 +81,7 @@ function verificationMatches(d,g,v){
   return !!(d&&g&&v&&v.valid===true&&v.scheme==='A'&&v.canonicalPublisher==='yungching-preview.yml'&&
     v.integrityVersion==='scheme-a-canonical-v3-sinyi-floor-neartie'&&v.fetchMode==='yungching_official_rendered_dom_only'&&
     v.snapshotCapturedAt===g.companySnapshotCapturedAt&&v.companyGapGeneratedAt===g.generatedAt&&
-    v.sourceDataUpdatedAt===g.sourceDataUpdatedAt&&(!d.updatedAt||d.updatedAt===g.sourceDataUpdatedAt)&&
+    v.sourceDataUpdatedAt===g.sourceDataUpdatedAt&&d.updatedAt===g.sourceDataUpdatedAt&&
     Number(v.companyListingCount)===Number(g.companyListingCount)&&Number(v.propertyGroupCount)===Number(g.propertyGroupCount)&&
     Number(v.rawListingCount)===Number(g.rawListingCount)&&Number(v.comparisonCount)===Number((g.comparisons||[]).length)&&
     sameCounts(v.counts,g.counts)&&(v.sinyiFloorEnrichment||{}).complete===true);
@@ -103,13 +103,16 @@ Promise.all([
   DATA=d; GAP=g; VERIFY=v;
   const verified=verificationMatches(DATA,GAP,VERIFY);
   if(!verified){
-    const n=Number(GAP.propertyGroupCount??(GAP.propertyGroups||[]).length)||0;
-    GAP={...GAP,comparisons:[],counts:{company_match:0,review:0,missing:0,unavailable:n}};
+    GAP={...GAP,propertyGroups:[],comparisons:[],propertyGroupCount:0,rawListingCount:0,crossPlatformMergedGroupCount:0,counts:{company_match:0,review:0,missing:0,unavailable:0}};
   }
   CMAP=new Map((GAP.comparisons||[]).map(x=>[x.groupId,x]));
   render();
   if(!verified){
-    document.querySelector('#updated').textContent=`來源資料最近更新：${fmt(DATA.updatedAt)}｜比對資料同步中，委託狀態暫停顯示。`;
+    for(const id of ['mGroups','mNew','mMerged','cStock','cReview','cMissing','cUnavailable']){
+      const el=document.getElementById(id); if(el)el.textContent='—';
+    }
+    document.querySelector('#groups').innerHTML='<div class="empty">比對資料同步中。為避免把上一輪案件誤當成最新結果，案件清單暫停顯示。</div>';
+    document.querySelector('#updated').textContent=`來源資料最近更新：${fmt(DATA.updatedAt)}｜公司比對資料同步中，完成後會自動恢復顯示。`;
   }
 }).catch(e=>{
   console.error(e);
@@ -141,7 +144,9 @@ required_fragments = [
     'id="mMerged"',
     'function verificationMatches(d,g,v)',
     'async function fetchJson(url,label)',
-    "v.sourceDataUpdatedAt===g.sourceDataUpdatedAt",
+    "d.updatedAt===g.sourceDataUpdatedAt",
+    'propertyGroups:[]',
+    '案件清單暫停顯示',
     'rel="noopener noreferrer"',
     'aria-live="polite"',
 ]
