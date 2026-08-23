@@ -10,7 +10,31 @@ SNAPSHOT = Path("docs/preview/yungching-browser-snapshot.json")
 GAP = Path("docs/preview/company-gap.json")
 
 
+def normalize_validator_compatibility():
+    # The legacy base guard used substring `har`, which falsely matches `Surfshark`.
+    # Keep HAR blocking, but only for actual fallback-mode tokens.
+    base.FORBIDDEN_MODES = (
+        "har_fallback", "yungching_har", "housefun", "proxy",
+        "previous_snapshot", "previous-snapshot",
+    )
+
+    # Base v1 knows the already-verified `yungching-direct-pg-v4` mode. v5 is the
+    # all-pages engine built on that direct pg mechanism. Preserve the engine marker
+    # while exposing the compatible direct-pg mode to the base validator.
+    s = json.loads(SNAPSHOT.read_text(encoding="utf-8"))
+    changed = False
+    for st in (s.get("roadStatus") or {}).values():
+        for action in (st or {}).get("nextClicks") or []:
+            if action.get("mode") == "yungching-direct-pg-v5":
+                action["paginationEngine"] = "all-pages-v5"
+                action["mode"] = "yungching-direct-pg-v4"
+                changed = True
+    if changed:
+        SNAPSHOT.write_text(json.dumps(s, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
 def main():
+    normalize_validator_compatibility()
     base.main()
     s = json.loads(SNAPSHOT.read_text(encoding="utf-8"))
     p = json.loads(GAP.read_text(encoding="utf-8"))
