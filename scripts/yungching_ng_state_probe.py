@@ -8,7 +8,7 @@ import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit, unquote
 
 from playwright.sync_api import sync_playwright
 
@@ -141,32 +141,55 @@ def relevant_scalars(root, known_ids):
     return rows, sorted(matched_known_ids)
 
 
+def _try_yc_decrypt(candidate: str):
+    decoded = yc_crypto.decrypt_value(candidate)
+    return decoded
+
+
 def decode_transfer_value(value):
     meta = {"originalType": type(value).__name__, "decodeMode": "none"}
     if not isinstance(value, str):
         return value, meta
 
     meta["stringChars"] = len(value)
-    # Yongching's public frontend encrypts API payloads with the same AES scheme
-    # mirrored in yungching_crypto.py. Try that first, then ordinary nested JSON.
-    try:
-        decoded = yc_crypto.decrypt_value(value)
-        meta["decodeMode"] = "yungching-aes-256-cbc"
-        meta["decodedType"] = type(decoded).__name__
-        return decoded, meta
-    except Exception as exc:
-        meta["cryptoError"] = type(exc).__name__
+    meta["stringLengthMod4"] = len(value) % 4
+    meta["looksBase64"] = bool(re.fullmatch(r"[A-Za-z0-9+/=\r\n]+", value))
+    meta["looksBase64Url"] = bool(re.fullmatch(r"[A-Za-z0-9_\-=\r\n]+", value))
+    meta["hasPercentEscapes"] = bool(re.search(r"%[0-9A-Fa-f]{2}", value))
+
+    attempts = [("yungching-aes-256-cbc", value)]
+    if meta["looksBase64Url"]:
+        attempts.append(("base64url-normalized+yungching-aes-256-cbc", value.replace("-", "+").replace("_", "/")))
+    if meta["hasPercentEscapes"]:
+        unquoted = unquote(value)
+        attempts.append(("url-unquote+yungching-aes-256-cbc", unquoted))
+        if re.fullmatch(r"[A-Za-z0-9_\-=\r\n]+", unquoted):
+            attempts.append(("url-unquote+base64url-normalized+yungching-aes-256-cbc", unquoted.replace("-", "+").replace("_", "/")))
+
+    errors = []
+    for mode, candidate in attempts:
+        try:
+            decoded = _try_yc_decrypt(candidate)
+            meta["decodeMode"] = mode
+            meta["decodedType"] = type(decoded).__name__
+            meta["attemptCount"] = len(errors) + 1
+            return decoded, meta
+        except Exception as exc:
+            errors.append(f"{mode}:{type(exc).__name__}")
 
     try:
         decoded = json.loads(value)
         meta["decodeMode"] = "nested-json"
         meta["decodedType"] = type(decoded).__name__
+        meta["attemptCount"] = len(errors) + 1
         return decoded, meta
     except Exception as exc:
-        meta["jsonError"] = type(exc).__name__
+        errors.append(f"nested-json:{type(exc).__name__}")
 
-    # Persist no raw ciphertext or plaintext prefix; only safe format diagnostics.
-    meta["looksBase64"] = bool(re.fullmatch(r"[A-Za-z0-9+/=\r\n]+", value))
+    # Persist only a format fingerprint, not ciphertext/plaintext contents.
+    meta["attemptErrors"] = errors
+    meta["distinctCharCount"] = len(set(value))
+    meta["nonBase64UrlChars"] = sorted(set(re.sub(r"[A-Za-z0-9_\-=]", "", value)))[:40]
     return value, meta
 
 
