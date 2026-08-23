@@ -17,13 +17,12 @@ on:
       - "scripts/yungching_dom_snapshot.py"
       - "scripts/yungching_dom_snapshot_v2.py"
       - "scripts/yungching_dom_snapshot_v3.py"
+      - "scripts/yungching_dom_snapshot_v4.py"
       - "scripts/yungching_detail_floor_enrich.py"
       - "scripts/yungching_browser_preflight.py"
       - "scripts/connect_surfshark_wireguard.sh"
       - "scripts/patch_preview_ui.py"
       - "docs/data/listings.json"
-      - "docs/preview/yungching-har-snapshot.json"
-      - "docs/preview/yungching-area-enrichment.json"
 
 permissions:
   contents: write
@@ -35,7 +34,7 @@ concurrency:
 jobs:
   compare:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -52,7 +51,6 @@ jobs:
 
       - name: Find usable Surfshark exit for Yongching
         id: vpn
-        continue-on-error: true
         env:
           SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
         shell: bash
@@ -60,92 +58,96 @@ jobs:
           for attempt in 1 2 3 4 5; do
             echo "Surfshark Yongching attempt $attempt/5"
             sudo wg-quick down surfshark >/dev/null 2>&1 || true
-            if bash scripts/connect_surfshark_wireguard.sh; then
-              if python scripts/yungching_browser_preflight.py; then
-                echo "Found Surfshark exit accepted by Yongching Chromium."
-                exit 0
-              fi
-              echo "This Surfshark exit is blocked or unusable for Yongching; rotating."
+            if bash scripts/connect_surfshark_wireguard.sh && python scripts/yungching_browser_preflight.py; then
+              echo "Found Surfshark exit accepted by Yongching Chromium."
+              exit 0
             fi
             sudo wg-quick down surfshark >/dev/null 2>&1 || true
             sleep 4
           done
           exit 1
 
-      - name: Verify Yongching crypto and probe official public source
+      - name: Probe official Yongching source
         continue-on-error: true
         env:
           YUNGCHING_PROBE_VPN_OUTCOME: ${{ steps.vpn.outcome }}
         shell: bash
         run: |
-          set -o pipefail
           python scripts/yungching_crypto.py --self-test
           python scripts/yungching_official_probe.py
+          python scripts/yungching_playwright_probe.py
+          python scripts/yungching_page_param_probe.py
 
-      - name: Probe Yongching with standard Chromium through Surfshark
-        continue-on-error: true
-        env:
-          YUNGCHING_PROBE_VPN_OUTCOME: ${{ steps.vpn.outcome }}
+      - name: Extract official rendered DOM with direct pg pagination
         shell: bash
-        run: python scripts/yungching_playwright_probe.py
+        run: python scripts/yungching_dom_snapshot_v4.py
 
-      - name: Extract Yongching rendered DOM cards and pagination
+      - name: Enrich missing floors from official detail DOM
         continue-on-error: true
-        shell: bash
-        run: python scripts/yungching_dom_snapshot_v3.py
-
-      - name: Enrich missing floors from official Yongching detail DOM
-        continue-on-error: true
-        shell: bash
         run: python scripts/yungching_detail_floor_enrich.py
 
       - name: Disconnect Surfshark before Preview comparison
         if: always()
         continue-on-error: true
-        shell: bash
         run: sudo wg-quick down surfshark || true
 
       - name: Regroup 591, merge into Sinyi, then compare official Yongching DOM
         id: compare
-        continue-on-error: true
         shell: bash
         run: |
           set -o pipefail
           python scripts/compare_yungching_preview_v6.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
-      - name: Simplify preview UI copy
-        if: always()
+      - name: Simplify Preview UI
         run: python scripts/patch_preview_ui.py
 
-      - name: Save preview comparison and diagnostic
+      - name: Validate scheme A source chain
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
+          s = json.loads(Path('docs/preview/yungching-browser-snapshot.json').read_text(encoding='utf-8'))
+          assert p.get('fetchMode') == 'yungching_official_rendered_dom_only', p.get('fetchMode')
+          assert (p.get('companyDataGuard') or {}).get('enabled') is False
+          bad = []
+          for road, st in (p.get('roadStatus') or {}).items():
+              mode = str((st or {}).get('mode') or '').lower()
+              if any(x in mode for x in ('har','housefun','proxy','previous_snapshot')):
+                  bad.append((road, mode))
+          assert not bad, bad
+
+          z = (s.get('roadStatus') or {}).get('板橋區中山路二段') or {}
+          direct = [x for x in (z.get('nextClicks') or []) if x.get('mode') == 'yungching-direct-pg-v4' and int(x.get('target') or 0) == 2]
+          assert z.get('paginationComplete') is True, z
+          assert int(z.get('count') or 0) >= 39, z
+          assert direct and direct[0].get('http') == 200 and direct[0].get('activeVerified') is True, direct
+          print(json.dumps({'scheme':'A','zhongshanCount':z.get('count'),'companyListingCount':p.get('companyListingCount'),'counts':p.get('counts')}, ensure_ascii=False))
+          PY
+
+      - name: Save Preview comparison and diagnostics
         if: always()
         shell: bash
         run: |
+          set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            docs/preview/company-gap.json \
-            docs/preview/yungching-preview-run.log \
-            docs/preview/yungching-official-probe.json \
-            docs/preview/yungching-official-snapshot.json \
-            docs/preview/yungching-playwright-probe.json \
-            docs/preview/yungching-browser-snapshot.json \
-            docs/preview/yungching-detail-floor.json \
-            docs/preview/index.html || true
-          if git diff --cached --quiet; then
-            echo "No preview comparison changes."
-            exit 0
-          fi
-          git commit -m "Update Yongching preview comparison"
+          mkdir -p /tmp/yungching-preview-output
+          for f in company-gap.json yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json index.html; do
+            if [[ -f docs/preview/$f ]]; then cp docs/preview/$f /tmp/yungching-preview-output/$f; fi
+          done
+          git fetch origin main
+          git reset --hard origin/main
+          for f in company-gap.json yungching-preview-run.log yungching-official-probe.json yungching-official-snapshot.json yungching-playwright-probe.json yungching-browser-snapshot.json yungching-detail-floor.json yungching-pagination-probe.json index.html; do
+            if [[ -f /tmp/yungching-preview-output/$f ]]; then cp /tmp/yungching-preview-output/$f docs/preview/$f; fi
+          done
+          git add docs/preview || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Update scheme A Preview comparison"
           for attempt in 1 2 3; do
-            if git pull --rebase && git push; then
-              exit 0
-            fi
+            if git pull --rebase && git push; then exit 0; fi
             git rebase --abort >/dev/null 2>&1 || true
             sleep 3
           done
           exit 1
-
-      - name: Fail if comparison failed
-        if: steps.compare.outcome != 'success'
-        run: exit 1
