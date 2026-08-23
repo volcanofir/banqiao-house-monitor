@@ -37,9 +37,10 @@ def main():
     if fs.get("complete") is not True:
         raise RuntimeError(f"591 detail floor enrichment incomplete: {fs.get('detailErrorCount')} errors")
 
-    # v8 points the Preview comparator at ENRICHED. Redirect it only for this replay.
+    # Redirect only Preview input and the v8 floor hook. Do not replace v8's
+    # ORIGINAL_SAFE_LISTING_FLOORS reference, otherwise the wrapper recurses.
     v8.ENRICHED=V9_EXTERNAL
-    v8.ORIGINAL_SAFE_LISTING_FLOORS=safe_listing_floor_tokens_v9
+    v8.safe_listing_floor_tokens_with_structured=safe_listing_floor_tokens_v9
     # Reset mutable statistics because diagnostics can run multiple comparator passes.
     for d in (v4.REGROUP_STATS, v4.GROUP_INTEGRITY_STATS):
         for k in list(d): d[k]=0
