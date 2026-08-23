@@ -29,22 +29,33 @@ jobs:
           python-version: "3.12"
       - name: Install import dependencies
         run: pip install requests beautifulsoup4
-      - name: Run deterministic scheme A integrity tests
+      - name: Run and capture deterministic integrity tests
         shell: bash
         run: |
-          set -o pipefail
-          python scripts/test_scheme_a_integrity.py | tee /tmp/scheme-a-logic-regression.log
           python - <<'PY'
-          import json
+          import json, subprocess
           from datetime import datetime, timezone
           from pathlib import Path
-          line=Path('/tmp/scheme-a-logic-regression.log').read_text(encoding='utf-8').strip().splitlines()[-1]
-          result=json.loads(line)
-          assert result.get('passed') is True, result
-          result['verifiedAt']=datetime.now(timezone.utc).isoformat(timespec='seconds')
-          Path('docs/preview/scheme-a-logic-regression.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+          p=subprocess.run(['python','scripts/test_scheme_a_integrity.py'],text=True,capture_output=True)
+          out={
+            'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
+            'returncode':p.returncode,
+            'stdout':p.stdout[-12000:],
+            'stderr':p.stderr[-12000:],
+            'passed':False,
+          }
+          if p.returncode==0:
+            lines=[x for x in p.stdout.strip().splitlines() if x.strip()]
+            try:
+              result=json.loads(lines[-1]) if lines else {}
+              out.update(result)
+              out['passed']=result.get('passed') is True
+            except Exception as exc:
+              out['parseError']=f'{type(exc).__name__}: {exc}'
+          Path('docs/preview/scheme-a-logic-regression.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(out,ensure_ascii=False))
           PY
-      - name: Save regression result only
+      - name: Save regression diagnostic
         shell: bash
         run: |
           set -e
@@ -55,6 +66,16 @@ jobs:
           git reset --hard origin/main
           cp /tmp/result.json docs/preview/scheme-a-logic-regression.json
           git add docs/preview/scheme-a-logic-regression.json
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Save scheme A logic regression"
-          git push origin HEAD:main
+          if ! git diff --cached --quiet; then
+            git commit -m "Save scheme A logic regression"
+            git push origin HEAD:main
+          fi
+      - name: Fail if regression did not pass
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('docs/preview/scheme-a-logic-regression.json').read_text(encoding='utf-8'))
+          assert x.get('passed') is True, x
+          PY
