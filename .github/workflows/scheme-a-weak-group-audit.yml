@@ -10,6 +10,7 @@ on:
       - "scripts/summarize_scheme_a_v8_reviews.py"
       - "scripts/audit_591_medium_recluster.py"
       - "scripts/analyze_591_medium_community.py"
+      - "scripts/summarize_591_medium_status.py"
       - "docs/preview/591-medium-field-probe.json"
 
 permissions:
@@ -38,6 +39,7 @@ jobs:
           python scripts/summarize_scheme_a_v8_reviews.py
           python scripts/audit_591_medium_recluster.py
           python scripts/analyze_591_medium_community.py
+          python scripts/summarize_591_medium_status.py
       - name: Save audits
         shell: bash
         run: |
@@ -47,13 +49,15 @@ jobs:
           cp docs/preview/scheme-a-v8-review-summary.json /tmp/reviews.json
           cp docs/preview/591-medium-recluster-audit.json /tmp/recluster.json
           cp docs/preview/591-medium-community-audit.json /tmp/community.json
+          cp docs/preview/591-medium-status-summary.json /tmp/status.json
           git fetch origin main
           git reset --hard origin/main
           cp /tmp/audit.json docs/preview/scheme-a-weak-group-audit.json
           cp /tmp/reviews.json docs/preview/scheme-a-v8-review-summary.json
           cp /tmp/recluster.json docs/preview/591-medium-recluster-audit.json
           cp /tmp/community.json docs/preview/591-medium-community-audit.json
-          git add docs/preview/scheme-a-weak-group-audit.json docs/preview/scheme-a-v8-review-summary.json docs/preview/591-medium-recluster-audit.json docs/preview/591-medium-community-audit.json
+          cp /tmp/status.json docs/preview/591-medium-status-summary.json
+          git add docs/preview/scheme-a-weak-group-audit.json docs/preview/scheme-a-v8-review-summary.json docs/preview/591-medium-recluster-audit.json docs/preview/591-medium-community-audit.json docs/preview/591-medium-status-summary.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Save scheme A weak-group audit"
           git push origin HEAD:main
