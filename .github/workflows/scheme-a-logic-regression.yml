@@ -1,0 +1,60 @@
+name: 方案 A 邏輯完整性 Regression
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/scheme-a-logic-regression.yml"
+      - "scripts/test_scheme_a_integrity.py"
+      - "scripts/compare_yungching_preview_v4.py"
+      - "scripts/compare_yungching_preview_v5.py"
+      - "scripts/compare_yungching_preview_v6.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: banqiao-scheme-a-logic-regression
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install import dependencies
+        run: pip install requests beautifulsoup4
+      - name: Run deterministic scheme A integrity tests
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/test_scheme_a_integrity.py | tee /tmp/scheme-a-logic-regression.log
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          line=Path('/tmp/scheme-a-logic-regression.log').read_text(encoding='utf-8').strip().splitlines()[-1]
+          result=json.loads(line)
+          assert result.get('passed') is True, result
+          result['verifiedAt']=datetime.now(timezone.utc).isoformat(timespec='seconds')
+          Path('docs/preview/scheme-a-logic-regression.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+          PY
+      - name: Save regression result only
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp docs/preview/scheme-a-logic-regression.json /tmp/result.json
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/result.json docs/preview/scheme-a-logic-regression.json
+          git add docs/preview/scheme-a-logic-regression.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Save scheme A logic regression"
+          git push origin HEAD:main
