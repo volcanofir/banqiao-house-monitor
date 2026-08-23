@@ -1,0 +1,1861 @@
+{
+  "auditedAt": "2026-08-23T02:49:53+00:00",
+  "previewOnly": true,
+  "rule": "same price/area needs distinctive feature, >=2 generic features, title similarity >=0.30, or explicit address/community evidence; cluster-level floor/room conflicts blocked",
+  "mediumGroupCount": 20,
+  "wouldSplitGroupCount": 14,
+  "unchangedGroupCount": 6,
+  "rows": [
+    {
+      "groupId": "GROUP:591:20731702",
+      "road": "板橋區中山路二段",
+      "title": "022BH板橋低總價有電梯",
+      "oldMemberCount": 7,
+      "strictClusterCount": 3,
+      "strictClusterSizes": [
+        4,
+        2,
+        1
+      ],
+      "wouldSplit": true,
+      "edgeReasons": {
+        "exact_title": 1,
+        "same_community": 3
+      },
+      "clusters": [
+        {
+          "size": 2,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20731702",
+              "title": "022BH板橋低總價有電梯",
+              "price": "638萬",
+              "size": "9.4坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "電梯"
+              ]
+            },
+            {
+              "id": "591:20731720",
+              "title": "022BH板橋低總價有電梯",
+              "price": "638萬",
+              "size": "9.4坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "電梯"
+              ]
+            }
+          ]
+        },
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20652767",
+              "title": "＊中山雅舍埔墘商圈低總價",
+              "price": "638萬",
+              "size": "9.4坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "埔墘"
+              ]
+            }
+          ]
+        },
+        {
+          "size": 4,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20526150",
+              "title": "埔墘低總價陽光宅☎️買賣房屋懇請指名林沛瀅",
+              "price": "638萬",
+              "size": "9.4坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "埔墘"
+              ]
+            },
+            {
+              "id": "591:20591239",
+              "title": "板橋埔墘商圈雅舍大樓小資首選(現況為套房)",
+              "price": "638萬",
+              "size": "9.4坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "埔墘"
+              ]
+            },
+            {
+              "id": "591:20617054",
+              "title": "低總價🌈埔墘挑高套房🌈小資首選",
+              "price": "638萬",
+              "size": "9.4坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "埔墘"
+              ]
+            },
+            {
+              "id": "591:20623611",
+              "title": "72A1板橋中山路美寓",
+              "price": "638萬",
+              "size": "9.4坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "公寓"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20134351",
+      "road": "板橋區中山路二段",
+      "title": "板橋區埔墘商圈公寓3房",
+      "oldMemberCount": 7,
+      "strictClusterCount": 3,
+      "strictClusterSizes": [
+        5,
+        1,
+        1
+      ],
+      "wouldSplit": true,
+      "edgeReasons": {
+        "title_similarity": 2,
+        "two_generic_features": 2
+      },
+      "clusters": [
+        {
+          "size": 5,
+          "floors": [],
+          "rooms": [
+            3
+          ],
+          "members": [
+            {
+              "id": "591:20134351",
+              "title": "板橋區埔墘商圈公寓3房",
+              "price": "1580萬",
+              "size": "35.7坪",
+              "floorHint": null,
+              "roomHint": 3,
+              "features": [
+                "三房",
+                "公寓",
+                "埔墘"
+              ]
+            },
+            {
+              "id": "591:20447235",
+              "title": "專賣埔墘商圈~方正邊間超大美寓~",
+              "price": "1580萬",
+              "size": "35.7坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "公寓",
+                "埔墘",
+                "方正",
+                "邊間"
+              ]
+            },
+            {
+              "id": "591:20492794",
+              "title": "優質中信_蔡冬冬專約埔墘商圈近北市大空間方正美寓(喜歡來談",
+              "price": "1580萬",
+              "size": "35.7坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "公寓",
+                "埔墘",
+                "方正"
+              ]
+            },
+            {
+              "id": "591:20494514",
+              "title": "👍家樂福商圈方正美寓💕天然瓦斯.前後陽台",
+              "price": "1580萬",
+              "size": "35.7坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "公寓",
+                "前後陽台",
+                "天然瓦斯",
+                "家樂福",
+                "方正"
+              ]
+            },
+            {
+              "id": "591:20583406",
+              "title": "💖埔墘光復學區💖方正大3房💖",
+              "price": "1580萬",
+              "size": "35.7坪",
+              "floorHint": null,
+              "roomHint": 3,
+              "features": [
+                "三房",
+                "光復學區",
+                "埔墘",
+                "方正"
+              ]
+            }
+          ]
+        },
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20382365",
+              "title": "每坪44.3萬🧡中山路方正邊間美寓🍎可談價👍",
+              "price": "1580萬",
+              "size": "35.7坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "公寓",
+                "方正",
+                "邊間"
+              ]
+            }
+          ]
+        },
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [
+            3
+          ],
+          "members": [
+            {
+              "id": "591:20496097",
+              "title": "🔥板橋35坪大三房｜前後大陽台🍎｜看屋喜歡價可談👍",
+              "price": "1580萬",
+              "size": "35.7坪",
+              "floorHint": null,
+              "roomHint": 3,
+              "features": [
+                "三房",
+                "前後陽台"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20523222",
+      "road": "板橋區三民路二段",
+      "title": "行情價囉❤️三民路住店釋出❤️歡迎預約賞屋❤️門口方便停車",
+      "oldMemberCount": 3,
+      "strictClusterCount": 3,
+      "strictClusterSizes": [
+        1,
+        1,
+        1
+      ],
+      "wouldSplit": true,
+      "edgeReasons": {},
+      "clusters": [
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20523222",
+              "title": "行情價囉❤️三民路住店釋出❤️歡迎預約賞屋❤️門口方便停車",
+              "price": "2288萬",
+              "size": "35.2坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": []
+            }
+          ]
+        },
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20442758",
+              "title": "剛降價♛出價談♛埔墘商圈極品住店一樓♛屋主誠售♛已做汙水",
+              "price": "2288萬",
+              "size": "35.2坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "一樓",
+                "埔墘"
+              ]
+            }
+          ]
+        },
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20757319",
+              "title": "方正面寬店面🍎家樂福一樓❤️活巷出入方便❤️板新光復學區",
+              "price": "2288萬",
+              "size": "35.2坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "一樓",
+                "光復學區",
+                "家樂福",
+                "店面",
+                "方正"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20729207",
+      "road": "板橋區中山路二段",
+      "title": "天生贏家｜屋主自售｜板新站5分鐘｜溫馨成家2房",
+      "oldMemberCount": 13,
+      "strictClusterCount": 2,
+      "strictClusterSizes": [
+        12,
+        1
+      ],
+      "wouldSplit": true,
+      "edgeReasons": {
+        "same_community": 11
+      },
+      "clusters": [
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [
+            2
+          ],
+          "members": [
+            {
+              "id": "591:20729207",
+              "title": "天生贏家｜屋主自售｜板新站5分鐘｜溫馨成家2房",
+              "price": "1692萬",
+              "size": "22.6坪",
+              "floorHint": null,
+              "roomHint": 2,
+              "features": []
+            }
+          ]
+        },
+        {
+          "size": 12,
+          "floors": [],
+          "rooms": [
+            2
+          ],
+          "members": [
+            {
+              "id": "591:20198383",
+              "title": "獨家🌈天生贏家🌈挑高4米5🌈高樓層採光好",
+              "price": "1688萬",
+              "size": "22.6坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": []
+            },
+            {
+              "id": "591:20209473",
+              "title": "💎獨家專任｜天生贏家・室內挑高景觀兩房・高樓無限棟距",
+              "price": "1688萬",
+              "size": "22.6坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "景觀"
+              ]
+            },
+            {
+              "id": "591:20477208",
+              "title": "板新捷運⭐新埔捷運🌈挑高約4米5",
+              "price": "1688萬",
+              "size": "22.6坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": []
+            },
+            {
+              "id": "591:20622128",
+              "title": "✨天生贏家高樓2房✨來電指名✅住商小柯",
+              "price": "1688萬",
+              "size": "22.6坪",
+              "floorHint": null,
+              "roomHint": 2,
+              "features": []
+            },
+            {
+              "id": "591:20659166",
+              "title": "新埔板新雙捷運/高樓景觀/挑高魔術大空間2房👍🏻",
+              "price": "1688萬",
+              "size": "22.6坪",
+              "floorHint": null,
+              "roomHint": 2,
+              "features": [
+                "景觀"
+              ]
+            },
+            {
+              "id": "591:20717998",
+              "title": "🏡天生贏家｜挑高使用×空間佳地點好×方正格局📞歡迎詢問",
+              "price": "1688萬",
+              "size": "22.6坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "方正"
+              ]
+            },
+            {
+              "id": "591:20719229",
+              "title": "獨家🍎天生贏家💖挑高4米5🌈雙捷運✨景觀2房💕",
+              "price": "1688萬",
+              "size": "22.6坪",
+              "floorHint": null,
+              "roomHint": 2,
+              "features": [
+                "景觀"
+              ]
+            },
+            {
+              "id": "591:20739617",
+              "title": "❤️天生贏家🔥挑高四米五×中山國中×電梯已更新×板新站🔥",
+              "price": "1688萬",
+              "size": "22.6坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "電梯"
+              ]
+            },
+            {
+              "id": "591:20742630",
+              "title": "⭐獨家銷售❤️天生贏家🏆高樓景觀二房🏠",
+              "price": "1688萬",
+              "size": "22.6坪",
+              "floorHint": null,
+              "roomHint": 2,
+              "features": [
+                "景觀"
+              ]
+            },
+            {
+              "id": "591:20743502",
+              "title": "☘️獨家☘️新埔雙捷運電梯二房☘️挑高4米2☘️市區美景☘️",
+              "price": "1688萬",
+              "size": "22.6坪",
+              "floorHint": null,
+              "roomHint": 2,
+              "features": [
+                "電梯"
+              ]
+            },
+            {
+              "id": "591:20776793",
+              "title": "天生贏家高樓景觀二房",
+              "price": "1688萬",
+              "size": "22.6坪",
+              "floorHint": null,
+              "roomHint": 2,
+              "features": [
+                "景觀"
+              ]
+            },
+            {
+              "id": "591:20766244",
+              "title": "2房1廳1衛-1688萬☎天生贏家☎",
+              "price": "1688萬",
+              "size": "22.6坪",
+              "floorHint": null,
+              "roomHint": 2,
+              "features": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20777399",
+      "road": "板橋區中山路二段",
+      "title": "★距板新站約750公尺★低總價、採光兩房",
+      "oldMemberCount": 5,
+      "strictClusterCount": 2,
+      "strictClusterSizes": [
+        4,
+        1
+      ],
+      "wouldSplit": true,
+      "edgeReasons": {
+        "title_similarity": 3
+      },
+      "clusters": [
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20777399",
+              "title": "★距板新站約750公尺★低總價、採光兩房",
+              "price": "1180萬",
+              "size": "20.3坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": []
+            }
+          ]
+        },
+        {
+          "size": 4,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20715652",
+              "title": "埔墘商圈低總價美寓｜板新捷運｜近埔墘市場｜機能宅",
+              "price": "1180萬",
+              "size": "20.3坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "公寓",
+                "埔墘"
+              ]
+            },
+            {
+              "id": "591:20562941",
+              "title": "板橋埔墘捷運低總價美寓",
+              "price": "1180萬",
+              "size": "20.3坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "公寓",
+                "埔墘"
+              ]
+            },
+            {
+              "id": "591:20694163",
+              "title": "青安3.0💫板橋埔墘商圈採光三樓美寓👍",
+              "price": "1180萬",
+              "size": "20.3坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "三樓",
+                "公寓",
+                "埔墘"
+              ]
+            },
+            {
+              "id": "591:20774508",
+              "title": "海山方正採光三樓",
+              "price": "1180萬",
+              "size": "20.3坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "三樓",
+                "方正"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20711895",
+      "road": "板橋區三民路一段",
+      "title": "板橋公寓房東開心满租美室～乙工",
+      "oldMemberCount": 4,
+      "strictClusterCount": 2,
+      "strictClusterSizes": [
+        3,
+        1
+      ],
+      "wouldSplit": true,
+      "edgeReasons": {
+        "title_similarity": 1,
+        "distinctive_feature": 1
+      },
+      "clusters": [
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20711895",
+              "title": "板橋公寓房東開心满租美室～乙工",
+              "price": "2100萬",
+              "size": "39.9坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "公寓"
+              ]
+            }
+          ]
+        },
+        {
+          "size": 3,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20572773",
+              "title": "板橋埔墘收租8套房",
+              "price": "2100萬",
+              "size": "39.9坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "埔墘",
+                "收租"
+              ]
+            },
+            {
+              "id": "591:20627234",
+              "title": "【板橋埔墘】高投報8套房｜正三民路全聯旁｜領現金流👍",
+              "price": "2100萬",
+              "size": "39.9坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "埔墘"
+              ]
+            },
+            {
+              "id": "591:20765893",
+              "title": "住商仁愛光復店~板橋埔墘收租8套房",
+              "price": "2100萬",
+              "size": "39.9坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "埔墘",
+                "收租"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20612220",
+      "road": "板橋區中山路二段",
+      "title": "💎【芒果地產】💎光復橋超美屋",
+      "oldMemberCount": 4,
+      "strictClusterCount": 2,
+      "strictClusterSizes": [
+        2,
+        2
+      ],
+      "wouldSplit": true,
+      "edgeReasons": {
+        "same_numbered_address": 1,
+        "two_generic_features": 1
+      },
+      "clusters": [
+        {
+          "size": 2,
+          "floors": [],
+          "rooms": [
+            3
+          ],
+          "members": [
+            {
+              "id": "591:20612220",
+              "title": "💎【芒果地產】💎光復橋超美屋",
+              "price": "1238萬",
+              "size": "26.3坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": []
+            },
+            {
+              "id": "591:20421210",
+              "title": "光復橋三房發財屋/三面採光/舒適明亮",
+              "price": "1238萬",
+              "size": "26.3坪",
+              "floorHint": null,
+              "roomHint": 3,
+              "features": [
+                "三房",
+                "三面採光"
+              ]
+            }
+          ]
+        },
+        {
+          "size": 2,
+          "floors": [],
+          "rooms": [
+            3
+          ],
+          "members": [
+            {
+              "id": "591:20649136",
+              "title": "中山路二段🌈邊間公寓3房🌈一橋到台北",
+              "price": "1238萬",
+              "size": "26.3坪",
+              "floorHint": null,
+              "roomHint": 3,
+              "features": [
+                "三房",
+                "公寓",
+                "邊間"
+              ]
+            },
+            {
+              "id": "591:20654094",
+              "title": "邊間陽光三房⭐屋況維持佳🌈近光復橋",
+              "price": "1238萬",
+              "size": "26.3坪",
+              "floorHint": null,
+              "roomHint": 3,
+              "features": [
+                "三房",
+                "邊間"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20557857",
+      "road": "板橋區中山路二段",
+      "title": "✨中山路頂加五樓✨",
+      "oldMemberCount": 4,
+      "strictClusterCount": 2,
+      "strictClusterSizes": [
+        3,
+        1
+      ],
+      "wouldSplit": true,
+      "edgeReasons": {
+        "distinctive_feature": 1,
+        "title_similarity": 1
+      },
+      "clusters": [
+        {
+          "size": 3,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20557857",
+              "title": "✨中山路頂加五樓✨",
+              "price": "1368萬",
+              "size": "21.3坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "頂加"
+              ]
+            },
+            {
+              "id": "591:20480993",
+              "title": "✨中山路✨方正鼎加✨誠意出售",
+              "price": "1368萬",
+              "size": "21.3坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "方正",
+                "頂加"
+              ]
+            },
+            {
+              "id": "591:20563739",
+              "title": "✨獨家✨格局方正✨誠意出售",
+              "price": "1368萬",
+              "size": "21.3坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "方正"
+              ]
+            }
+          ]
+        },
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [
+            3
+          ],
+          "members": [
+            {
+              "id": "591:20439633",
+              "title": "🎀板新捷運~中山路三房📍Yuki珮瑜",
+              "price": "1368萬",
+              "size": "21.3坪",
+              "floorHint": null,
+              "roomHint": 3,
+              "features": [
+                "三房"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20411403",
+      "road": "板橋區三民路一段",
+      "title": "金牌業務推薦~518板橋方便二樓",
+      "oldMemberCount": 3,
+      "strictClusterCount": 2,
+      "strictClusterSizes": [
+        2,
+        1
+      ],
+      "wouldSplit": true,
+      "edgeReasons": {
+        "title_similarity": 1
+      },
+      "clusters": [
+        {
+          "size": 2,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20411403",
+              "title": "金牌業務推薦~518板橋方便二樓",
+              "price": "1568萬",
+              "size": "25.5坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "二樓"
+              ]
+            },
+            {
+              "id": "591:20443586",
+              "title": "518板橋方便二樓",
+              "price": "1568萬",
+              "size": "25.5坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "二樓"
+              ]
+            }
+          ]
+        },
+        {
+          "size": 1,
+          "floors": [
+            2
+          ],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20711374",
+              "title": "💎💎💎三民路公寓2樓",
+              "price": "1568萬",
+              "size": "25.5坪",
+              "floorHint": 2,
+              "roomHint": null,
+              "features": [
+                "二樓",
+                "公寓"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20773779",
+      "road": "板橋區三民路二段",
+      "title": "專約!!埔墘家樂福商圈永豐名人社區一樓",
+      "oldMemberCount": 2,
+      "strictClusterCount": 2,
+      "strictClusterSizes": [
+        1,
+        1
+      ],
+      "wouldSplit": true,
+      "edgeReasons": {},
+      "clusters": [
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20773779",
+              "title": "專約!!埔墘家樂福商圈永豐名人社區一樓",
+              "price": "2100萬",
+              "size": "31.8坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "一樓",
+                "埔墘",
+                "家樂福"
+              ]
+            }
+          ]
+        },
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20705830",
+              "title": "不用追垃圾車而且有警衛幫您收郵件包裹的公寓型社區唷",
+              "price": "2100萬",
+              "size": "31.8坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "公寓"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20738181",
+      "road": "板橋區三民路二段",
+      "title": "家樂福大空間邊間宅｜巷寬｜頂加",
+      "oldMemberCount": 2,
+      "strictClusterCount": 2,
+      "strictClusterSizes": [
+        1,
+        1
+      ],
+      "wouldSplit": true,
+      "edgeReasons": {},
+      "clusters": [
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20738181",
+              "title": "家樂福大空間邊間宅｜巷寬｜頂加",
+              "price": "1098萬",
+              "size": "23.4坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "家樂福",
+                "邊間",
+                "頂加"
+              ]
+            }
+          ]
+        },
+        {
+          "size": 1,
+          "floors": [
+            5
+          ],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20594941",
+              "title": "【埔墘神物件】超高CP值！5樓鼎佳使用約50坪",
+              "price": "1098萬",
+              "size": "23.4坪",
+              "floorHint": 5,
+              "roomHint": null,
+              "features": [
+                "埔墘"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20734554",
+      "road": "板橋區三民路二段",
+      "title": "🎄捷運中原明亮好宅🎄",
+      "oldMemberCount": 2,
+      "strictClusterCount": 2,
+      "strictClusterSizes": [
+        1,
+        1
+      ],
+      "wouldSplit": true,
+      "edgeReasons": {},
+      "clusters": [
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20734554",
+              "title": "🎄捷運中原明亮好宅🎄",
+              "price": "1388萬",
+              "size": "25坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": []
+            }
+          ]
+        },
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [
+            4
+          ],
+          "members": [
+            {
+              "id": "591:20438256",
+              "title": "🏆中信王牌🏆573💎板橋中原站4房三面採光🚈",
+              "price": "1388萬",
+              "size": "25坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "三面採光",
+                "公寓",
+                "四房"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20681756",
+      "road": "板橋區三民路二段",
+      "title": "可隔三房🔥可代收包裹🔥可代收垃圾的公寓超少",
+      "oldMemberCount": 2,
+      "strictClusterCount": 2,
+      "strictClusterSizes": [
+        1,
+        1
+      ],
+      "wouldSplit": true,
+      "edgeReasons": {},
+      "clusters": [
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [
+            3
+          ],
+          "members": [
+            {
+              "id": "591:20681756",
+              "title": "可隔三房🔥可代收包裹🔥可代收垃圾的公寓超少",
+              "price": "1580萬",
+              "size": "31.7坪",
+              "floorHint": null,
+              "roomHint": 3,
+              "features": [
+                "三房",
+                "公寓"
+              ]
+            }
+          ]
+        },
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [
+            1
+          ],
+          "members": [
+            {
+              "id": "591:20667283",
+              "title": "🌈永豐名人社區🍎屋況漂亮三民2+1房🍎",
+              "price": "1580萬",
+              "size": "31.7坪",
+              "floorHint": null,
+              "roomHint": 1,
+              "features": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20531017",
+      "road": "板橋區三民路二段",
+      "title": "🩵😎光復國小裝潢新三房兩陽台😎🩵",
+      "oldMemberCount": 2,
+      "strictClusterCount": 2,
+      "strictClusterSizes": [
+        1,
+        1
+      ],
+      "wouldSplit": true,
+      "edgeReasons": {},
+      "clusters": [
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [
+            3
+          ],
+          "members": [
+            {
+              "id": "591:20531017",
+              "title": "🩵😎光復國小裝潢新三房兩陽台😎🩵",
+              "price": "1198萬",
+              "size": "23.9坪",
+              "floorHint": null,
+              "roomHint": 3,
+              "features": [
+                "三房",
+                "光復學區"
+              ]
+            }
+          ]
+        },
+        {
+          "size": 1,
+          "floors": [],
+          "rooms": [
+            3
+          ],
+          "members": [
+            {
+              "id": "591:20697485",
+              "title": "🌳板橋首購成家⭐三房低總價🍄",
+              "price": "1198萬",
+              "size": "23.9坪",
+              "floorHint": null,
+              "roomHint": 3,
+              "features": [
+                "三房"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20251660",
+      "road": "板橋區中山路二段",
+      "title": "😍江翠北側光復橋河岸景觀電梯4房雙車位❤️兩戶可選❤️",
+      "oldMemberCount": 19,
+      "strictClusterCount": 1,
+      "strictClusterSizes": [
+        19
+      ],
+      "wouldSplit": false,
+      "edgeReasons": {
+        "same_community": 18
+      },
+      "clusters": [
+        {
+          "size": 19,
+          "floors": [],
+          "rooms": [
+            4
+          ],
+          "members": [
+            {
+              "id": "591:20251660",
+              "title": "😍江翠北側光復橋河岸景觀電梯4房雙車位❤️兩戶可選❤️",
+              "price": "4666萬",
+              "size": "83.7坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "景觀",
+                "雙車位",
+                "電梯"
+              ]
+            },
+            {
+              "id": "591:20319462",
+              "title": "🧡板橋🧡皇冠🍎『邊間4房雙車位』🍎超美河景",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "邊間",
+                "雙車位"
+              ]
+            },
+            {
+              "id": "591:20468954",
+              "title": "皇冠KING居高臨下景觀豪宅大戶皇冠",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "景觀"
+              ]
+            },
+            {
+              "id": "591:20531407",
+              "title": "皇冠THEKING/大坪數低單價河景豪邸~廖小姐",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": []
+            },
+            {
+              "id": "591:20553281",
+              "title": "板橋埔墘~11年~無敵景觀三面採光4房(可買左右2戶)",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "三面採光",
+                "四房",
+                "埔墘",
+                "景觀"
+              ]
+            },
+            {
+              "id": "591:20555870",
+              "title": "皇冠高樓4房雙坡車高樓視野好",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房"
+              ]
+            },
+            {
+              "id": "591:20569606",
+              "title": "55.7萬/坪-西南朝向🎯大搶手🎯視野好",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": []
+            },
+            {
+              "id": "591:20611790",
+              "title": "皇冠Theking⭐頂級四房雙平車",
+              "price": "4666萬",
+              "size": "83.7坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "雙車位"
+              ]
+            },
+            {
+              "id": "591:20613238",
+              "title": "✔板橋河岸景觀豪邸✔四房雙車位✔二戶可選✔屋主誠售出價談",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "景觀",
+                "雙車位"
+              ]
+            },
+            {
+              "id": "591:20647208",
+              "title": "埔墘皇冠❤️全新裝潢❤️前後陽台、景觀大戶",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "前後陽台",
+                "埔墘",
+                "景觀"
+              ]
+            },
+            {
+              "id": "591:20658864",
+              "title": "板橋皇冠精品宅🍎中山路低屋齡🍎屋況極美",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": []
+            },
+            {
+              "id": "591:20660519",
+              "title": "皇冠theKing🌈高樓景觀4房車🌈中信~心妍",
+              "price": "4666萬",
+              "size": "83.7坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "景觀"
+              ]
+            },
+            {
+              "id": "591:20675578",
+              "title": "無敵景觀戶🎀回家不想出門🚗4房2廳2衛🎀雙車位",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "景觀",
+                "雙車位"
+              ]
+            },
+            {
+              "id": "591:20679014",
+              "title": "❤️皇冠KING🔥最強景觀戶×這間直接畢業×四房雙平車🔥",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "景觀",
+                "雙車位"
+              ]
+            },
+            {
+              "id": "591:20686126",
+              "title": "埔墘商圈🌟方正邊間🏆景觀.四房雙平車",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "埔墘",
+                "方正",
+                "景觀",
+                "邊間",
+                "雙車位"
+              ]
+            },
+            {
+              "id": "591:20721501",
+              "title": "稀有高樓景觀超大戶四房兩衛雙車位",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "景觀",
+                "雙車位"
+              ]
+            },
+            {
+              "id": "591:20758719",
+              "title": "皇冠無敵景觀邊間4房車｜板橋阿陞聊房",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "景觀",
+                "邊間"
+              ]
+            },
+            {
+              "id": "591:20779409",
+              "title": "[來江翠北側找\"福華\"]皇冠無敵景觀邊間4房車",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "景觀",
+                "邊間"
+              ]
+            },
+            {
+              "id": "591:20779553",
+              "title": "皇冠社區2間可選x超美x全新裝潢",
+              "price": "4666萬",
+              "size": "83.8坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20120678",
+      "road": "板橋區中山路二段",
+      "title": "皇冠高樓🌈景觀大4房車🌈中信~心妍",
+      "oldMemberCount": 10,
+      "strictClusterCount": 1,
+      "strictClusterSizes": [
+        10
+      ],
+      "wouldSplit": false,
+      "edgeReasons": {
+        "same_community": 9
+      },
+      "clusters": [
+        {
+          "size": 10,
+          "floors": [
+            19
+          ],
+          "rooms": [
+            4
+          ],
+          "members": [
+            {
+              "id": "591:20120678",
+              "title": "皇冠高樓🌈景觀大4房車🌈中信~心妍",
+              "price": "4718萬",
+              "size": "84.6坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "景觀"
+              ]
+            },
+            {
+              "id": "591:20569145",
+              "title": "🌟板橋無敵河景｜邊間4房雙坡平車｜中高樓層🌟",
+              "price": "4718萬",
+              "size": "84.6坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "邊間",
+                "雙車位"
+              ]
+            },
+            {
+              "id": "591:20654110",
+              "title": "✨【單價平實超漂亮・高樓景觀豪華大戶雙車】強勢登場！✨",
+              "price": "4718萬",
+              "size": "84.6坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "景觀"
+              ]
+            },
+            {
+              "id": "591:20681461",
+              "title": "皇冠THEKING/大坪數低單價河景豪邸~廖小姐",
+              "price": "4718萬",
+              "size": "84.6坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": []
+            },
+            {
+              "id": "591:20693132",
+              "title": "💎19樓無敵河景｜4房雙平車😍每天回家都像在渡假！",
+              "price": "4718萬",
+              "size": "84.6坪",
+              "floorHint": 19,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "雙車位"
+              ]
+            },
+            {
+              "id": "591:20694678",
+              "title": "【皇冠大戶｜高樓層尊榮河景大四房＋雙車位】🏆有兩戶在售",
+              "price": "4718萬",
+              "size": "84.6坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "雙車位"
+              ]
+            },
+            {
+              "id": "591:20698641",
+              "title": "【板橋黃金地段】84坪奢華大空間！極致採光視野景觀宅｜雙車位",
+              "price": "4718萬",
+              "size": "84.6坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "景觀",
+                "雙車位"
+              ]
+            },
+            {
+              "id": "591:20715218",
+              "title": "🎀無敵河景邊間皇冠4房車📍Yuki珮瑜",
+              "price": "4718萬",
+              "size": "84.6坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "邊間"
+              ]
+            },
+            {
+              "id": "591:20758728",
+              "title": "皇冠河景景觀邊間4房車｜板橋阿陞聊房",
+              "price": "4718萬",
+              "size": "84.6坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "景觀",
+                "邊間"
+              ]
+            },
+            {
+              "id": "591:20315294",
+              "title": "[來江翠北側找\"福華\"]皇冠無敵河景邊間4房車-應福華",
+              "price": "4718萬",
+              "size": "84.6坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "邊間"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20460976",
+      "road": "板橋區翠華街",
+      "title": "⭐翠華街低總優美一樓⭐屋主降價💥💥",
+      "oldMemberCount": 6,
+      "strictClusterCount": 1,
+      "strictClusterSizes": [
+        6
+      ],
+      "wouldSplit": false,
+      "edgeReasons": {
+        "title_similarity": 5
+      },
+      "clusters": [
+        {
+          "size": 6,
+          "floors": [
+            1
+          ],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20460976",
+              "title": "⭐翠華街低總優美一樓⭐屋主降價💥💥",
+              "price": "1498萬",
+              "size": "23.4坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "一樓"
+              ]
+            },
+            {
+              "id": "591:20554105",
+              "title": "【翠華街】邊間，方便停車一樓",
+              "price": "1498萬",
+              "size": "23.4坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "一樓",
+                "邊間"
+              ]
+            },
+            {
+              "id": "591:20617053",
+              "title": "翠華街低總價一樓[降價了!降價90萬~]",
+              "price": "1498萬",
+              "size": "23.4坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "一樓"
+              ]
+            },
+            {
+              "id": "591:20672556",
+              "title": "【住商台北城】江翠低總優美一樓",
+              "price": "1498萬",
+              "size": "23.4坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "一樓"
+              ]
+            },
+            {
+              "id": "591:20700992",
+              "title": "💥降！💥降！💥降！江子翠好停車1樓",
+              "price": "1498萬",
+              "size": "23.4坪",
+              "floorHint": 1,
+              "roomHint": null,
+              "features": [
+                "一樓"
+              ]
+            },
+            {
+              "id": "591:20775097",
+              "title": "江翠低總優美一樓：適孝親房或工作室",
+              "price": "1498萬",
+              "size": "23.4坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "一樓"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20486830",
+      "road": "板橋區中山路二段",
+      "title": "店長推薦⭐屋主降價售屋⭐馥華大台北✅方正4房車✅",
+      "oldMemberCount": 5,
+      "strictClusterCount": 1,
+      "strictClusterSizes": [
+        5
+      ],
+      "wouldSplit": false,
+      "edgeReasons": {
+        "same_community": 4
+      },
+      "clusters": [
+        {
+          "size": 5,
+          "floors": [],
+          "rooms": [
+            4
+          ],
+          "members": [
+            {
+              "id": "591:20486830",
+              "title": "店長推薦⭐屋主降價售屋⭐馥華大台北✅方正4房車✅",
+              "price": "3688萬",
+              "size": "63.5坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "方正"
+              ]
+            },
+            {
+              "id": "591:20503488",
+              "title": "間間採光💖埔墘4房雙車位💖~全國張黎如",
+              "price": "3688萬",
+              "size": "63.5坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "埔墘",
+                "雙車位"
+              ]
+            },
+            {
+              "id": "591:20460960",
+              "title": "⭐馥華大台北✅方正4房格局✅裝潢大氣雙車位⭐",
+              "price": "3688萬",
+              "size": "63.5坪",
+              "floorHint": null,
+              "roomHint": 4,
+              "features": [
+                "四房",
+                "方正",
+                "雙車位"
+              ]
+            },
+            {
+              "id": "591:20541173",
+              "title": "[來江翠北側找\"福華\"]馥華大台北超大戶[江翠北側-應福華]",
+              "price": "3688萬",
+              "size": "63.5坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": []
+            },
+            {
+              "id": "591:20616844",
+              "title": "【馥華大台北｜埔墘商圈｜稀有雙車位｜近北市】",
+              "price": "3688萬",
+              "size": "63.5坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "埔墘",
+                "雙車位"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20565656",
+      "road": "板橋區中山路二段",
+      "title": "🌈租不如買🌈電梯套房🌈埔墘商圈",
+      "oldMemberCount": 3,
+      "strictClusterCount": 1,
+      "strictClusterSizes": [
+        3
+      ],
+      "wouldSplit": false,
+      "edgeReasons": {
+        "same_community": 2
+      },
+      "clusters": [
+        {
+          "size": 3,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20565656",
+              "title": "🌈租不如買🌈電梯套房🌈埔墘商圈",
+              "price": "798萬",
+              "size": "13.2坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "埔墘",
+                "電梯"
+              ]
+            },
+            {
+              "id": "591:20581246",
+              "title": "松新青年大亨💎價格親民💎大套房",
+              "price": "798萬",
+              "size": "13.2坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": []
+            },
+            {
+              "id": "591:20615064",
+              "title": "中信香霓獨家❤埔墘商圈電梯大套房❤有管理員",
+              "price": "798萬",
+              "size": "13.1坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "埔墘",
+                "電梯"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "GROUP:591:20154789",
+      "road": "板橋區萬安街",
+      "title": "💎埔墘稀有透天・超大使用空間・質感裝潢直接入住💎",
+      "oldMemberCount": 3,
+      "strictClusterCount": 1,
+      "strictClusterSizes": [
+        3
+      ],
+      "wouldSplit": false,
+      "edgeReasons": {
+        "distinctive_feature": 2
+      },
+      "clusters": [
+        {
+          "size": 3,
+          "floors": [],
+          "rooms": [],
+          "members": [
+            {
+              "id": "591:20154789",
+              "title": "💎埔墘稀有透天・超大使用空間・質感裝潢直接入住💎",
+              "price": "1888萬",
+              "size": "33.8坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "埔墘",
+                "透天"
+              ]
+            },
+            {
+              "id": "591:20327196",
+              "title": "中信Bao🏠萬安美透天｜稀有釋出只要出價都可談🔥",
+              "price": "1888萬",
+              "size": "33.8坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "透天"
+              ]
+            },
+            {
+              "id": "591:20594550",
+              "title": "✔起家厝賺錢透天✔三代同堂首選✔屋主誠售出價可談",
+              "price": "1888萬",
+              "size": "33.8坪",
+              "floorHint": null,
+              "roomHint": null,
+              "features": [
+                "透天"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
