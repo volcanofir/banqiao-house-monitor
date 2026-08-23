@@ -1,0 +1,119 @@
+{
+  "auditedAt": "2026-08-23T02:41:17+00:00",
+  "mode": "preview_only_591_then_sinyi_structured_floor_then_company_neartie_guard_v8",
+  "reviewCount": 2,
+  "rows": [
+    {
+      "groupId": "GROUP:信義房屋:5368YG",
+      "primarySource": "信義房屋",
+      "road": "板橋區三民路二段",
+      "score": 20,
+      "reason": "同一外部房屋仍同時命中兩筆不同永慶官方案件，且強候選分差不超過2分；禁止自動猜測，改列待確認",
+      "companyCandidate": {
+        "id": "YC:7359599",
+        "officialId": "7359599",
+        "officialCaseId": "YC1272376",
+        "title": "國泰建設稀有三樓",
+        "price": 1330.0,
+        "area": 27.63,
+        "floor": "3/5樓"
+      },
+      "nearTie": true,
+      "nearTieCandidates": [
+        {
+          "id": "YC:7359599",
+          "officialId": "7359599",
+          "officialCaseId": "YC1272376",
+          "title": "國泰建設稀有三樓",
+          "area": 27.63,
+          "price": 1330.0,
+          "floor": "3/5樓",
+          "score": 20,
+          "floorRelation": "match",
+          "externalFloors": [
+            3
+          ],
+          "companyFloors": [
+            3
+          ],
+          "evidenceSource": "信義房屋",
+          "evidenceListingId": "信義房屋:5368YG"
+        },
+        {
+          "id": "YC:7359618",
+          "officialId": "7359618",
+          "officialCaseId": "YC1272325",
+          "title": "國泰建設首購首選",
+          "area": 27.63,
+          "price": 1330.0,
+          "floor": "3/5樓",
+          "score": 19,
+          "floorRelation": "match",
+          "externalFloors": [
+            3
+          ],
+          "companyFloors": [
+            3
+          ],
+          "evidenceSource": "信義房屋",
+          "evidenceListingId": "信義房屋:5368YG"
+        }
+      ],
+      "matchInfo": {
+        "areaDelta": 0.29,
+        "priceDelta": 258.0,
+        "shared": [
+          "國泰建設",
+          "國泰建",
+          "泰建設"
+        ],
+        "titleRatio": 0.667,
+        "companySourceMode": "yungching_official_browser",
+        "floorRelation": "match",
+        "externalFloors": [
+          3
+        ],
+        "companyFloors": [
+          3
+        ],
+        "floorMatch": true,
+        "evidenceSource": "信義房屋",
+        "evidenceListingId": "信義房屋:5368YG"
+      }
+    },
+    {
+      "groupId": "GROUP:591:20734554",
+      "primarySource": "591",
+      "road": "板橋區三民路二段",
+      "score": 12,
+      "reason": "同一公司案件 YC:7450646 已優先配對給 GROUP:信義房屋:3658LZ；信義主來源優先，避免庫存重複計數",
+      "companyCandidate": {
+        "id": "YC:7450646",
+        "officialId": "7450646",
+        "officialCaseId": "YC1286504",
+        "title": "近捷運明亮四房",
+        "price": 1298.0,
+        "area": 24.95,
+        "floor": "4/5樓"
+      },
+      "nearTie": false,
+      "nearTieCandidates": null,
+      "matchInfo": {
+        "areaDelta": 0.05,
+        "priceDelta": 90.0,
+        "shared": [],
+        "titleRatio": 0.533,
+        "companySourceMode": "yungching_official_browser",
+        "floorRelation": "unknown",
+        "externalFloors": [],
+        "companyFloors": [
+          4
+        ],
+        "evidenceSource": "591",
+        "evidenceListingId": "591:20734554",
+        "reason": "同一公司案件 YC:7450646 已優先配對給 GROUP:信義房屋:3658LZ；信義主來源優先，避免庫存重複計數",
+        "companyCandidateConflict": true
+      }
+    }
+  ]
+}
