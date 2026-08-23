@@ -1,4 +1,4 @@
-"""Scheme A v3 release gate: v2 integrity + Sinyi floor coverage + near-tie safety."""
+"""Scheme A v3 release gate: v2 integrity + source freshness + Sinyi floors + near-tie safety."""
 
 import json
 from pathlib import Path
@@ -7,15 +7,25 @@ import validate_scheme_a_preview_v2 as v2
 
 GAP = Path("docs/preview/company-gap.json")
 SINYI_STATS = Path("docs/preview/sinyi-floor-enrichment.json")
+SOURCE_DATA = Path("docs/data/listings.json")
 
 
 def main():
     v2.main()
     p = json.loads(GAP.read_text(encoding="utf-8"))
     stats = json.loads(SINYI_STATS.read_text(encoding="utf-8"))
+    source = json.loads(SOURCE_DATA.read_text(encoding="utf-8"))
 
     assert p.get("mode") == "preview_only_591_then_sinyi_structured_floor_then_company_neartie_guard_v8", p.get("mode")
     assert p.get("sinyiStructuredFloorMatching") is True, p.get("sinyiStructuredFloorMatching")
+
+    # The visible monitor data and the company comparison must come from the same
+    # source snapshot. This prevents a valid-but-stale company-gap from being shown
+    # alongside a newer 591/Sinyi monitor commit.
+    source_updated = source.get("updatedAt")
+    gap_source_updated = p.get("sourceDataUpdatedAt")
+    assert source_updated and gap_source_updated, (source_updated, gap_source_updated)
+    assert source_updated == gap_source_updated, (source_updated, gap_source_updated)
 
     embedded = p.get("sinyiFloorEnrichment") or {}
     assert stats.get("complete") is True, stats
@@ -49,7 +59,8 @@ def main():
 
     print(json.dumps({
         "scheme": "A",
-        "validator": "v3-sinyi-floor-neartie",
+        "validator": "v3-source-freshness-sinyi-floor-neartie",
+        "sourceDataUpdatedAt": source_updated,
         "sinyiActive": active,
         "sinyiOfficialMatched": matched,
         "sinyiWithStructuredFloor": stats.get("withStructuredFloorValueCount"),
