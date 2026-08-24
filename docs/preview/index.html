@@ -100,7 +100,7 @@ function sortGroups(items,mode){const a=[...items];if(mode==='default')return a;
 function render(){const roads=DATA.watchRoads||defaultRoads;const groups=GAP.propertyGroups||[];document.querySelector('#mRoads').textContent=`${roads.length} 條`;document.querySelector('#mGroups').textContent=`${GAP.propertyGroupCount??groups.length} 戶`;document.querySelector('#mNew').textContent=`${groups.filter(isNew).length} 戶`;document.querySelector('#mMerged').textContent=`${GAP.rawListingCount??GAP.externalActiveCount??0} 筆`;
 const c=GAP.counts||{};document.querySelector('#cStock').textContent=`${c.company_match??0} 戶`;document.querySelector('#cReview').textContent=`${c.review??0} 戶`;document.querySelector('#cMissing').textContent=`${c.missing??0} 戶`;document.querySelector('#cUnavailable').textContent=`${GAP.recentOffMarketCount??0} 戶`;
 const cards=['591','信義房屋'].map(name=>{const r=DATA.runs?.[name],ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${ok?'ok':'err'}">${ok?'正常':'異常/沿用'}</span></div><div class="note">目前刊登 ${r?.totalCount??0} 筆<br>最近更新：${fmt(r?.checkedAt)}</div></div>`});document.querySelector('#sources').innerHTML=cards.join('');
-document.querySelector('#updated').textContent=`來源資料最近更新：${fmt(DATA.updatedAt)}｜委託比對：${fmt(GAP.generatedAt)}。`;
+document.querySelector('#updated').innerHTML=`來源資料最近更新：${fmt(DATA.updatedAt)}<br>委託比對：${fmt(GAP.generatedAt)}。`;
 renderGroups()}
 function renderGroups(){
   if(MARKET_MODE==='rent') return renderRentGroups();
@@ -127,6 +127,7 @@ function renderGroups(){
   }
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的房屋群組。</div>';
 }
+
 
 
 
@@ -178,7 +179,7 @@ function renderRent(){
   document.querySelector('#mMerged').textContent=`${listings.length} 筆`;
   const cards=['591','信義房屋'].map(name=>{const r=RENT.runs?.[name],ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${ok?'ok':'err'}">${ok?'正常':'異常'}</span></div><div class="note">目前刊登 ${r?.totalCount??0} 筆<br>最近更新：${fmt(RENT.updatedAt)}</div></div>`});
   document.querySelector('#sources').innerHTML=cards.join('');
-  document.querySelector('#updated').textContent=`租屋資料最近更新：${fmt(RENT.updatedAt)}｜新案以本監控首次抓到時間計算，標籤保留 ${RENT.newListingWindowDays??3} 天。`;
+  document.querySelector('#updated').innerHTML=`租屋資料最近更新：${fmt(RENT.updatedAt)}<br>新案以本監控首次抓到時間計算，標籤保留 ${RENT.newListingWindowDays??3} 天。`;
   renderRentGroups();
 }
 function setMarket(mode){
