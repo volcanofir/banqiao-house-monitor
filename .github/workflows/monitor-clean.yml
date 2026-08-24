@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/monitor-clean.yml"
+      - "scripts/monitor_fast.py"
       - "trigger/monitor-wakeup.txt"
   schedule:
     # Heartbeat every 10 minutes; actual fetch only runs when data is ~3 hours old.
