@@ -34,7 +34,6 @@ def main():
     if verify.get('integrityVersion') != 'scheme-a-canonical-v3-sinyi-floor-neartie':
         raise RuntimeError('Unexpected canonical integrity version')
 
-    # Off-market history is display-only and must not mutate active company counts.
     if gap.get('recentOffMarketRetentionDays') != 10:
         raise RuntimeError(f"Unexpected off-market retention: {gap.get('recentOffMarketRetentionDays')}")
     offmarket = gap.get('recentOffMarketGroups')
@@ -45,8 +44,6 @@ def main():
     if any(x.get('offMarket') is not True or x.get('active') is not False or not x.get('removedAt') for x in offmarket):
         raise RuntimeError('Canonical off-market group contract failed')
 
-    # Rental data is independently refreshed, but the production UI must only be
-    # promoted when its current contract is intact.
     rental_listings = rental.get('listings') or []
     if rental.get('market') != 'rent':
         raise RuntimeError('Rental data market contract failed')
@@ -97,6 +94,8 @@ def main():
         'function renderRentGroups()',
         'function setMarket(mode)',
         '首次抓到：${fmt(x.firstSeenAt)}',
+        '<strong>${name}</strong>',
+        '目前刊登 ${r?.totalCount??0} 筆',
     ]
     missing = [x for x in required if x not in text]
     if missing:
@@ -107,6 +106,9 @@ def main():
         'Banqiao House Monitor · Preview',
         '`../data/listings.json?ts=${Date.now()}`',
         '`rental-data.json?ts=${Date.now()}`',
+        '目前保留 ${r?.totalCount??0} 筆',
+        '目前抓到 ${r?.totalCount??0} 筆',
+        "${name}${name==='591'?' 租屋':'租屋'}",
     ]
     present = [x for x in forbidden if x in text]
     if present:
