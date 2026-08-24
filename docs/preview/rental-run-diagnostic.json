@@ -1,10 +1,10 @@
 {
-  "checkedAt": "2026-08-24T23:01:59+00:00",
+  "checkedAt": "2026-08-24T23:31:49+00:00",
   "vpnOutcome": "success",
-  "fetchOutcome": "failure",
-  "fetchReturnCode": "124",
-  "stampOutcome": "skipped",
+  "fetchOutcome": "success",
+  "fetchReturnCode": "0",
+  "stampOutcome": "success",
   "rentalDataExists": true,
   "uiOwnership": "canonical-preview-index",
-  "logTail": "/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:105: SyntaxWarning: invalid escape sequence '\\/'\n  if(u.hostname!=='rent.591.com.tw' || !/^\\/\\d{6,}$/.test(u.pathname)) continue;\n/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:162: SyntaxWarning: invalid escape sequence '\\/'\n  const m=href.match(/\\/houseno\\/([A-Za-z0-9_-]+)/);\nnode:events:487\n      throw er; // Unhandled 'error' event\n      ^\n\nError: write EPIPE\n    at afterWriteDispatched (node:internal/stream_base_commons:159:15)\n    at writeGeneric (node:internal/stream_base_commons:150:3)\n    at Socket._writeGeneric (node:net:1026:11)\n    at Socket._write (node:net:1038:8)\n    at writeOrBuffer (node:internal/streams/writable:570:12)\n    at _write (node:internal/streams/writable:499:10)\n    at Writable.write (node:internal/streams/writable:508:10)\n    at PipeTransport.send (/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/playwright/driver/package/lib/coreBundle.js:34569:25)\n    at dispatcherConnection.onmessage (/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/playwright/driver/package/lib/coreBundle.js:69266:59)\n    at DispatcherConnection.dispatch (/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/playwright/driver/package/lib/coreBundle.js:18804:14)\nEmitted 'error' event on Socket instance at:\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at processTicksAndRejections (node:internal/process/task_queues:90:21)\n    at runNextTicks (node:internal/process/task_queues:69:3)\n    at process.processImmediate (node:internal/timers:472:9) {\n  errno: -32,\n  code: 'EPIPE',\n  syscall: 'write'\n}\n\nNode.js v24.18.1\n"
+  "logTail": "/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:105: SyntaxWarning: invalid escape sequence '\\/'\n  if(u.hostname!=='rent.591.com.tw' || !/^\\/\\d{6,}$/.test(u.pathname)) continue;\n/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:162: SyntaxWarning: invalid escape sequence '\\/'\n  const m=href.match(/\\/houseno\\/([A-Za-z0-9_-]+)/);\n{\"updatedAt\": \"2026-08-24T23:31:49+00:00\", \"counts\": {\"total\": 131, \"sinyi\": 16, \"591\": 115, \"roads\": {\"板橋區中山路二段\": 65, \"板橋區三民路一段\": 10, \"板橋區光復街\": 12, \"板橋區三民路二段\": 31, \"板橋區萬安街\": 10, \"板橋區翠華街\": 3, \"板橋區林森街\": 0}}, \"runs\": {\"591\": \"ok\", \"信義房屋\": \"ok\"}, \"elapsedSeconds\": 103.11}\n"
 }
