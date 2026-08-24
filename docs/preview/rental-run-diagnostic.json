@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-08-24T08:09:09+00:00",
+  "checkedAt": "2026-08-24T08:14:55+00:00",
   "vpnOutcome": "success",
-  "fetchOutcome": "success",
-  "fetchReturnCode": "0",
-  "patchOutcome": "success",
+  "fetchOutcome": "failure",
+  "fetchReturnCode": "1",
+  "patchOutcome": "skipped",
   "rentalDataExists": true,
-  "logTail": "{\"updatedAt\": \"2026-08-24T08:09:09+00:00\", \"counts\": {\"total\": 0, \"sinyi\": 0, \"591\": 0, \"roads\": {\"板橋區中山路二段\": 0, \"板橋區三民路二段\": 0, \"板橋區光復街\": 0, \"板橋區萬安街\": 0, \"板橋區林森街\": 0, \"板橋區三民路一段\": 0, \"板橋區翠華街\": 0}}, \"runs\": {\"591\": \"error\", \"信義房屋\": \"error\"}, \"elapsedSeconds\": 6.1}\n"
+  "logTail": "/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:202: SyntaxWarning: invalid escape sequence '\\s'\n  cards = page.evaluate(\"\"\"() => [...document.querySelectorAll('a[href*=\"/rent/list/\"][href*=\"/houseno/\"]')].map(a=>({href:a.href,text:(a.innerText||'').replace(/\\s+/g,' ').trim()}))\"\"\")\nTraceback (most recent call last):\n  File \"/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py\", line 8, in <module>\n    from playwright.sync_api import sync_playwright\nModuleNotFoundError: No module named 'playwright'\n"
 }
