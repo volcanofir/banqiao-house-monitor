@@ -1,14 +1,14 @@
 {
-  "verifiedAt": "2026-08-24T02:24:03+00:00",
+  "verifiedAt": "2026-08-24T03:38:42+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + Chromium official Yongching DOM + all-pages direct pg pagination + official detail pages",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-08-24T02:13:36+00:00",
+  "sourceDataUpdatedAt": "2026-08-24T03:28:51+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-08-24T02:24:00+00:00",
+    "generatedAt": "2026-08-24T03:38:39+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 77,
@@ -123,22 +123,22 @@
     ]
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-08-24T02:24:03+00:00",
-    "propertyGroupCount": 160,
+    "auditedAt": "2026-08-24T03:38:42+00:00",
+    "propertyGroupCount": 155,
     "companyListingCount": 81,
     "companyMatchCount": 49,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 214
+    "weakIdentityAlreadyMergedPairCount": 183
   },
-  "snapshotCapturedAt": "2026-08-24T02:15:34+00:00",
-  "companySnapshotCapturedAt": "2026-08-24T02:15:34+00:00",
-  "companyGapGeneratedAt": "2026-08-24T02:24:02+00:00",
+  "snapshotCapturedAt": "2026-08-24T03:30:19+00:00",
+  "companySnapshotCapturedAt": "2026-08-24T03:30:19+00:00",
+  "companyGapGeneratedAt": "2026-08-24T03:38:40+00:00",
   "browserListingCount": 81,
   "companyListingCount": 81,
-  "propertyGroupCount": 160,
-  "rawListingCount": 373,
-  "comparisonCount": 160,
+  "propertyGroupCount": 155,
+  "rawListingCount": 355,
+  "comparisonCount": 155,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -204,16 +204,16 @@
   "counts": {
     "company_match": 49,
     "review": 2,
-    "missing": 109,
+    "missing": 104,
     "unavailable": 0
   },
   "crossPlatformMergedGroupCount": 24,
-  "crossSourceReviewCount": 7,
+  "crossSourceReviewCount": 6,
   "preview591Regroup": {
-    "original591TopLevel": 128,
-    "regrouped591TopLevel": 108,
-    "regrouped591ClusterCount": 17,
-    "regrouped591AbsorbedCount": 20,
+    "original591TopLevel": 120,
+    "regrouped591TopLevel": 103,
+    "regrouped591ClusterCount": 15,
+    "regrouped591AbsorbedCount": 17,
     "clusterFloorConflictBlocked": 0
   },
   "schemeAGroupIntegrity": {
@@ -232,12 +232,12 @@
       {
         "id": "4308114",
         "road": "板橋區中山路二段",
-        "title": "稀有正大馬路商業用低總價純一樓金店面自用收租皆可",
-        "area": 20.24,
-        "price": 2280.0,
+        "title": "埔墘中山路稀有三樓頂加出價可談",
+        "area": 32.33,
+        "price": 1380.0,
         "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
         "replacementIds": [
-          "7473603"
+          "6693666"
         ],
         "replacementFound": true
       },
@@ -316,11 +316,11 @@
     ],
     "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
   },
-  "candidateCount": 160,
-  "candidatesWithFloor": 130,
-  "candidatesWithYcCaseId": 130,
+  "candidateCount": 155,
+  "candidatesWithFloor": 127,
+  "candidatesWithYcCaseId": 127,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-08-24T02:23:46+00:00",
+    "generatedAt": "2026-08-24T03:38:29+00:00",
     "source": "Yongching official detail via Surfshark + Chromium; current listing header/basic-info only",
     "attempted": 74,
     "enriched": 74,
