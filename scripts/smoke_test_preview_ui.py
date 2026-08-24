@@ -1,7 +1,7 @@
 """Browser smoke test for the complete Preview UI.
 
-The gate covers canonical sale data, rental switching, off-market history and stale-source
-suppression. A Preview that fails any of these checks must not be promoted to production.
+The gate covers canonical sale data, rental switching/new-label rules, off-market history
+and stale-source suppression. A Preview that fails any of these checks must not be promoted.
 """
 
 import json
@@ -10,6 +10,7 @@ import subprocess
 import sys
 import time
 import urllib.request
+from datetime import datetime, timezone
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
@@ -20,6 +21,7 @@ URL = f"http://127.0.0.1:{PORT}/preview/"
 SOURCE_DATA = ROOT / "data" / "listings.json"
 GAP_DATA = ROOT / "preview" / "company-gap.json"
 RENTAL_DATA = ROOT / "preview" / "rental-data.json"
+AUG24_BASELINE = datetime.fromisoformat("2026-08-24T16:00:00+00:00")
 
 
 def wait_server():
@@ -39,6 +41,34 @@ def number(text):
     return int(m.group(0)) if m else None
 
 
+def parse_stamp(value):
+    if not value:
+        return None
+    try:
+        dt = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc)
+    except Exception:
+        return None
+
+
+def expected_rental_new(payload):
+    configured = parse_stamp(payload.get("newListingBaselineAt")) or AUG24_BASELINE
+    baseline = max(configured, AUG24_BASELINE)
+    days = int(payload.get("newListingWindowDays") or 3)
+    now = datetime.now(timezone.utc)
+    count = 0
+    for row in payload.get("listings") or []:
+        first = parse_stamp((row or {}).get("firstSeenAt"))
+        if first is None or first < baseline:
+            continue
+        age = (now - first).total_seconds()
+        if 0 <= age < days * 86400:
+            count += 1
+    return count
+
+
 def main():
     required = [
         ROOT / "preview" / "index.html",
@@ -55,6 +85,7 @@ def main():
     rental_payload = json.loads(RENTAL_DATA.read_text(encoding="utf-8"))
     offmarket_count = int(gap_payload.get("recentOffMarketCount") or 0)
     rental_count = len(rental_payload.get("listings") or [])
+    rental_new_count = expected_rental_new(rental_payload)
     assert gap_payload.get("recentOffMarketRetentionDays") == 10
     assert offmarket_count == len(gap_payload.get("recentOffMarketGroups") or [])
     assert rental_payload.get("market") == "rent"
@@ -120,9 +151,6 @@ def main():
                 page.wait_for_function("document.querySelectorAll('#groups .item').length > 0", timeout=5000)
                 items = page.locator("#groups .item")
                 assert items.count() == offmarket_count
-                # Inspect the item DOM directly instead of relying on <details> visibility.
-                # inner_text() on a collapsed <details> can omit its hidden descendants and
-                # previously caused a false failure even though the off-market card was correct.
                 removed_texts = [(items.nth(i).text_content() or "") for i in range(items.count())]
                 assert all("下架：" in text for text in removed_texts), removed_texts
                 offmarket_badges = page.locator('#groups .item .pill').filter(has_text="已下架")
@@ -138,11 +166,16 @@ def main():
             page.wait_for_function("MARKET_MODE === 'rent' && document.querySelector('#listTitle')?.textContent.includes('租屋')", timeout=5000)
             assert page.locator("#companyPanel").evaluate("el => getComputedStyle(el).display") == "none"
             assert number(page.locator("#mGroups").inner_text()) == rental_count
+            assert number(page.locator("#mNew").inner_text()) == rental_new_count
+            assert page.evaluate("typeof rentalIsNew === 'function'") is True
             assert page.locator("#sources .source-card").count() == 2
             assert "租屋資料最近更新" in page.locator("#updated").inner_text()
+            assert "標籤保留" in page.locator("#updated").inner_text()
             assert "租金" in page.locator("#sort option").nth(1).inner_text()
             if rental_count:
                 assert page.locator("#groups .rent-item").count() >= 1
+            new_badges = page.locator('#groups .rent-item .pill').filter(has_text="新案")
+            assert new_badges.count() == rental_new_count, (new_badges.count(), rental_new_count)
             page.locator('.source-tab[data-source="591"]').click()
             page.select_option("#sort", "priceAsc")
 
@@ -187,7 +220,8 @@ def main():
 
         print(
             f"Preview UI smoke test passed: sale integrity, {offmarket_count} off-market group(s), "
-            f"{rental_count} rental listing(s), market switching and stale-source suppression"
+            f"{rental_count} rental listing(s), {rental_new_count} rental new badge(s), "
+            "market switching and stale-source suppression"
         )
     finally:
         server.terminate()
