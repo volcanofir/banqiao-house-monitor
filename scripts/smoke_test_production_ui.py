@@ -15,6 +15,7 @@ ROOT = Path('docs')
 URL = f'http://127.0.0.1:{PORT}/'
 SOURCE_DATA = ROOT / 'data' / 'listings.json'
 GAP_DATA = ROOT / 'preview' / 'company-gap.json'
+RENTAL_DATA = ROOT / 'preview' / 'rental-data.json'
 
 
 def wait_server():
@@ -40,6 +41,7 @@ def main():
         GAP_DATA,
         ROOT / 'preview' / 'scheme-a-verification.json',
         SOURCE_DATA,
+        RENTAL_DATA,
     ]
     missing = [str(p) for p in required if not p.exists()]
     if missing:
@@ -47,9 +49,13 @@ def main():
 
     html = (ROOT / 'index.html').read_text(encoding='utf-8')
     gap_payload = json.loads(GAP_DATA.read_text(encoding='utf-8'))
+    rental_payload = json.loads(RENTAL_DATA.read_text(encoding='utf-8'))
     offmarket_count = int(gap_payload.get('recentOffMarketCount') or 0)
+    rental_count = len(rental_payload.get('listings') or [])
     assert gap_payload.get('recentOffMarketRetentionDays') == 10
     assert offmarket_count == len(gap_payload.get('recentOffMarketGroups') or [])
+    assert rental_payload.get('market') == 'rent'
+    assert int((rental_payload.get('counts') or {}).get('total') or 0) == rental_count
 
     assert 'noindex,nofollow' not in html
     assert 'PREVIEW 測試版本' not in html
@@ -57,10 +63,14 @@ def main():
     assert '`data/listings.json?ts=${Date.now()}`' in html
     assert '`preview/company-gap.json?ts=${Date.now()}`' in html
     assert '`preview/scheme-a-verification.json?ts=${Date.now()}`' in html
+    assert '`preview/rental-data.json?ts=${Date.now()}`' in html
     assert '<span>已下架</span><strong id="cUnavailable">' in html
     assert '<option value="removed">已下架</option>' in html
     assert 'GAP.recentOffMarketCount??0' in html
     assert 'GAP.recentOffMarketGroups||[]' in html
+    assert 'id="marketSwitch"' in html
+    assert 'function renderRentGroups()' in html
+    assert 'function setMarket(mode)' in html
 
     server = subprocess.Popen(
         [sys.executable, '-m', 'http.server', str(PORT), '--bind', '127.0.0.1', '--directory', str(ROOT)],
@@ -107,36 +117,58 @@ def main():
             assert number(page.locator('#cUnavailable').inner_text()) == offmarket_count
             assert page.locator('#sources .source-card').count() >= 2
             assert page.locator('#groups .road-group').count() >= 1
+            assert page.locator('.market-btn').count() == 2
             assert page.evaluate('VERIFY && VERIFY.valid === true') is True
             assert page.evaluate('verificationMatches(DATA, GAP, VERIFY)') is True
 
-            # Exercise active filters.
+            # Exercise sale controls.
             page.locator('.source-tab[data-source="591"]').click()
             page.select_option('#sort', 'priceDesc')
             page.select_option('#companyState', 'missing')
             page.select_option('#companyState', 'all')
             page.locator('.source-tab[data-source="all"]').click()
 
-            # Exercise the new off-market history. It must show only canonical
-            # groups retained for the configured ten-day window.
+            # Exercise canonical off-market history without depending on <details> visibility.
             page.select_option('#state', 'removed')
             if offmarket_count:
                 page.wait_for_function("document.querySelectorAll('#groups .item').length > 0", timeout=5000)
-                assert page.locator('#groups .item').count() == offmarket_count
-                removed_text = page.locator('#groups').inner_text()
-                assert '已下架' in removed_text
-                assert '下架：' in removed_text
+                items = page.locator('#groups .item')
+                assert items.count() == offmarket_count
+                removed_texts = [(items.nth(i).text_content() or '') for i in range(items.count())]
+                assert all('下架：' in text for text in removed_texts), removed_texts
+                assert page.locator('#groups .item .pill').filter(has_text='已下架').count() == offmarket_count
+                assert page.evaluate(
+                    "(GAP.recentOffMarketGroups||[]).every(g => g.offMarket===true && g.active===false && !!g.removedAt)"
+                ) is True
             else:
                 assert page.locator('#groups .road-group').count() == 0
-                assert '目前沒有符合條件' in page.locator('#groups').inner_text()
             page.select_option('#state', 'all')
+
+            # Rental mode must load the production path and render independently.
+            page.locator('.market-btn[data-market="rent"]').click()
+            page.wait_for_function("MARKET_MODE === 'rent' && document.querySelector('#listTitle')?.textContent.includes('租屋')", timeout=5000)
+            assert page.locator('#companyPanel').evaluate("el => getComputedStyle(el).display") == 'none'
+            assert number(page.locator('#mGroups').inner_text()) == rental_count
+            assert page.locator('#sources .source-card').count() == 2
+            assert '租屋資料最近更新' in page.locator('#updated').inner_text()
+            assert '租金' in page.locator('#sort option').nth(1).inner_text()
+            if rental_count:
+                assert page.locator('#groups .rent-item').count() >= 1
+            page.locator('.source-tab[data-source="591"]').click()
+            page.select_option('#sort', 'priceAsc')
+
+            # Return to sale and re-check canonical integrity.
+            page.locator('.market-btn[data-market="sale"]').click()
+            page.wait_for_function("MARKET_MODE === 'sale' && document.querySelector('#companyPanel')?.style.display !== 'none'", timeout=5000)
+            assert page.evaluate('verificationMatches(DATA, GAP, VERIFY)') is True
+            assert '售價' in page.locator('#sort option').nth(1).inner_text()
 
             assert not page_errors, page_errors
             meaningful_failed = [x for x in failed_requests if not any(k in x for k in ('favicon', 'icon-safe'))]
             assert not meaningful_failed, meaningful_failed
             assert not console_errors, console_errors
 
-            # Production must also hide stale group/company results if monitor data gets ahead.
+            # Production must hide stale sale comparison results if monitor data gets ahead.
             stale_page = browser.new_page(viewport={'width': 390, 'height': 844}, locale='zh-TW')
             stale_errors = []
             stale_page.on('pageerror', lambda exc: stale_errors.append(str(exc)))
@@ -166,7 +198,10 @@ def main():
 
             browser.close()
 
-        print(f'Production UI smoke test passed, including {offmarket_count} off-market group(s) and stale-source suppression')
+        print(
+            f'Production UI smoke test passed: {offmarket_count} off-market group(s), '
+            f'{rental_count} rental listing(s), market switching and stale-source suppression'
+        )
     finally:
         server.terminate()
         try:
