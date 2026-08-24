@@ -105,6 +105,8 @@ def main():
     assert "Date.parse('2026-08-24T16:00:00Z')" in html
     assert '<span class="pill sinyi">新案</span>' in html
     assert 'function setMarket(mode)' in html
+    assert '<br>委託比對：${fmt(GAP.generatedAt)}。' in html
+    assert '<br>新案以本監控首次抓到時間計算' in html
 
     server = subprocess.Popen(
         [sys.executable, '-m', 'http.server', str(PORT), '--bind', '127.0.0.1', '--directory', str(ROOT)],
@@ -142,6 +144,8 @@ def main():
             updated = page.locator('#updated').inner_text()
             assert '讀取失敗' not in updated, updated
             assert '比對資料同步中' not in updated, updated
+            assert '委託比對：' in updated, updated
+            assert page.locator('#updated br').count() == 1
 
             for selector in ('#mRoads', '#mGroups', '#mNew', '#mMerged', '#cStock', '#cReview', '#cMissing', '#cUnavailable'):
                 value = page.locator(selector).inner_text().strip()
@@ -183,8 +187,11 @@ def main():
             assert number(page.locator('#mNew').inner_text()) == rental_new_count
             assert page.evaluate("typeof rentalIsNew === 'function'") is True
             assert page.locator('#sources .source-card').count() == 2
-            assert '租屋資料最近更新' in page.locator('#updated').inner_text()
-            assert '標籤保留' in page.locator('#updated').inner_text()
+            rental_updated = page.locator('#updated').inner_text()
+            assert '租屋資料最近更新' in rental_updated
+            assert '新案以本監控首次抓到時間計算' in rental_updated
+            assert '標籤保留' in rental_updated
+            assert page.locator('#updated br').count() == 1
             assert '租金' in page.locator('#sort option').nth(1).inner_text()
             if rental_count:
                 assert page.locator('#groups .rent-item').count() >= 1
@@ -197,6 +204,8 @@ def main():
             page.wait_for_function("MARKET_MODE === 'sale' && document.querySelector('#companyPanel')?.style.display !== 'none'", timeout=5000)
             assert page.evaluate('verificationMatches(DATA, GAP, VERIFY)') is True
             assert '售價' in page.locator('#sort option').nth(1).inner_text()
+            assert '委託比對：' in page.locator('#updated').inner_text()
+            assert page.locator('#updated br').count() == 1
 
             assert not page_errors, page_errors
             meaningful_failed = [x for x in failed_requests if not any(k in x for k in ('favicon', 'icon-safe'))]
@@ -235,7 +244,7 @@ def main():
         print(
             f'Production UI smoke test passed: {offmarket_count} off-market group(s), '
             f'{rental_count} rental listing(s), {rental_new_count} rental new badge(s), '
-            'market switching and stale-source suppression'
+            'two-line update notes, market switching and stale-source suppression'
         )
     finally:
         server.terminate()
