@@ -47,8 +47,6 @@ replacements = {
 for old, new in replacements.items():
     text = text.replace(old, new)
 
-# Attribute-safe escaping and tab hardening. The old template used "&quot" without
-# the semicolon, which browsers usually tolerate but is not safe enough for hrefs.
 old_esc = '''const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));'''
 new_esc = '''const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));'''
 text = text.replace(old_esc, new_esc)
@@ -129,7 +127,6 @@ text = re.sub(
     count=1,
     flags=re.S,
 )
-# Compatibility with an older generated file that did not yet contain verificationMatches.
 if 'async function fetchJson(url,label)' not in text:
     text = re.sub(
         r"Promise\.all\(\[fetch\(`\.\./data/listings\.json\?ts=\$\{Date\.now\(\)\}`.*?\.catch\(e=>\{document\.querySelector\('#updated'\)\.textContent='Preview 資料讀取失敗：'\+e;\}\);",
@@ -139,8 +136,6 @@ if 'async function fetchJson(url,label)' not in text:
         flags=re.S,
     )
 
-# Fail the build instead of silently publishing a partially patched UI if the base
-# template changes underneath these regex transforms.
 required_fragments = [
     'id="mNew"',
     'id="mGroups"',
@@ -160,8 +155,29 @@ if 'id="companyNote"' in text or 'id="mRaw"' in text:
     raise RuntimeError('Preview UI patch contract failed; legacy UI fragments remain')
 
 PATH.write_text(text, encoding='utf-8')
+
+# Canonical ownership: every rebuild must recreate rental controls first, then layer
+# the off-market renderer on top. Rental workflow is data-only and never owns index.html.
+subprocess.run([sys.executable, 'scripts/patch_rental_preview_ui.py'], check=True)
 subprocess.run([sys.executable, 'scripts/patch_offmarket_ui.py'], check=True)
-print('Preview UI patched and hardened')
+
+final_text = PATH.read_text(encoding='utf-8')
+final_required = [
+    'id="marketSwitch"',
+    'data-market="sale"',
+    'data-market="rent"',
+    'function renderRentGroups()',
+    'rental-data.json',
+    'id="companyPanel"',
+    '<option value="removed">已下架</option>',
+    'GAP.recentOffMarketGroups||[]',
+    '下架：${fmt(g.removedAt)}',
+]
+final_missing = [x for x in final_required if x not in final_text]
+if final_missing:
+    raise RuntimeError(f'Canonical Preview UI composition failed; missing fragments: {final_missing}')
+
+print('Preview UI patched and hardened with canonical rental + off-market composition')
 
 try:
     import validate_scheme_a_preview_v3 as validator
