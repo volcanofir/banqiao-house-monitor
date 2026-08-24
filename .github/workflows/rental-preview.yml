@@ -56,7 +56,7 @@ jobs:
         shell: bash
         run: |
           set +e
-          timeout 120 python scripts/fetch_rental_preview.py > /tmp/rental-fetch.log 2>&1
+          timeout 180 python scripts/fetch_rental_preview.py > /tmp/rental-fetch.log 2>&1
           rc=$?
           cat /tmp/rental-fetch.log
           echo "rc=$rc" >> "$GITHUB_OUTPUT"
