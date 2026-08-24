@@ -37,9 +37,11 @@ function rentalPrice(x){const n=Number(x?.rent);return Number.isFinite(n)&&n>0?`
 function rentalFirstSeenMs(x){const t=new Date(x?.firstSeenAt||0).getTime();return Number.isFinite(t)?t:0}
 function rentalIsNew(x){
   const first=rentalFirstSeenMs(x);
-  const baseline=new Date(RENT.newListingBaselineAt||0).getTime();
+  const configured=new Date(RENT.newListingBaselineAt||0).getTime();
+  const aug24Baseline=Date.parse('2026-08-24T16:00:00Z');
+  const baseline=Math.max(Number.isFinite(configured)?configured:0,aug24Baseline);
   const days=Number(RENT.newListingWindowDays??3);
-  if(!Number.isFinite(first)||!Number.isFinite(baseline)||first<=baseline||!Number.isFinite(days)||days<=0)return false;
+  if(!Number.isFinite(first)||!Number.isFinite(baseline)||first<baseline||!Number.isFinite(days)||days<=0)return false;
   const age=Date.now()-first;
   return age>=0&&age<days*86400000;
 }
@@ -120,6 +122,7 @@ required = [
     'data-market="rent"',
     'function renderRentGroups()',
     'function rentalIsNew(x)',
+    "Date.parse('2026-08-24T16:00:00Z')",
     'newListingBaselineAt',
     'newListingWindowDays',
     '<span class="pill sinyi">新案</span>',
