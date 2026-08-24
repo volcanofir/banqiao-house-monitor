@@ -22,6 +22,14 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}.hero{b
 .tools{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}.tools select{border:1px solid var(--line);border-radius:12px;padding:11px;background:#fff;font:inherit}.source-tabs{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.source-tab{appearance:none;border:1px solid var(--line);border-radius:12px;padding:11px 8px;background:#fff;color:var(--ink);font:inherit;font-weight:850;cursor:pointer}.source-tab.active{background:var(--green);border-color:var(--green);color:#fff}
 .road-group{border:1px solid var(--line);border-radius:17px;overflow:hidden;background:#fff;margin:10px 0}.road-group>summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:15px;background:#fff4c8;color:var(--green);font-weight:900}.road-group>summary::-webkit-details-marker{display:none}.count{background:var(--green);color:#fff;border-radius:999px;padding:4px 9px;font-size:12px}.list{padding:0 14px}.item{padding:15px 0;border-bottom:1px solid #f0e5bd}.item:last-child{border-bottom:0}.item-title{font-weight:900;color:var(--green);text-decoration:none;line-height:1.5}.row{display:flex;flex-wrap:wrap;gap:7px 12px;margin-top:8px;color:#645e54;font-size:13px;align-items:center}.pill{background:#eee9df;color:#625a4d}.pill.sinyi{background:#dcefe7;color:#14503c}.pill.m591{background:#e8eef9;color:#35577d}.pill.stock{background:#124b37;color:#fff}.pill.review{background:#fff0bd;color:#755600;border:1px solid #e3ca73}.pill.missing{background:#f7dadd;color:#972a35}.pill.unavailable{background:#e9ecef;color:#5d6268}.pill.merged{background:#fff3b0;color:#755600;border:1px solid #dfc25f}.pill.primary{background:#124b37;color:#fff}.candidate{font-size:12px;color:#756f64}.merge-details{margin-top:11px;border:1px dashed #d8bd61;border-radius:13px;background:#fffaf0;overflow:hidden}.merge-details>summary{cursor:pointer;list-style:none;padding:10px 12px;font-size:13px;font-weight:900;color:#755600}.merge-details>summary::-webkit-details-marker{display:none}.merge-list{border-top:1px dashed #e1cd86;padding:4px 12px}.merge-row{padding:10px 0;border-bottom:1px solid #eee2bc}.merge-row:last-child{border:0}.merge-title{font-weight:800;color:var(--green);text-decoration:none}.merge-meta{display:flex;flex-wrap:wrap;gap:6px 10px;margin-top:5px;font-size:12px;color:#6d665b}.sublist{margin:7px 0 0 16px;padding-left:14px;color:#6d665b;font-size:12px}.empty{padding:18px;background:var(--cream);border-radius:14px;color:var(--muted)}
 @media(max-width:900px){.metrics,.compare{grid-template-columns:1fr 1fr}.source-grid{grid-template-columns:1fr}.tools{grid-template-columns:1fr 1fr 1fr}}@media(max-width:650px){main{width:min(100% - 16px,1180px)}.hero{padding:22px 18px}.inside{padding:18px}.tools{grid-template-columns:1fr}.source-tabs{grid-column:1;grid-template-columns:repeat(3,1fr)}.metric strong,.compare-card strong{font-size:23px}}
+
+.market-switch{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 18px}
+.market-btn{appearance:none;border:1.5px solid #dfbf55;background:#fffdf7;color:#2f302f;border-radius:18px;padding:13px 16px;font-size:17px;font-weight:800;cursor:pointer}
+.market-btn.active{background:#0f5945;color:#fff;border-color:#0f5945;box-shadow:0 5px 14px rgba(15,89,69,.14)}
+.market-note{font-size:13px;color:#777;margin:-6px 0 14px}
+.rent-item .row{align-items:center}
+.rent-price{font-weight:900;color:#0f5945;font-size:18px}
+
 </style>
 </head>
 <body>
@@ -37,8 +45,11 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}.hero{b
 <div class="metric"><span>原始刊登數量</span><strong id="mMerged">-</strong></div>
 </div>
 </section>
-<section class="panel"><div class="stripe"></div><div class="inside"><div class="eyebrow">MONITOR STATUS</div><h2>資料來源</h2><div class="source-grid" id="sources"></div></div></section>
-<section class="panel"><div class="stripe"></div><div class="inside">
+<section class="panel"><div class="stripe"></div><div class="inside"><div class="eyebrow">MONITOR STATUS</div><h2>資料來源</h2><div class="market-switch" id="marketSwitch">
+<button type="button" class="market-btn active" data-market="sale">售屋</button>
+<button type="button" class="market-btn" data-market="rent">租屋</button>
+</div><div class="source-grid" id="sources"></div></div></section>
+<section class="panel" id="companyPanel"><div class="stripe"></div><div class="inside">
 <div class="eyebrow">COMPANY MATCH</div><h2>委託比對</h2>
 <div class="compare">
 <div class="compare-card"><span>庫存</span><strong id="cStock">-</strong></div>
@@ -48,7 +59,7 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}.hero{b
 </div>
 </div></section>
 <section class="panel"><div class="stripe"></div><div class="inside">
-<div class="eyebrow">PROPERTY GROUPS</div><h2>整併後案件列表</h2>
+<div class="eyebrow">PROPERTY GROUPS</div><h2 id="listTitle">整併後案件列表</h2>
 <div class="tools">
 <div class="source-tabs" id="sourceTabs">
 <button type="button" class="source-tab active" data-source="all">全部案件</button>
@@ -64,7 +75,7 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}.hero{b
 </main>
 <script>
 const defaultRoads=['板橋區中山路二段','板橋區三民路二段','板橋區光復街','板橋區萬安街','板橋區林森街','板橋區三民路一段','板橋區翠華街'];
-let DATA={listings:[],runs:{},watchRoads:defaultRoads};let GAP={propertyGroups:[],comparisons:[],counts:{},coveredRoads:[]};let VERIFY=null;let CMAP=new Map();let SOURCE_FILTER='all';
+let DATA={listings:[],runs:{},watchRoads:defaultRoads};let GAP={propertyGroups:[],comparisons:[],counts:{},coveredRoads:[]};let VERIFY=null;let RENT={listings:[],runs:{},watchRoads:defaultRoads,counts:{}};let MARKET_MODE='sale';let CMAP=new Map();let SOURCE_FILTER='all';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=v=>{if(!v)return '-';const d=new Date(v);return Number.isNaN(d.getTime())?String(v):new Intl.DateTimeFormat('zh-TW',{dateStyle:'medium',timeStyle:'medium',timeZone:'Asia/Taipei'}).format(d)};
 const fmtUnix=v=>{if(!v)return '-';const n=Number(v);return Number.isFinite(n)?fmt(n<1e12?n*1000:n):fmt(v)};
@@ -91,6 +102,7 @@ const cards=['591','信義房屋'].map(name=>{const r=DATA.runs?.[name],ok=r?.st
 document.querySelector('#updated').textContent=`來源資料最近更新：${fmt(DATA.updatedAt)}｜委託比對：${fmt(GAP.generatedAt)}。`;
 renderGroups()}
 function renderGroups(){
+  if(MARKET_MODE==='rent') return renderRentGroups();
   const source=SOURCE_FILTER,state=document.querySelector('#state').value,cs=document.querySelector('#companyState').value,sort=document.querySelector('#sort').value;
   const baseRows=state==='removed'?(GAP.recentOffMarketGroups||[]):(GAP.propertyGroups||[]);
   let rows=baseRows.filter(g=>{
@@ -114,6 +126,66 @@ function renderGroups(){
   }
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的房屋群組。</div>';
 }
+
+
+
+function rentalPrice(x){const n=Number(x?.rent);return Number.isFinite(n)&&n>0?`${Math.round(n).toLocaleString('zh-TW')} 元/月`:'租金未取得'}
+function rentalFirstSeenMs(x){const t=new Date(x?.firstSeenAt||0).getTime();return Number.isFinite(t)?t:0}
+function renderRentGroups(){
+  const roads=RENT.watchRoads||defaultRoads;
+  const source=SOURCE_FILTER;
+  const sort=document.querySelector('#sort').value;
+  let rows=(RENT.listings||[]).filter(x=>source==='all'||(source==='sinyi'&&x.source==='信義房屋')||(source==='591'&&x.source==='591'));
+  if(sort==='priceDesc')rows.sort((a,b)=>(Number(b.rent)||0)-(Number(a.rent)||0));
+  if(sort==='priceAsc')rows.sort((a,b)=>(Number(a.rent)||0)-(Number(b.rent)||0));
+  if(sort==='timeDesc')rows.sort((a,b)=>rentalFirstSeenMs(b)-rentalFirstSeenMs(a));
+  if(sort==='timeAsc')rows.sort((a,b)=>rentalFirstSeenMs(a)-rentalFirstSeenMs(b));
+  let html='';
+  for(const road of roads){
+    const items=rows.filter(x=>x.road===road);
+    if(!items.length)continue;
+    html+=`<details class="road-group"><summary><span>${esc(road)}</span><span class="count">${items.length} 戶</span></summary><div class="list">${items.map(x=>{
+      const cls=x.source==='信義房屋'?'sinyi':'m591';
+      const label=x.source==='信義房屋'?'信義':'591';
+      const size=Number(x.size); const sizeText=Number.isFinite(size)&&size>0?`${size}坪`:'坪數未取得';
+      return `<article class="item rent-item"><a class="item-title" href="${esc(x.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(x.title||x.houseId||'租屋案件')}</a><div class="row"><span class="pill ${cls}">${label}</span><span class="rent-price">${esc(rentalPrice(x))}</span><span>${esc(sizeText)}</span><span>${esc(x.address||road)}</span><span>首次抓到：${fmt(x.firstSeenAt)}</span></div></article>`;
+    }).join('')}</div></details>`;
+  }
+  document.querySelector('#groups').innerHTML=html||'<div class="empty">目前這 7 條路沒有抓到符合條件的租屋案件。</div>';
+}
+function renderRent(){
+  const roads=RENT.watchRoads||defaultRoads;
+  const listings=RENT.listings||[];
+  document.querySelector('#mRoads').textContent=`${roads.length} 條`;
+  document.querySelector('#mGroups').textContent=`${listings.length} 戶`;
+  document.querySelector('#mNew').textContent=`${RENT.newListingCount??0} 戶`;
+  document.querySelector('#mMerged').textContent=`${listings.length} 筆`;
+  const cards=['591','信義房屋'].map(name=>{const r=RENT.runs?.[name],ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}${name==='591'?' 租屋':'租屋'}</strong><span class="badge ${ok?'ok':'err'}">${ok?'正常':'異常'}</span></div><div class="note">目前抓到 ${r?.totalCount??0} 筆<br>最近更新：${fmt(RENT.updatedAt)}</div></div>`});
+  document.querySelector('#sources').innerHTML=cards.join('');
+  document.querySelector('#updated').textContent=`租屋資料最近更新：${fmt(RENT.updatedAt)}｜首次抓到時間以本監控系統第一次看到案件為準。`;
+  renderRentGroups();
+}
+function setMarket(mode){
+  MARKET_MODE=mode==='rent'?'rent':'sale'; SOURCE_FILTER='all';
+  document.querySelectorAll('.market-btn').forEach(b=>b.classList.toggle('active',b.dataset.market===MARKET_MODE));
+  document.querySelectorAll('.source-tab').forEach(b=>b.classList.toggle('active',b.dataset.source==='all'));
+  const rent=MARKET_MODE==='rent';
+  const company=document.querySelector('#companyPanel'); if(company)company.style.display=rent?'none':'';
+  const state=document.querySelector('#state'); if(state){state.style.display=rent?'none':'';state.value='all';}
+  const companyState=document.querySelector('#companyState'); if(companyState){companyState.style.display=rent?'none':'';companyState.value='all';}
+  const title=document.querySelector('#listTitle'); if(title)title.textContent=rent?'租屋案件列表':'整併後案件列表';
+  const sort=document.querySelector('#sort');
+  if(sort&&sort.options.length>=5){
+    sort.options[1].textContent=rent?'租金：高 → 低':'售價：高 → 低';
+    sort.options[2].textContent=rent?'租金：低 → 高':'售價：低 → 高';
+    sort.options[3].textContent=rent?'首次抓到：新 → 舊':'上架時間：新 → 舊';
+    sort.options[4].textContent=rent?'首次抓到：舊 → 新':'上架時間：舊 → 新';
+  }
+  if(rent)renderRent(); else render();
+}
+document.querySelectorAll('.market-btn').forEach(btn=>btn.addEventListener('click',()=>setMarket(btn.dataset.market)));
+fetchJson(`preview/rental-data.json?ts=${Date.now()}`,'租屋資料').then(r=>{RENT=r;if(MARKET_MODE==='rent')renderRent()}).catch(e=>{console.warn('Rental Preview unavailable',e)});
+
 document.querySelectorAll('.source-tab').forEach(btn=>btn.addEventListener('click',()=>{SOURCE_FILTER=btn.dataset.source||'all';document.querySelectorAll('.source-tab').forEach(x=>x.classList.toggle('active',x===btn));renderGroups()}));
 ['state','companyState','sort'].forEach(id=>document.querySelector('#'+id).addEventListener('change',renderGroups));
 function sameCounts(a,b){
