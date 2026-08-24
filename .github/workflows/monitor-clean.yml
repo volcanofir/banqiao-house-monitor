@@ -8,9 +8,10 @@ on:
       - ".github/workflows/monitor-clean.yml"
       - "scripts/monitor_fast.py"
       - "scripts/monitor_sinyi_parallel.py"
+      - "scripts/monitor_schedule_state.py"
       - "trigger/monitor-wakeup.txt"
   schedule:
-    # Cheap heartbeat every 10 minutes; full refresh starts when source is ~3 hours old.
+    # Cheap heartbeat every 10 minutes; successful full refreshes are spaced ~3 hours apart.
     - cron: "7,17,27,37,47,57 * * * *"
 
 permissions:
@@ -40,24 +41,7 @@ jobs:
             echo "run=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          python - <<'PY'
-          import json, os
-          from datetime import datetime, timezone
-          from pathlib import Path
-          threshold_minutes = 170
-          try:
-              d=json.loads(Path('docs/data/listings.json').read_text(encoding='utf-8'))
-              t=datetime.fromisoformat(str(d['updatedAt']).replace('Z','+00:00'))
-              if t.tzinfo is None: t=t.replace(tzinfo=timezone.utc)
-              age=(datetime.now(timezone.utc)-t.astimezone(timezone.utc)).total_seconds()/60
-              run=age >= threshold_minutes
-              print(f'heartbeat freshness age={age:.1f} min; threshold={threshold_minutes} => {"run" if run else "skip"}')
-          except Exception as exc:
-              print(f'freshness check failed: {exc}; running monitor')
-              run=True
-          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as f:
-              f.write(f"run={'true' if run else 'false'}\n")
-          PY
+          python scripts/monitor_schedule_state.py gate
 
       - name: Preserve pre-refresh source for meaningful-change detection
         if: steps.gate.outputs.run == 'true'
@@ -139,6 +123,11 @@ jobs:
           python scripts/normalize_source_times.py
           python scripts/track_price_changes.py
           python scripts/remove_first_seen_ui.py
+
+      - name: Prepare successful full-check schedule state
+        id: fullcheck
+        if: steps.gate.outputs.run == 'true'
+        run: python scripts/monitor_schedule_state.py prepare
 
       - name: Detect meaningful listing changes
         id: changes
@@ -266,9 +255,21 @@ jobs:
           done
           exit 1
 
+      - name: Persist successful full-check time after verified publish
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true' && steps.fullcheck.outputs.success == 'true' && success()
+        run: python scripts/monitor_schedule_state.py persist
+
       - name: No meaningful listing change
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful != 'true'
         run: echo "No listing-level change; skipped Yongching/company comparison and kept canonical source timestamp unchanged."
+
+      - name: Persist successful no-change full-check time
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful != 'true' && steps.fullcheck.outputs.success == 'true'
+        run: python scripts/monitor_schedule_state.py persist
+
+      - name: Full check incomplete; retry on next heartbeat
+        if: steps.gate.outputs.run == 'true' && steps.fullcheck.outputs.success != 'true'
+        run: echo "591 or Sinyi did not complete successfully; schedule timestamp was not advanced, so the next 10-minute heartbeat can retry."
 
       - name: Request GitHub Pages rebuild
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true' && success()
@@ -284,4 +285,4 @@ jobs:
 
       - name: Heartbeat skipped
         if: steps.gate.outputs.run != 'true'
-        run: echo "Data is still fresh; heartbeat finished without a full fetch."
+        run: echo "Last successful full check is still fresh; heartbeat finished without a full fetch."
