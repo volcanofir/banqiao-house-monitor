@@ -1,10 +1,7 @@
-"""Browser smoke test for the generated Preview UI.
+"""Browser smoke test for the complete Preview UI.
 
-Serves docs/ locally, opens /preview/ in Chromium, and verifies that the canonical
-Preview renders without JavaScript/runtime-integrity errors before GitHub Pages
-files are published. It also simulates a newer monitor snapshot and requires the UI
-to hide stale grouped/comparison results while the canonical comparison catches up.
-This is Preview-only and never mutates production data.
+The gate covers canonical sale data, rental switching, off-market history and stale-source
+suppression. A Preview that fails any of these checks must not be promoted to production.
 """
 
 import json
@@ -21,6 +18,8 @@ PORT = 8765
 ROOT = Path("docs")
 URL = f"http://127.0.0.1:{PORT}/preview/"
 SOURCE_DATA = ROOT / "data" / "listings.json"
+GAP_DATA = ROOT / "preview" / "company-gap.json"
+RENTAL_DATA = ROOT / "preview" / "rental-data.json"
 
 
 def wait_server():
@@ -43,13 +42,23 @@ def number(text):
 def main():
     required = [
         ROOT / "preview" / "index.html",
-        ROOT / "preview" / "company-gap.json",
+        GAP_DATA,
         ROOT / "preview" / "scheme-a-verification.json",
         SOURCE_DATA,
+        RENTAL_DATA,
     ]
     missing = [str(p) for p in required if not p.exists()]
     if missing:
         raise RuntimeError(f"Preview smoke prerequisites missing: {missing}")
+
+    gap_payload = json.loads(GAP_DATA.read_text(encoding="utf-8"))
+    rental_payload = json.loads(RENTAL_DATA.read_text(encoding="utf-8"))
+    offmarket_count = int(gap_payload.get("recentOffMarketCount") or 0)
+    rental_count = len(rental_payload.get("listings") or [])
+    assert gap_payload.get("recentOffMarketRetentionDays") == 10
+    assert offmarket_count == len(gap_payload.get("recentOffMarketGroups") or [])
+    assert rental_payload.get("market") == "rent"
+    assert int((rental_payload.get("counts") or {}).get("total") or 0) == rental_count
 
     server = subprocess.Popen(
         [sys.executable, "-m", "http.server", str(PORT), "--bind", "127.0.0.1", "--directory", str(ROOT)],
@@ -67,9 +76,6 @@ def main():
             page = browser.new_page(viewport={"width": 390, "height": 844}, locale="zh-TW")
 
             def on_console(msg):
-                # Local smoke serving does not mirror the GitHub Pages repository
-                # prefix used by absolute icon paths. Ignore only browser resource
-                # noise; application console.error messages still fail the gate.
                 if msg.type != "error":
                     return
                 text = msg.text or ""
@@ -82,7 +88,7 @@ def main():
             page.on("requestfailed", lambda req: failed_requests.append(f"{req.method} {req.url}: {req.failure}"))
 
             response = page.goto(URL, wait_until="networkidle", timeout=30000)
-            assert response is not None and response.status == 200, response.status if response else None
+            assert response is not None and response.status == 200
             page.wait_for_function("document.querySelector('#mGroups')?.textContent !== '-'", timeout=15000)
 
             updated = page.locator("#updated").inner_text()
@@ -95,12 +101,14 @@ def main():
                 assert text not in ("", "-"), (selector, text)
                 assert number(text) is not None, (selector, text)
 
+            assert number(page.locator("#cUnavailable").inner_text()) == offmarket_count
             assert page.locator("#sources .source-card").count() >= 2
             assert page.locator("#groups .road-group").count() >= 1
+            assert page.locator(".market-btn").count() == 2
             assert page.evaluate("VERIFY && VERIFY.valid === true") is True
             assert page.evaluate("verificationMatches(DATA, GAP, VERIFY)") is True
 
-            # Exercise the main controls so event-handler regressions fail the publish.
+            # Sale controls.
             page.locator('.source-tab[data-source="591"]').click()
             assert "active" in (page.locator('.source-tab[data-source="591"]').get_attribute("class") or "")
             page.select_option("#sort", "priceDesc")
@@ -108,14 +116,43 @@ def main():
             page.select_option("#companyState", "all")
             page.locator('.source-tab[data-source="all"]').click()
 
+            # Off-market canonical history must be filterable and count-consistent.
+            page.select_option("#state", "removed")
+            if offmarket_count:
+                page.wait_for_function("document.querySelectorAll('#groups .item').length > 0", timeout=5000)
+                assert page.locator("#groups .item").count() == offmarket_count
+                removed_text = page.locator("#groups").inner_text()
+                assert "已下架" in removed_text
+                assert "下架：" in removed_text
+            else:
+                assert page.locator("#groups .road-group").count() == 0
+            page.select_option("#state", "all")
+
+            # Rental mode must load the independent data file without mutating the sale UI.
+            page.locator('.market-btn[data-market="rent"]').click()
+            page.wait_for_function("MARKET_MODE === 'rent' && document.querySelector('#listTitle')?.textContent.includes('租屋')", timeout=5000)
+            assert page.locator("#companyPanel").evaluate("el => getComputedStyle(el).display") == "none"
+            assert number(page.locator("#mGroups").inner_text()) == rental_count
+            assert page.locator("#sources .source-card").count() == 2
+            assert "租屋資料最近更新" in page.locator("#updated").inner_text()
+            assert "租金" in page.locator("#sort option").nth(1).inner_text()
+            if rental_count:
+                assert page.locator("#groups .rent-item").count() >= 1
+            page.locator('.source-tab[data-source="591"]').click()
+            page.select_option("#sort", "priceAsc")
+
+            # Switching back to sale must restore company comparison and canonical integrity.
+            page.locator('.market-btn[data-market="sale"]').click()
+            page.wait_for_function("MARKET_MODE === 'sale' && document.querySelector('#companyPanel')?.style.display !== 'none'", timeout=5000)
+            assert page.evaluate("verificationMatches(DATA, GAP, VERIFY)") is True
+            assert "售價" in page.locator("#sort option").nth(1).inner_text()
+
             assert not page_errors, page_errors
             meaningful_failed = [x for x in failed_requests if not any(k in x for k in ("favicon", "icon-safe"))]
             assert not meaningful_failed, meaningful_failed
             assert not console_errors, console_errors
 
-            # Negative-path regression: make only listings.json appear newer than the
-            # comparison output. The UI must refuse to show the previous grouping or
-            # company counts as though they were current.
+            # Negative path: a newer monitor snapshot must suppress stale sale comparison output.
             stale_page = browser.new_page(viewport={"width": 390, "height": 844}, locale="zh-TW")
             stale_errors = []
             stale_page.on("pageerror", lambda exc: stale_errors.append(str(exc)))
@@ -145,7 +182,10 @@ def main():
 
             browser.close()
 
-        print("Preview UI smoke test passed, including stale-source suppression")
+        print(
+            f"Preview UI smoke test passed: sale integrity, {offmarket_count} off-market group(s), "
+            f"{rental_count} rental listing(s), market switching and stale-source suppression"
+        )
     finally:
         server.terminate()
         try:
