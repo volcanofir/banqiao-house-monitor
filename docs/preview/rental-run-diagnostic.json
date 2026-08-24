@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-08-24T08:14:55+00:00",
+  "checkedAt": "2026-08-24T08:24:14+00:00",
   "vpnOutcome": "success",
   "fetchOutcome": "failure",
   "fetchReturnCode": "1",
   "patchOutcome": "skipped",
   "rentalDataExists": true,
-  "logTail": "/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:202: SyntaxWarning: invalid escape sequence '\\s'\n  cards = page.evaluate(\"\"\"() => [...document.querySelectorAll('a[href*=\"/rent/list/\"][href*=\"/houseno/\"]')].map(a=>({href:a.href,text:(a.innerText||'').replace(/\\s+/g,' ').trim()}))\"\"\")\nTraceback (most recent call last):\n  File \"/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py\", line 8, in <module>\n    from playwright.sync_api import sync_playwright\nModuleNotFoundError: No module named 'playwright'\n"
+  "logTail": "Traceback (most recent call last):\n  File \"/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py\", line 10, in <module>\n    from playwright.sync_api import sync_playwright\nModuleNotFoundError: No module named 'playwright'\n"
 }
