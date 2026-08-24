@@ -7,6 +7,7 @@ explicitly select another browser/channel untouched.
 
 import runpy
 import sys
+from pathlib import Path
 
 from playwright.sync_api import BrowserType
 
@@ -27,7 +28,17 @@ def main():
     target_args = sys.argv[2:]
     BrowserType.launch = _launch_with_system_chrome
     sys.argv = [target, *target_args]
-    runpy.run_path(target, run_name="__main__")
+    try:
+        runpy.run_path(target, run_name="__main__")
+    except BaseException as exc:
+        if target.endswith("smoke_test_preview_ui.py"):
+            try:
+                log = Path("docs/preview/yungching-preview-run.log")
+                with log.open("a", encoding="utf-8") as f:
+                    f.write(f"\nPREVIEW_SMOKE_ERROR {type(exc).__name__}: {exc}\n")
+            except Exception:
+                pass
+        raise
 
 
 if __name__ == "__main__":
