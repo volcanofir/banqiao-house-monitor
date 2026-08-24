@@ -1,29 +1,61 @@
 {
-  "updatedAt": "2026-08-24T08:09:09+00:00",
+  "updatedAt": "2026-08-24T08:28:11+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
     "板橋區中山路二段",
-    "板橋區三民路二段",
-    "板橋區光復街",
-    "板橋區萬安街",
-    "板橋區林森街",
     "板橋區三民路一段",
-    "板橋區翠華街"
+    "板橋區光復街",
+    "板橋區三民路二段",
+    "板橋區萬安街",
+    "板橋區翠華街",
+    "板橋區林森街"
   ],
+  "searchPages": {
+    "591": {
+      "板橋區中山路二段": "https://rent.591.com.tw/list?region=3&section=26&keywords=中山路二段",
+      "板橋區三民路一段": "https://rent.591.com.tw/list?region=3&section=26&keywords=三民路一段",
+      "板橋區光復街": "https://rent.591.com.tw/list?region=3&section=26&keywords=光復街",
+      "板橋區三民路二段": "https://rent.591.com.tw/list?region=3&section=26&keywords=三民路二段",
+      "板橋區萬安街": "https://rent.591.com.tw/list?region=3&section=26&keywords=萬安街",
+      "板橋區翠華街": "https://rent.591.com.tw/list?region=3&section=26&keywords=翠華街",
+      "板橋區林森街": "https://rent.591.com.tw/list?region=3&section=26&keywords=林森街"
+    },
+    "信義房屋": {
+      "板橋區中山路二段": "https://www.sinyi.com.tw/rent/list/NewTaipei-city/220-zip/中山路二段-keyword/index.html",
+      "板橋區三民路一段": "https://www.sinyi.com.tw/rent/list/NewTaipei-city/220-zip/三民路一段-keyword/index.html",
+      "板橋區三民路二段": "https://www.sinyi.com.tw/rent/list/NewTaipei-city/220-zip/三民路二段-keyword/index.html",
+      "板橋區光復街": "https://www.sinyi.com.tw/rent/list/NewTaipei-city/220-zip/光復街-keyword/index.html",
+      "板橋區萬安街": "https://www.sinyi.com.tw/rent/list/NewTaipei-city/220-zip/萬安街-keyword/index.html",
+      "板橋區翠華街": "https://www.sinyi.com.tw/rent/list/NewTaipei-city/220-zip/翠華街-keyword/index.html",
+      "板橋區林森街": "https://www.sinyi.com.tw/rent/list/NewTaipei-city/220-zip/林森街-keyword/index.html"
+    }
+  },
   "runs": {
     "591": {
       "status": "error",
       "totalCount": 0,
       "logs": [
-        "591租屋 API 第1頁 status=0，停止翻頁"
+        "板橋區中山路二段 591租屋：未攔截到官方租屋列表 API",
+        "板橋區三民路一段 591租屋：未攔截到官方租屋列表 API",
+        "板橋區光復街 591租屋：未攔截到官方租屋列表 API",
+        "板橋區三民路二段 591租屋：未攔截到官方租屋列表 API",
+        "板橋區萬安街 591租屋：未攔截到官方租屋列表 API",
+        "板橋區翠華街 591租屋：未攔截到官方租屋列表 API",
+        "板橋區林森街 591租屋：未攔截到官方租屋列表 API"
       ]
     },
     "信義房屋": {
       "status": "error",
       "totalCount": 0,
       "logs": [
-        "信義租屋未取得結構化列表"
+        "板橋區中山路二段 信義租屋 HTTP 503",
+        "板橋區三民路一段 信義租屋：HTTP 200／解析 0 筆",
+        "板橋區三民路二段 信義租屋 HTTP 503",
+        "板橋區光復街 信義租屋：HTTP 200／解析 0 筆",
+        "板橋區萬安街 信義租屋：HTTP 200／解析 0 筆",
+        "板橋區翠華街 信義租屋：HTTP 200／解析 0 筆",
+        "板橋區林森街 信義租屋 HTTP 503"
       ]
     }
   },
@@ -33,14 +65,14 @@
     "591": 0,
     "roads": {
       "板橋區中山路二段": 0,
-      "板橋區三民路二段": 0,
-      "板橋區光復街": 0,
-      "板橋區萬安街": 0,
-      "板橋區林森街": 0,
       "板橋區三民路一段": 0,
-      "板橋區翠華街": 0
+      "板橋區光復街": 0,
+      "板橋區三民路二段": 0,
+      "板橋區萬安街": 0,
+      "板橋區翠華街": 0,
+      "板橋區林森街": 0
     }
   },
   "listings": [],
-  "elapsedSeconds": 6.1
+  "elapsedSeconds": 93.84
 }

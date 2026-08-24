@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-08-24T08:24:14+00:00",
+  "checkedAt": "2026-08-24T08:28:11+00:00",
   "vpnOutcome": "success",
-  "fetchOutcome": "failure",
-  "fetchReturnCode": "1",
-  "patchOutcome": "skipped",
+  "fetchOutcome": "success",
+  "fetchReturnCode": "0",
+  "patchOutcome": "success",
   "rentalDataExists": true,
-  "logTail": "Traceback (most recent call last):\n  File \"/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py\", line 10, in <module>\n    from playwright.sync_api import sync_playwright\nModuleNotFoundError: No module named 'playwright'\n"
+  "logTail": "{\"updatedAt\": \"2026-08-24T08:28:11+00:00\", \"counts\": {\"total\": 0, \"sinyi\": 0, \"591\": 0, \"roads\": {\"板橋區中山路二段\": 0, \"板橋區三民路一段\": 0, \"板橋區光復街\": 0, \"板橋區三民路二段\": 0, \"板橋區萬安街\": 0, \"板橋區翠華街\": 0, \"板橋區林森街\": 0}}, \"runs\": {\"591\": \"error\", \"信義房屋\": \"error\"}, \"elapsedSeconds\": 93.84}\n"
 }
