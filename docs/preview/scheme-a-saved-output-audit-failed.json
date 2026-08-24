@@ -1,0 +1,490 @@
+{
+  "auditedAt": "2026-08-24T06:30:02+00:00",
+  "scheme": "A",
+  "target": "exact canonical Preview files before atomic publish",
+  "validator": "validate_scheme_a_preview_v3",
+  "passed": true,
+  "error": null,
+  "companyGap": {
+    "generatedAt": "2026-08-24T06:30:00+00:00",
+    "capturedAt": null,
+    "verifiedAt": null,
+    "companySnapshotCapturedAt": "2026-08-24T06:21:55+00:00",
+    "listingCount": null,
+    "companyListingCount": 81,
+    "propertyGroupCount": 155,
+    "counts": {
+      "company_match": 49,
+      "review": 2,
+      "missing": 104,
+      "unavailable": 0
+    },
+    "idIntegrityGuard": null,
+    "canonicalPublisher": null,
+    "valid": null,
+    "integrityVersion": null,
+    "safeFloorParser": true,
+    "sinyiStructuredFloorMatching": true,
+    "sinyiFloorEnrichment": {
+      "generatedAt": "2026-08-24T06:29:58+00:00",
+      "previewOnly": true,
+      "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
+      "activeSinyiCount": 77,
+      "matchedOfficialCount": 77,
+      "appliedCount": 77,
+      "withStructuredFloorValueCount": 75,
+      "withoutStructuredFloorValueCount": 2,
+      "withoutStructuredFloorValueIds": [
+        "18830N",
+        "4042UF"
+      ],
+      "missingActiveIds": [],
+      "roadStatus": {
+        "板橋區中山路二段": {
+          "pagesRead": 3,
+          "lastHttp": 200,
+          "allHttp200": true,
+          "matchedActiveCount": 40
+        },
+        "板橋區三民路二段": {
+          "pagesRead": 2,
+          "lastHttp": 200,
+          "allHttp200": true,
+          "matchedActiveCount": 20
+        },
+        "板橋區光復街": {
+          "pagesRead": 2,
+          "lastHttp": 200,
+          "allHttp200": true,
+          "matchedActiveCount": 4
+        },
+        "板橋區萬安街": {
+          "pagesRead": 2,
+          "lastHttp": 200,
+          "allHttp200": true,
+          "matchedActiveCount": 3
+        },
+        "板橋區林森街": {
+          "pagesRead": 2,
+          "lastHttp": 200,
+          "allHttp200": true,
+          "matchedActiveCount": 1
+        },
+        "板橋區三民路一段": {
+          "pagesRead": 2,
+          "lastHttp": 200,
+          "allHttp200": true,
+          "matchedActiveCount": 9
+        },
+        "板橋區翠華街": {
+          "pagesRead": 1,
+          "lastHttp": 200,
+          "allHttp200": true,
+          "matchedActiveCount": 0
+        }
+      },
+      "complete": true
+    },
+    "companyNearTieGuard": {
+      "enabled": true,
+      "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
+      "examinedCompanyMatchCount": 50,
+      "downgradedCount": 1,
+      "remainingAutoNearTieCount": 0,
+      "groups": [
+        {
+          "groupId": "GROUP:信義房屋:5368YG",
+          "road": "板橋區三民路二段",
+          "title": "國泰建設板橋方正三樓",
+          "scoreDelta": 1,
+          "candidates": [
+            {
+              "id": "YC:7359599",
+              "officialId": "7359599",
+              "officialCaseId": "YC1272376",
+              "title": "國泰建設稀有三樓",
+              "area": 27.63,
+              "price": 1330.0,
+              "floor": "3/5樓",
+              "score": 20,
+              "floorRelation": "match",
+              "externalFloors": [
+                3
+              ],
+              "companyFloors": [
+                3
+              ],
+              "evidenceSource": "信義房屋",
+              "evidenceListingId": "信義房屋:5368YG"
+            },
+            {
+              "id": "YC:7359618",
+              "officialId": "7359618",
+              "officialCaseId": "YC1272325",
+              "title": "國泰建設首購首選",
+              "area": 27.63,
+              "price": 1330.0,
+              "floor": "3/5樓",
+              "score": 19,
+              "floorRelation": "match",
+              "externalFloors": [
+                3
+              ],
+              "companyFloors": [
+                3
+              ],
+              "evidenceSource": "信義房屋",
+              "evidenceListingId": "信義房屋:5368YG"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "browserSnapshot": {
+    "generatedAt": null,
+    "capturedAt": "2026-08-24T06:21:55+00:00",
+    "verifiedAt": null,
+    "companySnapshotCapturedAt": null,
+    "listingCount": 81,
+    "companyListingCount": null,
+    "propertyGroupCount": null,
+    "counts": null,
+    "idIntegrityGuard": {
+      "enabled": true,
+      "beforeCount": 88,
+      "afterCount": 81,
+      "removedCount": 7,
+      "collisionIds": [
+        "4308114"
+      ],
+      "remainingCollisionIds": [],
+      "removed": [
+        {
+          "id": "4308114",
+          "road": "板橋區中山路二段",
+          "title": "埔墘中山路稀有三樓頂加出價可談",
+          "area": 32.33,
+          "price": 1380.0,
+          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+          "replacementIds": [
+            "6693666"
+          ],
+          "replacementFound": true
+        },
+        {
+          "id": "4308114",
+          "road": "板橋區三民路一段",
+          "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
+          "area": 89.82,
+          "price": 3600.0,
+          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+          "replacementIds": [
+            "7410779"
+          ],
+          "replacementFound": true
+        },
+        {
+          "id": "4308114",
+          "road": "板橋區三民路二段",
+          "title": "正隆國泰美妝頂加",
+          "area": 29.53,
+          "price": 1598.0,
+          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+          "replacementIds": [
+            "7481499"
+          ],
+          "replacementFound": true
+        },
+        {
+          "id": "4308114",
+          "road": "板橋區翠華街",
+          "title": "大面寬x稀有雙拼x方正格局x黃金一樓x使用近60",
+          "area": 59.37,
+          "price": 4280.0,
+          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+          "replacementIds": [
+            "7455915"
+          ],
+          "replacementFound": true
+        },
+        {
+          "id": "4308114",
+          "road": "板橋區林森街",
+          "title": "埔墘小資方正頂家",
+          "area": 21.27,
+          "price": 938.0,
+          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+          "replacementIds": [
+            "7450882"
+          ],
+          "replacementFound": true
+        },
+        {
+          "id": "4308114",
+          "road": "板橋區萬安街",
+          "title": "適合三代同堂輕裝潢透天出價就談",
+          "area": 27.59,
+          "price": 1980.0,
+          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+          "replacementIds": [
+            "7320894"
+          ],
+          "replacementFound": true
+        },
+        {
+          "id": "4308114",
+          "road": "板橋區光復街",
+          "title": "現況辦公可隔三房坡道平面車位",
+          "area": 53.21,
+          "price": 2688.0,
+          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+          "replacementIds": [
+            "7242793"
+          ],
+          "replacementFound": true
+        }
+      ],
+      "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
+    },
+    "canonicalPublisher": null,
+    "valid": null,
+    "integrityVersion": null,
+    "safeFloorParser": null,
+    "sinyiStructuredFloorMatching": null,
+    "sinyiFloorEnrichment": null,
+    "companyNearTieGuard": null
+  },
+  "verification": {
+    "generatedAt": null,
+    "capturedAt": null,
+    "verifiedAt": "2026-08-24T06:30:02+00:00",
+    "companySnapshotCapturedAt": "2026-08-24T06:21:55+00:00",
+    "listingCount": null,
+    "companyListingCount": 81,
+    "propertyGroupCount": 155,
+    "counts": {
+      "company_match": 49,
+      "review": 2,
+      "missing": 104,
+      "unavailable": 0
+    },
+    "idIntegrityGuard": {
+      "enabled": true,
+      "beforeCount": 88,
+      "afterCount": 81,
+      "removedCount": 7,
+      "collisionIds": [
+        "4308114"
+      ],
+      "remainingCollisionIds": [],
+      "removed": [
+        {
+          "id": "4308114",
+          "road": "板橋區中山路二段",
+          "title": "埔墘中山路稀有三樓頂加出價可談",
+          "area": 32.33,
+          "price": 1380.0,
+          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+          "replacementIds": [
+            "6693666"
+          ],
+          "replacementFound": true
+        },
+        {
+          "id": "4308114",
+          "road": "板橋區三民路一段",
+          "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
+          "area": 89.82,
+          "price": 3600.0,
+          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+          "replacementIds": [
+            "7410779"
+          ],
+          "replacementFound": true
+        },
+        {
+          "id": "4308114",
+          "road": "板橋區三民路二段",
+          "title": "正隆國泰美妝頂加",
+          "area": 29.53,
+          "price": 1598.0,
+          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+          "replacementIds": [
+            "7481499"
+          ],
+          "replacementFound": true
+        },
+        {
+          "id": "4308114",
+          "road": "板橋區翠華街",
+          "title": "大面寬x稀有雙拼x方正格局x黃金一樓x使用近60",
+          "area": 59.37,
+          "price": 4280.0,
+          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+          "replacementIds": [
+            "7455915"
+          ],
+          "replacementFound": true
+        },
+        {
+          "id": "4308114",
+          "road": "板橋區林森街",
+          "title": "埔墘小資方正頂家",
+          "area": 21.27,
+          "price": 938.0,
+          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+          "replacementIds": [
+            "7450882"
+          ],
+          "replacementFound": true
+        },
+        {
+          "id": "4308114",
+          "road": "板橋區萬安街",
+          "title": "適合三代同堂輕裝潢透天出價就談",
+          "area": 27.59,
+          "price": 1980.0,
+          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+          "replacementIds": [
+            "7320894"
+          ],
+          "replacementFound": true
+        },
+        {
+          "id": "4308114",
+          "road": "板橋區光復街",
+          "title": "現況辦公可隔三房坡道平面車位",
+          "area": 53.21,
+          "price": 2688.0,
+          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+          "replacementIds": [
+            "7242793"
+          ],
+          "replacementFound": true
+        }
+      ],
+      "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
+    },
+    "canonicalPublisher": "yungching-preview.yml",
+    "valid": true,
+    "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
+    "safeFloorParser": true,
+    "sinyiStructuredFloorMatching": true,
+    "sinyiFloorEnrichment": {
+      "generatedAt": "2026-08-24T06:29:58+00:00",
+      "previewOnly": true,
+      "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
+      "activeSinyiCount": 77,
+      "matchedOfficialCount": 77,
+      "appliedCount": 77,
+      "withStructuredFloorValueCount": 75,
+      "withoutStructuredFloorValueCount": 2,
+      "withoutStructuredFloorValueIds": [
+        "18830N",
+        "4042UF"
+      ],
+      "missingActiveIds": [],
+      "roadStatus": {
+        "板橋區中山路二段": {
+          "pagesRead": 3,
+          "lastHttp": 200,
+          "allHttp200": true,
+          "matchedActiveCount": 40
+        },
+        "板橋區三民路二段": {
+          "pagesRead": 2,
+          "lastHttp": 200,
+          "allHttp200": true,
+          "matchedActiveCount": 20
+        },
+        "板橋區光復街": {
+          "pagesRead": 2,
+          "lastHttp": 200,
+          "allHttp200": true,
+          "matchedActiveCount": 4
+        },
+        "板橋區萬安街": {
+          "pagesRead": 2,
+          "lastHttp": 200,
+          "allHttp200": true,
+          "matchedActiveCount": 3
+        },
+        "板橋區林森街": {
+          "pagesRead": 2,
+          "lastHttp": 200,
+          "allHttp200": true,
+          "matchedActiveCount": 1
+        },
+        "板橋區三民路一段": {
+          "pagesRead": 2,
+          "lastHttp": 200,
+          "allHttp200": true,
+          "matchedActiveCount": 9
+        },
+        "板橋區翠華街": {
+          "pagesRead": 1,
+          "lastHttp": 200,
+          "allHttp200": true,
+          "matchedActiveCount": 0
+        }
+      },
+      "complete": true
+    },
+    "companyNearTieGuard": {
+      "enabled": true,
+      "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
+      "examinedCompanyMatchCount": 50,
+      "downgradedCount": 1,
+      "remainingAutoNearTieCount": 0,
+      "groups": [
+        {
+          "groupId": "GROUP:信義房屋:5368YG",
+          "road": "板橋區三民路二段",
+          "title": "國泰建設板橋方正三樓",
+          "scoreDelta": 1,
+          "candidates": [
+            {
+              "id": "YC:7359599",
+              "officialId": "7359599",
+              "officialCaseId": "YC1272376",
+              "title": "國泰建設稀有三樓",
+              "area": 27.63,
+              "price": 1330.0,
+              "floor": "3/5樓",
+              "score": 20,
+              "floorRelation": "match",
+              "externalFloors": [
+                3
+              ],
+              "companyFloors": [
+                3
+              ],
+              "evidenceSource": "信義房屋",
+              "evidenceListingId": "信義房屋:5368YG"
+            },
+            {
+              "id": "YC:7359618",
+              "officialId": "7359618",
+              "officialCaseId": "YC1272325",
+              "title": "國泰建設首購首選",
+              "area": 27.63,
+              "price": 1330.0,
+              "floor": "3/5樓",
+              "score": 19,
+              "floorRelation": "match",
+              "externalFloors": [
+                3
+              ],
+              "companyFloors": [
+                3
+              ],
+              "evidenceSource": "信義房屋",
+              "evidenceListingId": "信義房屋:5368YG"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
