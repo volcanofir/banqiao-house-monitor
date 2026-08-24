@@ -6,6 +6,8 @@ have no active source/member left. A property is therefore not counted as off-ma
 when one source disappeared but the same property is still advertised elsewhere.
 """
 
+# Also acts as a canonical Preview rebuild trigger when display-only UI wording changes.
+
 import json
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -101,7 +103,6 @@ def main():
         removed_times = [x for x in removed_times if x is not None]
         if not removed_times:
             continue
-        # The property becomes fully off-market when its last active source disappears.
         fully_removed_at = max(removed_times)
         if fully_removed_at <= cutoff:
             continue
