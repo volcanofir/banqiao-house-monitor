@@ -7,6 +7,7 @@ on:
     paths:
       - ".github/workflows/rental-preview.yml"
       - "scripts/fetch_rental_preview.py"
+      - "scripts/stamp_rental_first_seen.py"
       - "scripts/patch_rental_preview_ui.py"
       - "trigger/rental-preview-wakeup.txt"
 
@@ -34,6 +35,13 @@ jobs:
       - name: Install crawler packages
         run: python -m pip install requests beautifulsoup4 playwright
 
+      - name: Preserve previous rental first-seen data
+        shell: bash
+        run: |
+          if [[ -f docs/preview/rental-data.json ]]; then
+            cp docs/preview/rental-data.json /tmp/rental-data-previous.json
+          fi
+
       - name: Connect Surfshark
         id: vpn
         continue-on-error: true
@@ -54,9 +62,15 @@ jobs:
           echo "rc=$rc" >> "$GITHUB_OUTPUT"
           exit $rc
 
+      - name: Stamp first-seen time from our monitor
+        id: stamp
+        if: steps.fetch.outcome == 'success'
+        continue-on-error: true
+        run: python scripts/stamp_rental_first_seen.py
+
       - name: Patch Preview rental UI
         id: patch
-        if: steps.fetch.outcome == 'success'
+        if: steps.fetch.outcome == 'success' && steps.stamp.outcome == 'success'
         continue-on-error: true
         shell: bash
         run: python scripts/patch_rental_preview_ui.py
@@ -67,6 +81,7 @@ jobs:
           VPN_OUTCOME: ${{ steps.vpn.outcome }}
           FETCH_OUTCOME: ${{ steps.fetch.outcome }}
           FETCH_RC: ${{ steps.fetch.outputs.rc }}
+          STAMP_OUTCOME: ${{ steps.stamp.outcome }}
           PATCH_OUTCOME: ${{ steps.patch.outcome }}
         shell: bash
         run: |
@@ -82,6 +97,7 @@ jobs:
             'vpnOutcome':os.getenv('VPN_OUTCOME'),
             'fetchOutcome':os.getenv('FETCH_OUTCOME'),
             'fetchReturnCode':os.getenv('FETCH_RC'),
+            'stampOutcome':os.getenv('STAMP_OUTCOME'),
             'patchOutcome':os.getenv('PATCH_OUTCOME'),
             'rentalDataExists':Path('docs/preview/rental-data.json').exists(),
             'logTail':log,
@@ -113,7 +129,7 @@ jobs:
           fi
 
       - name: Request GitHub Pages rebuild
-        if: steps.fetch.outcome == 'success' && steps.patch.outcome == 'success'
+        if: steps.fetch.outcome == 'success' && steps.stamp.outcome == 'success' && steps.patch.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -124,5 +140,5 @@ jobs:
             "repos/${GITHUB_REPOSITORY}/pages/builds"
 
       - name: Fail if rental Preview did not build
-        if: steps.fetch.outcome != 'success' || steps.patch.outcome != 'success'
+        if: steps.fetch.outcome != 'success' || steps.stamp.outcome != 'success' || steps.patch.outcome != 'success'
         run: exit 1
