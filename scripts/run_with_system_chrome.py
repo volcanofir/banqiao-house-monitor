@@ -7,6 +7,7 @@ explicitly select another browser/channel untouched.
 
 import runpy
 import sys
+import traceback
 from pathlib import Path
 
 from playwright.sync_api import BrowserType
@@ -36,6 +37,8 @@ def main():
                 log = Path("docs/preview/yungching-preview-run.log")
                 with log.open("a", encoding="utf-8") as f:
                     f.write(f"\nPREVIEW_SMOKE_ERROR {type(exc).__name__}: {exc}\n")
+                    f.write(traceback.format_exc())
+                    f.write("\n")
             except Exception:
                 pass
         raise
