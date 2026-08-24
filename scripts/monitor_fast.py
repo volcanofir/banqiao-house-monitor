@@ -9,6 +9,7 @@ from playwright.async_api import async_playwright
 
 API_591_V1 = "bff-house.591.com.tw/v1/touch/sale/list"
 API_591_V2 = "bff-house.591.com.tw/v2/php-api"
+ROAD_RETRY_DELAY_SECONDS = 5
 
 
 def build_api_url(template_url, street_id, first_row=0, page_no=1):
@@ -153,37 +154,99 @@ async def fetch_one_591_road(browser, road, street_id):
         await context.close()
 
 
+async def launch_591_browser(playwright):
+    return await playwright.chromium.launch(
+        channel="chrome",
+        headless=True,
+        args=["--disable-dev-shm-usage"],
+    )
+
+
 async def fast_fetch_591():
     started = time.time()
+    road_items = list(core.WATCH_591_STREETS.items())
+    orchestration_logs = []
+    retry_results = {}
+
     try:
         async with async_playwright() as p:
-            browser = await p.chromium.launch(
-                channel="chrome",
-                headless=True,
-                args=["--disable-dev-shm-usage"],
-            )
+            browser = await launch_591_browser(p)
             try:
-                road_items = list(core.WATCH_591_STREETS.items())
-                results = await asyncio.gather(
+                first_results = await asyncio.gather(
                     *(fetch_one_591_road(browser, road, street_id) for road, street_id in road_items)
                 )
             finally:
                 await browser.close()
+
+            failed_indexes = [
+                index for index, (_, ok, _) in enumerate(first_results) if not ok
+            ]
+
+            if failed_indexes:
+                failed_names = [road_items[index][0] for index in failed_indexes]
+                orchestration_logs.append(
+                    "591 第一輪有 " + str(len(failed_indexes)) + " 條路段未完整："
+                    + "、".join(failed_names)
+                    + f"；{ROAD_RETRY_DELAY_SECONDS} 秒後以全新 Chrome/session 整條路重抓。"
+                )
+                await asyncio.sleep(ROAD_RETRY_DELAY_SECONDS)
+
+                retry_browser = None
+                try:
+                    retry_browser = await launch_591_browser(p)
+                    retry_items = [road_items[index] for index in failed_indexes]
+                    second_results = await asyncio.gather(
+                        *(fetch_one_591_road(retry_browser, road, street_id) for road, street_id in retry_items)
+                    )
+                    retry_results = {
+                        index: result for index, result in zip(failed_indexes, second_results)
+                    }
+                except Exception as exc:
+                    orchestration_logs.append(
+                        f"591 自動補抓的新 Chrome/session 啟動或執行失敗：{type(exc).__name__}: {exc}"
+                    )
+                finally:
+                    if retry_browser is not None:
+                        await retry_browser.close()
     except Exception as exc:
         return [], False, f"591 單一 Chrome 並行模式啟動失敗，保留上一輪資料：{exc}", []
 
     rows = []
-    logs = []
+    logs = list(orchestration_logs)
     global_seen = set()
     successful_roads = 0
+    recovered_roads = 0
 
-    for (road, _), (road_rows, ok, road_logs) in zip(road_items, results):
-        logs.extend(road_logs)
-        if not ok:
-            logs.append(f"{road} 本輪失敗，不計入成功路段。")
+    for index, ((road, _), first_result) in enumerate(zip(road_items, first_results)):
+        first_rows, first_ok, first_logs = first_result
+        logs.extend(first_logs)
+
+        final_rows = first_rows
+        final_ok = first_ok
+
+        if not first_ok:
+            logs.append(f"{road} 第一輪失敗，啟動整條路自動補抓。")
+            retry_result = retry_results.get(index)
+            if retry_result is not None:
+                retry_rows, retry_ok, retry_logs = retry_result
+                logs.append(f"{road} 自動補抓：使用全新 Chrome/session，從第 1 頁重新抓取。")
+                logs.extend(retry_logs)
+                final_rows = retry_rows
+                final_ok = retry_ok
+                if retry_ok:
+                    recovered_roads += 1
+                    logs.append(f"{road} 自動補抓成功，本輪採用補抓的完整結果。")
+                else:
+                    logs.append(f"{road} 自動補抓仍失敗，本輪不使用殘缺結果。")
+            else:
+                logs.append(f"{road} 未取得自動補抓結果，本輪不使用殘缺結果。")
+
+        if not final_ok:
+            logs.append(f"{road} 本輪最終失敗，不計入成功路段。")
             continue
+
         successful_roads += 1
-        for item in road_rows:
+        for item in final_rows:
             if item["id"] not in global_seen:
                 global_seen.add(item["id"])
                 rows.append(item)
@@ -192,17 +255,22 @@ async def fast_fetch_591():
     elapsed = round(time.time() - started, 2)
 
     if successful_roads == len(core.WATCH_591_STREETS):
+        recovery_note = (
+            f"；其中 {recovered_roads} 路段首次失敗後已自動補抓成功"
+            if recovered_roads
+            else ""
+        )
         return (
             rows,
             True,
-            f"591 Surfshark 單一 Chrome 並行完成，成功 7/7 路段，共 {len(rows)} 筆；核心耗時 {elapsed} 秒。",
+            f"591 Surfshark 單一 Chrome 並行完成，成功 7/7 路段，共 {len(rows)} 筆{recovery_note}；核心耗時 {elapsed} 秒。",
             logs,
         )
 
     return (
         [],
         False,
-        f"591 Surfshark 單一 Chrome 並行本輪僅完整成功 {successful_roads}/7 路段，保留上一輪資料；核心耗時 {elapsed} 秒。",
+        f"591 Surfshark 自動補抓後仍僅完整成功 {successful_roads}/7 路段，保留上一輪資料；核心耗時 {elapsed} 秒。",
         logs,
     )
 
