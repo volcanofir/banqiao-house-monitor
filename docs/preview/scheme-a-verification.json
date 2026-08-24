@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-08-24T10:31:58+00:00",
+  "verifiedAt": "2026-08-24T10:55:43+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + Chromium official Yongching DOM + all-pages direct pg pagination + official detail pages",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-08-24T10:31:55+00:00",
+    "generatedAt": "2026-08-24T10:55:40+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 77,
@@ -123,7 +123,7 @@
     ]
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-08-24T10:31:58+00:00",
+    "auditedAt": "2026-08-24T10:55:43+00:00",
     "propertyGroupCount": 155,
     "companyListingCount": 81,
     "companyMatchCount": 49,
@@ -131,9 +131,9 @@
     "chosenCandidateRecomputeMismatchCount": 0,
     "weakIdentityAlreadyMergedPairCount": 156
   },
-  "snapshotCapturedAt": "2026-08-24T10:23:21+00:00",
-  "companySnapshotCapturedAt": "2026-08-24T10:23:21+00:00",
-  "companyGapGeneratedAt": "2026-08-24T10:31:57+00:00",
+  "snapshotCapturedAt": "2026-08-24T10:54:15+00:00",
+  "companySnapshotCapturedAt": "2026-08-24T10:54:15+00:00",
+  "companyGapGeneratedAt": "2026-08-24T10:55:42+00:00",
   "browserListingCount": 81,
   "companyListingCount": 81,
   "propertyGroupCount": 155,
@@ -320,18 +320,26 @@
   "candidatesWithFloor": 127,
   "candidatesWithYcCaseId": 127,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-08-24T10:31:44+00:00",
-    "source": "Yongching official detail via Surfshark + Chromium; current listing header/basic-info only",
-    "attempted": 74,
+    "generatedAt": "2026-08-24T10:55:29+00:00",
+    "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
+    "eligibleBeforeCache": 74,
+    "cacheHitCount": 74,
+    "seededFromPreviousDiagnosticCount": 74,
+    "liveAttempted": 0,
+    "responseFastHitCount": 0,
+    "domFallbackCount": 0,
     "enriched": 74,
+    "liveEnriched": 0,
     "officialCaseIdEnriched": 74,
+    "cacheWriteCount": 0,
+    "cacheEntryCount": 74,
     "rejectedTitleFloorConflicts": 0,
     "remainingMissing": 0,
     "skippedTypes": [
       "土地",
       "透天厝"
     ],
-    "method": "current listing DOM header/basic-info first; same Chromium response current header/basic-info fallback; no global recommendation floor parsing"
+    "method": "verified cache -> current official Chromium HTTP response -> rendered current-property DOM fallback; no recommendation floor parsing"
   },
   "legacyFallbacks": false,
   "canonicalPublisher": "yungching-preview.yml",
