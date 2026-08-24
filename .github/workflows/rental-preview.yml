@@ -1,0 +1,81 @@
+name: 租屋監控 Preview
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/rental-preview.yml"
+      - "scripts/fetch_rental_preview.py"
+      - "scripts/patch_rental_preview_ui.py"
+      - "trigger/rental-preview-wakeup.txt"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: banqiao-rental-preview
+  cancel-in-progress: true
+
+jobs:
+  rental-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install crawler packages
+        run: pip install requests beautifulsoup4 playwright
+
+      - name: Connect Surfshark
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        shell: bash
+        run: bash scripts/connect_surfshark_wireguard.sh
+
+      - name: Fetch Preview rental listings
+        run: python scripts/fetch_rental_preview.py
+
+      - name: Patch Preview rental UI when patcher exists
+        shell: bash
+        run: |
+          if [[ -f scripts/patch_rental_preview_ui.py ]]; then
+            python scripts/patch_rental_preview_ui.py
+          fi
+
+      - name: Save Preview rental output
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/preview/rental-data.json
+          [[ -f scripts/patch_rental_preview_ui.py ]] && git add docs/preview/index.html || true
+          if git diff --cached --quiet; then
+            echo "No rental Preview changes."
+          else
+            git commit -m "Update rental Preview data"
+            for attempt in 1 2 3; do
+              if git pull --rebase && git push; then break; fi
+              git rebase --abort >/dev/null 2>&1 || true
+              sleep 3
+              [[ "$attempt" == "3" ]] && exit 1
+            done
+          fi
+
+      - name: Request GitHub Pages rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh api --method POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            "repos/${GITHUB_REPOSITORY}/pages/builds"
