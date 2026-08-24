@@ -5,9 +5,9 @@ from pathlib import Path
 CURRENT = Path('docs/preview/rental-data.json')
 PREVIOUS = Path('/tmp/rental-data-previous.json')
 
-# User-approved baseline: everything already observed on 2026-08-24 is existing stock.
-# Only listings first observed after this instant can receive the 3-day "new" badge.
-DEFAULT_NEW_BASELINE_AT = '2026-08-24T13:41:00+00:00'
+# User-approved baseline: every rental first observed on 2026-08-24 Taiwan time
+# is existing stock. New-listing eligibility begins at 2026-08-25 00:00 +08:00.
+DEFAULT_NEW_BASELINE_AT = '2026-08-24T16:00:00+00:00'
 NEW_WINDOW_DAYS = 3
 
 
@@ -32,10 +32,19 @@ def parse_stamp(value):
         return None
 
 
+def later_baseline(*values):
+    candidates = [(parse_stamp(v), v) for v in values if v]
+    candidates = [(dt, raw) for dt, raw in candidates if dt is not None]
+    if not candidates:
+        return DEFAULT_NEW_BASELINE_AT
+    dt, _ = max(candidates, key=lambda x: x[0])
+    return dt.isoformat(timespec='seconds')
+
+
 def is_new(first_seen, baseline, now):
     first = parse_stamp(first_seen)
     base = parse_stamp(baseline)
-    if first is None or base is None or first <= base:
+    if first is None or base is None or first < base:
         return False
     age = (now - first).total_seconds()
     return 0 <= age < NEW_WINDOW_DAYS * 86400
@@ -52,13 +61,11 @@ def main():
     if not current_updated:
         raise RuntimeError('rental-data.json updatedAt missing')
 
-    baseline = (
-        previous.get('newListingBaselineAt')
-        or current.get('newListingBaselineAt')
-        or DEFAULT_NEW_BASELINE_AT
+    baseline = later_baseline(
+        previous.get('newListingBaselineAt'),
+        current.get('newListingBaselineAt'),
+        DEFAULT_NEW_BASELINE_AT,
     )
-    if parse_stamp(baseline) is None:
-        baseline = DEFAULT_NEW_BASELINE_AT
 
     previous_first_seen = {}
     for row in previous.get('listings') or []:
@@ -73,7 +80,6 @@ def main():
         if not first_seen:
             first_seen = current_updated
         row['firstSeenAt'] = first_seen
-        # Rental site intentionally uses only our own monitoring timestamp.
         row.pop('sourceUpdatedAt', None)
         row.pop('postTime', None)
 
@@ -87,7 +93,7 @@ def main():
     current['firstSeenPolicy'] = 'first_time_observed_by_banqiao_house_monitor'
     current['newListingBaselineAt'] = baseline
     current['newListingWindowDays'] = NEW_WINDOW_DAYS
-    current['newListingPolicy'] = 'firstSeenAt_after_baseline_and_within_3_days'
+    current['newListingPolicy'] = 'firstSeenAt_on_or_after_baseline_and_within_3_days'
     current['newListingCount'] = new_count
     CURRENT.write_text(json.dumps(current, ensure_ascii=False, indent=2), encoding='utf-8')
     print(json.dumps({
