@@ -121,7 +121,10 @@ def main():
             if offmarket_count:
                 page.wait_for_function("document.querySelectorAll('#groups .item').length > 0", timeout=5000)
                 assert page.locator("#groups .item").count() == offmarket_count
-                removed_text = page.locator("#groups").inner_text()
+                first_group = page.locator("#groups .road-group").first
+                if not first_group.get_attribute("open"):
+                    first_group.locator("summary").click()
+                removed_text = first_group.inner_text()
                 assert "已下架" in removed_text
                 assert "下架：" in removed_text
             else:
