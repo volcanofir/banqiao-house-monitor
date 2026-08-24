@@ -27,6 +27,7 @@ text = text.replace(
 text = text.replace('｜Preview 比對：', '｜委託比對：')
 
 new_render_groups = r'''function renderGroups(){
+  if(typeof MARKET_MODE!=='undefined' && MARKET_MODE==='rent' && typeof renderRentGroups==='function') return renderRentGroups();
   const source=SOURCE_FILTER,state=document.querySelector('#state').value,cs=document.querySelector('#companyState').value,sort=document.querySelector('#sort').value;
   const baseRows=state==='removed'?(GAP.recentOffMarketGroups||[]):(GAP.propertyGroups||[]);
   let rows=baseRows.filter(g=>{
@@ -50,9 +51,33 @@ new_render_groups = r'''function renderGroups(){
   }
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的房屋群組。</div>';
 }'''
-text, n = re.subn(r"function renderGroups\(\)\{.*?\}(?=\ndocument\.querySelectorAll\('\.source-tab'\))", new_render_groups, text, count=1, flags=re.S)
-if n != 1:
-    raise RuntimeError(f'Off-market UI patch failed to replace renderGroups: {n}')
+
+# This patch can be run after the rental Preview workflow has already inserted its
+# own UI block. In that case the off-market renderer may already be present and
+# must not be treated as an error merely because the old regex anchor moved.
+render_contract = [
+    "state==='removed'?(GAP.recentOffMarketGroups||[]):(GAP.propertyGroups||[])",
+    "g.offMarket?'offmarket'",
+    '下架：${fmt(g.removedAt)}',
+]
+already_patched = all(x in text for x in render_contract)
+
+if already_patched:
+    print('Off-market renderGroups already patched; keeping existing renderer')
+else:
+    # Prefer the original anchor, but also tolerate helper functions (for example
+    # rentalPrice/renderRentGroups) inserted between renderGroups and source tabs.
+    patterns = [
+        r"function renderGroups\(\)\{.*?\}(?=\ndocument\.querySelectorAll\('\.source-tab'\))",
+        r"function renderGroups\(\)\{.*?\n\}(?=\n+(?:function\s+[A-Za-z_$][\w$]*\s*\(|document\.querySelectorAll\('\.source-tab'\)))",
+    ]
+    replaced = 0
+    for pattern in patterns:
+        text, replaced = re.subn(pattern, new_render_groups, text, count=1, flags=re.S)
+        if replaced == 1:
+            break
+    if replaced != 1:
+        raise RuntimeError(f'Off-market UI patch failed to replace renderGroups: {replaced}')
 
 required = [
     '<span>已下架</span><strong id="cUnavailable">',
