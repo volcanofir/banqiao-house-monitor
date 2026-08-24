@@ -8,6 +8,7 @@ on:
       - ".github/workflows/promote-production.yml"
       - "scripts/promote_preview_to_production.py"
       - "scripts/smoke_test_production_ui.py"
+      - "scripts/run_with_system_chrome.py"
 
 permissions:
   contents: write
@@ -31,15 +32,13 @@ jobs:
           python-version: "3.12"
 
       - name: Install browser test dependency
-        run: |
-          pip install playwright
-          python -m playwright install chromium
+        run: pip install playwright
 
       - name: Verify canonical is current and build production homepage
         run: python scripts/promote_preview_to_production.py
 
-      - name: Open production homepage in Chromium
-        run: python scripts/smoke_test_production_ui.py
+      - name: Open production homepage in system Chrome
+        run: python scripts/run_with_system_chrome.py scripts/smoke_test_production_ui.py
 
       - name: Record successful production browser verification
         shell: bash
@@ -50,6 +49,7 @@ jobs:
           from pathlib import Path
           v=json.loads(Path('docs/preview/scheme-a-verification.json').read_text(encoding='utf-8'))
           g=json.loads(Path('docs/preview/company-gap.json').read_text(encoding='utf-8'))
+          r=json.loads(Path('docs/preview/rental-data.json').read_text(encoding='utf-8'))
           out={
             'verifiedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
             'productionUi':'Banqiao House Monitor',
@@ -57,16 +57,21 @@ jobs:
             'sourceDataUpdatedAt':v.get('sourceDataUpdatedAt'),
             'canonicalVerifiedAt':v.get('verifiedAt'),
             'canonicalValid':v.get('valid') is True,
-            'chromiumSmokePassed':True,
+            'systemChromeSmokePassed':True,
             'offMarketRetentionDays':g.get('recentOffMarketRetentionDays'),
             'recentOffMarketCount':g.get('recentOffMarketCount'),
             'offMarketDetailCount':len(g.get('recentOffMarketGroups') or []),
             'offMarketFilterTested':True,
+            'rentalListingCount':len(r.get('listings') or []),
+            'rentalUpdatedAt':r.get('updatedAt'),
+            'rentalSwitchTested':True,
             'staleSourceSuppressionTested':True,
           }
           assert out['canonicalValid'] is True
           assert out['offMarketRetentionDays'] == 10
           assert out['recentOffMarketCount'] == out['offMarketDetailCount']
+          assert r.get('market') == 'rent'
+          assert int((r.get('counts') or {}).get('total') or 0) == out['rentalListingCount']
           Path('docs/production-verification.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(out,ensure_ascii=False))
           PY
@@ -101,7 +106,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "Production homepage already matches verified stable version."
           else
-            git commit -m "Verify production v8 off-market UI"
+            git commit -m "Promote verified rental Preview to production"
             for attempt in 1 2 3; do
               if git pull --rebase && git push; then break; fi
               git rebase --abort >/dev/null 2>&1 || true
