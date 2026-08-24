@@ -118,13 +118,18 @@ def main():
             page.select_option("#state", "removed")
             if offmarket_count:
                 page.wait_for_function("document.querySelectorAll('#groups .item').length > 0", timeout=5000)
-                assert page.locator("#groups .item").count() == offmarket_count
-                first_group = page.locator("#groups .road-group").first
-                if not first_group.get_attribute("open"):
-                    first_group.locator("summary").first.click()
-                removed_text = first_group.inner_text()
-                assert "已下架" in removed_text
-                assert "下架：" in removed_text
+                items = page.locator("#groups .item")
+                assert items.count() == offmarket_count
+                # Inspect the item DOM directly instead of relying on <details> visibility.
+                # inner_text() on a collapsed <details> can omit its hidden descendants and
+                # previously caused a false failure even though the off-market card was correct.
+                removed_texts = [(items.nth(i).text_content() or "") for i in range(items.count())]
+                assert all("下架：" in text for text in removed_texts), removed_texts
+                offmarket_badges = page.locator('#groups .item .pill').filter(has_text="已下架")
+                assert offmarket_badges.count() == offmarket_count, offmarket_badges.count()
+                assert page.evaluate(
+                    "(GAP.recentOffMarketGroups||[]).every(g => g.offMarket===true && g.active===false && !!g.removedAt)"
+                ) is True
             else:
                 assert page.locator("#groups .road-group").count() == 0
             page.select_option("#state", "all")
