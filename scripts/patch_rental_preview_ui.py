@@ -5,6 +5,11 @@ text = PATH.read_text(encoding='utf-8')
 
 # Keep sale and rental source cards on the same wording contract.
 text = text.replace('目前保留 ${r?.totalCount??0} 筆', '目前刊登 ${r?.totalCount??0} 筆')
+# Keep the two timestamps/status notes readable on mobile: one concept per line.
+text = text.replace(
+    "document.querySelector('#updated').textContent=`來源資料最近更新：${fmt(DATA.updatedAt)}｜委託比對：${fmt(GAP.generatedAt)}。`;",
+    "document.querySelector('#updated').innerHTML=`來源資料最近更新：${fmt(DATA.updatedAt)}<br>委託比對：${fmt(GAP.generatedAt)}。`;",
+)
 
 css = r'''
 .market-switch{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 18px}
@@ -81,7 +86,7 @@ function renderRent(){
   document.querySelector('#mMerged').textContent=`${listings.length} 筆`;
   const cards=['591','信義房屋'].map(name=>{const r=RENT.runs?.[name],ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${ok?'ok':'err'}">${ok?'正常':'異常'}</span></div><div class="note">目前刊登 ${r?.totalCount??0} 筆<br>最近更新：${fmt(RENT.updatedAt)}</div></div>`});
   document.querySelector('#sources').innerHTML=cards.join('');
-  document.querySelector('#updated').textContent=`租屋資料最近更新：${fmt(RENT.updatedAt)}｜新案以本監控首次抓到時間計算，標籤保留 ${RENT.newListingWindowDays??3} 天。`;
+  document.querySelector('#updated').innerHTML=`租屋資料最近更新：${fmt(RENT.updatedAt)}<br>新案以本監控首次抓到時間計算，標籤保留 ${RENT.newListingWindowDays??3} 天。`;
   renderRentGroups();
 }
 function setMarket(mode){
@@ -136,6 +141,8 @@ required = [
     'listings.filter(rentalIsNew).length',
     '<strong>${name}</strong>',
     '目前刊登 ${r?.totalCount??0} 筆',
+    '<br>委託比對：${fmt(GAP.generatedAt)}。',
+    '<br>新案以本監控首次抓到時間計算',
 ]
 missing = [x for x in required if x not in text]
 if missing:
@@ -152,4 +159,4 @@ if '<details class="road-group" open>' in text:
     raise RuntimeError('Rental Preview UI patch failed: road groups still default-open')
 
 PATH.write_text(text, encoding='utf-8')
-print('Rental Preview UI patched with unified source-card wording, 3-day new badges and collapsed details')
+print('Rental Preview UI patched with two-line update notes, unified source-card wording, 3-day new badges and collapsed details')
