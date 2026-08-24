@@ -36,7 +36,7 @@ text = text.replace('function renderGroups(){\n  const source=', "function rende
 
 rent_js = r'''
 function rentalPrice(x){const n=Number(x?.rent);return Number.isFinite(n)&&n>0?`${Math.round(n).toLocaleString('zh-TW')} 元/月`:'租金未取得'}
-function rentalSize(x){const n=Number(x?.size);return Number.isFinite(n)&&n>0?`${n:g}`:''}
+function rentalFirstSeenMs(x){const t=new Date(x?.firstSeenAt||0).getTime();return Number.isFinite(t)?t:0}
 function renderRentGroups(){
   const roads=RENT.watchRoads||defaultRoads;
   const source=SOURCE_FILTER;
@@ -44,15 +44,17 @@ function renderRentGroups(){
   let rows=(RENT.listings||[]).filter(x=>source==='all'||(source==='sinyi'&&x.source==='信義房屋')||(source==='591'&&x.source==='591'));
   if(sort==='priceDesc')rows.sort((a,b)=>(Number(b.rent)||0)-(Number(a.rent)||0));
   if(sort==='priceAsc')rows.sort((a,b)=>(Number(a.rent)||0)-(Number(b.rent)||0));
+  if(sort==='timeDesc')rows.sort((a,b)=>rentalFirstSeenMs(b)-rentalFirstSeenMs(a));
+  if(sort==='timeAsc')rows.sort((a,b)=>rentalFirstSeenMs(a)-rentalFirstSeenMs(b));
   let html='';
   for(const road of roads){
     const items=rows.filter(x=>x.road===road);
     if(!items.length)continue;
-    html+=`<details class="road-group" open><summary><span>${esc(road)}</span><span class="count">${items.length} 戶</span></summary><div class="list">${items.map(x=>{
+    html+=`<details class="road-group"><summary><span>${esc(road)}</span><span class="count">${items.length} 戶</span></summary><div class="list">${items.map(x=>{
       const cls=x.source==='信義房屋'?'sinyi':'m591';
       const label=x.source==='信義房屋'?'信義':'591';
       const size=Number(x.size); const sizeText=Number.isFinite(size)&&size>0?`${size}坪`:'坪數未取得';
-      return `<article class="item rent-item"><a class="item-title" href="${esc(x.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(x.title||x.houseId||'租屋案件')}</a><div class="row"><span class="pill ${cls}">${label}</span><span class="rent-price">${esc(rentalPrice(x))}</span><span>${esc(sizeText)}</span><span>${esc(x.address||road)}</span></div></article>`;
+      return `<article class="item rent-item"><a class="item-title" href="${esc(x.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(x.title||x.houseId||'租屋案件')}</a><div class="row"><span class="pill ${cls}">${label}</span><span class="rent-price">${esc(rentalPrice(x))}</span><span>${esc(sizeText)}</span><span>${esc(x.address||road)}</span><span>首次抓到：${fmt(x.firstSeenAt)}</span></div></article>`;
     }).join('')}</div></details>`;
   }
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前這 7 條路沒有抓到符合條件的租屋案件。</div>';
@@ -62,11 +64,11 @@ function renderRent(){
   const listings=RENT.listings||[];
   document.querySelector('#mRoads').textContent=`${roads.length} 條`;
   document.querySelector('#mGroups').textContent=`${listings.length} 戶`;
-  document.querySelector('#mNew').textContent='—';
+  document.querySelector('#mNew').textContent=`${RENT.newListingCount??0} 戶`;
   document.querySelector('#mMerged').textContent=`${listings.length} 筆`;
   const cards=['591','信義房屋'].map(name=>{const r=RENT.runs?.[name],ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}${name==='591'?' 租屋':'租屋'}</strong><span class="badge ${ok?'ok':'err'}">${ok?'正常':'異常'}</span></div><div class="note">目前抓到 ${r?.totalCount??0} 筆<br>最近更新：${fmt(RENT.updatedAt)}</div></div>`});
   document.querySelector('#sources').innerHTML=cards.join('');
-  document.querySelector('#updated').textContent=`租屋資料最近更新：${fmt(RENT.updatedAt)}｜Preview 租屋目前只比對 591＋信義，不進入永慶委託比對。`;
+  document.querySelector('#updated').textContent=`租屋資料最近更新：${fmt(RENT.updatedAt)}｜首次抓到時間以本監控系統第一次看到案件為準。`;
   renderRentGroups();
 }
 function setMarket(mode){
@@ -78,21 +80,33 @@ function setMarket(mode){
   const state=document.querySelector('#state'); if(state){state.style.display=rent?'none':'';state.value='all';}
   const companyState=document.querySelector('#companyState'); if(companyState){companyState.style.display=rent?'none':'';companyState.value='all';}
   const title=document.querySelector('#listTitle'); if(title)title.textContent=rent?'租屋案件列表':'整併後案件列表';
+  const sort=document.querySelector('#sort');
+  if(sort&&sort.options.length>=5){
+    sort.options[1].textContent=rent?'租金：高 → 低':'售價：高 → 低';
+    sort.options[2].textContent=rent?'租金：低 → 高':'售價：低 → 高';
+    sort.options[3].textContent=rent?'首次抓到：新 → 舊':'上架時間：新 → 舊';
+    sort.options[4].textContent=rent?'首次抓到：舊 → 新':'上架時間：舊 → 新';
+  }
   if(rent)renderRent(); else render();
 }
 document.querySelectorAll('.market-btn').forEach(btn=>btn.addEventListener('click',()=>setMarket(btn.dataset.market)));
 fetchJson(`rental-data.json?ts=${Date.now()}`,'租屋資料').then(r=>{RENT=r;if(MARKET_MODE==='rent')renderRent()}).catch(e=>{console.warn('Rental Preview unavailable',e)});
 '''
 
-if 'function renderRentGroups()' not in text:
-    marker = "document.querySelectorAll('.source-tab').forEach(btn=>btn.addEventListener('click'"
-    idx = text.find(marker)
+# Replace an existing rental block, or insert it the first time this patch runs.
+start = text.find('function rentalPrice(x)')
+end_marker = "document.querySelectorAll('.source-tab').forEach(btn=>btn.addEventListener('click'"
+end = text.find(end_marker, start if start >= 0 else 0)
+if start >= 0 and end > start:
+    text = text[:start] + rent_js + '\n' + text[end:]
+elif 'function renderRentGroups()' not in text:
+    idx = text.find(end_marker)
     if idx < 0:
         raise RuntimeError('Rental Preview patch anchor not found')
     text = text[:idx] + rent_js + '\n' + text[idx:]
 
-# Fix accidental Python-format-like text if script is reworked manually later.
-text = text.replace("`${n:g}`", "`${n}`")
+# Default website view: keep every road/detail group collapsed until the user opens it.
+text = text.replace('<details class="road-group" open>', '<details class="road-group">')
 
 required = [
     'id="marketSwitch"',
@@ -102,10 +116,14 @@ required = [
     'function setMarket(mode)',
     'rental-data.json',
     'id="companyPanel"',
+    '首次抓到：${fmt(x.firstSeenAt)}',
+    'RENT.newListingCount??0',
 ]
 missing = [x for x in required if x not in text]
 if missing:
     raise RuntimeError(f'Rental Preview UI patch failed: {missing}')
+if '<details class="road-group" open>' in text:
+    raise RuntimeError('Rental Preview UI patch failed: road groups still default-open')
 
 PATH.write_text(text, encoding='utf-8')
-print('Rental Preview UI patched')
+print('Rental Preview UI patched with first-seen timestamps and collapsed details')
