@@ -3,6 +3,9 @@ from pathlib import Path
 PATH = Path('docs/preview/index.html')
 text = PATH.read_text(encoding='utf-8')
 
+# Keep sale and rental source cards on the same wording contract.
+text = text.replace('目前保留 ${r?.totalCount??0} 筆', '目前刊登 ${r?.totalCount??0} 筆')
+
 css = r'''
 .market-switch{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 18px}
 .market-btn{appearance:none;border:1.5px solid #dfbf55;background:#fffdf7;color:#2f302f;border-radius:18px;padding:13px 16px;font-size:17px;font-weight:800;cursor:pointer}
@@ -76,7 +79,7 @@ function renderRent(){
   document.querySelector('#mGroups').textContent=`${listings.length} 戶`;
   document.querySelector('#mNew').textContent=`${newCount} 戶`;
   document.querySelector('#mMerged').textContent=`${listings.length} 筆`;
-  const cards=['591','信義房屋'].map(name=>{const r=RENT.runs?.[name],ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}${name==='591'?' 租屋':'租屋'}</strong><span class="badge ${ok?'ok':'err'}">${ok?'正常':'異常'}</span></div><div class="note">目前抓到 ${r?.totalCount??0} 筆<br>最近更新：${fmt(RENT.updatedAt)}</div></div>`});
+  const cards=['591','信義房屋'].map(name=>{const r=RENT.runs?.[name],ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${ok?'ok':'err'}">${ok?'正常':'異常'}</span></div><div class="note">目前刊登 ${r?.totalCount??0} 筆<br>最近更新：${fmt(RENT.updatedAt)}</div></div>`});
   document.querySelector('#sources').innerHTML=cards.join('');
   document.querySelector('#updated').textContent=`租屋資料最近更新：${fmt(RENT.updatedAt)}｜新案以本監控首次抓到時間計算，標籤保留 ${RENT.newListingWindowDays??3} 天。`;
   renderRentGroups();
@@ -131,12 +134,22 @@ required = [
     'id="companyPanel"',
     '首次抓到：${fmt(x.firstSeenAt)}',
     'listings.filter(rentalIsNew).length',
+    '<strong>${name}</strong>',
+    '目前刊登 ${r?.totalCount??0} 筆',
 ]
 missing = [x for x in required if x not in text]
 if missing:
     raise RuntimeError(f'Rental Preview UI patch failed: {missing}')
+forbidden = [
+    '目前保留 ${r?.totalCount??0} 筆',
+    '目前抓到 ${r?.totalCount??0} 筆',
+    "${name}${name==='591'?' 租屋':'租屋'}",
+]
+present = [x for x in forbidden if x in text]
+if present:
+    raise RuntimeError(f'Rental Preview UI wording patch failed; old fragments remain: {present}')
 if '<details class="road-group" open>' in text:
     raise RuntimeError('Rental Preview UI patch failed: road groups still default-open')
 
 PATH.write_text(text, encoding='utf-8')
-print('Rental Preview UI patched with 3-day post-baseline new badges and collapsed details')
+print('Rental Preview UI patched with unified source-card wording, 3-day new badges and collapsed details')
