@@ -21,7 +21,6 @@ switch_html = '''<div class="market-switch" id="marketSwitch">
 if 'id="marketSwitch"' not in text:
     text = text.replace('<div class="eyebrow">MONITOR STATUS</div><h2>資料來源</h2>', '<div class="eyebrow">MONITOR STATUS</div><h2>資料來源</h2>' + switch_html, 1)
 
-# Give the panels/headings stable hooks for switching modes.
 text = text.replace('<section class="panel"><div class="stripe"></div><div class="inside">\n<div class="eyebrow">COMPANY MATCH</div>', '<section class="panel" id="companyPanel"><div class="stripe"></div><div class="inside">\n<div class="eyebrow">COMPANY MATCH</div>', 1)
 text = text.replace('<div class="eyebrow">PROPERTY GROUPS</div><h2>整併後案件列表</h2>', '<div class="eyebrow">PROPERTY GROUPS</div><h2 id="listTitle">整併後案件列表</h2>', 1)
 
@@ -31,12 +30,19 @@ text = text.replace(
     1,
 )
 
-# Delegate the existing group renderer while in rent mode.
 text = text.replace('function renderGroups(){\n  const source=', "function renderGroups(){\n  if(MARKET_MODE==='rent') return renderRentGroups();\n  const source=", 1)
 
 rent_js = r'''
 function rentalPrice(x){const n=Number(x?.rent);return Number.isFinite(n)&&n>0?`${Math.round(n).toLocaleString('zh-TW')} 元/月`:'租金未取得'}
 function rentalFirstSeenMs(x){const t=new Date(x?.firstSeenAt||0).getTime();return Number.isFinite(t)?t:0}
+function rentalIsNew(x){
+  const first=rentalFirstSeenMs(x);
+  const baseline=new Date(RENT.newListingBaselineAt||0).getTime();
+  const days=Number(RENT.newListingWindowDays??3);
+  if(!Number.isFinite(first)||!Number.isFinite(baseline)||first<=baseline||!Number.isFinite(days)||days<=0)return false;
+  const age=Date.now()-first;
+  return age>=0&&age<days*86400000;
+}
 function renderRentGroups(){
   const roads=RENT.watchRoads||defaultRoads;
   const source=SOURCE_FILTER;
@@ -54,7 +60,8 @@ function renderRentGroups(){
       const cls=x.source==='信義房屋'?'sinyi':'m591';
       const label=x.source==='信義房屋'?'信義':'591';
       const size=Number(x.size); const sizeText=Number.isFinite(size)&&size>0?`${size}坪`:'坪數未取得';
-      return `<article class="item rent-item"><a class="item-title" href="${esc(x.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(x.title||x.houseId||'租屋案件')}</a><div class="row"><span class="pill ${cls}">${label}</span><span class="rent-price">${esc(rentalPrice(x))}</span><span>${esc(sizeText)}</span><span>${esc(x.address||road)}</span><span>首次抓到：${fmt(x.firstSeenAt)}</span></div></article>`;
+      const newBadge=rentalIsNew(x)?'<span class="pill sinyi">新案</span>':'';
+      return `<article class="item rent-item"><a class="item-title" href="${esc(x.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(x.title||x.houseId||'租屋案件')}</a><div class="row"><span class="pill ${cls}">${label}</span>${newBadge}<span class="rent-price">${esc(rentalPrice(x))}</span><span>${esc(sizeText)}</span><span>${esc(x.address||road)}</span><span>首次抓到：${fmt(x.firstSeenAt)}</span></div></article>`;
     }).join('')}</div></details>`;
   }
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前這 7 條路沒有抓到符合條件的租屋案件。</div>';
@@ -62,13 +69,14 @@ function renderRentGroups(){
 function renderRent(){
   const roads=RENT.watchRoads||defaultRoads;
   const listings=RENT.listings||[];
+  const newCount=listings.filter(rentalIsNew).length;
   document.querySelector('#mRoads').textContent=`${roads.length} 條`;
   document.querySelector('#mGroups').textContent=`${listings.length} 戶`;
-  document.querySelector('#mNew').textContent=`${RENT.newListingCount??0} 戶`;
+  document.querySelector('#mNew').textContent=`${newCount} 戶`;
   document.querySelector('#mMerged').textContent=`${listings.length} 筆`;
   const cards=['591','信義房屋'].map(name=>{const r=RENT.runs?.[name],ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}${name==='591'?' 租屋':'租屋'}</strong><span class="badge ${ok?'ok':'err'}">${ok?'正常':'異常'}</span></div><div class="note">目前抓到 ${r?.totalCount??0} 筆<br>最近更新：${fmt(RENT.updatedAt)}</div></div>`});
   document.querySelector('#sources').innerHTML=cards.join('');
-  document.querySelector('#updated').textContent=`租屋資料最近更新：${fmt(RENT.updatedAt)}｜首次抓到時間以本監控系統第一次看到案件為準。`;
+  document.querySelector('#updated').textContent=`租屋資料最近更新：${fmt(RENT.updatedAt)}｜新案以本監控首次抓到時間計算，標籤保留 ${RENT.newListingWindowDays??3} 天。`;
   renderRentGroups();
 }
 function setMarket(mode){
@@ -93,7 +101,6 @@ document.querySelectorAll('.market-btn').forEach(btn=>btn.addEventListener('clic
 fetchJson(`rental-data.json?ts=${Date.now()}`,'租屋資料').then(r=>{RENT=r;if(MARKET_MODE==='rent')renderRent()}).catch(e=>{console.warn('Rental Preview unavailable',e)});
 '''
 
-# Replace an existing rental block, or insert it the first time this patch runs.
 start = text.find('function rentalPrice(x)')
 end_marker = "document.querySelectorAll('.source-tab').forEach(btn=>btn.addEventListener('click'"
 end = text.find(end_marker, start if start >= 0 else 0)
@@ -105,7 +112,6 @@ elif 'function renderRentGroups()' not in text:
         raise RuntimeError('Rental Preview patch anchor not found')
     text = text[:idx] + rent_js + '\n' + text[idx:]
 
-# Default website view: keep every road/detail group collapsed until the user opens it.
 text = text.replace('<details class="road-group" open>', '<details class="road-group">')
 
 required = [
@@ -113,11 +119,15 @@ required = [
     'data-market="sale"',
     'data-market="rent"',
     'function renderRentGroups()',
+    'function rentalIsNew(x)',
+    'newListingBaselineAt',
+    'newListingWindowDays',
+    '<span class="pill sinyi">新案</span>',
     'function setMarket(mode)',
     'rental-data.json',
     'id="companyPanel"',
     '首次抓到：${fmt(x.firstSeenAt)}',
-    'RENT.newListingCount??0',
+    'listings.filter(rentalIsNew).length',
 ]
 missing = [x for x in required if x not in text]
 if missing:
@@ -126,4 +136,4 @@ if '<details class="road-group" open>' in text:
     raise RuntimeError('Rental Preview UI patch failed: road groups still default-open')
 
 PATH.write_text(text, encoding='utf-8')
-print('Rental Preview UI patched with first-seen timestamps and collapsed details')
+print('Rental Preview UI patched with 3-day post-baseline new badges and collapsed details')
