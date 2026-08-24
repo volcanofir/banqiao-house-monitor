@@ -21,7 +21,7 @@ concurrency:
 jobs:
   rental-preview:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -35,29 +35,71 @@ jobs:
         run: pip install requests beautifulsoup4 playwright
 
       - name: Connect Surfshark
+        id: vpn
+        continue-on-error: true
         env:
           SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
         shell: bash
         run: bash scripts/connect_surfshark_wireguard.sh
 
       - name: Fetch Preview rental listings
-        run: python scripts/fetch_rental_preview.py
-
-      - name: Patch Preview rental UI when patcher exists
+        id: fetch
+        continue-on-error: true
         shell: bash
         run: |
-          if [[ -f scripts/patch_rental_preview_ui.py ]]; then
-            python scripts/patch_rental_preview_ui.py
-          fi
+          set +e
+          python scripts/fetch_rental_preview.py > /tmp/rental-fetch.log 2>&1
+          rc=$?
+          cat /tmp/rental-fetch.log
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          exit $rc
 
-      - name: Save Preview rental output
+      - name: Patch Preview rental UI
+        id: patch
+        if: steps.fetch.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: python scripts/patch_rental_preview_ui.py
+
+      - name: Write rental Preview diagnostics
+        if: always()
+        env:
+          VPN_OUTCOME: ${{ steps.vpn.outcome }}
+          FETCH_OUTCOME: ${{ steps.fetch.outcome }}
+          FETCH_RC: ${{ steps.fetch.outputs.rc }}
+          PATCH_OUTCOME: ${{ steps.patch.outcome }}
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          log=''
+          p=Path('/tmp/rental-fetch.log')
+          if p.exists(): log=p.read_text(encoding='utf-8', errors='replace')[-12000:]
+          data={
+            'checkedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
+            'vpnOutcome':os.getenv('VPN_OUTCOME'),
+            'fetchOutcome':os.getenv('FETCH_OUTCOME'),
+            'fetchReturnCode':os.getenv('FETCH_RC'),
+            'patchOutcome':os.getenv('PATCH_OUTCOME'),
+            'rentalDataExists':Path('docs/preview/rental-data.json').exists(),
+            'logTail':log,
+          }
+          Path('docs/preview/rental-run-diagnostic.json').write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(data,ensure_ascii=False))
+          PY
+
+      - name: Save Preview rental output and diagnostics
+        if: always()
         shell: bash
         run: |
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/preview/rental-data.json
-          [[ -f scripts/patch_rental_preview_ui.py ]] && git add docs/preview/index.html || true
+          git add docs/preview/rental-run-diagnostic.json
+          [[ -f docs/preview/rental-data.json ]] && git add docs/preview/rental-data.json || true
+          [[ "${{ steps.patch.outcome }}" == "success" ]] && git add docs/preview/index.html || true
           if git diff --cached --quiet; then
             echo "No rental Preview changes."
           else
@@ -71,6 +113,7 @@ jobs:
           fi
 
       - name: Request GitHub Pages rebuild
+        if: steps.fetch.outcome == 'success' && steps.patch.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -79,3 +122,7 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2026-03-10" \
             "repos/${GITHUB_REPOSITORY}/pages/builds"
+
+      - name: Fail if rental Preview did not build
+        if: steps.fetch.outcome != 'success' || steps.patch.outcome != 'success'
+        run: exit 1
