@@ -108,7 +108,6 @@ def main():
             assert page.evaluate("VERIFY && VERIFY.valid === true") is True
             assert page.evaluate("verificationMatches(DATA, GAP, VERIFY)") is True
 
-            # Sale controls.
             page.locator('.source-tab[data-source="591"]').click()
             assert "active" in (page.locator('.source-tab[data-source="591"]').get_attribute("class") or "")
             page.select_option("#sort", "priceDesc")
@@ -116,14 +115,13 @@ def main():
             page.select_option("#companyState", "all")
             page.locator('.source-tab[data-source="all"]').click()
 
-            # Off-market canonical history must be filterable and count-consistent.
             page.select_option("#state", "removed")
             if offmarket_count:
                 page.wait_for_function("document.querySelectorAll('#groups .item').length > 0", timeout=5000)
                 assert page.locator("#groups .item").count() == offmarket_count
                 first_group = page.locator("#groups .road-group").first
                 if not first_group.get_attribute("open"):
-                    first_group.locator("summary").click()
+                    first_group.locator("summary").first.click()
                 removed_text = first_group.inner_text()
                 assert "已下架" in removed_text
                 assert "下架：" in removed_text
@@ -131,7 +129,6 @@ def main():
                 assert page.locator("#groups .road-group").count() == 0
             page.select_option("#state", "all")
 
-            # Rental mode must load the independent data file without mutating the sale UI.
             page.locator('.market-btn[data-market="rent"]').click()
             page.wait_for_function("MARKET_MODE === 'rent' && document.querySelector('#listTitle')?.textContent.includes('租屋')", timeout=5000)
             assert page.locator("#companyPanel").evaluate("el => getComputedStyle(el).display") == "none"
@@ -144,7 +141,6 @@ def main():
             page.locator('.source-tab[data-source="591"]').click()
             page.select_option("#sort", "priceAsc")
 
-            # Switching back to sale must restore company comparison and canonical integrity.
             page.locator('.market-btn[data-market="sale"]').click()
             page.wait_for_function("MARKET_MODE === 'sale' && document.querySelector('#companyPanel')?.style.display !== 'none'", timeout=5000)
             assert page.evaluate("verificationMatches(DATA, GAP, VERIFY)") is True
@@ -155,7 +151,6 @@ def main():
             assert not meaningful_failed, meaningful_failed
             assert not console_errors, console_errors
 
-            # Negative path: a newer monitor snapshot must suppress stale sale comparison output.
             stale_page = browser.new_page(viewport={"width": 390, "height": 844}, locale="zh-TW")
             stale_errors = []
             stale_page.on("pageerror", lambda exc: stale_errors.append(str(exc)))
