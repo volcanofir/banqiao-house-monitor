@@ -1,14 +1,14 @@
 {
-  "verifiedAt": "2026-08-24T20:06:06+00:00",
+  "verifiedAt": "2026-08-24T23:32:22+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + system Chrome official Yongching DOM + all-pages direct pg pagination + verified detail cache",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-08-24T20:03:40+00:00",
+  "sourceDataUpdatedAt": "2026-08-24T23:30:25+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-08-24T20:06:02+00:00",
+    "generatedAt": "2026-08-24T23:32:19+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 77,
@@ -123,21 +123,21 @@
     ]
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-08-24T20:06:05+00:00",
+    "auditedAt": "2026-08-24T23:32:22+00:00",
     "propertyGroupCount": 157,
     "companyListingCount": 80,
     "companyMatchCount": 48,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 188
+    "weakIdentityAlreadyMergedPairCount": 182
   },
-  "snapshotCapturedAt": "2026-08-24T20:04:32+00:00",
-  "companySnapshotCapturedAt": "2026-08-24T20:04:32+00:00",
-  "companyGapGeneratedAt": "2026-08-24T20:06:04+00:00",
+  "snapshotCapturedAt": "2026-08-24T23:30:57+00:00",
+  "companySnapshotCapturedAt": "2026-08-24T23:30:57+00:00",
+  "companyGapGeneratedAt": "2026-08-24T23:32:21+00:00",
   "browserListingCount": 80,
   "companyListingCount": 80,
   "propertyGroupCount": 157,
-  "rawListingCount": 352,
+  "rawListingCount": 354,
   "comparisonCount": 157,
   "coveredRoads": [
     "板橋區中山路二段",
@@ -320,7 +320,7 @@
   "candidatesWithFloor": 129,
   "candidatesWithYcCaseId": 129,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-08-24T20:05:52+00:00",
+    "generatedAt": "2026-08-24T23:32:10+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 73,
     "cacheHitCount": 73,
