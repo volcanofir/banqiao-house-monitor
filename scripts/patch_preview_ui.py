@@ -4,6 +4,7 @@ import re
 import subprocess
 import sys
 
+# Keep this canonical Preview patch as the workflow trigger point for UI hardening.
 PATH = Path('docs/preview/index.html')
 GAP_PATH = Path('docs/preview/company-gap.json')
 SNAPSHOT_PATH = Path('docs/preview/yungching-browser-snapshot.json')
