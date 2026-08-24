@@ -7,14 +7,16 @@ on:
     paths:
       - ".github/workflows/monitor-clean.yml"
       - "scripts/monitor_fast.py"
+      - "scripts/monitor_sinyi_parallel.py"
       - "trigger/monitor-wakeup.txt"
   schedule:
-    # Heartbeat every 10 minutes; actual fetch only runs when data is ~3 hours old.
+    # Cheap heartbeat every 10 minutes; full refresh starts when source is ~3 hours old.
     - cron: "7,17,27,37,47,57 * * * *"
 
 permissions:
   contents: write
   actions: write
+  pages: write
 
 concurrency:
   group: banqiao-house-monitor-clean
@@ -34,7 +36,6 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
         shell: bash
         run: |
-          # Manual dispatch / relevant push should always run immediately.
           if [[ "$EVENT_NAME" != "schedule" ]]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
             exit 0
@@ -43,25 +44,33 @@ jobs:
           import json, os
           from datetime import datetime, timezone
           from pathlib import Path
-
-          # Scheduled heartbeats are cheap: only do the full crawl once the
-          # last successful data update is about 3 hours old.
           threshold_minutes = 170
           try:
-              d = json.loads(Path('docs/data/listings.json').read_text(encoding='utf-8'))
-              t = datetime.fromisoformat(str(d['updatedAt']).replace('Z', '+00:00'))
-              if t.tzinfo is None:
-                  t = t.replace(tzinfo=timezone.utc)
-              age = (datetime.now(timezone.utc) - t.astimezone(timezone.utc)).total_seconds() / 60
-              run = age >= threshold_minutes
+              d=json.loads(Path('docs/data/listings.json').read_text(encoding='utf-8'))
+              t=datetime.fromisoformat(str(d['updatedAt']).replace('Z','+00:00'))
+              if t.tzinfo is None: t=t.replace(tzinfo=timezone.utc)
+              age=(datetime.now(timezone.utc)-t.astimezone(timezone.utc)).total_seconds()/60
+              run=age >= threshold_minutes
               print(f'heartbeat freshness age={age:.1f} min; threshold={threshold_minutes} => {"run" if run else "skip"}')
           except Exception as exc:
               print(f'freshness check failed: {exc}; running monitor')
-              run = True
-
-          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
+              run=True
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as f:
               f.write(f"run={'true' if run else 'false'}\n")
           PY
+
+      - name: Preserve pre-refresh source for meaningful-change detection
+        if: steps.gate.outputs.run == 'true'
+        run: cp docs/data/listings.json /tmp/listings-before.json
+
+      - name: Start rental refresh in parallel
+        if: steps.gate.outputs.run == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run rental-preview.yml --ref main
+          echo "Rental refresh dispatched in parallel."
 
       - name: Setup Python
         if: steps.gate.outputs.run == 'true'
@@ -69,22 +78,20 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install monitor packages
+      - name: Install shared crawler packages
         if: steps.gate.outputs.run == 'true'
-        run: pip install requests beautifulsoup4 playwright
+        run: pip install requests beautifulsoup4 cryptography playwright
 
-      - name: Fetch Sinyi
+      - name: Fetch Sinyi 7 roads in parallel
         if: steps.gate.outputs.run == 'true'
-        env:
-          MONITOR_SOURCE: sinyi
-        run: python scripts/monitor_fast.py
+        run: python scripts/monitor_sinyi_parallel.py
 
       - name: Enrich Sinyi publish time
         if: steps.gate.outputs.run == 'true'
         continue-on-error: true
         run: python scripts/enrich_sinyi_first_display.py
 
-      - name: Connect Surfshark
+      - name: Connect Surfshark for 591
         id: vpn
         if: steps.gate.outputs.run == 'true'
         continue-on-error: true
@@ -93,16 +100,14 @@ jobs:
         shell: bash
         run: |
           for attempt in 1 2; do
-            echo "Surfshark attempt $attempt/2"
-            if bash scripts/connect_surfshark_wireguard.sh; then
-              exit 0
-            fi
+            echo "Surfshark 591 attempt $attempt/2"
+            if bash scripts/connect_surfshark_wireguard.sh; then exit 0; fi
             sudo wg-quick down surfshark >/dev/null 2>&1 || true
             sleep 5
           done
           exit 1
 
-      - name: Fetch 591
+      - name: Fetch 591 7 roads concurrently
         if: steps.gate.outputs.run == 'true' && steps.vpn.outcome == 'success'
         env:
           MONITOR_SOURCE: "591"
@@ -116,16 +121,15 @@ jobs:
           import json
           from datetime import datetime, timezone
           from pathlib import Path
-          p = Path('docs/data/listings.json')
-          d = json.loads(p.read_text(encoding='utf-8'))
-          r = (d.setdefault('runs', {}).get('591') or {}).copy()
-          r['checkedAt'] = datetime.now(timezone.utc).isoformat()
-          r['status'] = 'error'
-          r['message'] = 'Surfshark VPN 連線失敗，本輪未更新 591；沿用上一輪資料。'
-          r['newCount'] = 0
-          r['removedCount'] = 0
-          d['runs']['591'] = r
-          p.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding='utf-8')
+          p=Path('docs/data/listings.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          r=(d.setdefault('runs',{}).get('591') or {}).copy()
+          r['checkedAt']=datetime.now(timezone.utc).isoformat()
+          r['status']='error'
+          r['message']='Surfshark VPN 連線失敗，本輪未更新 591；沿用上一輪資料。'
+          r['newCount']=0; r['removedCount']=0
+          d['runs']['591']=r
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2),encoding='utf-8')
           PY
 
       - name: Normalize and track
@@ -136,39 +140,147 @@ jobs:
           python scripts/track_price_changes.py
           python scripts/remove_first_seen_ui.py
 
-      - name: Save latest data
+      - name: Detect meaningful listing changes
+        id: changes
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/data/listings.json docs/data/sinyi-first-display-cache.json
-          if git diff --cached --quiet; then
-            echo "No data changes to commit."
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          before=json.loads(Path('/tmp/listings-before.json').read_text(encoding='utf-8'))
+          after=json.loads(Path('docs/data/listings.json').read_text(encoding='utf-8'))
+
+          # Ignore only observation timestamps and run logs. Any actual listing field,
+          # new/down status, price, floor/source time, or price history change is meaningful.
+          volatile_listing={'lastSeenAt'}
+          def normalized_listing(x):
+              return {k:v for k,v in x.items() if k not in volatile_listing}
+          def fingerprint(d):
+              rows=[normalized_listing(x) for x in (d.get('listings') or []) if isinstance(x,dict)]
+              rows.sort(key=lambda x:(str(x.get('id') or ''), str(x.get('source') or '')))
+              return rows
+          changed=fingerprint(before) != fingerprint(after)
+          print(f'meaningful listing change={changed}')
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as f:
+              f.write(f"meaningful={'true' if changed else 'false'}\n")
+          if not changed:
+              # Keep canonical source timestamp aligned with the already-verified Preview.
+              Path('docs/data/listings.json').write_text(
+                  Path('/tmp/listings-before.json').read_text(encoding='utf-8'), encoding='utf-8'
+              )
+          PY
+
+      - name: Ensure current Surfshark exit is accepted by Yongching
+        id: ycvpn
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        shell: bash
+        run: |
+          if python scripts/run_with_system_chrome.py scripts/yungching_browser_preflight.py; then
+            echo "Current 591 Surfshark exit also works for Yongching."
             exit 0
           fi
-          git commit -m "Update monitored listings"
-          for attempt in 1 2 3; do
-            if git pull --rebase && git push; then
+          for attempt in 1 2 3 4; do
+            echo "Switching Surfshark exit for Yongching $attempt/4"
+            sudo wg-quick down surfshark >/dev/null 2>&1 || true
+            if bash scripts/connect_surfshark_wireguard.sh && python scripts/run_with_system_chrome.py scripts/yungching_browser_preflight.py; then
               exit 0
             fi
-            echo "Push attempt $attempt failed; retrying..."
+            sudo wg-quick down surfshark >/dev/null 2>&1 || true
+            sleep 3
+          done
+          exit 1
+
+      - name: Extract Yongching official DOM through actual last page
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
+        run: python scripts/run_with_system_chrome.py scripts/yungching_dom_snapshot_v5.py
+
+      - name: Enrich Yongching floors from persistent cache or detail response
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
+        run: python scripts/run_with_system_chrome.py scripts/yungching_detail_floor_enrich.py
+
+      - name: Disconnect Surfshark before comparison
+        if: always() && steps.gate.outputs.run == 'true'
+        continue-on-error: true
+        run: sudo wg-quick down surfshark || true
+
+      - name: Build Sinyi structured floor snapshot
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
+        run: python scripts/sinyi_preview_floor_enrich.py
+
+      - name: Regroup and compare canonical Preview
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/compare_yungching_preview_v8.py 2>&1 | tee docs/preview/yungching-preview-run.log
+
+      - name: Harden and validate Preview UI
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
+        run: |
+          python scripts/patch_preview_ui.py
+          python scripts/validate_scheme_a_preview_v3.py
+          python scripts/audit_scheme_a_ambiguity_v2.py
+          python scripts/write_scheme_a_verification.py
+          python scripts/write_scheme_a_saved_output_audit.py
+
+      - name: Smoke test generated Preview in system Chrome
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
+        run: python scripts/run_with_system_chrome.py scripts/smoke_test_preview_ui.py
+
+      - name: Atomically save monitored data and verified Preview
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p /tmp/fast-publish/preview /tmp/fast-publish/data
+          cp docs/data/listings.json /tmp/fast-publish/data/listings.json
+          [[ -f docs/data/sinyi-first-display-cache.json ]] && cp docs/data/sinyi-first-display-cache.json /tmp/fast-publish/data/sinyi-first-display-cache.json || true
+          core_files=(company-gap.json yungching-preview-run.log yungching-browser-snapshot.json yungching-detail-floor.json sinyi-floor-enrichment.json scheme-a-ambiguity-audit.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html)
+          for f in "${core_files[@]}"; do
+            [[ -f "docs/preview/$f" ]] || { echo "Missing canonical output: $f"; exit 1; }
+            cp "docs/preview/$f" "/tmp/fast-publish/preview/$f"
+          done
+
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/fast-publish/data/listings.json docs/data/listings.json
+          [[ -f /tmp/fast-publish/data/sinyi-first-display-cache.json ]] && cp /tmp/fast-publish/data/sinyi-first-display-cache.json docs/data/sinyi-first-display-cache.json || true
+          for f in /tmp/fast-publish/preview/*; do cp "$f" "docs/preview/$(basename "$f")"; done
+
+          git add docs/data/listings.json docs/preview
+          [[ -f docs/data/sinyi-first-display-cache.json ]] && git add docs/data/sinyi-first-display-cache.json || true
+          if git diff --cached --quiet; then
+            echo "Verified output already current."
+            exit 0
+          fi
+          git commit -m "Update monitored listings and canonical Preview"
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then exit 0; fi
             git rebase --abort >/dev/null 2>&1 || true
             sleep 3
           done
           exit 1
 
-      # Commits pushed with GITHUB_TOKEN do not recursively trigger on: push
-      # workflows. Explicit workflow_dispatch is the supported exception, so the
-      # Preview comparison always catches up after a successful monitor refresh.
-      - name: Dispatch canonical Preview verification
-        if: steps.gate.outputs.run == 'true'
+      - name: No meaningful listing change
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful != 'true'
+        run: echo "No listing-level change; skipped Yongching/company comparison and kept canonical source timestamp unchanged."
+
+      - name: Request GitHub Pages rebuild
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true' && success()
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          gh workflow run yungching-preview.yml --ref main
-          echo "Canonical Preview verification dispatched."
+          gh api --method POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            "repos/${GITHUB_REPOSITORY}/pages/builds"
+          echo "Fast canonical Pages rebuild queued."
 
       - name: Heartbeat skipped
         if: steps.gate.outputs.run != 'true'
