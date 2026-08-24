@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-08-24T07:56:53+00:00",
+  "checkedAt": "2026-08-24T08:09:09+00:00",
   "vpnOutcome": "success",
-  "fetchOutcome": "cancelled",
-  "fetchReturnCode": "",
-  "patchOutcome": "skipped",
-  "rentalDataExists": false,
-  "logTail": "/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:185: SyntaxWarning: invalid escape sequence '\\/'\n  const m=href.match(/(?:rent\\/)?(\\d{6,})(?:[/?#]|$)/);\n"
+  "fetchOutcome": "success",
+  "fetchReturnCode": "0",
+  "patchOutcome": "success",
+  "rentalDataExists": true,
+  "logTail": "{\"updatedAt\": \"2026-08-24T08:09:09+00:00\", \"counts\": {\"total\": 0, \"sinyi\": 0, \"591\": 0, \"roads\": {\"板橋區中山路二段\": 0, \"板橋區三民路二段\": 0, \"板橋區光復街\": 0, \"板橋區萬安街\": 0, \"板橋區林森街\": 0, \"板橋區三民路一段\": 0, \"板橋區翠華街\": 0}}, \"runs\": {\"591\": \"error\", \"信義房屋\": \"error\"}, \"elapsedSeconds\": 6.1}\n"
 }
