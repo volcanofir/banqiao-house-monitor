@@ -107,6 +107,8 @@ def main():
     assert 'function setMarket(mode)' in html
     assert '<br>委託比對：${fmt(GAP.generatedAt)}。' in html
     assert '<br>新案以本監控首次抓到時間計算' in html
+    assert "if(state==='new')rows=rows.filter(rentalIsNew);" in html
+    assert '<option value="all">全部案件</option><option value="new">新案</option>' in html
 
     server = subprocess.Popen(
         [sys.executable, '-m', 'http.server', str(PORT), '--bind', '127.0.0.1', '--directory', str(ROOT)],
@@ -183,6 +185,11 @@ def main():
             page.locator('.market-btn[data-market="rent"]').click()
             page.wait_for_function("MARKET_MODE === 'rent' && document.querySelector('#listTitle')?.textContent.includes('租屋')", timeout=5000)
             assert page.locator('#companyPanel').evaluate("el => getComputedStyle(el).display") == 'none'
+            assert page.locator('#companyState').evaluate("el => getComputedStyle(el).display") == 'none'
+            assert page.locator('#state').evaluate("el => getComputedStyle(el).display") != 'none'
+            assert page.locator('#state option').count() == 2
+            assert page.locator('#state option').nth(0).inner_text() == '全部案件'
+            assert page.locator('#state option').nth(1).inner_text() == '新案'
             assert number(page.locator('#mGroups').inner_text()) == rental_count
             assert number(page.locator('#mNew').inner_text()) == rental_new_count
             assert page.evaluate("typeof rentalIsNew === 'function'") is True
@@ -197,6 +204,13 @@ def main():
                 assert page.locator('#groups .rent-item').count() >= 1
             new_badges = page.locator('#groups .rent-item .pill').filter(has_text='新案')
             assert new_badges.count() == rental_new_count, (new_badges.count(), rental_new_count)
+
+            page.select_option('#state', 'new')
+            assert page.locator('#groups .rent-item').count() == rental_new_count
+            assert page.locator('#groups .rent-item .pill').filter(has_text='新案').count() == rental_new_count
+            page.select_option('#state', 'all')
+            assert page.locator('#groups .rent-item').count() == rental_count
+
             page.locator('.source-tab[data-source="591"]').click()
             page.select_option('#sort', 'priceAsc')
 
@@ -206,6 +220,9 @@ def main():
             assert '售價' in page.locator('#sort option').nth(1).inner_text()
             assert '委託比對：' in page.locator('#updated').inner_text()
             assert page.locator('#updated br').count() == 1
+            assert page.locator('#state option').count() == 4
+            assert page.locator('#state option').nth(0).inner_text() == '全部上架狀態'
+            assert page.locator('#state option').nth(3).inner_text() == '已下架'
 
             assert not page_errors, page_errors
             meaningful_failed = [x for x in failed_requests if not any(k in x for k in ('favicon', 'icon-safe'))]
@@ -243,7 +260,7 @@ def main():
 
         print(
             f'Production UI smoke test passed: {offmarket_count} off-market group(s), '
-            f'{rental_count} rental listing(s), {rental_new_count} rental new badge(s), '
+            f'{rental_count} rental listing(s), {rental_new_count} rental new badge/filter result(s), '
             'two-line update notes, market switching and stale-source suppression'
         )
     finally:
