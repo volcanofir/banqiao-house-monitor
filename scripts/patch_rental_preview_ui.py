@@ -56,8 +56,10 @@ function rentalIsNew(x){
 function renderRentGroups(){
   const roads=RENT.watchRoads||defaultRoads;
   const source=SOURCE_FILTER;
+  const state=document.querySelector('#state')?.value||'all';
   const sort=document.querySelector('#sort').value;
   let rows=(RENT.listings||[]).filter(x=>source==='all'||(source==='sinyi'&&x.source==='信義房屋')||(source==='591'&&x.source==='591'));
+  if(state==='new')rows=rows.filter(rentalIsNew);
   if(sort==='priceDesc')rows.sort((a,b)=>(Number(b.rent)||0)-(Number(a.rent)||0));
   if(sort==='priceAsc')rows.sort((a,b)=>(Number(a.rent)||0)-(Number(b.rent)||0));
   if(sort==='timeDesc')rows.sort((a,b)=>rentalFirstSeenMs(b)-rentalFirstSeenMs(a));
@@ -95,7 +97,14 @@ function setMarket(mode){
   document.querySelectorAll('.source-tab').forEach(b=>b.classList.toggle('active',b.dataset.source==='all'));
   const rent=MARKET_MODE==='rent';
   const company=document.querySelector('#companyPanel'); if(company)company.style.display=rent?'none':'';
-  const state=document.querySelector('#state'); if(state){state.style.display=rent?'none':'';state.value='all';}
+  const state=document.querySelector('#state');
+  if(state){
+    state.style.display='';
+    state.innerHTML=rent
+      ? '<option value="all">全部案件</option><option value="new">新案</option>'
+      : '<option value="all">全部上架狀態</option><option value="new">新進案件</option><option value="active">已上架</option><option value="removed">已下架</option>';
+    state.value='all';
+  }
   const companyState=document.querySelector('#companyState'); if(companyState){companyState.style.display=rent?'none':'';companyState.value='all';}
   const title=document.querySelector('#listTitle'); if(title)title.textContent=rent?'租屋案件列表':'整併後案件列表';
   const sort=document.querySelector('#sort');
@@ -143,6 +152,8 @@ required = [
     '目前刊登 ${r?.totalCount??0} 筆',
     '<br>委託比對：${fmt(GAP.generatedAt)}。',
     '<br>新案以本監控首次抓到時間計算',
+    "if(state==='new')rows=rows.filter(rentalIsNew);",
+    '<option value="all">全部案件</option><option value="new">新案</option>',
 ]
 missing = [x for x in required if x not in text]
 if missing:
@@ -151,12 +162,13 @@ forbidden = [
     '目前保留 ${r?.totalCount??0} 筆',
     '目前抓到 ${r?.totalCount??0} 筆',
     "${name}${name==='591'?' 租屋':'租屋'}",
+    "state.style.display=rent?'none':''",
 ]
 present = [x for x in forbidden if x in text]
 if present:
-    raise RuntimeError(f'Rental Preview UI wording patch failed; old fragments remain: {present}')
+    raise RuntimeError(f'Rental Preview UI wording/filter patch failed; old fragments remain: {present}')
 if '<details class="road-group" open>' in text:
     raise RuntimeError('Rental Preview UI patch failed: road groups still default-open')
 
 PATH.write_text(text, encoding='utf-8')
-print('Rental Preview UI patched with two-line update notes, unified source-card wording, 3-day new badges and collapsed details')
+print('Rental Preview UI patched with new-listing filter, two-line update notes, unified source-card wording, 3-day new badges and collapsed details')
