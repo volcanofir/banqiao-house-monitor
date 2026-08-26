@@ -1,14 +1,14 @@
 {
-  "verifiedAt": "2026-08-26T05:33:50+00:00",
+  "verifiedAt": "2026-08-26T09:24:56+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + system Chrome official Yongching DOM + all-pages direct pg pagination + verified detail cache",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-08-26T05:31:09+00:00",
+  "sourceDataUpdatedAt": "2026-08-26T09:22:48+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-08-26T05:33:48+00:00",
+    "generatedAt": "2026-08-26T09:24:53+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 77,
@@ -123,17 +123,17 @@
     ]
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-08-26T05:33:50+00:00",
+    "auditedAt": "2026-08-26T09:24:56+00:00",
     "propertyGroupCount": 160,
     "companyListingCount": 80,
     "companyMatchCount": 48,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 195
+    "weakIdentityAlreadyMergedPairCount": 203
   },
-  "snapshotCapturedAt": "2026-08-26T05:32:22+00:00",
-  "companySnapshotCapturedAt": "2026-08-26T05:32:22+00:00",
-  "companyGapGeneratedAt": "2026-08-26T05:33:49+00:00",
+  "snapshotCapturedAt": "2026-08-26T09:23:27+00:00",
+  "companySnapshotCapturedAt": "2026-08-26T09:23:27+00:00",
+  "companyGapGeneratedAt": "2026-08-26T09:24:55+00:00",
   "browserListingCount": 80,
   "companyListingCount": 80,
   "propertyGroupCount": 160,
@@ -210,10 +210,10 @@
   "crossPlatformMergedGroupCount": 24,
   "crossSourceReviewCount": 6,
   "preview591Regroup": {
-    "original591TopLevel": 127,
-    "regrouped591TopLevel": 108,
+    "original591TopLevel": 125,
+    "regrouped591TopLevel": 107,
     "regrouped591ClusterCount": 16,
-    "regrouped591AbsorbedCount": 19,
+    "regrouped591AbsorbedCount": 18,
     "clusterFloorConflictBlocked": 0
   },
   "schemeAGroupIntegrity": {
@@ -320,7 +320,7 @@
   "candidatesWithFloor": 132,
   "candidatesWithYcCaseId": 132,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-08-26T05:33:38+00:00",
+    "generatedAt": "2026-08-26T09:24:40+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 73,
     "cacheHitCount": 73,
