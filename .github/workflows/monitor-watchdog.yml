@@ -1,0 +1,61 @@
+name: 監控排程防漏
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Independent fallback away from the top of the hour. It does no crawling itself.
+    - cron: "23,53 * * * *"
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: banqiao-monitor-watchdog
+  cancel-in-progress: true
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Check last successful full refresh
+        id: stale
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          p = Path('state/monitor-schedule.json')
+          stale = True
+          age_minutes = None
+          if p.exists():
+              d = json.loads(p.read_text(encoding='utf-8'))
+              raw = d.get('lastSuccessfulFullCheckAt')
+              if raw:
+                  last = datetime.fromisoformat(str(raw).replace('Z', '+00:00'))
+                  if last.tzinfo is None:
+                      last = last.replace(tzinfo=timezone.utc)
+                  age_minutes = (datetime.now(timezone.utc) - last.astimezone(timezone.utc)).total_seconds() / 60
+                  stale = age_minutes >= 210
+          print(f'last full-check age minutes={age_minutes}; watchdog stale={stale}')
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
+              f.write(f"stale={'true' if stale else 'false'}\n")
+          PY
+
+      - name: Wake main monitor when overdue
+        if: steps.stale.outputs.stale == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run monitor-clean.yml --ref main
+          echo "Main monitor dispatched because no successful full check was recorded for at least 210 minutes."
+
+      - name: Healthy cadence
+        if: steps.stale.outputs.stale != 'true'
+        run: echo "Main monitor is still within the 210-minute watchdog window; no action needed."
