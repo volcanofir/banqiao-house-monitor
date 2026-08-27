@@ -1,0 +1,6 @@
+name = "banqiao-monitor-watchdog"
+main = "cloudflare-watchdog.js"
+compatibility_date = "2026-08-28"
+
+[triggers]
+crons = ["*/15 * * * *"]
