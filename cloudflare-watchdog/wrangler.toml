@@ -1,0 +1,6 @@
+name = "banqiao-monitor-watchdog"
+main = "worker.js"
+compatibility_date = "2026-08-27"
+
+[triggers]
+crons = ["*/15 * * * *"]
