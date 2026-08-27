@@ -17,6 +17,49 @@ async function githubFetch(path, env, init = {}) {
   });
 }
 
+async function probeGithubToken(env) {
+  if (!env.GITHUB_TOKEN) {
+    return {
+      ok: false,
+      status: "missing-secret",
+      message: "GITHUB_TOKEN is not available to this Worker.",
+    };
+  }
+
+  const response = await githubFetch(
+    `/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW}/runs?per_page=1`,
+    env,
+  );
+
+  if (!response.ok) {
+    const text = await response.text();
+    return {
+      ok: false,
+      status: "github-auth-failed",
+      httpStatus: response.status,
+      message: text.slice(0, 300),
+    };
+  }
+
+  const data = await response.json();
+  const latest = (data.workflow_runs || [])[0] || null;
+  return {
+    ok: true,
+    status: "github-auth-ok",
+    repository: `${OWNER}/${REPO}`,
+    workflow: WORKFLOW,
+    latestRun: latest
+      ? {
+          id: latest.id,
+          status: latest.status,
+          conclusion: latest.conclusion,
+          event: latest.event,
+          createdAt: latest.created_at,
+        }
+      : null,
+  };
+}
+
 async function checkAndWake(env) {
   const stateResponse = await fetch(`${STATE_URL}?t=${Date.now()}`, {
     headers: { "Cache-Control": "no-cache" },
@@ -100,8 +143,17 @@ export default {
     );
   },
 
-  async fetch(_request, env) {
+  async fetch(request, env) {
     try {
+      const url = new URL(request.url);
+      if (url.searchParams.get("probe") === "github") {
+        const result = await probeGithubToken(env);
+        return Response.json(result, {
+          status: result.ok ? 200 : 500,
+          headers: { "Cache-Control": "no-store" },
+        });
+      }
+
       const result = await checkAndWake(env);
       return Response.json(result, {
         headers: { "Cache-Control": "no-store" },
