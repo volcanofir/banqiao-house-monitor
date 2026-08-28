@@ -1,14 +1,14 @@
 {
-  "verifiedAt": "2026-08-28T07:19:13+00:00",
+  "verifiedAt": "2026-08-28T11:04:12+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + system Chrome official Yongching DOM + all-pages direct pg pagination + verified detail cache",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-08-28T07:16:46+00:00",
+  "sourceDataUpdatedAt": "2026-08-28T11:01:29+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-08-28T07:19:10+00:00",
+    "generatedAt": "2026-08-28T11:04:08+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 77,
@@ -123,21 +123,21 @@
     ]
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-08-28T07:19:13+00:00",
+    "auditedAt": "2026-08-28T11:04:11+00:00",
     "propertyGroupCount": 162,
     "companyListingCount": 80,
     "companyMatchCount": 48,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 235
+    "weakIdentityAlreadyMergedPairCount": 232
   },
-  "snapshotCapturedAt": "2026-08-28T07:17:47+00:00",
-  "companySnapshotCapturedAt": "2026-08-28T07:17:47+00:00",
-  "companyGapGeneratedAt": "2026-08-28T07:19:12+00:00",
+  "snapshotCapturedAt": "2026-08-28T11:02:39+00:00",
+  "companySnapshotCapturedAt": "2026-08-28T11:02:39+00:00",
+  "companyGapGeneratedAt": "2026-08-28T11:04:10+00:00",
   "browserListingCount": 80,
   "companyListingCount": 80,
   "propertyGroupCount": 162,
-  "rawListingCount": 378,
+  "rawListingCount": 377,
   "comparisonCount": 162,
   "coveredRoads": [
     "板橋區中山路二段",
@@ -210,10 +210,10 @@
   "crossPlatformMergedGroupCount": 24,
   "crossSourceReviewCount": 6,
   "preview591Regroup": {
-    "original591TopLevel": 130,
+    "original591TopLevel": 129,
     "regrouped591TopLevel": 110,
     "regrouped591ClusterCount": 16,
-    "regrouped591AbsorbedCount": 20,
+    "regrouped591AbsorbedCount": 19,
     "clusterFloorConflictBlocked": 0
   },
   "schemeAGroupIntegrity": {
@@ -320,7 +320,7 @@
   "candidatesWithFloor": 134,
   "candidatesWithYcCaseId": 134,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-08-28T07:19:00+00:00",
+    "generatedAt": "2026-08-28T11:03:57+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 73,
     "cacheHitCount": 73,
