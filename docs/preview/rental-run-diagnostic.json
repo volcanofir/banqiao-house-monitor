@@ -1,10 +1,10 @@
 {
-  "checkedAt": "2026-08-28T22:17:21+00:00",
+  "checkedAt": "2026-08-29T02:02:52+00:00",
   "vpnOutcome": "success",
   "fetchOutcome": "success",
   "fetchReturnCode": "0",
   "stampOutcome": "success",
   "rentalDataExists": true,
   "uiOwnership": "canonical-preview-index",
-  "logTail": "/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:105: SyntaxWarning: invalid escape sequence '\\/'\n  if(u.hostname!=='rent.591.com.tw' || !/^\\/\\d{6,}$/.test(u.pathname)) continue;\n/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:162: SyntaxWarning: invalid escape sequence '\\/'\n  const m=href.match(/\\/houseno\\/([A-Za-z0-9_-]+)/);\n{\"updatedAt\": \"2026-08-28T22:17:21+00:00\", \"counts\": {\"total\": 112, \"sinyi\": 16, \"591\": 96, \"roads\": {\"板橋區中山路二段\": 57, \"板橋區三民路一段\": 6, \"板橋區光復街\": 8, \"板橋區三民路二段\": 31, \"板橋區萬安街\": 9, \"板橋區翠華街\": 1, \"板橋區林森街\": 0}}, \"runs\": {\"591\": \"ok\", \"信義房屋\": \"ok\"}, \"elapsedSeconds\": 85.54}\n"
+  "logTail": "/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:105: SyntaxWarning: invalid escape sequence '\\/'\n  if(u.hostname!=='rent.591.com.tw' || !/^\\/\\d{6,}$/.test(u.pathname)) continue;\n/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:162: SyntaxWarning: invalid escape sequence '\\/'\n  const m=href.match(/\\/houseno\\/([A-Za-z0-9_-]+)/);\n{\"updatedAt\": \"2026-08-29T02:02:52+00:00\", \"counts\": {\"total\": 112, \"sinyi\": 16, \"591\": 96, \"roads\": {\"板橋區中山路二段\": 57, \"板橋區三民路一段\": 6, \"板橋區光復街\": 8, \"板橋區三民路二段\": 30, \"板橋區萬安街\": 10, \"板橋區翠華街\": 1, \"板橋區林森街\": 0}}, \"runs\": {\"591\": \"ok\", \"信義房屋\": \"ok\"}, \"elapsedSeconds\": 131.73}\n"
 }
