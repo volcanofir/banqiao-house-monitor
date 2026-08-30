@@ -1,22 +1,22 @@
 {
-  "auditedAt": "2026-08-30T00:11:01+00:00",
+  "auditedAt": "2026-08-30T03:49:06+00:00",
   "scheme": "A",
   "target": "exact canonical Preview files before atomic publish",
   "validator": "validate_scheme_a_preview_v3",
   "passed": true,
   "error": null,
   "companyGap": {
-    "generatedAt": "2026-08-30T00:11:00+00:00",
+    "generatedAt": "2026-08-30T03:49:05+00:00",
     "capturedAt": null,
     "verifiedAt": null,
-    "companySnapshotCapturedAt": "2026-08-30T00:09:37+00:00",
+    "companySnapshotCapturedAt": "2026-08-30T03:47:33+00:00",
     "listingCount": null,
-    "companyListingCount": 80,
-    "propertyGroupCount": 157,
+    "companyListingCount": 79,
+    "propertyGroupCount": 158,
     "counts": {
       "company_match": 47,
       "review": 2,
-      "missing": 108,
+      "missing": 109,
       "unavailable": 0
     },
     "idIntegrityGuard": null,
@@ -26,7 +26,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-08-30T00:10:58+00:00",
+      "generatedAt": "2026-08-30T03:49:04+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 78,
@@ -143,17 +143,17 @@
   },
   "browserSnapshot": {
     "generatedAt": null,
-    "capturedAt": "2026-08-30T00:09:37+00:00",
+    "capturedAt": "2026-08-30T03:47:33+00:00",
     "verifiedAt": null,
     "companySnapshotCapturedAt": null,
-    "listingCount": 80,
+    "listingCount": 79,
     "companyListingCount": null,
     "propertyGroupCount": null,
     "counts": null,
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 87,
-      "afterCount": 80,
+      "beforeCount": 86,
+      "afterCount": 79,
       "removedCount": 7,
       "collisionIds": [
         "4308114"
@@ -175,12 +175,12 @@
         {
           "id": "4308114",
           "road": "板橋區三民路一段",
-          "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
-          "area": 89.82,
-          "price": 3600.0,
+          "title": "近江翠首購首選免千萬頂加",
+          "area": 20.01,
+          "price": 890.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
           "replacementIds": [
-            "7410779"
+            "7271295"
           ],
           "replacementFound": true
         },
@@ -258,21 +258,21 @@
   "verification": {
     "generatedAt": null,
     "capturedAt": null,
-    "verifiedAt": "2026-08-30T00:11:01+00:00",
-    "companySnapshotCapturedAt": "2026-08-30T00:09:37+00:00",
+    "verifiedAt": "2026-08-30T03:49:06+00:00",
+    "companySnapshotCapturedAt": "2026-08-30T03:47:33+00:00",
     "listingCount": null,
-    "companyListingCount": 80,
-    "propertyGroupCount": 157,
+    "companyListingCount": 79,
+    "propertyGroupCount": 158,
     "counts": {
       "company_match": 47,
       "review": 2,
-      "missing": 108,
+      "missing": 109,
       "unavailable": 0
     },
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 87,
-      "afterCount": 80,
+      "beforeCount": 86,
+      "afterCount": 79,
       "removedCount": 7,
       "collisionIds": [
         "4308114"
@@ -294,12 +294,12 @@
         {
           "id": "4308114",
           "road": "板橋區三民路一段",
-          "title": "板橋三民路廠辦l超大使用空間l一層一戶獨立梯廳",
-          "area": 89.82,
-          "price": 3600.0,
+          "title": "近江翠首購首選免千萬頂加",
+          "area": 20.01,
+          "price": 890.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
           "replacementIds": [
-            "7410779"
+            "7271295"
           ],
           "replacementFound": true
         },
@@ -372,7 +372,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-08-30T00:10:58+00:00",
+      "generatedAt": "2026-08-30T03:49:04+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 78,
