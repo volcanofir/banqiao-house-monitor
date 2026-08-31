@@ -380,12 +380,26 @@ def main():
                 info["title"] = page.title()[:160]
                 info["roadTextCount"] = page.get_by_text(road.replace("板橋區", ""), exact=False).count()
                 info["summary"] = result_summary(page, road)
+                info["searchUrl"] = page.url
                 rows, diag = collect_road(page, road)
                 info.update(diag)
                 for row in rows.values():
                     listings[(road, row["id"])] = row
                 info["count"] = len(rows)
-                info["available"] = info["mainHttp"] == 200 and info["count"] > 0
+
+                # A successful official keyword page can legitimately contain zero
+                # exact Banqiao rows after filtering out same-named roads elsewhere.
+                # Only the explicit wider-scope override may prove an empty result.
+                info["emptyResultVerified"] = bool(
+                    road in ROAD_SCOPE_OVERRIDES
+                    and info["mainHttp"] == 200
+                    and info["count"] == 0
+                    and "永慶" in str(info.get("title") or "")
+                    and int(info.get("roadTextCount") or 0) > 0
+                )
+                info["available"] = info["mainHttp"] == 200 and (
+                    info["count"] > 0 or info["emptyResultVerified"]
+                )
             except Exception as exc:
                 info["error"] = f"{type(exc).__name__}: {str(exc)[:220]}"
                 info["available"] = False

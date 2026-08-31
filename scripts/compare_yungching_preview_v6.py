@@ -50,7 +50,8 @@ def official_rendered_fetch_company():
 
     No Housefun, HAR or previous-snapshot replacement is allowed in v6. A road is
     accepted only when the official page returned HTTP 200, its snapshot is fresh,
-    the collector marked the road complete, and at least one listing was parsed.
+    the collector marked the road complete, and the exact-address result is either
+    populated or explicitly verified empty by the official keyword page.
     """
     logs = []
     selected_company = []
@@ -105,9 +106,10 @@ def official_rendered_fetch_company():
         official_count = len(official_rows)
         road_http = ost.get("mainHttp")
         pagination_ok = (not ost.get("paginationExpected")) or ost.get("paginationComplete") is True
+        empty_verified = bool(official_count == 0 and ost.get("emptyResultVerified") is True)
         road_ok = bool(
             fresh_snapshot and road_http == 200 and ost.get("available") and
-            official_count > 0 and pagination_ok
+            (official_count > 0 or empty_verified) and pagination_ok
         )
 
         if road_ok:
@@ -122,6 +124,7 @@ def official_rendered_fetch_company():
                 "paginationExpected": ost.get("paginationExpected"),
                 "paginationComplete": ost.get("paginationComplete"),
                 "paginationActivePage": ost.get("paginationActivePage"),
+                "emptyResultVerified": empty_verified,
                 "source": "永慶房仲網官方公開搜尋頁實際渲染 DOM",
             }
             OFFICIAL_STATS["acceptedRoadCount"] += 1
@@ -130,8 +133,12 @@ def official_rendered_fetch_company():
                 "officialCount": official_count,
                 "http": road_http,
                 "paginationComplete": ost.get("paginationComplete"),
+                "emptyResultVerified": empty_verified,
             }
-            logs.append(f"永慶官方瀏覽器資料：{road} 採用官方渲染 DOM {official_count} 筆。")
+            if empty_verified:
+                logs.append(f"永慶官方瀏覽器資料：{road} 官方關鍵字頁已驗證目前為 0 筆。")
+            else:
+                logs.append(f"永慶官方瀏覽器資料：{road} 採用官方渲染 DOM {official_count} 筆。")
         else:
             if not fresh_snapshot:
                 reason = "官方快照過期或時間異常"

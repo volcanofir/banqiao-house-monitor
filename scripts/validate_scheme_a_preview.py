@@ -138,8 +138,11 @@ def main():
         assert st.get("mainHttp") == 200, (road, st)
         assert st.get("available") is True, (road, st)
         assert st.get("paginationComplete") is True, (road, st)
-        assert int(st.get("count") or 0) > 0, (road, st)
-        assert int(st.get("count") or 0) == actual_road_counts[road], (
+        road_count = int(st.get("count") or 0)
+        assert road_count >= 0, (road, st)
+        if road_count == 0:
+            assert st.get("emptyResultVerified") is True, (road, st)
+        assert road_count == actual_road_counts[road], (
             road, st.get("count"), actual_road_counts[road]
         )
         if st.get("paginationExpected"):
@@ -190,7 +193,11 @@ def main():
         assert row.get("road") == snapshot_by_id[oid].get("road"), row
         company_by_id[cid] = row
         company_road_counts[row.get("road")] += 1
-    assert dict(company_road_counts) == dict(actual_road_counts), (dict(company_road_counts), dict(actual_road_counts))
+    normalized_company_road_counts = {r: int(company_road_counts.get(r, 0)) for r in EXPECTED_ROADS}
+    normalized_actual_road_counts = {r: int(actual_road_counts.get(r, 0)) for r in EXPECTED_ROADS}
+    assert normalized_company_road_counts == normalized_actual_road_counts, (
+        normalized_company_road_counts, normalized_actual_road_counts
+    )
 
     for road in EXPECTED_ROADS:
         pst = (p.get("roadStatus") or {}).get(road) or {}
