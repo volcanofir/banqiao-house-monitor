@@ -182,6 +182,7 @@ function renderGroups(){
 
 
 
+
 function rentalPrice(x){const n=Number(x?.rent);return Number.isFinite(n)&&n>0?`${Math.round(n).toLocaleString('zh-TW')} 元/月`:'租金未取得'}
 function rentalFirstSeenMs(x){const t=new Date(x?.firstSeenAt||0).getTime();return Number.isFinite(t)?t:0}
 function rentalIsNew(x){
