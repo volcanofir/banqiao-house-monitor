@@ -20,9 +20,19 @@ ROADS = [
 ]
 
 
+# Yongching's district-scoped 光復街 keyword route currently returns HTTP 404,
+# while its official New Taipei-wide keyword route still publishes the Banqiao card.
+# parse_card()/extract_cards() require the exact address "新北市板橋區光復街",
+# so the wider discovery route cannot admit similarly named roads in other districts.
+ROAD_SCOPE_OVERRIDES = {
+    "板橋區光復街": "新北市-",
+}
+
+
 def road_url(road: str) -> str:
     keyword = road.replace("板橋區", "")
-    return f"{BASE}/list/{quote('新北市-板橋區')}_c/{quote(keyword)}_kw?od=80"
+    scope = ROAD_SCOPE_OVERRIDES.get(road, "新北市-板橋區")
+    return f"{BASE}/list/{quote(scope)}_c/{quote(keyword)}_kw?od=80"
 
 
 def num(value):
