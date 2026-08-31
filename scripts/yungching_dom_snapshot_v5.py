@@ -77,7 +77,7 @@ def raw_page_evidence(page, road):
               const bodyText=document.body?.innerText||'';
               const exactAddressTextCount=bodyText.split(address).length-1;
               const rawHouseIds=[];
-              for(const a of Array.from(document.querySelectorAll('a[href*="/house/"]'))){
+              for(const a of Array.from(document.querySelectorAll('a[href]'))){
                 const href=String(a.href||'');
                 if(!href.includes('/house/'))continue;
                 const raw=href.split('/house/')[1].split(/[/?#]/)[0];
