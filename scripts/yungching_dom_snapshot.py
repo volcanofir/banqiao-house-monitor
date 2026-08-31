@@ -20,19 +20,26 @@ ROADS = [
 ]
 
 
-# Yongching's district-scoped 光復街 keyword route currently returns HTTP 404,
-# while its official New Taipei-wide keyword route still publishes the Banqiao card.
-# parse_card()/extract_cards() require the exact address "新北市板橋區光復街",
-# so the wider discovery route cannot admit similarly named roads in other districts.
-ROAD_SCOPE_OVERRIDES = {
+# Only after the normal Banqiao-scoped route returns HTTP 404 may a road use
+# the wider official keyword page to prove that no exact Banqiao address exists.
+# The wider route is confirmation-only; it never weakens exact-address filtering.
+ROAD_404_CONFIRMATION_SCOPES = {
     "板橋區光復街": "新北市-",
 }
 
 
-def road_url(road: str) -> str:
+def scoped_road_url(road: str, scope: str) -> str:
     keyword = road.replace("板橋區", "")
-    scope = ROAD_SCOPE_OVERRIDES.get(road, "新北市-板橋區")
     return f"{BASE}/list/{quote(scope)}_c/{quote(keyword)}_kw?od=80"
+
+
+def road_url(road: str) -> str:
+    return scoped_road_url(road, "新北市-板橋區")
+
+
+def road_404_confirmation_url(road: str):
+    scope = ROAD_404_CONFIRMATION_SCOPES.get(road)
+    return scoped_road_url(road, scope) if scope else None
 
 
 def num(value):
@@ -371,14 +378,34 @@ def main():
         page = context.new_page()
 
         for road in ROADS:
-            url = road_url(road)
-            info = {"mainHttp": None, "count": 0}
+            primary_url = road_url(road)
+            info = {
+                "mainHttp": None,
+                "count": 0,
+                "primarySearchUrl": primary_url,
+                "confirmationUsed": False,
+            }
             try:
-                response = page.goto(url, wait_until="domcontentloaded", timeout=45000)
-                info["mainHttp"] = response.status if response else None
+                response = page.goto(primary_url, wait_until="domcontentloaded", timeout=45000)
+                info["primaryHttp"] = response.status if response else None
+                info["primaryFinalUrl"] = page.url
+                info["mainHttp"] = info["primaryHttp"]
+
+                confirmation_url = road_404_confirmation_url(road)
+                if info["primaryHttp"] == 404 and confirmation_url:
+                    info["confirmationUsed"] = True
+                    info["confirmationUrl"] = confirmation_url
+                    response = page.goto(
+                        confirmation_url, wait_until="domcontentloaded", timeout=45000
+                    )
+                    info["confirmationHttp"] = response.status if response else None
+                    info["mainHttp"] = info["confirmationHttp"]
+
                 page.wait_for_timeout(3500)
                 info["title"] = page.title()[:160]
-                info["roadTextCount"] = page.get_by_text(road.replace("板橋區", ""), exact=False).count()
+                info["roadTextCount"] = page.get_by_text(
+                    road.replace("板橋區", ""), exact=False
+                ).count()
                 info["summary"] = result_summary(page, road)
                 info["searchUrl"] = page.url
                 rows, diag = collect_road(page, road)
@@ -387,16 +414,25 @@ def main():
                     listings[(road, row["id"])] = row
                 info["count"] = len(rows)
 
-                # A successful official keyword page can legitimately contain zero
-                # exact Banqiao rows after filtering out same-named roads elsewhere.
-                # Only the explicit wider-scope override may prove an empty result.
+                # Accept an empty road only after the normal route returned 404 and
+                # the official wider search completed every page with no raw exact
+                # Banqiao address. Any parser mismatch or incomplete page remains red.
                 info["emptyResultVerified"] = bool(
-                    road in ROAD_SCOPE_OVERRIDES
-                    and info["mainHttp"] == 200
+                    info.get("primaryHttp") == 404
+                    and info.get("confirmationUsed") is True
+                    and info.get("confirmationHttp") == 200
                     and info["count"] == 0
                     and "永慶" in str(info.get("title") or "")
                     and int(info.get("roadTextCount") or 0) > 0
+                    and info.get("paginationCompleteAllPages") is True
+                    and int(info.get("rawExactAddressTextCount") or 0) == 0
                 )
+                info["skippedConfirmedEmpty"] = info["emptyResultVerified"]
+                if info["skippedConfirmedEmpty"]:
+                    info["skipReason"] = (
+                        "原板橋路段網址 HTTP 404；官方新北市關鍵字頁完整複查後，"
+                        "確認沒有新北市板橋區精確地址案件"
+                    )
                 info["available"] = info["mainHttp"] == 200 and (
                     info["count"] > 0 or info["emptyResultVerified"]
                 )

@@ -125,6 +125,10 @@ def official_rendered_fetch_company():
                 "paginationComplete": ost.get("paginationComplete"),
                 "paginationActivePage": ost.get("paginationActivePage"),
                 "emptyResultVerified": empty_verified,
+                "primaryHttp": ost.get("primaryHttp"),
+                "confirmationUsed": ost.get("confirmationUsed"),
+                "confirmationHttp": ost.get("confirmationHttp"),
+                "skippedConfirmedEmpty": ost.get("skippedConfirmedEmpty"),
                 "source": "永慶房仲網官方公開搜尋頁實際渲染 DOM",
             }
             OFFICIAL_STATS["acceptedRoadCount"] += 1
@@ -134,9 +138,16 @@ def official_rendered_fetch_company():
                 "http": road_http,
                 "paginationComplete": ost.get("paginationComplete"),
                 "emptyResultVerified": empty_verified,
+                "primaryHttp": ost.get("primaryHttp"),
+                "confirmationUsed": ost.get("confirmationUsed"),
+                "confirmationHttp": ost.get("confirmationHttp"),
+                "skippedConfirmedEmpty": ost.get("skippedConfirmedEmpty"),
             }
             if empty_verified:
-                logs.append(f"永慶官方瀏覽器資料：{road} 官方關鍵字頁已驗證目前為 0 筆。")
+                logs.append(
+                    f"永慶官方瀏覽器資料：{road} 原路段網址 HTTP 404；"
+                    "官方新北市關鍵字頁完整複查為 0 筆，已跳過此路段公司案件。"
+                )
             else:
                 logs.append(f"永慶官方瀏覽器資料：{road} 採用官方渲染 DOM {official_count} 筆。")
         else:

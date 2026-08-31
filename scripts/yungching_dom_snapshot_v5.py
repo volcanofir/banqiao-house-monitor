@@ -68,6 +68,32 @@ def direct_next_page(page, target):
                 "error": f"{type(exc).__name__}: {str(exc)[:220]}"}
 
 
+def raw_page_evidence(page, road):
+    """Return parser-independent evidence for pagination and exact-address safety."""
+    address = f"新北市{road}"
+    try:
+        return page.evaluate(
+            """(address) => {
+              const bodyText=document.body?.innerText||'';
+              const exactAddressTextCount=bodyText.split(address).length-1;
+              const rawHouseIds=[];
+              for(const a of Array.from(document.querySelectorAll('a[href*="/house/"]'))){
+                const href=String(a.href||'');
+                if(!href.includes('/house/'))continue;
+                const raw=href.split('/house/')[1].split(/[/?#]/)[0];
+                if(/^[0-9]+$/.test(raw))rawHouseIds.push(raw);
+              }
+              return {
+                exactAddressTextCount,
+                rawHouseIds:[...new Set(rawHouseIds)].sort(),
+              };
+            }""",
+            address,
+        )
+    except Exception:
+        return {"exactAddressTextCount": 0, "rawHouseIds": []}
+
+
 def collect_road_all_pages(page, road):
     all_rows = {}
     load_rounds = 0
@@ -75,12 +101,22 @@ def collect_road_all_pages(page, road):
     anchor_count = 0
     next_clicks = []
     new_ids_by_page = {}
+    raw_new_ids_by_page = {}
+    raw_ids_seen = set()
+    raw_exact_address_text_count = 0
 
     used, anchor_count = v3.base.exhaust_lazy_load(page, road, all_rows)
     load_rounds += used
     initial = pager_meta(page)
     current = int(initial.get("active") or 1)
     new_ids_by_page[str(current)] = sorted(all_rows)
+
+    evidence = raw_page_evidence(page, road)
+    page_raw_ids = set(evidence.get("rawHouseIds") or [])
+    raw_ids_seen.update(page_raw_ids)
+    raw_new_ids_by_page[str(current)] = sorted(page_raw_ids)
+    raw_exact_address_text_count += int(evidence.get("exactAddressTextCount") or 0)
+
     highest_advertised = max(initial.get("pages") or [current])
     exhausted = bool(initial.get("nextDisabled"))
     error = None
@@ -98,6 +134,7 @@ def collect_road_all_pages(page, road):
             break
 
         before_ids = set(all_rows)
+        before_raw_ids = set(raw_ids_seen)
         action = direct_next_page(page, target)
         next_clicks.append(action)
         if not action.get("clicked"):
@@ -116,8 +153,15 @@ def collect_road_all_pages(page, road):
 
         new_ids = sorted(set(all_rows) - before_ids)
         new_ids_by_page[str(target)] = new_ids
-        if not new_ids:
-            error = f"page {target} produced no new listing IDs"
+
+        evidence = raw_page_evidence(page, road)
+        page_raw_ids = set(evidence.get("rawHouseIds") or [])
+        raw_new_ids = sorted(page_raw_ids - before_raw_ids)
+        raw_ids_seen.update(page_raw_ids)
+        raw_new_ids_by_page[str(target)] = raw_new_ids
+        raw_exact_address_text_count += int(evidence.get("exactAddressTextCount") or 0)
+        if not raw_new_ids:
+            error = f"page {target} produced no new raw house IDs"
             break
 
         after_pages = [int(x) for x in (after.get("pages") or []) if isinstance(x, int)]
@@ -149,9 +193,11 @@ def collect_road_all_pages(page, road):
         "paginationExhausted": bool(exhausted),
         "paginationCompleteAllPages": complete,
         "paginationPageNewIds": new_ids_by_page,
+        "paginationPageRawNewIds": raw_new_ids_by_page,
+        "rawHouseIdCount": len(raw_ids_seen),
+        "rawExactAddressTextCount": raw_exact_address_text_count,
         "paginationError": error,
     }
-
 
 def enforce_all_pages():
     payload = json.loads(SNAPSHOT.read_text(encoding="utf-8"))

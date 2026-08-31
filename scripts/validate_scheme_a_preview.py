@@ -142,6 +142,12 @@ def main():
         assert road_count >= 0, (road, st)
         if road_count == 0:
             assert st.get("emptyResultVerified") is True, (road, st)
+            assert st.get("primaryHttp") == 404, (road, st)
+            assert st.get("confirmationUsed") is True, (road, st)
+            assert st.get("confirmationHttp") == 200, (road, st)
+            assert st.get("skippedConfirmedEmpty") is True, (road, st)
+            assert st.get("paginationCompleteAllPages") is True, (road, st)
+            assert int(st.get("rawExactAddressTextCount") or 0) == 0, (road, st)
         assert road_count == actual_road_counts[road], (
             road, st.get("count"), actual_road_counts[road]
         )
