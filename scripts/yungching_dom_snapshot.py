@@ -20,11 +20,11 @@ ROADS = [
 ]
 
 
-# Only after the normal Banqiao-scoped route returns HTTP 404 may a road use
-# the wider official keyword page to prove that no exact Banqiao address exists.
-# The wider route is confirmation-only; it never weakens exact-address filtering.
+# Every monitored road may use the wider official keyword page only after its
+# normal Banqiao-scoped route returns HTTP 404. The wider route is confirmation-
+# only; it never weakens exact-address filtering.
 ROAD_404_CONFIRMATION_SCOPES = {
-    "板橋區光復街": "新北市-",
+    road: "新北市-" for road in ROADS
 }
 
 
