@@ -1,14 +1,14 @@
 {
-  "verifiedAt": "2026-08-31T23:59:49+00:00",
+  "verifiedAt": "2026-09-01T03:18:50+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + system Chrome official Yongching DOM + all-pages direct pg pagination + verified detail cache",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-08-31T23:36:27+00:00",
+  "sourceDataUpdatedAt": "2026-09-01T03:16:27+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-08-31T23:59:46+00:00",
+    "generatedAt": "2026-09-01T03:18:47+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 74,
@@ -123,21 +123,21 @@
     ]
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-08-31T23:59:49+00:00",
+    "auditedAt": "2026-09-01T03:18:50+00:00",
     "propertyGroupCount": 157,
     "companyListingCount": 74,
     "companyMatchCount": 44,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 228
+    "weakIdentityAlreadyMergedPairCount": 216
   },
-  "snapshotCapturedAt": "2026-08-31T23:58:18+00:00",
-  "companySnapshotCapturedAt": "2026-08-31T23:58:18+00:00",
-  "companyGapGeneratedAt": "2026-08-31T23:59:48+00:00",
+  "snapshotCapturedAt": "2026-09-01T03:17:15+00:00",
+  "companySnapshotCapturedAt": "2026-09-01T03:17:15+00:00",
+  "companyGapGeneratedAt": "2026-09-01T03:18:49+00:00",
   "browserListingCount": 74,
   "companyListingCount": 74,
   "propertyGroupCount": 157,
-  "rawListingCount": 368,
+  "rawListingCount": 364,
   "comparisonCount": 157,
   "coveredRoads": [
     "板橋區中山路二段",
@@ -149,9 +149,9 @@
     "板橋區翠華街"
   ],
   "roadCounts": {
-    "板橋區中山路二段": 35,
+    "板橋區中山路二段": 36,
     "板橋區三民路一段": 5,
-    "板橋區三民路二段": 28,
+    "板橋區三民路二段": 27,
     "板橋區翠華街": 4,
     "板橋區林森街": 1,
     "板橋區萬安街": 1,
@@ -232,12 +232,12 @@
       {
         "id": "4308114",
         "road": "板橋區中山路二段",
-        "title": "正中山路人潮店面",
-        "area": 30.36,
-        "price": 2180.0,
+        "title": "中山路大坪數店辦",
+        "area": 136.79,
+        "price": 7800.0,
         "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
         "replacementIds": [
-          "6482848"
+          "6521665"
         ],
         "replacementFound": true
       },
@@ -305,20 +305,20 @@
     "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
   },
   "candidateCount": 152,
-  "candidatesWithFloor": 127,
-  "candidatesWithYcCaseId": 127,
+  "candidatesWithFloor": 124,
+  "candidatesWithYcCaseId": 124,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-08-31T23:59:36+00:00",
+    "generatedAt": "2026-09-01T03:18:36+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
-    "eligibleBeforeCache": 68,
-    "cacheHitCount": 68,
+    "eligibleBeforeCache": 67,
+    "cacheHitCount": 67,
     "seededFromPreviousDiagnosticCount": 0,
     "liveAttempted": 0,
     "responseFastHitCount": 0,
     "domFallbackCount": 0,
-    "enriched": 68,
+    "enriched": 67,
     "liveEnriched": 0,
-    "officialCaseIdEnriched": 68,
+    "officialCaseIdEnriched": 67,
     "cacheWriteCount": 0,
     "cacheEntryCount": 76,
     "rejectedTitleFloorConflicts": 0,
