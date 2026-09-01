@@ -1,22 +1,22 @@
 {
-  "auditedAt": "2026-09-01T09:03:43+00:00",
+  "auditedAt": "2026-09-01T13:03:59+00:00",
   "scheme": "A",
   "target": "exact canonical Preview files before atomic publish",
   "validator": "validate_scheme_a_preview_v3",
   "passed": true,
   "error": null,
   "companyGap": {
-    "generatedAt": "2026-09-01T09:03:42+00:00",
+    "generatedAt": "2026-09-01T13:03:58+00:00",
     "capturedAt": null,
     "verifiedAt": null,
-    "companySnapshotCapturedAt": "2026-09-01T09:02:16+00:00",
+    "companySnapshotCapturedAt": "2026-09-01T13:02:30+00:00",
     "listingCount": null,
     "companyListingCount": 74,
-    "propertyGroupCount": 158,
+    "propertyGroupCount": 160,
     "counts": {
       "company_match": 44,
       "review": 3,
-      "missing": 111,
+      "missing": 113,
       "unavailable": 0
     },
     "idIntegrityGuard": null,
@@ -26,7 +26,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-09-01T09:03:40+00:00",
+      "generatedAt": "2026-09-01T13:03:57+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 74,
@@ -143,7 +143,7 @@
   },
   "browserSnapshot": {
     "generatedAt": null,
-    "capturedAt": "2026-09-01T09:02:16+00:00",
+    "capturedAt": "2026-09-01T13:02:30+00:00",
     "verifiedAt": null,
     "companySnapshotCapturedAt": null,
     "listingCount": 74,
@@ -163,12 +163,12 @@
         {
           "id": "4308114",
           "road": "板橋區中山路二段",
-          "title": "中山路大坪數店辦",
-          "area": 136.79,
-          "price": 7800.0,
+          "title": "稀有正大馬路商業用低總價純一樓金店面自用收租皆可",
+          "area": 20.24,
+          "price": 2280.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
           "replacementIds": [
-            "6521665"
+            "7473603"
           ],
           "replacementFound": true
         },
@@ -246,15 +246,15 @@
   "verification": {
     "generatedAt": null,
     "capturedAt": null,
-    "verifiedAt": "2026-09-01T09:03:43+00:00",
-    "companySnapshotCapturedAt": "2026-09-01T09:02:16+00:00",
+    "verifiedAt": "2026-09-01T13:03:59+00:00",
+    "companySnapshotCapturedAt": "2026-09-01T13:02:30+00:00",
     "listingCount": null,
     "companyListingCount": 74,
-    "propertyGroupCount": 158,
+    "propertyGroupCount": 160,
     "counts": {
       "company_match": 44,
       "review": 3,
-      "missing": 111,
+      "missing": 113,
       "unavailable": 0
     },
     "idIntegrityGuard": {
@@ -270,12 +270,12 @@
         {
           "id": "4308114",
           "road": "板橋區中山路二段",
-          "title": "中山路大坪數店辦",
-          "area": 136.79,
-          "price": 7800.0,
+          "title": "稀有正大馬路商業用低總價純一樓金店面自用收租皆可",
+          "area": 20.24,
+          "price": 2280.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
           "replacementIds": [
-            "6521665"
+            "7473603"
           ],
           "replacementFound": true
         },
@@ -348,7 +348,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-09-01T09:03:40+00:00",
+      "generatedAt": "2026-09-01T13:03:57+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 74,
