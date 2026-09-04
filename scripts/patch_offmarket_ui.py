@@ -79,6 +79,34 @@ else:
     if replaced != 1:
         raise RuntimeError(f'Off-market UI patch failed to replace renderGroups: {replaced}')
 
+# Preview road groups behave as a single-open accordion. This helper is shared by
+# sale and rental renderers, and is rebound after every filter/sort re-render.
+accordion_helper = r'''function bindRoadAccordion(){
+  document.querySelectorAll('#groups details.road-group').forEach(group=>{
+    if(group.dataset.singleOpenBound==='1')return;
+    group.dataset.singleOpenBound='1';
+    group.addEventListener('toggle',()=>{
+      if(!group.open)return;
+      document.querySelectorAll('#groups details.road-group[open]').forEach(other=>{
+        if(other!==group)other.open=false;
+      });
+    });
+  });
+}'''
+if 'function bindRoadAccordion()' not in text:
+    anchor = 'function renderGroups(){'
+    idx = text.find(anchor)
+    if idx < 0:
+        raise RuntimeError('Road accordion helper anchor not found')
+    text = text[:idx] + accordion_helper + '\n' + text[idx:]
+
+sale_render_line = "  document.querySelector('#groups').innerHTML=html||'<div class=\"empty\">目前沒有符合條件的房屋群組。</div>';"
+rent_render_line = "  document.querySelector('#groups').innerHTML=html||'<div class=\"empty\">目前這 7 條路沒有抓到符合條件的租屋案件。</div>';"
+if sale_render_line + "\n  bindRoadAccordion();" not in text:
+    text = text.replace(sale_render_line, sale_render_line + "\n  bindRoadAccordion();", 1)
+if rent_render_line + "\n  bindRoadAccordion();" not in text:
+    text = text.replace(rent_render_line, rent_render_line + "\n  bindRoadAccordion();", 1)
+
 required = [
     '<span>已下架</span><strong id="cUnavailable">',
     '<option value="removed">已下架</option>',
@@ -86,10 +114,15 @@ required = [
     "state==='removed'?(GAP.recentOffMarketGroups||[]):(GAP.propertyGroups||[])",
     "g.offMarket?'offmarket'",
     '下架：${fmt(g.removedAt)}',
+    'function bindRoadAccordion()',
+    "group.dataset.singleOpenBound='1'",
+    "document.querySelectorAll('#groups details.road-group[open]')",
+    sale_render_line + "\n  bindRoadAccordion();",
+    rent_render_line + "\n  bindRoadAccordion();",
 ]
 missing = [x for x in required if x not in text]
 if missing:
     raise RuntimeError(f'Off-market UI patch contract failed: {missing}')
 
 PATH.write_text(text, encoding='utf-8')
-print('10-day grouped off-market UI patched')
+print('10-day grouped off-market UI patched with single-open road accordion')
