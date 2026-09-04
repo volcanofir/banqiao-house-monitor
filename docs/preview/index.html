@@ -102,6 +102,18 @@ const c=GAP.counts||{};document.querySelector('#cStock').textContent=`${c.compan
 const cards=['591','信義房屋'].map(name=>{const r=DATA.runs?.[name],ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${ok?'ok':'err'}">${ok?'正常':'異常/沿用'}</span></div><div class="note">目前刊登 ${r?.totalCount??0} 筆<br>最近更新：${fmt(r?.checkedAt)}</div></div>`});document.querySelector('#sources').innerHTML=cards.join('');
 document.querySelector('#updated').innerHTML=`來源資料最近更新：${fmt(DATA.updatedAt)}<br>委託比對：${fmt(GAP.generatedAt)}。`;
 renderGroups()}
+function bindRoadAccordion(){
+  document.querySelectorAll('#groups details.road-group').forEach(group=>{
+    if(group.dataset.singleOpenBound==='1')return;
+    group.dataset.singleOpenBound='1';
+    group.addEventListener('toggle',()=>{
+      if(!group.open)return;
+      document.querySelectorAll('#groups details.road-group[open]').forEach(other=>{
+        if(other!==group)other.open=false;
+      });
+    });
+  });
+}
 function renderGroups(){
   if(MARKET_MODE==='rent') return renderRentGroups();
   const source=SOURCE_FILTER,state=document.querySelector('#state').value,cs=document.querySelector('#companyState').value,sort=document.querySelector('#sort').value;
@@ -126,7 +138,9 @@ function renderGroups(){
     }).join('')}</div></details>`;
   }
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的房屋群組。</div>';
+  bindRoadAccordion();
 }
+
 
 
 
@@ -242,6 +256,7 @@ function renderRentGroups(){
     }).join('')}</div></details>`;
   }
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前這 7 條路沒有抓到符合條件的租屋案件。</div>';
+  bindRoadAccordion();
 }
 function renderRent(){
   const roads=RENT.watchRoads||defaultRoads;
