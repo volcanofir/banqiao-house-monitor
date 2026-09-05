@@ -1,22 +1,22 @@
 {
-  "auditedAt": "2026-09-05T08:34:14+00:00",
+  "auditedAt": "2026-09-05T12:18:59+00:00",
   "scheme": "A",
   "target": "exact canonical Preview files before atomic publish",
   "validator": "validate_scheme_a_preview_v3",
   "passed": true,
   "error": null,
   "companyGap": {
-    "generatedAt": "2026-09-05T08:34:13+00:00",
+    "generatedAt": "2026-09-05T12:18:58+00:00",
     "capturedAt": null,
     "verifiedAt": null,
-    "companySnapshotCapturedAt": "2026-09-05T08:32:43+00:00",
+    "companySnapshotCapturedAt": "2026-09-05T12:17:16+00:00",
     "listingCount": null,
-    "companyListingCount": 75,
-    "propertyGroupCount": 164,
+    "companyListingCount": 76,
+    "propertyGroupCount": 165,
     "counts": {
       "company_match": 45,
       "review": 3,
-      "missing": 116,
+      "missing": 117,
       "unavailable": 0
     },
     "idIntegrityGuard": null,
@@ -26,7 +26,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-09-05T08:34:11+00:00",
+      "generatedAt": "2026-09-05T12:18:56+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 76,
@@ -143,17 +143,17 @@
   },
   "browserSnapshot": {
     "generatedAt": null,
-    "capturedAt": "2026-09-05T08:32:43+00:00",
+    "capturedAt": "2026-09-05T12:17:16+00:00",
     "verifiedAt": null,
     "companySnapshotCapturedAt": null,
-    "listingCount": 75,
+    "listingCount": 76,
     "companyListingCount": null,
     "propertyGroupCount": null,
     "counts": null,
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 81,
-      "afterCount": 75,
+      "beforeCount": 82,
+      "afterCount": 76,
       "removedCount": 6,
       "collisionIds": [
         "4308114"
@@ -246,21 +246,21 @@
   "verification": {
     "generatedAt": null,
     "capturedAt": null,
-    "verifiedAt": "2026-09-05T08:34:14+00:00",
-    "companySnapshotCapturedAt": "2026-09-05T08:32:43+00:00",
+    "verifiedAt": "2026-09-05T12:18:59+00:00",
+    "companySnapshotCapturedAt": "2026-09-05T12:17:16+00:00",
     "listingCount": null,
-    "companyListingCount": 75,
-    "propertyGroupCount": 164,
+    "companyListingCount": 76,
+    "propertyGroupCount": 165,
     "counts": {
       "company_match": 45,
       "review": 3,
-      "missing": 116,
+      "missing": 117,
       "unavailable": 0
     },
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 81,
-      "afterCount": 75,
+      "beforeCount": 82,
+      "afterCount": 76,
       "removedCount": 6,
       "collisionIds": [
         "4308114"
@@ -348,7 +348,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-09-05T08:34:11+00:00",
+      "generatedAt": "2026-09-05T12:18:56+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 76,
