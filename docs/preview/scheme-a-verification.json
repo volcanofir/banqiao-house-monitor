@@ -1,14 +1,14 @@
 {
-  "verifiedAt": "2026-09-05T01:05:35+00:00",
+  "verifiedAt": "2026-09-05T04:48:42+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + system Chrome official Yongching DOM + all-pages direct pg pagination + verified detail cache",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-09-05T01:02:47+00:00",
+  "sourceDataUpdatedAt": "2026-09-05T04:46:22+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-09-05T01:05:33+00:00",
+    "generatedAt": "2026-09-05T04:48:40+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 76,
@@ -123,22 +123,22 @@
     ]
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-09-05T01:05:35+00:00",
-    "propertyGroupCount": 163,
+    "auditedAt": "2026-09-05T04:48:42+00:00",
+    "propertyGroupCount": 164,
     "companyListingCount": 75,
     "companyMatchCount": 45,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
     "weakIdentityAlreadyMergedPairCount": 225
   },
-  "snapshotCapturedAt": "2026-09-05T01:03:57+00:00",
-  "companySnapshotCapturedAt": "2026-09-05T01:03:57+00:00",
-  "companyGapGeneratedAt": "2026-09-05T01:05:35+00:00",
+  "snapshotCapturedAt": "2026-09-05T04:47:18+00:00",
+  "companySnapshotCapturedAt": "2026-09-05T04:47:18+00:00",
+  "companyGapGeneratedAt": "2026-09-05T04:48:41+00:00",
   "browserListingCount": 75,
   "companyListingCount": 75,
-  "propertyGroupCount": 163,
-  "rawListingCount": 382,
-  "comparisonCount": 163,
+  "propertyGroupCount": 164,
+  "rawListingCount": 383,
+  "comparisonCount": 164,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -204,14 +204,14 @@
   "counts": {
     "company_match": 45,
     "review": 3,
-    "missing": 115,
+    "missing": 116,
     "unavailable": 0
   },
   "crossPlatformMergedGroupCount": 22,
   "crossSourceReviewCount": 9,
   "preview591Regroup": {
-    "original591TopLevel": 130,
-    "regrouped591TopLevel": 110,
+    "original591TopLevel": 131,
+    "regrouped591TopLevel": 111,
     "regrouped591ClusterCount": 17,
     "regrouped591AbsorbedCount": 20,
     "clusterFloorConflictBlocked": 0
@@ -256,7 +256,7 @@
       {
         "id": "4308114",
         "road": "板橋區三民路二段",
-        "title": "美妝大空間可停車一樓",
+        "title": "潤泰營造｜面寬方便停車｜下水道完工｜住店辦多用途",
         "area": 26.98,
         "price": 2358.0,
         "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
@@ -304,11 +304,11 @@
     ],
     "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
   },
-  "candidateCount": 157,
-  "candidatesWithFloor": 129,
-  "candidatesWithYcCaseId": 129,
+  "candidateCount": 158,
+  "candidatesWithFloor": 130,
+  "candidatesWithYcCaseId": 130,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-09-05T01:05:20+00:00",
+    "generatedAt": "2026-09-05T04:48:30+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 68,
     "cacheHitCount": 68,
