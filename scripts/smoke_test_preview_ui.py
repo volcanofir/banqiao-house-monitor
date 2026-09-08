@@ -1,7 +1,8 @@
 """Browser smoke test for the complete Preview UI.
 
-The gate covers canonical sale data, rental switching/new-label rules, off-market history
-and stale-source suppression. A Preview that fails any of these checks must not be promoted.
+The gate covers canonical sale data, current-change filtering, rental switching/new-label
+rules, off-market history and stale-source suppression. A Preview that fails any of these
+checks must not be promoted.
 """
 
 import json
@@ -140,6 +141,22 @@ def main():
             assert page.locator(".market-btn").count() == 2
             assert page.evaluate("VERIFY && VERIFY.valid === true") is True
             assert page.evaluate("verificationMatches(DATA, GAP, VERIFY)") is True
+            assert page.evaluate("typeof groupChangeInfo === 'function'") is True
+            assert page.evaluate("typeof currentChangedGroups === 'function'") is True
+            assert page.locator('#state option[value="changed"]').count() == 1
+            assert page.locator('#state option[value="changed"]').inner_text() == "本次異動"
+
+            # Current-change filter must equal the UI's own run-scoped event model and
+            # every rendered row must carry the change marker. This covers new, price
+            # change and current-run removal without assuming a fixed count.
+            current_changed = int(page.evaluate("currentChangedGroups().length") or 0)
+            page.select_option("#state", "changed")
+            assert page.locator("#groups .item").count() == current_changed
+            assert page.locator('#groups .item[data-change="1"]').count() == current_changed
+            if current_changed:
+                change_text = page.locator("#groups").inner_text()
+                assert any(label in change_text for label in ("本次新進", "降價", "漲價", "本次下架")), change_text
+            page.select_option("#state", "all")
 
             page.locator('.source-tab[data-source="591"]').click()
             assert "active" in (page.locator('.source-tab[data-source="591"]').get_attribute("class") or "")
@@ -202,9 +219,19 @@ def main():
             assert "售價" in page.locator("#sort option").nth(1).inner_text()
             assert "委託比對：" in page.locator("#updated").inner_text()
             assert page.locator("#updated br").count() == 1
-            assert page.locator("#state option").count() == 4
+            assert page.locator("#state option").count() == 5
             assert page.locator("#state option").nth(0).inner_text() == "全部上架狀態"
-            assert page.locator("#state option").nth(3).inner_text() == "已下架"
+            assert page.locator("#state option").nth(3).inner_text() == "本次異動"
+            assert page.locator("#state option").nth(4).inner_text() == "已下架"
+
+            # Single-open accordion remains intact after the change UI composition.
+            road_groups = page.locator("#groups .road-group")
+            if road_groups.count() >= 2:
+                road_groups.nth(0).locator("summary").click()
+                assert road_groups.nth(0).get_attribute("open") is not None
+                road_groups.nth(1).locator("summary").click()
+                assert road_groups.nth(1).get_attribute("open") is not None
+                assert road_groups.nth(0).get_attribute("open") is None
 
             assert not page_errors, page_errors
             meaningful_failed = [x for x in failed_requests if not any(k in x for k in ("favicon", "icon-safe"))]
@@ -241,9 +268,10 @@ def main():
             browser.close()
 
         print(
-            f"Preview UI smoke test passed: sale integrity, {offmarket_count} off-market group(s), "
-            f"{rental_count} rental listing(s), {rental_new_count} rental new badge/filter result(s), "
-            "two-line update notes, market switching and stale-source suppression"
+            f"Preview UI smoke test passed: sale integrity, {current_changed} current-change group(s), "
+            f"{offmarket_count} off-market group(s), {rental_count} rental listing(s), "
+            f"{rental_new_count} rental new badge/filter result(s), two-line update notes, "
+            "single-open road accordion, market switching and stale-source suppression"
         )
     finally:
         server.terminate()
