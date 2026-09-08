@@ -146,9 +146,6 @@ def main():
             assert page.locator('#state option[value="changed"]').count() == 1
             assert page.locator('#state option[value="changed"]').inner_text() == "本次異動"
 
-            # Current-change filter must equal the UI's own run-scoped event model and
-            # every rendered row must carry the change marker. This covers new, price
-            # change and current-run removal without assuming a fixed count.
             current_changed = int(page.evaluate("currentChangedGroups().length") or 0)
             page.select_option("#state", "changed")
             assert page.locator("#groups .item").count() == current_changed
@@ -224,12 +221,12 @@ def main():
             assert page.locator("#state option").nth(3).inner_text() == "本次異動"
             assert page.locator("#state option").nth(4).inner_text() == "已下架"
 
-            # Single-open accordion remains intact after the change UI composition.
-            road_groups = page.locator("#groups .road-group")
+            # Only test the outer road details; cards contain their own nested details.
+            road_groups = page.locator("#groups > details.road-group")
             if road_groups.count() >= 2:
-                road_groups.nth(0).locator("summary").click()
+                road_groups.nth(0).locator(":scope > summary").click()
                 assert road_groups.nth(0).get_attribute("open") is not None
-                road_groups.nth(1).locator("summary").click()
+                road_groups.nth(1).locator(":scope > summary").click()
                 assert road_groups.nth(1).get_attribute("open") is not None
                 assert road_groups.nth(0).get_attribute("open") is None
 
