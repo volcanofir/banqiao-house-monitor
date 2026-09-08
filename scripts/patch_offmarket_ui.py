@@ -95,7 +95,9 @@ function latestPriceChange(row){
 function groupChangeInfo(g){
   const rows=monitorRowsForGroup(g);
   const prices=rows.map(latestPriceChange).filter(Boolean).sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta));
-  const hasNew=rows.some(x=>sameMonitorRun(x?.newAt));
+  // A property group is current-run new only when every underlying listing is new
+  // in this run. Adding a new 591/Sinyi source to an already-known property is not new.
+  const hasNew=rows.length>0&&rows.every(x=>sameMonitorRun(x?.newAt));
   const hasRemoved=!!(g?.offMarket&&sameMonitorRun(g?.removedAt))||rows.some(x=>sameMonitorRun(x?.removedAt));
   const priceChange=prices[0]||null;
   const stamps=[];
@@ -219,6 +221,7 @@ required = [
     "state==='changed'?currentChangedGroups()",
     "state==='removed'?(GAP.recentOffMarketGroups||[]):(GAP.propertyGroups||[])",
     'function groupChangeInfo(g)',
+    'const hasNew=rows.length>0&&rows.every(x=>sameMonitorRun(x?.newAt));',
     'function currentChangedGroups()',
     'function changeBadges(g)',
     'function changePriceLine(g)',
@@ -238,4 +241,4 @@ if missing:
     raise RuntimeError(f'Off-market/current-change UI patch contract failed: {missing}')
 
 PATH.write_text(text, encoding='utf-8')
-print('10-day off-market + current-change Preview UI patched with single-open road accordion')
+print('10-day off-market + current-change Preview UI patched with property-group new semantics and single-open road accordion')
