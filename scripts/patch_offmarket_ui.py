@@ -130,6 +130,15 @@ function changePriceLine(g){
   const down=p.delta<0;
   return `<div class="change-price-line ${down?'down':'up'}">${down?'🔻':'🔺'} ${p.from.toLocaleString('zh-TW')}萬 → ${p.to.toLocaleString('zh-TW')}萬｜${down?'降':'漲'} ${Math.abs(p.delta).toLocaleString('zh-TW')}萬</div>`;
 }'''
+
+# Canonical Preview can already contain the helpers from the previous published run.
+# Force the older listing-level new rule to the stricter property-group rule before
+# deciding whether the helper block needs to be inserted from scratch.
+text = text.replace(
+    "  const hasNew=rows.some(x=>sameMonitorRun(x?.newAt));",
+    "  const hasNew=rows.length>0&&rows.every(x=>sameMonitorRun(x?.newAt));",
+)
+
 if 'function groupChangeInfo(g)' not in text:
     anchor = 'function bindRoadAccordion(){' if 'function bindRoadAccordion(){' in text else 'function renderGroups(){'
     idx = text.find(anchor)
