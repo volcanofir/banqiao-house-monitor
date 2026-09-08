@@ -78,7 +78,7 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}.hero{b
 </div>
 <select id="state"><option value="all">全部上架狀態</option><option value="new">新進案件</option><option value="active">已上架</option><option value="changed">本次異動</option><option value="removed">已下架</option></select>
 <select id="companyState"><option value="all">全部公司狀態</option><option value="company_match">庫存</option><option value="review">待確認</option><option value="missing">未接回</option><option value="unavailable">尚未比對</option></select>
-<select id="sort"><option value="default">預設排序</option><option value="priceDesc">售價：高 → 低</option><option value="priceAsc">售價：低 → 高</option><option value="timeDesc">上架時間：新 → 舊</option><option value="timeAsc">上架時間：舊 → 新</option></select>
+<select id="sort"><option value="default">預設排序</option><option value="priceDesc">售價：高 → 低</option><option value="priceAsc">售價：低 → 高</option><option value="timeDesc" selected>上架時間：新 → 舊</option><option value="timeAsc">上架時間：舊 → 新</option></select>
 </div>
 <div class="note" id="updated" aria-live="polite">正在讀取資料…</div><div id="groups"></div>
 </div></section>
@@ -337,6 +337,7 @@ function renderGroups(){
 
 
 
+
 function rentalPrice(x){const n=Number(x?.rent);return Number.isFinite(n)&&n>0?`${Math.round(n).toLocaleString('zh-TW')} 元/月`:'租金未取得'}
 function rentalFirstSeenMs(x){const t=new Date(x?.firstSeenAt||0).getTime();return Number.isFinite(t)?t:0}
 function rentalIsNew(x){
@@ -410,6 +411,7 @@ function setMarket(mode){
     sort.options[2].textContent=rent?'租金：低 → 高':'售價：低 → 高';
     sort.options[3].textContent=rent?'首次抓到：新 → 舊':'上架時間：新 → 舊';
     sort.options[4].textContent=rent?'首次抓到：舊 → 新':'上架時間：舊 → 新';
+    sort.value='timeDesc';
   }
   if(rent)renderRent(); else render();
 }
