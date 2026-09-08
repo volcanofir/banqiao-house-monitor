@@ -105,7 +105,7 @@ function renderRent(){
   document.querySelector('#mMerged').textContent=`${listings.length} 筆`;
   const cards=['591','信義房屋'].map(name=>{const r=RENT.runs?.[name],ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${ok?'ok':'err'}">${ok?'正常':'異常'}</span></div><div class="note">目前刊登 ${r?.totalCount??0} 筆<br>最近更新：${fmt(RENT.updatedAt)}</div></div>`});
   document.querySelector('#sources').innerHTML=cards.join('');
-  document.querySelector('#updated').innerHTML=`租屋資料最近更新：${fmt(RENT.updatedAt)}<br>新案以本監控首次抓到時間計算；今日新案依台灣日期判斷，3 天內保留新案標示。`;
+  document.querySelector('#updated').innerHTML=`租屋資料最近更新：${fmt(RENT.updatedAt)}<br>新案以本監控首次抓到時間計算；今日新案依台灣日期判斷，新案標籤保留 ${RENT.newListingWindowDays??3} 天。`;
   renderRentGroups();
 }
 function setMarket(mode){
@@ -173,6 +173,7 @@ required = [
     '目前刊登 ${r?.totalCount??0} 筆',
     '<br>委託比對：${fmt(GAP.generatedAt)}。',
     '今日新案依台灣日期判斷',
+    '標籤保留 ${RENT.newListingWindowDays??3} 天',
     "if(state==='new')rows=rows.filter(rentalIsNew);",
     '<option value="all">全部案件</option><option value="new">新案</option>',
     '<option value="timeDesc" selected>上架時間：新 → 舊</option>',
