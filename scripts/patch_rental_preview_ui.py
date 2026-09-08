@@ -10,6 +10,12 @@ text = text.replace(
     "document.querySelector('#updated').textContent=`來源資料最近更新：${fmt(DATA.updatedAt)}｜委託比對：${fmt(GAP.generatedAt)}。`;",
     "document.querySelector('#updated').innerHTML=`來源資料最近更新：${fmt(DATA.updatedAt)}<br>委託比對：${fmt(GAP.generatedAt)}。`;",
 )
+# Default both sale and rental to newest-first time sorting on first load.
+text = text.replace(
+    '<select id="sort"><option value="default">預設排序</option><option value="priceDesc">售價：高 → 低</option><option value="priceAsc">售價：低 → 高</option><option value="timeDesc">上架時間：新 → 舊</option><option value="timeAsc">上架時間：舊 → 新</option></select>',
+    '<select id="sort"><option value="default">預設排序</option><option value="priceDesc">售價：高 → 低</option><option value="priceAsc">售價：低 → 高</option><option value="timeDesc" selected>上架時間：新 → 舊</option><option value="timeAsc">上架時間：舊 → 新</option></select>',
+    1,
+)
 
 css = r'''
 .market-switch{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 18px}
@@ -113,6 +119,7 @@ function setMarket(mode){
     sort.options[2].textContent=rent?'租金：低 → 高':'售價：低 → 高';
     sort.options[3].textContent=rent?'首次抓到：新 → 舊':'上架時間：新 → 舊';
     sort.options[4].textContent=rent?'首次抓到：舊 → 新':'上架時間：舊 → 新';
+    sort.value='timeDesc';
   }
   if(rent)renderRent(); else render();
 }
@@ -154,6 +161,8 @@ required = [
     '<br>新案以本監控首次抓到時間計算',
     "if(state==='new')rows=rows.filter(rentalIsNew);",
     '<option value="all">全部案件</option><option value="new">新案</option>',
+    '<option value="timeDesc" selected>上架時間：新 → 舊</option>',
+    "sort.value='timeDesc';",
 ]
 missing = [x for x in required if x not in text]
 if missing:
@@ -171,4 +180,4 @@ if '<details class="road-group" open>' in text:
     raise RuntimeError('Rental Preview UI patch failed: road groups still default-open')
 
 PATH.write_text(text, encoding='utf-8')
-print('Rental Preview UI patched with new-listing filter, two-line update notes, unified source-card wording, 3-day new badges and collapsed details')
+print('Rental Preview UI patched with newest-first default sort, new-listing filter, two-line update notes, unified source-card wording, 3-day new badges and collapsed details')
