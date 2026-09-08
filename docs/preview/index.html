@@ -159,7 +159,7 @@ function latestPriceChange(row){
 function groupChangeInfo(g){
   const rows=monitorRowsForGroup(g);
   const prices=rows.map(latestPriceChange).filter(Boolean).sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta));
-  const hasNew=rows.some(x=>sameMonitorRun(x?.newAt));
+  const hasNew=rows.length>0&&rows.every(x=>sameMonitorRun(x?.newAt));
   const hasRemoved=!!(g?.offMarket&&sameMonitorRun(g?.removedAt))||rows.some(x=>sameMonitorRun(x?.removedAt));
   const priceChange=prices[0]||null;
   const stamps=[];
@@ -231,6 +231,7 @@ function renderGroups(){
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的房屋群組。</div>';
   bindRoadAccordion();
 }
+
 
 
 
