@@ -30,6 +30,15 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}.hero{b
 .rent-item .row{align-items:center}
 .rent-price{font-weight:900;color:#0f5945;font-size:18px}
 
+
+.pill.change-new{background:#dcefe7;color:#14503c;border:1px solid #b8daca}
+.pill.change-down{background:#f7dadd;color:#972a35;border:1px solid #e9b8bf}
+.pill.change-up{background:#e8eef9;color:#35577d;border:1px solid #cad8ef}
+.pill.change-removed{background:#eceff1;color:#50575e;border:1px solid #d4d9dd}
+.change-price-line{margin-top:8px;padding:8px 10px;border-radius:10px;background:#fff7e1;font-size:13px;font-weight:850;color:#6d5b20}
+.change-price-line.down{background:#fff0f1;color:#972a35}
+.change-price-line.up{background:#eef4ff;color:#35577d}
+
 </style>
 </head>
 <body>
@@ -67,7 +76,7 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}.hero{b
 <button type="button" class="source-tab" data-source="sinyi">信義</button>
 <button type="button" class="source-tab" data-source="591">591</button>
 </div>
-<select id="state"><option value="all">全部上架狀態</option><option value="new">新進案件</option><option value="active">已上架</option><option value="removed">已下架</option></select>
+<select id="state"><option value="all">全部上架狀態</option><option value="new">新進案件</option><option value="active">已上架</option><option value="changed">本次異動</option><option value="removed">已下架</option></select>
 <select id="companyState"><option value="all">全部公司狀態</option><option value="company_match">庫存</option><option value="review">待確認</option><option value="missing">未接回</option><option value="unavailable">尚未比對</option></select>
 <select id="sort"><option value="default">預設排序</option><option value="priceDesc">售價：高 → 低</option><option value="priceAsc">售價：低 → 高</option><option value="timeDesc">上架時間：新 → 舊</option><option value="timeAsc">上架時間：舊 → 新</option></select>
 </div>
@@ -102,6 +111,87 @@ const c=GAP.counts||{};document.querySelector('#cStock').textContent=`${c.compan
 const cards=['591','信義房屋'].map(name=>{const r=DATA.runs?.[name],ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${ok?'ok':'err'}">${ok?'正常':'異常/沿用'}</span></div><div class="note">目前刊登 ${r?.totalCount??0} 筆<br>最近更新：${fmt(r?.checkedAt)}</div></div>`});document.querySelector('#sources').innerHTML=cards.join('');
 document.querySelector('#updated').innerHTML=`來源資料最近更新：${fmt(DATA.updatedAt)}<br>委託比對：${fmt(GAP.generatedAt)}。`;
 renderGroups()}
+function monitorRunMs(){
+  const raw=DATA?.runs?.priceTracking?.checkedAt||DATA?.updatedAt;
+  const ms=new Date(raw||0).getTime();
+  return Number.isFinite(ms)?ms:0;
+}
+function sameMonitorRun(value){
+  const a=new Date(value||0).getTime(),b=monitorRunMs();
+  return Number.isFinite(a)&&a>0&&b>0&&Math.abs(a-b)<=180000;
+}
+function allMonitorListings(){
+  const out=[],seen=new Set();
+  const visit=(row,parentRoad)=>{
+    if(!row||typeof row!=='object')return;
+    const id=row.id||null;
+    if(id&&!seen.has(id)){seen.add(id);out.push({...row,road:row.road||parentRoad});}
+    for(const child of (row.mergedListings||[]))visit(child,row.road||parentRoad);
+  };
+  for(const row of (DATA.listings||[]))visit(row,row?.road);
+  return out;
+}
+function groupListingIds(g){
+  const ids=new Set();
+  const visit=row=>{
+    if(!row||typeof row!=='object')return;
+    if(row.id)ids.add(String(row.id));
+    for(const child of (row.mergedListings||[]))visit(child);
+  };
+  if(g?.primaryId)ids.add(String(g.primaryId));
+  for(const row of (g?.sourceListings||[]))visit(row);
+  return ids;
+}
+function monitorRowsForGroup(g){
+  const ids=groupListingIds(g);
+  const rows=allMonitorListings().filter(row=>row?.id&&ids.has(String(row.id)));
+  return rows.length?rows:(g?.sourceListings||[]);
+}
+function latestPriceChange(row){
+  const h=(row?.priceHistory||[]).filter(x=>x&&Number.isFinite(Number(x.price))&&x.at);
+  if(h.length<2)return null;
+  const last=h[h.length-1],prev=h[h.length-2];
+  if(!sameMonitorRun(last.at))return null;
+  const from=Number(prev.price),to=Number(last.price),delta=to-from;
+  if(!Number.isFinite(from)||!Number.isFinite(to)||delta===0)return null;
+  return {from,to,delta,at:last.at,id:row.id,source:row.source};
+}
+function groupChangeInfo(g){
+  const rows=monitorRowsForGroup(g);
+  const prices=rows.map(latestPriceChange).filter(Boolean).sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta));
+  const hasNew=rows.some(x=>sameMonitorRun(x?.newAt));
+  const hasRemoved=!!(g?.offMarket&&sameMonitorRun(g?.removedAt))||rows.some(x=>sameMonitorRun(x?.removedAt));
+  const priceChange=prices[0]||null;
+  const stamps=[];
+  if(priceChange)stamps.push(new Date(priceChange.at).getTime());
+  if(hasNew)for(const x of rows)if(sameMonitorRun(x?.newAt))stamps.push(new Date(x.newAt).getTime());
+  if(hasRemoved){
+    if(g?.removedAt)stamps.push(new Date(g.removedAt).getTime());
+    for(const x of rows)if(sameMonitorRun(x?.removedAt))stamps.push(new Date(x.removedAt).getTime());
+  }
+  return {changed:!!(hasNew||hasRemoved||priceChange),hasNew,hasRemoved,priceChange,timestamp:Math.max(0,...stamps.filter(Number.isFinite))};
+}
+function currentChangedGroups(){
+  const active=(GAP.propertyGroups||[]).filter(g=>groupChangeInfo(g).changed);
+  const removed=(GAP.recentOffMarketGroups||[]).filter(g=>groupChangeInfo(g).changed);
+  return [...active,...removed];
+}
+function changeBadges(g){
+  const info=groupChangeInfo(g),out=[];
+  if(info.hasNew)out.push('<span class="pill change-new">本次新進</span>');
+  if(info.priceChange){
+    const d=info.priceChange.delta;
+    out.push(`<span class="pill ${d<0?'change-down':'change-up'}">${d<0?'降價':'漲價'} ${Math.abs(d).toLocaleString('zh-TW')}萬</span>`);
+  }
+  if(info.hasRemoved)out.push('<span class="pill change-removed">本次下架</span>');
+  return out.join('');
+}
+function changePriceLine(g){
+  const p=groupChangeInfo(g).priceChange;
+  if(!p)return '';
+  const down=p.delta<0;
+  return `<div class="change-price-line ${down?'down':'up'}">${down?'🔻':'🔺'} ${p.from.toLocaleString('zh-TW')}萬 → ${p.to.toLocaleString('zh-TW')}萬｜${down?'降':'漲'} ${Math.abs(p.delta).toLocaleString('zh-TW')}萬</div>`;
+}
 function bindRoadAccordion(){
   document.querySelectorAll('#groups details.road-group').forEach(group=>{
     if(group.dataset.singleOpenBound==='1')return;
@@ -115,31 +205,33 @@ function bindRoadAccordion(){
   });
 }
 function renderGroups(){
-  if(MARKET_MODE==='rent') return renderRentGroups();
+  if(typeof MARKET_MODE!=='undefined' && MARKET_MODE==='rent' && typeof renderRentGroups==='function') return renderRentGroups();
   const source=SOURCE_FILTER,state=document.querySelector('#state').value,cs=document.querySelector('#companyState').value,sort=document.querySelector('#sort').value;
-  const baseRows=state==='removed'?(GAP.recentOffMarketGroups||[]):(GAP.propertyGroups||[]);
+  const baseRows=state==='changed'?currentChangedGroups():state==='removed'?(GAP.recentOffMarketGroups||[]):(GAP.propertyGroups||[]);
   let rows=baseRows.filter(g=>{
     const c=cmp(g);
     const sourceOK=source==='all'||(source==='sinyi'&&(g.sources||[]).includes('信義房屋'))||(source==='591'&&(g.sources||[]).includes('591'));
-    const stateOK=state==='removed'?g.offMarket===true:(state==='all'||(state==='new'&&isNew(g))||(state==='active'&&!isNew(g)));
-    const compOK=state==='removed'?true:(cs==='all'||c?.status===cs);
+    const stateOK=state==='changed'?groupChangeInfo(g).changed:state==='removed'?g.offMarket===true:(state==='all'||(state==='new'&&isNew(g))||(state==='active'&&!isNew(g)));
+    const compOK=(state==='removed'||g.offMarket)?true:(cs==='all'||c?.status===cs);
     return sourceOK&&stateOK&&compOK;
   });
   let html='';
   for(const road of (DATA.watchRoads||defaultRoads)){
     let items=rows.filter(g=>g.road===road);
-    if(state==='removed'&&sort==='default')items=[...items].sort((a,b)=>new Date(b.removedAt||0)-new Date(a.removedAt||0));
+    if(state==='changed'&&sort==='default')items=[...items].sort((a,b)=>groupChangeInfo(b).timestamp-groupChangeInfo(a).timestamp);
+    else if(state==='removed'&&sort==='default')items=[...items].sort((a,b)=>new Date(b.removedAt||0)-new Date(a.removedAt||0));
     else items=sortGroups(items,sort);
     if(!items.length)continue;
     html+=`<details class="road-group"><summary><span>${esc(road)}</span><span class="count">${items.length} 戶</span></summary><div class="list">${items.map(g=>{
-      const c=cmp(g),st=g.offMarket?'offmarket':(c?.status||'unavailable');
+      const c=cmp(g),st=g.offMarket?'offmarket':(c?.status||'unavailable'),change=groupChangeInfo(g);
       const removedLine=g.offMarket&&g.removedAt?`<span>下架：${fmt(g.removedAt)}</span>`:'';
-      return `<article class="item"><a class="item-title" href="${esc(g.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(g.title||g.primaryId)}</a><div class="row">${sourcePills(g)}<span class="pill ${companyClass(st)}">${companyLabel(st)}</span>${g.crossPlatformMerged?'<span class="pill merged">信義主資料＋591整併</span>':''}${!g.offMarket&&isNew(g)?'<span class="pill sinyi">新進案件</span>':''}<span>${esc(displayPrice(g))}</span><span>${esc(g.size||'-')}</span><span>${esc(g.address||'-')}</span>${removedLine}</div>${g.offMarket?'':candidateLine(g)}${sourceDetails(g)}</article>`;
+      return `<article class="item" data-change="${change.changed?'1':'0'}"><a class="item-title" href="${esc(g.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(g.title||g.primaryId)}</a><div class="row">${sourcePills(g)}<span class="pill ${companyClass(st)}">${companyLabel(st)}</span>${changeBadges(g)}${g.crossPlatformMerged?'<span class="pill merged">信義主資料＋591整併</span>':''}${!g.offMarket&&isNew(g)?'<span class="pill sinyi">新進案件</span>':''}<span>${esc(displayPrice(g))}</span><span>${esc(g.size||'-')}</span><span>${esc(g.address||'-')}</span>${removedLine}</div>${changePriceLine(g)}${g.offMarket?'':candidateLine(g)}${sourceDetails(g)}</article>`;
     }).join('')}</div></details>`;
   }
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的房屋群組。</div>';
   bindRoadAccordion();
 }
+
 
 
 
@@ -306,7 +398,7 @@ function setMarket(mode){
     state.style.display='';
     state.innerHTML=rent
       ? '<option value="all">全部案件</option><option value="new">新案</option>'
-      : '<option value="all">全部上架狀態</option><option value="new">新進案件</option><option value="active">已上架</option><option value="removed">已下架</option>';
+      : '<option value="all">全部上架狀態</option><option value="new">新進案件</option><option value="active">已上架</option><option value="changed">本次異動</option><option value="removed">已下架</option>';
     state.value='all';
   }
   const companyState=document.querySelector('#companyState'); if(companyState){companyState.style.display=rent?'none':'';companyState.value='all';}
