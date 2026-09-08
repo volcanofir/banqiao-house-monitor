@@ -24,9 +24,12 @@ css = r'''
 .market-note{font-size:13px;color:#777;margin:-6px 0 14px}
 .rent-item .row{align-items:center}
 .rent-price{font-weight:900;color:#0f5945;font-size:18px}
+.pill.today-new{background:#ffe9a8;color:#704d00;border:1px solid #ddb948}
 '''
 if '.market-switch{' not in text:
     text = text.replace('</style>', css + '\n</style>', 1)
+elif '.pill.today-new{' not in text:
+    text = text.replace('</style>', '.pill.today-new{background:#ffe9a8;color:#704d00;border:1px solid #ddb948}\n</style>', 1)
 
 switch_html = '''<div class="market-switch" id="marketSwitch">
 <button type="button" class="market-btn active" data-market="sale">售屋</button>
@@ -59,6 +62,14 @@ function rentalIsNew(x){
   const age=Date.now()-first;
   return age>=0&&age<days*86400000;
 }
+function taipeiDateKey(value){
+  const d=new Date(value||0);
+  if(Number.isNaN(d.getTime()))return '';
+  return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(d);
+}
+function rentalIsTodayNew(x){
+  return rentalIsNew(x)&&taipeiDateKey(x?.firstSeenAt)===taipeiDateKey(Date.now());
+}
 function renderRentGroups(){
   const roads=RENT.watchRoads||defaultRoads;
   const source=SOURCE_FILTER;
@@ -78,7 +89,7 @@ function renderRentGroups(){
       const cls=x.source==='信義房屋'?'sinyi':'m591';
       const label=x.source==='信義房屋'?'信義':'591';
       const size=Number(x.size); const sizeText=Number.isFinite(size)&&size>0?`${size}坪`:'坪數未取得';
-      const newBadge=rentalIsNew(x)?'<span class="pill sinyi">新案</span>':'';
+      const newBadge=rentalIsTodayNew(x)?'<span class="pill today-new">今日新案</span>':(rentalIsNew(x)?'<span class="pill sinyi">新案</span>':'');
       return `<article class="item rent-item"><a class="item-title" href="${esc(x.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(x.title||x.houseId||'租屋案件')}</a><div class="row"><span class="pill ${cls}">${label}</span>${newBadge}<span class="rent-price">${esc(rentalPrice(x))}</span><span>${esc(sizeText)}</span><span>${esc(x.address||road)}</span><span>首次抓到：${fmt(x.firstSeenAt)}</span></div></article>`;
     }).join('')}</div></details>`;
   }
@@ -94,7 +105,7 @@ function renderRent(){
   document.querySelector('#mMerged').textContent=`${listings.length} 筆`;
   const cards=['591','信義房屋'].map(name=>{const r=RENT.runs?.[name],ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${ok?'ok':'err'}">${ok?'正常':'異常'}</span></div><div class="note">目前刊登 ${r?.totalCount??0} 筆<br>最近更新：${fmt(RENT.updatedAt)}</div></div>`});
   document.querySelector('#sources').innerHTML=cards.join('');
-  document.querySelector('#updated').innerHTML=`租屋資料最近更新：${fmt(RENT.updatedAt)}<br>新案以本監控首次抓到時間計算，標籤保留 ${RENT.newListingWindowDays??3} 天。`;
+  document.querySelector('#updated').innerHTML=`租屋資料最近更新：${fmt(RENT.updatedAt)}<br>新案以本監控首次抓到時間計算；今日新案依台灣日期判斷，3 天內保留新案標示。`;
   renderRentGroups();
 }
 function setMarket(mode){
@@ -146,10 +157,13 @@ required = [
     'data-market="rent"',
     'function renderRentGroups()',
     'function rentalIsNew(x)',
-    "Date.parse('2026-08-24T16:00:00Z')",
+    'function rentalIsTodayNew(x)',
+    "timeZone:'Asia/Taipei'",
     'newListingBaselineAt',
     'newListingWindowDays',
     '<span class="pill sinyi">新案</span>',
+    '<span class="pill today-new">今日新案</span>',
+    '.pill.today-new{',
     'function setMarket(mode)',
     'rental-data.json',
     'id="companyPanel"',
@@ -158,7 +172,7 @@ required = [
     '<strong>${name}</strong>',
     '目前刊登 ${r?.totalCount??0} 筆',
     '<br>委託比對：${fmt(GAP.generatedAt)}。',
-    '<br>新案以本監控首次抓到時間計算',
+    '今日新案依台灣日期判斷',
     "if(state==='new')rows=rows.filter(rentalIsNew);",
     '<option value="all">全部案件</option><option value="new">新案</option>',
     '<option value="timeDesc" selected>上架時間：新 → 舊</option>',
@@ -180,4 +194,4 @@ if '<details class="road-group" open>' in text:
     raise RuntimeError('Rental Preview UI patch failed: road groups still default-open')
 
 PATH.write_text(text, encoding='utf-8')
-print('Rental Preview UI patched with newest-first default sort, new-listing filter, two-line update notes, unified source-card wording, 3-day new badges and collapsed details')
+print('Rental Preview UI patched with Taiwan-today rental badge, newest-first default sort, new-listing filter, two-line update notes, unified source-card wording and collapsed details')
