@@ -154,7 +154,7 @@ def main():
             assert page.locator("#groups .item").count() == current_changed
             assert page.locator('#groups .item[data-change="1"]').count() == current_changed
             if current_changed:
-                change_text = page.locator("#groups").inner_text()
+                change_text = page.locator("#groups").text_content() or ""
                 assert any(label in change_text for label in ("本次新進", "降價", "漲價", "本次下架")), change_text
             page.select_option("#state", "all")
 
