@@ -1,22 +1,22 @@
 {
-  "auditedAt": "2026-09-10T05:14:18+00:00",
+  "auditedAt": "2026-09-10T08:49:44+00:00",
   "scheme": "A",
   "target": "exact canonical Preview files before atomic publish",
   "validator": "validate_scheme_a_preview_v3",
   "passed": true,
   "error": null,
   "companyGap": {
-    "generatedAt": "2026-09-10T05:14:16+00:00",
+    "generatedAt": "2026-09-10T08:49:43+00:00",
     "capturedAt": null,
     "verifiedAt": null,
-    "companySnapshotCapturedAt": "2026-09-10T05:12:42+00:00",
+    "companySnapshotCapturedAt": "2026-09-10T08:48:10+00:00",
     "listingCount": null,
-    "companyListingCount": 77,
-    "propertyGroupCount": 167,
+    "companyListingCount": 78,
+    "propertyGroupCount": 166,
     "counts": {
       "company_match": 46,
       "review": 2,
-      "missing": 119,
+      "missing": 118,
       "unavailable": 0
     },
     "idIntegrityGuard": null,
@@ -26,7 +26,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-09-10T05:14:14+00:00",
+      "generatedAt": "2026-09-10T08:49:41+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 75,
@@ -143,17 +143,17 @@
   },
   "browserSnapshot": {
     "generatedAt": null,
-    "capturedAt": "2026-09-10T05:12:42+00:00",
+    "capturedAt": "2026-09-10T08:48:10+00:00",
     "verifiedAt": null,
     "companySnapshotCapturedAt": null,
-    "listingCount": 77,
+    "listingCount": 78,
     "companyListingCount": null,
     "propertyGroupCount": null,
     "counts": null,
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 82,
-      "afterCount": 77,
+      "beforeCount": 83,
+      "afterCount": 78,
       "removedCount": 5,
       "collisionIds": [
         "4308114"
@@ -163,12 +163,12 @@
         {
           "id": "4308114",
           "road": "板橋區中山路二段",
-          "title": "埔墘中山路稀有三樓頂加出價可談",
-          "area": 32.33,
-          "price": 1380.0,
+          "title": "收租置產商辦首選",
+          "area": 30.78,
+          "price": 1488.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
           "replacementIds": [
-            "6693666"
+            "6705632"
           ],
           "replacementFound": true
         },
@@ -234,21 +234,21 @@
   "verification": {
     "generatedAt": null,
     "capturedAt": null,
-    "verifiedAt": "2026-09-10T05:14:18+00:00",
-    "companySnapshotCapturedAt": "2026-09-10T05:12:42+00:00",
+    "verifiedAt": "2026-09-10T08:49:44+00:00",
+    "companySnapshotCapturedAt": "2026-09-10T08:48:10+00:00",
     "listingCount": null,
-    "companyListingCount": 77,
-    "propertyGroupCount": 167,
+    "companyListingCount": 78,
+    "propertyGroupCount": 166,
     "counts": {
       "company_match": 46,
       "review": 2,
-      "missing": 119,
+      "missing": 118,
       "unavailable": 0
     },
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 82,
-      "afterCount": 77,
+      "beforeCount": 83,
+      "afterCount": 78,
       "removedCount": 5,
       "collisionIds": [
         "4308114"
@@ -258,12 +258,12 @@
         {
           "id": "4308114",
           "road": "板橋區中山路二段",
-          "title": "埔墘中山路稀有三樓頂加出價可談",
-          "area": 32.33,
-          "price": 1380.0,
+          "title": "收租置產商辦首選",
+          "area": 30.78,
+          "price": 1488.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
           "replacementIds": [
-            "6693666"
+            "6705632"
           ],
           "replacementFound": true
         },
@@ -324,7 +324,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-09-10T05:14:14+00:00",
+      "generatedAt": "2026-09-10T08:49:41+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 75,
