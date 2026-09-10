@@ -1,14 +1,14 @@
 {
-  "verifiedAt": "2026-09-10T16:20:04+00:00",
+  "verifiedAt": "2026-09-10T19:55:09+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + system Chrome official Yongching DOM + all-pages direct pg pagination + verified detail cache",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-09-10T16:17:01+00:00",
+  "sourceDataUpdatedAt": "2026-09-10T19:51:58+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-09-10T16:20:00+00:00",
+    "generatedAt": "2026-09-10T19:55:06+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 75,
@@ -123,17 +123,17 @@
     ]
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-09-10T16:20:04+00:00",
+    "auditedAt": "2026-09-10T19:55:09+00:00",
     "propertyGroupCount": 167,
     "companyListingCount": 78,
     "companyMatchCount": 46,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 290
+    "weakIdentityAlreadyMergedPairCount": 292
   },
-  "snapshotCapturedAt": "2026-09-10T16:18:29+00:00",
-  "companySnapshotCapturedAt": "2026-09-10T16:18:29+00:00",
-  "companyGapGeneratedAt": "2026-09-10T16:20:03+00:00",
+  "snapshotCapturedAt": "2026-09-10T19:53:35+00:00",
+  "companySnapshotCapturedAt": "2026-09-10T19:53:35+00:00",
+  "companyGapGeneratedAt": "2026-09-10T19:55:07+00:00",
   "browserListingCount": 78,
   "companyListingCount": 78,
   "propertyGroupCount": 167,
@@ -296,7 +296,7 @@
   "candidatesWithFloor": 127,
   "candidatesWithYcCaseId": 127,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-09-10T16:19:50+00:00",
+    "generatedAt": "2026-09-10T19:54:56+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 70,
     "cacheHitCount": 70,
