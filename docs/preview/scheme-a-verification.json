@@ -1,14 +1,14 @@
 {
-  "verifiedAt": "2026-09-10T08:49:44+00:00",
+  "verifiedAt": "2026-09-10T12:34:47+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + system Chrome official Yongching DOM + all-pages direct pg pagination + verified detail cache",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-09-10T08:46:51+00:00",
+  "sourceDataUpdatedAt": "2026-09-10T12:32:04+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-09-10T08:49:41+00:00",
+    "generatedAt": "2026-09-10T12:34:43+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 75,
@@ -86,7 +86,7 @@
             "officialCaseId": "YC1272376",
             "title": "國泰建設稀有三樓",
             "area": 27.63,
-            "price": 1330.0,
+            "price": 1198.0,
             "floor": "3/5樓",
             "score": 20,
             "floorRelation": "match",
@@ -105,7 +105,7 @@
             "officialCaseId": "YC1272325",
             "title": "國泰建設首購首選",
             "area": 27.63,
-            "price": 1330.0,
+            "price": 1198.0,
             "floor": "3/5樓",
             "score": 19,
             "floorRelation": "match",
@@ -123,17 +123,17 @@
     ]
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-09-10T08:49:44+00:00",
+    "auditedAt": "2026-09-10T12:34:47+00:00",
     "propertyGroupCount": 166,
     "companyListingCount": 78,
     "companyMatchCount": 46,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 274
+    "weakIdentityAlreadyMergedPairCount": 288
   },
-  "snapshotCapturedAt": "2026-09-10T08:48:10+00:00",
-  "companySnapshotCapturedAt": "2026-09-10T08:48:10+00:00",
-  "companyGapGeneratedAt": "2026-09-10T08:49:43+00:00",
+  "snapshotCapturedAt": "2026-09-10T12:33:15+00:00",
+  "companySnapshotCapturedAt": "2026-09-10T12:33:15+00:00",
+  "companyGapGeneratedAt": "2026-09-10T12:34:45+00:00",
   "browserListingCount": 78,
   "companyListingCount": 78,
   "propertyGroupCount": 166,
@@ -210,10 +210,10 @@
   "crossPlatformMergedGroupCount": 23,
   "crossSourceReviewCount": 8,
   "preview591Regroup": {
-    "original591TopLevel": 135,
+    "original591TopLevel": 134,
     "regrouped591TopLevel": 115,
     "regrouped591ClusterCount": 18,
-    "regrouped591AbsorbedCount": 20,
+    "regrouped591AbsorbedCount": 19,
     "clusterFloorConflictBlocked": 0
   },
   "schemeAGroupIntegrity": {
@@ -296,7 +296,7 @@
   "candidatesWithFloor": 126,
   "candidatesWithYcCaseId": 126,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-09-10T08:49:30+00:00",
+    "generatedAt": "2026-09-10T12:34:31+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 70,
     "cacheHitCount": 70,
