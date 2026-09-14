@@ -40,6 +40,9 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}.hero{b
 .change-price-line.up{background:#eef4ff;color:#35577d}
 
 .pill.today-new{background:#ffe9a8;color:#704d00;border:1px solid #ddb948}
+
+.compare-card strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.compare-card strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
 </style>
 </head>
 <body>
@@ -381,6 +384,7 @@ function renderGroups(){
 
 
 
+
 function rentalPrice(x){const n=Number(x?.rent);return Number.isFinite(n)&&n>0?`${Math.round(n).toLocaleString('zh-TW')} 元/月`:'租金未取得'}
 function rentalFirstSeenMs(x){const t=new Date(x?.firstSeenAt||0).getTime();return Number.isFinite(t)?t:0}
 function rentalIsNew(x){
@@ -516,6 +520,47 @@ Promise.all([
   document.querySelector('#updated').textContent='Preview 資料讀取失敗，請重新整理後再試。';
   document.querySelector('#groups').innerHTML='<div class="empty">目前無法完整載入監控資料，為避免顯示錯誤比對結果，案件列表已暫停顯示。</div>';
 });
+function showCompanyMetricFilter(kind){
+  if(typeof MARKET_MODE!=='undefined'&&MARKET_MODE!=='sale'&&typeof setMarket==='function')setMarket('sale');
+  SOURCE_FILTER='all';
+  document.querySelectorAll('.source-tab').forEach(btn=>btn.classList.toggle('active',btn.dataset.source==='all'));
+  const state=document.querySelector('#state');
+  const company=document.querySelector('#companyState');
+  if(!state||!company)return;
+  if(kind==='review'){
+    state.value='all';
+    company.value='review';
+  }else if(kind==='removed'){
+    state.value='removed';
+    company.value='all';
+  }else{
+    return;
+  }
+  renderGroups();
+  document.querySelector('#listTitle')?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function bindCompanyMetricFilters(){
+  const targets=[
+    ['cReview','review','查看待確認案件'],
+    ['cUnavailable','removed','查看已下架案件'],
+  ];
+  for(const [id,kind,label] of targets){
+    const el=document.getElementById(id);
+    if(!el||el.dataset.metricFilterBound==='1')continue;
+    el.dataset.metricFilterBound='1';
+    el.classList.add('metric-filter-link');
+    el.setAttribute('role','button');
+    el.setAttribute('tabindex','0');
+    el.setAttribute('aria-label',label);
+    el.addEventListener('click',()=>showCompanyMetricFilter(kind));
+    el.addEventListener('keydown',event=>{
+      if(event.key!=='Enter'&&event.key!==' ')return;
+      event.preventDefault();
+      showCompanyMetricFilter(kind);
+    });
+  }
+}
+bindCompanyMetricFilters();
 </script>
 </body>
 </html>
