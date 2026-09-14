@@ -43,9 +43,13 @@ change_css = r'''
 .change-price-line{margin-top:8px;padding:8px 10px;border-radius:10px;background:#fff7e1;font-size:13px;font-weight:850;color:#6d5b20}
 .change-price-line.down{background:#fff0f1;color:#972a35}
 .change-price-line.up{background:#eef4ff;color:#35577d}
+.compare-card strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.compare-card strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
 '''
 if '.pill.change-new{' not in text:
     text = text.replace('</style>', change_css + '\n</style>', 1)
+elif '.compare-card strong.metric-filter-link{' not in text:
+    text = text.replace('</style>', '\n.compare-card strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}\n.compare-card strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}\n</style>', 1)
 
 change_helpers = r'''function monitorRunMs(){
   const raw=DATA?.runs?.priceTracking?.checkedAt||DATA?.updatedAt;
@@ -216,6 +220,53 @@ if 'function bindRoadAccordion()' not in text:
         raise RuntimeError('Road accordion helper anchor not found')
     text = text[:idx] + accordion_helper + '\n' + text[idx:]
 
+metric_filter_helper = r'''function showCompanyMetricFilter(kind){
+  if(typeof MARKET_MODE!=='undefined'&&MARKET_MODE!=='sale'&&typeof setMarket==='function')setMarket('sale');
+  SOURCE_FILTER='all';
+  document.querySelectorAll('.source-tab').forEach(btn=>btn.classList.toggle('active',btn.dataset.source==='all'));
+  const state=document.querySelector('#state');
+  const company=document.querySelector('#companyState');
+  if(!state||!company)return;
+  if(kind==='review'){
+    state.value='all';
+    company.value='review';
+  }else if(kind==='removed'){
+    state.value='removed';
+    company.value='all';
+  }else{
+    return;
+  }
+  renderGroups();
+  document.querySelector('#listTitle')?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function bindCompanyMetricFilters(){
+  const targets=[
+    ['cReview','review','查看待確認案件'],
+    ['cUnavailable','removed','查看已下架案件'],
+  ];
+  for(const [id,kind,label] of targets){
+    const el=document.getElementById(id);
+    if(!el||el.dataset.metricFilterBound==='1')continue;
+    el.dataset.metricFilterBound='1';
+    el.classList.add('metric-filter-link');
+    el.setAttribute('role','button');
+    el.setAttribute('tabindex','0');
+    el.setAttribute('aria-label',label);
+    el.addEventListener('click',()=>showCompanyMetricFilter(kind));
+    el.addEventListener('keydown',event=>{
+      if(event.key!=='Enter'&&event.key!==' ')return;
+      event.preventDefault();
+      showCompanyMetricFilter(kind);
+    });
+  }
+}
+bindCompanyMetricFilters();'''
+if 'function showCompanyMetricFilter(kind)' not in text:
+    idx = text.rfind('</script>')
+    if idx < 0:
+        raise RuntimeError('Company metric filter helper anchor not found')
+    text = text[:idx] + metric_filter_helper + '\n' + text[idx:]
+
 sale_render_line = "  document.querySelector('#groups').innerHTML=html||'<div class=\"empty\">目前沒有符合條件的房屋群組。</div>';"
 rent_render_line = "  document.querySelector('#groups').innerHTML=html||'<div class=\"empty\">目前這 7 條路沒有抓到符合條件的租屋案件。</div>';"
 if sale_render_line + "\n  bindRoadAccordion();" not in text:
@@ -244,10 +295,18 @@ required = [
     "document.querySelectorAll('#groups details.road-group[open]')",
     sale_render_line + "\n  bindRoadAccordion();",
     rent_render_line + "\n  bindRoadAccordion();",
+    '.compare-card strong.metric-filter-link{',
+    'function showCompanyMetricFilter(kind)',
+    'function bindCompanyMetricFilters()',
+    "['cReview','review','查看待確認案件']",
+    "['cUnavailable','removed','查看已下架案件']",
+    "company.value='review';",
+    "state.value='removed';",
+    "scrollIntoView({behavior:'smooth',block:'start'})",
 ]
 missing = [x for x in required if x not in text]
 if missing:
     raise RuntimeError(f'Off-market/current-change UI patch contract failed: {missing}')
 
 PATH.write_text(text, encoding='utf-8')
-print('10-day off-market + current-change Preview UI patched with property-group new semantics and single-open road accordion')
+print('10-day off-market + current-change Preview UI patched with clickable review/off-market counts, property-group new semantics and single-open road accordion')
