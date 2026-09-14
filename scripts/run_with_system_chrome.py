@@ -1,3 +1,4 @@
+# Manual production promotion trigger: approved clickable review and off-market counts
 """Run a Python script while default Playwright Chromium launches use system Chrome.
 
 GitHub-hosted Ubuntu runners already include Google Chrome. This avoids downloading a
