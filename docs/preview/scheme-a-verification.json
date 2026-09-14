@@ -1,20 +1,20 @@
 {
-  "verifiedAt": "2026-09-14T04:05:12+00:00",
+  "verifiedAt": "2026-09-14T07:49:40+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + system Chrome official Yongching DOM + all-pages direct pg pagination + verified detail cache",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-09-14T04:02:17+00:00",
+  "sourceDataUpdatedAt": "2026-09-14T07:46:42+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-09-14T04:05:08+00:00",
+    "generatedAt": "2026-09-14T07:49:36+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
-    "activeSinyiCount": 74,
-    "matchedOfficialCount": 74,
-    "appliedCount": 74,
-    "withStructuredFloorValueCount": 72,
+    "activeSinyiCount": 75,
+    "matchedOfficialCount": 75,
+    "appliedCount": 75,
+    "withStructuredFloorValueCount": 73,
     "withoutStructuredFloorValueCount": 2,
     "withoutStructuredFloorValueIds": [
       "18830N",
@@ -38,7 +38,7 @@
         "pagesRead": 2,
         "lastHttp": 200,
         "allHttp200": true,
-        "matchedActiveCount": 4
+        "matchedActiveCount": 5
       },
       "板橋區萬安街": {
         "pagesRead": 2,
@@ -123,22 +123,22 @@
     ]
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-09-14T04:05:12+00:00",
-    "propertyGroupCount": 166,
+    "auditedAt": "2026-09-14T07:49:40+00:00",
+    "propertyGroupCount": 167,
     "companyListingCount": 83,
     "companyMatchCount": 49,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 356
+    "weakIdentityAlreadyMergedPairCount": 340
   },
-  "snapshotCapturedAt": "2026-09-14T04:03:36+00:00",
-  "companySnapshotCapturedAt": "2026-09-14T04:03:36+00:00",
-  "companyGapGeneratedAt": "2026-09-14T04:05:10+00:00",
+  "snapshotCapturedAt": "2026-09-14T07:48:03+00:00",
+  "companySnapshotCapturedAt": "2026-09-14T07:48:03+00:00",
+  "companyGapGeneratedAt": "2026-09-14T07:49:38+00:00",
   "browserListingCount": 83,
   "companyListingCount": 83,
-  "propertyGroupCount": 166,
-  "rawListingCount": 445,
-  "comparisonCount": 166,
+  "propertyGroupCount": 167,
+  "rawListingCount": 450,
+  "comparisonCount": 167,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -204,16 +204,16 @@
   "counts": {
     "company_match": 49,
     "review": 2,
-    "missing": 115,
+    "missing": 116,
     "unavailable": 0
   },
   "crossPlatformMergedGroupCount": 23,
   "crossSourceReviewCount": 8,
   "preview591Regroup": {
-    "original591TopLevel": 139,
+    "original591TopLevel": 140,
     "regrouped591TopLevel": 116,
     "regrouped591ClusterCount": 21,
-    "regrouped591AbsorbedCount": 23,
+    "regrouped591AbsorbedCount": 24,
     "clusterFloorConflictBlocked": 0
   },
   "schemeAGroupIntegrity": {
@@ -296,7 +296,7 @@
   "candidatesWithFloor": 127,
   "candidatesWithYcCaseId": 127,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-09-14T04:04:58+00:00",
+    "generatedAt": "2026-09-14T07:49:25+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 75,
     "cacheHitCount": 75,
