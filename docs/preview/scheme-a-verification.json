@@ -1,20 +1,20 @@
 {
-  "verifiedAt": "2026-09-16T16:34:51+00:00",
+  "verifiedAt": "2026-09-16T20:20:19+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + system Chrome official Yongching DOM + all-pages direct pg pagination + verified detail cache",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-09-16T16:31:36+00:00",
+  "sourceDataUpdatedAt": "2026-09-16T20:16:42+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-09-16T16:34:47+00:00",
+    "generatedAt": "2026-09-16T20:20:15+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
-    "activeSinyiCount": 75,
-    "matchedOfficialCount": 75,
-    "appliedCount": 75,
-    "withStructuredFloorValueCount": 73,
+    "activeSinyiCount": 73,
+    "matchedOfficialCount": 73,
+    "appliedCount": 73,
+    "withStructuredFloorValueCount": 71,
     "withoutStructuredFloorValueCount": 2,
     "withoutStructuredFloorValueIds": [
       "18830N",
@@ -56,7 +56,7 @@
         "pagesRead": 2,
         "lastHttp": 200,
         "allHttp200": true,
-        "matchedActiveCount": 9
+        "matchedActiveCount": 7
       },
       "板橋區翠華街": {
         "pagesRead": 1,
@@ -70,28 +70,28 @@
   "companyNearTieGuard": {
     "enabled": true,
     "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-    "examinedCompanyMatchCount": 52,
+    "examinedCompanyMatchCount": 51,
     "downgradedCount": 0,
     "remainingAutoNearTieCount": 0,
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-09-16T16:34:51+00:00",
-    "propertyGroupCount": 168,
+    "auditedAt": "2026-09-16T20:20:19+00:00",
+    "propertyGroupCount": 167,
     "companyListingCount": 85,
-    "companyMatchCount": 52,
+    "companyMatchCount": 51,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 436
+    "weakIdentityAlreadyMergedPairCount": 479
   },
-  "snapshotCapturedAt": "2026-09-16T16:33:08+00:00",
-  "companySnapshotCapturedAt": "2026-09-16T16:33:08+00:00",
-  "companyGapGeneratedAt": "2026-09-16T16:34:49+00:00",
+  "snapshotCapturedAt": "2026-09-16T20:18:37+00:00",
+  "companySnapshotCapturedAt": "2026-09-16T20:18:37+00:00",
+  "companyGapGeneratedAt": "2026-09-16T20:20:17+00:00",
   "browserListingCount": 85,
   "companyListingCount": 85,
-  "propertyGroupCount": 168,
+  "propertyGroupCount": 167,
   "rawListingCount": 481,
-  "comparisonCount": 168,
+  "comparisonCount": 167,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -155,18 +155,18 @@
     }
   },
   "counts": {
-    "company_match": 52,
+    "company_match": 51,
     "review": 1,
     "missing": 115,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 24,
+  "crossPlatformMergedGroupCount": 23,
   "crossSourceReviewCount": 8,
   "preview591Regroup": {
-    "original591TopLevel": 142,
+    "original591TopLevel": 141,
     "regrouped591TopLevel": 118,
     "regrouped591ClusterCount": 21,
-    "regrouped591AbsorbedCount": 24,
+    "regrouped591AbsorbedCount": 23,
     "clusterFloorConflictBlocked": 0
   },
   "schemeAGroupIntegrity": {
@@ -245,11 +245,11 @@
     ],
     "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
   },
-  "candidateCount": 157,
-  "candidatesWithFloor": 127,
-  "candidatesWithYcCaseId": 127,
+  "candidateCount": 156,
+  "candidatesWithFloor": 126,
+  "candidatesWithYcCaseId": 126,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-09-16T16:34:35+00:00",
+    "generatedAt": "2026-09-16T20:20:04+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 77,
     "cacheHitCount": 77,
