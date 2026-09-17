@@ -32,6 +32,15 @@ def main():
     sys.argv = [target, *target_args]
     try:
         runpy.run_path(target, run_name="__main__")
+
+        # Preview-only experiment: while the same Surfshark session is still active,
+        # rendered Chrome checks stale 591 details for explicit invalid-page wording.
+        # This writes only docs/preview/591-offmarket-probe.json; canonical monitor
+        # data is never changed here.
+        if target.endswith("yungching_detail_floor_enrich.py"):
+            probe = "scripts/preview_591_offmarket_probe.py"
+            sys.argv = [probe]
+            runpy.run_path(probe, run_name="__main__")
     except BaseException as exc:
         if target.endswith("smoke_test_preview_ui.py"):
             try:
