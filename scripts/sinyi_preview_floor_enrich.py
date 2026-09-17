@@ -8,6 +8,8 @@ Preview snapshot used only by scheme A comparison.
 
 import copy
 import json
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
@@ -18,6 +20,7 @@ from bs4 import BeautifulSoup
 SOURCE = Path("docs/data/listings.json")
 OUT = Path("docs/preview/scheme-a-external-enriched.json")
 STATS = Path("docs/preview/sinyi-floor-enrichment.json")
+PROBE = Path("docs/preview/591-offmarket-probe.json")
 
 ROADS = [
     "板橋區中山路二段",
@@ -182,6 +185,13 @@ def main():
 
     OUT.write_text(json.dumps(enriched, ensure_ascii=False, indent=2), encoding="utf-8")
     STATS.write_text(json.dumps(stats, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    # Preview-only overlay: if the rendered 591 probe ran in the still-connected VPN
+    # phase, apply only its explicitly confirmed inactive IDs to this temporary copy.
+    # docs/data/listings.json remains untouched.
+    if PROBE.exists():
+        subprocess.run([sys.executable, "scripts/apply_preview_591_offmarket_probe.py"], check=True)
+
     print(json.dumps(stats, ensure_ascii=False))
 
 
