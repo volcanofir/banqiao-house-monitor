@@ -7,7 +7,11 @@ on:
     paths:
       - ".github/workflows/monitor-clean.yml"
       - "scripts/monitor_fast.py"
+      - "scripts/monitor_pages.py"
       - "scripts/monitor_sinyi_parallel.py"
+      - "scripts/preview_591_offmarket_probe.py"
+      - "scripts/apply_591_offmarket_probe_to_canonical.py"
+      - "scripts/run_with_system_chrome.py"
       - "scripts/monitor_schedule_state.py"
       - "trigger/monitor-wakeup.txt"
   schedule:
@@ -96,6 +100,13 @@ jobs:
         env:
           MONITOR_SOURCE: "591"
         run: python scripts/monitor_fast.py
+
+      - name: Confirm stale 591 listings with rendered Chrome
+        if: steps.gate.outputs.run == 'true' && steps.vpn.outcome == 'success'
+        continue-on-error: true
+        run: |
+          python scripts/run_with_system_chrome.py scripts/preview_591_offmarket_probe.py
+          python scripts/apply_591_offmarket_probe_to_canonical.py
 
       - name: Mark 591 stale if VPN failed
         if: steps.gate.outputs.run == 'true' && steps.vpn.outcome != 'success'
