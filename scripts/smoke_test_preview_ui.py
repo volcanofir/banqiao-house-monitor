@@ -155,6 +155,20 @@ def main():
                 assert any(label in change_text for label in ("本次新進", "降價", "漲價", "本次下架")), change_text
             page.select_option("#state", "all")
 
+            sale_new_count = int(page.evaluate("(GAP.propertyGroups||[]).filter(isNew).length") or 0)
+            assert number(page.locator("#mNew").inner_text()) == sale_new_count
+            page.locator('.source-tab[data-source="591"]').click()
+            page.select_option("#companyState", "missing")
+            page.locator("#mNew").click()
+            assert page.locator("#state").input_value() == "new"
+            assert page.locator("#companyState").input_value() == "all"
+            assert "active" in (page.locator('.source-tab[data-source="all"]').get_attribute("class") or "")
+            assert page.locator("#groups .item").count() == sale_new_count
+            if sale_new_count:
+                new_case_badges = page.locator('#groups .item .pill').filter(has_text="新進案件")
+                assert new_case_badges.count() == sale_new_count, (new_case_badges.count(), sale_new_count)
+            page.select_option("#state", "all")
+
             page.locator('.source-tab[data-source="591"]').click()
             assert "active" in (page.locator('.source-tab[data-source="591"]').get_attribute("class") or "")
             page.select_option("#sort", "priceDesc")
@@ -265,8 +279,8 @@ def main():
             browser.close()
 
         print(
-            f"Preview UI smoke test passed: sale integrity, {current_changed} current-change group(s), "
-            f"{offmarket_count} off-market group(s), {rental_count} rental listing(s), "
+            f"Preview UI smoke test passed: sale integrity, {sale_new_count} clickable sale new group(s), "
+            f"{current_changed} current-change group(s), {offmarket_count} off-market group(s), {rental_count} rental listing(s), "
             f"{rental_new_count} rental new badge/filter result(s), two-line update notes, "
             "single-open road accordion, market switching and stale-source suppression"
         )
