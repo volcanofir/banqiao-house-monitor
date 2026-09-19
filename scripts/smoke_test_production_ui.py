@@ -116,6 +116,9 @@ def main():
         "sort.value='timeDesc';",
         '<span>已下架</span><strong id="cUnavailable">',
         '<option value="removed">已下架</option>',
+        'function showCompanyMetricFilter(kind)',
+        "['mNew','new','查看新進案件']",
+        "state.value='new';",
     ):
         assert fragment in html, fragment
 
@@ -167,6 +170,20 @@ def main():
             assert page.evaluate('VERIFY && VERIFY.valid === true') is True
             assert page.evaluate('verificationMatches(DATA, GAP, VERIFY)') is True
             assert page.evaluate("document.querySelector('#sort').value") == 'timeDesc'
+
+            # Clickable sale new-count must behave like the existing metric shortcuts.
+            sale_new_count = int(page.evaluate("(GAP.propertyGroups||[]).filter(isNew).length") or 0)
+            assert number(page.locator('#mNew').inner_text()) == sale_new_count
+            page.locator('.source-tab[data-source="591"]').click()
+            page.select_option('#companyState', 'missing')
+            page.locator('#mNew').click()
+            assert page.locator('#state').input_value() == 'new'
+            assert page.locator('#companyState').input_value() == 'all'
+            assert 'active' in (page.locator('.source-tab[data-source="all"]').get_attribute('class') or '')
+            assert page.locator('#groups .item').count() == sale_new_count
+            if sale_new_count:
+                assert page.locator('#groups .item .pill').filter(has_text='新進案件').count() == sale_new_count
+            page.select_option('#state', 'all')
 
             # Current-change filter must render exactly the groups the helper identifies.
             assert page.locator('#state option').count() == 5
@@ -256,8 +273,8 @@ def main():
             browser.close()
 
         print(
-            f'Production UI smoke test passed: {offmarket_count} off-market, '
-            f'{current_changed} current-change, {rental_count} rental, '
+            f'Production UI smoke test passed: {sale_new_count} clickable sale new, '
+            f'{offmarket_count} off-market, {current_changed} current-change, {rental_count} rental, '
             f'{rental_new_count} rental new, {rental_today_count} Taiwan-today new; '
             'newest-first defaults, accordion, market switching and stale suppression verified'
         )
