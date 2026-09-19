@@ -41,8 +41,8 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}.hero{b
 
 .pill.today-new{background:#ffe9a8;color:#704d00;border:1px solid #ddb948}
 
-.compare-card strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
-.compare-card strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
+.compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
 </style>
 </head>
 <body>
@@ -554,13 +554,17 @@ Promise.all([
   document.querySelector('#groups').innerHTML='<div class="empty">目前無法完整載入監控資料，為避免顯示錯誤比對結果，案件列表已暫停顯示。</div>';
 });
 function showCompanyMetricFilter(kind){
-  if(typeof MARKET_MODE!=='undefined'&&MARKET_MODE!=='sale'&&typeof setMarket==='function')setMarket('sale');
+  const saleOnly=kind==='review'||kind==='removed';
+  if(saleOnly&&typeof MARKET_MODE!=='undefined'&&MARKET_MODE!=='sale'&&typeof setMarket==='function')setMarket('sale');
   SOURCE_FILTER='all';
   document.querySelectorAll('.source-tab').forEach(btn=>btn.classList.toggle('active',btn.dataset.source==='all'));
   const state=document.querySelector('#state');
   const company=document.querySelector('#companyState');
   if(!state||!company)return;
-  if(kind==='review'){
+  if(kind==='new'){
+    state.value='new';
+    company.value='all';
+  }else if(kind==='review'){
     state.value='all';
     company.value='review';
   }else if(kind==='removed'){
@@ -574,6 +578,7 @@ function showCompanyMetricFilter(kind){
 }
 function bindCompanyMetricFilters(){
   const targets=[
+    ['mNew','new','查看新進案件'],
     ['cReview','review','查看待確認案件'],
     ['cUnavailable','removed','查看已下架案件'],
   ];
