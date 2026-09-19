@@ -43,13 +43,13 @@ change_css = r'''
 .change-price-line{margin-top:8px;padding:8px 10px;border-radius:10px;background:#fff7e1;font-size:13px;font-weight:850;color:#6d5b20}
 .change-price-line.down{background:#fff0f1;color:#972a35}
 .change-price-line.up{background:#eef4ff;color:#35577d}
-.compare-card strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
-.compare-card strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
+.compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
 '''
 if '.pill.change-new{' not in text:
     text = text.replace('</style>', change_css + '\n</style>', 1)
 elif '.compare-card strong.metric-filter-link{' not in text:
-    text = text.replace('</style>', '\n.compare-card strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}\n.compare-card strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}\n</style>', 1)
+    text = text.replace('</style>', '\n.compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}\n.compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}\n</style>', 1)
 
 change_helpers = r'''function monitorRunMs(){
   const raw=DATA?.runs?.priceTracking?.checkedAt||DATA?.updatedAt;
@@ -221,13 +221,17 @@ if 'function bindRoadAccordion()' not in text:
     text = text[:idx] + accordion_helper + '\n' + text[idx:]
 
 metric_filter_helper = r'''function showCompanyMetricFilter(kind){
-  if(typeof MARKET_MODE!=='undefined'&&MARKET_MODE!=='sale'&&typeof setMarket==='function')setMarket('sale');
+  const saleOnly=kind==='review'||kind==='removed';
+  if(saleOnly&&typeof MARKET_MODE!=='undefined'&&MARKET_MODE!=='sale'&&typeof setMarket==='function')setMarket('sale');
   SOURCE_FILTER='all';
   document.querySelectorAll('.source-tab').forEach(btn=>btn.classList.toggle('active',btn.dataset.source==='all'));
   const state=document.querySelector('#state');
   const company=document.querySelector('#companyState');
   if(!state||!company)return;
-  if(kind==='review'){
+  if(kind==='new'){
+    state.value='new';
+    company.value='all';
+  }else if(kind==='review'){
     state.value='all';
     company.value='review';
   }else if(kind==='removed'){
@@ -241,6 +245,7 @@ metric_filter_helper = r'''function showCompanyMetricFilter(kind){
 }
 function bindCompanyMetricFilters(){
   const targets=[
+    ['mNew','new','查看新進案件'],
     ['cReview','review','查看待確認案件'],
     ['cUnavailable','removed','查看已下架案件'],
   ];
@@ -295,11 +300,13 @@ required = [
     "document.querySelectorAll('#groups details.road-group[open]')",
     sale_render_line + "\n  bindRoadAccordion();",
     rent_render_line + "\n  bindRoadAccordion();",
-    '.compare-card strong.metric-filter-link{',
+    '.compare-card strong.metric-filter-link,.metric strong.metric-filter-link{',
     'function showCompanyMetricFilter(kind)',
     'function bindCompanyMetricFilters()',
+    "['mNew','new','查看新進案件']",
     "['cReview','review','查看待確認案件']",
     "['cUnavailable','removed','查看已下架案件']",
+    "state.value='new';",
     "company.value='review';",
     "state.value='removed';",
     "scrollIntoView({behavior:'smooth',block:'start'})",
@@ -309,4 +316,4 @@ if missing:
     raise RuntimeError(f'Off-market/current-change UI patch contract failed: {missing}')
 
 PATH.write_text(text, encoding='utf-8')
-print('10-day off-market + current-change Preview UI patched with clickable review/off-market counts, property-group new semantics and single-open road accordion')
+print('10-day off-market + current-change Preview UI patched with clickable new/review/off-market counts, property-group new semantics and single-open road accordion')
