@@ -67,8 +67,12 @@ def main():
                 "status": resp.status,
                 "resourceType": req.resource_type,
                 "method": req.method,
-                "postData": req.post_data,
             }
+            if "filterObject.php" in resp.url:
+                try:
+                    item["postData"] = req.post_data
+                except Exception as exc:
+                    item["postDataError"] = f"{type(exc).__name__}: {exc}"
             try:
                 headers = resp.headers
                 item["contentType"] = headers.get("content-type")
