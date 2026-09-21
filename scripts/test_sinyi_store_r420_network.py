@@ -102,7 +102,7 @@ def main():
 
         page_summaries = []
         for page_no in range(1, 9):
-            url = BASE if page_no == 1 else f"{BASE}/publish-desc/{page_no}"
+            url = f"{BASE}/publish-desc/{page_no}"
             resp = page.goto(url, wait_until="domcontentloaded", timeout=60000)
             page.wait_for_timeout(6000)
             text = page.locator("body").inner_text(timeout=10000)
@@ -207,6 +207,29 @@ def main():
             for m in matches:
                 union.update(m.get("houseNos") or [])
 
+    filter_rows = []
+    filter_ids = []
+    filter_pages = []
+    for item in relevant:
+        if not str(item.get("url") or "").endswith("filterObject.php"):
+            continue
+        for m in item.get("jsonMatches") or []:
+            if m.get("path") == "$.content.object":
+                ids = [str(x) for x in (m.get("houseNos") or [])]
+                filter_ids.extend(ids)
+                filter_rows.extend(m.get("rows") or [])
+                filter_pages.append({
+                    "postData": item.get("postData"),
+                    "contentMeta": item.get("contentMeta"),
+                    "houseNos": ids,
+                })
+    filter_unique = sorted(set(filter_ids))
+    filter_duplicates = sorted({x for x in filter_ids if filter_ids.count(x) > 1})
+    print(
+        f"R420 FILTER RESULT rowCount={len(filter_ids)} uniqueHouseNoCount={len(filter_unique)} "
+        f"duplicates={','.join(filter_duplicates) or '-'}"
+    )
+
     out = {
         "baseUrl": BASE,
         "pageSummaries": page_summaries,
@@ -214,6 +237,11 @@ def main():
         "relevantJsonResponseCount": len(relevant),
         "networkHouseNoUniqueCount": len(union),
         "networkHouseNos": sorted(union),
+        "filterObjectRowCount": len(filter_ids),
+        "filterObjectUniqueHouseNoCount": len(filter_unique),
+        "filterObjectHouseNos": filter_unique,
+        "filterObjectDuplicateHouseNos": filter_duplicates,
+        "filterObjectPages": filter_pages,
         "consistentSortReplay": replay,
         "relevantResponses": relevant,
         "allNetworkResponses": captured,
