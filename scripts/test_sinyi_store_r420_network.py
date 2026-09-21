@@ -9,6 +9,8 @@ import json
 from pathlib import Path
 from urllib.parse import quote
 
+import requests
+
 from playwright.sync_api import sync_playwright
 
 STORE_CODE = "R420"
@@ -124,6 +126,24 @@ def main():
         replay = {}
         seed = first_filter_body["value"]
         if seed:
+            session = requests.Session()
+            for cookie in ctx.cookies():
+                try:
+                    session.cookies.set(cookie.get("name"), cookie.get("value"), domain=cookie.get("domain"))
+                except Exception:
+                    pass
+            replay_headers = {
+                "User-Agent": (
+                    "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) "
+                    "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 "
+                    "Mobile/15E148 Safari/604.1"
+                ),
+                "Accept": "application/json, text/plain, */*",
+                "Content-Type": "application/json;charset=UTF-8",
+                "Origin": "https://www.sinyi.com.tw",
+                "Referer": page.url,
+                "Accept-Language": "zh-TW,zh;q=0.9,en;q=0.7",
+            }
             for sort in ("0", "2"):
                 replay_rows = []
                 replay_pages = []
@@ -134,21 +154,15 @@ def main():
                     body["pageCnt"] = 10
                     body["sort"] = sort
                     body["isReturnTotal"] = True
-                    result = page.evaluate(
-                        """async ({url, body}) => {
-                          const r = await fetch(url, {
-                            method: 'POST',
-                            credentials: 'include',
-                            headers: {'content-type':'application/json;charset=UTF-8'},
-                            body: JSON.stringify(body)
-                          });
-                          return {status:r.status, text:await r.text()};
-                        }""",
-                        {"url": "https://sinyiwebapi.sinyi.com.tw/filterObject.php", "body": body},
+                    rr = session.post(
+                        "https://sinyiwebapi.sinyi.com.tw/filterObject.php",
+                        headers=replay_headers,
+                        json=body,
+                        timeout=30,
                     )
                     parsed = {}
                     try:
-                        parsed = json.loads(result.get("text") or "{}")
+                        parsed = rr.json()
                     except Exception:
                         parsed = {}
                     content = parsed.get("content") or {}
@@ -158,13 +172,13 @@ def main():
                         total = content.get("totalCnt")
                     replay_pages.append({
                         "page": page_no,
-                        "status": result.get("status"),
+                        "status": rr.status_code,
                         "totalCnt": content.get("totalCnt"),
                         "count": len(objs),
                         "houseNos": ids,
                     })
                     replay_rows.extend(objs)
-                    print(f"R420 REPLAY sort={sort} page={page_no} status={result.get('status')} totalCnt={content.get('totalCnt')} count={len(objs)} ids={','.join(ids)}")
+                    print(f"R420 REPLAY sort={sort} page={page_no} status={rr.status_code} totalCnt={content.get('totalCnt')} count={len(objs)} ids={','.join(ids)}")
                 ids = [str(x.get("houseNo")) for x in replay_rows if isinstance(x, dict) and x.get("houseNo")]
                 seen = set()
                 duplicates = []
