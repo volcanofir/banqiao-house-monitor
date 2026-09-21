@@ -1,14 +1,14 @@
 {
-  "verifiedAt": "2026-09-21T09:22:07+00:00",
+  "verifiedAt": "2026-09-21T13:13:35+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + system Chrome official Yongching DOM + all-pages direct pg pagination + verified detail cache",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-09-21T09:16:18+00:00",
+  "sourceDataUpdatedAt": "2026-09-21T13:01:22+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-09-21T09:22:04+00:00",
+    "generatedAt": "2026-09-21T13:13:31+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 72,
@@ -70,28 +70,28 @@
   "companyNearTieGuard": {
     "enabled": true,
     "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-    "examinedCompanyMatchCount": 49,
+    "examinedCompanyMatchCount": 50,
     "downgradedCount": 0,
     "remainingAutoNearTieCount": 0,
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-09-21T09:22:07+00:00",
-    "propertyGroupCount": 153,
+    "auditedAt": "2026-09-21T13:13:35+00:00",
+    "propertyGroupCount": 154,
     "companyListingCount": 82,
-    "companyMatchCount": 49,
+    "companyMatchCount": 50,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 535
+    "weakIdentityAlreadyMergedPairCount": 518
   },
-  "snapshotCapturedAt": "2026-09-21T09:20:00+00:00",
-  "companySnapshotCapturedAt": "2026-09-21T09:20:00+00:00",
-  "companyGapGeneratedAt": "2026-09-21T09:22:06+00:00",
+  "snapshotCapturedAt": "2026-09-21T13:11:08+00:00",
+  "companySnapshotCapturedAt": "2026-09-21T13:11:08+00:00",
+  "companyGapGeneratedAt": "2026-09-21T13:13:34+00:00",
   "browserListingCount": 82,
   "companyListingCount": 82,
-  "propertyGroupCount": 153,
+  "propertyGroupCount": 154,
   "rawListingCount": 474,
-  "comparisonCount": 153,
+  "comparisonCount": 154,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -155,7 +155,7 @@
     }
   },
   "counts": {
-    "company_match": 49,
+    "company_match": 50,
     "review": 1,
     "missing": 103,
     "unavailable": 0
@@ -163,9 +163,9 @@
   "crossPlatformMergedGroupCount": 23,
   "crossSourceReviewCount": 6,
   "preview591Regroup": {
-    "original591TopLevel": 122,
-    "regrouped591TopLevel": 105,
-    "regrouped591ClusterCount": 15,
+    "original591TopLevel": 123,
+    "regrouped591TopLevel": 106,
+    "regrouped591ClusterCount": 16,
     "regrouped591AbsorbedCount": 17,
     "clusterFloorConflictBlocked": 0
   },
@@ -245,11 +245,11 @@
     ],
     "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
   },
-  "candidateCount": 144,
-  "candidatesWithFloor": 116,
-  "candidatesWithYcCaseId": 116,
+  "candidateCount": 145,
+  "candidatesWithFloor": 117,
+  "candidatesWithYcCaseId": 117,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-09-21T09:21:25+00:00",
+    "generatedAt": "2026-09-21T13:12:49+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 75,
     "cacheHitCount": 75,
