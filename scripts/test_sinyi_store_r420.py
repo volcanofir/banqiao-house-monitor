@@ -57,7 +57,7 @@ def parse(url):
     result["reducerKeys"] = sorted(reducer.keys())
     result["routeQuery"] = payload.get("query") or {}
     result["list"] = rows if isinstance(rows, list) else []
-    for key in ("total", "totalCount", "count", "page", "pageIndex", "currentPage", "pageCount", "totalPage"):
+    for key in ("total", "totalCount", "totalCnt", "count", "page", "pageIndex", "currentPage", "pageCount", "totalPage"):
         if key in reducer:
             result[key] = reducer.get(key)
     return result
@@ -131,7 +131,7 @@ def main():
                 "newCount": len(new_ids),
                 "routeQuery": parsed.get("routeQuery"),
                 "reducerKeys": parsed.get("reducerKeys"),
-                **{k: parsed[k] for k in ("total","totalCount","count","page","pageIndex","currentPage","pageCount","totalPage") if k in parsed},
+                **{k: parsed[k] for k in ("total","totalCount","totalCnt","count","page","pageIndex","currentPage","pageCount","totalPage") if k in parsed},
             })
 
             if parsed.get("status") == 200 and parsed.get("list") and new_ids:
@@ -147,9 +147,11 @@ def main():
         rows = chosen["list"]
         page_ids = [str(x.get("houseNo") or "").strip() for x in rows if x.get("houseNo")]
         repeated_ids = [hid for hid in page_ids if hid in seen]
+        meta = {k: chosen.get(k) for k in ("total","totalCount","totalCnt","count","page","pageIndex","currentPage","pageCount","totalPage") if k in chosen}
         print(
-            f"R420 page {page} meta routeQuery={json.dumps(chosen.get('routeQuery') or {}, ensure_ascii=False)} "
-            f"reducerKeys={','.join(chosen.get('reducerKeys') or [])} repeated={','.join(repeated_ids) or '-'}"
+            f"R420 page {page} meta={json.dumps(meta, ensure_ascii=False)} "
+            f"routeQuery={json.dumps(chosen.get('routeQuery') or {}, ensure_ascii=False)} "
+            f"repeated={','.join(repeated_ids) or '-'}"
         )
         added = 0
         for item in rows:
