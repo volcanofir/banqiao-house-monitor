@@ -83,6 +83,14 @@ def listing_row(item):
     except Exception:
         area = None
     address = str(item.get("address") or "").strip()
+    core_road = next((road for road in WATCH_ROADS if road in address), None)
+    market_area = (
+        "埔墘區"
+        if core_road
+        else "板橋區"
+        if region["region"] == "新北市板橋區"
+        else "其他行政區"
+    )
     return {
         "houseNo": hid,
         "name": str(item.get("name") or "").strip(),
@@ -103,7 +111,8 @@ def listing_row(item):
         "longitude": item.get("longitude"),
         "shareURL": item.get("shareURL"),
         "url": f"https://www.sinyi.com.tw/buy/house/{quote(hid)}?breadcrumb=list",
-        "coreRoadMatch": next((road for road in WATCH_ROADS if road in address), None),
+        "coreRoadMatch": core_road,
+        "marketArea": market_area,
     }
 
 
@@ -216,8 +225,16 @@ def main():
         for region, count in sorted(by_region.items(), key=lambda kv: (0 if kv[0] == "新北市板橋區" else 1, -kv[1], kv[0]))
     ]
 
+    area_order = ("埔墘區", "板橋區", "其他行政區")
+    area_counts = {name: 0 for name in area_order}
+    for row in listings:
+        area_counts[row.get("marketArea") or "其他行政區"] = area_counts.get(row.get("marketArea") or "其他行政區", 0) + 1
+    area_summary = [{"area": name, "count": area_counts.get(name, 0)} for name in area_order]
+
     banqiao_count = sum(1 for x in listings if x.get("region") == "新北市板橋區")
-    core_count = sum(1 for x in listings if x.get("coreRoadMatch"))
+    core_count = area_counts.get("埔墘區", 0)
+    banqiao_other_count = area_counts.get("板橋區", 0)
+    other_area_count = area_counts.get("其他行政區", 0)
     changes = {
         "newCount": len(new_ids),
         "newIds": new_ids,
@@ -240,9 +257,13 @@ def main():
         "sourceTotalCount": total_cnt,
         "banqiaoCount": banqiao_count,
         "coreRoadCount": core_count,
+        "puqianCount": core_count,
+        "banqiaoOtherCount": banqiao_other_count,
+        "otherAreaCount": other_area_count,
         "watchRoads": list(WATCH_ROADS),
         "recentRemovedRetentionDays": RECENT_REMOVED_DAYS,
         "regions": region_summary,
+        "areas": area_summary,
         "changes": changes,
         "pages": pages,
         "listings": listings,
@@ -256,7 +277,9 @@ def main():
         "sourceTotal": total_cnt,
         "regions": len(region_summary),
         "banqiao": banqiao_count,
-        "coreRoad": core_count,
+        "puqian": core_count,
+        "banqiaoOther": banqiao_other_count,
+        "otherArea": other_area_count,
         "baseline": baseline,
         "changes": changes,
     }, ensure_ascii=False))
