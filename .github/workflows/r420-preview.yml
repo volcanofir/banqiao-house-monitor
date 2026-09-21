@@ -1,0 +1,83 @@
+name: 信義 R420 相對店 Preview
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/r420-preview.yml"
+      - "scripts/fetch_sinyi_r420_preview.py"
+      - "scripts/patch_r420_preview_ui.py"
+      - "scripts/smoke_test_r420_preview.py"
+      - "docs/preview/r420-widget.css"
+      - "docs/preview/r420-widget.js"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: r420-preview
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install packages
+        run: pip install requests beautifulsoup4 playwright
+
+      - name: Fetch R420 store snapshot
+        run: python scripts/fetch_sinyi_r420_preview.py
+
+      - name: Preserve snapshot
+        run: cp docs/preview/r420-store.json /tmp/r420-store.json
+
+      - name: Rebase onto latest main and patch latest Preview
+        shell: bash
+        run: |
+          set -e
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/r420-store.json docs/preview/r420-store.json
+          python scripts/patch_r420_preview_ui.py
+
+      - name: Smoke test R420 Preview in system Chrome
+        run: python scripts/run_with_system_chrome.py scripts/smoke_test_r420_preview.py
+
+      - name: Publish R420 Preview
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/preview/r420-store.json docs/preview/index.html docs/preview/r420-widget.css docs/preview/r420-widget.js
+          if git diff --cached --quiet; then
+            echo "R420 Preview already current."
+            exit 0
+          fi
+          git commit -m "Update R420 competitor Preview"
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep 3
+          done
+          exit 1
+
+      - name: Request GitHub Pages rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            "repos/${GITHUB_REPOSITORY}/pages/builds"
