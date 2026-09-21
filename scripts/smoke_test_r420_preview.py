@@ -52,6 +52,10 @@ def main():
             if first:
                 page.fill('#r420Search',str(first))
                 assert page.locator('#r420Groups .r420-item').count()==1
+            page.fill('#r420Search','4986WV')
+            assert page.locator('#r420Groups .r420-item').count()==1
+            assert '埔墘區｜富山街' in page.locator('#r420Groups .r420-item').inner_text()
+            assert page.locator('#r420Groups .r420-pill.core').count()==1
             assert not errors, errors
             browser.close()
         print(f'R420 Preview smoke passed: {total} unique listings grouped into 埔墘區 / 板橋區 / 其他行政區')
