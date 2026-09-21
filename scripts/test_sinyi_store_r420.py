@@ -141,7 +141,7 @@ def main():
 
         if not chosen:
             page_logs.append({"page": page, "chosen": None, "attempts": attempts})
-            print(f"R420 page {page}: no unseen rows; stop")
+            print(f"R420 page {page}: no unseen rows; attempts={json.dumps(attempts, ensure_ascii=False)}; stop")
             break
 
         rows = chosen["list"]
