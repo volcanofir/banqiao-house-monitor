@@ -67,6 +67,7 @@ def main():
                 "status": resp.status,
                 "resourceType": req.resource_type,
                 "method": req.method,
+                "postData": req.post_data,
             }
             try:
                 headers = resp.headers
@@ -77,6 +78,13 @@ def main():
                     item["jsonMatches"] = matches
                     if isinstance(payload, dict):
                         item["topKeys"] = sorted(payload.keys())
+                        content = payload.get("content")
+                        if isinstance(content, dict):
+                            item["contentMeta"] = {
+                                k: v for k, v in content.items()
+                                if k not in ("object", "objects", "list", "data")
+                                and isinstance(v, (str, int, float, bool, type(None)))
+                            }
             except Exception as exc:
                 item["parseError"] = f"{type(exc).__name__}: {exc}"
             captured.append(item)
@@ -84,7 +92,7 @@ def main():
         page.on("response", on_response)
 
         page_summaries = []
-        for page_no in range(1, 5):
+        for page_no in range(1, 9):
             url = BASE if page_no == 1 else f"{BASE}/publish-desc/{page_no}"
             resp = page.goto(url, wait_until="domcontentloaded", timeout=60000)
             page.wait_for_timeout(6000)
@@ -135,6 +143,9 @@ def main():
     print("R420 NETWORK uniqueHouseNos=", len(union))
     for item in relevant:
         print("R420 API=", item.get("method"), item.get("status"), item.get("url"))
+        if item.get("url", "").endswith("filterObject.php"):
+            print("  POSTDATA", item.get("postData"))
+            print("  CONTENTMETA", json.dumps(item.get("contentMeta") or {}, ensure_ascii=False))
         for m in item.get("jsonMatches") or []:
             print("  MATCH", m.get("path"), "count=", m.get("count"), "houseCount=", m.get("houseCount"),
                   "ids=", ",".join(m.get("houseNos") or []))
