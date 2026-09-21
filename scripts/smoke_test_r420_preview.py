@@ -54,7 +54,12 @@ def main():
                 assert page.locator('#r420Groups .r420-item').count()==1
             page.fill('#r420Search','4986WV')
             assert page.locator('#r420Groups .r420-item').count()==1
-            assert '埔墘區｜富山街' in page.locator('#r420Groups .r420-item').inner_text()
+            actual_text=page.locator('#r420Groups .r420-item').inner_text()
+            print('R420 4986WV TEXT=',repr(actual_text))
+            print('R420 4986WV DATA=',page.evaluate("JSON.stringify((R420.listings||[]).find(x=>x.houseNo==='4986WV'))"))
+            print('R420 ITEM HTML=',page.evaluate("r420ItemHtml((R420.listings||[]).find(x=>x.houseNo==='4986WV'))"))
+            print('R420 ITEM FN=',page.evaluate("r420ItemHtml.toString()"))
+            assert '埔墘區｜富山街' in actual_text
             assert page.locator('#r420Groups .r420-pill.core').count()==1
             assert not errors, errors
             browser.close()
