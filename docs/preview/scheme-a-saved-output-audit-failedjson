@@ -1,22 +1,22 @@
 {
-  "auditedAt": "2026-09-19T00:06:56+00:00",
+  "auditedAt": "2026-09-21T12:04:55+00:00",
   "scheme": "A",
   "target": "exact canonical Preview files before atomic publish",
   "validator": "validate_scheme_a_preview_v3",
   "passed": true,
   "error": null,
   "companyGap": {
-    "generatedAt": "2026-09-19T00:06:55+00:00",
+    "generatedAt": "2026-09-21T12:04:54+00:00",
     "capturedAt": null,
     "verifiedAt": null,
-    "companySnapshotCapturedAt": "2026-09-19T00:04:58+00:00",
+    "companySnapshotCapturedAt": "2026-09-21T12:02:49+00:00",
     "listingCount": null,
-    "companyListingCount": 83,
-    "propertyGroupCount": 156,
+    "companyListingCount": 82,
+    "propertyGroupCount": 153,
     "counts": {
-      "company_match": 51,
+      "company_match": 50,
       "review": 1,
-      "missing": 104,
+      "missing": 102,
       "unavailable": 0
     },
     "idIntegrityGuard": null,
@@ -26,7 +26,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-09-19T00:06:54+00:00",
+      "generatedAt": "2026-09-21T12:04:52+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 72,
@@ -44,7 +44,7 @@
           "pagesRead": 3,
           "lastHttp": 200,
           "allHttp200": true,
-          "matchedActiveCount": 38
+          "matchedActiveCount": 36
         },
         "板橋區三民路二段": {
           "pagesRead": 2,
@@ -74,7 +74,7 @@
           "pagesRead": 2,
           "lastHttp": 200,
           "allHttp200": true,
-          "matchedActiveCount": 7
+          "matchedActiveCount": 9
         },
         "板橋區翠華街": {
           "pagesRead": 1,
@@ -88,7 +88,7 @@
     "companyNearTieGuard": {
       "enabled": true,
       "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-      "examinedCompanyMatchCount": 51,
+      "examinedCompanyMatchCount": 50,
       "downgradedCount": 0,
       "remainingAutoNearTieCount": 0,
       "groups": []
@@ -96,17 +96,17 @@
   },
   "browserSnapshot": {
     "generatedAt": null,
-    "capturedAt": "2026-09-19T00:04:58+00:00",
+    "capturedAt": "2026-09-21T12:02:49+00:00",
     "verifiedAt": null,
     "companySnapshotCapturedAt": null,
-    "listingCount": 83,
+    "listingCount": 82,
     "companyListingCount": null,
     "propertyGroupCount": null,
     "counts": null,
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 88,
-      "afterCount": 83,
+      "beforeCount": 87,
+      "afterCount": 82,
       "removedCount": 5,
       "collisionIds": [
         "4308114"
@@ -152,7 +152,7 @@
         {
           "id": "4308114",
           "road": "板橋區翠華街",
-          "title": "門前好停車｜氣派門廳｜辦公規劃｜大坪數地下室",
+          "title": "門前好停車｜氣派門廳｜辦公規劃｜地下室整潔",
           "area": 59.37,
           "price": 4280.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
@@ -164,7 +164,7 @@
         {
           "id": "4308114",
           "road": "板橋區萬安街",
-          "title": "輕裝潢透天出價就可談",
+          "title": "誠售近公園埔墘透天台北市一橋之隔歡迎預約賞屋",
           "area": 27.59,
           "price": 1980.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
@@ -187,21 +187,21 @@
   "verification": {
     "generatedAt": null,
     "capturedAt": null,
-    "verifiedAt": "2026-09-19T00:06:56+00:00",
-    "companySnapshotCapturedAt": "2026-09-19T00:04:58+00:00",
+    "verifiedAt": "2026-09-21T12:04:55+00:00",
+    "companySnapshotCapturedAt": "2026-09-21T12:02:49+00:00",
     "listingCount": null,
-    "companyListingCount": 83,
-    "propertyGroupCount": 156,
+    "companyListingCount": 82,
+    "propertyGroupCount": 153,
     "counts": {
-      "company_match": 51,
+      "company_match": 50,
       "review": 1,
-      "missing": 104,
+      "missing": 102,
       "unavailable": 0
     },
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 88,
-      "afterCount": 83,
+      "beforeCount": 87,
+      "afterCount": 82,
       "removedCount": 5,
       "collisionIds": [
         "4308114"
@@ -247,7 +247,7 @@
         {
           "id": "4308114",
           "road": "板橋區翠華街",
-          "title": "門前好停車｜氣派門廳｜辦公規劃｜大坪數地下室",
+          "title": "門前好停車｜氣派門廳｜辦公規劃｜地下室整潔",
           "area": 59.37,
           "price": 4280.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
@@ -259,7 +259,7 @@
         {
           "id": "4308114",
           "road": "板橋區萬安街",
-          "title": "輕裝潢透天出價就可談",
+          "title": "誠售近公園埔墘透天台北市一橋之隔歡迎預約賞屋",
           "area": 27.59,
           "price": 1980.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
@@ -277,7 +277,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-09-19T00:06:54+00:00",
+      "generatedAt": "2026-09-21T12:04:52+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 72,
@@ -295,7 +295,7 @@
           "pagesRead": 3,
           "lastHttp": 200,
           "allHttp200": true,
-          "matchedActiveCount": 38
+          "matchedActiveCount": 36
         },
         "板橋區三民路二段": {
           "pagesRead": 2,
@@ -325,7 +325,7 @@
           "pagesRead": 2,
           "lastHttp": 200,
           "allHttp200": true,
-          "matchedActiveCount": 7
+          "matchedActiveCount": 9
         },
         "板橋區翠華街": {
           "pagesRead": 1,
@@ -339,7 +339,7 @@
     "companyNearTieGuard": {
       "enabled": true,
       "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-      "examinedCompanyMatchCount": 51,
+      "examinedCompanyMatchCount": 50,
       "downgradedCount": 0,
       "remainingAutoNearTieCount": 0,
       "groups": []
