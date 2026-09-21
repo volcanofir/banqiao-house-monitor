@@ -7,6 +7,8 @@ on:
     paths:
       - ".github/workflows/r420-preview.yml"
       - "scripts/fetch_sinyi_r420_preview.py"
+      - "scripts/enrich_r420_first_display.py"
+      - "scripts/enrich_sinyi_first_display.py"
       - "scripts/patch_r420_preview_ui.py"
       - "scripts/smoke_test_r420_preview.py"
       - "docs/preview/r420-widget.css"
@@ -38,6 +40,9 @@ jobs:
 
       - name: Fetch R420 store snapshot
         run: python scripts/fetch_sinyi_r420_preview.py
+
+      - name: Enrich earliest Sinyi listing time
+        run: python scripts/run_with_system_chrome.py scripts/enrich_r420_first_display.py
 
       - name: Preserve snapshot
         run: cp docs/preview/r420-store.json /tmp/r420-store.json
