@@ -27,6 +27,8 @@ def main():
     assert total == int(payload.get('sourceTotalCount') or -1)
     assert total == len(payload.get('listings') or [])
     assert len({x.get('houseNo') for x in payload.get('listings') or []}) == total
+    assert [x.get('area') for x in (payload.get('areas') or [])] == ['埔墘區','板橋區','其他行政區']
+    assert sum(int(x.get('count') or 0) for x in (payload.get('areas') or [])) == total
     server=subprocess.Popen([sys.executable,'-m','http.server','8772','--bind','127.0.0.1','--directory',str(ROOT)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
     try:
         wait_server()
@@ -41,13 +43,18 @@ def main():
             assert page.locator('#r420Panel').is_visible()
             assert page.locator('#r420Groups .r420-item').count()==total
             assert str(total) in page.locator('#r420Total').inner_text()
+            assert page.locator('#r420Groups > details.r420-region').count() == 3
+            summaries=[page.locator('#r420Groups > details.r420-region > summary').nth(i).inner_text() for i in range(3)]
+            assert summaries[0].startswith('埔墘區'), summaries
+            assert summaries[1].startswith('板橋區'), summaries
+            assert summaries[2].startswith('其他行政區'), summaries
             first=(payload.get('listings') or [{}])[0].get('houseNo')
             if first:
                 page.fill('#r420Search',str(first))
                 assert page.locator('#r420Groups .r420-item').count()==1
             assert not errors, errors
             browser.close()
-        print(f'R420 Preview smoke passed: {total} unique listings rendered')
+        print(f'R420 Preview smoke passed: {total} unique listings grouped into 埔墘區 / 板橋區 / 其他行政區')
     finally:
         server.terminate()
         try: server.wait(timeout=5)
