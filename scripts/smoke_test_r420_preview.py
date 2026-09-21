@@ -54,7 +54,7 @@ def main():
                 assert page.locator('#r420Groups .r420-item').count()==1
             page.fill('#r420Search','4986WV')
             assert page.locator('#r420Groups .r420-item').count()==1
-            actual_text=page.locator('#r420Groups .r420-item').inner_text()
+            actual_text=page.locator('#r420Groups .r420-item').text_content() or ''
             print('R420 4986WV TEXT=',repr(actual_text))
             print('R420 4986WV DATA=',page.evaluate("JSON.stringify((R420.listings||[]).find(x=>x.houseNo==='4986WV'))"))
             print('R420 ITEM HTML=',page.evaluate("r420ItemHtml((R420.listings||[]).find(x=>x.houseNo==='4986WV'))"))
