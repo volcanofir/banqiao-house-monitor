@@ -21,7 +21,7 @@ OUT = Path("docs/preview/r420-store.json")
 MAX_PAGES = 20
 RECENT_REMOVED_DAYS = 10
 WATCH_ROADS = ("中山路二段", "三民路一段", "三民路二段", "翠華街", "林森街", "萬安街", "光復街")
-PUQIAN_ROADS = WATCH_ROADS + ("富山街", "懷仁街", "永豐街", "光環路一段", "光環路二段")
+PUQIAN_ROADS = WATCH_ROADS + ("富山街", "懷仁街", "永豐街", "光環路一段", "光環路二段", "太和街", "民享街")
 
 
 def now_iso():
