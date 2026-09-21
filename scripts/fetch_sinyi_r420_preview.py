@@ -21,6 +21,7 @@ OUT = Path("docs/preview/r420-store.json")
 MAX_PAGES = 20
 RECENT_REMOVED_DAYS = 10
 WATCH_ROADS = ("中山路二段", "三民路一段", "三民路二段", "翠華街", "林森街", "萬安街", "光復街")
+PUQIAN_ROADS = WATCH_ROADS + ("富山街", "懷仁街", "永豐街", "光環路一段", "光環路二段")
 
 
 def now_iso():
@@ -84,9 +85,10 @@ def listing_row(item):
         area = None
     address = str(item.get("address") or "").strip()
     core_road = next((road for road in WATCH_ROADS if road in address), None)
+    puqian_road = next((road for road in PUQIAN_ROADS if road in address), None)
     market_area = (
         "埔墘區"
-        if core_road
+        if puqian_road
         else "板橋區"
         if region["region"] == "新北市板橋區"
         else "其他行政區"
@@ -112,6 +114,7 @@ def listing_row(item):
         "shareURL": item.get("shareURL"),
         "url": f"https://www.sinyi.com.tw/buy/house/{quote(hid)}?breadcrumb=list",
         "coreRoadMatch": core_road,
+        "puqianRoadMatch": puqian_road,
         "marketArea": market_area,
     }
 
@@ -261,6 +264,7 @@ def main():
         "banqiaoOtherCount": banqiao_other_count,
         "otherAreaCount": other_area_count,
         "watchRoads": list(WATCH_ROADS),
+        "puqianRoads": list(PUQIAN_ROADS),
         "recentRemovedRetentionDays": RECENT_REMOVED_DAYS,
         "regions": region_summary,
         "areas": area_summary,
