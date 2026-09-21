@@ -8,7 +8,9 @@ text = text.replace('Preview 專用。案件依行政區收整，板橋區優先
 text = text.replace('<div class="r420-stat"><span>板橋區</span><strong id="r420Banqiao">-</strong></div>\n      <div class="r420-stat"><span>核心 7 路段</span><strong id="r420Core">-</strong></div>\n      <div class="r420-stat"><span>本次異動</span><strong id="r420Changes">-</strong></div>', '<div class="r420-stat"><span>埔墘區</span><strong id="r420Puqian">-</strong></div>\n      <div class="r420-stat"><span>板橋區</span><strong id="r420Banqiao">-</strong></div>\n      <div class="r420-stat"><span>其他行政區</span><strong id="r420Other">-</strong></div>\n      <div class="r420-stat"><span>本次異動</span><strong id="r420Changes">-</strong></div>')
 text = text.replace('<select id="r420District"><option value="all">全部地區</option></select>', '<select id="r420District"><option value="all">全部區域</option></select>')
 
-css_tag = '<link rel="stylesheet" href="r420-widget.css?v=20260921" />'
+text = text.replace('r420-widget.css?v=20260921', 'r420-widget.css?v=20260921-2')
+text = text.replace('r420-widget.js?v=20260921', 'r420-widget.js?v=20260921-2')
+css_tag = '<link rel="stylesheet" href="r420-widget.css?v=20260921-2" />'
 if css_tag not in text:
     text = text.replace('</head>', css_tag + '\n</head>', 1)
 
@@ -40,7 +42,7 @@ section = '''
 if 'id="r420Panel"' not in text:
     text = text.replace('</main>', section + '\n</main>', 1)
 
-js_tag = '<script src="r420-widget.js?v=20260921"></script>'
+js_tag = '<script src="r420-widget.js?v=20260921-2"></script>'
 if js_tag not in text:
     text = text.replace('</body>', js_tag + '\n</body>', 1)
 
