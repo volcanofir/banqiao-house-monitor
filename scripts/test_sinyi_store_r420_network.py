@@ -40,6 +40,7 @@ def walk(obj, path="$"):
 def main():
     captured = []
     console = []
+    first_filter_body = {"value": None}
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True, args=["--disable-dev-shm-usage"])
@@ -71,6 +72,8 @@ def main():
             if "filterObject.php" in resp.url:
                 try:
                     item["postData"] = req.post_data
+                    if first_filter_body["value"] is None and req.post_data:
+                        first_filter_body["value"] = json.loads(req.post_data)
                 except Exception as exc:
                     item["postDataError"] = f"{type(exc).__name__}: {exc}"
             try:
@@ -118,6 +121,67 @@ def main():
             })
             print(f"R420 BROWSER page={page_no} status={resp.status if resp else None} houseLinks={len(set(hrefs))}")
 
+        replay = {}
+        seed = first_filter_body["value"]
+        if seed:
+            for sort in ("0", "2"):
+                replay_rows = []
+                replay_pages = []
+                total = None
+                for page_no in range(1, 9):
+                    body = json.loads(json.dumps(seed))
+                    body["page"] = page_no
+                    body["pageCnt"] = 10
+                    body["sort"] = sort
+                    body["isReturnTotal"] = True
+                    result = page.evaluate(
+                        """async ({url, body}) => {
+                          const r = await fetch(url, {
+                            method: 'POST',
+                            credentials: 'include',
+                            headers: {'content-type':'application/json;charset=UTF-8'},
+                            body: JSON.stringify(body)
+                          });
+                          return {status:r.status, text:await r.text()};
+                        }""",
+                        {"url": "https://sinyiwebapi.sinyi.com.tw/filterObject.php", "body": body},
+                    )
+                    parsed = {}
+                    try:
+                        parsed = json.loads(result.get("text") or "{}")
+                    except Exception:
+                        parsed = {}
+                    content = parsed.get("content") or {}
+                    objs = content.get("object") or []
+                    ids = [str(x.get("houseNo")) for x in objs if isinstance(x, dict) and x.get("houseNo")]
+                    if total is None:
+                        total = content.get("totalCnt")
+                    replay_pages.append({
+                        "page": page_no,
+                        "status": result.get("status"),
+                        "totalCnt": content.get("totalCnt"),
+                        "count": len(objs),
+                        "houseNos": ids,
+                    })
+                    replay_rows.extend(objs)
+                    print(f"R420 REPLAY sort={sort} page={page_no} status={result.get('status')} totalCnt={content.get('totalCnt')} count={len(objs)} ids={','.join(ids)}")
+                ids = [str(x.get("houseNo")) for x in replay_rows if isinstance(x, dict) and x.get("houseNo")]
+                seen = set()
+                duplicates = []
+                for hid in ids:
+                    if hid in seen and hid not in duplicates:
+                        duplicates.append(hid)
+                    seen.add(hid)
+                replay[sort] = {
+                    "totalCnt": total,
+                    "rowCount": len(replay_rows),
+                    "uniqueHouseNoCount": len(seen),
+                    "duplicateHouseNos": duplicates,
+                    "pages": replay_pages,
+                    "listings": replay_rows,
+                }
+                print(f"R420 REPLAY RESULT sort={sort} totalCnt={total} rowCount={len(replay_rows)} uniqueHouseNoCount={len(seen)} duplicates={','.join(duplicates) or '-'}")
+
         browser.close()
 
     relevant = []
@@ -136,6 +200,7 @@ def main():
         "relevantJsonResponseCount": len(relevant),
         "networkHouseNoUniqueCount": len(union),
         "networkHouseNos": sorted(union),
+        "consistentSortReplay": replay,
         "relevantResponses": relevant,
         "allNetworkResponses": captured,
         "console": console,
