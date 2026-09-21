@@ -3,7 +3,7 @@ from pathlib import Path
 PATH = Path('docs/preview/index.html')
 text = PATH.read_text(encoding='utf-8')
 
-css_tag = '<link rel="stylesheet" href="/banqiao-house-monitor/preview/r420-widget.css?v=20260921" />'
+css_tag = '<link rel="stylesheet" href="r420-widget.css?v=20260921" />'
 if css_tag not in text:
     text = text.replace('</head>', css_tag + '\n</head>', 1)
 
@@ -34,7 +34,7 @@ section = '''
 if 'id="r420Panel"' not in text:
     text = text.replace('</main>', section + '\n</main>', 1)
 
-js_tag = '<script src="/banqiao-house-monitor/preview/r420-widget.js?v=20260921"></script>'
+js_tag = '<script src="r420-widget.js?v=20260921"></script>'
 if js_tag not in text:
     text = text.replace('</body>', js_tag + '\n</body>', 1)
 
