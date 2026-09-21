@@ -145,6 +145,12 @@ def main():
             break
 
         rows = chosen["list"]
+        page_ids = [str(x.get("houseNo") or "").strip() for x in rows if x.get("houseNo")]
+        repeated_ids = [hid for hid in page_ids if hid in seen]
+        print(
+            f"R420 page {page} meta routeQuery={json.dumps(chosen.get('routeQuery') or {}, ensure_ascii=False)} "
+            f"reducerKeys={','.join(chosen.get('reducerKeys') or [])} repeated={','.join(repeated_ids) or '-'}"
+        )
         added = 0
         for item in rows:
             hid = str(item.get("houseNo") or "").strip()
@@ -182,6 +188,8 @@ def main():
     print("R420 HOUSE IDS=", ",".join(str(x.get("houseNo")) for x in all_rows if x.get("houseNo")))
     if all_rows:
         print("R420 FIRST=", json.dumps(slim(all_rows[0]), ensure_ascii=False))
+        print("R420 FIRST RAW KEYS=", ",".join(sorted(all_rows[0].keys())))
+        print("R420 FIRST RAW=", json.dumps(all_rows[0], ensure_ascii=False))
         print("R420 LAST=", json.dumps(slim(all_rows[-1]), ensure_ascii=False))
     print("R420 OUTPUT=", OUT)
 
