@@ -8,6 +8,7 @@ on:
       - ".github/workflows/test-sinyi-r420.yml"
       - "scripts/test_sinyi_store_r420.py"
       - "scripts/test_sinyi_store_r420_network.py"
+      - "scripts/test_sinyi_store_r420_api.py"
 
 permissions:
   contents: read
@@ -34,6 +35,9 @@ jobs:
       - name: Inspect R420 rendered network requests
         run: python scripts/run_with_system_chrome.py scripts/test_sinyi_store_r420_network.py
 
+      - name: Test R420 direct API with consistent sort
+        run: python scripts/test_sinyi_store_r420_api.py
+
       - name: Upload diagnostic result
         uses: actions/upload-artifact@v4
         with:
@@ -41,4 +45,5 @@ jobs:
           path: |
             /tmp/sinyi-r420-test.json
             /tmp/sinyi-r420-network.json
+            /tmp/sinyi-r420-api.json
           if-no-files-found: error
