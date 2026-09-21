@@ -29,6 +29,8 @@ def main():
     assert len({x.get('houseNo') for x in payload.get('listings') or []}) == total
     assert [x.get('area') for x in (payload.get('areas') or [])] == ['埔墘區','板橋區','其他行政區']
     assert sum(int(x.get('count') or 0) for x in (payload.get('areas') or [])) == total
+    assert payload.get('firstDisplayComplete') is True
+    assert all(x.get('firstDisplay') for x in (payload.get('listings') or []))
     server=subprocess.Popen([sys.executable,'-m','http.server','8772','--bind','127.0.0.1','--directory',str(ROOT)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
     try:
         wait_server()
@@ -60,10 +62,13 @@ def main():
             print('R420 ITEM HTML=',page.evaluate("r420ItemHtml((R420.listings||[]).find(x=>x.houseNo==='4986WV'))"))
             print('R420 ITEM FN=',page.evaluate("r420ItemHtml.toString()"))
             assert '埔墘區｜富山街' in actual_text
+            assert 'R420' not in actual_text
+            assert '4986WV' not in actual_text
+            assert '最早上架：' in actual_text
             assert page.locator('#r420Groups .r420-pill.core').count()==1
             assert not errors, errors
             browser.close()
-        print(f'R420 Preview smoke passed: {total} unique listings grouped into 埔墘區 / 板橋區 / 其他行政區')
+        print(f'R420 Preview smoke passed: {total} listings, hidden store/house codes, complete earliest listing times')
     finally:
         server.terminate()
         try: server.wait(timeout=5)
