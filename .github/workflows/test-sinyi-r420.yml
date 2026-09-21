@@ -1,0 +1,38 @@
+name: 信義 R420 獨立抓取測試
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/test-sinyi-r420.yml"
+      - "scripts/test_sinyi_store_r420.py"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install packages
+        run: pip install requests beautifulsoup4
+
+      - name: Crawl R420 with current Sinyi method
+        run: python scripts/test_sinyi_store_r420.py
+
+      - name: Upload diagnostic result
+        uses: actions/upload-artifact@v4
+        with:
+          name: sinyi-r420-test
+          path: /tmp/sinyi-r420-test.json
+          if-no-files-found: error
