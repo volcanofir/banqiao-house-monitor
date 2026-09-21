@@ -18,6 +18,7 @@ STORE_CODE = "R420"
 STORE_NAME = "板橋中山店"
 BASE = f"https://www.sinyi.com.tw/buy/list/{STORE_CODE}-{quote(STORE_NAME)}-store"
 OUT = Path("docs/preview/r420-store.json")
+FIRST_DISPLAY_CACHE = Path("docs/data/sinyi-first-display-cache.json")
 MAX_PAGES = 20
 RECENT_REMOVED_DAYS = 10
 WATCH_ROADS = ("中山路二段", "三民路一段", "三民路二段", "翠華街", "林森街", "萬安街", "光復街")
@@ -68,7 +69,7 @@ def fetch_page(page):
     return url, rows, int(reducer.get("totalCnt") or 0)
 
 
-def listing_row(item):
+def listing_row(item, first_display_cache):
     hid = str(item.get("houseNo") or "").strip()
     region = parse_region(item.get("address"))
     price = item.get("totalPrice")
@@ -84,6 +85,8 @@ def listing_row(item):
     except Exception:
         area = None
     address = str(item.get("address") or "").strip()
+    cached = first_display_cache.get(hid) or {}
+    first_display = item.get("firstDisplay") or cached.get("firstDisplay")
     core_road = next((road for road in WATCH_ROADS if road in address), None)
     puqian_road = next((road for road in PUQIAN_ROADS if road in address), None)
     market_area = (
@@ -116,6 +119,8 @@ def listing_row(item):
         "coreRoadMatch": core_road,
         "puqianRoadMatch": puqian_road,
         "marketArea": market_area,
+        "firstDisplay": first_display,
+        "firstDisplayTimestamp": cached.get("timestamp"),
     }
 
 
@@ -136,6 +141,12 @@ def main():
             previous = {}
     prev_rows = {str(x.get("houseNo")): x for x in (previous.get("listings") or []) if x.get("houseNo")}
     baseline = not bool(prev_rows)
+    first_display_cache = {}
+    if FIRST_DISPLAY_CACHE.exists():
+        try:
+            first_display_cache = json.loads(FIRST_DISPLAY_CACHE.read_text(encoding="utf-8"))
+        except Exception:
+            first_display_cache = {}
 
     current_raw = []
     seen = set()
@@ -170,7 +181,7 @@ def main():
     new_ids = []
     price_changes = []
     for item in current_raw:
-        row = listing_row(item)
+        row = listing_row(item, first_display_cache)
         hid = row["houseNo"]
         old = prev_rows.get(hid)
         row["firstSeenAt"] = (old or {}).get("firstSeenAt") or checked_at
@@ -193,6 +204,10 @@ def main():
         else:
             row["priceChange"] = None
         listings.append(row)
+
+    missing_first_display = [x["houseNo"] for x in listings if not x.get("firstDisplay")]
+    if missing_first_display:
+        raise RuntimeError(f"R420 firstDisplay incomplete: {len(missing_first_display)} missing: {missing_first_display[:20]}")
 
     current_ids = {x["houseNo"] for x in listings}
     newly_removed = []
@@ -266,6 +281,7 @@ def main():
         "watchRoads": list(WATCH_ROADS),
         "puqianRoads": list(PUQIAN_ROADS),
         "recentRemovedRetentionDays": RECENT_REMOVED_DAYS,
+        "firstDisplayComplete": not missing_first_display,
         "regions": region_summary,
         "areas": area_summary,
         "changes": changes,
