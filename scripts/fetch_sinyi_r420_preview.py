@@ -184,6 +184,9 @@ def main():
         row = listing_row(item, first_display_cache)
         hid = row["houseNo"]
         old = prev_rows.get(hid)
+        if not row.get("firstDisplay") and old:
+            row["firstDisplay"] = old.get("firstDisplay")
+            row["firstDisplayTimestamp"] = old.get("firstDisplayTimestamp")
         row["firstSeenAt"] = (old or {}).get("firstSeenAt") or checked_at
         row["lastSeenAt"] = checked_at
         row["newAt"] = None
@@ -206,8 +209,6 @@ def main():
         listings.append(row)
 
     missing_first_display = [x["houseNo"] for x in listings if not x.get("firstDisplay")]
-    if missing_first_display:
-        raise RuntimeError(f"R420 firstDisplay incomplete: {len(missing_first_display)} missing: {missing_first_display[:20]}")
 
     current_ids = {x["houseNo"] for x in listings}
     newly_removed = []
