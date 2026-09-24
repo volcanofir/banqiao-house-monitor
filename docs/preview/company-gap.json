@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-24T15:37:41+00:00",
-  "sourceDataUpdatedAt": "2026-09-24T15:31:08+00:00",
+  "generatedAt": "2026-09-24T15:47:07+00:00",
+  "sourceDataUpdatedAt": "2026-09-24T15:40:03+00:00",
   "mode": "preview_only_591_then_sinyi_structured_floor_then_company_neartie_guard_v8",
   "fetchMode": "yungching_official_rendered_dom_only",
   "company": "永慶房屋",
   "companyDataSource": "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM；缺樓層時同路徑開官方案件頁補值",
   "companyListingCount": 83,
-  "companySnapshotCapturedAt": "2026-09-24T15:35:26+00:00",
+  "companySnapshotCapturedAt": "2026-09-24T15:44:41+00:00",
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -18,7 +18,7 @@
   ],
   "externalActiveCount": 194,
   "propertyGroupCount": 151,
-  "rawListingCount": 510,
+  "rawListingCount": 511,
   "crossPlatformMergedGroupCount": 23,
   "crossSourceReviewCount": 4,
   "companyConflictDowngradedCount": 1,
@@ -35,7 +35,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 38,
-      "browserCapturedAt": "2026-09-24T15:35:26+00:00",
+      "browserCapturedAt": "2026-09-24T15:44:41+00:00",
       "paginationExpected": true,
       "paginationComplete": true,
       "paginationActivePage": 2,
@@ -52,7 +52,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 34,
-      "browserCapturedAt": "2026-09-24T15:35:26+00:00",
+      "browserCapturedAt": "2026-09-24T15:44:41+00:00",
       "paginationExpected": true,
       "paginationComplete": true,
       "paginationActivePage": 2,
@@ -69,7 +69,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 0,
-      "browserCapturedAt": "2026-09-24T15:35:26+00:00",
+      "browserCapturedAt": "2026-09-24T15:44:41+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -86,7 +86,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 1,
-      "browserCapturedAt": "2026-09-24T15:35:26+00:00",
+      "browserCapturedAt": "2026-09-24T15:44:41+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -103,7 +103,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 0,
-      "browserCapturedAt": "2026-09-24T15:35:26+00:00",
+      "browserCapturedAt": "2026-09-24T15:44:41+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -120,7 +120,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 7,
-      "browserCapturedAt": "2026-09-24T15:35:26+00:00",
+      "browserCapturedAt": "2026-09-24T15:44:41+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -137,7 +137,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 3,
-      "browserCapturedAt": "2026-09-24T15:35:26+00:00",
+      "browserCapturedAt": "2026-09-24T15:44:41+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -6306,8 +6306,8 @@
           "sourcePublishedAtType": "posttime",
           "newAt": null,
           "active": true,
-          "mergedListingCount": 2,
-          "mergedActiveListingCount": 2,
+          "mergedListingCount": 3,
+          "mergedActiveListingCount": 3,
           "mergedListings": [
             {
               "id": "591:20956166",
@@ -6334,13 +6334,26 @@
               "address": "板橋區-光復街",
               "sourcePublishedAt": 1790218805,
               "active": true
+            },
+            {
+              "id": "591:25151160",
+              "houseId": "25151160",
+              "source": "591",
+              "title": "光復街漂亮RC顶佳",
+              "url": "https://m.591.com.tw/v2/sale/25151160",
+              "price": "1450萬",
+              "effectivePrice": null,
+              "size": "25.7坪",
+              "address": "板橋區-光復街",
+              "sourcePublishedAt": 1790218805,
+              "active": true
             }
           ]
         }
       ],
       "crossPlatformMerged": false,
       "crossPlatformMatchInfo": [],
-      "rawListingCount": 2
+      "rawListingCount": 3
     },
     {
       "groupId": "GROUP:591:20945267",
@@ -21363,8 +21376,8 @@
   },
   "officialBrowserCompany": {
     "enabled": true,
-    "capturedAt": "2026-09-24T15:35:26+00:00",
-    "snapshotAgeMinutes": 2.2,
+    "capturedAt": "2026-09-24T15:44:41+00:00",
+    "snapshotAgeMinutes": 2.4,
     "acceptedRoadCount": 7,
     "unavailableRoadCount": 0,
     "roads": {
@@ -21458,7 +21471,7 @@
   "safeFloorParser": true,
   "safeFloorParserRule": "subject floor must be physically valid against total floor; glued area digits are trimmed instead of becoming impossible floors",
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-09-24T15:37:39+00:00",
+    "generatedAt": "2026-09-24T15:47:04+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 70,
@@ -21527,7 +21540,7 @@
     "groups": []
   },
   "recentOffMarketRetentionDays": 10,
-  "recentOffMarketGeneratedAt": "2026-09-24T15:37:41+00:00",
+  "recentOffMarketGeneratedAt": "2026-09-24T15:47:07+00:00",
   "recentOffMarketCount": 18,
   "recentOffMarketGroups": [
     {
