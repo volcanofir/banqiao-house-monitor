@@ -1,17 +1,17 @@
 {
-  "auditedAt": "2026-09-25T09:57:33+00:00",
+  "auditedAt": "2026-09-25T13:41:53+00:00",
   "scheme": "A",
   "target": "exact canonical Preview files before atomic publish",
   "validator": "validate_scheme_a_preview_v3",
   "passed": true,
   "error": null,
   "companyGap": {
-    "generatedAt": "2026-09-25T09:57:31+00:00",
+    "generatedAt": "2026-09-25T13:41:51+00:00",
     "capturedAt": null,
     "verifiedAt": null,
-    "companySnapshotCapturedAt": "2026-09-25T09:55:07+00:00",
+    "companySnapshotCapturedAt": "2026-09-25T13:39:06+00:00",
     "listingCount": null,
-    "companyListingCount": 81,
+    "companyListingCount": 82,
     "propertyGroupCount": 154,
     "counts": {
       "company_match": 52,
@@ -26,7 +26,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-09-25T09:57:28+00:00",
+      "generatedAt": "2026-09-25T13:41:49+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 70,
@@ -96,17 +96,17 @@
   },
   "browserSnapshot": {
     "generatedAt": null,
-    "capturedAt": "2026-09-25T09:55:07+00:00",
+    "capturedAt": "2026-09-25T13:39:06+00:00",
     "verifiedAt": null,
     "companySnapshotCapturedAt": null,
-    "listingCount": 81,
+    "listingCount": 82,
     "companyListingCount": null,
     "propertyGroupCount": null,
     "counts": null,
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 86,
-      "afterCount": 81,
+      "beforeCount": 87,
+      "afterCount": 82,
       "removedCount": 5,
       "collisionIds": [
         "4308114"
@@ -116,12 +116,12 @@
         {
           "id": "4308114",
           "road": "板橋區中山路二段",
-          "title": "收租置產商辦首選",
-          "area": 30.78,
-          "price": 1488.0,
+          "title": "中山路門牌近埔墘市場周邊連鎖店面匯聚",
+          "area": 46.3,
+          "price": 13300.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
           "replacementIds": [
-            "6705632"
+            "6778412"
           ],
           "replacementFound": true
         },
@@ -154,7 +154,7 @@
           "road": "板橋區翠華街",
           "title": "門前好停車｜氣派門廳｜辦公規劃｜地下室整潔",
           "area": 59.37,
-          "price": 4280.0,
+          "price": 3988.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
           "replacementIds": [
             "7455915"
@@ -187,10 +187,10 @@
   "verification": {
     "generatedAt": null,
     "capturedAt": null,
-    "verifiedAt": "2026-09-25T09:57:33+00:00",
-    "companySnapshotCapturedAt": "2026-09-25T09:55:07+00:00",
+    "verifiedAt": "2026-09-25T13:41:53+00:00",
+    "companySnapshotCapturedAt": "2026-09-25T13:39:06+00:00",
     "listingCount": null,
-    "companyListingCount": 81,
+    "companyListingCount": 82,
     "propertyGroupCount": 154,
     "counts": {
       "company_match": 52,
@@ -200,8 +200,8 @@
     },
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 86,
-      "afterCount": 81,
+      "beforeCount": 87,
+      "afterCount": 82,
       "removedCount": 5,
       "collisionIds": [
         "4308114"
@@ -211,12 +211,12 @@
         {
           "id": "4308114",
           "road": "板橋區中山路二段",
-          "title": "收租置產商辦首選",
-          "area": 30.78,
-          "price": 1488.0,
+          "title": "中山路門牌近埔墘市場周邊連鎖店面匯聚",
+          "area": 46.3,
+          "price": 13300.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
           "replacementIds": [
-            "6705632"
+            "6778412"
           ],
           "replacementFound": true
         },
@@ -249,7 +249,7 @@
           "road": "板橋區翠華街",
           "title": "門前好停車｜氣派門廳｜辦公規劃｜地下室整潔",
           "area": 59.37,
-          "price": 4280.0,
+          "price": 3988.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
           "replacementIds": [
             "7455915"
@@ -277,7 +277,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-09-25T09:57:28+00:00",
+      "generatedAt": "2026-09-25T13:41:49+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 70,
