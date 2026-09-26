@@ -1,22 +1,22 @@
 {
-  "auditedAt": "2026-09-25T21:23:37+00:00",
+  "auditedAt": "2026-09-26T00:47:17+00:00",
   "scheme": "A",
   "target": "exact canonical Preview files before atomic publish",
   "validator": "validate_scheme_a_preview_v3",
   "passed": true,
   "error": null,
   "companyGap": {
-    "generatedAt": "2026-09-25T21:23:35+00:00",
+    "generatedAt": "2026-09-26T00:47:15+00:00",
     "capturedAt": null,
     "verifiedAt": null,
-    "companySnapshotCapturedAt": "2026-09-25T21:21:09+00:00",
+    "companySnapshotCapturedAt": "2026-09-26T00:44:46+00:00",
     "listingCount": null,
-    "companyListingCount": 82,
+    "companyListingCount": 80,
     "propertyGroupCount": 154,
     "counts": {
-      "company_match": 52,
+      "company_match": 51,
       "review": 1,
-      "missing": 101,
+      "missing": 102,
       "unavailable": 0
     },
     "idIntegrityGuard": null,
@@ -26,7 +26,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-09-25T21:23:33+00:00",
+      "generatedAt": "2026-09-26T00:47:14+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 70,
@@ -88,7 +88,7 @@
     "companyNearTieGuard": {
       "enabled": true,
       "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-      "examinedCompanyMatchCount": 52,
+      "examinedCompanyMatchCount": 51,
       "downgradedCount": 0,
       "remainingAutoNearTieCount": 0,
       "groups": []
@@ -96,17 +96,17 @@
   },
   "browserSnapshot": {
     "generatedAt": null,
-    "capturedAt": "2026-09-25T21:21:09+00:00",
+    "capturedAt": "2026-09-26T00:44:46+00:00",
     "verifiedAt": null,
     "companySnapshotCapturedAt": null,
-    "listingCount": 82,
+    "listingCount": 80,
     "companyListingCount": null,
     "propertyGroupCount": null,
     "counts": null,
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 87,
-      "afterCount": 82,
+      "beforeCount": 85,
+      "afterCount": 80,
       "removedCount": 5,
       "collisionIds": [
         "4308114"
@@ -140,12 +140,12 @@
         {
           "id": "4308114",
           "road": "板橋區三民路二段",
-          "title": "三民路大馬路知名連鎖品牌穩定收租金店面",
-          "area": 54.03,
-          "price": 7000.0,
+          "title": "正三民路近家樂福賣場埔墘市場建商保留戶",
+          "area": 65.1,
+          "price": 4298.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
           "replacementIds": [
-            "6700174"
+            "6456220"
           ],
           "replacementFound": true
         },
@@ -187,21 +187,21 @@
   "verification": {
     "generatedAt": null,
     "capturedAt": null,
-    "verifiedAt": "2026-09-25T21:23:37+00:00",
-    "companySnapshotCapturedAt": "2026-09-25T21:21:09+00:00",
+    "verifiedAt": "2026-09-26T00:47:17+00:00",
+    "companySnapshotCapturedAt": "2026-09-26T00:44:46+00:00",
     "listingCount": null,
-    "companyListingCount": 82,
+    "companyListingCount": 80,
     "propertyGroupCount": 154,
     "counts": {
-      "company_match": 52,
+      "company_match": 51,
       "review": 1,
-      "missing": 101,
+      "missing": 102,
       "unavailable": 0
     },
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 87,
-      "afterCount": 82,
+      "beforeCount": 85,
+      "afterCount": 80,
       "removedCount": 5,
       "collisionIds": [
         "4308114"
@@ -235,12 +235,12 @@
         {
           "id": "4308114",
           "road": "板橋區三民路二段",
-          "title": "三民路大馬路知名連鎖品牌穩定收租金店面",
-          "area": 54.03,
-          "price": 7000.0,
+          "title": "正三民路近家樂福賣場埔墘市場建商保留戶",
+          "area": 65.1,
+          "price": 4298.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
           "replacementIds": [
-            "6700174"
+            "6456220"
           ],
           "replacementFound": true
         },
@@ -277,7 +277,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-09-25T21:23:33+00:00",
+      "generatedAt": "2026-09-26T00:47:14+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 70,
@@ -339,7 +339,7 @@
     "companyNearTieGuard": {
       "enabled": true,
       "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-      "examinedCompanyMatchCount": 52,
+      "examinedCompanyMatchCount": 51,
       "downgradedCount": 0,
       "remainingAutoNearTieCount": 0,
       "groups": []
