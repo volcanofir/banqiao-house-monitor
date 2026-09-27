@@ -1,14 +1,14 @@
 {
-  "verifiedAt": "2026-09-27T06:33:44+00:00",
+  "verifiedAt": "2026-09-27T10:18:47+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + system Chrome official Yongching DOM + all-pages direct pg pagination + verified detail cache",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-09-27T06:31:26+00:00",
+  "sourceDataUpdatedAt": "2026-09-27T10:16:30+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-09-27T06:33:41+00:00",
+    "generatedAt": "2026-09-27T10:18:45+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 70,
@@ -76,22 +76,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-09-27T06:33:44+00:00",
-    "propertyGroupCount": 151,
+    "auditedAt": "2026-09-27T10:18:47+00:00",
+    "propertyGroupCount": 152,
     "companyListingCount": 80,
     "companyMatchCount": 49,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 173
+    "weakIdentityAlreadyMergedPairCount": 184
   },
-  "snapshotCapturedAt": "2026-09-27T06:32:07+00:00",
-  "companySnapshotCapturedAt": "2026-09-27T06:32:07+00:00",
-  "companyGapGeneratedAt": "2026-09-27T06:33:43+00:00",
+  "snapshotCapturedAt": "2026-09-27T10:17:08+00:00",
+  "companySnapshotCapturedAt": "2026-09-27T10:17:08+00:00",
+  "companyGapGeneratedAt": "2026-09-27T10:18:46+00:00",
   "browserListingCount": 80,
   "companyListingCount": 80,
-  "propertyGroupCount": 151,
-  "rawListingCount": 331,
-  "comparisonCount": 151,
+  "propertyGroupCount": 152,
+  "rawListingCount": 334,
+  "comparisonCount": 152,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -157,14 +157,14 @@
   "counts": {
     "company_match": 49,
     "review": 1,
-    "missing": 101,
+    "missing": 102,
     "unavailable": 0
   },
   "crossPlatformMergedGroupCount": 23,
   "crossSourceReviewCount": 4,
   "preview591Regroup": {
-    "original591TopLevel": 123,
-    "regrouped591TopLevel": 104,
+    "original591TopLevel": 124,
+    "regrouped591TopLevel": 105,
     "regrouped591ClusterCount": 16,
     "regrouped591AbsorbedCount": 19,
     "clusterFloorConflictBlocked": 0
@@ -245,11 +245,11 @@
     ],
     "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
   },
-  "candidateCount": 142,
-  "candidatesWithFloor": 115,
-  "candidatesWithYcCaseId": 115,
+  "candidateCount": 143,
+  "candidatesWithFloor": 116,
+  "candidatesWithYcCaseId": 116,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-09-27T06:33:30+00:00",
+    "generatedAt": "2026-09-27T10:18:34+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 72,
     "cacheHitCount": 72,
