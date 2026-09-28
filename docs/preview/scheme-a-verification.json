@@ -1,14 +1,14 @@
 {
-  "verifiedAt": "2026-09-28T10:33:48+00:00",
+  "verifiedAt": "2026-09-28T14:19:17+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v3-sinyi-floor-neartie",
   "source": "Sinyi official __NEXT_DATA__ structured floors + Surfshark + system Chrome official Yongching DOM + all-pages direct pg pagination + verified detail cache",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-09-28T10:31:30+00:00",
+  "sourceDataUpdatedAt": "2026-09-28T14:16:25+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-09-28T10:33:46+00:00",
+    "generatedAt": "2026-09-28T14:19:14+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 71,
@@ -76,7 +76,7 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-09-28T10:33:48+00:00",
+    "auditedAt": "2026-09-28T14:19:17+00:00",
     "propertyGroupCount": 152,
     "companyListingCount": 79,
     "companyMatchCount": 48,
@@ -84,13 +84,13 @@
     "chosenCandidateRecomputeMismatchCount": 0,
     "weakIdentityAlreadyMergedPairCount": 177
   },
-  "snapshotCapturedAt": "2026-09-28T10:32:19+00:00",
-  "companySnapshotCapturedAt": "2026-09-28T10:32:19+00:00",
-  "companyGapGeneratedAt": "2026-09-28T10:33:47+00:00",
+  "snapshotCapturedAt": "2026-09-28T14:17:47+00:00",
+  "companySnapshotCapturedAt": "2026-09-28T14:17:47+00:00",
+  "companyGapGeneratedAt": "2026-09-28T14:19:16+00:00",
   "browserListingCount": 79,
   "companyListingCount": 79,
   "propertyGroupCount": 152,
-  "rawListingCount": 334,
+  "rawListingCount": 332,
   "comparisonCount": 152,
   "coveredRoads": [
     "板橋區中山路二段",
@@ -249,7 +249,7 @@
   "candidatesWithFloor": 117,
   "candidatesWithYcCaseId": 117,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-09-28T10:33:36+00:00",
+    "generatedAt": "2026-09-28T14:19:03+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 71,
     "cacheHitCount": 71,
