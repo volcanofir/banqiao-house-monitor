@@ -1,128 +1,1032 @@
 {
   "url": "https://www.rakuya.com.tw/sell_item/info?ehid=014c7635624974c",
-  "responses": [
+  "network": [
     {
-      "url": "https://www.rakuya.com.tw/gtm-data/item-data-layer/detail",
-      "status": 200,
-      "contentType": "application/json; charset=UTF-8",
-      "snippets": [
-        "riant\":27.92,\"age\":46,\"price\":16880000,\"bedrooms\":3,\"affiliation\":\"1104647\",\"object_tag\":\"多衛浴\",\"object_type3\":\"中古屋\",\"object_main_size\":22.18,\"object_floor\":3,\"object_upload_time\":\"2026-09-27\",\"object_update_time\":\"2026-09-27\",\"object_mark\":\"NLCust_NLItem_NewItem,Agent_P0\",\"object_group_id\":\"591/S20631075\",\"object_member_brand\":\"住商不動產\",\"object_layout\":\"有格局圖\"}]}}]}",
-        "0000,\"bedrooms\":3,\"affiliation\":\"1104647\",\"object_tag\":\"多衛浴\",\"object_type3\":\"中古屋\",\"object_main_size\":22.18,\"object_floor\":3,\"object_upload_time\":\"2026-09-27\",\"object_update_time\":\"2026-09-27\",\"object_mark\":\"NLCust_NLItem_NewItem,Agent_P0\",\"object_group_id\":\"591/S20631075\",\"object_member_brand\":\"住商不動產\",\"object_layout\":\"有格局圖\"}]}}]}"
-      ],
-      "prefix": "{\"status\":true,\"dataLayers\":[{\"event\":\"view_item\",\"rakuya_from\":\"\",\"rakuya_page_location\":\"sell_item_detail_advanced\",\"ecommerce\":{\"items\":[{\"item_name\":\"捷運中山公寓3樓\",\"item_id\":\"014c7635624974c\",\"item_brand\":\"樂屋專仲\",\"item_category\":\"新北市\",\"item_category2\":\"220板橋區\",\"item_category3\":\"\",\"item_category4\":\"price2000\",\"item_category5\":\"公寓\",\"item_variant\":27.92,\"age\":46,\"price\":16880000,\"bedrooms\":3,\"affiliation\":\"1104647\",\"object_tag\":\"多衛浴\",\"object_type3\":\"中古屋\",\"object_main_size\":22.18,\"object_floor\":3,\"object_upload_time\":\"2026-09-27\",\"object_update_time\":\"2026-09-27\",\"object_mark\":\"NLCust_NLItem_NewItem,Agent_P0\",\"object_group_id\":\"591/S20631075\",\"object_member_brand\":\"住商不動產\",\"object_layout\":\"有格局圖\"}]}}]}"
+      "type": "document",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/sell_item/info?ehid=014c7635624974c"
     },
     {
-      "url": "https://www.rakuya.com.tw/realprice/api/item-realprice?ehid=014c7635624974c&groupid=591%2FS20631075&community=",
-      "status": 200,
-      "contentType": "application/json; charset=UTF-8",
-      "snippets": [],
-      "prefix": "{\"status\":true,\"statusCode\":\"000\",\"message\":\"success\",\"data\":{\"addrFull\":{\"score\":99,\"count\":0,\"matchInfo\":\"\",\"list\":[]},\"addrNumber\":{\"score\":90,\"count\":2,\"matchInfo\":\"\",\"list\":[{\"closeDate\":\"114/11\",\"sn\":\"LFP9FPPMZNZ1LC\",\"address\":\"中山路二段40巷27號3樓\",\"historyTotal\":1,\"bedrooms\":3,\"livingrooms\":2,\"bathrooms\":1,\"paytype\":\"P1\",\"layout\":\"3房2廳1衛\",\"isPresale\":false,\"buildingAge\":\"45年\",\"typecode\":\"R1\",\"sellTypeCode\":\"apartment\",\"sellTypeCodeShort\":\"公寓\",\"sellType\":\"公寓\",\"buildYear\":\"45.3年\",\"transFloors\":\"3,陽台\",\"surFloors\":\"5\",\"transFloorsList\":[3],\"transFloorsShortDesc\":\"3樓\",\"buildingFloors\":\"3,陽台/5樓\",\"includeGarage\":false,\"memo\":\"陽台外推\",\"contractMemo\":\"\",\"isContractCancelled\":false,\"totalSize\":\"27.92\",\"closePrice\":\"1,100\",\"unitPrice\":\"39.4\",\"garageSize\":\"\",\"garagePrice\":\"\",\"unitPriceExcludeGarage\":false,\"garageSizeDesc\":\"\",\"garagePriceDesc\":\"\",\"unitPriceGarageDesc\":\"\",\"hasElevator\":false,\"zipcode\":\"220\",\"cityName\":\"新北市\",\"areaName\":\"板橋區\",\"communityName\":\"\",\"url\":\"https://www.rakuya.com.tw/realprice/detail?sn=LFP9FPPMZNZ1LC\",\"communityId\":0,\"communityUrl\":\"\",\"id\":\"LFP9FPPMZNZ1LC\",\"lat\":25.014552589019,\"lng\":121.47367032972,\"similarityReasons\":{\"size\":\"同坪數\",\"floor\":\"同樓層\",\"road\":\"同路段\",\"useType\":\""
+      "type": "script",
+      "method": "GET",
+      "url": "https://accounts.google.com/gsi/client"
     },
     {
-      "url": "https://member.rakuya.com.tw/sellItem/api/favorite/is-favorite",
-      "status": 200,
-      "contentType": "application/json; charset=UTF-8",
-      "snippets": [],
-      "prefix": "{\"status\":true,\"statusCode\":\"000\",\"message\":\"success\",\"data\":{\"014c7635624974c\":false}}"
+      "type": "script",
+      "method": "GET",
+      "url": "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
     },
     {
-      "url": "https://www.googleadservices.com/pagead/conversion/11458355571/?random=1790898268542&cv=11&fst=1790898268542&fmt=7&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938465~115938468~117776795~118012008~118897920~118897930~119381663~120213116~120385423~120469145~120469153~121280970&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=7&label=MbE1CPOF8bsaEPPC4tcq&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&fcntr=TW&flng=zh&bttype=purchase&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1877784322.1790898265&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&ec_mode=m&oid=GG_1976235674.1790898269&oidsrc=3&ecsid2=66839177.1790898269&_tu=SBA&gtb=3&mt=2&gcl_ctr=1~0~0~0&item=(16880000**014c7635624974c**)&gap.gtb=3&gap.gtbd=2&emd=tvd.1&eme=tv.1~&gap.ch=1&ept=63&epp=5~22~63~74",
-      "status": 200,
-      "contentType": "application/json; charset=UTF-8",
-      "snippets": [],
-      "prefix": "event: message data: {\"options\":{\"fallback_url\":\"https://www.google.com/pagead/1p-conversion/11458355571/?random=2094485542&cv=11&fst=1790898268542&fmt=3&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938465~115938468~117776795~118012008~118897920~118897930~119381663~120213116~120385423~120469145~120469153~121280970&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=7&label=MbE1CPOF8bsaEPPC4tcq&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&fcntr=TW&flng=zh&bttype=purchase&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1877784322.1790898265&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&ec_mode=m&oid=GG_1976235674.1790898269&oidsrc=3&ecsid2=66839177.1790898269&_tu=SBA&gtb=3&mt=2&gcl_ctr=1~0~0~"
+      "type": "script",
+      "method": "GET",
+      "url": "https://connect.facebook.net/zh_TW/sdk.js"
     },
     {
-      "url": "https://www.googleadservices.com/pagead/conversion/11458355571/?random=1790898268542&cv=11&fst=1790898268542&fmt=7&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938465~115938468~117776795~118012008~118897920~118897930~119381663~120213116~120385423~120469145~120469153~121280970&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=7&evjid=XPBVU1VTcEy2C5yPhA&label=MbE1CPOF8bsaEPPC4tcq&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&fcntr=TW&flng=zh&bttype=purchase&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1877784322.1790898265&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&ec_mode=m&oid=GG_1976235674.1790898269&oidsrc=3&ecsid2=66839177.1790898269&_tu=SBA&gtb=3&mt=1&gcl_ctr=1~0~0~0&item=(16880000**014c7635624974c**)&gap.gtb=3&gap.gtbd=2&category=acrcp_v1_512&emd=tvd.1&eme=tv.1~&gap.ch=4&ept=5&epp=5~22~63~74",
-      "status": 200,
-      "contentType": "application/json; charset=UTF-8",
-      "snippets": [],
-      "prefix": "event: message data: {\"fetch\":[\"https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11458355571/?random=1152693005&cv=11&fst=1790898268542&fmt=8&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938465~115938468~117776795~118012008~118897920~118897930~119381663~120213116~120385423~120469145~120469153~121280970&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=7&evjid=XPBVU1VTcEy2C5yPhA&label=MbE1CPOF8bsaEPPC4tcq&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1877784322.1790898265&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&ec_mode=m&oidsrc=3&ecsid2=66839177.1790898269&_tu=SBA&gtb=3&mt=1&gcl_ctr=1~0~0~0&gap.gtb=3&gap.gtbd=2&category=a"
+      "type": "script",
+      "method": "GET",
+      "url": "https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"
     },
     {
-      "url": "https://securepubads.g.doubleclick.net/gampad/ads?pvsid=1409201148787003&correlator=896987601353494&eid=122881289%2C122880664%2C122880808&output=ldjh&gdfp_req=1&vrg=202609280101&ptt=17&impl=fifs&iu_parts=146880540%2Crakuya_web%2Crakuya_buy_itemDetail&enc_prev_ius=%2F0%2F1%2F2&prev_iu_szs=320x50&fluid=height&ifi=1&dids=div-gpt-ad-1774839972604-0&adfs=3487590115&sfv=1-0-45&sc=1&lrm=100&cookie_enabled=1&abxe=1&dt=1790898268805&lmt=1790869468&adxs=900&adys=1394&biw=1280&bih=720&scr_x=0&scr_y=0&btvi=1&ucis=1&oid=2&u_his=2&u_h=720&u_w=1280&u_ah=720&u_aw=1280&u_cd=24&u_sd=1&u_tz=480&dmc=16&bc=31&nvt=1&uach=WyJMaW51eCIsIiIsIng4NiIsIiIsIjE1NC4wLjgwMzcuNTciLG51bGwsMCxudWxsLCI2NCIsW1siQ2hyb21pdW0iLCIxNTQuMC44MDM3LjU3Il0sWyJHb29nbGUgQ2hyb21lIiwiMTU0LjAuODAzNy41NyJdLFsiTm90IEEoQnJhbmQiLCI5OS4wLjAuMCJdXSwwXQ..&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&vis=1&psz=360x200&msz=360x200&fws=0&ohw=0&dlt=1790898264185&idt=4552&prev_scp=bslot%3DRWD_A1-1&cust_params=ehid%3D014c7635624974c%26city%3D2%26zipcode%3D220%26prange%3Dprice2000%26typecode%3DR1&adks=911033437&frm=20&cpu=2&eoidce=1&pgls=CAs.",
-      "status": 200,
-      "contentType": "text/plain; charset=UTF-8",
-      "snippets": [],
-      "prefix": "{\"/146880540/rakuya_web/rakuya_buy_itemDetail\":[\"html\",1,null,null,1,0,0,0,0,\"height\",null,1,1,[[\"ID=1c3de918d992dab8:T=1790898268:RT=1790898268:S=ALNI_Mb8sjpA7mJDW7UMC5rmhjG6VQ8j7A\",1824594268,\"/\",\"rakuya.com.tw\",1],[\"UID=000015377d171f22:T=1790898268:RT=1790898268:S=ALNI_MYvOH0UdD_jmNZgx3Q5sI-NgHXmag\",1824594268,\"/\",\"rakuya.com.tw\",2]],[138570815197],[7390287565],[5967576703],[4090295479],null,null,[961668],[12502834],null,null,null,0,null,null,null,null,null,null,\"AOrYGsm29j9gX7YHngFou-wvN12z_Z4JTQEN8I9SxiikbKhD3MHv9TU8hbuKqA3ZGptMyJfJknHe1Jb_TJtKnYQpdbLJDEgI8bfQFtQRlMKJ-ZZB\",\"CK6llPn_mZcDFYpLCAQdUD8laQ\",null,null,null,null,null,null,null,null,null,null,null,null,null,null,\"1\",null,null,null,null,null,null,null,null,null,null,null,\"AA-V4qM71c-7FpRP58dvg6FHqXLscQ6vVu6hw6qi4-MXWCdn3rVwH7TdXhZktbHI6WSVUgel0OZf_s8xc6LnKzBI8zCBfiCbYIuG9w9QpTIVo6n5dKNQVIeYHMh3NHEsE5o\",null,null,null,null,null,null,[[\"ID=87472b42d3c66883:T=1790898268:RT=1790898268:S=AA-AfjZmf5quA25vksFMYl058qw5\",1806450268,\"/\",\"rakuya.com.tw\"]],null,null,null,null,\"https://www.google.com/url?ct=abg\\u0026q=https://www.google.com/adsense/support/bin/request.py%3Fcontact%3Dabg_afc%26url%3Dhttps://www.rakuya.com.tw/sell_it"
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/vendor-vue-DXJTo0Lp.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/vendor-validate-C7t-3ssz.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/getWindowVueApi-YQT2Wp_O.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/vendor-axios-BRoiYgQR.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/index-rtjgWI19.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/aria-DcOVTI5c.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/notify-DuF9opEp.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/apiMaster-L_dNP34x.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/heightSizeMap-Da20XrsS.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/useFormValidate-BIak_DHY.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/merge-CWVa_T2p.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/BScrollBar-DkUN3b8I.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/index-D8GnovIG.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/index-C2Pj5FwB.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/BaseDialog-6IIk0X3d.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/constants-Sg1v1Qtq.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/use-form-item-CVEhDEgi.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/RKYRadio-BkAWVyKD.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/userFormSchema-VMjrxZZg.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/index-Boq7SQ0j.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/RKYButton-CsNKCffj.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/BaseDrawer-DEMiHb7e.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/index-CN7vaJbo.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/index-BdYqS3Gg.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/vendor-leaflet-D5A6HfId.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/RKYAvatar-B3ZIiMbK.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/useCancelToken-CW68Q7yA.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/bootstrap-BWkx-uUq.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/BaseButton-CLa-Hidw.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/vendor-swiper-BGfpzOXB.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/SwiperCarousel-Bpx88fvD.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/el-popper-Bmgzs265.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/useDeviceLinkOpen-BhQIa8QD.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/DeviceLink.vue_vue_type_script_setup_true_lang-8c1TX8u-.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/index-BAPNowZG.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/BaseBadge.vue_vue_type_style_index_0_scoped_afafe489_lang-M1NoyNns.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/SingleVerticalSlide-BJeYloGU.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/index-j3fGJab-.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/communityForm-guVjl8EA.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/index-dwyLYjTQ.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/index-DKxCkCQx.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/index-ZmhiogtQ.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/BaseBadge-BNQ12YgY.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/runWidgetInvoke-BUBqslIK.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/jquery-2.1.4.min.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/bootstrap/bootstrap.min.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/RAKUYA.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/RAKUYA.gtm.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/iframe-resizer/v2.8.10/iframeResizer.min.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/iframe-resizer/v2.8.10/iframeResizer.contentWindow.min.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/RAKUYA.broadcast_bridge.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/node_modules/localforage/dist/localforage.min.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/RAKUYA.storage.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/hosts.js?1787800128"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/analytics/mjs/log_js.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/form_pw.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/RAKUYA.header_new.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/web/js/jquery.slidemenu.min.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/web/js/jquery.sticky.min.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/web/js/modernizr.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/mqttws31.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/RakuyaActiveMessage.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/ieDialog.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/js/plugin/tab.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/RAKUYA.ad.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/RAKUYA.item_advance.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/item_favorite_popup.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://member.rakuya.com.tw/reliableRecommend/mjs/item_info_popular_index.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/RAKUYA.vue.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/Rakuya.applinkDetect.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/RAKUYA.item_history.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/js/linebot_subscribe_popup.js?v=4573d552"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/solid.min.js?v=2a03d7c0"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/regular.min.js?v=2a03d7c0"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/brands.min.js?v=2a03d7c0"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/custom-icons.min.js?v=2a03d7c0"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/fontawesome.js?v=2a03d7c0"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/light.min.js?v=2a03d7c0"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/duotone.min.js?v=2a03d7c0"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/pjs/item.action.sell.js?v=1726718377"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/pjs/item.sell.ad.js?v=1715665587"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/pjs/item.event.js?v=1714978389"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/pjs/item.preview.js?v=1714978389"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/pjs/item.detail.visited.js?v=1714978389"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/pjs/sell_item/item.js?v=1726718377"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/pjs/inform_message_listener.js?v=1789370935"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/pjs/widgets/compare_cart.js?v=1788762401"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/pjs/widgets/item_interactive.js?v=1770790900"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/pjs/widgets/login_before_action.js?v=1714978389"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/entry/sellItemInfo-wXNNg-Mj.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/entry/header-B5ZTM2d_.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/entry/footer-BTN2-Q1L.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/a10o/"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-PTP2JGN"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://connect.facebook.net/zh_TW/bundle/sdk.js/"
+    },
+    {
+      "type": "fetch",
+      "method": "GET",
+      "url": "https://connect.facebook.net/app_config/json/143958592404057/"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-PTP2JGN&gtg_health=1"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/a10o/70xLgINU0guBOAuVvQjYnxXdqeAlDqNMFbZVTpRu4wNPRNU6"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/a10o/70xLgINU0gubNn7ptnHH4HevqeAlDqNMFbZVTpRu4wNPRNU6"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/a10o/70xLgINU0guCNg_xx3LZ6HyuqeAlDqNMFbZVTpRu4wNPRNU6"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/a10o/70xLgINU0gubUWqUpXTQ72rTqeAlDqNMFbZVTpRu4wNPRNU6"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://connect.facebook.net/en_US/fbevents.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://tags.creativecdn.com/a0LC3k1HHtFwQbsPdq7d.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://d.line-scdn.net/n/line_tag/public/release/v1/lt.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://ma.rakuya.com.tw/matomo.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://t.ssp.hinet.net/utag.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://sb.scorecardresearch.com/cs/41493098/beacon.js"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect?rcb=14&frm=0&apvc=1&ae=g&auid=1609924844.1790898315&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&en=page_view&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&scrsrc=www.rakuya.com.tw&rnd=874926867.1790898315&navt=n&npa=0&ep.ads_data_redaction=0&gdid=dY2E1Nz.dNzQzZD&gtb=1&gtm=45E92e69u2v853176373za204zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938466~115938468~118897920~118897930~119381664~120385423~120469145~120469153~121246026~121246034~121280971&tft=1790898314744&tfd=2185&gap.gtb=1&fmt=8"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://ad.doubleclick.net/ccm/s/collect?auid=1609924844.1790898315&gtm=45E92e69u2v853176373za204zd853176373xeaxf4&fmt=8"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://sb.scorecardresearch.com/internal-cs/default/beacon.js"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.rakuya.com.tw/a10o/g/measurement/conversion?random=1790898314935&cv=11&tid=G-RX72HKQ587&fst=1790898314935&fmt=8&en=session_start&gtm=45g92e69u2v885868412za20szb853176373zd853176373xecxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938466~115938468~118897920~118897930~119381664~120213116~120385422~120469145~120469153~121246026~121246034~121280971~121427143&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&gacid=1411842844.1790898315&hn=www.googleadservices.com&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gdid=dY2E1Nz&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=QA&rcb=0"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.rakuya.com.tw/a10o/ag/g/c?v=2&tid=G-RX72HKQ587&gtm=45g92e69u2v885868412za20szb853176373zd853176373xf4&_p=1790898313952&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz&ecid=1225883833&_eu=AAAAAGAC&_prs=ok&_uip=%3A%3A&cid=1411842844.1790898315&fp=1&frm=0&pscdl=noapi&rcb=0&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&_gsid=Ij_-qyOAWxgDdrXsElUwzmQkjx_Wj9L6Lg&gaf=2&_s=1&tag_exp=115938466~115938468~118897920~118897930~119381664~120213116~120385422~120469145~120469153~121246026~121246034~121280971~121427143&sid=1790898314&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=1&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=2&gap.gtb=1&ep.from=%20-%20%20-%20model%3A%20&ep.mcrypt_b=&ep.content_group=%E8%B2%B7%E5%B1%8B%E7%89%A9%E4%BB%B6%E6%98%8E%E7%B4%B0%E9%A0%81&ep.site_group=A%20-%20realprice%3A%20&ep.utm_creative_format=&ep.utm_marketing_tropic=&ep.rakuya_platform=web&ep.rakuya_from2=%20-%20%20-%20&up.ru_id=aeb8e7512ae019c2&up.mcrypt_b=&tfd=2414"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.rakuya.com.tw/a10o/ag/g/c?v=2&tid=G-HVBNC2NJZE&gtm=45g92e69u2v9167067160za20szb853176373zd853176373xf4&_p=1790898313952&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz&_eu=AAAAAGAC&_uip=%3A%3A&cid=1411842844.1790898315&fp=1&frm=0&pscdl=noapi&rcb=15&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&_gsid=I5J0of0xYzG8ZxZdVcWtSAIPzgdl-l8r6w&gaf=2&_s=1&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121280971&sid=1790898315&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=1&_tu=QA&en=page_view&_fv=1&_ss=1&gap.gtb=1&ep.content_group=%E8%B2%B7%E5%B1%8B%E7%89%A9%E4%BB%B6%E6%98%8E%E7%B4%B0%E9%A0%81&ep.from=%20-%20%20-%20model%3A%20&ep.site_group=A%20-%20realprice%3A%20&ep.utm_creative_format=&ep.utm_marketing_tropic=&ep.rakuya_platform=web&ep.rakuya_from2=%20-%20%20-%20&up.ru_id=aeb8e7512ae019c2&up.mcrypt_b=&tfd=2525"
+    },
+    {
+      "type": "fetch",
+      "method": "GET",
+      "url": "https://server-side-tagging-4amklidimq-uc.a.run.app/g/collect?v=2&tid=G-HVBNC2NJZE&gtm=45g92e69u2v9167067160z8853176373za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz&ecid=1953915301&_eu=AAAAAGQ&_fplc=0&cid=1411842844.1790898315&frm=0&pscdl=noapi&rcb=15&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&sst.gch=0&sst.tft=1790898313952&sst.lpc=51818026&sst.navt=n&sst.ude=0&sst.sw_exp=1&gaf=2&_s=2&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121280971&sid=1790898315&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=1&_tu=RA&en=PageView&gap.sstd=4&gap.gtb=1&ep.content_group=%E8%B2%B7%E5%B1%8B%E7%89%A9%E4%BB%B6%E6%98%8E%E7%B4%B0%E9%A0%81&ep.from=%20-%20%20-%20model%3A%20&ep.site_group=A%20-%20realprice%3A%20&ep.utm_creative_format=&ep.utm_marketing_tropic=&ep.rakuya_platform=web&ep.rakuya_from2=%20-%20%20-%20&ep.page_pathvar=%2Fsell_item%2Finfo&ep.x-line-deduplication_key=ec5b31eb-e904-4204-8042-1c13e2f35bf6&ep.x-line-hashed_phone=&ep.x-line-hashed_email=&ep.page_hostname=www.rakuya.com.tw&ep.PageView=true&ep.LINECAPI=true&_et=6&tfd=2539&richsstsse"
+    },
+    {
+      "type": "fetch",
+      "method": "GET",
+      "url": "https://server-side-tagging-4amklidimq-uc.a.run.app/g/collect?v=2&tid=G-HVBNC2NJZE&gtm=45g92e69u2v9167067160z8853176373za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz&ecid=1953915301&_eu=AAAAAGQ&_fplc=0&cid=1411842844.1790898315&ec_mode=c&frm=0&pscdl=noapi&rcb=15&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&sst.gch=0&sst.tft=1790898313952&sst.lpc=51818026&sst.navt=n&sst.ude=0&sst.sw_exp=1&gaf=2&_s=3&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121280971&cu=TWD&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&sid=1790898315&sct=1&seg=0&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=1&_tu=RA&en=PageView&gap.sstd=4&gap.gtb=1&ep.content_group=%E8%B2%B7%E5%B1%8B%E7%89%A9%E4%BB%B6%E6%98%8E%E7%B4%B0%E9%A0%81&ep.from=%20-%20%20-%20model%3A%20&ep.site_group=A%20-%20realprice%3A%20&ep.utm_creative_format=&ep.utm_marketing_tropic=&ep.rakuya_platform=web&ep.rakuya_from2=%20-%20%20-%20&epn.event_time=1790898315&evnid=ec5b31eb-e904-4204-8042-1c13e2f35bf6&ep.country=Taiwan&_et=3&tfd=2545&richsstsse"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.rakuya.com.tw/a10o/ag/g/c?v=2&tid=G-H1V3P7YEG9&gtm=45g92e69u2v9131406586za20szb853176373zd853176373xf4&_p=1790898313952&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz&_eu=AAAAAGA&_uip=%3A%3A&cid=1411842844.1790898315&fp=1&frm=0&pscdl=noapi&rcb=12&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&_gsid=Q8bQ6WTAMMBWEVk_kdsP9ROZLoqDUTEh9A&gaf=2&_s=1&tag_exp=115938466~115938469~118897920~118897930~120213116~120385422~120469145~120469153~121046262~121046270~121280971&sid=1790898315&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=1&en=page_view&_fv=1&_ss=1&gap.gtb=1&tfd=2618"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+    },
+    {
+      "type": "xhr",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/sell_item/api/question/list?ehid=014c7635624974c"
+    },
+    {
+      "type": "xhr",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/realprice/api/item-realprice?ehid=014c7635624974c&groupid=591%2FS20631075&community="
+    },
+    {
+      "type": "xhr",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/sell_item/api/item-environment/list?ehid=014c7635624974c"
+    },
+    {
+      "type": "xhr",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/sell_item/api/item-recommend-gold?zipcode=220&ehid=014c7635624974c"
+    },
+    {
+      "type": "xhr",
+      "method": "GET",
+      "url": "https://webmsg.rakuya.com.tw/passive/passive_message/check?url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c"
+    },
+    {
+      "type": "xhr",
+      "method": "GET",
+      "url": "https://webmsg.rakuya.com.tw/interactive/chatroom_notice/unread_count"
+    },
+    {
+      "type": "xhr",
+      "method": "POST",
+      "url": "https://www.rakuya.com.tw/gtm-data/item-data-layer/detail"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/cdn-cgi/challenge-platform/scripts/jsd/main.js"
+    },
+    {
+      "type": "xhr",
+      "method": "POST",
+      "url": "https://member.rakuya.com.tw/sellItem/api/favorite/is-favorite"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.rakuya.com.tw/a10o/ag/g/c?v=2&tid=G-QV3V21PBQD&gtm=45g92e69u2v9185761025za20szb853176373zd853176373xf4&_p=1790898313952&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz&ecid=1685320128&_eu=AAAAAGAC&_uip=%3A%3A&cid=1411842844.1790898315&ec_mode=a&fp=1&frm=0&pscdl=noapi&rcb=6&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&_gsid=9d7crkn_MaNs7VJTATgCFYhl1zJpS7NxCw&gaf=2&_s=1&tag_exp=115616986~115938466~115938468~118897920~118897930~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&sid=1790898315&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=1&_tu=QA&uid=&en=page_view&_fv=1&_ss=1&gap.gtb=1&ep.from=%20-%20%20-%20mode%3A%20&ep.mcrypt_b=&ep.rakuya_page_referrer=%20-%20&ep.ads_related=%20-%20&ep.rakuya_from2=%20-%20%20%20-%20&up.ru_id=aeb8e7512ae019c2&up.mcrypt_b=&tfd=3256"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11458355571/?random=1790898315818&cv=11&fst=1790898315818&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45g92e69u2v9185761025za20szb853176373zd853176373xecxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=QA&gtb=1&data=event%3Dgtag.config%3Bfrom%3D%20-%20%20-%20mode%3A%20%3Brakuya_page_referrer%3D%20-%20%3Bads_related%3D%20-%20%3Brakuya_from2%3D%20-%20%20%20-%20&gap.gtb=1&ept=9&rfmt=3&fmt=4"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.google.com/rmkt/collect/11458355571/?random=1790898315818&cv=11&fst=1790898315818&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45g92e69u2v9185761025za20szb853176373zd853176373xecxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=QA&gtb=1&data=event%3Dgtag.config%3Bfrom%3D%20-%20%20-%20mode%3A%20%3Brakuya_page_referrer%3D%20-%20%3Bads_related%3D%20-%20%3Brakuya_from2%3D%20-%20%20%20-%20&gap.gtb=1&ept=68&gcp=5"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect?rcb=6&frm=0&apvc=0&auid=1609924844.1790898315&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&tid=AW-11458355571&en=page_view&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&scrsrc=www.rakuya.com.tw&rnd=874926867.1790898315&navt=n&npa=0&ep.from=%20-%20%20-%20mode%3A%20&ep.rakuya_page_referrer=%20-%20&ep.ads_related=%20-%20&ep.rakuya_from2=%20-%20%20%20-%20&did=dY2E1Nz&gdid=dY2E1Nz&_tu=QA&gtb=1&gtm=45g92e69u2v9185761025za20szb853176373zd853176373xecxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&tft=1790898315856&tfd=3298&gap.gtb=1&tids=AW-11458355571&fmt=8"
+    },
+    {
+      "type": "document",
+      "method": "GET",
+      "url": "https://server-side-tagging-4amklidimq-uc.a.run.app/_/service_worker/69f0/sw_iframe.html?origin=https%3A%2F%2Fwww.rakuya.com.tw&1p=1"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/cdn-cgi/challenge-platform/h/b/scripts/jsd/d76008a69eab/main.js?"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://asia.creativecdn.com/tags/v2?type=json"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://connect.facebook.net/signals/config/182613354898571?v=2.9.414&r=stable&domain=www.rakuya.com.tw&hme=a4c28c8787325ac3f8f9eac68364f47df2a8c4266e43177443e5d7f6289c9774&ex_m=117%2C240%2C170%2C27%2C81%2C82%2C161%2C77%2C76%2C11%2C180%2C101%2C20%2C152%2C140%2C46%2C84%2C89%2C148%2C175%2C182%2C8%2C4%2C5%2C7%2C6%2C3%2C102%2C114%2C32%2C17%2C31%2C18%2C33%2C34%2C35%2C37%2C55%2C162%2C86%2C125%2C22%2C24%2C51%2C47%2C49%2C48%2C94%2C103%2C107%2C123%2C159%2C163%2C53%2C124%2C29%2C26%2C132%2C78%2C43%2C165%2C164%2C166%2C156%2C154%2C30%2C42%2C66%2C122%2C177%2C79%2C21%2C127%2C92%2C75%2C23%2C96%2C97%2C129%2C95%2C150%2C149%2C153%2C108%2C176%2C179%2C41%2C56%2C126%2C54%2C160%2C71%2C184%2C109%2C183%2C209%2C254%2C83%2C273%2C272%2C271%2C14%2C25%2C28%2C40%2C62%2C116%2C68%2C10%2C72%2C110%2C111%2C112%2C118%2C143%2C38%2C36%2C145%2C146%2C147%2C142%2C141%2C171%2C85%2C174%2C172%2C173%2C57%2C67%2C136%2C19%2C178%2C52%2C322%2C323%2C324%2C321%2C337%2C359%2C247%2C236%2C69%2C237%2C235%2C362%2C353%2C59%2C248%2C120%2C144%2C91%2C134%2C61%2C133%2C139%2C138%2C65%2C73%2C167%2C87%2C88%2C128%2C44%2C39%2C60%2C63%2C113%2C181%2C1%2C137%2C16%2C135%2C12%2C2%2C64%2C104%2C15%2C74%2C70%2C131%2C100%2C99%2C186%2C187%2C105%2C106%2C9%2C115%2C185%2C58%2C157%2C98%2C90%2C80%2C130%2C119%2C168%2C50%2C158%2C0%2C93%2C151%2C155%2C169%2C45%2C121%2C13%2C188"
+    },
+    {
+      "type": "xhr",
+      "method": "GET",
+      "url": "https://t.ssp.hinet.net/"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://dynamic.criteo.com/js/ld/ld.js?a=126576"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.rakuya.com.tw/a10o/g/measurement/conversion?random=1790898316300&cv=11&tid=G-RX72HKQ587&fst=1790898316300&fmt=8&en=view_item&gtm=45g92e69u2v885868412z8853176373za20kzb853176373zd853176373xecxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938466~115938468~118897920~118897930~119381664~120213116~120385422~120469145~120469153~121246026~121246034~121280971~121427143&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&gacid=1411842844.1790898315&value=10&currency_code=TWD&hn=www.googleadservices.com&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gdid=dY2E1Nz&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=QA&rcb=0"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.rakuya.com.tw/a10o/ag/g/c?v=2&tid=G-RX72HKQ587&gtm=45g92e69u2v885868412z8853176373za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz.dNzQzZD&ecid=1225883833&_eu=AAAAAGQC&_uip=%3A%3A&cid=1411842844.1790898315&fp=1&frm=0&pscdl=noapi&rcb=0&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&_gsid=Ij_-qyOAWxgDdrXsElUwzmQkjx_Wj9L6Lg&gaf=2&_s=2&tag_exp=115938466~115938468~118897920~118897930~119381664~120213116~120385422~120469145~120469153~121246026~121246034~121280971~121427143&sid=1790898314&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=1&_tu=QA&en=rakuya_firstbank&gap.gtb=1&ep.from=%20-%20%20-%20model%3A%20&ep.mcrypt_b=&ep.content_group=%E8%B2%B7%E5%B1%8B%E7%89%A9%E4%BB%B6%E6%98%8E%E7%B4%B0%E9%A0%81&ep.site_group=A%20-%20realprice%3A%20&ep.utm_creative_format=&ep.utm_marketing_tropic=&ep.rakuya_platform=web&ep.rakuya_from2=%20-%20%20-%20&ep.rakuya_page_location=sell_item_detail&ep.event_cid=GA1.3.1411842844.1790898315&ep.rakuya_event_name=AI%E6%88%BF%E8%B2%B8%E8%A9%A6%E7%AE%97visible&_et=1016&up.GA4_cid=GA1.3.1411842844.1790898315&tfd=3753"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.rakuya.com.tw/a10o/ag/g/c?v=2&tid=G-RX72HKQ587&gtm=45g92e69u2v885868412z8853176373za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz.dNzQzZD&ecid=1225883833&_eu=IAAAAGQC&_prs=ok&_uip=%3A%3A&cid=1411842844.1790898315&fp=1&frm=0&pscdl=noapi&rcb=0&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&_gsid=Ij_-qyOAWxgDdrXsElUwzmQkjx_Wj9L6Lg&gaf=2&_s=3&tag_exp=115938466~115938468~118897920~118897930~119381664~120213116~120385422~120469145~120469153~121246026~121246034~121280971~121427143&cu=TWD&sid=1790898314&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=2&_tu=QA&tfd=3753"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://server-side-tagging-4amklidimq-uc.a.run.app/g/collect?v=2&tid=G-HVBNC2NJZE&gtm=45g92e69u2v9167067160z8853176373za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz.dNzQzZD&ecid=1953915301&_eu=IAAAAGQ&_fplc=0&cid=1411842844.1790898315&ec_mode=c&frm=0&pscdl=noapi&rcb=15&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&sst.gch=0&sst.tft=1790898313952&sst.lpc=51818026&sst.navt=n&sst.ude=0&sst.sw_exp=1&gaf=2&_s=4&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121280971&cu=TWD&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&sid=1790898315&sct=1&seg=0&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=2&_tu=RA&tfd=3765&richsstsse"
+    },
+    {
+      "type": "fetch",
+      "method": "GET",
+      "url": "https://server-side-tagging-4amklidimq-uc.a.run.app/g/collect?v=2&tid=G-HVBNC2NJZE&gtm=45g92e69u2v9167067160z8853176373za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz.dNzQzZD&ecid=1953915301&_eu=AAAAAGQ&_fplc=0&cid=1411842844.1790898315&frm=0&pscdl=noapi&rcb=15&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&sst.gch=0&sst.tft=1790898313952&sst.lpc=51818026&sst.navt=n&sst.ude=0&sst.sw_exp=1&gaf=2&_s=5&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121280971&sid=1790898315&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=2&_tu=RA&en=dpa_detail&gap.sstd=4&gap.gtb=2&ep.content_group=%E8%B2%B7%E5%B1%8B%E7%89%A9%E4%BB%B6%E6%98%8E%E7%B4%B0%E9%A0%81&ep.from=%20-%20%20-%20model%3A%20&ep.site_group=A%20-%20realprice%3A%20&ep.utm_creative_format=&ep.utm_marketing_tropic=&ep.rakuya_platform=web&ep.rakuya_from2=%20-%20%20-%20&ep.page_pathvar=%2Fsell_item%2Finfo&ep.x-line-deduplication_key=688d3f88-c8f1-4ce6-aea3-039413cfe557&ep.x-line-hashed_phone=&ep.x-line-hashed_email=&ep.page_hostname=www.rakuya.com.tw&ep.x-line-browser_id=905b500b-d715-402b-8233-8156470a5117&ep.LINECAPI=true&_et=2&tfd=3769&richsstsse"
+    },
+    {
+      "type": "fetch",
+      "method": "GET",
+      "url": "https://server-side-tagging-4amklidimq-uc.a.run.app/g/collect?v=2&tid=G-HVBNC2NJZE&gtm=45g92e69u2v9167067160z8853176373za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz.dNzQzZD&ecid=1953915301&_eu=AAAAAGQ&_fplc=0&cid=1411842844.1790898315&frm=0&pscdl=noapi&rcb=15&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&sst.gch=0&sst.tft=1790898313952&sst.lpc=51818026&sst.navt=n&sst.ude=0&sst.sw_exp=1&gaf=2&_s=6&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121280971&sid=1790898315&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=2&_tu=RA&en=ViewItemDetail&gap.sstd=4&gap.gtb=2&ep.content_group=%E8%B2%B7%E5%B1%8B%E7%89%A9%E4%BB%B6%E6%98%8E%E7%B4%B0%E9%A0%81&ep.from=%20-%20%20-%20model%3A%20&ep.site_group=A%20-%20realprice%3A%20&ep.utm_creative_format=&ep.utm_marketing_tropic=&ep.rakuya_platform=web&ep.rakuya_from2=%20-%20%20-%20&ep.page_pathvar=%2Fsell_item%2Finfo&ep.x-line-deduplication_key=688d3f88-c8f1-4ce6-aea3-039413cfe557&ep.x-line-hashed_phone=&ep.x-line-hashed_email=&ep.page_hostname=www.rakuya.com.tw&ep.x-line-browser_id=905b500b-d715-402b-8233-8156470a5117&ep.LINECAPI=true&_et=1&tfd=3773&richsstsse"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11458355571/?random=1790898316339&cv=11&fst=1790898316339&bg=ffffff&guid=ON&async=1&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=SA&gtb=2&data=listing_pagetype%3Dofferdetail%3Blisting_id%3D014c7635624974c%3Blisting_totalvalue%3D16880000%3Blisting_city%3D%E6%96%B0%E5%8C%97%E5%B8%82&gap.gtb=2&ept=9&rfmt=3&fmt=4"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.google.com/rmkt/collect/11458355571/?random=1790898316339&cv=11&fst=1790898316339&fmt=8&bg=ffffff&guid=ON&async=1&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=SA&gtb=2&data=listing_pagetype%3Dofferdetail%3Blisting_id%3D014c7635624974c%3Blisting_totalvalue%3D16880000%3Blisting_city%3D%E6%96%B0%E5%8C%97%E5%B8%82&gap.gtb=2&ept=68&gcp=5"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect?rcb=6&frm=0&apvc=0&ae=g&auid=1609924844.1790898315&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&tid=AW-11458355571&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&scrsrc=www.rakuya.com.tw&rnd=874926867.1790898315&navt=n&npa=0&ep.listing_pagetype=offerdetail&ep.listing_id=014c7635624974c&epn.listing_totalvalue=16880000&ep.listing_city=%E6%96%B0%E5%8C%97%E5%B8%82&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&_tu=SA&gtb=2&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&tft=1790898316365&tfd=3806&gap.gtb=2&tids=AW-11458355571&fmt=8"
+    },
+    {
+      "type": "fetch",
+      "method": "GET",
+      "url": "https://www.googleadservices.com/pagead/conversion/11458355571/?random=1790898316352&cv=11&fst=1790898316352&fmt=7&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&evjid=jPBVU1VTniFZvNvkSw&label=MbE1CPOF8bsaEPPC4tcq&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&fcntr=TW&flng=zh&bttype=purchase&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&ec_mode=m&oid=GG_702153630.1790898316&oidsrc=3&ecsid2=1965712.1790898316&_tu=SBA&gtb=2&mt=1&gcl_ctr=1~0~0~0&item=(16880000**014c7635624974c**)&gap.gtb=2&category=acrcp_v1_512&emd=tvd.1&eme=tv.1~&gap.ch=4&ept=5&epp=5~22~63~74"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.rakuya.com.tw/a10o/as/p/c/11458355571/?random=1790898316352&cv=11&fst=1790898316352&fmt=3&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&evjid=jPBVU1VTniFZvNvkSw&label=MbE1CPOF8bsaEPPC4tcq&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&fcntr=TW&flng=zh&bttype=purchase&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&ec_mode=m&oid=GG_702153630.1790898316&oidsrc=3&ecsid2=1965712.1790898316&_tu=SBA&gtb=2&mt=1&gcl_ctr=1~0~0~0&item=(16880000**014c7635624974c**)&gap.gtb=2&category=acrcp_v1_512&emd=tvd.1&eme=tv.1~&gap.ch=1&ept=74&epp=5~22~63~74"
+    },
+    {
+      "type": "fetch",
+      "method": "GET",
+      "url": "https://www.googleadservices.com/pagead/conversion/11458355571/?random=1790898316352&cv=11&fst=1790898316352&fmt=7&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&label=MbE1CPOF8bsaEPPC4tcq&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&fcntr=TW&flng=zh&bttype=purchase&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&ec_mode=m&oid=GG_702153630.1790898316&oidsrc=3&ecsid2=1965712.1790898316&_tu=SBA&gtb=2&mt=2&gcl_ctr=1~0~0~0&item=(16880000**014c7635624974c**)&gap.gtb=2&emd=tvd.1&eme=tv.1~&gap.ch=1&ept=63&epp=5~22~63~74"
+    },
+    {
+      "type": "xhr",
+      "method": "POST",
+      "url": "https://www.rakuya.com.tw/cdn-cgi/challenge-platform/h/b/jsd/oneshot/d76008a69eab/0.06996187535187504:1790895923:wgOBdE2uykP-IQdjLHR6-Fd3Itw5edecbE_cw_65jT8/a43f56f70822c3b9"
+    },
+    {
+      "type": "xhr",
+      "method": "GET",
+      "url": "https://t.ssp.hinet.net/emome2?u=c69af119-833f-4513-998c-c31304031cce"
+    },
+    {
+      "type": "xhr",
+      "method": "GET",
+      "url": "https://t.ssp.hinet.net/cm?c=fecd61&cid=undefined&mp=c69af119-833f-4513-998c-c31304031cce"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11458355571/?random=1423973852&cv=11&fst=1790898316352&fmt=8&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&evjid=jPBVU1VTniFZvNvkSw&label=MbE1CPOF8bsaEPPC4tcq&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&ec_mode=m&oidsrc=3&ecsid2=1965712.1790898316&_tu=SBA&gtb=2&mt=1&gcl_ctr=1~0~0~0&gap.gtb=2&category=acrcp_v1_512&emd=tvd.1&eme=tv.1~&gap.ch=4&ept=5&epp=5~22~63~74&ct_cookie_present=false&eoid=CkYKEAjwifjVBhDvyKDy5J6Uk3ESMgBkAYS0eCMQLF2gNkB6kh3-mk34aI-s3b3t1b7IAIrjWQDSAGSDs0YJVIKAXgOy7tsG8P8HAQ&crd=CLTesQII8t-xAgit4bECCK_hsQIIobixAgixwbECCLDBsQIIscOxAgiKxbECCMLJsQII1-ixAgi0xrECCIfbsQII08WxAgjrzLECCO3OsQII1c-xAgiL8rECCPTasQII6O6xAgiS67ECCMnjsQIIl9SxAgjJ27ECCM3msQIIpt2xAgiw3rECCIDbsQIIzeGxAgjL4bEC&cerd=ChCDsL4tleS-Lcjsvi2d6bc4&eitems=ChEI8In41QYQoLqA8cSfpvqFARJGAOyPgwkcRzj1AFP9ILJO7T0NoExOZ3vKRc-6hTog2NfHkZm8oHV7i2319IxzeNk3tt2CX_bnEzm-8Vnw3Z6vqVzeOXzIAA&fsk=ChAI8In41QYQvPHxiPWA1YBQEiwAAZUHAp1DEpMWWF_8c0HjPAU6kxjrK2hXXVLk7C731qHPZ7HChIEBZvf6vxoCD6A&pscrd=IhMI9OHoj4CalwMVAgpoCB2mLT2SOj1odHRwczovL3d3dy5yYWt1eWEuY29tLnR3L3NlbGxfaXRlbS9pbmZvP2VoaWQ9MDE0Yzc2MzU2MjQ5NzRjQlhDaEVJOEluNDFRWVFsYTZ0MXZyZnZ0cV9BUkl0QUtFVmNnX1VMVGtWRW1NRnJZbVVDYjM2SVo5WlVRY1JnZ3hYbVppY3VUamhpZENNOVY1Tk0wTEtvR1VPegwICWIICAAQABgAIAA"
+    },
+    {
+      "type": "document",
+      "method": "GET",
+      "url": "https://gum.criteo.com/syncframe?topUrl=www.rakuya.com.tw&origin=onetag&ceid=901b354f-e7f4-43cb-a913-a32c046e0afd"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://securepubads.g.doubleclick.net/pagead/managed/js/gpt/m202609290101/pubads_impl.js?cb=122881314"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://capi-automation.s3.us-east-2.amazonaws.com/public/client_js/capiParamBuilder/clientParamBuilder.bundle.js"
+    },
+    {
+      "type": "fetch",
+      "method": "GET",
+      "url": "https://www.google.com/pagead/1p-conversion/11458355571/?random=1423973852&cv=11&fst=1790898316352&fmt=8&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&evjid=jPBVU1VTniFZvNvkSw&label=MbE1CPOF8bsaEPPC4tcq&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&ec_mode=m&oidsrc=3&ecsid2=1965712.1790898316&_tu=SBA&gtb=2&mt=1&gcl_ctr=1~0~0~0&gap.gtb=2&category=acrcp_v1_512&emd=tvd.1&eme=tv.1~&gap.ch=4&ept=5&epp=5~22~63~74&ct_cookie_present=false&eoid=CkYKEAjwifjVBhDvyKDy5J6Uk3ESMgBkAYS0eCMQLF2gNkB6kh3-mk34aI-s3b3t1b7IAIrjWQDSAGSDs0YJVIKAXgOy7tsG8P8HAQ&crd=CLTesQII8t-xAgit4bECCK_hsQIIobixAgixwbECCLDBsQIIscOxAgiKxbECCMLJsQII1-ixAgi0xrECCIfbsQII08WxAgjrzLECCO3OsQII1c-xAgiL8rECCPTasQII6O6xAgiS67ECCMnjsQIIl9SxAgjJ27ECCM3msQIIpt2xAgiw3rECCIDbsQIIzeGxAgjL4bEC&cerd=ChCDsL4tleS-Lcjsvi2d6bc4&fsk=ChAI8In41QYQvPHxiPWA1YBQEiwAAZUHAp1DEpMWWF_8c0HjPAU6kxjrK2hXXVLk7C731qHPZ7HChIEBZvf6vxoCD6A&pscrd=IhMI9OHoj4CalwMVAgpoCB2mLT2SOj1odHRwczovL3d3dy5yYWt1eWEuY29tLnR3L3NlbGxfaXRlbS9pbmZvP2VoaWQ9MDE0Yzc2MzU2MjQ5NzRjQlhDaEVJOEluNDFRWVFsYTZ0MXZyZnZ0cV9BUkl0QUtFVmNnX1VMVGtWRW1NRnJZbVVDYjM2SVo5WlVRY1JnZ3hYbVppY3VUamhpZENNOVY1Tk0wTEtvR1VPegwICWIICAAQABgAIAA&is_vtc=1&cid=CAQS4QEAQM4h3L0DQJSUbcog0HF_riLgwXxlE19lbhN0h3gv6hHYIpRBp_66rTjfs358bDi8lecbN-Q5CPjofij8VFHrUOxhhx4qOgapVr9xg9wPl9z6cmznK0e--qsSjywb7E1eJgb9cMbs71WbaGEPEC5ajXqQ_0Bivreet5TqexCZCpBeAnQABRZ33uUa_3L7eYYo9HaH9-yBIeAvY_O1OzpGty-Xgw4gzDFXYRvJvaehk_129itRi3HjPeVONt3iTlpPH8LRGAbfUIeLW3rxnY_u71u1OYwPtOQ8JX9F-Pn7gD0&eitems=ChEI8In41QYQoLqA8cSfpvqFARJGAOyPgwnCOc-PoS5Z6hTF5Hr9JwHYIxz4QQV7IOVjIVwjaKwShrZvBDWTeOje060DEc_UAfsWafSDF4oCXgGoh1IHN05Qpw&random=4158588383"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://sslwidget.criteo.com/event?a=126576&v=5.51.0&p0=e%3Dce%26m%3D%255Bundefined%255D&p1=e%3Dexd%26site_type%3Dd&p2=e%3Dvp%26p%3D014c7635624974c&p3=e%3Ddis&sc=%7B%22fbp%22%3A%22fb.2.1790898316880.322685369775023866%22%7D&tld=rakuya.com.tw&dy=1&fu=https%253A%252F%252Fwww.rakuya.com.tw%252Fsell_item%252Finfo%253Fehid%253D014c7635624974c&ceid=901b354f-e7f4-43cb-a913-a32c046e0afd"
+    },
+    {
+      "type": "fetch",
+      "method": "GET",
+      "url": "https://securepubads.g.doubleclick.net/gampad/ads?pvsid=7469040990790086&correlator=157272721491878&eid=122880507%2C122881355%2C122881314&output=ldjh&gdfp_req=1&vrg=202609290101&ptt=17&impl=fifs&iu_parts=146880540%2Crakuya_web%2Crakuya_buy_itemDetail&enc_prev_ius=%2F0%2F1%2F2&prev_iu_szs=320x50&fluid=height&ifi=1&dids=div-gpt-ad-1774839972604-0&adfs=3487590115&sfv=1-0-45&sc=1&lrm=100&cookie_enabled=1&abxe=1&dt=1790898316991&lmt=1790869516&adxs=900&adys=1394&biw=1280&bih=720&scr_x=0&scr_y=0&btvi=1&ucis=1&oid=2&u_his=2&u_h=720&u_w=1280&u_ah=720&u_aw=1280&u_cd=24&u_sd=1&u_tz=480&dmc=16&bc=31&nvt=1&uach=WyJMaW51eCIsIiIsIng4NiIsIiIsIjE1NC4wLjgwMzcuNTciLG51bGwsMCxudWxsLCI2NCIsW1siQ2hyb21pdW0iLCIxNTQuMC44MDM3LjU3Il0sWyJHb29nbGUgQ2hyb21lIiwiMTU0LjAuODAzNy41NyJdLFsiTm90IEEoQnJhbmQiLCI5OS4wLjAuMCJdXSwwXQ..&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&vis=1&psz=360x200&msz=360x200&fws=0&ohw=0&dlt=1790898313892&idt=3022&prev_scp=bslot%3DRWD_A1-1&cust_params=ehid%3D014c7635624974c%26city%3D2%26zipcode%3D220%26prange%3Dprice2000%26typecode%3DR1&adks=911033437&frm=20&cpu=2&eoidce=1&pgls=CAs."
+    },
+    {
+      "type": "document",
+      "method": "GET",
+      "url": "https://41526ef442b7763418a6691479d5cf94.safeframe.googlesyndication.com/safeframe/1-0-45/html/container.html"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/FloatingToolbar-UMlEf_OJ.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/floatingToolbarApi-B5vFMyXE.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/SellItemInfoRecommendSection-yMkD6rZs.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/SellItemInfoOtherRecommendSection-CwE5Oe61.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/index-Bamr3Pn4.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://assets.rakuya.com.tw/static/vue3/js/assets/BaseTag-9rCNx5jm.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://widget.as.criteo.com/event?a=126576&v=5.51.0&p0=e%3Dce%26m%3D%255Bundefined%255D&p1=e%3Dexd%26site_type%3Dd&p2=e%3Dvp%26p%3D014c7635624974c&p3=e%3Ddis&sc=%7B%22fbp%22%3A%22fb.2.1790898316880.322685369775023866%22%7D&tld=rakuya.com.tw&dy=1&fu=https%253A%252F%252Fwww.rakuya.com.tw%252Fsell_item%252Finfo%253Fehid%253D014c7635624974c&ceid=901b354f-e7f4-43cb-a913-a32c046e0afd"
+    },
+    {
+      "type": "xhr",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/compare/api/compare-cart/list"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://tpc.googlesyndication.com/safeframe/1-0-45/js/ext.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://tpc.googlesyndication.com/pagead/js/r20261001/r20110914/abg_lite.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.rakuya.com.tw/a10o/ag/g/c?v=2&tid=G-QV3V21PBQD&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz.dNzQzZD&ecid=1685320128&_eu=IAAAAGQC&_uip=%3A%3A&cid=1411842844.1790898315&fp=1&frm=0&pscdl=noapi&rcb=6&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&_gsid=9d7crkn_MaNs7VJTATgCFYhl1zJpS7NxCw&gaf=2&_s=2&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&sid=1790898315&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=2&_tu=QA&uid=&tfd=4715"
+    },
+    {
+      "type": "fetch",
+      "method": "GET",
+      "url": "https://securepubads.g.doubleclick.net/pcs/view?xai=AKAOjssYB9Trnf-mKaXpvxV6BgvxDxkJd8HYbLnInkagtHhl-F_CLhXEHf5SZ9qKfeWsbj0SI2OnqXtSkffLYxY_Lsfi-yBUojVxq80jy3D9EhlO0M3NeSWsMx3ZkLWJsPysNIF9EGubTZ8iZjTddoc3c6FYJ5y4E8uxFOTqszuqSuUS8CQadzywsmWJJ0B1rp6PiBW4oOo7EaKHWKieNu1n9wNq5WiSt65OmnX-f0MhTIEy0g0lnO5Ok6OjgMzW7wyOAGzj14Mozk9dV2NDKxfnsl9XnnFcAxwjCO0tNaavzcTPduIjc4CUNTdESPniC-y0ZSQu-6MF_sGuGX8zUP0-7JC6kCtNXwUWEzcHzNn3mrC7Rib4dPM2eAoHckacFteidHFX7nRDNgWaY-NAoLXk85DJ4iPQtQ53WFDEL-rPOvQYC3YKTXpBdswAspo&sai=AMfl-YRJjJWA1fS8WQFl3SmSS7OAaHdS2ELnwqTG_9viOeFxGjdYWVe1nSWSut7hCVYbW_L8sxp5rB9krOQTNGpxwR75Qeu4JyuJpg8alU5n20nyLWefNMSawIrIUtcrIk30qdk1mLYRzeLIA-R-1QS4wmbXvYBWzArESOuENs7ZMis2p_6wlKNk571HuEeGS9ChYmmSmffJ4uBmWxklpycNoFXFMyUL1g72-rFB7SbTBmwPzraCLL-Bd0wcNhipemACDWGkw0lFcvSH2TUW064S26p1YxkE8hQsgEN5i1m58EnhtwGdlNgJRbamgQIu5Ptp_IaSaiRxXGZTg0-GVUZldkxXLIIsonOHEwKWQVwzKq9a_5WA9ZDuAw&sig=Cg0ArKJSzHcQmoHY0Z5zEAE&uach_m=%5BUACH%5D&urlfix=1&adurl="
+    },
+    {
+      "type": "xhr",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/sidebar/api/count?channel=sell"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://asia.creativecdn.com/tags/v2?type=json&tc=1"
+    },
+    {
+      "type": "fetch",
+      "method": "GET",
+      "url": "https://pagead2.googlesyndication.com/pagead/gen_204?id=av-js&type=fle-fetch-start2"
+    },
+    {
+      "type": "fetch",
+      "method": "GET",
+      "url": "https://pagead2.googlesyndication.com/pagead/gen_204?id=av-js&type=colleague-executed&name=4"
+    },
+    {
+      "type": "fetch",
+      "method": "GET",
+      "url": "https://pagead2.googlesyndication.com/pagead/gen_204?id=av-js&type=reach&proto=CAlgAWgD"
+    },
+    {
+      "type": "fetch",
+      "method": "GET",
+      "url": "https://securepubads.g.doubleclick.net/pcs/view?xai=AKAOjsu0rlkyYNODp7i_8jXem4XYo92Bw6xd9vxb5A3S0i3V7ODRKsX38_idTRgxdt8UfE6IW_8Khw5nhZuo5tEjE2N2L1HGKjuxU30GQnBJisdJgT5Flvy600ZeSkSK0ljGzWcox0fzSPIkOKNy84ZCyuqFC5RDv7-Zj7k2Ydxw2M3SpsxiMs1nSYfR__iQudIWPt_Gj9r5tE13EuOer8el_-3g9NOkAcg28OfteY3q4QhR1zQ4FF56InUH1caXl0Ts1yqBDNF-ro2ztkQ65THDV10VWRlRwMKvDTxCx65jt1QFyz4cUJ8RRnhtpMpiKSBTGrvKUGpVoifC3mrpfIDN0TkNyovu3HHBtpWY8c9o_Kl48qrASyQR0VDBud6wl1ocu9tVQC6AcGhVh8xP_vclse-wN2c7GBE84tQxcnGIl4nhZvZHG3L5rHak310VwQ&sai=AMfl-YTkfWhGG52zdBmVNygyqCP5nNdyIp77BXfKfIY0dkdBYNiJgVC7L_AuA_ogz5TuaiS0EvtWKSLn0CmNwPwuLqqRYAHtfgnYcrtev9K9Yac9pMLdHu4S4jO1LiCIgl0XyT_LCDfaxTgbiwymu4wsbGd2M5sUM0bPJfh18U_uVEB1Qrnmvi5dXhTpiYlZ5s6RLTVAJwjA0rbLJV_SOL0hvEjN_mCn7ABt3GKnA5oMuK4iAEmN5teigClM1vg6SbVUU745rkkF-sTH2If7d49VJdRM9ovbjRzCYYeYXl0VOL5hY1NnwnwYnF4wgkgLzmdKSbhX8F59BiThWHHC3PjOmtgEQv5ThmKdpHTtQvWZ7te7o78u4iDPCA&sig=Cg0ArKJSzCTJERXpfE4cEAE&uach_m=%5BUACH%5D&urlfix=1&vt=11&igpp=1&dett=3&adurl="
+    },
+    {
+      "type": "document",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/broadcast-bridge"
+    },
+    {
+      "type": "xhr",
+      "method": "GET",
+      "url": "https://ep1.adtrafficquality.google/getconfig/sodar?sv=200&tid=gpt&tv=m202609290101&st=env&sjk=7469040990790086"
+    },
+    {
+      "type": "xhr",
+      "method": "POST",
+      "url": "https://www.rakuya.com.tw/cdn-cgi/rum?"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://ep2.adtrafficquality.google/sodar/sodar2.js"
+    },
+    {
+      "type": "document",
+      "method": "GET",
+      "url": "https://ep2.adtrafficquality.google/sodar/sodar2/255/runner.html"
+    },
+    {
+      "type": "document",
+      "method": "GET",
+      "url": "https://www.google.com/recaptcha/api2/aframe"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://pagead2.googlesyndication.com/bg/Jzk6YnweWijvRNoOor7Mp0VDBQLIJokfq90SemsmcKE.js"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/hosts.js?1787800125"
+    },
+    {
+      "type": "script",
+      "method": "GET",
+      "url": "https://www.rakuya.com.tw/pjs/broadcast_frame.js?v=1770791918"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.rakuya.com.tw/a10o/ag/g/c?v=2&tid=G-RX72HKQ587&gtm=45g92e69u2v885868412z89185761025za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz.dNzQzZD&ecid=1225883833&_eu=AEIAAGQC&_uip=%3A%3A&cid=1411842844.1790898315&fp=1&frm=0&pscdl=noapi&rcb=0&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&_gsid=Ij_-qyOAWxgDdrXsElUwzmQkjx_Wj9L6Lg&gaf=2&_s=4&tag_exp=115938466~115938468~118897920~118897930~119381664~120213116~120385422~120469145~120469153~121246026~121246034~121280971~121427143&sid=1790898314&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=2&_tu=QA&en=ad_impression&gap.gtb=2&ep.from=%20-%20%20-%20model%3A%20&ep.mcrypt_b=&ep.content_group=%E8%B2%B7%E5%B1%8B%E7%89%A9%E4%BB%B6%E6%98%8E%E7%B4%B0%E9%A0%81&ep.site_group=A%20-%20realprice%3A%20&ep.utm_creative_format=&ep.utm_marketing_tropic=&ep.rakuya_platform=web&ep.rakuya_from2=%20-%20%20-%20&ep.query_id=CIj-j5CAmpcDFRNdQgcdI_IdNg&_et=927&tfd=9687"
+    },
+    {
+      "type": "fetch",
+      "method": "POST",
+      "url": "https://www.rakuya.com.tw/a10o/ag/g/c?v=2&tid=G-QV3V21PBQD&gtm=45g92e69u2v9185761025za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz.dNzQzZD&ecid=1685320128&_eu=AEIAAGQC&_uip=%3A%3A&cid=1411842844.1790898315&fp=1&frm=0&pscdl=noapi&rcb=6&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&_gsid=9d7crkn_MaNs7VJTATgCFYhl1zJpS7NxCw&gaf=2&_s=3&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&sid=1790898315&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=2&_tu=QA&uid=&en=ad_impression&gap.gtb=2&ep.from=%20-%20%20-%20mode%3A%20&ep.mcrypt_b=&ep.rakuya_page_referrer=%20-%20&ep.ads_related=%20-%20&ep.rakuya_from2=%20-%20%20%20-%20&ep.query_id=CIj-j5CAmpcDFRNdQgcdI_IdNg&_et=911&tfd=9716"
     }
   ],
-  "bodySnippets": [
-    "買屋 租屋 商用地產 社區 實價登錄 新建案 NEW 房產快訊 加LINE 降價即時通知 註冊 登入 我要刊登 首頁 買屋 新北市買房 板橋區 中山路二段 目前物件 捷運中山公寓3樓 新北市板橋區中山路二段 分享 分享 複製連結 列印 檢舉 我想要索取格局圖 照片(1/12) 格局 比較 追蹤 物件詳情 調整字體尺寸 小 中 大 基本 類型 住宅/公寓 法定用途 住家用 分類 中古屋 坪數 主建物 22.18坪 車位 車位 無車位 鄰近生活機能 中山路二段 前往街景 1 2 3 4 5 6 7 8 9 10 ©Leaflet ©OpenStreetMap 交通 學校 購物 公園 餐飲 醫療 金融 鄰",
-    "房2廳1衛 公寓 當時44年 5/5樓 總 23.6 坪 31.8 萬/坪 總 750 萬 歷史交易1次 備註 115/02 板新路58號5樓 3房2廳2衛 公寓 當時42年 5/5樓 總 30.11 坪 39.9 萬/坪 總 1,200 萬 歷史交易2次 備註 查 看 所 有 比 對 結 果 物件價格歷程 加入追蹤 隨時收到降價通知 2026.09.27 上架 迄今 5 天內 尚無價格波動 1,688 萬 1,688 萬 60.46 萬/坪 總 27.92 坪 格局 3 房 2 廳 2 衛 2 陽台 屋齡 約46 年 樓層 3 / 5 樓 鄰近房價分析 房貸試算 月付 50,523元 國昌 ( 營業員/經紀人 收取服務費 ) 住商不動產-【加盟】板橋海山店 鑫業不動產 0920-013-107 預約看屋 回電解說 先生 小姐 23/50 當您送出預約資訊即代表您同意樂屋相關條款，並允許賣家與您聯繫 立即預約 互動訊息 黃金發燒區 電梯大廈 20.3 坪 1",
-    "0巷10弄1號5樓 2房2廳1衛 公寓 當時44年 5/5樓 總 23.6 坪 31.8 萬/坪 總 750 萬 歷史交易1次 備註 115/02 板新路58號5樓 3房2廳2衛 公寓 當時42年 5/5樓 總 30.11 坪 39.9 萬/坪 總 1,200 萬 歷史交易2次 備註 查 看 所 有 比 對 結 果 物件價格歷程 加入追蹤 隨時收到降價通知 2026.09.27 上架 迄今 5 天內 尚無價格波動 1,688 萬 1,688 萬 60.46 萬/坪 總 27.92 坪 格局 3 房 2 廳 2 衛 2 陽台 屋齡 約46 年 樓層 3 / 5 樓 鄰近房價分析 房貸試算 月付 50,523元 國昌 ( 營業員/經紀人 收取服務費 ) 住商不動產-【加盟】板橋海山店 鑫業不動產 0920-013-107 預約看屋 回電解說 先生 小姐 23/50 當您送出預約資訊即代表您同意樂屋相關條款，並允許賣家與您聯繫 立即預約 互動訊息 黃金發燒區 電梯大廈 20.3"
-  ],
-  "htmlSnippets": [
-    "登入</span></div></li> <li> <div data-dropdown-hover=\"\" class=\"menu__link r-dropdown menu__link-post\"><span class=\"menu__text r-dropdown-title\"><span class=\"menu__text-wrap\">我要刊登</span><i class=\"fr fr-angle-down\"></i></span> <div class=\"r-dropdown-group--space is--right\" style=\"\"> <ul class=\"r-dropdown-group\"> <li class=\"r-dropdown-item\"><a href=\"https://my.rakuya.com.tw/point/adcenter?t=sell&amp;t2=sell-scheme",
-    "/point/adcenter?t=rent&amp;t2=rent-scheme\">購買租屋方案</a></li> <li class=\"r-dropdown-item\"><a href=\"https://my.rakuya.com.tw/point/adcenter?t=nc&amp;t2=newproperty-scheme\">建案刊登</a><span class=\"tag__wrap\">免費</span></li> </ul> </div> </div> </li> <li> <div data-dropdown-click=\"\" class=\"menu__link r-dropdown menu__link-notify\"><span id=\"menu_active_message_nologin\" class=\"menu__text r-dropdown-title\"><i class=",
-    "iv class=\"tab__bar is--pure is--block\"> <span data-ident=\"user\" class=\"tab__link is--active\">一般會員</span> <span data-ident=\"agent\" class=\"tab__link\">刊登會員</span> </div> <div id=\"loginByIdContent\" class=\"tab__content is--active\"> <!-- 說明文案-驗證碼 Start--> <div class=\"r-form__item hidden\" id=\"login_tel_message\"> <div class=\"r-form__capti",
-    "\",\"iconKey\":\"nc\",\"url\":\"https:\\/\\/newhouse.rakuya.com.tw\\/result\",\"tag\":\"new\"},{\"name\":\"房產快訊\",\"iconKey\":\"news\",\"url\":\"https:\\/\\/extra.rakuya.com.tw\\/house_news\\/\"}]}],[{\"title\":\"開始刊登\",\"links\":[{\"name\":\"刊登出售物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/sell\\/post\\/add\"},{\"name\":\"刊登出租物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/rent\\/post\\/add\"},{\"name\":\"刊登新建案\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/nc\\/pos",
-    ":\"https:\\/\\/newhouse.rakuya.com.tw\\/result\",\"tag\":\"new\"},{\"name\":\"房產快訊\",\"iconKey\":\"news\",\"url\":\"https:\\/\\/extra.rakuya.com.tw\\/house_news\\/\"}]}],[{\"title\":\"開始刊登\",\"links\":[{\"name\":\"刊登出售物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/sell\\/post\\/add\"},{\"name\":\"刊登出租物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/rent\\/post\\/add\"},{\"name\":\"刊登新建案\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/nc\\/post\\/add\",\"tag\":\"free\"},",
-    "\",\"url\":\"https:\\/\\/extra.rakuya.com.tw\\/house_news\\/\"}]}],[{\"title\":\"開始刊登\",\"links\":[{\"name\":\"刊登出售物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/sell\\/post\\/add\"},{\"name\":\"刊登出租物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/rent\\/post\\/add\"},{\"name\":\"刊登新建案\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/nc\\/post\\/add\",\"tag\":\"free\"},{\"name\":\"常見刊登問題\",\"iconKey\":\"\",\"url\":\"https:\\/\\/extra.rakuya.com.tw\\/faq\\/\"}]}],[{\"title",
-    "ame\":\"刊登出售物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/sell\\/post\\/add\"},{\"name\":\"刊登出租物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/rent\\/post\\/add\"},{\"name\":\"刊登新建案\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/nc\\/post\\/add\",\"tag\":\"free\"},{\"name\":\"常見刊登問題\",\"iconKey\":\"\",\"url\":\"https:\\/\\/extra.rakuya.com.tw\\/faq\\/\"}]}],[{\"title\":\"常用功能\",\"links\":[{\"name\":\"追蹤清單\",\"iconKey\":\"follow\",\"url\":\"https:\\/\\/member.rakuya.com.",
-    "\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/rent\\/post\\/add\"},{\"name\":\"刊登新建案\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/nc\\/post\\/add\",\"tag\":\"free\"},{\"name\":\"常見刊登問題\",\"iconKey\":\"\",\"url\":\"https:\\/\\/extra.rakuya.com.tw\\/faq\\/\"}]}],[{\"title\":\"常用功能\",\"links\":[{\"name\":\"追蹤清單\",\"iconKey\":\"follow\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/favorite\\/list\\/sell\"},{\"name\":\"比比看清單\",\"iconKey\":\"compare\",\"url\":\"https:\\/\\/www.rakuya.com.tw\\/",
-    "owrap text-gray-500 items-center text-16 overflow-hidden\"><span data-v-501007c8=\"\" class=\"shrink-0\">2026.09.27</span><span data-v-501007c8=\"\" class=\"ml-0.5 shrink-0 text-gray-600\">上架</span><div data-v-501007c8=\"\" class=\"flex min-w-0 flex-1 items-center ml-4 overflow-hidden\"><span data-v-501007c8=\"\" class=\"h-0.5 rounded-l-full shrink-9999 md:max-w-15 max-md:max-w-6 grow-0 basis-15 self-center bg-gray-50\" aria-hidden=\"true\"></span><div data",
-    "lass=\"block__message__section\"> <div class=\"block__message is--close box-messenger is--width\" isaskregist=\"1\" data-ehid=\"014c7635624974c\"> <h3 class=\"title-6\"><b id=\"isOnline\" class=\"is--offline\"></b>互動訊息<i class=\"fr fr-close\"></i><i class=\"fr fr-minus btn__toggle\" style=\"display: inherit;\"></i></h3> <div class=\"content\"> <iframe class=\"message-inner\" title=\"message-inner\" src=\"\" url=\"https://webmsg.rakuya.com.tw/int",
-    ",\"residentialParkingKind\":\"\",\"residentialParkingSize\":\"\",\"residentialParkingPrice\":\"\",\"residentialParkingRent\":\"\"},\"priceHistorySummary\":{\"currentPrice\":1688,\"priceChangeCount\":0,\"createTime\":\"2026-09-27\",\"firstUpPrice\":1688},\"environment\":{\"transport\":\"\",\"school\":\"\",\"market\":\"\",\"park\":\"\",\"other\":\"\"},\"isAILoan\":true,\"special\":{\"keywordTagUrlList\":[{\"keyword\":\"\\u591a\\u885b\\u6d74\",\"url\":\"https:\\/\\/www.rakuya.com.tw\\/sell\\/result?zipcode=220\\u0026ke",
-    "riant\":27.92,\"age\":46,\"price\":16880000,\"bedrooms\":3,\"affiliation\":\"1104647\",\"object_tag\":\"多衛浴\",\"object_type3\":\"中古屋\",\"object_main_size\":22.18,\"object_floor\":3,\"object_upload_time\":\"2026-09-27\",\"object_update_time\":\"2026-09-27\",\"object_mark\":\"NLCust_NLItem_NewItem,Agent_P0\",\"object_group_id\":\"591\\/S20631075\",\"object_member_brand\":\"住商不動產\",\"object_layout\":\"有格局圖\"},\"searchData\":[]}; </script><meta http-equiv=\"Content-Type\" content=\"text/html; charset=u",
-    "0000,\"bedrooms\":3,\"affiliation\":\"1104647\",\"object_tag\":\"多衛浴\",\"object_type3\":\"中古屋\",\"object_main_size\":22.18,\"object_floor\":3,\"object_upload_time\":\"2026-09-27\",\"object_update_time\":\"2026-09-27\",\"object_mark\":\"NLCust_NLItem_NewItem,Agent_P0\",\"object_group_id\":\"591\\/S20631075\",\"object_member_brand\":\"住商不動產\",\"object_layout\":\"有格局圖\"},\"searchData\":[]}; </script><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"> <meta http-equiv=\"Content-L",
-    "7-3.7-3.7zm-31.4 68.1H150.3V196.8c0-2.1-1.6-3.7-3.7-3.7h-13c-2.1 0-3.7 1.6-3.7 3.7v81.3c0 1 .3 1.8 1 2.5c.7 .6 1.5 1 2.5 1h52.2c2.1 0 3.7-1.6 3.7-3.7v-13c0-1.9-1.6-3.7-3.5-3.7h.1zm193.7-68.1H327.3c-1.9 0-3.7 1.6-3.7 3.7v81.3c0 1.9 1.6 3.7 3.7 3.7h52.2c2.1 0 3.7-1.6 3.7-3.7V265c0-2.1-1.6-3.7-3.7-3.7H344V247.7h35.5c2.1 0 3.7-1.6 3.7-3.7V230.9c0-2.1-1.6-3.7-3.7-3.7H344V213.5h35.5c2.1 0 3.7-1.6 3.7-3.7v-13c-.1-1.9-1.7-3.7-3.7-3.7h.1zM512 93.4v326c-",
-    "1.2 .1 92.7 42.1 92.6 93.4zM441.6 233.5c0-83.4-83.7-151.3-186.4-151.3s-186.4 67.9-186.4 151.3c0 74.7 66.3 137.4 155.9 149.3c21.8 4.7 19.3 12.7 14.4 42.1c-.8 4.7-3.8 18.4 16.1 10.1s107.3-63.2 146.5-108.2c27-29.7 39.9-59.8 39.9-93.1v-.2z\"></path></svg></div><span data-v-78bae68f=\"\" data-text=\"true\" class=\"button-icon__text\">分享</span></div><div data-v-78bae68f=\"\" class=\"button-icon inline-flex cursor-pointer items-center gap-1 text-14 copyText-act",
-    "\"link\" role=\"img\" viewBox=\"0 0 576 512\" aria-hidden=\"true\"><path class=\"\" fill=\"currentColor\" d=\"M419.5 96c-16.6 0-32.7 4.5-46.8 12.7-15.8-16-34.2-29.4-54.5-39.5 28.2-24 64.1-37.2 101.3-37.2 86.4 0 156.5 70 156.5 156.5 0 41.5-16.5 81.3-45.8 110.6l-71.1 71.1c-29.3 29.3-69.1 45.8-110.6 45.8-86.4 0-156.5-70-156.5-156.5 0-1.5 0-3 .1-4.5 .5-17.7 15.2-31.6 32.9-31.1s31.6 15.2 31.1 32.9c0 .9 0 1.8 0 2.6 0 51.1 41.4 92.5 92.5 92.5 24.5 0 48-9.7 65.4-27",
-    ".7 4.5-46.8 12.7-15.8-16-34.2-29.4-54.5-39.5 28.2-24 64.1-37.2 101.3-37.2 86.4 0 156.5 70 156.5 156.5 0 41.5-16.5 81.3-45.8 110.6l-71.1 71.1c-29.3 29.3-69.1 45.8-110.6 45.8-86.4 0-156.5-70-156.5-156.5 0-1.5 0-3 .1-4.5 .5-17.7 15.2-31.6 32.9-31.1s31.6 15.2 31.1 32.9c0 .9 0 1.8 0 2.6 0 51.1 41.4 92.5 92.5 92.5 24.5 0 48-9.7 65.4-27.1l71.1-71.1c17.3-17.3 27.1-40.9 27.1-65.4 0-51.1-41.4-92.5-92.5-92.5zM275.2 173.3c-1.9-.8-3.8-1.9-5.5-3.1-12.6-6.5-2",
-    "5 0-48 9.7-65.4 27.1L91.1 258.2c-17.3 17.3-27.1 40.9-27.1 65.4 0 51.1 41.4 92.5 92.5 92.5 16.5 0 32.6-4.4 46.7-12.6 15.8 16 34.2 29.4 54.6 39.5-28.2 23.9-64 37.2-101.3 37.2-86.4 0-156.5-70-156.5-156.5 0-41.5 16.5-81.3 45.8-110.6l71.1-71.1c29.3-29.3 69.1-45.8 110.6-45.8 86.6 0 156.5 70.6 156.5 156.9 0 1.3 0 2.6 0 3.9-.4 17.7-15.1 31.6-32.8 31.2s-31.6-15.1-31.2-32.8c0-.8 0-1.5 0-2.3 0-33.7-18-63.3-44.8-79.6z\"></path></svg></div><span data-v-78bae",
-    "92.5 92.5 16.5 0 32.6-4.4 46.7-12.6 15.8 16 34.2 29.4 54.6 39.5-28.2 23.9-64 37.2-101.3 37.2-86.4 0-156.5-70-156.5-156.5 0-41.5 16.5-81.3 45.8-110.6l71.1-71.1c29.3-29.3 69.1-45.8 110.6-45.8 86.6 0 156.5 70.6 156.5 156.9 0 1.3 0 2.6 0 3.9-.4 17.7-15.1 31.6-32.8 31.2s-31.6-15.1-31.2-32.8c0-.8 0-1.5 0-2.3 0-33.7-18-63.3-44.8-79.6z\"></path></svg></div><span data-v-78bae68f=\"\" data-text=\"true\" class=\"button-icon__text\">複製連結</span></div><div data-v-",
-    "1 50 91.4 94 125.9 120.3 3.2 2.4 7.9 4.2 14 4.2s10.8-1.8 14-4.2c34.5-26.3 84.8-70.4 125.9-120.3 36.2-43.9 68.1-92.4 68.1-142.3 0-47-38.1-85.1-85.1-85.1zM271 87.1c25-34.6 65.2-55.1 107.9-55.1 73.5 0 133.1 59.6 133.1 133.1 0 68.6-42.9 128.9-79.1 172.8-44.1 53.6-97.3 100.1-133.8 127.9-12.3 9.4-27.5 14.1-43.1 14.1s-30.8-4.7-43.1-14.1C176.4 438 123.2 391.5 79.1 338 42.9 294.1 0 233.7 0 165.1 0 91.6 59.6 32 133.1 32 175.8 32 216 52.5 241 87.1l15 20.7",
-    "1.8 14-4.2c34.5-26.3 84.8-70.4 125.9-120.3 36.2-43.9 68.1-92.4 68.1-142.3 0-47-38.1-85.1-85.1-85.1zM271 87.1c25-34.6 65.2-55.1 107.9-55.1 73.5 0 133.1 59.6 133.1 133.1 0 68.6-42.9 128.9-79.1 172.8-44.1 53.6-97.3 100.1-133.8 127.9-12.3 9.4-27.5 14.1-43.1 14.1s-30.8-4.7-43.1-14.1C176.4 438 123.2 391.5 79.1 338 42.9 294.1 0 233.7 0 165.1 0 91.6 59.6 32 133.1 32 175.8 32 216 52.5 241 87.1l15 20.7 15-20.7z\"></path></svg></div><span data-v-78bae68f=\"",
-    "34.5-26.3 84.8-70.4 125.9-120.3 36.2-43.9 68.1-92.4 68.1-142.3 0-47-38.1-85.1-85.1-85.1zM271 87.1c25-34.6 65.2-55.1 107.9-55.1 73.5 0 133.1 59.6 133.1 133.1 0 68.6-42.9 128.9-79.1 172.8-44.1 53.6-97.3 100.1-133.8 127.9-12.3 9.4-27.5 14.1-43.1 14.1s-30.8-4.7-43.1-14.1C176.4 438 123.2 391.5 79.1 338 42.9 294.1 0 233.7 0 165.1 0 91.6 59.6 32 133.1 32 175.8 32 216 52.5 241 87.1l15 20.7 15-20.7z\"></path></svg></div><span data-v-78bae68f=\"\" data-text",
-    "6.2-43.9 68.1-92.4 68.1-142.3 0-47-38.1-85.1-85.1-85.1zM271 87.1c25-34.6 65.2-55.1 107.9-55.1 73.5 0 133.1 59.6 133.1 133.1 0 68.6-42.9 128.9-79.1 172.8-44.1 53.6-97.3 100.1-133.8 127.9-12.3 9.4-27.5 14.1-43.1 14.1s-30.8-4.7-43.1-14.1C176.4 438 123.2 391.5 79.1 338 42.9 294.1 0 233.7 0 165.1 0 91.6 59.6 32 133.1 32 175.8 32 216 52.5 241 87.1l15 20.7 15-20.7z\"></path></svg></div><span data-v-78bae68f=\"\" data-text=\"true\" class=\"button-icon__text\"",
-    "leading-none overflow-hidden\"><div data-v-501007c8=\"\" class=\"flex min-w-0 flex-nowrap text-gray-500 items-center text-16 overflow-hidden\"><span data-v-501007c8=\"\" class=\"shrink-0\">2026.09.27</span><span data-v-501007c8=\"\" class=\"ml-0.5 shrink-0 text-gray-600\">上架</span><div data-v-501007c8=\"\" class=\"flex min-w-0 flex-1 items-center ml-4 overflow-hidden\"><span data-v-501007c8=\"\" class=\"h-0.5 rounded-l-full shrink-9999 md:max-w-15 max-md:max-w-6 gro",
-    "a fa-phone text-18 text-main-600\" data-prefix=\"fas\" data-icon=\"phone\" role=\"img\" viewBox=\"0 0 512 512\" aria-hidden=\"true\"><path class=\"\" fill=\"currentColor\" d=\"M160.2 25C152.3 6.1 131.7-3.9 112.1 1.4l-5.5 1.5c-64.6 17.6-119.8 80.2-103.7 156.4 37.1 175 174.8 312.7 349.8 349.8 76.3 16.2 138.8-39.1 156.4-103.7l1.5-5.5c5.4-19.7-4.7-40.3-23.5-48.1l-97.3-40.5c-16.5-6.9-35.6-2.1-47 11.8l-38.6 47.2C233.9 335.4 177.3 277 144.8 205.3L189 169.3c13.9-11.3",
-    "a-hidden=\"true\"><path class=\"\" fill=\"currentColor\" d=\"M160.2 25C152.3 6.1 131.7-3.9 112.1 1.4l-5.5 1.5c-64.6 17.6-119.8 80.2-103.7 156.4 37.1 175 174.8 312.7 349.8 349.8 76.3 16.2 138.8-39.1 156.4-103.7l1.5-5.5c5.4-19.7-4.7-40.3-23.5-48.1l-97.3-40.5c-16.5-6.9-35.6-2.1-47 11.8l-38.6 47.2C233.9 335.4 177.3 277 144.8 205.3L189 169.3c13.9-11.3 18.6-30.4 11.8-47L160.2 25z\"></path></svg><span data-v-4389fba3=\"\" class=\"inline-flex items-center\">0920-0",
-    "path class=\"\" fill=\"currentColor\" d=\"M256 480c141.4 0 256-107.5 256-240S397.4 0 256 0 0 107.5 0 240c0 54.3 19.2 104.3 51.6 144.5L2.8 476.8c-4.8 9-3.3 20 3.6 27.5s17.8 9.8 27.1 5.8l118.4-50.7C183.7 472.6 218.9 480 256 480zM128 208a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm128 0a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm96 32a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z\"></path></svg></div><span data-v-78bae68f=\"\" data-text=\"true\" class=\"button-icon__text\">互動訊息</span><",
-    "=\"true\"><path class=\"\" fill=\"currentColor\" d=\"M48 106.7L48 56c0-13.3-10.7-24-24-24S0 42.7 0 56L0 168c0 13.3 10.7 24 24 24l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-55.3 0c37-57.8 101.7-96 175.3-96 114.9 0 208 93.1 208 208S370.9 464 256 464c-42.5 0-81.9-12.7-114.7-34.5-11-7.3-25.9-4.3-33.3 6.7s-4.3 25.9 6.7 33.3c40.5 26.8 89.1 42.5 141.3 42.5 141.4 0 256-114.6 256-256S397.4 0 256 0C170.3 0 94.4 42.1 48 106.7zM256 128c-13.3 0-24 10.7-24 24l0 104",
-    "path class=\"\" fill=\"currentColor\" d=\"M48 106.7L48 56c0-13.3-10.7-24-24-24S0 42.7 0 56L0 168c0 13.3 10.7 24 24 24l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-55.3 0c37-57.8 101.7-96 175.3-96 114.9 0 208 93.1 208 208S370.9 464 256 464c-42.5 0-81.9-12.7-114.7-34.5-11-7.3-25.9-4.3-33.3 6.7s-4.3 25.9 6.7 33.3c40.5 26.8 89.1 42.5 141.3 42.5 141.4 0 256-114.6 256-256S397.4 0 256 0C170.3 0 94.4 42.1 48 106.7zM256 128c-13.3 0-24 10.7-24 24l0 104c0 6.4 2.",
-    "-24S0 42.7 0 56L0 168c0 13.3 10.7 24 24 24l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-55.3 0c37-57.8 101.7-96 175.3-96 114.9 0 208 93.1 208 208S370.9 464 256 464c-42.5 0-81.9-12.7-114.7-34.5-11-7.3-25.9-4.3-33.3 6.7s-4.3 25.9 6.7 33.3c40.5 26.8 89.1 42.5 141.3 42.5 141.4 0 256-114.6 256-256S397.4 0 256 0C170.3 0 94.4 42.1 48 106.7zM256 128c-13.3 0-24 10.7-24 24l0 104c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65 0-94.",
-    "ParkingKind\":\"\",\"residentialParkingSize\":\"\",\"residentialParkingPrice\":\"\",\"residentialParkingRent\":\"\"},\"priceHistorySummary\":{\"currentPrice\":1688,\"priceChangeCount\":0,\"createTime\":\"2026-09-27\",\"firstUpPrice\":1688},\"environment\":{\"transport\":\"\",\"school\":\"\",\"market\":\"\",\"park\":\"\",\"other\":\"\"},\"isAILoan\":true,\"special\":{\"keywordTagUrlList\":[{\"keyword\":\"\\u591a\\u885b\\u6d74\",\"url\":\"https:\\/\\/www.rakuya.com.tw\\/sell\\/result?zipcode=220\\u0026keyword=%E5%A4%",
-    "4c19e7a9bdbcba1788362987495\" integrity=\"sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==\" data-cf-beacon=\"{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;8c6967fa52844241862de62799acccb8&quot;,&quot;spa&quot;:2}\" crossorigin=\"anonymous\"></script> <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('scrip",
-    "-inline--fa fa-phone w-5 text-18\" data-prefix=\"fas\" data-icon=\"phone\" role=\"img\" viewBox=\"0 0 512 512\" aria-hidden=\"true\"><path class=\"\" fill=\"currentColor\" d=\"M160.2 25C152.3 6.1 131.7-3.9 112.1 1.4l-5.5 1.5c-64.6 17.6-119.8 80.2-103.7 156.4 37.1 175 174.8 312.7 349.8 349.8 76.3 16.2 138.8-39.1 156.4-103.7l1.5-5.5c5.4-19.7-4.7-40.3-23.5-48.1l-97.3-40.5c-16.5-6.9-35.6-2.1-47 11.8l-38.6 47.2C233.9 335.4 177.3 277 144.8 205.3L189 169.3c13.9-11.3",
-    "a-hidden=\"true\"><path class=\"\" fill=\"currentColor\" d=\"M160.2 25C152.3 6.1 131.7-3.9 112.1 1.4l-5.5 1.5c-64.6 17.6-119.8 80.2-103.7 156.4 37.1 175 174.8 312.7 349.8 349.8 76.3 16.2 138.8-39.1 156.4-103.7l1.5-5.5c5.4-19.7-4.7-40.3-23.5-48.1l-97.3-40.5c-16.5-6.9-35.6-2.1-47 11.8l-38.6 47.2C233.9 335.4 177.3 277 144.8 205.3L189 169.3c13.9-11.3 18.6-30.4 11.8-47L160.2 25z\"></path></svg><span data-v-2f298dc2=\"\" class=\"inline-flex items-center\">0920-0"
-  ],
-  "globals": [
-    "getScreenDetails",
-    "__rakuyaClaritySampleState",
-    "itemInfo",
-    "itemContact",
-    "formatHouseCountLabel",
-    "compareItemAdd"
-  ],
-  "storage": {
-    "local": {
-      "setItem": null,
-      "showFloatingToolbarAttention": "{\"ruid\":\"9fe764a1a9590bab\",\"date\":\"2026-10-02\"}",
-      "rky_broadcast_fav": "{\"rky_u\":\"\",\"ts\":1790898267001}",
-      "rky_broadcast_visited": "{\"rky_u\":\"\",\"ts\":1790898267691,\"location\":\"https://www.rakuya.com.tw/sell_item/info?ehid=014c7635624974c\",\"ehid\":\"014c7635624974c\"}",
-      "__rtbh.lid": "{\"eventType\":\"lid\",\"id\":\"QJKBvv3HBhFuVcVM6Cx5\",\"expiryDate\":\"2027-10-01T23:44:27.660Z\"}",
-      "lastExternalReferrerTime": "1790898268704",
-      "_GUSM": "[1790898268779,1790898268779,-1,1,-1,-1]",
-      "__lt__cid": "82003520-7aa3-420c-9e31-c19aeea50b32",
-      "lastExternalReferrer": "empty",
-      "fbapc_143958592404057": "{\"config\":{\"fedcmDefault\":false},\"expiresAt\":1790984668878}",
-      "_gcl_ls": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":1,\"timeouts\":0,\"errors\":0,\"eopCount\":0,\"creationTimeMs\":1790898268548},\"expires\":1798674268548},\"gsid_dc\":{\"value\":{\"joinId\":\"3b1_qMEgLQoDvc0I9nRTTPhefe-mjBA1tg\",\"lastJoinedTimeMs\":1790898264984},\"expires\":1790898564984},\"gtg_load_status\":{\"status\":3,\"expires\":1790984667595,\"delay\":2}}",
-      "rky_broadcast": "{\"rky_u\":\"\",\"ts\":1790898270129}",
-      "_GSD": "1"
-    },
-    "session": {
-      "__rtbh.lid": "{\"eventType\":\"lid\",\"id\":\"QJKBvv3HBhFuVcVM6Cx5\",\"expiryDate\":\"2027-10-01T23:44:27.660Z\"}",
-      "_GSD": "1"
-    }
-  },
   "httpStatus": 200,
   "title": "捷運中山公寓3樓 - 新北市板橋區買房子、房屋出售 | 樂屋網",
-  "bodyDateMatches": [
+  "bodyContexts": [
+    "買屋 租屋 商用地產 社區 實價登錄 新建案 NEW 房產快訊 加LINE 降價即時通知 註冊 登入 我要刊登 首頁 買屋 新北市買房 板橋區 中山路二段 目前物件 捷運中山公寓3樓 新北市板橋區中山路二段 分享 分享 複製連結 列印 檢舉 我想要索取格局圖 照片(1/12) 格局 比較 追蹤 物件詳情 調整字體尺寸 小 中 大 基本 類型 住宅/公寓 法定用途 住家用 分類 中古屋 坪數 主建物 22.18坪 車位 車位 無車位 鄰近生活機能 中山路二段 前往街景 1 2 3 4 5 6 7 8 9 10 ©Leaflet ©OpenStreetMap 交通 學校 購物 公園 餐飲 醫療 金融 鄰避 更多 2 個捷運站 1 捷運板新站出口 約 123 公尺 2 捷運板新站 約 127 公尺 4 個公車站",
+    "1,100 萬 歷史交易1次 115/03 中山路二段40巷10弄1號5樓 2房2廳1衛 公寓 當時44年 5/5樓 總 23.6 坪 31.8 萬/坪 總 750 萬 歷史交易1次 備註 115/02 板新路58號5樓 3房2廳2衛 公寓 當時42年 5/5樓 總 30.11 坪 39.9 萬/坪 總 1,200 萬 歷史交易2次 備註 查 看 所 有 比 對 結 果 物件價格歷程 加入追蹤 隨時收到降價通知 2026.09.27 上架 迄今 5 天內 尚無價格波動 1,688 萬 1,688 萬 60.46 萬/坪 總 27.92 坪 格局 3 房 2 廳 2 衛 2 陽台 屋齡 約46 年 樓層 3 / 5 樓 鄰近房價分析 房貸試算 月付 50,523元 國昌 ( 營業員/經紀人 收取服務費 ) 住商不動產-【加盟】板橋海山店 鑫業不動產 0920-013-107 預約看屋 回電解說 先生 小姐 23/50 當您送出預約資訊即代表您同意樂屋相關條款，並允許賣家與您聯繫 立即預約 互動訊息 黃金發燒區 公寓 27.5 坪 1,399 萬 新北市板橋區建國街 電梯大廈 20.3 坪 1,488 萬 新北市板橋區光正街 電梯大廈 45.46",
+    "39.4 萬/坪 總 1,100 萬 歷史交易1次 115/03 中山路二段40巷10弄1號5樓 2房2廳1衛 公寓 當時44年 5/5樓 總 23.6 坪 31.8 萬/坪 總 750 萬 歷史交易1次 備註 115/02 板新路58號5樓 3房2廳2衛 公寓 當時42年 5/5樓 總 30.11 坪 39.9 萬/坪 總 1,200 萬 歷史交易2次 備註 查 看 所 有 比 對 結 果 物件價格歷程 加入追蹤 隨時收到降價通知 2026.09.27 上架 迄今 5 天內 尚無價格波動 1,688 萬 1,688 萬 60.46 萬/坪 總 27.92 坪 格局 3 房 2 廳 2 衛 2 陽台 屋齡 約46 年 樓層 3 / 5 樓 鄰近房價分析 房貸試算 月付 50,523元 國昌 ( 營業員/經紀人 收取服務費 ) 住商不動產-【加盟】板橋海山店 鑫業不動產 0920-013-107 預約看屋 回電解說 先生 小姐 23/50 當您送出預約資訊即代表您同意樂屋相關條款，並允許賣家與您聯繫 立即預約 互動訊息 黃金發燒區 公寓 27.5 坪 1,399 萬 新北市板橋區建國街 電梯大廈 20.3 坪 1,488 萬 新北市板橋區光正街 電梯大廈 45."
+  ],
+  "htmlContexts": [
+    "\" data-rurl=\"\"><span class=\"menu__text\">登入</span></div></li> <li> <div data-dropdown-hover=\"\" class=\"menu__link r-dropdown menu__link-post\"><span class=\"menu__text r-dropdown-title\"><span class=\"menu__text-wrap\">我要刊登</span><i class=\"fr fr-angle-down\"></i></span> <div class=\"r-dropdown-group--space is--right\" style=\"\"> <ul class=\"r-dropdown-group\"> <li class=\"r-dropdown-item\"><a href=\"https://my.rakuya.com.tw/point/adcenter?t=sell&amp;t2=sell-scheme\">購買售屋方案</a></li> <li class=\"r-dropdown-item\"><a h",
+    "-item\"><a href=\"https://my.rakuya.com.tw/point/adcenter?t=rent&amp;t2=rent-scheme\">購買租屋方案</a></li> <li class=\"r-dropdown-item\"><a href=\"https://my.rakuya.com.tw/point/adcenter?t=nc&amp;t2=newproperty-scheme\">建案刊登</a><span class=\"tag__wrap\">免費</span></li> </ul> </div> </div> </li> <li> <div data-dropdown-click=\"\" class=\"menu__link r-dropdown menu__link-notify\"><span id=\"menu_active_message_nologin\" class=\"menu__text r-dropdown-title\"><i class=\"fr fr-bell-o\"></i></span> <div id=\"active_message_lis",
+    "div class=\"tab__group\"> <div class=\"tab__bar is--pure is--block\"> <span data-ident=\"user\" class=\"tab__link is--active\">一般會員</span> <span data-ident=\"agent\" class=\"tab__link\">刊登會員</span> </div> <div id=\"loginByIdContent\" class=\"tab__content is--active\"> <!-- 說明文案-驗證碼 Start--> <div class=\"r-form__item hidden\" id=\"login_tel_message\"> <div class=\"r-form__caption r-form__caption--high\">驗證碼已發送至<span class=\"caption__phone",
+    "com.tw\\/realprice\\/result\"},{\"name\":\"新建案\",\"iconKey\":\"nc\",\"url\":\"https:\\/\\/newhouse.rakuya.com.tw\\/result\",\"tag\":\"new\"},{\"name\":\"房產快訊\",\"iconKey\":\"news\",\"url\":\"https:\\/\\/extra.rakuya.com.tw\\/house_news\\/\"}]}],[{\"title\":\"開始刊登\",\"links\":[{\"name\":\"刊登出售物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/sell\\/post\\/add\"},{\"name\":\"刊登出租物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/rent\\/post\\/add\"},{\"name\":\"刊登新建案\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/nc\\/post\\/add\",\"tag\":\"free\"},{\"name\":\"常見刊登問題\",\"iconKey\":\"\",\"url\":\"h",
+    "ult\"},{\"name\":\"新建案\",\"iconKey\":\"nc\",\"url\":\"https:\\/\\/newhouse.rakuya.com.tw\\/result\",\"tag\":\"new\"},{\"name\":\"房產快訊\",\"iconKey\":\"news\",\"url\":\"https:\\/\\/extra.rakuya.com.tw\\/house_news\\/\"}]}],[{\"title\":\"開始刊登\",\"links\":[{\"name\":\"刊登出售物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/sell\\/post\\/add\"},{\"name\":\"刊登出租物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/rent\\/post\\/add\"},{\"name\":\"刊登新建案\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/nc\\/post\\/add\",\"tag\":\"free\"},{\"name\":\"常見刊登問題\",\"iconKey\":\"\",\"url\":\"https:\\/\\/extra.rakuya.",
+    "g\":\"new\"},{\"name\":\"房產快訊\",\"iconKey\":\"news\",\"url\":\"https:\\/\\/extra.rakuya.com.tw\\/house_news\\/\"}]}],[{\"title\":\"開始刊登\",\"links\":[{\"name\":\"刊登出售物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/sell\\/post\\/add\"},{\"name\":\"刊登出租物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/rent\\/post\\/add\"},{\"name\":\"刊登新建案\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/nc\\/post\\/add\",\"tag\":\"free\"},{\"name\":\"常見刊登問題\",\"iconKey\":\"\",\"url\":\"https:\\/\\/extra.rakuya.com.tw\\/faq\\/\"}]}],[{\"title\":\"常用功能\",\"links\":[{\"name\":\"追蹤清單\",\"iconKey\":\"follow\",\"url\":\"h",
+    "ews\\/\"}]}],[{\"title\":\"開始刊登\",\"links\":[{\"name\":\"刊登出售物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/sell\\/post\\/add\"},{\"name\":\"刊登出租物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/rent\\/post\\/add\"},{\"name\":\"刊登新建案\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/nc\\/post\\/add\",\"tag\":\"free\"},{\"name\":\"常見刊登問題\",\"iconKey\":\"\",\"url\":\"https:\\/\\/extra.rakuya.com.tw\\/faq\\/\"}]}],[{\"title\":\"常用功能\",\"links\":[{\"name\":\"追蹤清單\",\"iconKey\":\"follow\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/favorite\\/list\\/sell\"},{\"name\":\"比比看清單\",\"iconKey\":\"compar",
+    "om.tw\\/sell\\/post\\/add\"},{\"name\":\"刊登出租物件\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/rent\\/post\\/add\"},{\"name\":\"刊登新建案\",\"iconKey\":\"\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/nc\\/post\\/add\",\"tag\":\"free\"},{\"name\":\"常見刊登問題\",\"iconKey\":\"\",\"url\":\"https:\\/\\/extra.rakuya.com.tw\\/faq\\/\"}]}],[{\"title\":\"常用功能\",\"links\":[{\"name\":\"追蹤清單\",\"iconKey\":\"follow\",\"url\":\"https:\\/\\/member.rakuya.com.tw\\/favorite\\/list\\/sell\"},{\"name\":\"比比看清單\",\"iconKey\":\"compare\",\"url\":\"https:\\/\\/www.rakuya.com.tw\\/compare\\/list\"},{\"name\":\"歷史紀錄\",\"iconKey\":\"history\",\"url\":\"\",",
+    "v-501007c8=\"\" class=\"flex min-w-0 flex-nowrap text-gray-500 items-center text-16 overflow-hidden\"><span data-v-501007c8=\"\" class=\"shrink-0\">2026.09.27</span><span data-v-501007c8=\"\" class=\"ml-0.5 shrink-0 text-gray-600\">上架</span><div data-v-501007c8=\"\" class=\"flex min-w-0 flex-1 items-center ml-4 overflow-hidden\"><span data-v-501007c8=\"\" class=\"h-0.5 rounded-l-full shrink-9999 md:max-w-15 max-md:max-w-6 grow-0 basis-15 self-center bg-gray-50\" aria-hidden=\"true\"></span><div data-v-501007c8=\"\" class=\"relative w-fit max-w-full min-w-0 shri",
+    "</div></div></div> <!-- 互動訊息 --> <div class=\"block__message__section\"> <div class=\"block__message is--close box-messenger is--width\" isaskregist=\"1\" data-ehid=\"014c7635624974c\"> <h3 class=\"title-6\"><b id=\"isOnline\" class=\"is--offline\"></b>互動訊息<i class=\"fr fr-close\"></i><i class=\"fr fr-minus btn__toggle\" style=\"display: inherit;\"></i></h3> <div class=\"content\"> <iframe class=\"message-inner\" title=\"message-inner\" src=\"\" url=\"https://webmsg.rakuya.com.tw/interactive/chatroom/index?ehid=014c7635624974c\"></iframe>",
+    "alManage\":\"\",\"residentialSecurityfee\":\"\",\"residentialParkingKind\":\"\",\"residentialParkingSize\":\"\",\"residentialParkingPrice\":\"\",\"residentialParkingRent\":\"\"},\"priceHistorySummary\":{\"currentPrice\":1688,\"priceChangeCount\":0,\"createTime\":\"2026-09-27\",\"firstUpPrice\":1688},\"environment\":{\"transport\":\"\",\"school\":\"\",\"market\":\"\",\"park\":\"\",\"other\":\"\"},\"isAILoan\":true,\"special\":{\"keywordTagUrlList\":[{\"keyword\":\"\\u591a\\u885b\\u6d74\",\"url\":\"https:\\/\\/www.rakuya.com.tw\\/sell\\/result?zipcode=220\\u0026keyword=%E5%A4%9A%E8%A1%9B%E6%B5%B4\\u0026from=item\\u0026from_i",
+    "rice2000\",\"item_category5\":\"公寓\",\"item_variant\":27.92,\"age\":46,\"price\":16880000,\"bedrooms\":3,\"affiliation\":\"1104647\",\"object_tag\":\"多衛浴\",\"object_type3\":\"中古屋\",\"object_main_size\":22.18,\"object_floor\":3,\"object_upload_time\":\"2026-09-27\",\"object_update_time\":\"2026-09-27\",\"object_mark\":\"NLCust_NLItem_NewItem,Agent_P0\",\"object_group_id\":\"591\\/S20631075\",\"object_member_brand\":\"住商不動產\",\"object_layout\":\"有格局圖\"},\"searchData\":[]}; </script><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"> <meta http-equiv=\"Content-Language\" content=\"zh-tw\">",
+    "tem_variant\":27.92,\"age\":46,\"price\":16880000,\"bedrooms\":3,\"affiliation\":\"1104647\",\"object_tag\":\"多衛浴\",\"object_type3\":\"中古屋\",\"object_main_size\":22.18,\"object_floor\":3,\"object_upload_time\":\"2026-09-27\",\"object_update_time\":\"2026-09-27\",\"object_mark\":\"NLCust_NLItem_NewItem,Agent_P0\",\"object_group_id\":\"591\\/S20631075\",\"object_member_brand\":\"住商不動產\",\"object_layout\":\"有格局圖\"},\"searchData\":[]}; </script><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"> <meta http-equiv=\"Content-Language\" content=\"zh-tw\"> <title>捷運中山公寓3樓 - 新北市板橋區買房子、房屋出售 |",
+    "2.1 0 3.7-1.6 3.7-3.7V196.8c0-1.9-1.6-3.7-3.7-3.7zm-31.4 68.1H150.3V196.8c0-2.1-1.6-3.7-3.7-3.7h-13c-2.1 0-3.7 1.6-3.7 3.7v81.3c0 1 .3 1.8 1 2.5c.7 .6 1.5 1 2.5 1h52.2c2.1 0 3.7-1.6 3.7-3.7v-13c0-1.9-1.6-3.7-3.5-3.7h.1zm193.7-68.1H327.3c-1.9 0-3.7 1.6-3.7 3.7v81.3c0 1.9 1.6 3.7 3.7 3.7h52.2c2.1 0 3.7-1.6 3.7-3.7V265c0-2.1-1.6-3.7-3.7-3.7H344V247.7h35.5c2.1 0 3.7-1.6 3.7-3.7V230.9c0-2.1-1.6-3.7-3.7-3.7H344V213.5h35.5c2.1 0 3.7-1.6 3.7-3.7v-13c-.1-1.9-1.7-3.7-3.7-3.7h.1zM512 93.4v326c-.1 51.2-42.1 92.7-93.4 92.6H92.6C41.4 511.9-.1 469.8 0 418.6",
+    "418.6V92.6C.1 41.4 42.2-.1 93.4 0h326c51.2 .1 92.7 42.1 92.6 93.4zM441.6 233.5c0-83.4-83.7-151.3-186.4-151.3s-186.4 67.9-186.4 151.3c0 74.7 66.3 137.4 155.9 149.3c21.8 4.7 19.3 12.7 14.4 42.1c-.8 4.7-3.8 18.4 16.1 10.1s107.3-63.2 146.5-108.2c27-29.7 39.9-59.8 39.9-93.1v-.2z\"></path></svg></div><span data-v-78bae68f=\"\" data-text=\"true\" class=\"button-icon__text\">分享</span></div><div data-v-78bae68f=\"\" class=\"button-icon inline-flex cursor-pointer items-center gap-1 text-14 copyText-action\"><div data-v-78bae68f=\"\" class=\"button-icon__icon flex\">",
+    "t-gray-600\" data-prefix=\"fas\" data-icon=\"link\" role=\"img\" viewBox=\"0 0 576 512\" aria-hidden=\"true\"><path class=\"\" fill=\"currentColor\" d=\"M419.5 96c-16.6 0-32.7 4.5-46.8 12.7-15.8-16-34.2-29.4-54.5-39.5 28.2-24 64.1-37.2 101.3-37.2 86.4 0 156.5 70 156.5 156.5 0 41.5-16.5 81.3-45.8 110.6l-71.1 71.1c-29.3 29.3-69.1 45.8-110.6 45.8-86.4 0-156.5-70-156.5-156.5 0-1.5 0-3 .1-4.5 .5-17.7 15.2-31.6 32.9-31.1s31.6 15.2 31.1 32.9c0 .9 0 1.8 0 2.6 0 51.1 41.4 92.5 92.5 92.5 24.5 0 48-9.7 65.4-27.1l71.1-71.1c17.3-17.3 27.1-40.9 27.1-65.4 0-51.1-41.4-92.5-",
+    "l=\"currentColor\" d=\"M419.5 96c-16.6 0-32.7 4.5-46.8 12.7-15.8-16-34.2-29.4-54.5-39.5 28.2-24 64.1-37.2 101.3-37.2 86.4 0 156.5 70 156.5 156.5 0 41.5-16.5 81.3-45.8 110.6l-71.1 71.1c-29.3 29.3-69.1 45.8-110.6 45.8-86.4 0-156.5-70-156.5-156.5 0-1.5 0-3 .1-4.5 .5-17.7 15.2-31.6 32.9-31.1s31.6 15.2 31.1 32.9c0 .9 0 1.8 0 2.6 0 51.1 41.4 92.5 92.5 92.5 24.5 0 48-9.7 65.4-27.1l71.1-71.1c17.3-17.3 27.1-40.9 27.1-65.4 0-51.1-41.4-92.5-92.5-92.5zM275.2 173.3c-1.9-.8-3.8-1.9-5.5-3.1-12.6-6.5-27-10.2-42.1-10.2-24.5 0-48 9.7-65.4 27.1L91.1 258.2c-17.3 17",
+    "9-5.5-3.1-12.6-6.5-27-10.2-42.1-10.2-24.5 0-48 9.7-65.4 27.1L91.1 258.2c-17.3 17.3-27.1 40.9-27.1 65.4 0 51.1 41.4 92.5 92.5 92.5 16.5 0 32.6-4.4 46.7-12.6 15.8 16 34.2 29.4 54.6 39.5-28.2 23.9-64 37.2-101.3 37.2-86.4 0-156.5-70-156.5-156.5 0-41.5 16.5-81.3 45.8-110.6l71.1-71.1c29.3-29.3 69.1-45.8 110.6-45.8 86.6 0 156.5 70.6 156.5 156.9 0 1.3 0 2.6 0 3.9-.4 17.7-15.1 31.6-32.8 31.2s-31.6-15.1-31.2-32.8c0-.8 0-1.5 0-2.3 0-33.7-18-63.3-44.8-79.6z\"></path></svg></div><span data-v-78bae68f=\"\" data-text=\"true\" class=\"button-icon__text\">複製連結</span",
+    "7.3-27.1 40.9-27.1 65.4 0 51.1 41.4 92.5 92.5 92.5 16.5 0 32.6-4.4 46.7-12.6 15.8 16 34.2 29.4 54.6 39.5-28.2 23.9-64 37.2-101.3 37.2-86.4 0-156.5-70-156.5-156.5 0-41.5 16.5-81.3 45.8-110.6l71.1-71.1c29.3-29.3 69.1-45.8 110.6-45.8 86.6 0 156.5 70.6 156.5 156.9 0 1.3 0 2.6 0 3.9-.4 17.7-15.1 31.6-32.8 31.2s-31.6-15.1-31.2-32.8c0-.8 0-1.5 0-2.3 0-33.7-18-63.3-44.8-79.6z\"></path></svg></div><span data-v-78bae68f=\"\" data-text=\"true\" class=\"button-icon__text\">複製連結</span></div><div data-v-78bae68f=\"\" class=\"button-icon inline-flex cursor-pointer it",
+    "-85.1 85.1 0 49.9 32 98.4 68.1 142.3 41.1 50 91.4 94 125.9 120.3 3.2 2.4 7.9 4.2 14 4.2s10.8-1.8 14-4.2c34.5-26.3 84.8-70.4 125.9-120.3 36.2-43.9 68.1-92.4 68.1-142.3 0-47-38.1-85.1-85.1-85.1zM271 87.1c25-34.6 65.2-55.1 107.9-55.1 73.5 0 133.1 59.6 133.1 133.1 0 68.6-42.9 128.9-79.1 172.8-44.1 53.6-97.3 100.1-133.8 127.9-12.3 9.4-27.5 14.1-43.1 14.1s-30.8-4.7-43.1-14.1C176.4 438 123.2 391.5 79.1 338 42.9 294.1 0 233.7 0 165.1 0 91.6 59.6 32 133.1 32 175.8 32 216 52.5 241 87.1l15 20.7 15-20.7z\"></path></svg></div><span data-v-78bae68f=\"\" data-",
+    "125.9 120.3 3.2 2.4 7.9 4.2 14 4.2s10.8-1.8 14-4.2c34.5-26.3 84.8-70.4 125.9-120.3 36.2-43.9 68.1-92.4 68.1-142.3 0-47-38.1-85.1-85.1-85.1zM271 87.1c25-34.6 65.2-55.1 107.9-55.1 73.5 0 133.1 59.6 133.1 133.1 0 68.6-42.9 128.9-79.1 172.8-44.1 53.6-97.3 100.1-133.8 127.9-12.3 9.4-27.5 14.1-43.1 14.1s-30.8-4.7-43.1-14.1C176.4 438 123.2 391.5 79.1 338 42.9 294.1 0 233.7 0 165.1 0 91.6 59.6 32 133.1 32 175.8 32 216 52.5 241 87.1l15 20.7 15-20.7z\"></path></svg></div><span data-v-78bae68f=\"\" data-text=\"true\" class=\"button-icon__text\">追蹤</span></div>",
+    "3.2 2.4 7.9 4.2 14 4.2s10.8-1.8 14-4.2c34.5-26.3 84.8-70.4 125.9-120.3 36.2-43.9 68.1-92.4 68.1-142.3 0-47-38.1-85.1-85.1-85.1zM271 87.1c25-34.6 65.2-55.1 107.9-55.1 73.5 0 133.1 59.6 133.1 133.1 0 68.6-42.9 128.9-79.1 172.8-44.1 53.6-97.3 100.1-133.8 127.9-12.3 9.4-27.5 14.1-43.1 14.1s-30.8-4.7-43.1-14.1C176.4 438 123.2 391.5 79.1 338 42.9 294.1 0 233.7 0 165.1 0 91.6 59.6 32 133.1 32 175.8 32 216 52.5 241 87.1l15 20.7 15-20.7z\"></path></svg></div><span data-v-78bae68f=\"\" data-text=\"true\" class=\"button-icon__text\">追蹤</span></div></div></sec",
+    "14-4.2c34.5-26.3 84.8-70.4 125.9-120.3 36.2-43.9 68.1-92.4 68.1-142.3 0-47-38.1-85.1-85.1-85.1zM271 87.1c25-34.6 65.2-55.1 107.9-55.1 73.5 0 133.1 59.6 133.1 133.1 0 68.6-42.9 128.9-79.1 172.8-44.1 53.6-97.3 100.1-133.8 127.9-12.3 9.4-27.5 14.1-43.1 14.1s-30.8-4.7-43.1-14.1C176.4 438 123.2 391.5 79.1 338 42.9 294.1 0 233.7 0 165.1 0 91.6 59.6 32 133.1 32 175.8 32 216 52.5 241 87.1l15 20.7 15-20.7z\"></path></svg></div><span data-v-78bae68f=\"\" data-text=\"true\" class=\"button-icon__text\">追蹤</span></div></div></section><!----><!----><!----></div><",
+    "125.9 120.3 3.2 2.4 7.9 4.2 14 4.2s10.8-1.8 14-4.2c34.5-26.3 84.8-70.4 125.9-120.3 36.2-43.9 68.1-92.4 68.1-142.3 0-47-38.1-85.1-85.1-85.1zM271 87.1c25-34.6 65.2-55.1 107.9-55.1 73.5 0 133.1 59.6 133.1 133.1 0 68.6-42.9 128.9-79.1 172.8-44.1 53.6-97.3 100.1-133.8 127.9-12.3 9.4-27.5 14.1-43.1 14.1s-30.8-4.7-43.1-14.1C176.4 438 123.2 391.5 79.1 338 42.9 294.1 0 233.7 0 165.1 0 91.6 59.6 32 133.1 32 175.8 32 216 52.5 241 87.1l15 20.7 15-20.7z\"></path></svg></div><span data-v-78bae68f=\"\" data-text=\"true\" class=\"button-icon__text\">加入追蹤 隨時收到降價通知</",
+    "3.2 2.4 7.9 4.2 14 4.2s10.8-1.8 14-4.2c34.5-26.3 84.8-70.4 125.9-120.3 36.2-43.9 68.1-92.4 68.1-142.3 0-47-38.1-85.1-85.1-85.1zM271 87.1c25-34.6 65.2-55.1 107.9-55.1 73.5 0 133.1 59.6 133.1 133.1 0 68.6-42.9 128.9-79.1 172.8-44.1 53.6-97.3 100.1-133.8 127.9-12.3 9.4-27.5 14.1-43.1 14.1s-30.8-4.7-43.1-14.1C176.4 438 123.2 391.5 79.1 338 42.9 294.1 0 233.7 0 165.1 0 91.6 59.6 32 133.1 32 175.8 32 216 52.5 241 87.1l15 20.7 15-20.7z\"></path></svg></div><span data-v-78bae68f=\"\" data-text=\"true\" class=\"button-icon__text\">加入追蹤 隨時收到降價通知</span></div>",
+    "14-4.2c34.5-26.3 84.8-70.4 125.9-120.3 36.2-43.9 68.1-92.4 68.1-142.3 0-47-38.1-85.1-85.1-85.1zM271 87.1c25-34.6 65.2-55.1 107.9-55.1 73.5 0 133.1 59.6 133.1 133.1 0 68.6-42.9 128.9-79.1 172.8-44.1 53.6-97.3 100.1-133.8 127.9-12.3 9.4-27.5 14.1-43.1 14.1s-30.8-4.7-43.1-14.1C176.4 438 123.2 391.5 79.1 338 42.9 294.1 0 233.7 0 165.1 0 91.6 59.6 32 133.1 32 175.8 32 216 52.5 241 87.1l15 20.7 15-20.7z\"></path></svg></div><span data-v-78bae68f=\"\" data-text=\"true\" class=\"button-icon__text\">加入追蹤 隨時收到降價通知</span></div></div><div data-v-501007c8=\"\" dat",
+    "ata-v-501007c8=\"\" class=\"min-w-0 flex-1 leading-none overflow-hidden\"><div data-v-501007c8=\"\" class=\"flex min-w-0 flex-nowrap text-gray-500 items-center text-16 overflow-hidden\"><span data-v-501007c8=\"\" class=\"shrink-0\">2026.09.27</span><span data-v-501007c8=\"\" class=\"ml-0.5 shrink-0 text-gray-600\">上架</span><div data-v-501007c8=\"\" class=\"flex min-w-0 flex-1 items-center ml-4 overflow-hidden\"><span data-v-501007c8=\"\" class=\"h-0.5 rounded-l-full shrink-9999 md:max-w-15 max-md:max-w-6 grow-0 basis-15 self-center bg-gray-50\" aria-hidden=\"true\"></sp",
+    "data-v-4389fba3=\"\" class=\"svg-inline--fa fa-phone text-18 text-main-600\" data-prefix=\"fas\" data-icon=\"phone\" role=\"img\" viewBox=\"0 0 512 512\" aria-hidden=\"true\"><path class=\"\" fill=\"currentColor\" d=\"M160.2 25C152.3 6.1 131.7-3.9 112.1 1.4l-5.5 1.5c-64.6 17.6-119.8 80.2-103.7 156.4 37.1 175 174.8 312.7 349.8 349.8 76.3 16.2 138.8-39.1 156.4-103.7l1.5-5.5c5.4-19.7-4.7-40.3-23.5-48.1l-97.3-40.5c-16.5-6.9-35.6-2.1-47 11.8l-38.6 47.2C233.9 335.4 177.3 277 144.8 205.3L189 169.3c13.9-11.3 18.6-30.4 11.8-47L160.2 25z\"></path></svg><span data-v-4389",
+    "ne\" role=\"img\" viewBox=\"0 0 512 512\" aria-hidden=\"true\"><path class=\"\" fill=\"currentColor\" d=\"M160.2 25C152.3 6.1 131.7-3.9 112.1 1.4l-5.5 1.5c-64.6 17.6-119.8 80.2-103.7 156.4 37.1 175 174.8 312.7 349.8 349.8 76.3 16.2 138.8-39.1 156.4-103.7l1.5-5.5c5.4-19.7-4.7-40.3-23.5-48.1l-97.3-40.5c-16.5-6.9-35.6-2.1-47 11.8l-38.6 47.2C233.9 335.4 177.3 277 144.8 205.3L189 169.3c13.9-11.3 18.6-30.4 11.8-47L160.2 25z\"></path></svg><span data-v-4389fba3=\"\" class=\"inline-flex items-center\">0920-013-107<!----></span><svg data-v-4389fba3=\"\" class=\"svg-inlin",
+    "ewBox=\"0 0 512 512\" aria-hidden=\"true\"><path class=\"\" fill=\"currentColor\" d=\"M256 480c141.4 0 256-107.5 256-240S397.4 0 256 0 0 107.5 0 240c0 54.3 19.2 104.3 51.6 144.5L2.8 476.8c-4.8 9-3.3 20 3.6 27.5s17.8 9.8 27.1 5.8l118.4-50.7C183.7 472.6 218.9 480 256 480zM128 208a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm128 0a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm96 32a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z\"></path></svg></div><span data-v-78bae68f=\"\" data-text=\"true\" class=\"button-icon__text\">互動訊息</span></div><!----></div></section><div data-v-39cc987b=\"\" class=\"p",
+    "=\"img\" viewBox=\"0 0 512 512\" aria-hidden=\"true\"><path class=\"\" fill=\"currentColor\" d=\"M48 106.7L48 56c0-13.3-10.7-24-24-24S0 42.7 0 56L0 168c0 13.3 10.7 24 24 24l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-55.3 0c37-57.8 101.7-96 175.3-96 114.9 0 208 93.1 208 208S370.9 464 256 464c-42.5 0-81.9-12.7-114.7-34.5-11-7.3-25.9-4.3-33.3 6.7s-4.3 25.9 6.7 33.3c40.5 26.8 89.1 42.5 141.3 42.5 141.4 0 256-114.6 256-256S397.4 0 256 0C170.3 0 94.4 42.1 48 106.7zM256 128c-13.3 0-24 10.7-24 24l0 104c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6",
+    "ewBox=\"0 0 512 512\" aria-hidden=\"true\"><path class=\"\" fill=\"currentColor\" d=\"M48 106.7L48 56c0-13.3-10.7-24-24-24S0 42.7 0 56L0 168c0 13.3 10.7 24 24 24l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-55.3 0c37-57.8 101.7-96 175.3-96 114.9 0 208 93.1 208 208S370.9 464 256 464c-42.5 0-81.9-12.7-114.7-34.5-11-7.3-25.9-4.3-33.3 6.7s-4.3 25.9 6.7 33.3c40.5 26.8 89.1 42.5 141.3 42.5 141.4 0 256-114.6 256-256S397.4 0 256 0C170.3 0 94.4 42.1 48 106.7zM256 128c-13.3 0-24 10.7-24 24l0 104c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-6",
+    "or\" d=\"M48 106.7L48 56c0-13.3-10.7-24-24-24S0 42.7 0 56L0 168c0 13.3 10.7 24 24 24l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-55.3 0c37-57.8 101.7-96 175.3-96 114.9 0 208 93.1 208 208S370.9 464 256 464c-42.5 0-81.9-12.7-114.7-34.5-11-7.3-25.9-4.3-33.3 6.7s-4.3 25.9 6.7 33.3c40.5 26.8 89.1 42.5 141.3 42.5 141.4 0 256-114.6 256-256S397.4 0 256 0C170.3 0 94.4 42.1 48 106.7zM256 128c-13.3 0-24 10.7-24 24l0 104c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65 0-94.1c0-13.3-10.7-24-24-24z\"></path></svg></span></button></span",
+    "\"residentialSecurityfee\":\"\",\"residentialParkingKind\":\"\",\"residentialParkingSize\":\"\",\"residentialParkingPrice\":\"\",\"residentialParkingRent\":\"\"},\"priceHistorySummary\":{\"currentPrice\":1688,\"priceChangeCount\":0,\"createTime\":\"2026-09-27\",\"firstUpPrice\":1688},\"environment\":{\"transport\":\"\",\"school\":\"\",\"market\":\"\",\"park\":\"\",\"other\":\"\"},\"isAILoan\":true,\"special\":{\"keywordTagUrlList\":[{\"keyword\":\"\\u591a\\u885b\\u6d74\",\"url\":\"https:\\/\\/www.rakuya.com.tw\\/sell\\/result?zipcode=220\\u0026keyword=%E5%A4%9A%E8%A1%9B%E6%B5%B4\\u0026from=item\\u0026from_id=keyword-tag",
+    "ts.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495\" integrity=\"sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==\" data-cf-beacon=\"{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;8c6967fa52844241862de62799acccb8&quot;,&quot;spa&quot;:2}\" crossorigin=\"anonymous\"></script> <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML=\"window.__CF$cv$params={r:'a43f56f70822c3b9'",
+    "-600\"><svg data-v-2f298dc2=\"\" class=\"svg-inline--fa fa-phone w-5 text-18\" data-prefix=\"fas\" data-icon=\"phone\" role=\"img\" viewBox=\"0 0 512 512\" aria-hidden=\"true\"><path class=\"\" fill=\"currentColor\" d=\"M160.2 25C152.3 6.1 131.7-3.9 112.1 1.4l-5.5 1.5c-64.6 17.6-119.8 80.2-103.7 156.4 37.1 175 174.8 312.7 349.8 349.8 76.3 16.2 138.8-39.1 156.4-103.7l1.5-5.5c5.4-19.7-4.7-40.3-23.5-48.1l-97.3-40.5c-16.5-6.9-35.6-2.1-47 11.8l-38.6 47.2C233.9 335.4 177.3 277 144.8 205.3L189 169.3c13.9-11.3 18.6-30.4 11.8-47L160.2 25z\"></path></svg><span data-v-2f29",
+    "ne\" role=\"img\" viewBox=\"0 0 512 512\" aria-hidden=\"true\"><path class=\"\" fill=\"currentColor\" d=\"M160.2 25C152.3 6.1 131.7-3.9 112.1 1.4l-5.5 1.5c-64.6 17.6-119.8 80.2-103.7 156.4 37.1 175 174.8 312.7 349.8 349.8 76.3 16.2 138.8-39.1 156.4-103.7l1.5-5.5c5.4-19.7-4.7-40.3-23.5-48.1l-97.3-40.5c-16.5-6.9-35.6-2.1-47 11.8l-38.6 47.2C233.9 335.4 177.3 277 144.8 205.3L189 169.3c13.9-11.3 18.6-30.4 11.8-47L160.2 25z\"></path></svg><span data-v-2f298dc2=\"\" class=\"inline-flex items-center\">0920-013-107<!----></span></p></div><button data-v-a70f43fd=\"\" dat"
+  ],
+  "bodyDates": [
     "2026.09.27"
   ],
-  "htmlDateMatches": [
+  "htmlDates": [
     "2026-09-27",
     "2026-09-27",
     "193.7-68",
@@ -150,5 +1054,520 @@
     "2024.11.0",
     "131.7-3",
     "138.8-39"
+  ],
+  "scriptSrcs": [
+    "https://capi-automation.s3.us-east-2.amazonaws.com/public/client_js/capiParamBuilder/clientParamBuilder.bundle.js",
+    "https://sb.scorecardresearch.com/cs/41493098/beacon.js",
+    "https://ma.rakuya.com.tw/matomo.js",
+    "https://d.line-scdn.net/n/line_tag/public/release/v1/lt.js",
+    "https://tags.creativecdn.com/a0LC3k1HHtFwQbsPdq7d.js",
+    "https://connect.facebook.net/signals/config/182613354898571?v=2.9.414&r=stable&domain=www.rakuya.com.tw&hme=a4c28c8787325ac3f8f9eac68364f47df2a8c4266e43177443e5d7f6289c9774&ex_m=117%2C240%2C170%2C27%2C81%2C82%2C161%2C77%2C76%2C11%2C180%2C101%2C20%2C152%2C140%2C46%2C84%2C89%2C148%2C175%2C182%2C8%2C4%2C5%2C7%2C6%2C3%2C102%2C114%2C32%2C17%2C31%2C18%2C33%2C34%2C35%2C37%2C55%2C162%2C86%2C125%2C22%2C24%2C51%2C47%2C49%2C48%2C94%2C103%2C107%2C123%2C159%2C163%2C53%2C124%2C29%2C26%2C132%2C78%2C43%2C165%2C164%2C166%2C156%2C154%2C30%2C42%2C66%2C122%2C177%2C79%2C21%2C127%2C92%2C75%2C23%2C96%2C97%2C129%2C95%2C150%2C149%2C153%2C108%2C176%2C179%2C41%2C56%2C126%2C54%2C160%2C71%2C184%2C109%2C183%2C209%2C254%2C83%2C273%2C272%2C271%2C14%2C25%2C28%2C40%2C62%2C116%2C68%2C10%2C72%2C110%2C111%2C112%2C118%2C143%2C38%2C36%2C145%2C146%2C147%2C142%2C141%2C171%2C85%2C174%2C172%2C173%2C57%2C67%2C136%2C19%2C178%2C52%2C322%2C323%2C324%2C321%2C337%2C359%2C247%2C236%2C69%2C237%2C235%2C362%2C353%2C59%2C248%2C120%2C144%2C91%2C134%2C61%2C133%2C139%2C138%2C65%2C73%2C167%2C87%2C88%2C128%2C44%2C39%2C60%2C63%2C113%2C181%2C1%2C137%2C16%2C135%2C12%2C2%2C64%2C104%2C15%2C74%2C70%2C131%2C100%2C99%2C186%2C187%2C105%2C106%2C9%2C115%2C185%2C58%2C157%2C98%2C90%2C80%2C130%2C119%2C168%2C50%2C158%2C0%2C93%2C151%2C155%2C169%2C45%2C121%2C13%2C188",
+    "https://connect.facebook.net/en_US/fbevents.js",
+    "https://www.rakuya.com.tw/a10o/70xLgINU0gubUWqUpXTQ72rTqeAlDqNMFbZVTpRu4wNPRNU6",
+    "https://www.rakuya.com.tw/a10o/70xLgINU0guCNg_xx3LZ6HyuqeAlDqNMFbZVTpRu4wNPRNU6",
+    "https://www.rakuya.com.tw/a10o/70xLgINU0gubNn7ptnHH4HevqeAlDqNMFbZVTpRu4wNPRNU6",
+    "https://www.rakuya.com.tw/a10o/70xLgINU0guBOAuVvQjYnxXdqeAlDqNMFbZVTpRu4wNPRNU6",
+    "https://www.googletagmanager.com/gtm.js?id=GTM-PTP2JGN&gtg_health=1",
+    "https://connect.facebook.net/zh_TW/bundle/sdk.js/",
+    "https://www.googletagmanager.com/gtm.js?id=GTM-PTP2JGN",
+    "https://www.rakuya.com.tw/a10o/",
+    "https://accounts.google.com/gsi/client",
+    "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+    "https://connect.facebook.net/zh_TW/sdk.js",
+    "https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js",
+    "https://securepubads.g.doubleclick.net/tag/js/gpt.js",
+    "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11458355571/?random=1790898315818&cv=11&fst=1790898315818&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45g92e69u2v9185761025za20szb853176373zd853176373xecxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=QA&gtb=1&data=event%3Dgtag.config%3Bfrom%3D%20-%20%20-%20mode%3A%20%3Brakuya_page_referrer%3D%20-%20%3Bads_related%3D%20-%20%3Brakuya_from2%3D%20-%20%20%20-%20&gap.gtb=1&ept=9&rfmt=3&fmt=4",
+    "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11458355571/?random=1790898316339&cv=11&fst=1790898316339&bg=ffffff&guid=ON&async=1&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=SA&gtb=2&data=listing_pagetype%3Dofferdetail%3Blisting_id%3D014c7635624974c%3Blisting_totalvalue%3D16880000%3Blisting_city%3D%E6%96%B0%E5%8C%97%E5%B8%82&gap.gtb=2&ept=9&rfmt=3&fmt=4",
+    "https://securepubads.g.doubleclick.net/pagead/managed/js/gpt/m202609290101/pubads_impl.js?cb=122881314",
+    "https://t.ssp.hinet.net/utag.js",
+    "https://www.rakuya.com.tw/hosts.js?1787800128",
+    "https://www.rakuya.com.tw/analytics/mjs/log_js.js",
+    "https://assets.rakuya.com.tw/js/jquery-2.1.4.min.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/bootstrap/bootstrap.min.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/RAKUYA.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/RAKUYA.gtm.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/iframe-resizer/v2.8.10/iframeResizer.min.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/iframe-resizer/v2.8.10/iframeResizer.contentWindow.min.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/RAKUYA.broadcast_bridge.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/node_modules/localforage/dist/localforage.min.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/RAKUYA.storage.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/form_pw.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/RAKUYA.header_new.js?v=4573d552",
+    "https://assets.rakuya.com.tw/static/web/js/jquery.slidemenu.min.js?v=4573d552",
+    "https://assets.rakuya.com.tw/static/web/js/jquery.sticky.min.js?v=4573d552",
+    "https://assets.rakuya.com.tw/static/web/js/modernizr.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/mqttws31.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/RakuyaActiveMessage.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/ieDialog.js?v=4573d552",
+    "https://assets.rakuya.com.tw/static/js/plugin/tab.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/RAKUYA.ad.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/RAKUYA.item_advance.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/item_favorite_popup.js?v=4573d552",
+    "https://member.rakuya.com.tw/reliableRecommend/mjs/item_info_popular_index.js",
+    "https://assets.rakuya.com.tw/js/RAKUYA.vue.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/Rakuya.applinkDetect.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/RAKUYA.item_history.js?v=4573d552",
+    "https://assets.rakuya.com.tw/js/linebot_subscribe_popup.js?v=4573d552",
+    "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/solid.min.js?v=2a03d7c0",
+    "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/regular.min.js?v=2a03d7c0",
+    "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/brands.min.js?v=2a03d7c0",
+    "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/custom-icons.min.js?v=2a03d7c0",
+    "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/fontawesome.js?v=2a03d7c0",
+    "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/light.min.js?v=2a03d7c0",
+    "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/duotone.min.js?v=2a03d7c0",
+    "https://www.rakuya.com.tw/pjs/item.action.sell.js?v=1726718377",
+    "https://www.rakuya.com.tw/pjs/item.sell.ad.js?v=1715665587",
+    "https://www.rakuya.com.tw/pjs/item.event.js?v=1714978389",
+    "https://www.rakuya.com.tw/pjs/item.preview.js?v=1714978389",
+    "https://www.rakuya.com.tw/pjs/item.detail.visited.js?v=1714978389",
+    "https://www.rakuya.com.tw/pjs/sell_item/item.js?v=1726718377",
+    "https://www.rakuya.com.tw/pjs/inform_message_listener.js?v=1789370935",
+    "https://www.rakuya.com.tw/pjs/widgets/compare_cart.js?v=1788762401",
+    "https://www.rakuya.com.tw/pjs/widgets/item_interactive.js?v=1770790900",
+    "https://www.rakuya.com.tw/pjs/widgets/login_before_action.js?v=1714978389",
+    "https://assets.rakuya.com.tw/static/vue3/js/entry/sellItemInfo-wXNNg-Mj.js",
+    "https://assets.rakuya.com.tw/static/vue3/js/entry/header-B5ZTM2d_.js",
+    "https://assets.rakuya.com.tw/static/vue3/js/entry/footer-BTN2-Q1L.js",
+    "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+    "https://dynamic.criteo.com/js/ld/ld.js?a=126576",
+    "https://sslwidget.criteo.com/event?a=126576&v=5.51.0&p0=e%3Dce%26m%3D%255Bundefined%255D&p1=e%3Dexd%26site_type%3Dd&p2=e%3Dvp%26p%3D014c7635624974c&p3=e%3Ddis&sc=%7B%22fbp%22%3A%22fb.2.1790898316880.322685369775023866%22%7D&tld=rakuya.com.tw&dy=1&fu=https%253A%252F%252Fwww.rakuya.com.tw%252Fsell_item%252Finfo%253Fehid%253D014c7635624974c&ceid=901b354f-e7f4-43cb-a913-a32c046e0afd"
+  ],
+  "performance": [
+    {
+      "name": "https://accounts.google.com/gsi/client",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://connect.facebook.net/zh_TW/sdk.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/analytics/mjs/log_js.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/hosts.js?1787800128",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/js/RAKUYA.header_new.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/js/form_pw.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/web/js/jquery.slidemenu.min.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/web/js/modernizr.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/web/js/jquery.sticky.min.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/js/mqttws31.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/js/RakuyaActiveMessage.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/js/ieDialog.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/js/plugin/tab.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/js/item_favorite_popup.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/js/RAKUYA.ad.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/js/RAKUYA.item_advance.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://member.rakuya.com.tw/reliableRecommend/mjs/item_info_popular_index.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/js/RAKUYA.vue.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/js/RAKUYA.item_history.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/js/Rakuya.applinkDetect.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/js/linebot_subscribe_popup.js?v=4573d552",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/regular.min.js?v=2a03d7c0",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/solid.min.js?v=2a03d7c0",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/brands.min.js?v=2a03d7c0",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/custom-icons.min.js?v=2a03d7c0",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/fontawesome.js?v=2a03d7c0",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/light.min.js?v=2a03d7c0",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/pjs/item.action.sell.js?v=1726718377",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/fontawesome/duotone.min.js?v=2a03d7c0",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/pjs/item.sell.ad.js?v=1715665587",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/pjs/item.event.js?v=1714978389",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/pjs/item.detail.visited.js?v=1714978389",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/pjs/sell_item/item.js?v=1726718377",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/pjs/item.preview.js?v=1714978389",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/pjs/inform_message_listener.js?v=1789370935",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/pjs/widgets/compare_cart.js?v=1788762401",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/pjs/widgets/login_before_action.js?v=1714978389",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/pjs/widgets/item_interactive.js?v=1770790900",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/entry/sellItemInfo-wXNNg-Mj.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/entry/footer-BTN2-Q1L.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/entry/header-B5ZTM2d_.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/a10o/",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.googletagmanager.com/gtm.js?id=GTM-PTP2JGN",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://connect.facebook.net/zh_TW/bundle/sdk.js/",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://connect.facebook.net/app_config/json/143958592404057/",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://www.googletagmanager.com/gtm.js?id=GTM-PTP2JGN&gtg_health=1",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/a10o/70xLgINU0guBOAuVvQjYnxXdqeAlDqNMFbZVTpRu4wNPRNU6",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/a10o/70xLgINU0gubNn7ptnHH4HevqeAlDqNMFbZVTpRu4wNPRNU6",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/a10o/70xLgINU0guCNg_xx3LZ6HyuqeAlDqNMFbZVTpRu4wNPRNU6",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/a10o/70xLgINU0gubUWqUpXTQ72rTqeAlDqNMFbZVTpRu4wNPRNU6",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://connect.facebook.net/en_US/fbevents.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://tags.creativecdn.com/a0LC3k1HHtFwQbsPdq7d.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://d.line-scdn.net/n/line_tag/public/release/v1/lt.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://ma.rakuya.com.tw/matomo.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://t.ssp.hinet.net/utag.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://sb.scorecardresearch.com/cs/41493098/beacon.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.google.com/ccm/collect?rcb=14&frm=0&apvc=1&ae=g&auid=1609924844.1790898315&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&en=page_view&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&scrsrc=www.rakuya.com.tw&rnd=874926867.1790898315&navt=n&npa=0&ep.ads_data_redaction=0&gdid=dY2E1Nz.dNzQzZD&gtb=1&gtm=45E92e69u2v853176373za204zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938466~115938468~118897920~118897930~119381664~120385423~120469145~120469153~121246026~121246034~121280971&tft=1790898314744&tfd=2185&gap.gtb=1&fmt=8",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://ad.doubleclick.net/ccm/s/collect?auid=1609924844.1790898315&gtm=45E92e69u2v853176373za204zd853176373xeaxf4&fmt=8",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/a10o/g/measurement/conversion?random=1790898314935&cv=11&tid=G-RX72HKQ587&fst=1790898314935&fmt=8&en=session_start&gtm=45g92e69u2v885868412za20szb853176373zd853176373xecxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938466~115938468~118897920~118897930~119381664~120213116~120385422~120469145~120469153~121246026~121246034~121280971~121427143&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&gacid=1411842844.1790898315&hn=www.googleadservices.com&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gdid=dY2E1Nz&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=QA&rcb=0",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/a10o/ag/g/c?v=2&tid=G-RX72HKQ587&gtm=45g92e69u2v885868412za20szb853176373zd853176373xf4&_p=1790898313952&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz&ecid=1225883833&_eu=AAAAAGAC&_prs=ok&_uip=%3A%3A&cid=1411842844.1790898315&fp=1&frm=0&pscdl=noapi&rcb=0&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&_gsid=Ij_-qyOAWxgDdrXsElUwzmQkjx_Wj9L6Lg&gaf=2&_s=1&tag_exp=115938466~115938468~118897920~118897930~119381664~120213116~120385422~120469145~120469153~121246026~121246034~121280971~121427143&sid=1790898314&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=1&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=2&gap.gtb=1&ep.from=%20-%20%20-%20model%3A%20&ep.mcrypt_b=&ep.content_group=%E8%B2%B7%E5%B1%8B%E7%89%A9%E4%BB%B6%E6%98%8E%E7%B4%B0%E9%A0%81&ep.site_group=A%20-%20realprice%3A%20&ep.utm_creative_format=&ep.utm_marketing_tropic=&ep.rakuya_platform=web&ep.rakuya_from2=%20-%20%20-%20&up.ru_id=aeb8e7512ae019c2&up.mcrypt_b=&tfd=2414",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/a10o/ag/g/c?v=2&tid=G-HVBNC2NJZE&gtm=45g92e69u2v9167067160za20szb853176373zd853176373xf4&_p=1790898313952&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz&_eu=AAAAAGAC&_uip=%3A%3A&cid=1411842844.1790898315&fp=1&frm=0&pscdl=noapi&rcb=15&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&_gsid=I5J0of0xYzG8ZxZdVcWtSAIPzgdl-l8r6w&gaf=2&_s=1&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121280971&sid=1790898315&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=1&_tu=QA&en=page_view&_fv=1&_ss=1&gap.gtb=1&ep.content_group=%E8%B2%B7%E5%B1%8B%E7%89%A9%E4%BB%B6%E6%98%8E%E7%B4%B0%E9%A0%81&ep.from=%20-%20%20-%20model%3A%20&ep.site_group=A%20-%20realprice%3A%20&ep.utm_creative_format=&ep.utm_marketing_tropic=&ep.rakuya_platform=web&ep.rakuya_from2=%20-%20%20-%20&up.ru_id=aeb8e7512ae019c2&up.mcrypt_b=&tfd=2525",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://server-side-tagging-4amklidimq-uc.a.run.app/g/collect?v=2&tid=G-HVBNC2NJZE&gtm=45g92e69u2v9167067160z8853176373za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz&ecid=1953915301&_eu=AAAAAGQ&_fplc=0&cid=1411842844.1790898315&frm=0&pscdl=noapi&rcb=15&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&sst.gch=0&sst.tft=1790898313952&sst.lpc=51818026&sst.navt=n&sst.ude=0&sst.sw_exp=1&gaf=2&_s=2&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121280971&sid=1790898315&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=1&_tu=RA&en=PageView&gap.sstd=4&gap.gtb=1&ep.content_group=%E8%B2%B7%E5%B1%8B%E7%89%A9%E4%BB%B6%E6%98%8E%E7%B4%B0%E9%A0%81&ep.from=%20-%20%20-%20model%3A%20&ep.site_group=A%20-%20realprice%3A%20&ep.utm_creative_format=&ep.utm_marketing_tropic=&ep.rakuya_platform=web&ep.rakuya_from2=%20-%20%20-%20&ep.page_pathvar=%2Fsell_item%2Finfo&ep.x-line-deduplication_key=ec5b31eb-e904-4204-8042-1c13e2f35bf6&ep.x-line-hashed_phone=&ep.x-line-hashed_email=&ep.page_hostname=www.rakuya.com.tw&ep.PageView=true&ep.LINECAPI=true&_et=6&tfd=2539&richsstsse",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://server-side-tagging-4amklidimq-uc.a.run.app/g/collect?v=2&tid=G-HVBNC2NJZE&gtm=45g92e69u2v9167067160z8853176373za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz&ecid=1953915301&_eu=AAAAAGQ&_fplc=0&cid=1411842844.1790898315&ec_mode=c&frm=0&pscdl=noapi&rcb=15&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&sst.gch=0&sst.tft=1790898313952&sst.lpc=51818026&sst.navt=n&sst.ude=0&sst.sw_exp=1&gaf=2&_s=3&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121280971&cu=TWD&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&sid=1790898315&sct=1&seg=0&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=1&_tu=RA&en=PageView&gap.sstd=4&gap.gtb=1&ep.content_group=%E8%B2%B7%E5%B1%8B%E7%89%A9%E4%BB%B6%E6%98%8E%E7%B4%B0%E9%A0%81&ep.from=%20-%20%20-%20model%3A%20&ep.site_group=A%20-%20realprice%3A%20&ep.utm_creative_format=&ep.utm_marketing_tropic=&ep.rakuya_platform=web&ep.rakuya_from2=%20-%20%20-%20&epn.event_time=1790898315&evnid=ec5b31eb-e904-4204-8042-1c13e2f35bf6&ep.country=Taiwan&_et=3&tfd=2545&richsstsse",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/a10o/ag/g/c?v=2&tid=G-H1V3P7YEG9&gtm=45g92e69u2v9131406586za20szb853176373zd853176373xf4&_p=1790898313952&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz&_eu=AAAAAGA&_uip=%3A%3A&cid=1411842844.1790898315&fp=1&frm=0&pscdl=noapi&rcb=12&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&_gsid=Q8bQ6WTAMMBWEVk_kdsP9ROZLoqDUTEh9A&gaf=2&_s=1&tag_exp=115938466~115938469~118897920~118897930~120213116~120385422~120469145~120469153~121046262~121046270~121280971&sid=1790898315&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=1&en=page_view&_fv=1&_ss=1&gap.gtb=1&tfd=2618",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://securepubads.g.doubleclick.net/tag/js/gpt.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/sell_item/api/question/list?ehid=014c7635624974c",
+      "initiatorType": "xmlhttprequest"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/realprice/api/item-realprice?ehid=014c7635624974c&groupid=591%2FS20631075&community=",
+      "initiatorType": "xmlhttprequest"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/sell_item/api/item-environment/list?ehid=014c7635624974c",
+      "initiatorType": "xmlhttprequest"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/sell_item/api/item-recommend-gold?zipcode=220&ehid=014c7635624974c",
+      "initiatorType": "xmlhttprequest"
+    },
+    {
+      "name": "https://webmsg.rakuya.com.tw/passive/passive_message/check?url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c",
+      "initiatorType": "xmlhttprequest"
+    },
+    {
+      "name": "https://webmsg.rakuya.com.tw/interactive/chatroom_notice/unread_count",
+      "initiatorType": "xmlhttprequest"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/gtm-data/item-data-layer/detail",
+      "initiatorType": "xmlhttprequest"
+    },
+    {
+      "name": "https://member.rakuya.com.tw/sellItem/api/favorite/is-favorite",
+      "initiatorType": "xmlhttprequest"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/a10o/ag/g/c?v=2&tid=G-QV3V21PBQD&gtm=45g92e69u2v9185761025za20szb853176373zd853176373xf4&_p=1790898313952&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz&ecid=1685320128&_eu=AAAAAGAC&_uip=%3A%3A&cid=1411842844.1790898315&ec_mode=a&fp=1&frm=0&pscdl=noapi&rcb=6&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&_gsid=9d7crkn_MaNs7VJTATgCFYhl1zJpS7NxCw&gaf=2&_s=1&tag_exp=115616986~115938466~115938468~118897920~118897930~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&sid=1790898315&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=1&_tu=QA&uid=&en=page_view&_fv=1&_ss=1&gap.gtb=1&ep.from=%20-%20%20-%20mode%3A%20&ep.mcrypt_b=&ep.rakuya_page_referrer=%20-%20&ep.ads_related=%20-%20&ep.rakuya_from2=%20-%20%20%20-%20&up.ru_id=aeb8e7512ae019c2&up.mcrypt_b=&tfd=3256",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11458355571/?random=1790898315818&cv=11&fst=1790898315818&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45g92e69u2v9185761025za20szb853176373zd853176373xecxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=QA&gtb=1&data=event%3Dgtag.config%3Bfrom%3D%20-%20%20-%20mode%3A%20%3Brakuya_page_referrer%3D%20-%20%3Bads_related%3D%20-%20%3Brakuya_from2%3D%20-%20%20%20-%20&gap.gtb=1&ept=9&rfmt=3&fmt=4",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.google.com/rmkt/collect/11458355571/?random=1790898315818&cv=11&fst=1790898315818&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45g92e69u2v9185761025za20szb853176373zd853176373xecxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=QA&gtb=1&data=event%3Dgtag.config%3Bfrom%3D%20-%20%20-%20mode%3A%20%3Brakuya_page_referrer%3D%20-%20%3Bads_related%3D%20-%20%3Brakuya_from2%3D%20-%20%20%20-%20&gap.gtb=1&ept=68&gcp=5",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://www.google.com/ccm/collect?rcb=6&frm=0&apvc=0&auid=1609924844.1790898315&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&tid=AW-11458355571&en=page_view&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&scrsrc=www.rakuya.com.tw&rnd=874926867.1790898315&navt=n&npa=0&ep.from=%20-%20%20-%20mode%3A%20&ep.rakuya_page_referrer=%20-%20&ep.ads_related=%20-%20&ep.rakuya_from2=%20-%20%20%20-%20&did=dY2E1Nz&gdid=dY2E1Nz&_tu=QA&gtb=1&gtm=45g92e69u2v9185761025za20szb853176373zd853176373xecxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&tft=1790898315856&tfd=3298&gap.gtb=1&tids=AW-11458355571&fmt=8",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://connect.facebook.net/signals/config/182613354898571?v=2.9.414&r=stable&domain=www.rakuya.com.tw&hme=a4c28c8787325ac3f8f9eac68364f47df2a8c4266e43177443e5d7f6289c9774&ex_m=117%2C240%2C170%2C27%2C81%2C82%2C161%2C77%2C76%2C11%2C180%2C101%2C20%2C152%2C140%2C46%2C84%2C89%2C148%2C175%2C182%2C8%2C4%2C5%2C7%2C6%2C3%2C102%2C114%2C32%2C17%2C31%2C18%2C33%2C34%2C35%2C37%2C55%2C162%2C86%2C125%2C22%2C24%2C51%2C47%2C49%2C48%2C94%2C103%2C107%2C123%2C159%2C163%2C53%2C124%2C29%2C26%2C132%2C78%2C43%2C165%2C164%2C166%2C156%2C154%2C30%2C42%2C66%2C122%2C177%2C79%2C21%2C127%2C92%2C75%2C23%2C96%2C97%2C129%2C95%2C150%2C149%2C153%2C108%2C176%2C179%2C41%2C56%2C126%2C54%2C160%2C71%2C184%2C109%2C183%2C209%2C254%2C83%2C273%2C272%2C271%2C14%2C25%2C28%2C40%2C62%2C116%2C68%2C10%2C72%2C110%2C111%2C112%2C118%2C143%2C38%2C36%2C145%2C146%2C147%2C142%2C141%2C171%2C85%2C174%2C172%2C173%2C57%2C67%2C136%2C19%2C178%2C52%2C322%2C323%2C324%2C321%2C337%2C359%2C247%2C236%2C69%2C237%2C235%2C362%2C353%2C59%2C248%2C120%2C144%2C91%2C134%2C61%2C133%2C139%2C138%2C65%2C73%2C167%2C87%2C88%2C128%2C44%2C39%2C60%2C63%2C113%2C181%2C1%2C137%2C16%2C135%2C12%2C2%2C64%2C104%2C15%2C74%2C70%2C131%2C100%2C99%2C186%2C187%2C105%2C106%2C9%2C115%2C185%2C58%2C157%2C98%2C90%2C80%2C130%2C119%2C168%2C50%2C158%2C0%2C93%2C151%2C155%2C169%2C45%2C121%2C13%2C188",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://t.ssp.hinet.net/",
+      "initiatorType": "xmlhttprequest"
+    },
+    {
+      "name": "https://dynamic.criteo.com/js/ld/ld.js?a=126576",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/a10o/g/measurement/conversion?random=1790898316300&cv=11&tid=G-RX72HKQ587&fst=1790898316300&fmt=8&en=view_item&gtm=45g92e69u2v885868412z8853176373za20kzb853176373zd853176373xecxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938466~115938468~118897920~118897930~119381664~120213116~120385422~120469145~120469153~121246026~121246034~121280971~121427143&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&gacid=1411842844.1790898315&value=10&currency_code=TWD&hn=www.googleadservices.com&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gdid=dY2E1Nz&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=QA&rcb=0",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/a10o/ag/g/c?v=2&tid=G-RX72HKQ587&gtm=45g92e69u2v885868412z8853176373za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz.dNzQzZD&ecid=1225883833&_eu=AAAAAGQC&_uip=%3A%3A&cid=1411842844.1790898315&fp=1&frm=0&pscdl=noapi&rcb=0&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&_gsid=Ij_-qyOAWxgDdrXsElUwzmQkjx_Wj9L6Lg&gaf=2&_s=2&tag_exp=115938466~115938468~118897920~118897930~119381664~120213116~120385422~120469145~120469153~121246026~121246034~121280971~121427143&sid=1790898314&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=1&_tu=QA&en=rakuya_firstbank&gap.gtb=1&ep.from=%20-%20%20-%20model%3A%20&ep.mcrypt_b=&ep.content_group=%E8%B2%B7%E5%B1%8B%E7%89%A9%E4%BB%B6%E6%98%8E%E7%B4%B0%E9%A0%81&ep.site_group=A%20-%20realprice%3A%20&ep.utm_creative_format=&ep.utm_marketing_tropic=&ep.rakuya_platform=web&ep.rakuya_from2=%20-%20%20-%20&ep.rakuya_page_location=sell_item_detail&ep.event_cid=GA1.3.1411842844.1790898315&ep.rakuya_event_name=AI%E6%88%BF%E8%B2%B8%E8%A9%A6%E7%AE%97visible&_et=1016&up.GA4_cid=GA1.3.1411842844.1790898315&tfd=3753",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/a10o/ag/g/c?v=2&tid=G-RX72HKQ587&gtm=45g92e69u2v885868412z8853176373za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz.dNzQzZD&ecid=1225883833&_eu=IAAAAGQC&_prs=ok&_uip=%3A%3A&cid=1411842844.1790898315&fp=1&frm=0&pscdl=noapi&rcb=0&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&_gsid=Ij_-qyOAWxgDdrXsElUwzmQkjx_Wj9L6Lg&gaf=2&_s=3&tag_exp=115938466~115938468~118897920~118897930~119381664~120213116~120385422~120469145~120469153~121246026~121246034~121280971~121427143&cu=TWD&sid=1790898314&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=2&_tu=QA&tfd=3753",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://server-side-tagging-4amklidimq-uc.a.run.app/g/collect?v=2&tid=G-HVBNC2NJZE&gtm=45g92e69u2v9167067160z8853176373za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz.dNzQzZD&ecid=1953915301&_eu=IAAAAGQ&_fplc=0&cid=1411842844.1790898315&ec_mode=c&frm=0&pscdl=noapi&rcb=15&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&sst.gch=0&sst.tft=1790898313952&sst.lpc=51818026&sst.navt=n&sst.ude=0&sst.sw_exp=1&gaf=2&_s=4&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121280971&cu=TWD&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&sid=1790898315&sct=1&seg=0&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=2&_tu=RA&tfd=3765&richsstsse",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://server-side-tagging-4amklidimq-uc.a.run.app/g/collect?v=2&tid=G-HVBNC2NJZE&gtm=45g92e69u2v9167067160z8853176373za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz.dNzQzZD&ecid=1953915301&_eu=AAAAAGQ&_fplc=0&cid=1411842844.1790898315&frm=0&pscdl=noapi&rcb=15&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&sst.gch=0&sst.tft=1790898313952&sst.lpc=51818026&sst.navt=n&sst.ude=0&sst.sw_exp=1&gaf=2&_s=5&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121280971&sid=1790898315&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=2&_tu=RA&en=dpa_detail&gap.sstd=4&gap.gtb=2&ep.content_group=%E8%B2%B7%E5%B1%8B%E7%89%A9%E4%BB%B6%E6%98%8E%E7%B4%B0%E9%A0%81&ep.from=%20-%20%20-%20model%3A%20&ep.site_group=A%20-%20realprice%3A%20&ep.utm_creative_format=&ep.utm_marketing_tropic=&ep.rakuya_platform=web&ep.rakuya_from2=%20-%20%20-%20&ep.page_pathvar=%2Fsell_item%2Finfo&ep.x-line-deduplication_key=688d3f88-c8f1-4ce6-aea3-039413cfe557&ep.x-line-hashed_phone=&ep.x-line-hashed_email=&ep.page_hostname=www.rakuya.com.tw&ep.x-line-browser_id=905b500b-d715-402b-8233-8156470a5117&ep.LINECAPI=true&_et=2&tfd=3769&richsstsse",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://server-side-tagging-4amklidimq-uc.a.run.app/g/collect?v=2&tid=G-HVBNC2NJZE&gtm=45g92e69u2v9167067160z8853176373za20kzb853176373zd853176373xf4&_p=1790898313952&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dY2E1Nz.dNzQzZD&ecid=1953915301&_eu=AAAAAGQ&_fplc=0&cid=1411842844.1790898315&frm=0&pscdl=noapi&rcb=15&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=zh-tw&ur=US-VA&sst.gch=0&sst.tft=1790898313952&sst.lpc=51818026&sst.navt=n&sst.ude=0&sst.sw_exp=1&gaf=2&_s=6&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121280971&sid=1790898315&sct=1&seg=0&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&gtb=2&_tu=RA&en=ViewItemDetail&gap.sstd=4&gap.gtb=2&ep.content_group=%E8%B2%B7%E5%B1%8B%E7%89%A9%E4%BB%B6%E6%98%8E%E7%B4%B0%E9%A0%81&ep.from=%20-%20%20-%20model%3A%20&ep.site_group=A%20-%20realprice%3A%20&ep.utm_creative_format=&ep.utm_marketing_tropic=&ep.rakuya_platform=web&ep.rakuya_from2=%20-%20%20-%20&ep.page_pathvar=%2Fsell_item%2Finfo&ep.x-line-deduplication_key=688d3f88-c8f1-4ce6-aea3-039413cfe557&ep.x-line-hashed_phone=&ep.x-line-hashed_email=&ep.page_hostname=www.rakuya.com.tw&ep.x-line-browser_id=905b500b-d715-402b-8233-8156470a5117&ep.LINECAPI=true&_et=1&tfd=3773&richsstsse",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11458355571/?random=1790898316339&cv=11&fst=1790898316339&bg=ffffff&guid=ON&async=1&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=SA&gtb=2&data=listing_pagetype%3Dofferdetail%3Blisting_id%3D014c7635624974c%3Blisting_totalvalue%3D16880000%3Blisting_city%3D%E6%96%B0%E5%8C%97%E5%B8%82&gap.gtb=2&ept=9&rfmt=3&fmt=4",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://www.google.com/rmkt/collect/11458355571/?random=1790898316339&cv=11&fst=1790898316339&fmt=8&bg=ffffff&guid=ON&async=1&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=SA&gtb=2&data=listing_pagetype%3Dofferdetail%3Blisting_id%3D014c7635624974c%3Blisting_totalvalue%3D16880000%3Blisting_city%3D%E6%96%B0%E5%8C%97%E5%B8%82&gap.gtb=2&ept=68&gcp=5",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://www.google.com/ccm/collect?rcb=6&frm=0&apvc=0&ae=g&auid=1609924844.1790898315&dt=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&tid=AW-11458355571&dl=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&scrsrc=www.rakuya.com.tw&rnd=874926867.1790898315&navt=n&npa=0&ep.listing_pagetype=offerdetail&ep.listing_id=014c7635624974c&epn.listing_totalvalue=16880000&ep.listing_city=%E6%96%B0%E5%8C%97%E5%B8%82&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&_tu=SA&gtb=2&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&tft=1790898316365&tfd=3806&gap.gtb=2&tids=AW-11458355571&fmt=8",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://www.googleadservices.com/pagead/conversion/11458355571/?random=1790898316352&cv=11&fst=1790898316352&fmt=7&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&evjid=jPBVU1VTniFZvNvkSw&label=MbE1CPOF8bsaEPPC4tcq&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&fcntr=TW&flng=zh&bttype=purchase&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&ec_mode=m&oid=GG_702153630.1790898316&oidsrc=3&ecsid2=1965712.1790898316&_tu=SBA&gtb=2&mt=1&gcl_ctr=1~0~0~0&item=(16880000**014c7635624974c**)&gap.gtb=2&category=acrcp_v1_512&emd=tvd.1&eme=tv.1~&gap.ch=4&ept=5&epp=5~22~63~74",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://www.rakuya.com.tw/a10o/as/p/c/11458355571/?random=1790898316352&cv=11&fst=1790898316352&fmt=3&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&evjid=jPBVU1VTniFZvNvkSw&label=MbE1CPOF8bsaEPPC4tcq&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&fcntr=TW&flng=zh&bttype=purchase&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&ec_mode=m&oid=GG_702153630.1790898316&oidsrc=3&ecsid2=1965712.1790898316&_tu=SBA&gtb=2&mt=1&gcl_ctr=1~0~0~0&item=(16880000**014c7635624974c**)&gap.gtb=2&category=acrcp_v1_512&emd=tvd.1&eme=tv.1~&gap.ch=1&ept=74&epp=5~22~63~74",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://www.googleadservices.com/pagead/conversion/11458355571/?random=1790898316352&cv=11&fst=1790898316352&fmt=7&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&label=MbE1CPOF8bsaEPPC4tcq&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&fcntr=TW&flng=zh&bttype=purchase&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&ec_mode=m&oid=GG_702153630.1790898316&oidsrc=3&ecsid2=1965712.1790898316&_tu=SBA&gtb=2&mt=2&gcl_ctr=1~0~0~0&item=(16880000**014c7635624974c**)&gap.gtb=2&emd=tvd.1&eme=tv.1~&gap.ch=1&ept=63&epp=5~22~63~74",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://t.ssp.hinet.net/emome2?u=c69af119-833f-4513-998c-c31304031cce",
+      "initiatorType": "xmlhttprequest"
+    },
+    {
+      "name": "https://t.ssp.hinet.net/cm?c=fecd61&cid=undefined&mp=c69af119-833f-4513-998c-c31304031cce",
+      "initiatorType": "xmlhttprequest"
+    },
+    {
+      "name": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11458355571/?random=1423973852&cv=11&fst=1790898316352&fmt=8&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45g92e69u2v9185761025z8853176373za20kzb853176373zd853176373xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~119381664~119404696~120213116~120385423~120469145~120469153~121046262~121046270~121246026~121246034~121280971&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&rcb=6&evjid=jPBVU1VTniFZvNvkSw&label=MbE1CPOF8bsaEPPC4tcq&frm=0&tiba=%E6%8D%B7%E9%81%8B%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%AF%933%E6%A8%93%20-%20%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%B2%B7%E6%88%BF%E5%AD%90%E3%80%81%E6%88%BF%E5%B1%8B%E5%87%BA%E5%94%AE%20%7C%20%E6%A8%82%E5%B1%8B%E7%B6%B2&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1609924844.1790898315&uaa=x86&uab=64&uafvl=Chromium%3B154.0.8037.57%7CGoogle%2520Chrome%3B154.0.8037.57%7CNot%2520A(Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&ec_mode=m&oidsrc=3&ecsid2=1965712.1790898316&_tu=SBA&gtb=2&mt=1&gcl_ctr=1~0~0~0&gap.gtb=2&category=acrcp_v1_512&emd=tvd.1&eme=tv.1~&gap.ch=4&ept=5&epp=5~22~63~74&ct_cookie_present=false&eoid=CkYKEAjwifjVBhDvyKDy5J6Uk3ESMgBkAYS0eCMQLF2gNkB6kh3-mk34aI-s3b3t1b7IAIrjWQDSAGSDs0YJVIKAXgOy7tsG8P8HAQ&crd=CLTesQII8t-xAgit4bECCK_hsQIIobixAgixwbECCLDBsQIIscOxAgiKxbECCMLJsQII1-ixAgi0xrECCIfbsQII08WxAgjrzLECCO3OsQII1c-xAgiL8rECCPTasQII6O6xAgiS67ECCMnjsQIIl9SxAgjJ27ECCM3msQIIpt2xAgiw3rECCIDbsQIIzeGxAgjL4bEC&cerd=ChCDsL4tleS-Lcjsvi2d6bc4&eitems=ChEI8In41QYQoLqA8cSfpvqFARJGAOyPgwkcRzj1AFP9ILJO7T0NoExOZ3vKRc-6hTog2NfHkZm8oHV7i2319IxzeNk3tt2CX_bnEzm-8Vnw3Z6vqVzeOXzIAA&fsk=ChAI8In41QYQvPHxiPWA1YBQEiwAAZUHAp1DEpMWWF_8c0HjPAU6kxjrK2hXXVLk7C731qHPZ7HChIEBZvf6vxoCD6A&pscrd=IhMI9OHoj4CalwMVAgpoCB2mLT2SOj1odHRwczovL3d3dy5yYWt1eWEuY29tLnR3L3NlbGxfaXRlbS9pbmZvP2VoaWQ9MDE0Yzc2MzU2MjQ5NzRjQlhDaEVJOEluNDFRWVFsYTZ0MXZyZnZ0cV9BUkl0QUtFVmNnX1VMVGtWRW1NRnJZbVVDYjM2SVo5WlVRY1JnZ3hYbVppY3VUamhpZENNOVY1Tk0wTEtvR1VPegwICWIICAAQABgAIAA",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://securepubads.g.doubleclick.net/pagead/managed/js/gpt/m202609290101/pubads_impl.js?cb=122881314",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://capi-automation.s3.us-east-2.amazonaws.com/public/client_js/capiParamBuilder/clientParamBuilder.bundle.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://securepubads.g.doubleclick.net/gampad/ads?pvsid=7469040990790086&correlator=157272721491878&eid=122880507%2C122881355%2C122881314&output=ldjh&gdfp_req=1&vrg=202609290101&ptt=17&impl=fifs&iu_parts=146880540%2Crakuya_web%2Crakuya_buy_itemDetail&enc_prev_ius=%2F0%2F1%2F2&prev_iu_szs=320x50&fluid=height&ifi=1&dids=div-gpt-ad-1774839972604-0&adfs=3487590115&sfv=1-0-45&sc=1&lrm=100&cookie_enabled=1&abxe=1&dt=1790898316991&lmt=1790869516&adxs=900&adys=1394&biw=1280&bih=720&scr_x=0&scr_y=0&btvi=1&ucis=1&oid=2&u_his=2&u_h=720&u_w=1280&u_ah=720&u_aw=1280&u_cd=24&u_sd=1&u_tz=480&dmc=16&bc=31&nvt=1&uach=WyJMaW51eCIsIiIsIng4NiIsIiIsIjE1NC4wLjgwMzcuNTciLG51bGwsMCxudWxsLCI2NCIsW1siQ2hyb21pdW0iLCIxNTQuMC44MDM3LjU3Il0sWyJHb29nbGUgQ2hyb21lIiwiMTU0LjAuODAzNy41NyJdLFsiTm90IEEoQnJhbmQiLCI5OS4wLjAuMCJdXSwwXQ..&url=https%3A%2F%2Fwww.rakuya.com.tw%2Fsell_item%2Finfo%3Fehid%3D014c7635624974c&vis=1&psz=360x200&msz=360x200&fws=0&ohw=0&dlt=1790898313892&idt=3022&prev_scp=bslot%3DRWD_A1-1&cust_params=ehid%3D014c7635624974c%26city%3D2%26zipcode%3D220%26prange%3Dprice2000%26typecode%3DR1&adks=911033437&frm=20&cpu=2&eoidce=1&pgls=CAs.",
+      "initiatorType": "fetch"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/assets/FloatingToolbar-UMlEf_OJ.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/assets/floatingToolbarApi-B5vFMyXE.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/assets/SellItemInfoRecommendSection-yMkD6rZs.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/assets/SellItemInfoOtherRecommendSection-CwE5Oe61.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/assets/index-Bamr3Pn4.js",
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://assets.rakuya.com.tw/static/vue3/js/assets/BaseTag-9rCNx5jm.js",
+      "initiatorType": "script"
+    }
+  ],
+  "globals": [
+    "getScreenDetails",
+    "__rakuyaClaritySampleState",
+    "itemInfo",
+    "itemContact",
+    "formatHouseCountLabel",
+    "compareItemAdd"
   ]
 }
