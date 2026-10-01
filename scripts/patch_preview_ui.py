@@ -47,6 +47,11 @@ replacements = {
 for old, new in replacements.items():
     text = text.replace(old, new)
 
+text = text.replace(
+    "scheme-a-canonical-v3-sinyi-floor-neartie",
+    "scheme-a-canonical-v4-sinyi-rakuya-floor-neartie",
+)
+
 old_esc = '''const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));'''
 new_esc = '''const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));'''
 text = text.replace(old_esc, new_esc)
