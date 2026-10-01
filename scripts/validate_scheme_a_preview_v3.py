@@ -16,7 +16,13 @@ def main():
     stats = json.loads(SINYI_STATS.read_text(encoding="utf-8"))
     source = json.loads(SOURCE_DATA.read_text(encoding="utf-8"))
 
-    assert p.get("mode") == "preview_only_591_then_sinyi_structured_floor_then_company_neartie_guard_v8", p.get("mode")
+    assert p.get("mode") == "preview_only_591_sinyi_rakuya_grouping_then_company_v10", p.get("mode")
+    assert p.get("rakuyaIntegrated") is True, p.get("rakuyaIntegrated")
+    rk = p.get("rakuyaSnapshot") or {}
+    assert rk.get("complete") is True, rk
+    assert int(rk.get("totalCount") or 0) > 0, rk
+    grouping = p.get("rakuyaGrouping") or {}
+    assert int(grouping.get("inputCount") or 0) == int(rk.get("uniqueListingCount") or 0), (grouping, rk)
     assert p.get("sinyiStructuredFloorMatching") is True, p.get("sinyiStructuredFloorMatching")
 
     # The visible monitor data and the company comparison must come from the same
@@ -65,6 +71,9 @@ def main():
         "sinyiOfficialMatched": matched,
         "sinyiWithStructuredFloor": stats.get("withStructuredFloorValueCount"),
         "nearTieDowngraded": guard.get("downgradedCount"),
+        "rakuyaInput": (p.get("rakuyaGrouping") or {}).get("inputCount"),
+        "rakuyaRegrouped": (p.get("rakuyaGrouping") or {}).get("regroupedCount"),
+        "rakuyaAttached": (p.get("rakuyaGrouping") or {}).get("attachedToExistingGroupCount"),
         "remainingAutoNearTie": guard.get("remainingAutoNearTieCount"),
         "valid": True,
     }, ensure_ascii=False))
