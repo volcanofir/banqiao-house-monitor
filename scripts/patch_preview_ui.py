@@ -80,7 +80,7 @@ runtime_loader = r'''function sameCounts(a,b){
 }
 function verificationMatches(d,g,v){
   return !!(d&&g&&v&&v.valid===true&&v.scheme==='A'&&v.canonicalPublisher==='yungching-preview.yml'&&
-    v.integrityVersion==='scheme-a-canonical-v3-sinyi-floor-neartie'&&v.fetchMode==='yungching_official_rendered_dom_only'&&
+    v.integrityVersion==='scheme-a-canonical-v4-sinyi-rakuya-floor-neartie'&&v.fetchMode==='yungching_official_rendered_dom_only'&&
     v.snapshotCapturedAt===g.companySnapshotCapturedAt&&v.companyGapGeneratedAt===g.generatedAt&&
     v.sourceDataUpdatedAt===g.sourceDataUpdatedAt&&d.updatedAt===g.sourceDataUpdatedAt&&
     Number(v.companyListingCount)===Number(g.companyListingCount)&&Number(v.propertyGroupCount)===Number(g.propertyGroupCount)&&
@@ -176,12 +176,16 @@ final_required = [
     '下架：${fmt(g.removedAt)}',
     'id="r420Panel"',
     'r420-widget.js',
-    'id="rakuyaPanel"',
-    'rakuya-widget.js',
+    'data-source="rakuya"',
+    'GAP.rakuyaSnapshot',
+    'function sourceClass(s)',
+    '跨平台整併',
 ]
 final_missing = [x for x in final_required if x not in final_text]
 if final_missing:
     raise RuntimeError(f'Canonical Preview UI composition failed; missing fragments: {final_missing}')
+if 'id="rakuyaPanel"' in final_text or 'rakuya-widget.js' in final_text:
+    raise RuntimeError('Canonical Preview UI composition failed; standalone Rakuya UI remains')
 
 print('Preview UI patched and hardened with canonical rental + off-market + R420 + integrated Rakuya composition')
 
