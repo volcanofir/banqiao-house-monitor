@@ -34,7 +34,7 @@ text = text.replace("${m.source==='591'&&nested.length?`<span>591原始刊登 ${
 if "function sourcePublishedText(m)" not in text:
     text = text.replace(
         "function sourceDetails(g){const rows=",
-        "function sourcePublishedText(m){if(m.source==='樂屋網'){return m.rakuyaSourcePublishedDate?`刊登：${esc(m.rakuyaSourcePublishedDate)}`:'刊登：日期未取得'}return `上架：${fmtUnix(m.sourcePublishedAt)}`}\nfunction sourceDetails(g){const rows=",
+        "function sourcePublishedText(m){if(m.source==='樂屋網'){if(m.rakuyaSourcePublishedDate)return `上架：${esc(m.rakuyaSourcePublishedDate)}`;if(m.sourcePublishedAt){const n=Number(m.sourcePublishedAt),d=new Date(Number.isFinite(n)?(n<1e12?n*1000:n):m.sourcePublishedAt);if(!Number.isNaN(d.getTime()))return `上架：${new Intl.DateTimeFormat('zh-TW',{dateStyle:'medium',timeZone:'Asia/Taipei'}).format(d)}`}return '上架：日期未取得'}return `上架：${fmtUnix(m.sourcePublishedAt)}`}\nfunction sourceDetails(g){const rows=",
         1,
     )
 text = text.replace("<span>上架：${fmtUnix(m.sourcePublishedAt)}</span>", "<span>${sourcePublishedText(m)}</span>")
