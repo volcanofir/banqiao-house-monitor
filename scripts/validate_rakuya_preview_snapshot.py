@@ -26,6 +26,7 @@ for x in rows:
 summary=p.get("sourcePublishedAtSummary") or {}
 assert summary.get("noFirstSeenFallback") is True, summary
 assert int(summary.get("availableCount") or 0) + int(summary.get("unavailableCount") or 0) == len(rows), summary
+assert int(summary.get("availableCount") or 0) > 0, summary
 print(json.dumps({
     "complete": True,
     "placementCount": p.get("placementCount"),
