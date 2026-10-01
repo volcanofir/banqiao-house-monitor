@@ -22,6 +22,7 @@ URL = f"http://127.0.0.1:{PORT}/preview/"
 SOURCE_DATA = ROOT / "data" / "listings.json"
 GAP_DATA = ROOT / "preview" / "company-gap.json"
 RENTAL_DATA = ROOT / "preview" / "rental-data.json"
+RAKUYA_DATA = ROOT / "preview" / "rakuya-seven-roads.json"
 AUG24_BASELINE = datetime.fromisoformat("2026-08-24T16:00:00+00:00")
 
 
@@ -77,6 +78,7 @@ def main():
         ROOT / "preview" / "scheme-a-verification.json",
         SOURCE_DATA,
         RENTAL_DATA,
+        RAKUYA_DATA,
     ]
     missing = [str(p) for p in required if not p.exists()]
     if missing:
@@ -84,6 +86,7 @@ def main():
 
     gap_payload = json.loads(GAP_DATA.read_text(encoding="utf-8"))
     rental_payload = json.loads(RENTAL_DATA.read_text(encoding="utf-8"))
+    rakuya_payload = json.loads(RAKUYA_DATA.read_text(encoding="utf-8"))
     offmarket_count = int(gap_payload.get("recentOffMarketCount") or 0)
     rental_count = len(rental_payload.get("listings") or [])
     rental_new_count = expected_rental_new(rental_payload)
@@ -91,6 +94,10 @@ def main():
     assert offmarket_count == len(gap_payload.get("recentOffMarketGroups") or [])
     assert rental_payload.get("market") == "rent"
     assert int((rental_payload.get("counts") or {}).get("total") or 0) == rental_count
+    assert gap_payload.get("rakuyaIntegrated") is True
+    assert (gap_payload.get("rakuyaSnapshot") or {}).get("complete") is True
+    assert rakuya_payload.get("complete") is True
+    assert int((gap_payload.get("rakuyaGrouping") or {}).get("inputCount") or -1) == int(rakuya_payload.get("uniqueListingCount") or -2)
 
     server = subprocess.Popen(
         [sys.executable, "-m", "http.server", str(PORT), "--bind", "127.0.0.1", "--directory", str(ROOT)],
@@ -136,7 +143,17 @@ def main():
                 assert number(text) is not None, (selector, text)
 
             assert number(page.locator("#cUnavailable").inner_text()) == offmarket_count
-            assert page.locator("#sources .source-card").count() >= 2
+            assert page.locator("#sources .source-card").count() == 3
+            assert page.locator('.source-tab[data-source="rakuya"]').count() == 1
+            assert page.locator("#rakuyaPanel").count() == 0
+            assert page.evaluate("GAP && GAP.rakuyaIntegrated === true") is True
+            rakuya_group_count = int(page.evaluate("(GAP.propertyGroups||[]).filter(g=>(g.sources||[]).includes('樂屋網')).length") or 0)
+            assert rakuya_group_count > 0
+            page.locator('.source-tab[data-source="rakuya"]').click()
+            assert "active" in (page.locator('.source-tab[data-source="rakuya"]').get_attribute("class") or "")
+            assert page.locator("#groups .item").count() == rakuya_group_count
+            assert page.locator('#groups .item .pill').filter(has_text="樂屋網").count() >= 1
+            page.locator('.source-tab[data-source="all"]').click()
             assert page.locator("#groups .road-group").count() >= 1
             assert page.locator(".market-btn").count() == 2
             assert page.evaluate("VERIFY && VERIFY.valid === true") is True
@@ -279,7 +296,7 @@ def main():
             browser.close()
 
         print(
-            f"Preview UI smoke test passed: sale integrity, {sale_new_count} clickable sale new group(s), "
+            f"Preview UI smoke test passed: sale integrity, {rakuya_group_count} integrated Rakuya group(s), {sale_new_count} clickable sale new group(s), "
             f"{current_changed} current-change group(s), {offmarket_count} off-market group(s), {rental_count} rental listing(s), "
             f"{rental_new_count} rental new badge/filter result(s), two-line update notes, "
             "single-open road accordion, market switching and stale-source suppression"
