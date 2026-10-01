@@ -206,16 +206,26 @@ jobs:
         continue-on-error: true
         run: sudo wg-quick down surfshark || true
 
+      - name: Refresh complete Rakuya seven-road snapshot
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
+        run: |
+          python scripts/fetch_rakuya_seven_roads_preview.py
+          python scripts/validate_rakuya_preview_snapshot.py
+
       - name: Build Sinyi structured floor snapshot
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
         run: python scripts/sinyi_preview_floor_enrich.py
+
+      - name: Append Rakuya into Preview external snapshot
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
+        run: python scripts/append_rakuya_to_scheme_a.py
 
       - name: Regroup and compare canonical Preview
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
         shell: bash
         run: |
           set -o pipefail
-          python scripts/compare_yungching_preview_v8.py 2>&1 | tee docs/preview/yungching-preview-run.log
+          python scripts/compare_yungching_preview_v10.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
       - name: Harden and validate Preview UI
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
@@ -240,7 +250,7 @@ jobs:
           mkdir -p /tmp/fast-publish/preview /tmp/fast-publish/data
           cp docs/data/listings.json /tmp/fast-publish/data/listings.json
           [[ -f docs/data/sinyi-first-display-cache.json ]] && cp docs/data/sinyi-first-display-cache.json /tmp/fast-publish/data/sinyi-first-display-cache.json || true
-          core_files=(company-gap.json yungching-preview-run.log yungching-browser-snapshot.json yungching-detail-floor.json sinyi-floor-enrichment.json scheme-a-ambiguity-audit.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html)
+          core_files=(company-gap.json yungching-preview-run.log yungching-browser-snapshot.json yungching-detail-floor.json sinyi-floor-enrichment.json scheme-a-ambiguity-audit.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html rakuya-seven-roads.json)
           for f in "${core_files[@]}"; do
             [[ -f "docs/preview/$f" ]] || { echo "Missing canonical output: $f"; exit 1; }
             cp "docs/preview/$f" "/tmp/fast-publish/preview/$f"
