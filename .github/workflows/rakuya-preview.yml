@@ -1,0 +1,86 @@
+name: 樂屋七路段 Preview
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Preview-only Rakuya refresh every 3 hours.
+    - cron: "35 */3 * * *"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/rakuya-preview.yml"
+      - "scripts/fetch_rakuya_seven_roads_preview.py"
+      - "scripts/patch_rakuya_preview_ui.py"
+      - "scripts/smoke_test_rakuya_preview.py"
+      - "docs/preview/rakuya-widget.css"
+      - "docs/preview/rakuya-widget.js"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: rakuya-preview
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install packages
+        run: pip install requests beautifulsoup4 playwright
+
+      - name: Fetch Rakuya seven-road snapshot
+        run: python scripts/fetch_rakuya_seven_roads_preview.py
+
+      - name: Preserve snapshot
+        run: cp docs/preview/rakuya-seven-roads.json /tmp/rakuya-seven-roads.json
+
+      - name: Rebase onto latest main and patch latest Preview
+        shell: bash
+        run: |
+          set -e
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/rakuya-seven-roads.json docs/preview/rakuya-seven-roads.json
+          python scripts/patch_rakuya_preview_ui.py
+
+      - name: Smoke test Rakuya Preview in system Chrome
+        run: python scripts/run_with_system_chrome.py scripts/smoke_test_rakuya_preview.py
+
+      - name: Publish Rakuya Preview
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/preview/rakuya-seven-roads.json docs/preview/index.html docs/preview/rakuya-widget.css docs/preview/rakuya-widget.js
+          if git diff --cached --quiet; then
+            echo "Rakuya Preview already current."
+            exit 0
+          fi
+          git commit -m "Update Rakuya seven-road Preview"
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep 3
+          done
+          exit 1
+
+      - name: Request GitHub Pages rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            "repos/${GITHUB_REPOSITORY}/pages/builds"
