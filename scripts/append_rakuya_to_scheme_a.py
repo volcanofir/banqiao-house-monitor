@@ -42,8 +42,12 @@ def mapped(row, active=True):
         "size": None if area is None else f"{area}坪",
         "area": area,
         "floor": row.get("floor"),
-        "sourcePublishedAt": row.get("firstSeenAt"),
-        "sourcePublishedAtType": "monitorFirstSeen",
+        "sourcePublishedAt": row.get("sourcePublishedAt"),
+        "sourcePublishedAtType": row.get("sourcePublishedAtType") or "rakuyaListingDateUnavailable",
+        "monitorFirstSeenAt": row.get("firstSeenAt"),
+        "rakuyaSourcePublishedDate": row.get("sourcePublishedDate"),
+        "rakuyaSourcePublishedRaw": row.get("sourcePublishedRaw"),
+        "rakuyaSourcePublishedEvidence": row.get("sourcePublishedEvidence"),
         "newAt": row.get("newAt"),
         "active": bool(active),
         "removedAt": row.get("removedAt") if not active else None,
@@ -88,6 +92,7 @@ def main():
         "uniqueListingCount": int(rakuya.get("uniqueListingCount") or len(active)),
         "roadCounts": rakuya.get("roadCounts") or [],
         "changes": rakuya.get("changes") or {},
+        "sourcePublishedAtSummary": rakuya.get("sourcePublishedAtSummary") or {},
         "complete": True,
     }
 
