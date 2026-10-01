@@ -10,6 +10,7 @@ import math
 import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from urllib.parse import parse_qs, quote, urlparse
 
@@ -19,6 +20,10 @@ from bs4 import BeautifulSoup
 OUT = Path("docs/preview/rakuya-seven-roads.json")
 RECENT_REMOVED_DAYS = 10
 MAX_WORKERS = 4
+DETAIL_MAX_WORKERS = 8
+SOURCE_DATE_RECHECK_HOURS = 24
+TAIPEI = ZoneInfo("Asia/Taipei")
+PUBLISH_DATE_KEYS = {"datePosted", "datePublished", "uploadDate", "publishDate", "publishedDate"}
 
 ROADS = (
     "中山路二段",
@@ -45,6 +50,173 @@ HEADERS = {
 
 def now_iso():
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+
+def normalize_publish_date(value):
+    """Normalize an exact source-provided calendar date to Taipei midnight.
+
+    Rakuya commonly renders ROC dates such as 115/08/26.  We deliberately do
+    not infer a publish date from our monitor first-seen time or from
+    "N hours ago updated", because those are different concepts.
+    """
+    if value is None:
+        return None
+    raw = str(value).strip()
+    m = re.search(r"(?<!\d)(\d{2,4})[./-](\d{1,2})[./-](\d{1,2})(?!\d)", raw)
+    if not m:
+        return None
+    year, month, day = (int(m.group(1)), int(m.group(2)), int(m.group(3)))
+    if year < 1911:
+        year += 1911
+    try:
+        dt = datetime(year, month, day, tzinfo=TAIPEI)
+    except ValueError:
+        return None
+    current_year = datetime.now(TAIPEI).year
+    if dt.year < 2000 or dt.year > current_year + 1:
+        return None
+    return {
+        "sourcePublishedDate": dt.date().isoformat(),
+        "sourcePublishedAt": int(dt.timestamp()),
+        "sourcePublishedRaw": m.group(0),
+    }
+
+
+def structured_publish_dates(value):
+    if isinstance(value, dict):
+        for key, item in value.items():
+            if key in PUBLISH_DATE_KEYS and isinstance(item, (str, int, float)):
+                yield key, item
+            yield from structured_publish_dates(item)
+    elif isinstance(value, list):
+        for item in value:
+            yield from structured_publish_dates(item)
+
+
+def extract_source_publish_date(html):
+    soup = BeautifulSoup(html, "html.parser")
+
+    # Prefer machine-readable publication fields when Rakuya exposes them.
+    for script in soup.find_all("script", attrs={"type": "application/ld+json"}):
+        body = script.string or script.get_text() or ""
+        if not body.strip():
+            continue
+        try:
+            payload = json.loads(body)
+        except Exception:
+            continue
+        for key, value in structured_publish_dates(payload):
+            parsed = normalize_publish_date(value)
+            if parsed:
+                parsed["sourcePublishedEvidence"] = f"jsonld:{key}"
+                return parsed
+
+    # Rakuya detail pages may render an explicit 刊登日期 / 上架日期 in visible text.
+    # Only an exact date is accepted. Relative "更新" text is never used here.
+    text = " ".join(soup.stripped_strings)
+    m = re.search(
+        r"(?:刊登日期|上架日期)\s*[:：]?\s*((?:\d{2,4})[./-]\d{1,2}[./-]\d{1,2})",
+        text,
+    )
+    if m:
+        parsed = normalize_publish_date(m.group(1))
+        if parsed:
+            parsed["sourcePublishedEvidence"] = "detail-visible-date"
+            return parsed
+    return None
+
+
+def fetch_source_publish_date(row):
+    hid = str(row.get("listingId") or "")
+    url = row.get("url")
+    if not hid or not url:
+        return hid, None, "missing-url"
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=25)
+        r.raise_for_status()
+        parsed = extract_source_publish_date(r.text)
+        return hid, parsed, None if parsed else "exact-date-not-exposed"
+    except Exception as exc:
+        return hid, None, f"{type(exc).__name__}: {exc}"
+
+
+def reuse_source_publish_date(row, old, checked_at):
+    if not old:
+        return False
+    if old.get("sourcePublishedAtType") == "rakuyaListingDate" and old.get("sourcePublishedAt"):
+        for key in (
+            "sourcePublishedDate",
+            "sourcePublishedAt",
+            "sourcePublishedAtType",
+            "sourcePublishedRaw",
+            "sourcePublishedEvidence",
+            "sourcePublishedCheckedAt",
+        ):
+            row[key] = old.get(key)
+        return True
+
+    if old.get("sourcePublishedAtType") == "rakuyaListingDateUnavailable":
+        last_checked = stamp(old.get("sourcePublishedCheckedAt"))
+        now_checked = stamp(checked_at)
+        if last_checked and now_checked:
+            age_hours = (now_checked - last_checked).total_seconds() / 3600
+            if 0 <= age_hours < SOURCE_DATE_RECHECK_HOURS:
+                row["sourcePublishedDate"] = None
+                row["sourcePublishedAt"] = None
+                row["sourcePublishedAtType"] = "rakuyaListingDateUnavailable"
+                row["sourcePublishedRaw"] = None
+                row["sourcePublishedEvidence"] = old.get("sourcePublishedEvidence")
+                row["sourcePublishedCheckedAt"] = old.get("sourcePublishedCheckedAt")
+                return True
+    return False
+
+
+def enrich_source_publish_dates(current_by_id, prev_rows, checked_at):
+    to_fetch = []
+    reused = 0
+    for hid, row in current_by_id.items():
+        if reuse_source_publish_date(row, prev_rows.get(hid), checked_at):
+            reused += 1
+            continue
+        to_fetch.append(row)
+
+    failures = {}
+    if to_fetch:
+        with ThreadPoolExecutor(max_workers=DETAIL_MAX_WORKERS) as pool:
+            futures = {pool.submit(fetch_source_publish_date, row): row for row in to_fetch}
+            for future in as_completed(futures):
+                row = futures[future]
+                hid, parsed, error = future.result()
+                row["sourcePublishedCheckedAt"] = checked_at
+                if parsed:
+                    row.update(parsed)
+                    row["sourcePublishedAtType"] = "rakuyaListingDate"
+                else:
+                    row["sourcePublishedDate"] = None
+                    row["sourcePublishedAt"] = None
+                    row["sourcePublishedAtType"] = "rakuyaListingDateUnavailable"
+                    row["sourcePublishedRaw"] = None
+                    row["sourcePublishedEvidence"] = error or "exact-date-not-exposed"
+                    failures[hid] = row["sourcePublishedEvidence"]
+
+    available = sum(
+        1 for row in current_by_id.values()
+        if row.get("sourcePublishedAtType") == "rakuyaListingDate" and row.get("sourcePublishedAt")
+    )
+    unavailable = len(current_by_id) - available
+    return {
+        "availableCount": available,
+        "unavailableCount": unavailable,
+        "reusedCount": reused,
+        "fetchedCount": len(to_fetch),
+        "failedCount": len(failures),
+        "noFirstSeenFallback": True,
+        "sampleFailures": [
+            {"listingId": hid, "reason": reason}
+            for hid, reason in list(failures.items())[:10]
+        ],
+    }
 
 
 def search_url(road, page):
@@ -319,6 +491,8 @@ def main():
             elif road not in current_by_id[hid]["roads"]:
                 current_by_id[hid]["roads"].append(road)
 
+    source_publish_summary = enrich_source_publish_dates(current_by_id, prev_rows, checked_at)
+
     listings = []
     new_ids = []
     price_changes = []
@@ -387,6 +561,7 @@ def main():
         "overlapCount": max(0, placement_count - len(listings)),
         "recentRemovedRetentionDays": RECENT_REMOVED_DAYS,
         "complete": True,
+        "sourcePublishedAtSummary": source_publish_summary,
         "changes": {
             "newCount": len(new_ids),
             "newIds": sorted(new_ids),
@@ -411,6 +586,7 @@ def main():
         "uniqueListingCount": len(listings),
         "overlapCount": payload["overlapCount"],
         "baseline": baseline,
+        "sourcePublishedAtSummary": source_publish_summary,
         "changes": payload["changes"],
     }, ensure_ascii=False))
 
