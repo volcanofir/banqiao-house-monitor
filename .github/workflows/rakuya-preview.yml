@@ -22,7 +22,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 8
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -35,16 +35,15 @@ jobs:
       - name: Install packages
         run: pip install requests beautifulsoup4
 
-      - name: Fetch Rakuya seven-road snapshot
-        run: python scripts/fetch_rakuya_seven_roads_preview.py
-
-      - name: Validate complete seven-road snapshot
-        run: python scripts/validate_rakuya_preview_snapshot.py
+      - name: Fetch complete Rakuya seven-road snapshot
+        run: |
+          python scripts/fetch_rakuya_seven_roads_preview.py
+          python scripts/validate_rakuya_preview_snapshot.py
 
       - name: Preserve snapshot
         run: cp docs/preview/rakuya-seven-roads.json /tmp/rakuya-seven-roads.json
 
-      - name: Publish Rakuya snapshot only
+      - name: Save Preview-only Rakuya snapshot
         shell: bash
         run: |
           set -e
@@ -55,13 +54,20 @@ jobs:
           cp /tmp/rakuya-seven-roads.json docs/preview/rakuya-seven-roads.json
           git add docs/preview/rakuya-seven-roads.json
           if git diff --cached --quiet; then
-            echo "Rakuya snapshot already current."
-            exit 0
+            echo "Rakuya snapshot unchanged."
+          else
+            git commit -m "Update Rakuya seven-road Preview snapshot"
+            for attempt in 1 2 3; do
+              if git pull --rebase && git push; then break; fi
+              git rebase --abort >/dev/null 2>&1 || true
+              sleep 3
+            done
           fi
-          git commit -m "Update Rakuya seven-road snapshot"
-          for attempt in 1 2 3; do
-            if git pull --rebase && git push; then exit 0; fi
-            git rebase --abort >/dev/null 2>&1 || true
-            sleep 3
-          done
-          exit 1
+
+      - name: Rebuild integrated canonical Preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh workflow run yungching-preview.yml --ref main
+          echo "Triggered canonical Preview rebuild so Rakuya stays integrated with 591/Sinyi."
