@@ -307,6 +307,9 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}.hero{b
 
 .compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
 .compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
+
+.compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
 </style>
 <link rel="stylesheet" href="r420-widget.css?v=20260922-1" />
 </head>
@@ -393,7 +396,8 @@ const companyLabel=s=>({company_match:'庫存',review:'待確認',missing:'未�
 const companyClass=s=>s==='company_match'?'stock':s==='review'?'review':(s==='missing'||s==='offmarket')?'missing':'unavailable';
 function sourceClass(s){return s==='信義房屋'?'sinyi':s==='樂屋網'?'rakuya':'m591'}
 function sourcePills(g){return (g.sources||[]).map(s=>`<span class="pill ${sourceClass(s)}">${esc(s)}</span>`).join('')}
-function sourceDetails(g){const rows=(g.sourceListings||[]).map((m,i)=>{const primary=m.id===g.primaryId;const nested=(m.mergedListings||[]);const nestedHtml=nested.length>1?`<ul class="sublist">${nested.map(n=>`<li><a href="${esc(n.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(n.title||n.houseId||n.id||'591刊登')}</a>｜${esc(n.price||'')} ${esc(n.size||'')}</li>`).join('')}</ul>`:'';return `<div class="merge-row"><div>${primary?'<span class="pill primary">主資料</span>':''}<span class="pill ${sourceClass(m.source)}">${esc(m.source)}</span></div><a class="merge-title" href="${esc(m.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(m.title||m.id)}</a><div class="merge-meta"><span>${esc(displayPrice(m))}</span><span>${esc(m.size||'-')}</span><span>${esc(m.address||'-')}</span><span>上架：${fmtUnix(m.sourcePublishedAt)}</span>${nested.length?`<span>${esc(m.source)}原始刊登 ${nested.length} 筆</span>`:''}</div>${nestedHtml}</div>`}).join('');return `<details class="merge-details"><summary>查看來源整併明細（${g.rawListingCount||1} 筆原始刊登）</summary><div class="merge-list">${rows}</div></details>`}
+function sourcePublishedText(m){if(m.source==='樂屋網'){return m.rakuyaSourcePublishedDate?`刊登：${esc(m.rakuyaSourcePublishedDate)}`:'刊登：日期未取得'}return `上架：${fmtUnix(m.sourcePublishedAt)}`}
+function sourceDetails(g){const rows=(g.sourceListings||[]).map((m,i)=>{const primary=m.id===g.primaryId;const nested=(m.mergedListings||[]);const nestedHtml=nested.length>1?`<ul class="sublist">${nested.map(n=>`<li><a href="${esc(n.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(n.title||n.houseId||n.id||'591刊登')}</a>｜${esc(n.price||'')} ${esc(n.size||'')}</li>`).join('')}</ul>`:'';return `<div class="merge-row"><div>${primary?'<span class="pill primary">主資料</span>':''}<span class="pill ${sourceClass(m.source)}">${esc(m.source)}</span></div><a class="merge-title" href="${esc(m.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(m.title||m.id)}</a><div class="merge-meta"><span>${esc(displayPrice(m))}</span><span>${esc(m.size||'-')}</span><span>${esc(m.address||'-')}</span><span>${sourcePublishedText(m)}</span>${nested.length?`<span>${esc(m.source)}原始刊登 ${nested.length} 筆</span>`:''}</div>${nestedHtml}</div>`}).join('');return `<details class="merge-details"><summary>查看來源整併明細（${g.rawListingCount||1} 筆原始刊登）</summary><div class="merge-list">${rows}</div></details>`}
 function candidateLine(g){
   const c=cmp(g);
   if(!c||!c.companyCandidate||!['company_match','review'].includes(c.status))return '';
@@ -528,6 +532,7 @@ function renderGroups(){
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的房屋群組。</div>';
   bindRoadAccordion();
 }
+
 
 
 

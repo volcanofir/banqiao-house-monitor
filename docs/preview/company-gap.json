@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-01T22:20:34+00:00",
+  "generatedAt": "2026-10-01T23:37:58+00:00",
   "sourceDataUpdatedAt": "2026-10-01T22:16:55+00:00",
   "mode": "preview_only_591_sinyi_rakuya_grouping_then_company_v10",
   "fetchMode": "yungching_official_rendered_dom_only",
   "company": "永慶房屋",
   "companyDataSource": "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM；缺樓層時同路徑開官方案件頁補值",
   "companyListingCount": 74,
-  "companySnapshotCapturedAt": "2026-10-01T22:18:41+00:00",
+  "companySnapshotCapturedAt": "2026-10-01T23:35:37+00:00",
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -16,9 +16,9 @@
     "板橋區三民路一段",
     "板橋區翠華街"
   ],
-  "externalActiveCount": 415,
+  "externalActiveCount": 416,
   "propertyGroupCount": 168,
-  "rawListingCount": 559,
+  "rawListingCount": 560,
   "crossPlatformMergedGroupCount": 93,
   "crossSourceReviewCount": 9,
   "companyConflictDowngradedCount": 5,
@@ -35,7 +35,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 34,
-      "browserCapturedAt": "2026-10-01T22:18:41+00:00",
+      "browserCapturedAt": "2026-10-01T23:35:37+00:00",
       "paginationExpected": true,
       "paginationComplete": true,
       "paginationActivePage": 2,
@@ -52,7 +52,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 30,
-      "browserCapturedAt": "2026-10-01T22:18:41+00:00",
+      "browserCapturedAt": "2026-10-01T23:35:37+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -69,7 +69,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 0,
-      "browserCapturedAt": "2026-10-01T22:18:41+00:00",
+      "browserCapturedAt": "2026-10-01T23:35:37+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -86,7 +86,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 2,
-      "browserCapturedAt": "2026-10-01T22:18:41+00:00",
+      "browserCapturedAt": "2026-10-01T23:35:37+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -103,7 +103,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 0,
-      "browserCapturedAt": "2026-10-01T22:18:41+00:00",
+      "browserCapturedAt": "2026-10-01T23:35:37+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -120,7 +120,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 5,
-      "browserCapturedAt": "2026-10-01T22:18:41+00:00",
+      "browserCapturedAt": "2026-10-01T23:35:37+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -137,7 +137,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 3,
-      "browserCapturedAt": "2026-10-01T22:18:41+00:00",
+      "browserCapturedAt": "2026-10-01T23:35:37+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -241,8 +241,8 @@
           "effectivePrice": 2980,
           "size": "57.67坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -258,11 +258,13 @@
               "effectivePrice": 2980,
               "size": "57.67坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "12/13樓"
+          "floor": "12/13樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -375,8 +377,8 @@
           "effectivePrice": 1400,
           "size": "25.92坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -392,11 +394,13 @@
               "effectivePrice": 1400,
               "size": "25.92坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/5樓"
+          "floor": "5/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -580,8 +584,8 @@
           "effectivePrice": 998,
           "size": "14.04坪",
           "address": "新北市板橋區光復街",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 7,
@@ -597,7 +601,7 @@
               "effectivePrice": 998,
               "size": "14.04坪",
               "address": "新北市板橋區光復街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -610,7 +614,7 @@
               "effectivePrice": 998,
               "size": "14.04坪",
               "address": "新北市板橋區光復街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -623,7 +627,7 @@
               "effectivePrice": 998,
               "size": "14.04坪",
               "address": "新北市板橋區光復街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -636,7 +640,7 @@
               "effectivePrice": 998,
               "size": "14.04坪",
               "address": "新北市板橋區光復街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -649,7 +653,7 @@
               "effectivePrice": 998,
               "size": "14.04坪",
               "address": "新北市板橋區光復街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -662,7 +666,7 @@
               "effectivePrice": 998,
               "size": "14.04坪",
               "address": "新北市板橋區光復街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -675,11 +679,13 @@
               "effectivePrice": 998,
               "size": "14.04坪",
               "address": "新北市板橋區光復街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "2/4樓"
+          "floor": "2/4樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -784,8 +790,8 @@
           "effectivePrice": 1960,
           "size": "23.84坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -801,11 +807,13 @@
               "effectivePrice": 1960,
               "size": "23.84坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/13樓"
+          "floor": "5/13樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -893,8 +901,8 @@
           "effectivePrice": 1698,
           "size": "26.54坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -910,11 +918,13 @@
               "effectivePrice": 1698,
               "size": "26.54坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/5樓"
+          "floor": "3/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -1127,8 +1137,8 @@
           "effectivePrice": 1298,
           "size": "24.95坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 5,
@@ -1144,7 +1154,7 @@
               "effectivePrice": 1298,
               "size": "24.95坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -1157,7 +1167,7 @@
               "effectivePrice": 1298,
               "size": "24.95坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -1170,7 +1180,7 @@
               "effectivePrice": 1298,
               "size": "24.95坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -1183,7 +1193,7 @@
               "effectivePrice": 1298,
               "size": "24.95坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -1196,11 +1206,13 @@
               "effectivePrice": 1298,
               "size": "24.95坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "4/5樓"
+          "floor": "4/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -1467,8 +1479,8 @@
           "effectivePrice": 2788,
           "size": "47.22坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 6,
@@ -1484,7 +1496,7 @@
               "effectivePrice": 2788,
               "size": "47.22坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -1497,7 +1509,7 @@
               "effectivePrice": 2788,
               "size": "47.22坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -1510,7 +1522,7 @@
               "effectivePrice": 2788,
               "size": "47.22坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -1523,7 +1535,7 @@
               "effectivePrice": 2788,
               "size": "47.22坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -1536,7 +1548,7 @@
               "effectivePrice": 2788,
               "size": "47.22坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -1549,11 +1561,13 @@
               "effectivePrice": 2788,
               "size": "47.22坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "7/13樓"
+          "floor": "7/13樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         },
         {
           "id": "樂屋:0dfae733063651f",
@@ -1566,8 +1580,8 @@
           "effectivePrice": 2860,
           "size": "47.22坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -1583,11 +1597,13 @@
               "effectivePrice": 2860,
               "size": "47.22坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "7/13樓"
+          "floor": "7/13樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -1770,8 +1786,8 @@
           "effectivePrice": 2338,
           "size": "27.32坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -1787,11 +1803,13 @@
               "effectivePrice": 2338,
               "size": "27.32坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/5樓"
+          "floor": "1/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -1881,8 +1899,8 @@
           "effectivePrice": 4198,
           "size": "73.43坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -1898,11 +1916,13 @@
               "effectivePrice": 4198,
               "size": "73.43坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "10/14樓"
+          "floor": "10/14樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -2091,8 +2111,8 @@
           "effectivePrice": 4888,
           "size": "90.01坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -2108,11 +2128,13 @@
               "effectivePrice": 4888,
               "size": "90.01坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "20/21樓"
+          "floor": "20/21樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -2258,12 +2280,12 @@
           "effectivePrice": 1498,
           "size": "33.54坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
-          "mergedListingCount": 3,
-          "mergedActiveListingCount": 3,
+          "mergedListingCount": 4,
+          "mergedActiveListingCount": 4,
           "mergedListings": [
             {
               "id": "樂屋:07f038347291839",
@@ -2275,7 +2297,7 @@
               "effectivePrice": 1498,
               "size": "33.54坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -2288,7 +2310,20 @@
               "effectivePrice": 1498,
               "size": "33.54坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
+              "active": true
+            },
+            {
+              "id": "樂屋:074b82347447378",
+              "houseId": "074b82347447378",
+              "source": "樂屋網",
+              "title": "國泰建設公寓三房＋頂加",
+              "url": "https://community.rakuya.com.tw/106023/sell/info?ehid=074b82347447378",
+              "price": "1498萬",
+              "effectivePrice": 1498,
+              "size": "33.53坪",
+              "address": "新北市板橋區三民路二段",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -2301,11 +2336,13 @@
               "effectivePrice": 1498,
               "size": "33.54坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/5樓"
+          "floor": "5/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -2355,7 +2392,7 @@
           "floorMatch": true
         }
       ],
-      "rawListingCount": 5
+      "rawListingCount": 6
     },
     {
       "groupId": "GROUP:信義房屋:6300AU",
@@ -2412,8 +2449,8 @@
           "effectivePrice": 1350,
           "size": "19.84坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -2429,11 +2466,13 @@
               "effectivePrice": 1350,
               "size": "19.84坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/9樓"
+          "floor": "3/9樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -2581,8 +2620,8 @@
           "effectivePrice": 2188,
           "size": "27.92坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 4,
@@ -2598,7 +2637,7 @@
               "effectivePrice": 2188,
               "size": "27.92坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -2611,7 +2650,7 @@
               "effectivePrice": 2188,
               "size": "27.92坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -2624,7 +2663,7 @@
               "effectivePrice": 2188,
               "size": "27.92坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -2637,11 +2676,13 @@
               "effectivePrice": 2188,
               "size": "27.92坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/5樓"
+          "floor": "1/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -2777,8 +2818,8 @@
           "effectivePrice": 1498,
           "size": "37.27坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -2794,7 +2835,7 @@
               "effectivePrice": 1498,
               "size": "37.27坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -2807,11 +2848,13 @@
               "effectivePrice": 1498,
               "size": "37.27坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/5樓"
+          "floor": "5/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -2910,8 +2953,8 @@
           "effectivePrice": 1398,
           "size": "27.59坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -2927,11 +2970,13 @@
               "effectivePrice": 1398,
               "size": "27.59坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/5樓"
+          "floor": "3/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -3021,8 +3066,8 @@
           "effectivePrice": 2130,
           "size": "28.41坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -3038,7 +3083,7 @@
               "effectivePrice": 2130,
               "size": "28.41坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -3051,11 +3096,13 @@
               "effectivePrice": 2125,
               "size": "28.41坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/8樓"
+          "floor": "1/8樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -3138,8 +3185,8 @@
           "effectivePrice": 3840,
           "size": "47.61坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -3155,7 +3202,7 @@
               "effectivePrice": 3840,
               "size": "47.61坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -3168,11 +3215,13 @@
               "effectivePrice": 3840,
               "size": "47.61坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/12樓"
+          "floor": "1/12樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -3257,8 +3306,8 @@
           "effectivePrice": 7128,
           "size": "130.18坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -3274,11 +3323,13 @@
               "effectivePrice": 7128,
               "size": "130.18坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/12樓"
+          "floor": "1/12樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -3400,8 +3451,8 @@
           "effectivePrice": 3288,
           "size": "82.56坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -3417,7 +3468,7 @@
               "effectivePrice": 3288,
               "size": "82.56坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -3430,11 +3481,13 @@
               "effectivePrice": 3288,
               "size": "82.56坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/12樓"
+          "floor": "1/12樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -3572,8 +3625,8 @@
           "effectivePrice": 1388,
           "size": "15.38坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 3,
@@ -3589,7 +3642,7 @@
               "effectivePrice": 1388,
               "size": "15.38坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -3602,7 +3655,7 @@
               "effectivePrice": 1388,
               "size": "15.38坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -3615,11 +3668,13 @@
               "effectivePrice": 1388,
               "size": "15.38坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/2樓"
+          "floor": "1/2樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -3734,8 +3789,8 @@
           "effectivePrice": 1580,
           "size": "13.28坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -3751,11 +3806,13 @@
               "effectivePrice": 1580,
               "size": "13.28坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/10樓"
+          "floor": "1/10樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -3843,8 +3900,8 @@
           "effectivePrice": 1400,
           "size": "27.95坪",
           "address": "新北市板橋區萬安街",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -3860,11 +3917,13 @@
               "effectivePrice": 1400,
               "size": "27.95坪",
               "address": "新北市板橋區萬安街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "2/2樓"
+          "floor": "2/2樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         },
         {
           "id": "樂屋:016b3734230373c",
@@ -3877,8 +3936,8 @@
           "effectivePrice": 1480,
           "size": "27.95坪",
           "address": "新北市板橋區萬安街",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -3894,11 +3953,13 @@
               "effectivePrice": 1480,
               "size": "27.95坪",
               "address": "新北市板橋區萬安街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "2/2樓"
+          "floor": "2/2樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -4013,8 +4074,8 @@
           "effectivePrice": 4888,
           "size": "29.33坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -4030,11 +4091,13 @@
               "effectivePrice": 4888,
               "size": "29.33坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/5樓"
+          "floor": "1/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -4122,8 +4185,8 @@
           "effectivePrice": 2688,
           "size": "53.21坪",
           "address": "新北市板橋區光復街",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -4139,11 +4202,13 @@
               "effectivePrice": 2688,
               "size": "53.21坪",
               "address": "新北市板橋區光復街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "6/7樓"
+          "floor": "6/7樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -4231,8 +4296,8 @@
           "effectivePrice": 3598,
           "size": "47.99坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -4248,7 +4313,7 @@
               "effectivePrice": 3598,
               "size": "47.99坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -4261,11 +4326,13 @@
               "effectivePrice": 3598,
               "size": "47.99坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "B1/7樓"
+          "floor": "B1/7樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -4393,8 +4460,8 @@
           "effectivePrice": 2313,
           "size": "30.04坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -4410,7 +4477,7 @@
               "effectivePrice": 2313,
               "size": "30.04坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -4423,11 +4490,13 @@
               "effectivePrice": 2313,
               "size": "30.04坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "9/11樓"
+          "floor": "9/11樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -4537,8 +4606,8 @@
           "effectivePrice": 2680,
           "size": "35.14坪",
           "address": "新北市板橋區光復街",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -4554,11 +4623,13 @@
               "effectivePrice": 2680,
               "size": "35.14坪",
               "address": "新北市板橋區光復街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "2/14樓"
+          "floor": "2/14樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -4646,8 +4717,8 @@
           "effectivePrice": 3388,
           "size": "36.13坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -4663,7 +4734,7 @@
               "effectivePrice": 3388,
               "size": "36.13坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -4676,11 +4747,13 @@
               "effectivePrice": 3388,
               "size": "36.12坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "2/5樓"
+          "floor": "2/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -4844,8 +4917,8 @@
           "effectivePrice": 2862,
           "size": "38.17坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -4861,7 +4934,7 @@
               "effectivePrice": 2862,
               "size": "38.17坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -4874,11 +4947,13 @@
               "effectivePrice": 2862,
               "size": "38.17坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/11樓"
+          "floor": "5/11樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         },
         {
           "id": "樂屋:09dd14343002198",
@@ -4891,8 +4966,8 @@
           "effectivePrice": 2901,
           "size": "38.17坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -4908,11 +4983,13 @@
               "effectivePrice": 2901,
               "size": "38.17坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "8/11樓"
+          "floor": "8/11樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -5030,8 +5107,8 @@
           "effectivePrice": 2315,
           "size": "30.04坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -5047,7 +5124,7 @@
               "effectivePrice": 2315,
               "size": "30.04坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -5060,11 +5137,13 @@
               "effectivePrice": 2315,
               "size": "30.04坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "10/11樓"
+          "floor": "10/11樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -5152,8 +5231,8 @@
           "effectivePrice": 2285,
           "size": "30.06坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 3,
@@ -5169,7 +5248,7 @@
               "effectivePrice": 2285,
               "size": "30.06坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -5182,7 +5261,7 @@
               "effectivePrice": 2285,
               "size": "30.06坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -5195,11 +5274,13 @@
               "effectivePrice": 2285,
               "size": "30.06坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "7/11樓"
+          "floor": "7/11樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -5334,8 +5415,8 @@
           "effectivePrice": 1198,
           "size": "26.14坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -5351,11 +5432,13 @@
               "effectivePrice": 1198,
               "size": "26.14坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/4樓"
+          "floor": "3/4樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -5464,8 +5547,8 @@
           "effectivePrice": 1688,
           "size": "37.83坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -5481,11 +5564,13 @@
               "effectivePrice": 1688,
               "size": "37.83坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/4樓"
+          "floor": "3/4樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -5569,8 +5654,8 @@
           "effectivePrice": 12000,
           "size": "91.68坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -5586,11 +5671,13 @@
               "effectivePrice": 12000,
               "size": "91.68坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "4/4樓"
+          "floor": "4/4樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -5681,8 +5768,8 @@
           "effectivePrice": 1688,
           "size": "19.18坪",
           "address": "新北市板橋區光復街",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -5698,11 +5785,13 @@
               "effectivePrice": 1688,
               "size": "19.18坪",
               "address": "新北市板橋區光復街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/4樓"
+          "floor": "1/4樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -5790,8 +5879,8 @@
           "effectivePrice": 1498,
           "size": "27.92坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -5807,11 +5896,13 @@
               "effectivePrice": 1498,
               "size": "27.92坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/5樓"
+          "floor": "3/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -5933,8 +6024,8 @@
           "effectivePrice": 1680,
           "size": "20.62坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -5950,7 +6041,7 @@
               "effectivePrice": 1680,
               "size": "20.62坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -5963,11 +6054,13 @@
               "effectivePrice": 1680,
               "size": "20.62坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/4樓"
+          "floor": "1/4樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -6078,8 +6171,8 @@
           "effectivePrice": 1758,
           "size": "33.88坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -6095,11 +6188,13 @@
               "effectivePrice": 1758,
               "size": "33.88坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/5樓"
+          "floor": "3/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -6234,8 +6329,8 @@
           "effectivePrice": 1368,
           "size": "21.31坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 3,
@@ -6251,7 +6346,7 @@
               "effectivePrice": 1368,
               "size": "21.31坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -6264,7 +6359,7 @@
               "effectivePrice": 1368,
               "size": "21.31坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -6277,11 +6372,13 @@
               "effectivePrice": 1368,
               "size": "21.31坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/5樓"
+          "floor": "5/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         },
         {
           "id": "樂屋:03ce90323377717",
@@ -6294,8 +6391,8 @@
           "effectivePrice": 1388,
           "size": "21.31坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -6311,11 +6408,13 @@
               "effectivePrice": 1388,
               "size": "21.31坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/5樓"
+          "floor": "3/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -6571,8 +6670,8 @@
           "effectivePrice": 1588,
           "size": "23.46坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 10,
@@ -6588,7 +6687,7 @@
               "effectivePrice": 1588,
               "size": "23.46坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -6601,7 +6700,7 @@
               "effectivePrice": 1588,
               "size": "23.46坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -6614,7 +6713,7 @@
               "effectivePrice": 1588,
               "size": "23.46坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -6627,7 +6726,7 @@
               "effectivePrice": 1588,
               "size": "23.46坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -6640,7 +6739,7 @@
               "effectivePrice": 1588,
               "size": "23.46坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -6653,7 +6752,7 @@
               "effectivePrice": 1588,
               "size": "23.46坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -6666,7 +6765,7 @@
               "effectivePrice": 1588,
               "size": "23.46坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -6679,7 +6778,7 @@
               "effectivePrice": 1588,
               "size": "23.46坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -6692,7 +6791,7 @@
               "effectivePrice": 1588,
               "size": "23.46坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -6705,11 +6804,13 @@
               "effectivePrice": 1588,
               "size": "23.46坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "7/10樓"
+          "floor": "7/10樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -6857,8 +6958,8 @@
           "effectivePrice": 3880,
           "size": "36.45坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -6874,11 +6975,13 @@
               "effectivePrice": 3880,
               "size": "36.45坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/3樓"
+          "floor": "3/3樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -6990,8 +7093,8 @@
           "effectivePrice": 2180,
           "size": "30.36坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -7007,7 +7110,7 @@
               "effectivePrice": 2180,
               "size": "30.36坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -7020,11 +7123,13 @@
               "effectivePrice": 2180,
               "size": "30.36坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/8樓"
+          "floor": "1/8樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -7109,8 +7214,8 @@
           "effectivePrice": 11600,
           "size": "59.07坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -7126,11 +7231,13 @@
               "effectivePrice": 11600,
               "size": "59.07坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "2/2樓"
+          "floor": "2/2樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -7253,8 +7360,8 @@
           "effectivePrice": 3290,
           "size": "44.81坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -7270,11 +7377,13 @@
               "effectivePrice": 3290,
               "size": "44.81坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/3樓"
+          "floor": "3/3樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -7431,8 +7540,8 @@
           "effectivePrice": 1858,
           "size": "15.52坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -7448,11 +7557,13 @@
               "effectivePrice": 1858,
               "size": "15.52坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/14樓"
+          "floor": "1/14樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -7542,8 +7653,8 @@
           "effectivePrice": 2091,
           "size": "37.39坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -7559,7 +7670,7 @@
               "effectivePrice": 2091,
               "size": "37.39坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -7572,11 +7683,13 @@
               "effectivePrice": 2091,
               "size": "37.4坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/14樓"
+          "floor": "3/14樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -7657,8 +7770,8 @@
           "effectivePrice": 13800,
           "size": "46.3坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -7674,11 +7787,13 @@
               "effectivePrice": 13800,
               "size": "46.3坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "2/2樓"
+          "floor": "2/2樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -7877,8 +7992,8 @@
           "effectivePrice": 1790,
           "size": "20.16坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 3,
@@ -7894,7 +8009,7 @@
               "effectivePrice": 1790,
               "size": "20.16坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -7907,7 +8022,7 @@
               "effectivePrice": 1790,
               "size": "20.16坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -7920,11 +8035,13 @@
               "effectivePrice": 1790,
               "size": "20.16坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/5樓"
+          "floor": "1/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -8033,8 +8150,8 @@
           "effectivePrice": 23800,
           "size": "187.88坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -8050,11 +8167,13 @@
               "effectivePrice": 23800,
               "size": "187.88坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "2/7樓"
+          "floor": "2/7樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -8143,8 +8262,8 @@
           "effectivePrice": 8800,
           "size": "29.34坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -8160,11 +8279,13 @@
               "effectivePrice": 8800,
               "size": "29.34坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "2/2樓"
+          "floor": "2/2樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -8255,8 +8376,8 @@
           "effectivePrice": 1520,
           "size": "30.78坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 3,
@@ -8272,7 +8393,7 @@
               "effectivePrice": 1520,
               "size": "30.78坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -8285,7 +8406,7 @@
               "effectivePrice": 1520,
               "size": "30.78坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -8298,11 +8419,13 @@
               "effectivePrice": 1520,
               "size": "30.78坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "6/12樓"
+          "floor": "6/12樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         },
         {
           "id": "樂屋:0436f5295521282",
@@ -8315,8 +8438,8 @@
           "effectivePrice": 1488,
           "size": "30.78坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -8332,11 +8455,13 @@
               "effectivePrice": 1488,
               "size": "30.78坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "6/12樓"
+          "floor": "6/12樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -8444,8 +8569,8 @@
           "effectivePrice": 2780,
           "size": "64.55坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 3,
@@ -8461,7 +8586,7 @@
               "effectivePrice": 2780,
               "size": "64.55坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -8474,7 +8599,7 @@
               "effectivePrice": 2780,
               "size": "64.55坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -8487,11 +8612,13 @@
               "effectivePrice": 2780,
               "size": "64.55坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "4/12樓"
+          "floor": "4/12樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -8613,8 +8740,8 @@
           "effectivePrice": 2349,
           "size": "31.03坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -8630,11 +8757,13 @@
               "effectivePrice": 2349,
               "size": "31.03坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/5樓"
+          "floor": "1/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -8745,8 +8874,8 @@
           "effectivePrice": 3020,
           "size": "21.48坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -8762,11 +8891,13 @@
               "effectivePrice": 3020,
               "size": "21.48坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/14樓"
+          "floor": "1/14樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -8856,8 +8987,8 @@
           "effectivePrice": 2968,
           "size": "31.12坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -8873,11 +9004,13 @@
               "effectivePrice": 2968,
               "size": "31.12坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/14樓"
+          "floor": "1/14樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -8967,8 +9100,8 @@
           "effectivePrice": 2980,
           "size": "32.7坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -8984,11 +9117,13 @@
               "effectivePrice": 2980,
               "size": "32.7坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/14樓"
+          "floor": "1/14樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -9076,8 +9211,8 @@
           "effectivePrice": 1198,
           "size": "25坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -9093,11 +9228,13 @@
               "effectivePrice": 1198,
               "size": "25坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/5樓"
+          "floor": "5/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -9185,8 +9322,8 @@
           "effectivePrice": 4750,
           "size": "100.98坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -9202,11 +9339,13 @@
               "effectivePrice": 4750,
               "size": "100.98坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "10/13樓"
+          "floor": "10/13樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -9294,8 +9433,8 @@
           "effectivePrice": 1398,
           "size": "23.45坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -9311,11 +9450,13 @@
               "effectivePrice": 1398,
               "size": "23.45坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/5樓"
+          "floor": "5/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -9437,8 +9578,8 @@
           "effectivePrice": 4500,
           "size": "79.49坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -9454,11 +9595,13 @@
               "effectivePrice": 4500,
               "size": "79.49坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "2/2樓"
+          "floor": "2/2樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -9600,8 +9743,8 @@
           "effectivePrice": 6900,
           "size": "35.19坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 6,
@@ -9617,7 +9760,7 @@
               "effectivePrice": 6900,
               "size": "35.19坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -9630,7 +9773,7 @@
               "effectivePrice": 6900,
               "size": "35.19坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -9643,7 +9786,7 @@
               "effectivePrice": 6900,
               "size": "35.19坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -9656,7 +9799,7 @@
               "effectivePrice": 6900,
               "size": "35.19坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -9669,7 +9812,7 @@
               "effectivePrice": 6900,
               "size": "35.19坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -9682,10 +9825,12 @@
               "effectivePrice": 6900,
               "size": "35.19坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
-          ]
+          ],
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -9814,8 +9959,8 @@
           "effectivePrice": 5900,
           "size": "25.41坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 7,
@@ -9831,7 +9976,7 @@
               "effectivePrice": 5900,
               "size": "25.41坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -9844,7 +9989,7 @@
               "effectivePrice": 5900,
               "size": "25.41坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -9857,7 +10002,7 @@
               "effectivePrice": 5900,
               "size": "25.41坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -9870,7 +10015,7 @@
               "effectivePrice": 5900,
               "size": "25.41坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -9883,7 +10028,7 @@
               "effectivePrice": 5900,
               "size": "25.41坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -9896,7 +10041,7 @@
               "effectivePrice": 5900,
               "size": "25.41坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -9909,11 +10054,13 @@
               "effectivePrice": 5900,
               "size": "25.41坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "2/2樓"
+          "floor": "2/2樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -10021,8 +10168,8 @@
           "effectivePrice": 2980,
           "size": "33.12坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -10038,7 +10185,7 @@
               "effectivePrice": 2980,
               "size": "33.12坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -10051,11 +10198,13 @@
               "effectivePrice": 2980,
               "size": "33.12坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "2/2樓"
+          "floor": "2/2樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -10191,8 +10340,8 @@
           "effectivePrice": 7600,
           "size": "136.79坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -10208,7 +10357,7 @@
               "effectivePrice": 7600,
               "size": "136.79坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -10221,11 +10370,13 @@
               "effectivePrice": 7600,
               "size": "136.79坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/7樓"
+          "floor": "1/7樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         },
         {
           "id": "樂屋:02f3a934027064f",
@@ -10238,8 +10389,8 @@
           "effectivePrice": 7800,
           "size": "136.78坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -10255,7 +10406,7 @@
               "effectivePrice": 7800,
               "size": "136.78坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -10268,11 +10419,13 @@
               "effectivePrice": 7800,
               "size": "136.79坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/7樓"
+          "floor": "1/7樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -10399,8 +10552,8 @@
           "effectivePrice": 1650,
           "size": "30.26坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -10416,11 +10569,13 @@
               "effectivePrice": 1650,
               "size": "30.26坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/5樓"
+          "floor": "5/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -10688,8 +10843,8 @@
           "effectivePrice": 1688,
           "size": "27.92坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -10705,11 +10860,13 @@
               "effectivePrice": 1688,
               "size": "27.92坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/5樓"
+          "floor": "3/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -11099,8 +11256,8 @@
           "effectivePrice": 1258,
           "size": "16.58坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -11116,11 +11273,13 @@
               "effectivePrice": 1258,
               "size": "16.58坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/4樓"
+          "floor": "3/4樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -11290,8 +11449,8 @@
           "effectivePrice": 3688,
           "size": "63.47坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -11307,11 +11466,13 @@
               "effectivePrice": 3688,
               "size": "63.47坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/14樓"
+          "floor": "3/14樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -11400,8 +11561,8 @@
           "effectivePrice": 2188,
           "size": "49.6坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -11417,11 +11578,13 @@
               "effectivePrice": 2188,
               "size": "49.6坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "11/24樓"
+          "floor": "11/24樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -11777,8 +11940,8 @@
           "effectivePrice": 1198,
           "size": "22.13坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -11794,11 +11957,13 @@
               "effectivePrice": 1198,
               "size": "22.13坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/5樓"
+          "floor": "3/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -11929,8 +12094,8 @@
           "effectivePrice": 1980,
           "size": "35.65坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -11946,11 +12111,13 @@
               "effectivePrice": 1980,
               "size": "35.65坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/8樓"
+          "floor": "5/8樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -12109,8 +12276,8 @@
           "effectivePrice": 4988,
           "size": "46.2坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -12126,11 +12293,13 @@
               "effectivePrice": 4988,
               "size": "46.2坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/24樓"
+          "floor": "1/24樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -12221,8 +12390,8 @@
           "effectivePrice": 1850,
           "size": "33.97坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -12238,11 +12407,13 @@
               "effectivePrice": 1850,
               "size": "33.97坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/5樓"
+          "floor": "5/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -12590,8 +12761,8 @@
           "effectivePrice": 2498,
           "size": "30.33坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -12607,11 +12778,13 @@
               "effectivePrice": 2498,
               "size": "30.33坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/5樓"
+          "floor": "1/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -12975,8 +13148,8 @@
           "effectivePrice": 6873,
           "size": "129.68坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -12992,11 +13165,13 @@
               "effectivePrice": 6873,
               "size": "129.68坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "10/22樓"
+          "floor": "10/22樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -13296,8 +13471,8 @@
           "effectivePrice": 1888,
           "size": "33.75坪",
           "address": "新北市板橋區萬安街",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -13313,10 +13488,12 @@
               "effectivePrice": 1888,
               "size": "33.75坪",
               "address": "新北市板橋區萬安街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
-          ]
+          ],
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -13401,8 +13578,8 @@
           "effectivePrice": 2388,
           "size": "36.62坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -13418,7 +13595,7 @@
               "effectivePrice": 2388,
               "size": "36.62坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -13431,11 +13608,13 @@
               "effectivePrice": 2388,
               "size": "36.63坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "7/13樓"
+          "floor": "7/13樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -13621,8 +13800,8 @@
           "effectivePrice": 2100,
           "size": "31.8坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -13638,11 +13817,13 @@
               "effectivePrice": 2100,
               "size": "31.8坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/5樓"
+          "floor": "1/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -13892,8 +14073,8 @@
           "effectivePrice": 2100,
           "size": "39.86坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -13909,11 +14090,13 @@
               "effectivePrice": 2100,
               "size": "39.86坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "4/5樓"
+          "floor": "4/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         },
         {
           "id": "樂屋:052b5d334909853",
@@ -13926,8 +14109,8 @@
           "effectivePrice": 2100,
           "size": "39.86坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -13943,11 +14126,13 @@
               "effectivePrice": 2100,
               "size": "39.86坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/5樓"
+          "floor": "1/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -14056,8 +14241,8 @@
           "effectivePrice": 2288,
           "size": "35.24坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -14073,11 +14258,13 @@
               "effectivePrice": 2288,
               "size": "35.24坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/5樓"
+          "floor": "1/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -14538,8 +14725,8 @@
           "effectivePrice": 638,
           "size": "9.4坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 11,
@@ -14555,7 +14742,7 @@
               "effectivePrice": 638,
               "size": "9.4坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -14568,7 +14755,7 @@
               "effectivePrice": 638,
               "size": "9.4坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -14581,7 +14768,7 @@
               "effectivePrice": 638,
               "size": "9.4坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -14594,7 +14781,7 @@
               "effectivePrice": 638,
               "size": "9.4坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -14607,7 +14794,7 @@
               "effectivePrice": 638,
               "size": "9.4坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -14620,7 +14807,7 @@
               "effectivePrice": 638,
               "size": "9.4坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -14633,7 +14820,7 @@
               "effectivePrice": 638,
               "size": "9.4坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -14646,7 +14833,7 @@
               "effectivePrice": 638,
               "size": "9.39坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -14659,7 +14846,7 @@
               "effectivePrice": 638,
               "size": "9.4坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -14672,7 +14859,7 @@
               "effectivePrice": 638,
               "size": "9.4坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -14685,11 +14872,13 @@
               "effectivePrice": 638,
               "size": "9.4坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "B1/5樓"
+          "floor": "B1/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -14802,8 +14991,8 @@
           "effectivePrice": 1692,
           "size": "22.56坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -14819,7 +15008,7 @@
               "effectivePrice": 1692,
               "size": "22.56坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -14832,11 +15021,13 @@
               "effectivePrice": 1692,
               "size": "22.56坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/24樓"
+          "floor": "5/24樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -15006,8 +15197,8 @@
           "effectivePrice": 1598,
           "size": "36.54坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 3,
@@ -15023,7 +15214,7 @@
               "effectivePrice": 1598,
               "size": "36.54坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -15036,7 +15227,7 @@
               "effectivePrice": 1598,
               "size": "36.54坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -15049,11 +15240,13 @@
               "effectivePrice": 1598,
               "size": "36.54坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/5樓"
+          "floor": "5/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         },
         {
           "id": "樂屋:0bcae8347332107",
@@ -15066,8 +15259,8 @@
           "effectivePrice": 1638,
           "size": "36.54坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -15083,11 +15276,13 @@
               "effectivePrice": 1638,
               "size": "36.54坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/5樓"
+          "floor": "5/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -15286,8 +15481,8 @@
           "effectivePrice": 2498,
           "size": "31.02坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -15303,7 +15498,7 @@
               "effectivePrice": 2498,
               "size": "31.02坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -15316,11 +15511,13 @@
               "effectivePrice": 2498,
               "size": "31.02坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/5樓"
+          "floor": "1/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -15410,8 +15607,8 @@
           "effectivePrice": 1498,
           "size": "27.81坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -15427,11 +15624,13 @@
               "effectivePrice": 1498,
               "size": "27.81坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "2/4樓"
+          "floor": "2/4樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -15642,8 +15841,8 @@
           "effectivePrice": 2680,
           "size": "36.62坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -15659,11 +15858,13 @@
               "effectivePrice": 2680,
               "size": "36.62坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "7/14樓"
+          "floor": "7/14樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -15757,8 +15958,8 @@
           "effectivePrice": 1198,
           "size": "23.89坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -15774,7 +15975,7 @@
               "effectivePrice": 1198,
               "size": "23.89坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -15787,11 +15988,13 @@
               "effectivePrice": 1198,
               "size": "23.89坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/5樓"
+          "floor": "5/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         },
         {
           "id": "樂屋:07a8d432235664c",
@@ -15804,8 +16007,8 @@
           "effectivePrice": 1288,
           "size": "23.89坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -15821,11 +16024,13 @@
               "effectivePrice": 1288,
               "size": "23.89坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/5樓"
+          "floor": "5/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -16012,8 +16217,8 @@
           "effectivePrice": 1180,
           "size": "20.27坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 4,
@@ -16029,7 +16234,7 @@
               "effectivePrice": 1180,
               "size": "20.27坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -16042,7 +16247,7 @@
               "effectivePrice": 1180,
               "size": "20.27坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -16055,7 +16260,7 @@
               "effectivePrice": 1180,
               "size": "20.27坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -16068,11 +16273,13 @@
               "effectivePrice": 1180,
               "size": "20.27坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/4樓"
+          "floor": "3/4樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -16162,8 +16369,8 @@
           "effectivePrice": 1480,
           "size": "26.21坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -16179,7 +16386,7 @@
               "effectivePrice": 1480,
               "size": "26.21坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -16192,11 +16399,13 @@
               "effectivePrice": 1480,
               "size": "26.21坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "3/5樓"
+          "floor": "3/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -16573,8 +16782,8 @@
           "effectivePrice": 2980,
           "size": "45.51坪",
           "address": "新北市板橋區光復街",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -16590,11 +16799,13 @@
               "effectivePrice": 2980,
               "size": "45.51坪",
               "address": "新北市板橋區光復街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "8/14樓"
+          "floor": "8/14樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -17088,8 +17299,8 @@
           "effectivePrice": 1688,
           "size": "22.56坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 3,
@@ -17105,7 +17316,7 @@
               "effectivePrice": 1688,
               "size": "22.56坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -17118,7 +17329,7 @@
               "effectivePrice": 1688,
               "size": "22.56坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -17131,11 +17342,13 @@
               "effectivePrice": 1688,
               "size": "22.56坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "22/24樓"
+          "floor": "22/24樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -17458,8 +17671,8 @@
           "effectivePrice": 4666,
           "size": "83.75坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 4,
@@ -17475,7 +17688,7 @@
               "effectivePrice": 4666,
               "size": "83.75坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -17488,7 +17701,7 @@
               "effectivePrice": 4666,
               "size": "83.74坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -17501,7 +17714,7 @@
               "effectivePrice": 4666,
               "size": "83.74坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -17514,11 +17727,13 @@
               "effectivePrice": 4666,
               "size": "83.75坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "19/21樓"
+          "floor": "19/21樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -18233,8 +18448,8 @@
           "effectivePrice": 4718,
           "size": "84.58坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 3,
@@ -18250,7 +18465,7 @@
               "effectivePrice": 4718,
               "size": "84.58坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -18263,7 +18478,7 @@
               "effectivePrice": 4718,
               "size": "84.58坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -18276,11 +18491,13 @@
               "effectivePrice": 4718,
               "size": "84.58坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "19/21樓"
+          "floor": "19/21樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": true,
@@ -18378,8 +18595,8 @@
       "effectivePrice": 1790,
       "size": "41.25坪",
       "url": "https://www.rakuya.com.tw/sell_item/info?ehid=0dc7d2341583457",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -18397,8 +18614,8 @@
           "effectivePrice": 1790,
           "size": "41.25坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -18414,7 +18631,7 @@
               "effectivePrice": 1790,
               "size": "41.25坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -18427,11 +18644,13 @@
               "effectivePrice": 1790,
               "size": "41.25坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "4/5樓"
+          "floor": "4/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -18449,8 +18668,8 @@
       "effectivePrice": 1380,
       "size": "14.76坪",
       "url": "https://community.rakuya.com.tw/2304/sell/info?ehid=0a2aa3137459254",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -18468,8 +18687,8 @@
           "effectivePrice": 1380,
           "size": "14.76坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -18485,11 +18704,13 @@
               "effectivePrice": 1380,
               "size": "14.76坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/9樓"
+          "floor": "1/9樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -18507,8 +18728,8 @@
       "effectivePrice": 1388,
       "size": "32.53坪",
       "url": "https://community.rakuya.com.tw/106005/sell/info?ehid=0b76af356545193",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -18526,8 +18747,8 @@
           "effectivePrice": 1388,
           "size": "32.53坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -18543,11 +18764,13 @@
               "effectivePrice": 1388,
               "size": "32.53坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "4/5樓"
+          "floor": "4/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -18565,8 +18788,8 @@
       "effectivePrice": 1798,
       "size": "35.68坪",
       "url": "https://community.rakuya.com.tw/106004/sell/info?ehid=04e826284018325",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -18584,8 +18807,8 @@
           "effectivePrice": 1798,
           "size": "35.68坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -18601,7 +18824,7 @@
               "effectivePrice": 1798,
               "size": "35.68坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -18614,11 +18837,13 @@
               "effectivePrice": 1798,
               "size": "35.68坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/5樓"
+          "floor": "5/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -18636,8 +18861,8 @@
       "effectivePrice": 660,
       "size": "6.4坪",
       "url": "https://community.rakuya.com.tw/27210/sell/info?ehid=00aace35471477a",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -18655,8 +18880,8 @@
           "effectivePrice": 660,
           "size": "6.4坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -18672,11 +18897,13 @@
               "effectivePrice": 660,
               "size": "6.4坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "6/12樓"
+          "floor": "6/12樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -18694,8 +18921,8 @@
       "effectivePrice": 1935,
       "size": "25.41坪",
       "url": "https://community.rakuya.com.tw/38994/sell/info?ehid=021864320258738",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -18713,8 +18940,8 @@
           "effectivePrice": 1935,
           "size": "25.41坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -18730,11 +18957,13 @@
               "effectivePrice": 1935,
               "size": "25.41坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/8樓"
+          "floor": "1/8樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -18752,8 +18981,8 @@
       "effectivePrice": 2280,
       "size": "29.95坪",
       "url": "https://community.rakuya.com.tw/38994/sell/info?ehid=072a31320258712",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -18771,8 +19000,8 @@
           "effectivePrice": 2280,
           "size": "29.95坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -18788,11 +19017,13 @@
               "effectivePrice": 2280,
               "size": "29.95坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/8樓"
+          "floor": "1/8樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -18810,8 +19041,8 @@
       "effectivePrice": 4215,
       "size": "55.35坪",
       "url": "https://community.rakuya.com.tw/38994/sell/info?ehid=0b5c3b32025332d",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -18829,8 +19060,8 @@
           "effectivePrice": 4215,
           "size": "55.35坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -18846,11 +19077,13 @@
               "effectivePrice": 4215,
               "size": "55.35坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/8樓"
+          "floor": "1/8樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -18868,8 +19101,8 @@
       "effectivePrice": 1198,
       "size": "17.02坪",
       "url": "https://www.rakuya.com.tw/sell_item/info?ehid=00c85233425357a",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -18887,8 +19120,8 @@
           "effectivePrice": 1198,
           "size": "17.02坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -18904,10 +19137,12 @@
               "effectivePrice": 1198,
               "size": "17.02坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
-          ]
+          ],
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -18925,8 +19160,8 @@
       "effectivePrice": 1720,
       "size": "28.76坪",
       "url": "https://www.rakuya.com.tw/sell_item/info?ehid=05f79c35304441f",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -18944,8 +19179,8 @@
           "effectivePrice": 1720,
           "size": "28.76坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -18961,11 +19196,13 @@
               "effectivePrice": 1720,
               "size": "28.76坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "2/4樓"
+          "floor": "2/4樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -18983,8 +19220,8 @@
       "effectivePrice": 6830,
       "size": "64.5坪",
       "url": "https://community.rakuya.com.tw/39019/sell/info?ehid=09e391347679287",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -19002,8 +19239,8 @@
           "effectivePrice": 6830,
           "size": "64.5坪",
           "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -19019,11 +19256,13 @@
               "effectivePrice": 6830,
               "size": "64.5坪",
               "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "34/46樓"
+          "floor": "34/46樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -19041,8 +19280,8 @@
       "effectivePrice": 2788,
       "size": "42.16坪",
       "url": "https://community.rakuya.com.tw/2366/sell/info?ehid=0275df348470098",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -19060,8 +19299,8 @@
           "effectivePrice": 2788,
           "size": "42.16坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -19077,11 +19316,13 @@
               "effectivePrice": 2788,
               "size": "42.16坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "7/13樓"
+          "floor": "7/13樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         },
         {
           "id": "樂屋:0d4101314986213",
@@ -19094,8 +19335,8 @@
           "effectivePrice": 2860,
           "size": "42.16坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -19111,11 +19352,13 @@
               "effectivePrice": 2860,
               "size": "42.16坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "7/13樓"
+          "floor": "7/13樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -19159,8 +19402,8 @@
       "effectivePrice": 1800,
       "size": "31.96坪",
       "url": "https://www.rakuya.com.tw/sell_item/info?ehid=029d68348558030",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -19178,8 +19421,8 @@
           "effectivePrice": 1800,
           "size": "31.96坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -19195,7 +19438,7 @@
               "effectivePrice": 1800,
               "size": "31.96坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -19208,11 +19451,13 @@
               "effectivePrice": 1800,
               "size": "31.96坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/5樓"
+          "floor": "5/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -19230,8 +19475,8 @@
       "effectivePrice": 3600,
       "size": "89.82坪",
       "url": "https://community.rakuya.com.tw/62993/sell/info?ehid=055189328490188",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -19249,8 +19494,8 @@
           "effectivePrice": 3600,
           "size": "89.82坪",
           "address": "新北市板橋區三民路一段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -19266,11 +19511,13 @@
               "effectivePrice": 3600,
               "size": "89.82坪",
               "address": "新北市板橋區三民路一段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "7/10樓"
+          "floor": "7/10樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -19288,8 +19535,8 @@
       "effectivePrice": 2363,
       "size": "63.1坪",
       "url": "https://www.rakuya.com.tw/sell_item/info?ehid=0c724c355447222",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -19307,8 +19554,8 @@
           "effectivePrice": 2363,
           "size": "63.1坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 3,
@@ -19324,7 +19571,7 @@
               "effectivePrice": 2363,
               "size": "63.1坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -19337,7 +19584,7 @@
               "effectivePrice": 2363,
               "size": "63.1坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -19350,10 +19597,12 @@
               "effectivePrice": 2363,
               "size": "63.1坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
-          ]
+          ],
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -19371,8 +19620,8 @@
       "effectivePrice": 2363,
       "size": "27.77坪",
       "url": "https://www.rakuya.com.tw/sell_item/info?ehid=061ad733538805e",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -19390,8 +19639,8 @@
           "effectivePrice": 2363,
           "size": "27.77坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -19407,10 +19656,12 @@
               "effectivePrice": 2363,
               "size": "27.77坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
-          ]
+          ],
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -19428,8 +19679,8 @@
       "effectivePrice": 2380,
       "size": "27.95坪",
       "url": "https://www.rakuya.com.tw/sell_item/info?ehid=04ec2f25855180d",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -19447,8 +19698,8 @@
           "effectivePrice": 2380,
           "size": "27.95坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 3,
@@ -19464,7 +19715,7 @@
               "effectivePrice": 2380,
               "size": "27.95坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -19477,7 +19728,7 @@
               "effectivePrice": 2380,
               "size": "27.95坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -19490,11 +19741,13 @@
               "effectivePrice": 2380,
               "size": "27.95坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "2/2樓"
+          "floor": "2/2樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -19512,8 +19765,8 @@
       "effectivePrice": 3282,
       "size": "34.91坪",
       "url": "https://community.rakuya.com.tw/100109/sell/info?ehid=0f914c29712175e",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -19531,8 +19784,8 @@
           "effectivePrice": 3282,
           "size": "34.91坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -19548,11 +19801,13 @@
               "effectivePrice": 3282,
               "size": "34.91坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "11/11樓"
+          "floor": "11/11樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         },
         {
           "id": "樂屋:0b714d343008983",
@@ -19565,8 +19820,8 @@
           "effectivePrice": 3043,
           "size": "34.91坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -19582,7 +19837,7 @@
               "effectivePrice": 3043,
               "size": "34.91坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -19595,11 +19850,13 @@
               "effectivePrice": 3043,
               "size": "34.91坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "11/11樓"
+          "floor": "11/11樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -19643,8 +19900,8 @@
       "effectivePrice": 9294,
       "size": "175.36坪",
       "url": "https://community.rakuya.com.tw/19844/sell/info?ehid=006204356727554",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -19662,8 +19919,8 @@
           "effectivePrice": 9294,
           "size": "175.36坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -19679,11 +19936,13 @@
               "effectivePrice": 9294,
               "size": "175.36坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "10/22樓"
+          "floor": "10/22樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -19701,8 +19960,8 @@
       "effectivePrice": 2080,
       "size": "27.05坪",
       "url": "https://community.rakuya.com.tw/63088/sell/info?ehid=0fc448336819545",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -19720,8 +19979,8 @@
           "effectivePrice": 2080,
           "size": "27.05坪",
           "address": "新北市板橋區翠華街",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -19737,11 +19996,13 @@
               "effectivePrice": 2080,
               "size": "27.05坪",
               "address": "新北市板橋區翠華街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/5樓"
+          "floor": "1/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -19759,8 +20020,8 @@
       "effectivePrice": 1780,
       "size": "26.2坪",
       "url": "https://www.rakuya.com.tw/sell_item/info?ehid=0dc84135046546a",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -19778,8 +20039,8 @@
           "effectivePrice": 1780,
           "size": "26.2坪",
           "address": "新北市板橋區翠華街",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 2,
@@ -19795,7 +20056,7 @@
               "effectivePrice": 1780,
               "size": "26.2坪",
               "address": "新北市板橋區翠華街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             },
             {
@@ -19808,11 +20069,13 @@
               "effectivePrice": 1750,
               "size": "26.2坪",
               "address": "新北市板橋區翠華街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "5/5樓"
+          "floor": "5/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -19830,8 +20093,8 @@
       "effectivePrice": 2280,
       "size": "29.73坪",
       "url": "https://www.rakuya.com.tw/sell_item/info?ehid=0c7879341875139",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -19849,8 +20112,8 @@
           "effectivePrice": 2280,
           "size": "29.73坪",
           "address": "新北市板橋區翠華街",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -19866,11 +20129,13 @@
               "effectivePrice": 2280,
               "size": "29.73坪",
               "address": "新北市板橋區翠華街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
           ],
-          "floor": "1/5樓"
+          "floor": "1/5樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -19888,8 +20153,8 @@
       "effectivePrice": 1998,
       "size": "29.15坪",
       "url": "https://www.rakuya.com.tw/sell_item/info?ehid=0173cb313559461",
-      "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-      "sourcePublishedAtType": "monitorFirstSeen",
+      "sourcePublishedAt": null,
+      "sourcePublishedAtType": "rakuyaListingDateUnavailable",
       "newAt": null,
       "active": true,
       "sources": [
@@ -19907,8 +20172,8 @@
           "effectivePrice": 1998,
           "size": "29.15坪",
           "address": "新北市板橋區萬安街",
-          "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
-          "sourcePublishedAtType": "monitorFirstSeen",
+          "sourcePublishedAt": null,
+          "sourcePublishedAtType": "rakuyaListingDateUnavailable",
           "newAt": null,
           "active": true,
           "mergedListingCount": 1,
@@ -19924,10 +20189,12 @@
               "effectivePrice": 1998,
               "size": "29.15坪",
               "address": "新北市板橋區萬安街",
-              "sourcePublishedAt": "2026-10-01T16:06:57+00:00",
+              "sourcePublishedAt": null,
               "active": true
             }
-          ]
+          ],
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedEvidence": "exact-date-not-exposed"
         }
       ],
       "crossPlatformMerged": false,
@@ -28163,8 +28430,8 @@
   },
   "officialBrowserCompany": {
     "enabled": true,
-    "capturedAt": "2026-10-01T22:18:41+00:00",
-    "snapshotAgeMinutes": 1.8,
+    "capturedAt": "2026-10-01T23:35:37+00:00",
+    "snapshotAgeMinutes": 2.3,
     "acceptedRoadCount": 7,
     "unavailableRoadCount": 0,
     "roads": {
@@ -28258,7 +28525,7 @@
   "safeFloorParser": true,
   "safeFloorParserRule": "subject floor must be physically valid against total floor; glued area digits are trimmed instead of becoming impossible floors",
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-10-01T22:20:29+00:00",
+    "generatedAt": "2026-10-01T23:37:55+00:00",
     "previewOnly": true,
     "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
     "activeSinyiCount": 69,
@@ -28327,7 +28594,7 @@
     "groups": []
   },
   "recentOffMarketRetentionDays": 10,
-  "recentOffMarketGeneratedAt": "2026-10-01T22:20:35+00:00",
+  "recentOffMarketGeneratedAt": "2026-10-01T23:37:59+00:00",
   "recentOffMarketCount": 9,
   "recentOffMarketGroups": [
     {
@@ -28844,20 +29111,20 @@
   ],
   "rakuyaIntegrated": true,
   "rakuyaGrouping": {
-    "inputCount": 230,
+    "inputCount": 231,
     "regroupedCount": 127,
     "mergedClusterCount": 47,
-    "absorbedCount": 103,
+    "absorbedCount": 104,
     "attachedToExistingGroupCount": 104,
     "standaloneGroupCount": 23,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0
   },
   "rakuyaSnapshot": {
-    "updatedAt": "2026-10-01T22:20:13+00:00",
+    "updatedAt": "2026-10-01T23:37:08+00:00",
     "status": "ok",
-    "totalCount": 230,
-    "uniqueListingCount": 230,
+    "totalCount": 231,
+    "uniqueListingCount": 231,
     "roadCounts": [
       {
         "road": "中山路二段",
@@ -28871,7 +29138,7 @@
       },
       {
         "road": "三民路二段",
-        "count": 56,
+        "count": 57,
         "pages": 3
       },
       {
@@ -28896,14 +29163,14 @@
       }
     ],
     "changes": {
-      "newCount": 0,
-      "newIds": [],
+      "newCount": 1,
+      "newIds": [
+        "074b82347447378"
+      ],
       "priceChangeCount": 0,
       "priceChanges": [],
-      "removedCount": 1,
-      "removedIds": [
-        "0cd01c35351959f"
-      ],
+      "removedCount": 0,
+      "removedIds": [],
       "currentChangeCount": 1
     },
     "complete": true
