@@ -342,7 +342,7 @@ def main():
 
     external = [
         x for x in state.get("listings", [])
-        if x.get("active", True) and x.get("source") in {"591", "信義房屋"}
+        if x.get("active", True) and x.get("source") in {"591", "信義房屋", "樂屋網"}
     ]
     groups, cross_reviews = build_groups(external)
 
