@@ -53,3 +53,18 @@ for key in ["total","result","pagination","pager","page"]:
         print("SELECTOR",key,"COUNT",len(els))
         for el in els[:8]:
             print(" ",el.name,el.get("class"),el.get("id")," ".join(el.stripped_strings)[:500])
+
+print("PAGINATION_HTML")
+for el in soup.select(".block__pagination,#app_pagination"):
+    print(str(el)[:5000])
+
+print("COMMUNITY_LINKS")
+comm=[]
+for a in soup.find_all("a",href=True):
+    href=urljoin(r.url,a["href"])
+    if "community.rakuya.com.tw" in href:
+        txt=" ".join(a.stripped_strings)
+        if txt and len(txt)>20:
+            comm.append((href,txt,a.get("class")))
+for i,(href,txt,cls) in enumerate(comm[:30],1):
+    print("COMM",i,href,cls,txt[:500])
