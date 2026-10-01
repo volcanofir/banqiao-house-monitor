@@ -28,6 +28,8 @@ def compact_listing_with_structured_floor(x):
     for key in (
         "floor", "structuredFloor", "structuredTotalFloor", "floorSourceMode",
         "sinyiCommId", "sinyiCommName", "sinyiObjectId", "sinyiObjectType",
+        "monitorFirstSeenAt", "rakuyaSourcePublishedDate", "rakuyaSourcePublishedRaw",
+        "rakuyaSourcePublishedEvidence",
     ):
         if x.get(key) is not None:
             row[key] = x.get(key)
