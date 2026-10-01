@@ -15,6 +15,7 @@ from pathlib import Path
 import compare_yungching_preview_v4 as v4
 import compare_yungching_preview_v7 as v7
 import compare_yungching_preview_v8 as v8
+import compare_yungching_preview_v10 as v10
 
 SOURCE = Path("docs/preview/scheme-a-external-enriched.json")
 GAP = Path("docs/preview/company-gap.json")
@@ -72,7 +73,7 @@ def main():
 
     all_external = [
         x for x in state.get("listings", [])
-        if x.get("source") in {"591", "信義房屋"}
+        if x.get("source") in {"591", "信義房屋", "樂屋網"}
     ]
     relevant = []
     for x in all_external:
@@ -88,7 +89,7 @@ def main():
     v4.listing_floor_tokens = v8.safe_listing_floor_tokens_with_structured
     v4.prev.compact_listing = v8.compact_listing_with_structured_floor
 
-    groups, _ = v4.build_groups(relevant)
+    groups, _ = v10.build_groups_with_rakuya(relevant)
     status = id_status_map(relevant)
     offmarket = []
 
