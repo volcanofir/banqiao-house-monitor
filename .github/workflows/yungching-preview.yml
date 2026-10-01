@@ -4,6 +4,7 @@ name: 永慶公司案件比對 PREVIEW
 
 on:
   workflow_dispatch:
+  workflow_call:
   push:
     branches: [main]
     paths:
