@@ -23,13 +23,13 @@ if 'data-source="rakuya"' not in text:
     )
 
 text = re.sub(
-    r"function sourcePills\(g\)\{return \(g\.sources\|\|\[\]\)\.map\(s=>\`<span class=\"pill \$\{s==='信義房屋'\?'sinyi':'m591'\}\">.*?</span>\`\)\.join\(''\)\}",
-    "function sourceClass(s){return s==='信義房屋'?'sinyi':s==='樂屋網'?'rakuya':'m591'}\nfunction sourcePills(g){return (g.sources||[]).map(s=>\`<span class=\"pill \${sourceClass(s)}\">\${esc(s)}</span>\`).join('')}",
+    r"function sourcePills\(g\)\{return \(g\.sources\|\|\[\]\)\.map\(s=>`<span class=\"pill \$\{s==='信義房屋'\?'sinyi':'m591'\}\">.*?</span>`\)\.join\(''\)\}",
+    "function sourceClass(s){return s==='信義房屋'?'sinyi':s==='樂屋網'?'rakuya':'m591'}\nfunction sourcePills(g){return (g.sources||[]).map(s=>`<span class=\"pill ${sourceClass(s)}\">${esc(s)}</span>`).join('')}",
     text,
     count=1,
 )
-text = text.replace("\${m.source==='信義房屋'?'sinyi':'m591'}", "\${sourceClass(m.source)}")
-text = text.replace("\${m.source==='591'&&nested.length?\`<span>591原始刊登 \${nested.length} 筆</span>\`:''}", "\${nested.length?\`<span>\${esc(m.source)}原始刊登 \${nested.length} 筆</span>\`:''}")
+text = text.replace("${m.source==='信義房屋'?'sinyi':'m591'}", "${sourceClass(m.source)}")
+text = text.replace("${m.source==='591'&&nested.length?`<span>591原始刊登 ${nested.length} 筆</span>`:''}", "${nested.length?`<span>${esc(m.source)}原始刊登 ${nested.length} 筆</span>`:''}")
 
 source_anchor = "document.querySelector('#sources').innerHTML=cards.join('');"
 if "GAP.rakuyaSnapshot" not in text:
@@ -37,7 +37,7 @@ if "GAP.rakuyaSnapshot" not in text:
         raise RuntimeError("Rakuya integrated UI: source-card anchor missing")
     text = text.replace(
         source_anchor,
-        "const rk=GAP.rakuyaSnapshot||{},rkOk=rk.complete===true&&rk.status==='ok';cards.push(\`<div class=\"source-card\"><div class=\"source-head\"><strong>樂屋網</strong><span class=\"badge \${rkOk?'ok':'err'}\">\${rkOk?'正常':'異常/沿用'}</span></div><div class=\"note\">目前刊登 \${rk.totalCount??0} 筆<br>最近更新：\${fmt(rk.updatedAt)}</div></div>\`);" + source_anchor,
+        "const rk=GAP.rakuyaSnapshot||{},rkOk=rk.complete===true&&rk.status==='ok';cards.push(`<div class=\"source-card\"><div class=\"source-head\"><strong>樂屋網</strong><span class=\"badge ${rkOk?'ok':'err'}\">${rkOk?'正常':'異常/沿用'}</span></div><div class=\"note\">目前刊登 ${rk.totalCount??0} 筆<br>最近更新：${fmt(rk.updatedAt)}</div></div>`);" + source_anchor,
         1,
     )
 
