@@ -22,6 +22,7 @@ RECENT_REMOVED_DAYS = 10
 MAX_WORKERS = 4
 DETAIL_MAX_WORKERS = 8
 SOURCE_DATE_RECHECK_HOURS = 24
+SOURCE_DATE_PARSER_VERSION = 2
 TAIPEI = ZoneInfo("Asia/Taipei")
 PUBLISH_DATE_KEYS = {"datePosted", "datePublished", "uploadDate", "publishDate", "publishedDate"}
 
@@ -166,11 +167,15 @@ def reuse_source_publish_date(row, old, checked_at):
             "sourcePublishedRaw",
             "sourcePublishedEvidence",
             "sourcePublishedCheckedAt",
+            "sourcePublishedParserVersion",
         ):
             row[key] = old.get(key)
         return True
 
-    if old.get("sourcePublishedAtType") == "rakuyaListingDateUnavailable":
+    if (
+        old.get("sourcePublishedAtType") == "rakuyaListingDateUnavailable"
+        and old.get("sourcePublishedParserVersion") == SOURCE_DATE_PARSER_VERSION
+    ):
         last_checked = stamp(old.get("sourcePublishedCheckedAt"))
         now_checked = stamp(checked_at)
         if last_checked and now_checked:
@@ -182,6 +187,7 @@ def reuse_source_publish_date(row, old, checked_at):
                 row["sourcePublishedRaw"] = None
                 row["sourcePublishedEvidence"] = old.get("sourcePublishedEvidence")
                 row["sourcePublishedCheckedAt"] = old.get("sourcePublishedCheckedAt")
+                row["sourcePublishedParserVersion"] = SOURCE_DATE_PARSER_VERSION
                 return True
     return False
 
@@ -203,6 +209,7 @@ def enrich_source_publish_dates(current_by_id, prev_rows, checked_at):
                 row = futures[future]
                 hid, parsed, error = future.result()
                 row["sourcePublishedCheckedAt"] = checked_at
+                row["sourcePublishedParserVersion"] = SOURCE_DATE_PARSER_VERSION
                 if parsed:
                     row.update(parsed)
                     row["sourcePublishedAtType"] = "rakuyaListingDate"
@@ -226,6 +233,7 @@ def enrich_source_publish_dates(current_by_id, prev_rows, checked_at):
         "fetchedCount": len(to_fetch),
         "failedCount": len(failures),
         "noFirstSeenFallback": True,
+        "parserVersion": SOURCE_DATE_PARSER_VERSION,
         "sampleFailures": [
             {"listingId": hid, "reason": reason}
             for hid, reason in list(failures.items())[:10]
