@@ -3,71 +3,18 @@ name: 樂屋七路段 Preview
 on:
   workflow_dispatch:
   schedule:
-    # Preview-only Rakuya refresh every 3 hours.
+    # Preview-only integrated refresh every 3 hours.
     - cron: "35 */3 * * *"
   push:
     branches: [main]
     paths:
       - ".github/workflows/rakuya-preview.yml"
-      - "scripts/fetch_rakuya_seven_roads_preview.py"
-      - "scripts/validate_rakuya_preview_snapshot.py"
 
 permissions:
   contents: write
-
-concurrency:
-  group: rakuya-preview
-  cancel-in-progress: true
+  pages: write
 
 jobs:
-  refresh:
-    runs-on: ubuntu-latest
-    timeout-minutes: 8
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
-
-      - name: Setup Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
-
-      - name: Install packages
-        run: pip install requests beautifulsoup4
-
-      - name: Fetch complete Rakuya seven-road snapshot
-        run: |
-          python scripts/fetch_rakuya_seven_roads_preview.py
-          python scripts/validate_rakuya_preview_snapshot.py
-
-      - name: Preserve snapshot
-        run: cp docs/preview/rakuya-seven-roads.json /tmp/rakuya-seven-roads.json
-
-      - name: Save Preview-only Rakuya snapshot
-        shell: bash
-        run: |
-          set -e
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          git reset --hard origin/main
-          cp /tmp/rakuya-seven-roads.json docs/preview/rakuya-seven-roads.json
-          git add docs/preview/rakuya-seven-roads.json
-          if git diff --cached --quiet; then
-            echo "Rakuya snapshot unchanged."
-          else
-            git commit -m "Update Rakuya seven-road Preview snapshot"
-            for attempt in 1 2 3; do
-              if git pull --rebase && git push; then break; fi
-              git rebase --abort >/dev/null 2>&1 || true
-              sleep 3
-            done
-          fi
-
-      - name: Rebuild integrated canonical Preview
-        env:
-          GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          gh workflow run yungching-preview.yml --ref main
-          echo "Triggered canonical Preview rebuild so Rakuya stays integrated with 591/Sinyi."
+  integrated-preview:
+    uses: ./.github/workflows/yungching-preview.yml
+    secrets: inherit
