@@ -31,6 +31,14 @@ text = re.sub(
 text = text.replace("${m.source==='信義房屋'?'sinyi':'m591'}", "${sourceClass(m.source)}")
 text = text.replace("${m.source==='591'&&nested.length?`<span>591原始刊登 ${nested.length} 筆</span>`:''}", "${nested.length?`<span>${esc(m.source)}原始刊登 ${nested.length} 筆</span>`:''}")
 
+if "function sourcePublishedText(m)" not in text:
+    text = text.replace(
+        "function sourceDetails(g){const rows=",
+        "function sourcePublishedText(m){if(m.source==='樂屋網'){return m.rakuyaSourcePublishedDate?`刊登：${esc(m.rakuyaSourcePublishedDate)}`:'刊登：日期未取得'}return `上架：${fmtUnix(m.sourcePublishedAt)}`}\nfunction sourceDetails(g){const rows=",
+        1,
+    )
+text = text.replace("<span>上架：${fmtUnix(m.sourcePublishedAt)}</span>", "<span>${sourcePublishedText(m)}</span>")
+
 source_anchor = "document.querySelector('#sources').innerHTML=cards.join('');"
 if "GAP.rakuyaSnapshot" not in text:
     if source_anchor not in text:
@@ -47,7 +55,7 @@ text = text.replace(old_filter, new_filter)
 
 text = text.replace("信義主資料＋591整併", "跨平台整併")
 
-required = ['data-source="rakuya"', "GAP.rakuyaSnapshot", "includes('樂屋網')", "function sourceClass(s)", "跨平台整併"]
+required = ['data-source="rakuya"', "GAP.rakuyaSnapshot", "includes('樂屋網')", "function sourceClass(s)", "function sourcePublishedText(m)", "跨平台整併"]
 missing = [x for x in required if x not in text]
 if missing:
     raise RuntimeError(f"Rakuya integrated UI contract failed: {missing}")
