@@ -68,3 +68,10 @@ for a in soup.find_all("a",href=True):
             comm.append((href,txt,a.get("class")))
 for i,(href,txt,cls) in enumerate(comm[:30],1):
     print("COMM",i,href,cls,txt[:500])
+
+print("SCRIPT_HINTS")
+for s in soup.find_all("script"):
+    body=s.string or s.get_text() or ""
+    if any(k in body for k in ["app_pagination","pageSize","page_size","totalCount","total_count","sell/result","landmark"]):
+        compact=" ".join(body.split())
+        print(compact[:12000])
