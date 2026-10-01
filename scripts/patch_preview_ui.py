@@ -161,6 +161,7 @@ PATH.write_text(text, encoding='utf-8')
 subprocess.run([sys.executable, 'scripts/patch_rental_preview_ui.py'], check=True)
 subprocess.run([sys.executable, 'scripts/patch_offmarket_ui.py'], check=True)
 subprocess.run([sys.executable, 'scripts/patch_r420_preview_ui.py'], check=True)
+subprocess.run([sys.executable, 'scripts/patch_rakuya_preview_ui.py'], check=True)
 
 final_text = PATH.read_text(encoding='utf-8')
 final_required = [
@@ -175,12 +176,14 @@ final_required = [
     '下架：${fmt(g.removedAt)}',
     'id="r420Panel"',
     'r420-widget.js',
+    'id="rakuyaPanel"',
+    'rakuya-widget.js',
 ]
 final_missing = [x for x in final_required if x not in final_text]
 if final_missing:
     raise RuntimeError(f'Canonical Preview UI composition failed; missing fragments: {final_missing}')
 
-print('Preview UI patched and hardened with canonical rental + off-market + R420 composition')
+print('Preview UI patched and hardened with canonical rental + off-market + R420 + Rakuya composition')
 
 try:
     import validate_scheme_a_preview_v3 as validator
