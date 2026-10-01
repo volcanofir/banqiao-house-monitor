@@ -95,6 +95,20 @@ def structured_publish_dates(value):
 
 
 def extract_source_publish_date(html):
+    # Rakuya's detail payload exposes the true first upload date in ordinary
+    # script data (not JSON-LD). This is the canonical source for original
+    # listing time. Example: object_upload_time:"2026-09-27".
+    for label, pattern in (
+        ("script:object_upload_time", r'object_upload_time\\?"\\s*:\\s*\\?"((?:20\\d{2})[-./]\\d{1,2}[-./]\\d{1,2})'),
+        ("script:priceHistorySummary.createTime", r'priceHistorySummary.*?createTime\\?"\\s*:\\s*\\?"((?:20\\d{2})[-./]\\d{1,2}[-./]\\d{1,2})'),
+    ):
+        m = re.search(pattern, html or "", re.S)
+        if m:
+            parsed = normalize_publish_date(m.group(1))
+            if parsed:
+                parsed["sourcePublishedEvidence"] = label
+                return parsed
+
     soup = BeautifulSoup(html, "html.parser")
 
     # Prefer machine-readable publication fields when Rakuya exposes them.
