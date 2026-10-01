@@ -16,13 +16,16 @@ def main():
     manifest = {
         'verifiedAt': datetime.now(timezone.utc).isoformat(timespec='seconds'),
         'scheme': 'A',
-        'integrityVersion': 'scheme-a-canonical-v3-sinyi-floor-neartie',
-        'source': 'Sinyi official __NEXT_DATA__ structured floors + Surfshark + system Chrome official Yongching DOM + all-pages direct pg pagination + verified detail cache',
+        'integrityVersion': 'scheme-a-canonical-v4-sinyi-rakuya-floor-neartie',
+        'source': '591 + Sinyi official structured floors + Rakuya seven-road full pagination + Surfshark + system Chrome official Yongching DOM',
         'fetchMode': p.get('fetchMode'),
         'sourceDataUpdatedAt': p.get('sourceDataUpdatedAt'),
         'safeFloorParser': p.get('safeFloorParser'),
         'sinyiStructuredFloorMatching': p.get('sinyiStructuredFloorMatching'),
         'sinyiFloorEnrichment': sf,
+        'rakuyaIntegrated': p.get('rakuyaIntegrated'),
+        'rakuyaSnapshot': p.get('rakuyaSnapshot'),
+        'rakuyaGrouping': p.get('rakuyaGrouping'),
         'companyNearTieGuard': near,
         'ambiguityAudit': {
             'auditedAt': aa.get('auditedAt'),
@@ -67,6 +70,8 @@ def main():
     assert manifest['sourceDataUpdatedAt'] and manifest['sourceDataUpdatedAt'] == d.get('updatedAt'), (manifest['sourceDataUpdatedAt'], d.get('updatedAt'))
     assert manifest['safeFloorParser'] is True, manifest
     assert manifest['sinyiStructuredFloorMatching'] is True, manifest
+    assert manifest['rakuyaIntegrated'] is True, manifest
+    assert (manifest.get('rakuyaSnapshot') or {}).get('complete') is True, manifest
     assert sf.get('complete') is True, sf
     assert sf.get('activeSinyiCount') == sf.get('matchedOfficialCount') == sf.get('appliedCount'), sf
     assert int(near.get('remainingAutoNearTieCount') or 0) == 0, near
