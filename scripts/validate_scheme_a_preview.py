@@ -23,7 +23,7 @@ EXPECTED_ROADS = {
     "板橋區中山路二段", "板橋區三民路二段", "板橋區光復街", "板橋區萬安街",
     "板橋區林森街", "板橋區三民路一段", "板橋區翠華街",
 }
-ALLOWED_EXTERNAL_SOURCES = {"591", "信義房屋"}
+ALLOWED_EXTERNAL_SOURCES = {"591", "信義房屋", "樂屋網"}
 FORBIDDEN_MODES = ("har", "housefun", "proxy", "previous_snapshot", "previous-snapshot")
 STATUS_LABELS = {
     "company_match": "庫存",
@@ -84,7 +84,7 @@ def title_floors(title):
 
 
 def raw_external_ids(group):
-    """Return the actual raw 591/Sinyi IDs represented by one property group."""
+    """Return the actual raw 591/Sinyi/Rakuya IDs represented by one property group."""
     ids = []
     for src in group.get("sourceListings") or []:
         merged = src.get("mergedListings") or []
@@ -211,7 +211,7 @@ def main():
         assert int(pst.get("count") or 0) == actual_road_counts[road], (road, pst, actual_road_counts[road])
         assert pst.get("browserCapturedAt") == s.get("capturedAt"), (road, pst.get("browserCapturedAt"), s.get("capturedAt"))
 
-    # ----- 591 -> Sinyi property-group integrity -----
+    # ----- 591 / Sinyi / Rakuya property-group integrity -----
     groups = p.get("propertyGroups") or []
     comparisons = p.get("comparisons") or []
     assert len(groups) == int(p.get("propertyGroupCount") or -1), (len(groups), p.get("propertyGroupCount"))
@@ -232,8 +232,10 @@ def main():
         assert g.get("road") in EXPECTED_ROADS, g
         if "信義房屋" in sources:
             assert g.get("primarySource") == "信義房屋", g
-        elif sources == {"591"}:
+        elif "591" in sources:
             assert g.get("primarySource") == "591", g
+        elif sources == {"樂屋網"}:
+            assert g.get("primarySource") == "樂屋網", g
         if len(sources) > 1:
             cross_platform += 1
             assert g.get("crossPlatformMerged") is True, g
