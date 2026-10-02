@@ -1,4 +1,4 @@
-import json, re, subprocess, sys, urllib.request, zipfile, tempfile
+import json, re, subprocess, sys, zipfile, tempfile, requests
 from pathlib import Path
 
 # Reuse the known XAPK URL from houseprice_apk_probe.py
@@ -8,7 +8,12 @@ work=Path("/tmp/5168-rent-decompile")
 work.mkdir(exist_ok=True)
 xapk=work/"5168.xapk"
 if not xapk.exists():
-    urllib.request.urlretrieve(hp.DOWNLOAD, xapk)
+    with requests.get(hp.DOWNLOAD,headers={"User-Agent":"Mozilla/5.0"},stream=True,timeout=90,allow_redirects=True) as rr:
+        rr.raise_for_status()
+        with xapk.open("wb") as f:
+            for chunk in rr.iter_content(1024*1024):
+                if chunk:
+                    f.write(chunk)
 
 with zipfile.ZipFile(xapk) as z:
     z.extractall(work/"xapk")
