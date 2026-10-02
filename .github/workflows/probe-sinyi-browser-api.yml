@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/probe-sinyi-browser-api.yml"
+      - "scripts/monitor_sinyi_parallel.py"
+      - "scripts/sinyi_preview_floor_enrich.py"
 jobs:
   probe:
     runs-on: ubuntu-latest
