@@ -18,7 +18,11 @@ on:
       - "scripts/compare_yungching_preview_v7.py"
       - "scripts/compare_yungching_preview_v8.py"
       - "scripts/compare_yungching_preview_v10.py"
+      - "scripts/compare_yungching_preview_v11.py"
       - "scripts/fetch_rakuya_seven_roads_preview.py"
+      - "scripts/fetch_houseprice_seven_roads_preview.py"
+      - "scripts/validate_houseprice_preview_snapshot.py"
+      - "scripts/append_houseprice_to_scheme_a.py"
       - "scripts/validate_rakuya_preview_snapshot.py"
       - "scripts/append_rakuya_to_scheme_a.py"
       - "scripts/patch_rakuya_integrated_ui.py"
@@ -104,17 +108,25 @@ jobs:
           python scripts/fetch_rakuya_seven_roads_preview.py
           python scripts/validate_rakuya_preview_snapshot.py
 
+      - name: Refresh complete 5168 seven-road snapshot
+        run: |
+          python scripts/fetch_houseprice_seven_roads_preview.py
+          python scripts/validate_houseprice_preview_snapshot.py
+
       - name: Build Preview-only Sinyi structured floor snapshot
         run: python scripts/sinyi_preview_floor_enrich.py
 
       - name: Append Rakuya into Preview external snapshot
         run: python scripts/append_rakuya_to_scheme_a.py
 
-      - name: Regroup 591, Sinyi and Rakuya, then compare Yongching
+      - name: Append 5168 into Preview external snapshot
+        run: python scripts/append_houseprice_to_scheme_a.py
+
+      - name: Regroup 591, Sinyi, Rakuya and 5168, then compare Yongching
         shell: bash
         run: |
           set -o pipefail
-          python scripts/compare_yungching_preview_v10.py 2>&1 | tee docs/preview/yungching-preview-run.log
+          python scripts/compare_yungching_preview_v11.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
       - name: Harden Preview UI and validate scheme A
         run: python scripts/patch_preview_ui.py
@@ -153,6 +165,7 @@ jobs:
             scheme-a-saved-output-audit.json
             index.html
             rakuya-seven-roads.json
+            houseprice-seven-roads.json
           )
           for f in "${core_files[@]}"; do
             [[ -f "docs/preview/$f" ]] || { echo "Missing canonical output: $f"; exit 1; }
