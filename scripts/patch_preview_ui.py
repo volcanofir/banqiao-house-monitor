@@ -49,7 +49,7 @@ for old, new in replacements.items():
 
 text = text.replace(
     "scheme-a-canonical-v3-sinyi-floor-neartie",
-    "scheme-a-canonical-v4-sinyi-rakuya-floor-neartie",
+    "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
 )
 
 old_esc = '''const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));'''
@@ -182,7 +182,9 @@ final_required = [
     'id="r420Panel"',
     'r420-widget.js',
     'data-source="rakuya"',
+    'data-source="houseprice"',
     'GAP.rakuyaSnapshot',
+    'GAP.housepriceSnapshot',
     'function sourceClass(s)',
     '跨平台整併',
 ]
