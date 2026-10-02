@@ -15,5 +15,5 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - run: pip install playwright
+      - run: pip install playwright requests
       - run: python scripts/run_with_system_chrome.py scripts/probe_sinyi_browser_api.py
