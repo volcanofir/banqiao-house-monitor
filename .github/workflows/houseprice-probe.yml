@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/houseprice-probe.yml"
+      - "scripts/houseprice_probe.py"
 permissions:
   contents: write
 concurrency:
