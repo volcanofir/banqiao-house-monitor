@@ -29,7 +29,9 @@ def compact_listing_with_structured_floor(x):
         "floor", "structuredFloor", "structuredTotalFloor", "floorSourceMode",
         "sinyiCommId", "sinyiCommName", "sinyiObjectId", "sinyiObjectType",
         "monitorFirstSeenAt", "rakuyaSourcePublishedDate", "rakuyaSourcePublishedRaw",
-        "rakuyaSourcePublishedEvidence", "housepricePublishDaysTag", "housepriceGroupSid",
+        "rakuyaSourcePublishedEvidence", "housepriceSourcePublishedDate",
+        "housepriceSourcePublishedRaw", "housepriceSourcePublishedEvidence",
+        "housepricePublishDaysTag", "housepriceGroupSid",
         "housepriceUnitPrice", "housepriceMainArea", "housepriceBuildingAge",
         "housepriceCaseType", "housepriceAgentCount",
     ):
