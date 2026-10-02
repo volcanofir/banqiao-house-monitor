@@ -1,0 +1,19 @@
+name: 5168 rental DOM probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/probe_houseprice_rent_dom.py"
+      - ".github/workflows/probe-houseprice-rent.yml"
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install playwright
+      - run: python scripts/run_with_system_chrome.py scripts/probe_houseprice_rent_dom.py
