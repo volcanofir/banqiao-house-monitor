@@ -306,6 +306,7 @@ def fetch_rakuya_http():
         road_rows, seen = [], set()
         exact_total = None
         success = False
+        complete = False
         for page_no in range(1, 6):
             ajax_url = 'https://rent.rakuya.com.tw/ajax/get-result'
             try:
@@ -339,11 +340,10 @@ def fetch_rakuya_http():
                     f'{road} 樂屋AJAX第{page_no}頁：符合板橋指定路段 {len(parsed)}／新增 {len(new_rows)}'
                     + (f'／來源總數 {exact_total}' if exact_total is not None else '')
                 )
-                if exact_total is not None and len(road_rows) >= exact_total:
-                    break
                 page_info = payload.get('pages') or {}
                 page_count = int(page_info.get('pageCount') or 1)
                 if page_no >= page_count:
+                    complete = True
                     break
                 if not (payload.get('list') or '').strip():
                     break
@@ -351,10 +351,12 @@ def fetch_rakuya_http():
                 logs.append(f'{road} 樂屋AJAX第{page_no}頁例外：{type(exc).__name__}: {exc}')
                 break
 
-        if success and exact_total is not None and len(road_rows) == exact_total:
+        if success and complete:
             ok += 1
+            if exact_total is not None and len(road_rows) != exact_total:
+                logs.append(f'{road} 樂屋精準路段過濾：來源搜尋總數 {exact_total} 筆，保留精準路段 {len(road_rows)} 筆')
         elif success:
-            logs.append(f'{road} 樂屋完整性警告：來源 {exact_total} 筆，實得 {len(road_rows)} 筆')
+            logs.append(f'{road} 樂屋分頁未完整抓取')
         rows.extend(road_rows)
         logs.append(f'{road} 樂屋租屋完成，共 {len(road_rows)} 筆')
     return dedupe(rows), ok == len(SEARCH_RAKUYA), logs
@@ -440,6 +442,7 @@ def fetch_houseprice_api():
         success = False
         total_count = None
         total_pages = None
+        last_page_fetched = 0
         for page_no in range(1, 20):
             url = houseprice_api_url(road, page_no)
             try:
@@ -460,6 +463,7 @@ def fetch_houseprice_api():
                     logs.append(f'{road} 5168 API第{page_no}頁格式異常')
                     break
                 success = True
+                last_page_fetched = page_no
                 data = payload['data']
                 page_info = data.get('page') or {}
                 total_count = int(page_info.get('totalItemCount') or 0)
@@ -483,12 +487,12 @@ def fetch_houseprice_api():
                 logs.append(f'{road} 5168 API第{page_no}頁例外：{type(exc).__name__}: {exc}')
                 break
 
-        if success and total_count is not None and len(road_rows) == total_count:
+        if success and ((total_count == 0) or (total_pages is not None and last_page_fetched >= total_pages)):
             ok += 1
-        elif success and total_count == 0:
-            ok += 1
+            if total_count is not None and len(road_rows) != total_count:
+                logs.append(f'{road} 5168精準路段過濾：來源搜尋總數 {total_count} 筆，保留精準路段 {len(road_rows)} 筆')
         elif success:
-            logs.append(f'{road} 5168 API完整性警告：來源 {total_count} 筆，實得 {len(road_rows)} 筆')
+            logs.append(f'{road} 5168 API分頁未完整抓取')
         rows.extend(road_rows)
         logs.append(f'{road} 5168租屋完成，共 {len(road_rows)} 筆')
 
@@ -528,6 +532,7 @@ def fetch_houseprice_browser(context, current_rows, current_ok, current_logs):
         success = False
         total_count = None
         total_pages = None
+        last_page_fetched = 0
         for page_no in range(1, 20):
             api_url = houseprice_api_url(road, page_no)
             try:
@@ -564,6 +569,7 @@ def fetch_houseprice_browser(context, current_rows, current_ok, current_logs):
                     break
 
                 success = True
+                last_page_fetched = page_no
                 data = payload['data']
                 page_info = data.get('page') or {}
                 total_count = int(page_info.get('totalItemCount') or 0)
@@ -587,12 +593,12 @@ def fetch_houseprice_browser(context, current_rows, current_ok, current_logs):
                 logs.append(f'{road} 5168瀏覽器API第{page_no}頁例外：{type(exc).__name__}: {exc}')
                 break
 
-        if success and total_count is not None and len(road_rows) == total_count:
+        if success and ((total_count == 0) or (total_pages is not None and last_page_fetched >= total_pages)):
             ok += 1
-        elif success and total_count == 0:
-            ok += 1
+            if total_count is not None and len(road_rows) != total_count:
+                logs.append(f'{road} 5168瀏覽器精準路段過濾：來源搜尋總數 {total_count} 筆，保留精準路段 {len(road_rows)} 筆')
         elif success:
-            logs.append(f'{road} 5168瀏覽器完整性警告：來源 {total_count} 筆，實得 {len(road_rows)} 筆')
+            logs.append(f'{road} 5168瀏覽器分頁未完整抓取')
 
         rows.extend(road_rows)
         logs.append(f'{road} 5168瀏覽器備援完成，共 {len(road_rows)} 筆')
