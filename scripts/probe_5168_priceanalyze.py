@@ -6,6 +6,7 @@ BASE="https://app.houseprice.tw"
 UA="5168/4.0.1 Android"
 CASE_SID=33221169
 GROUP_SID=28718235
+GROUP_GUID="f29f31ed-2cda-4924-913a-21f5162ce95d"
 CASE_URL="https://buy.houseprice.tw/house/33221169_930688/"
 
 def find_token(v):
@@ -73,6 +74,12 @@ def main():
       (f"/api/PriceAnalyze/PriceAnalyze?sid={GROUP_SID}","PriceAnalyze-GET-sid-group"),
       (f"/api/PriceAnalyze/PriceAnalyze?groupId={GROUP_SID}","PriceAnalyze-GET-groupId"),
       (f"/api/PriceAnalyze/PriceAnalyze?caseSid={CASE_SID}","PriceAnalyze-GET-caseSid"),
+      ("/api/PriceAnalyze/PriceAnalyze?url="+urllib.parse.quote(CASE_URL.rstrip("/"),safe=""),"PriceAnalyze-GET-url-no-slash"),
+      ("/api/PriceAnalyze/PriceAnalyze?url="+urllib.parse.quote(CASE_URL,safe=""),"PriceAnalyze-GET-url-slash"),
+      (f"/api/PriceAnalyze/{GROUP_GUID}/WebCaseRealtor","WebCaseRealtor-guid"),
+      (f"/api/PriceAnalyze/SimilarWebCases?groupId={GROUP_GUID}&page=1&size=20","SimilarWebCases-guid"),
+      (f"/api/PriceAnalyze/SimilarWebCases?sid={GROUP_SID}&page=1&size=20","SimilarWebCases-sid"),
+      ("/api/PriceAnalyze/SimilarWebCases?url="+urllib.parse.quote(CASE_URL.rstrip("/"),safe="")+"&page=1&size=20","SimilarWebCases-url"),
       (f"/api/PriceAnalyze/TotalCount?sid={GROUP_SID}","TotalCount-sid-group"),
       (f"/api/PriceAnalyze/TotalCount?groupId={GROUP_SID}","TotalCount-groupId"),
       ("/api/PriceAnalyze/UrlValidation?url="+urllib.parse.quote(CASE_URL,safe=""),"UrlValidation"),
