@@ -23,14 +23,21 @@ assert int(detail.get("failedCount") or 0)==0, detail
 assert int(detail.get("completeCount") or 0)==len(rows), detail
 policy=p.get("sourceTimePolicy") or {}
 assert policy.get("monitorFirstSeenUsedAsSourceTime") is False, policy
+assert policy.get("relativeTagConvertedToTaipeiDate") is True, policy
+summary=p.get("sourcePublishedAtSummary") or {}
+assert summary.get("noFirstSeenFallback") is True, summary
+assert int(summary.get("availableCount") or 0)+int(summary.get("unavailableCount") or 0)==len(rows), summary
 for x in rows:
     assert x.get("road") in ROADS, x
     assert x.get("detailComplete") is True, x
     assert str(x.get("url") or "").startswith("https://buy.houseprice.tw/house/"), x.get("url")
-    assert x.get("sourcePublishedAt") is None, x
-    assert x.get("sourcePublishedAtType") in {"housepriceRelativePublishTag","housepriceListingDateUnavailable"}, x
-    if x.get("sourcePublishedAtType")=="housepriceRelativePublishTag":
+    assert x.get("sourcePublishedAtType") in {"housepriceRelativeTagInferred","housepriceListingDateUnavailable"}, x
+    if x.get("sourcePublishedAtType")=="housepriceRelativeTagInferred":
+        assert x.get("sourcePublishedAt"), x
+        assert x.get("sourcePublishedDate"), x
         assert x.get("sourcePublishText"), x
+    else:
+        assert x.get("sourcePublishedAt") is None, x
 
 print(json.dumps({
     "source":"5168",
