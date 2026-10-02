@@ -16,4 +16,8 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install androguard requests
+      - name: Install apktool
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y apktool
       - run: python scripts/probe_houseprice_rent_apk.py
