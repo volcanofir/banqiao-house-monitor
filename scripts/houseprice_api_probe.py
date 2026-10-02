@@ -124,7 +124,7 @@ for method,path2,payload in tests:
       rr=requests.get(app_base+path2,headers=app_headers,timeout=30)
     else:
       rr=requests.post(app_base+path2,headers={**app_headers,"Content-Type":"application/json"},json=payload,timeout=30)
-    rec={"method":method,"path":path2,"payload":payload,"status":rr.status_code,"contentType":rr.headers.get("content-type"),"body":rr.text[:8000]}
+    rec={"method":method,"path":path2,"payload":payload,"status":rr.status_code,"contentType":rr.headers.get("content-type"),"body":rr.text[:30000]}
     try:
       jj=rr.json()
       rec["jsonType"]=type(jj).__name__
@@ -148,6 +148,20 @@ for method,path2,payload in tests:
           walk(data)
           rec["dateLikeFields"]=hits[:200]
           rec["detailTopLevelKeys"]=list(data.keys())
+          scalar=[]
+          def scalar_walk(v,prefix="data"):
+            if isinstance(v,dict):
+              for k,val in v.items():
+                path=prefix+"."+str(k)
+                if isinstance(val,(str,int,float,bool)) or val is None:
+                  scalar.append({"path":path,"value":val})
+                else:
+                  scalar_walk(val,path)
+            elif isinstance(v,list):
+              for i,val in enumerate(v[:100]):
+                scalar_walk(val,prefix+f"[{i}]")
+          scalar_walk(data)
+          rec["detailScalarFields"]=scalar[:1200]
         if path2=="/api/Case/List" and isinstance(data,dict):
           rows=data.get("list") or []
           rec["caseSummary"]={
