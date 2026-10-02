@@ -13,6 +13,11 @@ on:
       - "scripts/apply_591_offmarket_probe_to_canonical.py"
       - "scripts/run_with_system_chrome.py"
       - "scripts/monitor_schedule_state.py"
+      - "scripts/fetch_houseprice_seven_roads_preview.py"
+      - "scripts/validate_houseprice_preview_snapshot.py"
+      - "scripts/append_houseprice_to_scheme_a.py"
+      - "scripts/compare_yungching_preview_v11.py"
+      - "scripts/patch_rakuya_integrated_ui.py"
       - "trigger/monitor-wakeup.txt"
   schedule:
     # Cheap heartbeat every 10 minutes; successful full refreshes are spaced ~3 hours apart.
@@ -49,7 +54,12 @@ jobs:
 
       - name: Preserve pre-refresh source for meaningful-change detection
         if: steps.gate.outputs.run == 'true'
-        run: cp docs/data/listings.json /tmp/listings-before.json
+        shell: bash
+        run: |
+          cp docs/data/listings.json /tmp/listings-before.json
+          if [[ -f docs/preview/houseprice-seven-roads.json ]]; then
+            cp docs/preview/houseprice-seven-roads.json /tmp/houseprice-before.json
+          fi
 
       - name: Start rental refresh in parallel
         if: steps.gate.outputs.run == 'true'
@@ -78,6 +88,12 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         continue-on-error: true
         run: python scripts/enrich_sinyi_first_display.py
+
+      - name: Refresh 5168 seven-road APP snapshot
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          python scripts/fetch_houseprice_seven_roads_preview.py
+          python scripts/validate_houseprice_preview_snapshot.py
 
       - name: Connect Surfshark for 591
         id: vpn
@@ -151,24 +167,41 @@ jobs:
           before=json.loads(Path('/tmp/listings-before.json').read_text(encoding='utf-8'))
           after=json.loads(Path('docs/data/listings.json').read_text(encoding='utf-8'))
 
-          # Ignore only observation timestamps and run logs. Any actual listing field,
-          # new/down status, price, floor/source time, or price history change is meaningful.
+          # Ignore only observation timestamps. Listing identity, price, source date,
+          # status and history changes are meaningful.
           volatile_listing={'lastSeenAt'}
-          def normalized_listing(x):
-              return {k:v for k,v in x.items() if k not in volatile_listing}
-          def fingerprint(d):
-              rows=[normalized_listing(x) for x in (d.get('listings') or []) if isinstance(x,dict)]
-              rows.sort(key=lambda x:(str(x.get('id') or ''), str(x.get('source') or '')))
+          def normalized_listing(x, extra_volatile=()):
+              return {k:v for k,v in x.items() if k not in volatile_listing and k not in set(extra_volatile)}
+          def fingerprint(d, id_key='id', extra_volatile=()):
+              rows=[normalized_listing(x, extra_volatile) for x in (d.get('listings') or []) if isinstance(x,dict)]
+              rows.sort(key=lambda x:(str(x.get(id_key) or ''), str(x.get('source') or '')))
               return rows
-          changed=fingerprint(before) != fingerprint(after)
-          print(f'meaningful listing change={changed}')
+
+          monitor_changed=fingerprint(before) != fingerprint(after)
+
+          hp_after_path=Path('docs/preview/houseprice-seven-roads.json')
+          hp_before_path=Path('/tmp/houseprice-before.json')
+          hp_after=json.loads(hp_after_path.read_text(encoding='utf-8')) if hp_after_path.exists() else {'listings':[]}
+          hp_before=json.loads(hp_before_path.read_text(encoding='utf-8')) if hp_before_path.exists() else {'listings':[]}
+          # Relative display text naturally changes from "2天前" to "3天前"; the
+          # preserved inferred calendar date is the meaningful field.
+          hp_changed=fingerprint(
+              hp_before,'listingId',('sourcePublishText','sourcePublishedRaw')
+          ) != fingerprint(
+              hp_after,'listingId',('sourcePublishText','sourcePublishedRaw')
+          )
+
+          changed=monitor_changed or hp_changed
+          print(f'meaningful monitor change={monitor_changed}; 5168 change={hp_changed}; combined={changed}')
           with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as f:
               f.write(f"meaningful={'true' if changed else 'false'}\n")
-          if not changed:
-              # Keep canonical source timestamp aligned with the already-verified Preview.
+          if not monitor_changed:
+              # Keep canonical monitored-source timestamp aligned with the verified Preview.
               Path('docs/data/listings.json').write_text(
                   Path('/tmp/listings-before.json').read_text(encoding='utf-8'), encoding='utf-8'
               )
+          if not hp_changed and hp_before_path.exists():
+              hp_after_path.write_text(hp_before_path.read_text(encoding='utf-8'), encoding='utf-8')
           PY
 
       - name: Ensure current Surfshark exit is accepted by Yongching
@@ -220,12 +253,16 @@ jobs:
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
         run: python scripts/append_rakuya_to_scheme_a.py
 
+      - name: Append 5168 into Preview external snapshot
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
+        run: python scripts/append_houseprice_to_scheme_a.py
+
       - name: Regroup and compare canonical Preview
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
         shell: bash
         run: |
           set -o pipefail
-          python scripts/compare_yungching_preview_v10.py 2>&1 | tee docs/preview/yungching-preview-run.log
+          python scripts/compare_yungching_preview_v11.py 2>&1 | tee docs/preview/yungching-preview-run.log
 
       - name: Harden and validate Preview UI
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
@@ -250,7 +287,7 @@ jobs:
           mkdir -p /tmp/fast-publish/preview /tmp/fast-publish/data
           cp docs/data/listings.json /tmp/fast-publish/data/listings.json
           [[ -f docs/data/sinyi-first-display-cache.json ]] && cp docs/data/sinyi-first-display-cache.json /tmp/fast-publish/data/sinyi-first-display-cache.json || true
-          core_files=(company-gap.json yungching-preview-run.log yungching-browser-snapshot.json yungching-detail-floor.json sinyi-floor-enrichment.json scheme-a-ambiguity-audit.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html rakuya-seven-roads.json)
+          core_files=(company-gap.json yungching-preview-run.log yungching-browser-snapshot.json yungching-detail-floor.json sinyi-floor-enrichment.json scheme-a-ambiguity-audit.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html rakuya-seven-roads.json houseprice-seven-roads.json)
           for f in "${core_files[@]}"; do
             [[ -f "docs/preview/$f" ]] || { echo "Missing canonical output: $f"; exit 1; }
             cp "docs/preview/$f" "/tmp/fast-publish/preview/$f"
