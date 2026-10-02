@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - run: pip install beautifulsoup4 playwright cryptography
+      - run: pip install requests beautifulsoup4 playwright cryptography
       - name: Connect Surfshark
         env:
           SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
