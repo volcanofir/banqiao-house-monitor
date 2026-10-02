@@ -39,6 +39,11 @@ SEARCH_SINYI = {
     '板橋區林森街': 'https://www.sinyi.com.tw/rent/list/NewTaipei-city/220-zip/林森街-keyword/index.html',
 }
 
+SEARCH_RAKUYA = {
+    road: f"https://rent.rakuya.com.tw/result?zipcode=220&keyword={aliases[0]}"
+    for road, aliases in WATCH_ROADS.items()
+}
+
 USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
 
 
@@ -205,11 +210,80 @@ def extract_sinyi_dom(page, road):
     return dedupe(rows)
 
 
+
+def extract_rakuya_dom(page, road):
+    keyword = WATCH_ROADS[road][0]
+    raw = page.evaluate(
+        """({keyword}) => {
+          const out=[];
+          const seen=new Set();
+          for(const a of document.querySelectorAll('a[href]')){
+            let u; try{u=new URL(a.href)}catch(e){continue}
+            if(u.hostname!=='rent.rakuya.com.tw' || !/^\/item\/[A-Za-z0-9]+/.test(u.pathname)) continue;
+            const m=u.pathname.match(/^\/item\/([A-Za-z0-9]+)/);
+            if(!m) continue;
+            const id=m[1];
+            let node=a, best='';
+            for(let i=0;i<9 && node;i++,node=node.parentElement){
+              const t=(node.innerText||'').replace(/\s+/g,' ').trim();
+              if(t.includes(keyword) && /[\d,]+\s*元/.test(t) && t.length>=20 && t.length<=2200){
+                if(!best || t.length<best.length) best=t;
+              }
+            }
+            if(!best || seen.has(id)) continue;
+            seen.add(id);
+            out.push({id,href:u.href,text:best});
+          }
+          return out;
+        }""",
+        {'keyword': keyword},
+    )
+
+    rows = []
+    for item in raw:
+        text = norm(item.get('text'))
+        house_id = item.get('id')
+        road_label = road.replace('板橋區', '')
+
+        # Rakuya cards are rendered as: title + 板橋區 + road + type/floor/area/rent.
+        pos = text.find('板橋區')
+        title = norm(text[:pos]) if pos > 0 else ''
+        title = re.sub(r'^(追蹤|立即預約)\s*', '', title).strip()
+        if not title or len(title) > 120:
+            title = f'樂屋租屋 {house_id}'
+
+        rent_values = re.findall(r'([\d,]+)\s*元', text)
+        rent = float(rent_values[-1].replace(',', '')) if rent_values else None
+
+        area_match = re.search(r'(?:主建|建坪|坪數)?\s*(\d+(?:\.\d+)?)\s*坪', text)
+        floor_match = re.search(r'((?:B?\d+)(?:~(?:B?\d+))?/\d+樓)', text)
+        updated_match = re.search(
+            r'((?:\d+\s*(?:分鐘|小時|天|個月|月)|剛剛|今天|昨日|昨天)前?)\s*更新',
+            text,
+        )
+
+        rows.append({
+            'id': f'樂屋租屋:{house_id}',
+            'source': '樂屋網',
+            'houseId': house_id,
+            'road': road,
+            'title': title,
+            'address': road,
+            'rent': rent,
+            'size': float(area_match.group(1)) if area_match else None,
+            'url': item.get('href'),
+            'floor': norm(floor_match.group(1)) if floor_match else None,
+            'sourceUpdatedRaw': norm(updated_match.group(1)) if updated_match else None,
+        })
+    return dedupe(rows)
+
+
 def fetch_all():
-    rows_591, rows_sinyi = [], []
-    logs_591, logs_sinyi = [], []
+    rows_591, rows_sinyi, rows_rakuya = [], [], []
+    logs_591, logs_sinyi, logs_rakuya = [], [], []
     ok_591 = 0
     ok_sinyi = 0
+    ok_rakuya = 0
 
     with sync_playwright() as p:
         browser = p.chromium.launch(channel='chrome', headless=True, args=['--disable-dev-shm-usage'])
@@ -260,39 +334,61 @@ def fetch_all():
                 ok_sinyi += 1
                 logs_sinyi.append(f'{road} 信義租屋：DOM {len(parsed)} 筆')
                 page.close()
+
+            # Rakuya: one keyword result page currently renders the complete result set
+            # for the exact Banqiao road. Only /item/<id> rental links are accepted.
+            for road, url in SEARCH_RAKUYA.items():
+                page = context.new_page()
+                loaded, status = load_page(page, url, wait_ms=2200, attempts=3)
+                if not loaded:
+                    logs_rakuya.append(f'{road} 樂屋租屋載入失敗：{status}')
+                    page.close()
+                    continue
+                parsed = extract_rakuya_dom(page, road)
+                rows_rakuya.extend(parsed)
+                ok_rakuya += 1
+                logs_rakuya.append(f'{road} 樂屋租屋：DOM {len(parsed)} 筆')
+                page.close()
         finally:
             context.close()
             browser.close()
 
-    return dedupe(rows_591), ok_591 == len(SEARCH_591), logs_591, dedupe(rows_sinyi), ok_sinyi == len(SEARCH_SINYI), logs_sinyi
+    return (
+        dedupe(rows_591), ok_591 == len(SEARCH_591), logs_591,
+        dedupe(rows_sinyi), ok_sinyi == len(SEARCH_SINYI), logs_sinyi,
+        dedupe(rows_rakuya), ok_rakuya == len(SEARCH_RAKUYA), logs_rakuya,
+    )
 
 
 def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     started = time.time()
     try:
-        r591, ok591, logs591, sinyi, oksinyi, logssinyi = fetch_all()
+        r591, ok591, logs591, sinyi, oksinyi, logssinyi, rakuya, okrakuya, logsrakuya = fetch_all()
     except Exception as exc:
-        r591, sinyi = [], []
-        ok591 = oksinyi = False
+        r591, sinyi, rakuya = [], [], []
+        ok591 = oksinyi = okrakuya = False
         logs591 = [f'租屋瀏覽器啟動失敗：{type(exc).__name__}: {exc}']
         logssinyi = []
+        logsrakuya = []
 
-    listings = dedupe(r591 + sinyi)
+    listings = dedupe(r591 + sinyi + rakuya)
     payload = {
         'updatedAt': now_iso(),
         'previewOnly': True,
         'market': 'rent',
         'watchRoads': list(WATCH_ROADS),
-        'searchPages': {'591': SEARCH_591, '信義房屋': SEARCH_SINYI},
+        'searchPages': {'591': SEARCH_591, '信義房屋': SEARCH_SINYI, '樂屋網': SEARCH_RAKUYA},
         'runs': {
             '591': {'status': 'ok' if ok591 else 'error', 'totalCount': len(r591), 'logs': logs591},
             '信義房屋': {'status': 'ok' if oksinyi else 'error', 'totalCount': len(sinyi), 'logs': logssinyi},
+            '樂屋網': {'status': 'ok' if okrakuya else 'error', 'totalCount': len(rakuya), 'logs': logsrakuya},
         },
         'counts': {
             'total': len(listings),
             'sinyi': len(sinyi),
             '591': len(r591),
+            'rakuya': len(rakuya),
             'roads': {road: sum(1 for x in listings if x.get('road') == road) for road in WATCH_ROADS},
         },
         'listings': listings,
