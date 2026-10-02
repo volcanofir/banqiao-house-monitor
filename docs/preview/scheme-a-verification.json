@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-10-02T13:08:01+00:00",
+  "verifiedAt": "2026-10-02T15:27:38+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-10-02T11:57:42+00:00",
+  "sourceDataUpdatedAt": "2026-10-02T15:22:01+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-10-02T13:07:51+00:00",
+    "generatedAt": "2026-10-02T15:27:27+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-10-02T11:56:11+00:00",
+    "sourceRunCheckedAt": "2026-10-02T15:20:45+00:00",
     "activeSinyiCount": 69,
     "matchedOfficialCount": 69,
     "appliedCount": 69,
@@ -30,7 +30,7 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-10-02T13:07:17+00:00",
+    "updatedAt": "2026-10-02T15:27:23+00:00",
     "status": "ok",
     "totalCount": 234,
     "uniqueListingCount": 234,
@@ -74,18 +74,11 @@
     "changes": {
       "newCount": 0,
       "newIds": [],
-      "priceChangeCount": 1,
-      "priceChanges": [
-        {
-          "listingId": "0fca1b321179045",
-          "from": 1480,
-          "to": 1380,
-          "at": "2026-10-02T13:07:17+00:00"
-        }
-      ],
+      "priceChangeCount": 0,
+      "priceChanges": [],
       "removedCount": 0,
       "removedIds": [],
-      "currentChangeCount": 1
+      "currentChangeCount": 0
     },
     "complete": true
   },
@@ -102,7 +95,7 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-10-02T13:07:22+00:00",
+    "updatedAt": "2026-10-02T15:21:23+00:00",
     "status": "ok",
     "totalCount": 67,
     "uniqueListingCount": 67,
@@ -148,15 +141,8 @@
       "newCount": 0,
       "removedIds": [],
       "removedCount": 0,
-      "priceChanges": [
-        {
-          "listingId": "29623355",
-          "from": 1480,
-          "to": 1380,
-          "at": "2026-10-02T13:07:22+00:00"
-        }
-      ],
-      "priceChangeCount": 1
+      "priceChanges": [],
+      "priceChangeCount": 0
     },
     "complete": true,
     "detailSummary": {
@@ -194,22 +180,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-10-02T13:08:01+00:00",
-    "propertyGroupCount": 173,
+    "auditedAt": "2026-10-02T15:27:38+00:00",
+    "propertyGroupCount": 174,
     "companyListingCount": 75,
     "companyMatchCount": 47,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 573
+    "weakIdentityAlreadyMergedPairCount": 568
   },
-  "snapshotCapturedAt": "2026-10-02T13:05:21+00:00",
-  "companySnapshotCapturedAt": "2026-10-02T13:05:21+00:00",
-  "companyGapGeneratedAt": "2026-10-02T13:07:57+00:00",
+  "snapshotCapturedAt": "2026-10-02T15:24:51+00:00",
+  "companySnapshotCapturedAt": "2026-10-02T15:24:51+00:00",
+  "companyGapGeneratedAt": "2026-10-02T15:27:34+00:00",
   "browserListingCount": 75,
   "companyListingCount": 75,
-  "propertyGroupCount": 173,
-  "rawListingCount": 637,
-  "comparisonCount": 173,
+  "propertyGroupCount": 174,
+  "rawListingCount": 645,
+  "comparisonCount": 174,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -275,15 +261,15 @@
   "counts": {
     "company_match": 47,
     "review": 8,
-    "missing": 118,
+    "missing": 119,
     "unavailable": 0
   },
   "crossPlatformMergedGroupCount": 107,
-  "crossSourceReviewCount": 10,
+  "crossSourceReviewCount": 11,
   "preview591Regroup": {
-    "original591TopLevel": 117,
-    "regrouped591TopLevel": 100,
-    "regrouped591ClusterCount": 15,
+    "original591TopLevel": 119,
+    "regrouped591TopLevel": 102,
+    "regrouped591ClusterCount": 14,
     "regrouped591AbsorbedCount": 17,
     "clusterFloorConflictBlocked": 0
   },
@@ -351,7 +337,7 @@
       {
         "id": "4308114",
         "road": "板橋區萬安街",
-        "title": "萬安全新整理透天",
+        "title": "萬安全新裝潢透天",
         "area": 27.95,
         "price": 1400.0,
         "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
@@ -363,11 +349,11 @@
     ],
     "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
   },
-  "candidateCount": 164,
-  "candidatesWithFloor": 148,
-  "candidatesWithYcCaseId": 148,
+  "candidateCount": 165,
+  "candidatesWithFloor": 149,
+  "candidatesWithYcCaseId": 149,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-02T13:06:51+00:00",
+    "generatedAt": "2026-10-02T15:26:10+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 69,
     "cacheHitCount": 69,
