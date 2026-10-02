@@ -3,6 +3,7 @@ import re
 import time
 
 import requests
+from curl_cffi import requests as curl_requests
 from bs4 import BeautifulSoup
 from datetime import datetime, timezone
 from pathlib import Path
@@ -245,11 +246,20 @@ def parse_rakuya_cards(html_text, road):
         if card is None:
             continue
 
+        # Nearby-area recommendations are explicitly wrapped by Rakuya.
+        # Exclude them first; primary cards may omit some geo spans.
+        if card.find_parent(attrs={'data-rent-recommend': '1'}) is not None:
+            continue
         area_node = card.select_one('.info__geo--area')
         road_node = card.select_one('.info__geo--road')
         district = norm(area_node.get_text(' ', strip=True) if area_node else '')
         card_road = norm(road_node.get_text(' ', strip=True) if road_node else '')
-        if district != '板橋區' or card_road != keyword:
+        text_probe = norm(card.get_text(' ', strip=True))
+        if district and district != '板橋區':
+            continue
+        if card_road and card_road != keyword:
+            continue
+        if keyword not in text_probe and card_road != keyword:
             continue
 
         seen.add(house_id)
@@ -413,7 +423,7 @@ def normalize_houseprice_row(item, road):
 def fetch_houseprice_api():
     rows, logs = [], []
     ok = 0
-    session = requests.Session()
+    session = curl_requests.Session(impersonate='chrome')
     session.headers.update({
         'User-Agent': USER_AGENT,
         'Accept': 'application/json, text/plain, */*',
