@@ -3,6 +3,7 @@ from pathlib import Path
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
+import requests
 
 BASE="https://buy.houseprice.tw"
 LIST="https://buy.houseprice.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82_city/%E6%9D%BF%E6%A9%8B%E5%8D%80_zip/%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw"
@@ -23,6 +24,26 @@ def parse(html,url):
             pages.append({"href":href,"text":txt,"class":a.get("class")})
     return soup,houses,pages
 
+def api_probe():
+    urls=[
+      "https://ws-buy.houseprice.tw/",
+      "https://ws-buy.houseprice.tw/swagger/index.html",
+      "https://ws-buy.houseprice.tw/swagger/v1/swagger.json",
+      "https://ws-buy.houseprice.tw/swagger.json",
+      "https://ws-buycase.houseprice.tw/",
+      "https://ws-buycase.houseprice.tw/swagger/index.html",
+      "https://ws-buycase.houseprice.tw/swagger/v1/swagger.json",
+      "https://mt.houseprice.tw/",
+    ]
+    out=[]
+    for u in urls:
+        try:
+            rr=requests.get(u,timeout=15,headers={"User-Agent":"Mozilla/5.0","Accept":"application/json,text/html,*/*"})
+            out.append({"url":u,"status":rr.status_code,"contentType":rr.headers.get("content-type"),"body":rr.text[:5000]})
+        except Exception as e:
+            out.append({"url":u,"error":f"{type(e).__name__}: {e}"})
+    return out
+
 def main():
     with sync_playwright() as p:
         browser=p.chromium.launch(headless=True,args=["--disable-dev-shm-usage"])
@@ -38,6 +59,7 @@ def main():
         dpage.wait_for_timeout(4000)
         dhtml=dpage.content(); ds=BeautifulSoup(dhtml,"html.parser")
         result={
+          "apiProbe":api_probe(),
           "listStatus":resp.status if resp else None,"listUrl":page.url,"title":page.title(),
           "bodyText":" ".join(soup.stripped_strings)[:20000],
           "houseLinks":houses[:100],"uniqueHouseLinks":len({x["href"] for x in houses}),
