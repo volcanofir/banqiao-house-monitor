@@ -38,7 +38,7 @@ def inspect(resp):
         out["listType"]=type(lst).__name__
         out["listCount"]=len(lst) if isinstance(lst,list) else None
         out["reducerKeys"]=sorted(reducer.keys())
-        for k in ["total","count","totalCount","page","pageCount","isLoading","status","error"]:
+        for k in ["total","count","totalCount","totalCnt","page","pageCount","isLoading","houseLoading","status","error","errorMsg","testingGroup"]:
           if k in reducer: out[k]=reducer.get(k)
       except Exception as e:
         out["parseError"]=f"{type(e).__name__}: {e}"
@@ -48,7 +48,7 @@ def inspect(resp):
 
 def main():
     s=requests.Session()
-    for round_no in range(1,6):
+    for round_no in range(1,4):
       print(f"=== ROUND {round_no} ===",flush=True)
       for road in ROADS:
         try:
