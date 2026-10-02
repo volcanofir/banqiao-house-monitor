@@ -47,7 +47,7 @@ jobs:
         env:
           SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
         shell: bash
-        run: bash scripts/connect_surfshark_wireguard.sh
+        run: timeout 90 bash scripts/connect_surfshark_wireguard.sh
 
       - name: Fetch Preview rental listings
         id: fetch
