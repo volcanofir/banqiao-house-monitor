@@ -29,7 +29,9 @@ def compact_listing_with_structured_floor(x):
         "floor", "structuredFloor", "structuredTotalFloor", "floorSourceMode",
         "sinyiCommId", "sinyiCommName", "sinyiObjectId", "sinyiObjectType",
         "monitorFirstSeenAt", "rakuyaSourcePublishedDate", "rakuyaSourcePublishedRaw",
-        "rakuyaSourcePublishedEvidence",
+        "rakuyaSourcePublishedEvidence", "housepricePublishDaysTag", "housepriceGroupSid",
+        "housepriceUnitPrice", "housepriceMainArea", "housepriceBuildingAge",
+        "housepriceCaseType", "housepriceAgentCount",
     ):
         if x.get(key) is not None:
             row[key] = x.get(key)
