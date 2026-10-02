@@ -34,6 +34,8 @@ def api_probe():
       "https://ws-buycase.houseprice.tw/swagger/index.html",
       "https://ws-buycase.houseprice.tw/swagger/v1/swagger.json",
       "https://mt.houseprice.tw/",
+      "https://r.jina.ai/https://buy.houseprice.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82_city/%E6%9D%BF%E6%A9%8B%E5%8D%80_zip/%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw",
+      "https://r.jina.ai/http://buy.houseprice.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82_city/%E6%9D%BF%E6%A9%8B%E5%8D%80_zip/%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw",
     ]
     out=[]
     for u in urls:
