@@ -1,4 +1,5 @@
 import json
+import os
 import re
 import time
 
@@ -605,7 +606,12 @@ def fetch_houseprice_browser(context, current_rows, current_ok, current_logs):
 def fetch_all():
     # HAR-verified HTTP sources first. They do not depend on browser/VPN.
     rows_rakuya, ok_rakuya, logs_rakuya = fetch_rakuya_http()
-    rows_houseprice, ok_houseprice, logs_houseprice = fetch_houseprice_api()
+    skip_houseprice = os.getenv('SKIP_HOUSEPRICE', '').strip() == '1'
+    if skip_houseprice:
+        rows_houseprice, ok_houseprice = [], False
+        logs_houseprice = ['5168 本輪由 VPN 專用步驟另行抓取']
+    else:
+        rows_houseprice, ok_houseprice, logs_houseprice = fetch_houseprice_api()
 
     rows_591, rows_sinyi = [], []
     logs_591, logs_sinyi = [], []
@@ -659,9 +665,10 @@ def fetch_all():
                 ok_sinyi += 1
                 logs_sinyi.append(f'{road} 信義租屋：DOM {len(parsed)} 筆')
                 page.close()
-            rows_houseprice, ok_houseprice, logs_houseprice = fetch_houseprice_browser(
-                context, rows_houseprice, ok_houseprice, logs_houseprice
-            )
+            if not skip_houseprice:
+                rows_houseprice, ok_houseprice, logs_houseprice = fetch_houseprice_browser(
+                    context, rows_houseprice, ok_houseprice, logs_houseprice
+                )
         finally:
             context.close()
             browser.close()
