@@ -62,15 +62,24 @@ elif "function sourcePublishedText(m)" not in text:
 text = text.replace("<span>上架：${fmtUnix(m.sourcePublishedAt)}</span>", "<span>${sourcePublishedText(m)}</span>")
 
 source_anchor = "document.querySelector('#sources').innerHTML=cards.join('');"
-if "GAP.rakuyaSnapshot" not in text or "GAP.housepriceSnapshot" not in text:
-    if source_anchor not in text:
-        raise RuntimeError("Integrated source UI: source-card anchor missing")
-    injection = (
+if source_anchor not in text:
+    raise RuntimeError("Integrated source UI: source-card anchor missing")
+
+# Add only the source card that is actually missing. Re-injecting the Rakuya
+# declaration into an already-integrated page would redeclare const rk and stop
+# the whole Preview JavaScript before render().
+injection = ""
+if "GAP.rakuyaSnapshot" not in text:
+    injection += (
         "const rk=GAP.rakuyaSnapshot||{},rkOk=rk.complete===true&&rk.status==='ok';"
         "cards.push(`<div class=\"source-card\"><div class=\"source-head\"><strong>樂屋網</strong><span class=\"badge ${rkOk?'ok':'err'}\">${rkOk?'正常':'異常/沿用'}</span></div><div class=\"note\">目前刊登 ${rk.totalCount??0} 筆<br>最近更新：${fmt(rk.updatedAt)}</div></div>`);"
+    )
+if "GAP.housepriceSnapshot" not in text:
+    injection += (
         "const hp=GAP.housepriceSnapshot||{},hpOk=hp.complete===true&&hp.status==='ok';"
         "cards.push(`<div class=\"source-card\"><div class=\"source-head\"><strong>5168</strong><span class=\"badge ${hpOk?'ok':'err'}\">${hpOk?'正常':'異常/沿用'}</span></div><div class=\"note\">目前刊登 ${hp.totalCount??0} 筆<br>最近更新：${fmt(hp.updatedAt)}</div></div>`);"
     )
+if injection:
     text = text.replace(source_anchor, injection + source_anchor, 1)
 
 old_filter = "const sourceOK=source==='all'||(source==='sinyi'&&(g.sources||[]).includes('信義房屋'))||(source==='591'&&(g.sources||[]).includes('591'));"
