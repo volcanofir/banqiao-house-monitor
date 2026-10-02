@@ -104,9 +104,17 @@ tests=[
  ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"road":["中山路二段"],"page":1,"pageSize":50}),
  ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"road":"中山路二段","page":1,"pageSize":50}),
  ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"keyword":"中山路二段","page":1,"pageSize":50}),
+ ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"keyword":"中山路二段","page":2}),
+ ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"keyword":"中山路二段","page":3}),
+ ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"keyword":"中山路二段","page":4}),
+ ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"keyword":"中山路二段","page":5}),
  ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"keyWord":"中山路二段","page":1,"pageSize":50}),
  ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"searchText":"中山路二段","page":1,"pageSize":50}),
  ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"parameter":"中山路二段","page":1,"pageSize":50}),
+ ("GET","/api/Case/Info?sid=33221169",None),
+ ("GET","/api/Case/Info?caseSid=33221169",None),
+ ("GET","/api/Case/Info/33221169",None),
+ ("POST","/api/Case/Info",{"sid":33221169}),
 ]
 for method,path2,payload in tests:
   try:
