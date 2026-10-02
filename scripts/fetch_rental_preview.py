@@ -44,6 +44,11 @@ SEARCH_RAKUYA = {
     for road, aliases in WATCH_ROADS.items()
 }
 
+SEARCH_HOUSEPRICE = {
+    road: f"https://rent.houseprice.tw/list/21_usage/15_zip/{aliases[0]}_kw/?p=1"
+    for road, aliases in WATCH_ROADS.items()
+}
+
 USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
 
 
@@ -278,12 +283,78 @@ def extract_rakuya_dom(page, road):
     return dedupe(rows)
 
 
+
+def houseprice_page_url(base_url, page_no):
+    return re.sub(r'([?&])p=\\d+', rf'\\1p={page_no}', base_url)
+
+
+def extract_houseprice_dom(page, road):
+    keyword = WATCH_ROADS[road][0]
+    raw = page.evaluate(
+        """({keyword}) => {
+          const out=[];
+          const seen=new Set();
+          for(const a of document.querySelectorAll('a[href]')){
+            let u; try{u=new URL(a.href)}catch(e){continue}
+            if(u.hostname!=='rent.houseprice.tw') continue;
+            if(u.pathname.startsWith('/list/')) continue;
+            if(u.pathname==='/' || u.pathname.length<4) continue;
+            let node=a, best='';
+            for(let i=0;i<10 && node;i++,node=node.parentElement){
+              const t=(node.innerText||'').replace(/\\s+/g,' ').trim();
+              if(t.includes(keyword) && /[\\d,]+\\s*元/.test(t) && t.length>=20 && t.length<=2600){
+                if(!best || t.length<best.length) best=t;
+              }
+            }
+            if(!best) continue;
+            const href=u.origin+u.pathname+u.search;
+            if(seen.has(href)) continue;
+            seen.add(href);
+            out.push({href,anchor:(a.innerText||'').replace(/\\s+/g,' ').trim(),text:best});
+          }
+          return out;
+        }""",
+        {'keyword': keyword},
+    )
+    rows=[]
+    for item in raw:
+        text=norm(item.get('text'))
+        href=item.get('href') or ''
+        key=re.sub(r'\\W+','-',href).strip('-')
+        if not key:
+            continue
+        title=norm(item.get('anchor'))
+        if not title or len(title)>120 or title in ('查看更多','詳細資料','看屋'):
+            pos=text.find('板橋區')
+            title=norm(text[:pos]) if pos>0 else ''
+        if not title or len(title)>120:
+            title=f'5168租屋 {key[-24:]}'
+        rent_values=re.findall(r'([\\d,]+)\\s*元(?:/月|／月)?',text)
+        rent=float(rent_values[-1].replace(',','')) if rent_values else None
+        area_match=re.search(r'(\\d+(?:\\.\\d+)?)\\s*坪',text)
+        floor_match=re.search(r'((?:B?\\d+)(?:~(?:B?\\d+))?/\\d+樓)',text)
+        rows.append({
+            'id': f'5168租屋:{key}',
+            'source': '5168',
+            'houseId': key,
+            'road': road,
+            'title': title,
+            'address': road,
+            'rent': rent,
+            'size': float(area_match.group(1)) if area_match else None,
+            'url': href,
+            'floor': norm(floor_match.group(1)) if floor_match else None,
+        })
+    return dedupe(rows)
+
+
 def fetch_all():
-    rows_591, rows_sinyi, rows_rakuya = [], [], []
-    logs_591, logs_sinyi, logs_rakuya = [], [], []
+    rows_591, rows_sinyi, rows_rakuya, rows_houseprice = [], [], [], []
+    logs_591, logs_sinyi, logs_rakuya, logs_houseprice = [], [], [], []
     ok_591 = 0
     ok_sinyi = 0
     ok_rakuya = 0
+    ok_houseprice = 0
 
     with sync_playwright() as p:
         browser = p.chromium.launch(channel='chrome', headless=True, args=['--disable-dev-shm-usage'])
@@ -349,6 +420,35 @@ def fetch_all():
                 ok_rakuya += 1
                 logs_rakuya.append(f'{road} 樂屋租屋：DOM {len(parsed)} 筆')
                 page.close()
+
+            # 5168: user-confirmed rental keyword URL. Page through ?p=N
+            # and only accept cards that contain the exact monitored road keyword.
+            for road, base_url in SEARCH_HOUSEPRICE.items():
+                road_rows, seen = [], set()
+                page = context.new_page()
+                loaded_any = False
+                for page_no in range(1, 9):
+                    url = houseprice_page_url(base_url, page_no)
+                    loaded, status = load_page(page, url, wait_ms=2200, attempts=3)
+                    if not loaded:
+                        logs_houseprice.append(f'{road} 5168租屋第{page_no}頁載入失敗：{status}')
+                        break
+                    loaded_any = True
+                    parsed = extract_houseprice_dom(page, road)
+                    new_rows = [x for x in parsed if x['id'] not in seen]
+                    for row in new_rows:
+                        seen.add(row['id'])
+                        road_rows.append(row)
+                    logs_houseprice.append(f'{road} 5168租屋第{page_no}頁：DOM {len(parsed)}／新增 {len(new_rows)}')
+                    if page_no > 1 and not new_rows:
+                        break
+                    if not parsed:
+                        break
+                if loaded_any:
+                    ok_houseprice += 1
+                rows_houseprice.extend(road_rows)
+                logs_houseprice.append(f'{road} 5168租屋完成，共 {len(road_rows)} 筆')
+                page.close()
         finally:
             context.close()
             browser.close()
@@ -357,6 +457,7 @@ def fetch_all():
         dedupe(rows_591), ok_591 == len(SEARCH_591), logs_591,
         dedupe(rows_sinyi), ok_sinyi == len(SEARCH_SINYI), logs_sinyi,
         dedupe(rows_rakuya), ok_rakuya == len(SEARCH_RAKUYA), logs_rakuya,
+        dedupe(rows_houseprice), ok_houseprice == len(SEARCH_HOUSEPRICE), logs_houseprice,
     )
 
 
@@ -364,31 +465,34 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     started = time.time()
     try:
-        r591, ok591, logs591, sinyi, oksinyi, logssinyi, rakuya, okrakuya, logsrakuya = fetch_all()
+        r591, ok591, logs591, sinyi, oksinyi, logssinyi, rakuya, okrakuya, logsrakuya, houseprice, okhouseprice, logshouseprice = fetch_all()
     except Exception as exc:
-        r591, sinyi, rakuya = [], [], []
-        ok591 = oksinyi = okrakuya = False
+        r591, sinyi, rakuya, houseprice = [], [], [], []
+        ok591 = oksinyi = okrakuya = okhouseprice = False
         logs591 = [f'租屋瀏覽器啟動失敗：{type(exc).__name__}: {exc}']
         logssinyi = []
         logsrakuya = []
+        logshouseprice = []
 
-    listings = dedupe(r591 + sinyi + rakuya)
+    listings = dedupe(r591 + sinyi + rakuya + houseprice)
     payload = {
         'updatedAt': now_iso(),
         'previewOnly': True,
         'market': 'rent',
         'watchRoads': list(WATCH_ROADS),
-        'searchPages': {'591': SEARCH_591, '信義房屋': SEARCH_SINYI, '樂屋網': SEARCH_RAKUYA},
+        'searchPages': {'591': SEARCH_591, '信義房屋': SEARCH_SINYI, '樂屋網': SEARCH_RAKUYA, '5168': SEARCH_HOUSEPRICE},
         'runs': {
             '591': {'status': 'ok' if ok591 else 'error', 'totalCount': len(r591), 'logs': logs591},
             '信義房屋': {'status': 'ok' if oksinyi else 'error', 'totalCount': len(sinyi), 'logs': logssinyi},
             '樂屋網': {'status': 'ok' if okrakuya else 'error', 'totalCount': len(rakuya), 'logs': logsrakuya},
+            '5168': {'status': 'ok' if okhouseprice else 'error', 'totalCount': len(houseprice), 'logs': logshouseprice},
         },
         'counts': {
             'total': len(listings),
             'sinyi': len(sinyi),
             '591': len(r591),
             'rakuya': len(rakuya),
+            'houseprice': len(houseprice),
             'roads': {road: sum(1 for x in listings if x.get('road') == road) for road in WATCH_ROADS},
         },
         'listings': listings,
