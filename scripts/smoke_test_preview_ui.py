@@ -143,16 +143,24 @@ def main():
                 assert number(text) is not None, (selector, text)
 
             assert number(page.locator("#cUnavailable").inner_text()) == offmarket_count
-            assert page.locator("#sources .source-card").count() == 3
+            assert page.locator("#sources .source-card").count() == 4
             assert page.locator('.source-tab[data-source="rakuya"]').count() == 1
+            assert page.locator('.source-tab[data-source="houseprice"]').count() == 1
             assert page.locator("#rakuyaPanel").count() == 0
             assert page.evaluate("GAP && GAP.rakuyaIntegrated === true") is True
+            assert page.evaluate("GAP && GAP.housepriceIntegrated === true") is True
             rakuya_group_count = int(page.evaluate("(GAP.propertyGroups||[]).filter(g=>(g.sources||[]).includes('樂屋網')).length") or 0)
+            houseprice_group_count = int(page.evaluate("(GAP.propertyGroups||[]).filter(g=>(g.sources||[]).includes('5168')).length") or 0)
             assert rakuya_group_count > 0
+            assert houseprice_group_count > 0
             page.locator('.source-tab[data-source="rakuya"]').click()
             assert "active" in (page.locator('.source-tab[data-source="rakuya"]').get_attribute("class") or "")
             assert page.locator("#groups .item").count() == rakuya_group_count
             assert page.locator('#groups .item .pill').filter(has_text="樂屋網").count() >= 1
+            page.locator('.source-tab[data-source="houseprice"]').click()
+            assert "active" in (page.locator('.source-tab[data-source="houseprice"]').get_attribute("class") or "")
+            assert page.locator("#groups .item").count() == houseprice_group_count
+            assert page.locator('#groups .item .pill').filter(has_text="5168").count() >= 1
             page.locator('.source-tab[data-source="all"]').click()
             assert page.locator("#groups .road-group").count() >= 1
             assert page.locator(".market-btn").count() == 2
