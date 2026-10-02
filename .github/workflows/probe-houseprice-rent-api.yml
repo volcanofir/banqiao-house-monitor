@@ -1,0 +1,19 @@
+name: 5168 rental API probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/probe_houseprice_rent_api.py"
+      - ".github/workflows/probe-houseprice-rent-api.yml"
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python scripts/probe_houseprice_rent_api.py
