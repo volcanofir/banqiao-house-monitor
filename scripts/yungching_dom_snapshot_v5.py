@@ -50,17 +50,35 @@ def direct_next_page(page, target):
     before = page.url
     target_url = v4.pg_url(before, target)
     try:
-        response = page.goto(target_url, wait_until="domcontentloaded", timeout=45000)
+        response, net = v3.base.navigate_with_list_api(page, target_url, road="", page_no=target)
+        # navigate_with_list_api normally validates keyword against a road. For
+        # pagination calls we already know the target URL is the same road, but the
+        # helper cannot infer it from an empty road; if no API capture was recorded,
+        # fall back to a local URL-aware observer below.
         http = response.status if response else None
+        api_success = bool(net.get("apiListSuccess"))
+        if not api_success:
+            from urllib.parse import parse_qs, urlsplit
+            keyword = (parse_qs(urlsplit(target_url).query).get("keyword") or [""])[0]
+            road_name = f"板橋區{keyword}" if keyword else ""
+            if road_name:
+                # A second same-URL navigation is acceptable only when the first one
+                # lacked API evidence; it gives the official list endpoint one clean retry.
+                response, net = v3.base.navigate_with_list_api(page, target_url, road_name, target)
+                http = response.status if response else http
+                api_success = bool(net.get("apiListSuccess"))
         page.wait_for_timeout(1800)
         active = v3.wait_pager_active(page, target, timeout=5000)
         after = pager_meta(page)
-        ok = bool(http == 200 and active and int(after.get("active") or 0) == target)
+        ok = bool((http == 200 or api_success) and active and int(after.get("active") or 0) == target)
         return {
             "clicked": ok, "mode": "yungching-direct-pg-v5", "target": target,
-            "http": http, "beforeUrl": before, "targetUrl": target_url,
+            "http": http, "apiListHttp": net.get("apiListHttp"),
+            "apiListSuccess": api_success, "apiListStatus": net.get("apiListStatus"),
+            "apiListDataLength": net.get("apiListDataLength"),
+            "beforeUrl": before, "targetUrl": target_url,
             "finalUrl": page.url, "activeVerified": bool(active),
-            "error": None if ok else "target page did not become active",
+            "error": None if ok else "target page did not become active with HTTP/API evidence",
         }
     except Exception as exc:
         return {"clicked": False, "mode": "yungching-direct-pg-v5", "target": target,
