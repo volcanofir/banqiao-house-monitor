@@ -1,9 +1,13 @@
 {
-  "checkedAt": "2026-10-02T18:22:07+00:00",
-  "fetchOutcome": "cancelled",
-  "fetchReturnCode": "",
-  "stampOutcome": "skipped",
+  "checkedAt": "2026-10-02T18:24:34+00:00",
+  "fetchOutcome": "success",
+  "fetchReturnCode": "0",
+  "vpnOutcome": "success",
+  "housepriceVpnOutcome": "success",
+  "housepriceVpnReturnCode": "0",
+  "stampOutcome": "success",
   "rentalDataExists": true,
   "uiOwnership": "canonical-preview-index",
-  "logTail": "/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:120: SyntaxWarning: invalid escape sequence '\\/'\n  if(u.hostname!=='rent.591.com.tw' || !/^\\/\\d{6,}$/.test(u.pathname)) continue;\n/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:177: SyntaxWarning: invalid escape sequence '\\/'\n  const m=href.match(/\\/houseno\\/([A-Za-z0-9_-]+)/);\n"
+  "logTail": "/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:120: SyntaxWarning: invalid escape sequence '\\/'\n  if(u.hostname!=='rent.591.com.tw' || !/^\\/\\d{6,}$/.test(u.pathname)) continue;\n/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:177: SyntaxWarning: invalid escape sequence '\\/'\n  const m=href.match(/\\/houseno\\/([A-Za-z0-9_-]+)/);\n{\"updatedAt\": \"2026-10-02T18:24:28+00:00\", \"counts\": {\"total\": 156, \"sinyi\": 15, \"591\": 114, \"rakuya\": 27, \"houseprice\": 0, \"roads\": {\"板橋區中山路二段\": 79, \"板橋區三民路一段\": 22, \"板橋區光復街\": 3, \"板橋區三民路二段\": 36, \"板橋區萬安街\": 12, \"板橋區翠華街\": 4, \"板橋區林森街\": 0}}, \"runs\": {\"591\": \"ok\", \"信義房屋\": \"ok\", \"樂屋網\": \"error\", \"5168\": \"error\"}, \"elapsedSeconds\": 93.47}\n",
+  "housepriceVpnLogTail": "/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:120: SyntaxWarning: invalid escape sequence '\\/'\n  if(u.hostname!=='rent.591.com.tw' || !/^\\/\\d{6,}$/.test(u.pathname)) continue;\n/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:177: SyntaxWarning: invalid escape sequence '\\/'\n  const m=href.match(/\\/houseno\\/([A-Za-z0-9_-]+)/);\n{\"source\": \"5168\", \"status\": \"error\", \"count\": 109, \"logs\": [\"板橋區中山路二段 5168 API第1頁：符合 18／新增 18／來源總數 55\", \"板橋區中山路二段 5168 API第2頁：符合 16／新增 16／來源總數 55\", \"板橋區中山路二段 5168 API第3頁：符合 15／新增 15／來源總數 55\", \"板橋區中山路二段 5168 API完整性警告：來源 55 筆，實得 49 筆\", \"板橋區中山路二段 5168租屋完成，共 49 筆\", \"板橋區三民路一段 5168 API第1頁：符合 15／新增 15／來源總數 15\", \"板橋區三民路一段 5168租屋完成，共 15 筆\", \"板橋區光復街 5168 API第1頁：符合 2／新增 2／來源總數 2\", \"板橋區光復街 5168租屋完成，共 2 筆\", \"板橋區三民路二段 5168 API第1頁：符合 17／新增 17／來源總數 26\", \"板橋區三民路二段 5168 API第2頁：符合 6／新增 6／來源總數 26\", \"板橋區三民路二段 5168 API完整性警告：來源 26 筆，實得 23 筆\", \"板橋區三民路二段 5168租屋完成，共 23 筆\", \"板橋區萬安街 5168 API第1頁：符合 14／新增 14／來源總數 14\", \"板橋區萬安街 5168租屋完成，共 14 筆\", \"板橋區翠華街 5168 API第1頁：符合 6／新增 6／來源總數 6\", \"板橋區翠華街 5168租屋完成，共 6 筆\", \"板橋區林森街 5168 API第1頁：符合 0／新增 0／來源總數 0\", \"板橋區林森街 5168租屋完成，共 0 筆\"]}\n"
 }
