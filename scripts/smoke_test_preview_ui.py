@@ -131,9 +131,35 @@ def main():
             page.wait_for_function("document.querySelector('#mGroups')?.textContent !== '-'", timeout=15000)
 
             updated = page.locator("#updated").inner_text()
+            if "比對資料同步中" in updated:
+                diag = page.evaluate("""() => ({
+                    dataUpdatedAt: DATA?.updatedAt,
+                    gapSourceDataUpdatedAt: GAP?.sourceDataUpdatedAt,
+                    verifySourceDataUpdatedAt: VERIFY?.sourceDataUpdatedAt,
+                    gapCompanySnapshotCapturedAt: GAP?.companySnapshotCapturedAt,
+                    verifySnapshotCapturedAt: VERIFY?.snapshotCapturedAt,
+                    gapGeneratedAt: GAP?.generatedAt,
+                    verifyCompanyGapGeneratedAt: VERIFY?.companyGapGeneratedAt,
+                    verifyIntegrityVersion: VERIFY?.integrityVersion,
+                    verifyCanonicalPublisher: VERIFY?.canonicalPublisher,
+                    verifyValid: VERIFY?.valid,
+                    verifyScheme: VERIFY?.scheme,
+                    gapCompanyListingCount: GAP?.companyListingCount,
+                    verifyCompanyListingCount: VERIFY?.companyListingCount,
+                    gapPropertyGroupCount: GAP?.propertyGroupCount,
+                    verifyPropertyGroupCount: VERIFY?.propertyGroupCount,
+                    gapRawListingCount: GAP?.rawListingCount,
+                    verifyRawListingCount: VERIFY?.rawListingCount,
+                    gapComparisonCount: (GAP?.comparisons||[]).length,
+                    verifyComparisonCount: VERIFY?.comparisonCount,
+                    gapCounts: GAP?.counts,
+                    verifyCounts: VERIFY?.counts,
+                    sinyiComplete: VERIFY?.sinyiFloorEnrichment?.complete,
+                    verificationMatches: verificationMatches(DATA,GAP,VERIFY)
+                })""")
+                raise AssertionError(f"Preview integrity runtime mismatch: {json.dumps(diag, ensure_ascii=False)}")
             assert "讀取失敗" not in updated, updated
             assert "完整性驗證未通過" not in updated, updated
-            assert "比對資料同步中" not in updated, updated
             assert "委託比對：" in updated, updated
             assert page.locator("#updated br").count() == 1
 
