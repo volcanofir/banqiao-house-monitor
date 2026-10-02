@@ -1,22 +1,22 @@
 {
-  "auditedAt": "2026-10-01T23:49:52+00:00",
+  "auditedAt": "2026-10-02T05:54:17+00:00",
   "scheme": "A",
   "target": "exact canonical Preview files before atomic publish",
   "validator": "validate_scheme_a_preview_v3",
   "passed": true,
   "error": null,
   "companyGap": {
-    "generatedAt": "2026-10-01T23:49:49+00:00",
+    "generatedAt": "2026-10-02T05:54:15+00:00",
     "capturedAt": null,
     "verifiedAt": null,
-    "companySnapshotCapturedAt": "2026-10-01T23:47:50+00:00",
+    "companySnapshotCapturedAt": "2026-10-02T05:51:32+00:00",
     "listingCount": null,
     "companyListingCount": 74,
-    "propertyGroupCount": 168,
+    "propertyGroupCount": 173,
     "counts": {
       "company_match": 46,
-      "review": 5,
-      "missing": 117,
+      "review": 7,
+      "missing": 120,
       "unavailable": 0
     },
     "idIntegrityGuard": null,
@@ -26,7 +26,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-10-01T23:49:44+00:00",
+      "generatedAt": "2026-10-02T05:54:11+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 69,
@@ -96,7 +96,7 @@
   },
   "browserSnapshot": {
     "generatedAt": null,
-    "capturedAt": "2026-10-01T23:47:50+00:00",
+    "capturedAt": "2026-10-02T05:51:32+00:00",
     "verifiedAt": null,
     "companySnapshotCapturedAt": null,
     "listingCount": 74,
@@ -187,15 +187,15 @@
   "verification": {
     "generatedAt": null,
     "capturedAt": null,
-    "verifiedAt": "2026-10-01T23:49:52+00:00",
-    "companySnapshotCapturedAt": "2026-10-01T23:47:50+00:00",
+    "verifiedAt": "2026-10-02T05:54:17+00:00",
+    "companySnapshotCapturedAt": "2026-10-02T05:51:32+00:00",
     "listingCount": null,
     "companyListingCount": 74,
-    "propertyGroupCount": 168,
+    "propertyGroupCount": 173,
     "counts": {
       "company_match": 46,
-      "review": 5,
-      "missing": 117,
+      "review": 7,
+      "missing": 120,
       "unavailable": 0
     },
     "idIntegrityGuard": {
@@ -273,11 +273,11 @@
     },
     "canonicalPublisher": "yungching-preview.yml",
     "valid": true,
-    "integrityVersion": "scheme-a-canonical-v4-sinyi-rakuya-floor-neartie",
+    "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-10-01T23:49:44+00:00",
+      "generatedAt": "2026-10-02T05:54:11+00:00",
       "previewOnly": true,
       "source": "Sinyi official list __NEXT_DATA__.props.initialReduxState.buyReducer.list",
       "activeSinyiCount": 69,
