@@ -285,7 +285,7 @@ def extract_rakuya_dom(page, road):
 
 
 def houseprice_page_url(base_url, page_no):
-    return re.sub(r'([?&])p=\\d+', rf'\\1p={page_no}', base_url)
+    return re.sub(r'([?&])p=\d+', rf'\1p={page_no}', base_url)
 
 
 def extract_houseprice_dom(page, road):
@@ -301,8 +301,8 @@ def extract_houseprice_dom(page, road):
             if(u.pathname==='/' || u.pathname.length<4) continue;
             let node=a, best='';
             for(let i=0;i<10 && node;i++,node=node.parentElement){
-              const t=(node.innerText||'').replace(/\\s+/g,' ').trim();
-              if(t.includes(keyword) && /[\\d,]+\\s*元/.test(t) && t.length>=20 && t.length<=2600){
+              const t=(node.innerText||'').replace(/\s+/g,' ').trim();
+              if(t.includes(keyword) && /[\d,]+\s*元/.test(t) && t.length>=20 && t.length<=2600){
                 if(!best || t.length<best.length) best=t;
               }
             }
@@ -310,7 +310,7 @@ def extract_houseprice_dom(page, road):
             const href=u.origin+u.pathname+u.search;
             if(seen.has(href)) continue;
             seen.add(href);
-            out.push({href,anchor:(a.innerText||'').replace(/\\s+/g,' ').trim(),text:best});
+            out.push({href,anchor:(a.innerText||'').replace(/\s+/g,' ').trim(),text:best});
           }
           return out;
         }""",
@@ -320,7 +320,7 @@ def extract_houseprice_dom(page, road):
     for item in raw:
         text=norm(item.get('text'))
         href=item.get('href') or ''
-        key=re.sub(r'\\W+','-',href).strip('-')
+        key=re.sub(r'\W+','-',href).strip('-')
         if not key:
             continue
         title=norm(item.get('anchor'))
@@ -329,10 +329,10 @@ def extract_houseprice_dom(page, road):
             title=norm(text[:pos]) if pos>0 else ''
         if not title or len(title)>120:
             title=f'5168租屋 {key[-24:]}'
-        rent_values=re.findall(r'([\\d,]+)\\s*元(?:/月|／月)?',text)
+        rent_values=re.findall(r'([\d,]+)\s*元(?:/月|／月)?',text)
         rent=float(rent_values[-1].replace(',','')) if rent_values else None
-        area_match=re.search(r'(\\d+(?:\\.\\d+)?)\\s*坪',text)
-        floor_match=re.search(r'((?:B?\\d+)(?:~(?:B?\\d+))?/\\d+樓)',text)
+        area_match=re.search(r'(\d+(?:\.\d+)?)\s*坪',text)
+        floor_match=re.search(r'((?:B?\d+)(?:~(?:B?\d+))?/\d+樓)',text)
         rows.append({
             'id': f'5168租屋:{key}',
             'source': '5168',
