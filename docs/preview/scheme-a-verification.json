@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-02T12:01:56+00:00",
+  "verifiedAt": "2026-10-02T13:08:01+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-10-02T12:01:49+00:00",
+    "generatedAt": "2026-10-02T13:07:51+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -30,7 +30,7 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-10-02T12:01:44+00:00",
+    "updatedAt": "2026-10-02T13:07:17+00:00",
     "status": "ok",
     "totalCount": 234,
     "uniqueListingCount": 234,
@@ -74,20 +74,27 @@
     "changes": {
       "newCount": 0,
       "newIds": [],
-      "priceChangeCount": 0,
-      "priceChanges": [],
+      "priceChangeCount": 1,
+      "priceChanges": [
+        {
+          "listingId": "0fca1b321179045",
+          "from": 1480,
+          "to": 1380,
+          "at": "2026-10-02T13:07:17+00:00"
+        }
+      ],
       "removedCount": 0,
       "removedIds": [],
-      "currentChangeCount": 0
+      "currentChangeCount": 1
     },
     "complete": true
   },
   "rakuyaGrouping": {
     "inputCount": 234,
-    "regroupedCount": 127,
+    "regroupedCount": 128,
     "mergedClusterCount": 48,
-    "absorbedCount": 107,
-    "attachedToExistingGroupCount": 105,
+    "absorbedCount": 106,
+    "attachedToExistingGroupCount": 106,
     "standaloneGroupCount": 22,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
@@ -95,7 +102,7 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-10-02T11:21:15+00:00",
+    "updatedAt": "2026-10-02T13:07:22+00:00",
     "status": "ok",
     "totalCount": 67,
     "uniqueListingCount": 67,
@@ -141,8 +148,15 @@
       "newCount": 0,
       "removedIds": [],
       "removedCount": 0,
-      "priceChanges": [],
-      "priceChangeCount": 0
+      "priceChanges": [
+        {
+          "listingId": "29623355",
+          "from": 1480,
+          "to": 1380,
+          "at": "2026-10-02T13:07:22+00:00"
+        }
+      ],
+      "priceChangeCount": 1
     },
     "complete": true,
     "detailSummary": {
@@ -180,7 +194,7 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-10-02T12:01:56+00:00",
+    "auditedAt": "2026-10-02T13:08:01+00:00",
     "propertyGroupCount": 173,
     "companyListingCount": 75,
     "companyMatchCount": 47,
@@ -188,9 +202,9 @@
     "chosenCandidateRecomputeMismatchCount": 0,
     "weakIdentityAlreadyMergedPairCount": 573
   },
-  "snapshotCapturedAt": "2026-10-02T12:00:04+00:00",
-  "companySnapshotCapturedAt": "2026-10-02T12:00:04+00:00",
-  "companyGapGeneratedAt": "2026-10-02T12:01:54+00:00",
+  "snapshotCapturedAt": "2026-10-02T13:05:21+00:00",
+  "companySnapshotCapturedAt": "2026-10-02T13:05:21+00:00",
+  "companyGapGeneratedAt": "2026-10-02T13:07:57+00:00",
   "browserListingCount": 75,
   "companyListingCount": 75,
   "propertyGroupCount": 173,
@@ -264,7 +278,7 @@
     "missing": 118,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 108,
+  "crossPlatformMergedGroupCount": 107,
   "crossSourceReviewCount": 10,
   "preview591Regroup": {
     "original591TopLevel": 117,
@@ -353,7 +367,7 @@
   "candidatesWithFloor": 148,
   "candidatesWithYcCaseId": 148,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-02T12:01:22+00:00",
+    "generatedAt": "2026-10-02T13:06:51+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 69,
     "cacheHitCount": 69,
