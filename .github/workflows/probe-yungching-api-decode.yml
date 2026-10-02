@@ -1,0 +1,28 @@
+name: Yongching API decode probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/probe_yungching_api_decode.py"
+      - ".github/workflows/probe-yungching-api-decode.yml"
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install playwright requests
+      - name: Connect Surfshark
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        run: bash scripts/connect_surfshark_wireguard.sh
+      - name: Preflight
+        run: python scripts/run_with_system_chrome.py scripts/yungching_browser_preflight.py
+      - name: Probe decode path
+        run: python scripts/run_with_system_chrome.py scripts/probe_yungching_api_decode.py
+      - if: always()
+        run: sudo wg-quick down surfshark || true
