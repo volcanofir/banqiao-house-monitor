@@ -1,7 +1,7 @@
 {
   "source": "5168",
   "apiSource": "https://app.houseprice.tw/api/Case/List",
-  "updatedAt": "2026-10-02T02:57:38+00:00",
+  "updatedAt": "2026-10-02T04:46:49+00:00",
   "baseline": false,
   "baselineAt": "2026-10-02T01:40:33+00:00",
   "roads": [
@@ -59,21 +59,33 @@
     "allComplete": true
   },
   "sourceTimePolicy": {
-    "exactDateExposed": false,
+    "exactDateExposed": true,
+    "exactDateField": "PriceAnalyze.newKeyInDate",
+    "exactDateSemantics": "5168 grouped-property first-listing date",
     "relativeTagField": "publishDaysTag",
     "relativeTagConvertedToTaipeiDate": true,
     "monitorFirstSeenUsedAsSourceTime": false
   },
   "sourcePublishedAtSummary": {
+    "exactGroupDateCount": 0,
+    "inferredRelativeTagCount": 19,
     "availableCount": 19,
     "unavailableCount": 48,
     "noFirstSeenFallback": true,
-    "note": "5168 APP provides relative new-listing tags, not an exact first-publish timestamp. Recent tags are converted to a Taipei calendar date and preserved once learned."
+    "note": "Priority: APP PriceAnalyze.newKeyInDate (grouped-property first-listing date). If unavailable, recent publishDaysTag is converted to a Taipei calendar date. Monitor firstSeenAt is never substituted."
   },
   "listings": [
     {
       "listingId": "35385397",
       "groupSid": 19849549,
+      "groupId": "306c0455-e1ac-43ba-9aa9-9edb222e2f7c",
+      "groupNewKeyInDate": "2018-12-06T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2018/12",
+          "priceChg": 8280.0
+        }
+      ],
       "road": "中山路二段",
       "name": " 💥(135)埔墘商圈大馬路透天金店面",
       "url": "https://buy.houseprice.tw/house/35385397_298364",
@@ -100,7 +112,7 @@
       "district": "板橋區",
       "lng": 121.477943536,
       "lat": 25.0180015309,
-      "agentCount": 28,
+      "agentCount": 29,
       "sourcePublishText": "3天前新上架",
       "detailComplete": true,
       "roads": [
@@ -112,7 +124,7 @@
       "sourcePublishedRaw": "3天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -126,6 +138,38 @@
     {
       "listingId": "38320560",
       "groupSid": 23346252,
+      "groupId": "f5c0bb74-cc62-4419-96a6-4986906667d8",
+      "groupNewKeyInDate": "2020-08-22T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 1488.0
+        },
+        {
+          "priceChgDate": "2025/07",
+          "priceChg": 1520.0
+        },
+        {
+          "priceChgDate": "2025/02",
+          "priceChg": 1588.0
+        },
+        {
+          "priceChgDate": "2023/11",
+          "priceChg": 1300.0
+        },
+        {
+          "priceChgDate": "2022/06",
+          "priceChg": 1280.0
+        },
+        {
+          "priceChgDate": "2020/09",
+          "priceChg": 1188.0
+        },
+        {
+          "priceChgDate": "2020/08",
+          "priceChg": 1198.0
+        }
+      ],
       "road": "中山路二段",
       "name": "506BS埔墘雙併電梯+車位",
       "url": "https://buy.houseprice.tw/house/38320560_1815022",
@@ -164,7 +208,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -178,6 +222,22 @@
     {
       "listingId": "38498100",
       "groupSid": 29126030,
+      "groupId": "af5c6815-7459-484a-93f8-15725c2fac18",
+      "groupNewKeyInDate": "2025-05-13T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/08",
+          "priceChg": 1580.0
+        },
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 1680.0
+        },
+        {
+          "priceChgDate": "2025/05",
+          "priceChg": 1988.0
+        }
+      ],
       "road": "中山路二段",
       "name": "555BH新板微風1F店辦+車",
       "url": "https://buy.houseprice.tw/house/38498100_1068474",
@@ -216,7 +276,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -230,6 +290,38 @@
     {
       "listingId": "33956178",
       "groupSid": 18905436,
+      "groupId": "58ba7e11-de42-4b3f-a476-dcccb40ef400",
+      "groupNewKeyInDate": "2023-12-29T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/07",
+          "priceChg": 1588.0
+        },
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 1558.0
+        },
+        {
+          "priceChgDate": "2025/10",
+          "priceChg": 1588.0
+        },
+        {
+          "priceChgDate": "2025/08",
+          "priceChg": 1638.0
+        },
+        {
+          "priceChgDate": "2025/03",
+          "priceChg": 1580.0
+        },
+        {
+          "priceChgDate": "2024/07",
+          "priceChg": 1638.0
+        },
+        {
+          "priceChgDate": "2023/12",
+          "priceChg": 1680.0
+        }
+      ],
       "road": "中山路二段",
       "name": "5X79頤和邦電梯2房~春治0922103882",
       "url": "https://buy.houseprice.tw/house/33956178_1566807",
@@ -268,7 +360,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -282,6 +374,18 @@
     {
       "listingId": "27996048",
       "groupSid": 29015560,
+      "groupId": "75b95c6d-5377-45b5-b306-af70f02ecb5c",
+      "groupNewKeyInDate": "2026-01-25T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 598.0
+        },
+        {
+          "priceChgDate": "2026/01",
+          "priceChg": 468.0
+        }
+      ],
       "road": "中山路二段",
       "name": "72A1板橋中山路美寓",
       "url": "https://buy.houseprice.tw/house/27996048_1501577",
@@ -320,7 +424,7 @@
       "sourcePublishedRaw": "2天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -334,6 +438,22 @@
     {
       "listingId": "24171601",
       "groupSid": 25941903,
+      "groupId": "c3d5437e-3134-454d-9f20-78b62ddaac5b",
+      "groupNewKeyInDate": "2025-05-06T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/09",
+          "priceChg": 1980.0
+        },
+        {
+          "priceChgDate": "2025/08",
+          "priceChg": 2098.0
+        },
+        {
+          "priceChgDate": "2025/05",
+          "priceChg": 2198.0
+        }
+      ],
       "road": "中山路二段",
       "name": "~~埔墘 /家樂福優質華廈美4房~~",
       "url": "https://buy.houseprice.tw/house/24171601_936155",
@@ -372,7 +492,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -386,6 +506,18 @@
     {
       "listingId": "37638395",
       "groupSid": 25873670,
+      "groupId": "b07b2cb9-9c1e-4ae8-aee0-2268a4efe68a",
+      "groupNewKeyInDate": "2025-08-01T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/08",
+          "priceChg": 2388.0
+        },
+        {
+          "priceChgDate": "2025/08",
+          "priceChg": 2468.0
+        }
+      ],
       "road": "中山路二段",
       "name": "★板新站~設計師精裝景觀二房車",
       "url": "https://buy.houseprice.tw/house/37638395_1009261",
@@ -424,7 +556,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -438,6 +570,22 @@
     {
       "listingId": "16758272",
       "groupSid": 21673610,
+      "groupId": "44403fcc-3638-4a53-bbd6-ed57e8ac3c35",
+      "groupNewKeyInDate": "2024-01-11T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/03",
+          "priceChg": 1798.0
+        },
+        {
+          "priceChgDate": "2024/10",
+          "priceChg": 1888.0
+        },
+        {
+          "priceChgDate": "2024/01",
+          "priceChg": 1108.0
+        }
+      ],
       "road": "中山路二段",
       "name": "⭐光復橋旁❤️邊間採光公寓三房加倍佳⭐住商泓碩",
       "url": "https://buy.houseprice.tw/house/16758272_739387",
@@ -476,7 +624,7 @@
       "sourcePublishedRaw": "2天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -490,6 +638,14 @@
     {
       "listingId": "36654588",
       "groupSid": 29225639,
+      "groupId": "5dd42a86-e91c-4703-85ea-d038bb56783f",
+      "groupNewKeyInDate": "2026-05-07T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 3598.0
+        }
+      ],
       "road": "中山路二段",
       "name": "【住商臺北城】埔墘優質大店面",
       "url": "https://buy.houseprice.tw/house/36654588_1822018",
@@ -528,7 +684,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -542,6 +698,26 @@
     {
       "listingId": "36493438",
       "groupSid": 28999218,
+      "groupId": "f7336ea6-b6f2-4e87-8734-6a49e9a1f85e",
+      "groupNewKeyInDate": "2026-05-17T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/09",
+          "priceChg": 1636.0
+        },
+        {
+          "priceChgDate": "2026/08",
+          "priceChg": 1698.0
+        },
+        {
+          "priceChgDate": "2026/06",
+          "priceChg": 1750.0
+        },
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 1798.0
+        }
+      ],
       "road": "中山路二段",
       "name": "【樸和】專任🍎馥華大台北🍎質感社區🍎稀少釋出",
       "url": "https://buy.houseprice.tw/house/36493438_886908",
@@ -580,7 +756,7 @@
       "sourcePublishedRaw": "4天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -594,6 +770,26 @@
     {
       "listingId": "38212771",
       "groupSid": 28999218,
+      "groupId": "f7336ea6-b6f2-4e87-8734-6a49e9a1f85e",
+      "groupNewKeyInDate": "2026-05-17T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/09",
+          "priceChg": 1636.0
+        },
+        {
+          "priceChgDate": "2026/08",
+          "priceChg": 1698.0
+        },
+        {
+          "priceChgDate": "2026/06",
+          "priceChg": 1750.0
+        },
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 1798.0
+        }
+      ],
       "road": "中山路二段",
       "name": "【樸和】獨家專賣🔥馥華大台北🔥知名建商",
       "url": "https://buy.houseprice.tw/house/38212771_936056",
@@ -632,7 +828,7 @@
       "sourcePublishedRaw": "2天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -646,6 +842,14 @@
     {
       "listingId": "37089660",
       "groupSid": 29328439,
+      "groupId": "64548381-a9e9-4b0e-96f9-e4a816d89b49",
+      "groupNewKeyInDate": "2026-06-25T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/06",
+          "priceChg": 1198.0
+        }
+      ],
       "road": "中山路二段",
       "name": "埔墘光復橋三樓美寓",
       "url": "https://buy.houseprice.tw/house/37089660_299365",
@@ -684,7 +888,7 @@
       "sourcePublishedRaw": "4天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -698,6 +902,14 @@
     {
       "listingId": "37559448",
       "groupSid": 28702686,
+      "groupId": "6e83f73a-2952-4afa-a6c7-41ef383ccf5b",
+      "groupNewKeyInDate": "2026-04-11T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/04",
+          "priceChg": 1180.0
+        }
+      ],
       "road": "中山路二段",
       "name": "埔墘商圈低總價美寓｜板新捷運｜近埔墘市場｜機能宅",
       "url": "https://buy.houseprice.tw/house/37559448_664961",
@@ -736,7 +948,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -750,6 +962,14 @@
     {
       "listingId": "37913230",
       "groupSid": 28702686,
+      "groupId": "6e83f73a-2952-4afa-a6c7-41ef383ccf5b",
+      "groupNewKeyInDate": "2026-04-11T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/04",
+          "priceChg": 1180.0
+        }
+      ],
       "road": "中山路二段",
       "name": "埔墘天然瓦斯3F🧡🧡",
       "url": "https://buy.houseprice.tw/house/37913230_2611499",
@@ -788,7 +1008,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -802,6 +1022,14 @@
     {
       "listingId": "34726717",
       "groupSid": 28795651,
+      "groupId": "6488b774-5baa-441b-bab4-e6daea0b97c8",
+      "groupNewKeyInDate": "2026-04-24T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/04",
+          "priceChg": 1888.0
+        }
+      ],
       "road": "中山路二段",
       "name": "埔墘美三樓",
       "url": "https://buy.houseprice.tw/house/34726717_1068474",
@@ -840,7 +1068,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -854,6 +1082,18 @@
     {
       "listingId": "34725749",
       "groupSid": 29792260,
+      "groupId": "dfecd8f3-a55f-44cd-84ca-e008d27f8cec",
+      "groupNewKeyInDate": "2026-01-01T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/06",
+          "priceChg": 1788.0
+        },
+        {
+          "priceChgDate": "2026/01",
+          "priceChg": 1568.0
+        }
+      ],
       "road": "中山路二段",
       "name": "埔墘美二樓",
       "url": "https://buy.houseprice.tw/house/34725749_1068474",
@@ -892,7 +1132,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -906,6 +1146,22 @@
     {
       "listingId": "22734264",
       "groupSid": 25895526,
+      "groupId": "584ea286-f179-47e9-95cd-0e7fcb0a774b",
+      "groupNewKeyInDate": "2025-05-09T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/07",
+          "priceChg": 2091.0
+        },
+        {
+          "priceChgDate": "2025/08",
+          "priceChg": 2238.0
+        },
+        {
+          "priceChgDate": "2025/05",
+          "priceChg": 2410.0
+        }
+      ],
       "road": "中山路二段",
       "name": "埔墘辦公室+三車位中信房屋賴輝榮0970-000-",
       "url": "https://buy.houseprice.tw/house/22734264_287232",
@@ -944,7 +1200,7 @@
       "sourcePublishedRaw": "4天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -958,6 +1214,14 @@
     {
       "listingId": "33221169",
       "groupSid": 28718235,
+      "groupId": "f29f31ed-2cda-4924-913a-21f5162ce95d",
+      "groupNewKeyInDate": "2026-04-14T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/04",
+          "priceChg": 1580.0
+        }
+      ],
       "road": "中山路二段",
       "name": "專人服務👍家樂福商圈.邊間方正👍天然瓦斯",
       "url": "https://buy.houseprice.tw/house/33221169_930688",
@@ -996,7 +1260,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1010,6 +1274,14 @@
     {
       "listingId": "32950239",
       "groupSid": 9040398,
+      "groupId": "b5634b11-e9df-40f0-8e9d-0b70d463d536",
+      "groupNewKeyInDate": "2017-06-05T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2017/06",
+          "priceChg": 7600.0
+        }
+      ],
       "road": "中山路二段",
       "name": "新案上架✨板橋中山路百坪1樓+車位👍B01",
       "url": "https://buy.houseprice.tw/house/32950239_696762",
@@ -1048,7 +1320,7 @@
       "sourcePublishedRaw": "3天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1062,6 +1334,18 @@
     {
       "listingId": "37581525",
       "groupSid": 29015560,
+      "groupId": "75b95c6d-5377-45b5-b306-af70f02ecb5c",
+      "groupNewKeyInDate": "2026-01-25T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 598.0
+        },
+        {
+          "priceChgDate": "2026/01",
+          "priceChg": 468.0
+        }
+      ],
       "road": "中山路二段",
       "name": "本-022BH板橋低總價有電梯",
       "url": "https://buy.houseprice.tw/house/37581525_1022857",
@@ -1100,7 +1384,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1114,6 +1398,14 @@
     {
       "listingId": "37586519",
       "groupSid": 19849549,
+      "groupId": "306c0455-e1ac-43ba-9aa9-9edb222e2f7c",
+      "groupNewKeyInDate": "2018-12-06T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2018/12",
+          "priceChg": 8280.0
+        }
+      ],
       "road": "中山路二段",
       "name": "板橋中山路二段透天店面",
       "url": "https://buy.houseprice.tw/house/37586519_2005410",
@@ -1152,7 +1444,7 @@
       "sourcePublishedRaw": "2天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1166,6 +1458,14 @@
     {
       "listingId": "34667372",
       "groupSid": 28702686,
+      "groupId": "6e83f73a-2952-4afa-a6c7-41ef383ccf5b",
+      "groupNewKeyInDate": "2026-04-11T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/04",
+          "priceChg": 1180.0
+        }
+      ],
       "road": "中山路二段",
       "name": "板橋埔墘捷運低總價美寓",
       "url": "https://buy.houseprice.tw/house/34667372_1237005",
@@ -1192,7 +1492,7 @@
       "district": "板橋區",
       "lng": 121.476940424121,
       "lat": 25.0161354964315,
-      "agentCount": 445,
+      "agentCount": 447,
       "sourcePublishText": "今天新上架",
       "detailComplete": true,
       "roads": [
@@ -1204,7 +1504,7 @@
       "sourcePublishedRaw": "今天新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1218,6 +1518,18 @@
     {
       "listingId": "29580906",
       "groupSid": 29015560,
+      "groupId": "75b95c6d-5377-45b5-b306-af70f02ecb5c",
+      "groupNewKeyInDate": "2026-01-25T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 598.0
+        },
+        {
+          "priceChgDate": "2026/01",
+          "priceChg": 468.0
+        }
+      ],
       "road": "中山路二段",
       "name": "板橋門牌低總價有電梯",
       "url": "https://buy.houseprice.tw/house/29580906_924836",
@@ -1256,7 +1568,7 @@
       "sourcePublishedRaw": "5天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1270,6 +1582,14 @@
     {
       "listingId": "24136929",
       "groupSid": 9040398,
+      "groupId": "b5634b11-e9df-40f0-8e9d-0b70d463d536",
+      "groupNewKeyInDate": "2017-06-05T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2017/06",
+          "priceChg": 7600.0
+        }
+      ],
       "road": "中山路二段",
       "name": "永兆豐團隊🏆埔墘百坪可做安親班",
       "url": "https://buy.houseprice.tw/house/24136929_1914110",
@@ -1308,7 +1628,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1322,6 +1642,18 @@
     {
       "listingId": "37065933",
       "groupSid": 29015560,
+      "groupId": "75b95c6d-5377-45b5-b306-af70f02ecb5c",
+      "groupNewKeyInDate": "2026-01-25T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 598.0
+        },
+        {
+          "priceChgDate": "2026/01",
+          "priceChg": 468.0
+        }
+      ],
       "road": "中山路二段",
       "name": "永兆豐團隊🏆板橋 中山二陽光靜巷4米6",
       "url": "https://buy.houseprice.tw/house/37065933_1914110",
@@ -1360,7 +1692,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1374,6 +1706,14 @@
     {
       "listingId": "26378322",
       "groupSid": 12397668,
+      "groupId": "414a7765-4809-4f85-853b-f6c670ccd895",
+      "groupNewKeyInDate": "2019-09-04T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2019/09",
+          "priceChg": 5900.0
+        }
+      ],
       "road": "中山路二段",
       "name": "永兆豐團隊🏆板橋透天店面都更宅",
       "url": "https://buy.houseprice.tw/house/26378322_1914110",
@@ -1412,7 +1752,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1426,6 +1766,18 @@
     {
       "listingId": "38050477",
       "groupSid": 28832474,
+      "groupId": "5fa9c36b-4b7b-44a6-a2e9-8f97488b0a3a",
+      "groupNewKeyInDate": "2025-09-07T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 4666.0
+        },
+        {
+          "priceChgDate": "2025/09",
+          "priceChg": 4188.0
+        }
+      ],
       "road": "中山路二段",
       "name": "皇冠大戶+雙車位(B戶)",
       "url": "https://buy.houseprice.tw/house/38050477_2611499",
@@ -1464,7 +1816,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1478,6 +1830,18 @@
     {
       "listingId": "37581558",
       "groupSid": 29015560,
+      "groupId": "75b95c6d-5377-45b5-b306-af70f02ecb5c",
+      "groupNewKeyInDate": "2026-01-25T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 598.0
+        },
+        {
+          "priceChgDate": "2026/01",
+          "priceChg": 468.0
+        }
+      ],
       "road": "中山路二段",
       "name": "豐-022BH板橋低總價有電梯",
       "url": "https://buy.houseprice.tw/house/37581558_1022857",
@@ -1516,7 +1880,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1530,6 +1894,22 @@
     {
       "listingId": "37910106",
       "groupSid": 29457077,
+      "groupId": "455c4c16-6a96-4175-beff-c140056c36bc",
+      "groupNewKeyInDate": "2024-06-25T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/07",
+          "priceChg": 2125.0
+        },
+        {
+          "priceChgDate": "2025/09",
+          "priceChg": 1990.0
+        },
+        {
+          "priceChgDate": "2024/06",
+          "priceChg": 2130.0
+        }
+      ],
       "road": "中山路二段",
       "name": "鼎家大廈店面-中信房屋台北八德店",
       "url": "https://buy.houseprice.tw/house/37910106_1805485",
@@ -1568,7 +1948,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1582,6 +1962,22 @@
     {
       "listingId": "38116565",
       "groupSid": 29457077,
+      "groupId": "455c4c16-6a96-4175-beff-c140056c36bc",
+      "groupNewKeyInDate": "2024-06-25T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/07",
+          "priceChg": 2125.0
+        },
+        {
+          "priceChgDate": "2025/09",
+          "priceChg": 1990.0
+        },
+        {
+          "priceChgDate": "2024/06",
+          "priceChg": 2130.0
+        }
+      ],
       "road": "中山路二段",
       "name": "鼎家大廈店面-中信房屋台北南京店",
       "url": "https://buy.houseprice.tw/house/38116565_1805496",
@@ -1620,7 +2016,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1634,6 +2030,18 @@
     {
       "listingId": "33567306",
       "groupSid": 29268369,
+      "groupId": "7c72f426-e8d6-429c-bb23-1829b6fd3fc7",
+      "groupNewKeyInDate": "2026-06-18T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/08",
+          "priceChg": 1368.0
+        },
+        {
+          "priceChgDate": "2026/06",
+          "priceChg": 1360.0
+        }
+      ],
       "road": "中山路二段",
       "name": "🎀板新捷運~中山路三房📍Yuki珮瑜",
       "url": "https://buy.houseprice.tw/house/33567306_692230",
@@ -1672,7 +2080,7 @@
       "sourcePublishedRaw": "3天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1686,6 +2094,18 @@
     {
       "listingId": "31267349",
       "groupSid": 28846198,
+      "groupId": "6930d1cf-5173-47ea-b32f-8472ea41697d",
+      "groupNewKeyInDate": "2026-04-30T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 4718.0
+        },
+        {
+          "priceChgDate": "2026/04",
+          "priceChg": 4750.0
+        }
+      ],
       "road": "中山路二段",
       "name": "🎀無敵河景邊間皇冠4房車📍Yuki珮瑜",
       "url": "https://buy.houseprice.tw/house/31267349_692230",
@@ -1724,7 +2144,7 @@
       "sourcePublishedRaw": "3天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1738,6 +2158,18 @@
     {
       "listingId": "37309429",
       "groupSid": 29015560,
+      "groupId": "75b95c6d-5377-45b5-b306-af70f02ecb5c",
+      "groupNewKeyInDate": "2026-01-25T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 598.0
+        },
+        {
+          "priceChgDate": "2026/01",
+          "priceChg": 468.0
+        }
+      ],
       "road": "中山路二段",
       "name": "🏆儀居團隊🏆J4板橋低總價中山雅舍",
       "url": "https://buy.houseprice.tw/house/37309429_1724514",
@@ -1776,7 +2208,7 @@
       "sourcePublishedRaw": "2天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1790,6 +2222,14 @@
     {
       "listingId": "19590310",
       "groupSid": 15668566,
+      "groupId": "63143e53-8c57-4f79-b8a8-89151532d287",
+      "groupNewKeyInDate": "2018-12-06T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2018/12",
+          "priceChg": 4868.0
+        }
+      ],
       "road": "中山路二段",
       "name": "👍N210板橋雙捷運一樓+平面車位-成交使命必達",
       "url": "https://buy.houseprice.tw/house/19590310_1818542",
@@ -1828,7 +2268,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1842,6 +2282,14 @@
     {
       "listingId": "26630266",
       "groupSid": 12460566,
+      "groupId": "854da0aa-a06f-4f4d-86bc-4f51de2df883",
+      "groupNewKeyInDate": "2022-03-18T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2022/03",
+          "priceChg": 6900.0
+        }
+      ],
       "road": "中山路二段",
       "name": "🥇住商-TOP內湖店🏆板橋市場內黃金透天店面",
       "url": "https://buy.houseprice.tw/house/26630266_1372184",
@@ -1880,7 +2328,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1894,6 +2342,14 @@
     {
       "listingId": "26630123",
       "groupSid": 12397668,
+      "groupId": "414a7765-4809-4f85-853b-f6c670ccd895",
+      "groupNewKeyInDate": "2019-09-04T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2019/09",
+          "priceChg": 5900.0
+        }
+      ],
       "road": "中山路二段",
       "name": "🥇住商-TOP內湖店🏆板橋興隆市場稀有透天店面",
       "url": "https://buy.houseprice.tw/house/26630123_1372184",
@@ -1932,7 +2388,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1946,6 +2402,38 @@
     {
       "listingId": "28797343",
       "groupSid": 18905436,
+      "groupId": "58ba7e11-de42-4b3f-a476-dcccb40ef400",
+      "groupNewKeyInDate": "2023-12-29T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/07",
+          "priceChg": 1588.0
+        },
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 1558.0
+        },
+        {
+          "priceChgDate": "2025/10",
+          "priceChg": 1588.0
+        },
+        {
+          "priceChgDate": "2025/08",
+          "priceChg": 1638.0
+        },
+        {
+          "priceChgDate": "2025/03",
+          "priceChg": 1580.0
+        },
+        {
+          "priceChgDate": "2024/07",
+          "priceChg": 1638.0
+        },
+        {
+          "priceChgDate": "2023/12",
+          "priceChg": 1680.0
+        }
+      ],
       "road": "中山路二段",
       "name": "🥇住商-TOP內湖店🏆頤和邦高樓明亮邊間2房",
       "url": "https://buy.houseprice.tw/house/28797343_1372184",
@@ -1984,7 +2472,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -1998,6 +2486,14 @@
     {
       "listingId": "37147531",
       "groupSid": 29630608,
+      "groupId": "8cca3937-d34c-4f15-8b18-04b943ba4f80",
+      "groupNewKeyInDate": "2026-07-27T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/07",
+          "priceChg": 1800.0
+        }
+      ],
       "road": "三民路一段",
       "name": "⭐獨家❤️板橋埔墘大空間頂佳（乙工）⭐住商泓碩\u000b",
       "url": "https://buy.houseprice.tw/house/37147531_739387",
@@ -2036,7 +2532,7 @@
       "sourcePublishedRaw": "2天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2050,6 +2546,14 @@
     {
       "listingId": "19255789",
       "groupSid": 15671631,
+      "groupId": "36caa516-9295-45a2-a60d-5c2a714bbee3",
+      "groupNewKeyInDate": "2021-03-31T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2021/03",
+          "priceChg": 3600.0
+        }
+      ],
       "road": "三民路一段",
       "name": "板橋30米路廠辦",
       "url": "https://buy.houseprice.tw/house/19255789_1278145",
@@ -2088,7 +2592,7 @@
       "sourcePublishedRaw": "2天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2102,6 +2606,38 @@
     {
       "listingId": "26234090",
       "groupSid": 23005224,
+      "groupId": "89fbf50f-8a3f-4a6f-8cb1-45f258f372d0",
+      "groupNewKeyInDate": "2022-03-24T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/04",
+          "priceChg": 2780.0
+        },
+        {
+          "priceChgDate": "2026/01",
+          "priceChg": 2680.0
+        },
+        {
+          "priceChgDate": "2025/06",
+          "priceChg": 2780.0
+        },
+        {
+          "priceChgDate": "2025/04",
+          "priceChg": 2680.0
+        },
+        {
+          "priceChgDate": "2024/12",
+          "priceChg": 2780.0
+        },
+        {
+          "priceChgDate": "2024/01",
+          "priceChg": 2880.0
+        },
+        {
+          "priceChgDate": "2022/03",
+          "priceChg": 2680.0
+        }
+      ],
       "road": "三民路一段",
       "name": "板橋三民路住辦+車位(坡機)",
       "url": "https://buy.houseprice.tw/house/26234090_672221",
@@ -2140,7 +2676,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2154,6 +2690,22 @@
     {
       "listingId": "29623355",
       "groupSid": 26914405,
+      "groupId": "9f25cfd1-5521-49f1-9fb6-6c26bc5a06a7",
+      "groupNewKeyInDate": "2025-07-29T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/09",
+          "priceChg": 1380.0
+        },
+        {
+          "priceChgDate": "2026/07",
+          "priceChg": 1480.0
+        },
+        {
+          "priceChgDate": "2025/07",
+          "priceChg": 1580.0
+        }
+      ],
       "road": "三民路一段",
       "name": "板橋戴小胖✅『埔墘三民路』成家首購邊間美三樓",
       "url": "https://buy.houseprice.tw/house/29623355_924165",
@@ -2192,7 +2744,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2206,6 +2758,18 @@
     {
       "listingId": "35705134",
       "groupSid": 26913176,
+      "groupId": "a393836b-12df-4170-89e3-5e201f4a9b39",
+      "groupNewKeyInDate": "2025-10-09T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2025/12",
+          "priceChg": 1198.0
+        },
+        {
+          "priceChgDate": "2025/10",
+          "priceChg": 1280.0
+        }
+      ],
       "road": "三民路二段",
       "name": "044BH萬家福邊間3房,後陽台面公園,裝潢新",
       "url": "https://buy.houseprice.tw/house/35705134_644501",
@@ -2244,7 +2808,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2258,6 +2822,18 @@
     {
       "listingId": "33012730",
       "groupSid": 28164825,
+      "groupId": "4bbc2e62-9c83-4f46-b415-0558d6d59629",
+      "groupNewKeyInDate": "2026-02-09T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/03",
+          "priceChg": 2288.0
+        },
+        {
+          "priceChgDate": "2026/02",
+          "priceChg": 2488.0
+        }
+      ],
       "road": "三民路二段",
       "name": "2288💖埔墘住店一樓💖原餐飲店光復學區053",
       "url": "https://buy.houseprice.tw/house/33012730_299585",
@@ -2296,7 +2872,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2310,6 +2886,14 @@
     {
       "listingId": "36850828",
       "groupSid": 29484589,
+      "groupId": "8d409d22-9b9b-43fd-bf20-f3497c6bdcf2",
+      "groupNewKeyInDate": "2026-07-10T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/07",
+          "priceChg": 1380.0
+        }
+      ],
       "road": "三民路二段",
       "name": "322BH埔墘美公寓三房頂佳",
       "url": "https://buy.houseprice.tw/house/36850828_2269883",
@@ -2348,7 +2932,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2362,6 +2946,34 @@
     {
       "listingId": "32185101",
       "groupSid": 29119642,
+      "groupId": "677872af-ea0b-4dc8-ba23-40deb132a206",
+      "groupNewKeyInDate": "2024-07-04T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 4888.0
+        },
+        {
+          "priceChgDate": "2025/12",
+          "priceChg": 4980.0
+        },
+        {
+          "priceChgDate": "2025/11",
+          "priceChg": 5380.0
+        },
+        {
+          "priceChgDate": "2025/06",
+          "priceChg": 4980.0
+        },
+        {
+          "priceChgDate": "2025/02",
+          "priceChg": 5380.0
+        },
+        {
+          "priceChgDate": "2024/07",
+          "priceChg": 5800.0
+        }
+      ],
       "road": "三民路二段",
       "name": "4888💖大路邊店💖前身知名連鎖品牌多年091",
       "url": "https://buy.houseprice.tw/house/32185101_299585",
@@ -2400,7 +3012,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2414,6 +3026,38 @@
     {
       "listingId": "20699924",
       "groupSid": 20013285,
+      "groupId": "a56f0826-c0c2-41d9-bbf3-7c534408c40c",
+      "groupNewKeyInDate": "2024-06-17T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/03",
+          "priceChg": 3043.0
+        },
+        {
+          "priceChgDate": "2026/02",
+          "priceChg": 3107.0
+        },
+        {
+          "priceChgDate": "2025/12",
+          "priceChg": 2668.0
+        },
+        {
+          "priceChgDate": "2025/10",
+          "priceChg": 3107.0
+        },
+        {
+          "priceChgDate": "2025/08",
+          "priceChg": 3138.0
+        },
+        {
+          "priceChgDate": "2025/07",
+          "priceChg": 3282.0
+        },
+        {
+          "priceChgDate": "2024/06",
+          "priceChg": 3107.0
+        }
+      ],
       "road": "三民路二段",
       "name": "三珉築琚全新3房露臺戶~DANIEL來成交!",
       "url": "https://buy.houseprice.tw/house/20699924_616198",
@@ -2452,7 +3096,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2466,6 +3110,18 @@
     {
       "listingId": "33259075",
       "groupSid": 26913176,
+      "groupId": "a393836b-12df-4170-89e3-5e201f4a9b39",
+      "groupNewKeyInDate": "2025-10-09T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2025/12",
+          "priceChg": 1198.0
+        },
+        {
+          "priceChgDate": "2025/10",
+          "priceChg": 1280.0
+        }
+      ],
       "road": "三民路二段",
       "name": "光復國小裝潢新三房兩陽台",
       "url": "https://buy.houseprice.tw/house/33259075_714032",
@@ -2504,7 +3160,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2518,6 +3174,18 @@
     {
       "listingId": "34568053",
       "groupSid": 26913176,
+      "groupId": "a393836b-12df-4170-89e3-5e201f4a9b39",
+      "groupNewKeyInDate": "2025-10-09T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2025/12",
+          "priceChg": 1198.0
+        },
+        {
+          "priceChgDate": "2025/10",
+          "priceChg": 1280.0
+        }
+      ],
       "road": "三民路二段",
       "name": "埔墘公園~邊間採光美寓",
       "url": "https://buy.houseprice.tw/house/34568053_1160951",
@@ -2556,7 +3224,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2570,6 +3238,18 @@
     {
       "listingId": "37831599",
       "groupSid": 27128188,
+      "groupId": "1737b1c9-6027-4929-96e6-6e5cfa0a5a46",
+      "groupNewKeyInDate": "2025-10-29T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 3780.0
+        },
+        {
+          "priceChgDate": "2025/10",
+          "priceChg": 4180.0
+        }
+      ],
       "road": "三民路二段",
       "name": "屋主誠售板橋精裝四房車豪邸💥永慶子凌",
       "url": "https://buy.houseprice.tw/house/37831599_2369884",
@@ -2608,7 +3288,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2622,6 +3302,14 @@
     {
       "listingId": "37015751",
       "groupSid": 29484589,
+      "groupId": "8d409d22-9b9b-43fd-bf20-f3497c6bdcf2",
+      "groupNewKeyInDate": "2026-07-10T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/07",
+          "priceChg": 1380.0
+        }
+      ],
       "road": "三民路二段",
       "name": "本-322BH埔墘美公寓三房頂佳",
       "url": "https://buy.houseprice.tw/house/37015751_1022857",
@@ -2660,7 +3348,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2674,6 +3362,14 @@
     {
       "listingId": "37015773",
       "groupSid": 29484589,
+      "groupId": "8d409d22-9b9b-43fd-bf20-f3497c6bdcf2",
+      "groupNewKeyInDate": "2026-07-10T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/07",
+          "priceChg": 1380.0
+        }
+      ],
       "road": "三民路二段",
       "name": "豐-322BH埔墘美公寓三房頂佳",
       "url": "https://buy.houseprice.tw/house/37015773_1022857",
@@ -2712,7 +3408,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2726,6 +3422,34 @@
     {
       "listingId": "37831665",
       "groupSid": 23763155,
+      "groupId": "b84d7814-f28b-4500-9288-69e50681b21e",
+      "groupNewKeyInDate": "2025-03-21T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 3980.0
+        },
+        {
+          "priceChgDate": "2025/11",
+          "priceChg": 4380.0
+        },
+        {
+          "priceChgDate": "2025/08",
+          "priceChg": 4298.0
+        },
+        {
+          "priceChgDate": "2025/07",
+          "priceChg": 4388.0
+        },
+        {
+          "priceChgDate": "2025/06",
+          "priceChg": 4410.0
+        },
+        {
+          "priceChgDate": "2025/03",
+          "priceChg": 4550.0
+        }
+      ],
       "road": "三民路二段",
       "name": "開價6字頭板橋景觀四房車豪邸💥永慶子凌💥專任",
       "url": "https://buy.houseprice.tw/house/37831665_2369884",
@@ -2764,7 +3488,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2778,6 +3502,18 @@
     {
       "listingId": "37830851",
       "groupSid": 27128188,
+      "groupId": "1737b1c9-6027-4929-96e6-6e5cfa0a5a46",
+      "groupNewKeyInDate": "2025-10-29T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 3780.0
+        },
+        {
+          "priceChgDate": "2025/10",
+          "priceChg": 4180.0
+        }
+      ],
       "road": "三民路二段",
       "name": "降價400萬板橋精裝四房車💥永慶子凌",
       "url": "https://buy.houseprice.tw/house/37830851_2369884",
@@ -2816,7 +3552,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2830,6 +3566,34 @@
     {
       "listingId": "37831368",
       "groupSid": 23763155,
+      "groupId": "b84d7814-f28b-4500-9288-69e50681b21e",
+      "groupNewKeyInDate": "2025-03-21T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 3980.0
+        },
+        {
+          "priceChgDate": "2025/11",
+          "priceChg": 4380.0
+        },
+        {
+          "priceChgDate": "2025/08",
+          "priceChg": 4298.0
+        },
+        {
+          "priceChgDate": "2025/07",
+          "priceChg": 4388.0
+        },
+        {
+          "priceChgDate": "2025/06",
+          "priceChg": 4410.0
+        },
+        {
+          "priceChgDate": "2025/03",
+          "priceChg": 4550.0
+        }
+      ],
       "road": "三民路二段",
       "name": "降價400萬，板橋景觀四房車💥永慶子凌💥專任",
       "url": "https://buy.houseprice.tw/house/37831368_2369884",
@@ -2868,7 +3632,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2882,6 +3646,18 @@
     {
       "listingId": "36168454",
       "groupSid": 22336713,
+      "groupId": "f7b0e34a-4cf4-4177-9491-84723e2b6e9c",
+      "groupNewKeyInDate": "2024-11-11T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/05",
+          "priceChg": 2349.0
+        },
+        {
+          "priceChgDate": "2024/11",
+          "priceChg": 2498.0
+        }
+      ],
       "road": "三民路二段",
       "name": "🏡國泰邊間優質一樓+門前方便停車🏡",
       "url": "https://buy.houseprice.tw/house/36168454_1073380",
@@ -2920,7 +3696,7 @@
       "sourcePublishedRaw": "2天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2934,6 +3710,26 @@
     {
       "listingId": "36095645",
       "groupSid": 27081962,
+      "groupId": "d8cc71b5-3d7f-4997-b6ec-ff26bb25731c",
+      "groupNewKeyInDate": "2025-10-25T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/06",
+          "priceChg": 3880.0
+        },
+        {
+          "priceChgDate": "2026/01",
+          "priceChg": 4398.0
+        },
+        {
+          "priceChgDate": "2025/11",
+          "priceChg": 4680.0
+        },
+        {
+          "priceChgDate": "2025/10",
+          "priceChg": 4850.0
+        }
+      ],
       "road": "三民路二段",
       "name": "👍板橋-透天店面1.2.3.4樓頂加-價可談",
       "url": "https://buy.houseprice.tw/house/36095645_1818542",
@@ -2972,7 +3768,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -2986,6 +3782,26 @@
     {
       "listingId": "37448557",
       "groupSid": 27723043,
+      "groupId": "96cc4447-3ab8-4ed6-81b6-4b9235d4ff90",
+      "groupNewKeyInDate": "2025-12-28T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/08",
+          "priceChg": 1750.0
+        },
+        {
+          "priceChgDate": "2026/03",
+          "priceChg": 1798.0
+        },
+        {
+          "priceChgDate": "2026/01",
+          "priceChg": 1880.0
+        },
+        {
+          "priceChgDate": "2025/12",
+          "priceChg": 1980.0
+        }
+      ],
       "road": "翠華街",
       "name": "紫推🌈埔墘海悅希華旁獨棟獨戶高投報收租美寓",
       "url": "https://buy.houseprice.tw/house/37448557_285384",
@@ -3024,7 +3840,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -3038,6 +3854,14 @@
     {
       "listingId": "20105627",
       "groupSid": 28943616,
+      "groupId": "e55d1023-3145-4aa9-b1f4-bbaf46f75d8d",
+      "groupNewKeyInDate": "2024-12-19T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2024/12",
+          "priceChg": 3500.0
+        }
+      ],
       "road": "林森街",
       "name": "板橋收租置產透天",
       "url": "https://buy.houseprice.tw/house/20105627_978681",
@@ -3076,7 +3900,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -3090,6 +3914,14 @@
     {
       "listingId": "37408231",
       "groupSid": 29755821,
+      "groupId": "6b95c03e-553a-401d-b648-b19d3695c2e0",
+      "groupNewKeyInDate": "2026-08-07T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/08",
+          "priceChg": 1050.0
+        }
+      ],
       "road": "林森街",
       "name": "獨家❤️近北市萬板橋華翠橋光復橋~林森街靜巷宅",
       "url": "https://buy.houseprice.tw/house/37408231_974963",
@@ -3128,7 +3960,7 @@
       "sourcePublishedRaw": "昨日新上架",
       "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -3142,6 +3974,14 @@
     {
       "listingId": "38424411",
       "groupSid": 30292717,
+      "groupId": "1d2352a6-6a0d-4d39-b246-f51c917e5244",
+      "groupNewKeyInDate": "2026-09-27T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/09",
+          "priceChg": 1358.0
+        }
+      ],
       "road": "萬安街",
       "name": "✨光復公園大空間透天✨板橋買房●謝玉珍",
       "url": "https://buy.houseprice.tw/house/38424411_1013023",
@@ -3180,7 +4020,7 @@
       "sourcePublishedRaw": "5天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -3194,6 +4034,30 @@
     {
       "listingId": "31389790",
       "groupSid": 26266125,
+      "groupId": "870ae608-dc73-4f79-81ce-af6005230f4e",
+      "groupNewKeyInDate": "2025-08-19T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/08",
+          "priceChg": 1400.0
+        },
+        {
+          "priceChgDate": "2026/07",
+          "priceChg": 1480.0
+        },
+        {
+          "priceChgDate": "2026/01",
+          "priceChg": 1520.0
+        },
+        {
+          "priceChgDate": "2025/11",
+          "priceChg": 1600.0
+        },
+        {
+          "priceChgDate": "2025/08",
+          "priceChg": 1780.0
+        }
+      ],
       "road": "萬安街",
       "name": "板橋區/埔墘~臨河濱綠帶稀有靜巷透天",
       "url": "https://buy.houseprice.tw/house/31389790_1063403",
@@ -3232,7 +4096,7 @@
       "sourcePublishedRaw": "4天前新上架",
       "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -3246,6 +4110,30 @@
     {
       "listingId": "21570112",
       "groupSid": 26266125,
+      "groupId": "870ae608-dc73-4f79-81ce-af6005230f4e",
+      "groupNewKeyInDate": "2025-08-19T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/08",
+          "priceChg": 1400.0
+        },
+        {
+          "priceChgDate": "2026/07",
+          "priceChg": 1480.0
+        },
+        {
+          "priceChgDate": "2026/01",
+          "priceChg": 1520.0
+        },
+        {
+          "priceChgDate": "2025/11",
+          "priceChg": 1600.0
+        },
+        {
+          "priceChgDate": "2025/08",
+          "priceChg": 1780.0
+        }
+      ],
       "road": "萬安街",
       "name": "💯出價談💯板橋/埔墘河濱綠帶靜巷透天",
       "url": "https://buy.houseprice.tw/house/21570112_317768",
@@ -3284,7 +4172,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -3298,6 +4186,18 @@
     {
       "listingId": "38320505",
       "groupSid": 29695601,
+      "groupId": "6da14604-fe77-4737-891f-3dbd73bb59b9",
+      "groupNewKeyInDate": "2025-05-14T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/08",
+          "priceChg": 998.0
+        },
+        {
+          "priceChgDate": "2025/05",
+          "priceChg": 1038.0
+        }
+      ],
       "road": "光復街",
       "name": "364BH埔墘家樂福3套房",
       "url": "https://buy.houseprice.tw/house/38320505_1815022",
@@ -3336,7 +4236,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -3350,6 +4250,18 @@
     {
       "listingId": "38044196",
       "groupSid": 29695601,
+      "groupId": "6da14604-fe77-4737-891f-3dbd73bb59b9",
+      "groupNewKeyInDate": "2025-05-14T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/08",
+          "priceChg": 998.0
+        },
+        {
+          "priceChgDate": "2025/05",
+          "priceChg": 1038.0
+        }
+      ],
       "road": "光復街",
       "name": "364BH埔墘萬家福2樓免爬高,3套房屋況佳",
       "url": "https://buy.houseprice.tw/house/38044196_644501",
@@ -3388,7 +4300,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -3402,6 +4314,22 @@
     {
       "listingId": "22785865",
       "groupSid": 23923895,
+      "groupId": "e44fb8de-947f-4d3e-a446-e3da70a1e7ea",
+      "groupNewKeyInDate": "2025-04-03T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/06",
+          "priceChg": 2980.0
+        },
+        {
+          "priceChgDate": "2026/03",
+          "priceChg": 3168.0
+        },
+        {
+          "priceChgDate": "2025/04",
+          "priceChg": 2860.0
+        }
+      ],
       "road": "光復街",
       "name": "法國賞歐風四房精品-中信房屋台北八德店",
       "url": "https://buy.houseprice.tw/house/22785865_1805485",
@@ -3440,7 +4368,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -3454,6 +4382,22 @@
     {
       "listingId": "29681413",
       "groupSid": 23923895,
+      "groupId": "e44fb8de-947f-4d3e-a446-e3da70a1e7ea",
+      "groupNewKeyInDate": "2025-04-03T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/06",
+          "priceChg": 2980.0
+        },
+        {
+          "priceChgDate": "2026/03",
+          "priceChg": 3168.0
+        },
+        {
+          "priceChgDate": "2025/04",
+          "priceChg": 2860.0
+        }
+      ],
       "road": "光復街",
       "name": "法國賞歐風四房精品-中信房屋台北南京店",
       "url": "https://buy.houseprice.tw/house/29681413_1805496",
@@ -3492,7 +4436,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
@@ -3506,6 +4450,18 @@
     {
       "listingId": "24188959",
       "groupSid": 29695601,
+      "groupId": "6da14604-fe77-4737-891f-3dbd73bb59b9",
+      "groupNewKeyInDate": "2025-05-14T00:00:00Z",
+      "groupPriceHistory": [
+        {
+          "priceChgDate": "2026/08",
+          "priceChg": 998.0
+        },
+        {
+          "priceChgDate": "2025/05",
+          "priceChg": 1038.0
+        }
+      ],
       "road": "光復街",
       "name": "超低總價！埔墘家樂福收租3套房",
       "url": "https://buy.houseprice.tw/house/24188959_1068716",
@@ -3544,7 +4500,7 @@
       "sourcePublishedRaw": null,
       "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
       "firstSeenAt": "2026-10-02T01:40:33+00:00",
-      "lastSeenAt": "2026-10-02T02:57:38+00:00",
+      "lastSeenAt": "2026-10-02T04:46:49+00:00",
       "newAt": null,
       "active": true,
       "priceHistory": [
