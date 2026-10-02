@@ -85,7 +85,7 @@ runtime_loader = r'''function sameCounts(a,b){
 }
 function verificationMatches(d,g,v){
   return !!(d&&g&&v&&v.valid===true&&v.scheme==='A'&&v.canonicalPublisher==='yungching-preview.yml'&&
-    v.integrityVersion==='scheme-a-canonical-v4-sinyi-rakuya-floor-neartie'&&v.fetchMode==='yungching_official_rendered_dom_only'&&
+    v.integrityVersion==='scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie'&&v.fetchMode==='yungching_official_rendered_dom_only'&&
     v.snapshotCapturedAt===g.companySnapshotCapturedAt&&v.companyGapGeneratedAt===g.generatedAt&&
     v.sourceDataUpdatedAt===g.sourceDataUpdatedAt&&d.updatedAt===g.sourceDataUpdatedAt&&
     Number(v.companyListingCount)===Number(g.companyListingCount)&&Number(v.propertyGroupCount)===Number(g.propertyGroupCount)&&
