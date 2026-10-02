@@ -430,7 +430,11 @@ def fetch_houseprice_api():
         'Sec-Fetch-Mode': 'cors',
         'Sec-Fetch-Site': 'same-origin',
     })
+    globally_blocked = False
     for road in WATCH_ROADS:
+        if globally_blocked:
+            logs.append(f'{road} 5168 API略過：已確認 GitHub 出口遭 403，直接交由瀏覽器備援')
+            continue
         road_rows, seen = [], set()
         success = False
         total_count = None
@@ -441,8 +445,12 @@ def fetch_houseprice_api():
                 r = session.get(
                     url,
                     headers={'Referer': requests.utils.requote_uri(SEARCH_HOUSEPRICE[road])},
-                    timeout=25,
+                    timeout=8,
                 )
+                if r.status_code == 403:
+                    logs.append(f'{road} 5168 API第{page_no}頁：HTTP 403，停止其餘直連測試並切瀏覽器備援')
+                    globally_blocked = True
+                    break
                 if r.status_code != 200:
                     logs.append(f'{road} 5168 API第{page_no}頁失敗：HTTP {r.status_code}')
                     break
@@ -468,9 +476,7 @@ def fetch_houseprice_api():
                     f'{road} 5168 API第{page_no}頁：符合 {len(parsed)}／新增 {len(new_rows)}'
                     f'／來源總數 {total_count}'
                 )
-                if page_no >= total_pages or len(road_rows) >= total_count:
-                    break
-                if not data.get('rentCaseInfo'):
+                if page_no >= total_pages or len(road_rows) >= total_count or not data.get('rentCaseInfo'):
                     break
             except Exception as exc:
                 logs.append(f'{road} 5168 API第{page_no}頁例外：{type(exc).__name__}: {exc}')
@@ -484,27 +490,37 @@ def fetch_houseprice_api():
             logs.append(f'{road} 5168 API完整性警告：來源 {total_count} 筆，實得 {len(road_rows)} 筆')
         rows.extend(road_rows)
         logs.append(f'{road} 5168租屋完成，共 {len(road_rows)} 筆')
+
     return dedupe(rows), ok == len(WATCH_ROADS), logs
 
 
-
 def fetch_houseprice_browser(context, current_rows, current_ok, current_logs):
-    """Fallback for GitHub IP/TLS blocks on the 5168 web API.
-
-    Load the public rent result page in real Chrome, then issue the same API
-    request from that first-party browser context.
-    """
     if current_ok:
         return current_rows, current_ok, current_logs
 
     rows, logs = [], list(current_logs)
     ok = 0
+    domain_blocked = False
+
     for road, list_url in SEARCH_HOUSEPRICE.items():
+        if domain_blocked:
+            logs.append(f'{road} 5168瀏覽器備援略過：已確認入口遭阻擋')
+            continue
+
         page = context.new_page()
         road_rows, seen = [], set()
-        loaded, status = load_page(page, list_url, wait_ms=1600, attempts=2)
-        if not loaded:
+        try:
+            response = page.goto(list_url, wait_until='domcontentloaded', timeout=12000)
+            status = response.status if response else 0
+            page.wait_for_timeout(900)
+        except Exception as exc:
+            status = type(exc).__name__
+
+        if status != 200:
             logs.append(f'{road} 5168瀏覽器備援入口失敗：{status}')
+            if status == 403:
+                domain_blocked = True
+                logs.append('5168 瀏覽器入口亦為 403，本輪停止 5168，其餘來源照常完成')
             page.close()
             continue
 
@@ -516,23 +532,36 @@ def fetch_houseprice_browser(context, current_rows, current_ok, current_logs):
             try:
                 result = page.evaluate(
                     """async ({url}) => {
-                      const r = await fetch(url, {
-                        method: 'GET',
-                        headers: {accept: 'application/json, text/plain, */*'},
-                        credentials: 'include',
-                        cache: 'no-store'
-                      });
-                      return {status:r.status, text:await r.text()};
+                      const ctrl = new AbortController();
+                      const timer = setTimeout(() => ctrl.abort(), 8000);
+                      try {
+                        const r = await fetch(url, {
+                          method:'GET',
+                          headers:{accept:'application/json, text/plain, */*'},
+                          credentials:'include',
+                          cache:'no-store',
+                          signal:ctrl.signal
+                        });
+                        return {status:r.status, text:await r.text()};
+                      } catch(e) {
+                        return {status:0, text:'', error:String(e)};
+                      } finally {
+                        clearTimeout(timer);
+                      }
                     }""",
                     {'url': api_url},
                 )
-                if int(result.get('status') or 0) != 200:
-                    logs.append(f'{road} 5168瀏覽器API第{page_no}頁失敗：HTTP {result.get("status")}')
+                api_status = int(result.get('status') or 0)
+                if api_status != 200:
+                    logs.append(f'{road} 5168瀏覽器API第{page_no}頁失敗：HTTP {api_status} {result.get("error") or ""}'.strip())
+                    if api_status == 403:
+                        domain_blocked = True
                     break
                 payload = json.loads(result.get('text') or '{}')
                 if payload.get('status') != 'Success' or not isinstance(payload.get('data'), dict):
                     logs.append(f'{road} 5168瀏覽器API第{page_no}頁格式異常')
                     break
+
                 success = True
                 data = payload['data']
                 page_info = data.get('page') or {}
@@ -551,9 +580,7 @@ def fetch_houseprice_browser(context, current_rows, current_ok, current_logs):
                     f'{road} 5168瀏覽器API第{page_no}頁：符合 {len(parsed)}／新增 {len(new_rows)}'
                     f'／來源總數 {total_count}'
                 )
-                if page_no >= total_pages or len(road_rows) >= total_count:
-                    break
-                if not data.get('rentCaseInfo'):
+                if page_no >= total_pages or len(road_rows) >= total_count or not data.get('rentCaseInfo'):
                     break
             except Exception as exc:
                 logs.append(f'{road} 5168瀏覽器API第{page_no}頁例外：{type(exc).__name__}: {exc}')
@@ -565,6 +592,7 @@ def fetch_houseprice_browser(context, current_rows, current_ok, current_logs):
             ok += 1
         elif success:
             logs.append(f'{road} 5168瀏覽器完整性警告：來源 {total_count} 筆，實得 {len(road_rows)} 筆')
+
         rows.extend(road_rows)
         logs.append(f'{road} 5168瀏覽器備援完成，共 {len(road_rows)} 筆')
         page.close()
