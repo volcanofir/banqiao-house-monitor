@@ -1,0 +1,19 @@
+name: Sinyi browser API probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/probe_sinyi_browser_api.py"
+      - ".github/workflows/probe-sinyi-browser-api.yml"
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install playwright
+      - run: python scripts/run_with_system_chrome.py scripts/probe_sinyi_browser_api.py
