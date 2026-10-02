@@ -52,7 +52,7 @@ SEARCH_HOUSEPRICE = {
     for road, aliases in WATCH_ROADS.items()
 }
 
-USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36'
 
 
 def now_iso():
@@ -224,25 +224,39 @@ def parse_rakuya_cards(html_text, road):
     keyword = WATCH_ROADS[road][0]
     soup = BeautifulSoup(html_text or '', 'html.parser')
     rows = []
-    for card in soup.select('section.search-obj'):
-        house_id = norm(card.get('data-ehid'))
-        if not house_id:
+    seen = set()
+    for link in soup.select('a[href*="/item/"]'):
+        href = link.get('href') or ''
+        m = re.search(r'/item/([A-Za-z0-9]+)', href)
+        if not m:
             continue
+        house_id = m.group(1)
+        if house_id in seen:
+            continue
+
+        card = link
+        for _ in range(8):
+            if card is None:
+                break
+            classes = set(card.get('class') or [])
+            if card.get('data-ehid') or 'search-obj' in classes or 'grid-item' in classes:
+                break
+            card = card.parent
+        if card is None:
+            continue
+
         area_node = card.select_one('.info__geo--area')
         road_node = card.select_one('.info__geo--road')
         district = norm(area_node.get_text(' ', strip=True) if area_node else '')
         card_road = norm(road_node.get_text(' ', strip=True) if road_node else '')
-        # HAR shows page 2 can contain nearby-area recommendations. Never accept
-        # those unless both district and road exactly match the monitored target.
         if district != '板橋區' or card_road != keyword:
             continue
 
-        link = card.select_one('a[href*="/item/"]')
-        href = link.get('href') if link else None
-        if href and href.startswith('/'):
+        seen.add(house_id)
+        if href.startswith('/'):
             href = 'https://rent.rakuya.com.tw' + href
 
-        title_node = card.select_one('.card__head h2')
+        title_node = card.select_one('.card__head h2') or link.select_one('h2')
         title = norm(title_node.get_text(' ', strip=True) if title_node else '')
         text = norm(card.get_text(' ', strip=True))
         price_node = card.select_one('.info__price--total b')
@@ -333,8 +347,10 @@ def fetch_rakuya_http():
                 logs.append(f'{road} 樂屋AJAX第{page_no}頁例外：{type(exc).__name__}: {exc}')
                 break
 
-        if success:
+        if success and exact_total is not None and len(road_rows) == exact_total:
             ok += 1
+        elif success:
+            logs.append(f'{road} 樂屋完整性警告：來源 {exact_total} 筆，實得 {len(road_rows)} 筆')
         rows.extend(road_rows)
         logs.append(f'{road} 樂屋租屋完成，共 {len(road_rows)} 筆')
     return dedupe(rows), ok == len(SEARCH_RAKUYA), logs
@@ -401,7 +417,15 @@ def fetch_houseprice_api():
     session.headers.update({
         'User-Agent': USER_AGENT,
         'Accept': 'application/json, text/plain, */*',
-        'Accept-Language': 'zh-TW,zh;q=0.9',
+        'Accept-Language': 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
+        'Sec-CH-UA': '"Google Chrome";v="153", "Not_A Brand";v="8", "Chromium";v="153"',
+        'Sec-CH-UA-Mobile': '?0',
+        'Sec-CH-UA-Platform': '"Windows"',
+        'Sec-Fetch-Dest': 'empty',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin',
     })
     for road in WATCH_ROADS:
         road_rows, seen = [], set()
