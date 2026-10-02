@@ -144,6 +144,34 @@ def fetch_road(token, road):
     return {"road": road, "sourceTotal": total, "pageCount": pages, "pageSize": page_size, "pages": status, "listings": rows}
 
 
+def group_source_date(raw_value, old=None):
+    """Use 5168 APP PriceAnalyze.newKeyInDate as the grouped-property first-listing date."""
+    raw = str(raw_value or "").strip()
+    if raw:
+        m = re.match(r"^(20\\d{2})-(\\d{2})-(\\d{2})", raw)
+        if m:
+            try:
+                d = datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=TAIPEI)
+                return {
+                    "sourcePublishedDate": d.date().isoformat(),
+                    "sourcePublishedAt": int(d.timestamp()),
+                    "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
+                    "sourcePublishedRaw": raw,
+                    "sourcePublishedEvidence": "5168 APP PriceAnalyze.newKeyInDate; grouped-property first-listing date",
+                }
+            except Exception:
+                pass
+    if old and old.get("sourcePublishedAtType") == "housepriceGroupNewKeyInDate" and old.get("sourcePublishedAt"):
+        return {
+            "sourcePublishedDate": old.get("sourcePublishedDate"),
+            "sourcePublishedAt": old.get("sourcePublishedAt"),
+            "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
+            "sourcePublishedRaw": old.get("sourcePublishedRaw"),
+            "sourcePublishedEvidence": old.get("sourcePublishedEvidence") or "5168 APP PriceAnalyze.newKeyInDate",
+        }
+    return None
+
+
 def infer_source_date(tag, checked_at, old=None):
     """Convert 5168's source-relative new-listing tag to a Taipei calendar date.
 
@@ -228,6 +256,24 @@ def fetch_detail(token, row):
     d = payload["data"]
     if str(d.get("caseSid") or "") != sid:
         raise RuntimeError(f"5168 Case/Info id mismatch {sid} -> {d.get('caseSid')}")
+
+    case_url = str(d.get("caseUrl") or row.get("caseUrl") or "").strip()
+    price_analyze = {}
+    if case_url:
+        try:
+            pr = requests.get(
+                f"{API}/api/PriceAnalyze/PriceAnalyze",
+                params={"url": case_url},
+                headers={k: v for k, v in headers(token).items() if k != "Content-Type"},
+                timeout=30,
+            )
+            pr.raise_for_status()
+            pp = pr.json()
+            if int(pp.get("code") or 0) == 200 and isinstance(pp.get("data"), dict):
+                price_analyze = pp["data"]
+        except Exception:
+            price_analyze = {}
+    d["_priceAnalyze"] = price_analyze
     return d
 
 
@@ -249,9 +295,13 @@ def normalize_row(list_row, detail, road):
         floor_text = f"{floor}樓"
 
     publish_tag = best_publish_tag(list_row, detail)
+    price_analyze = detail.get("_priceAnalyze") or {}
     return {
         "listingId": sid,
-        "groupSid": detail.get("groupSid"),
+        "groupSid": detail.get("groupSid") or price_analyze.get("sid"),
+        "groupId": price_analyze.get("groupId"),
+        "groupNewKeyInDate": price_analyze.get("newKeyInDate"),
+        "groupPriceHistory": price_analyze.get("priceHistory") or [],
         "road": road,
         "name": detail.get("caseName") or list_row.get("caseName"),
         "url": detail.get("caseUrl") or list_row.get("caseUrl"),
@@ -347,7 +397,11 @@ def main():
     price_changes = []
     for sid, row in normalized.items():
         old = prev_rows.get(sid)
-        row.update(infer_source_date(row.get("sourcePublishText"), checked_at, old))
+        exact_group_date = group_source_date(row.get("groupNewKeyInDate"), old)
+        if exact_group_date:
+            row.update(exact_group_date)
+        else:
+            row.update(infer_source_date(row.get("sourcePublishText"), checked_at, old))
         row["firstSeenAt"] = (old or {}).get("firstSeenAt") or checked_at
         row["lastSeenAt"] = checked_at
         row["newAt"] = None
@@ -414,16 +468,20 @@ def main():
             "allComplete": True,
         },
         "sourceTimePolicy": {
-            "exactDateExposed": False,
+            "exactDateExposed": True,
+            "exactDateField": "PriceAnalyze.newKeyInDate",
+            "exactDateSemantics": "5168 grouped-property first-listing date",
             "relativeTagField": "publishDaysTag",
             "relativeTagConvertedToTaipeiDate": True,
             "monitorFirstSeenUsedAsSourceTime": False,
         },
         "sourcePublishedAtSummary": {
-            "availableCount": sum(1 for x in listings if x.get("sourcePublishedAtType") == "housepriceRelativeTagInferred"),
-            "unavailableCount": sum(1 for x in listings if x.get("sourcePublishedAtType") == "housepriceListingDateUnavailable"),
+            "exactGroupDateCount": sum(1 for x in listings if x.get("sourcePublishedAtType") == "housepriceGroupNewKeyInDate"),
+            "inferredRelativeTagCount": sum(1 for x in listings if x.get("sourcePublishedAtType") == "housepriceRelativeTagInferred"),
+            "availableCount": sum(1 for x in listings if x.get("sourcePublishedAt")),
+            "unavailableCount": sum(1 for x in listings if not x.get("sourcePublishedAt")),
             "noFirstSeenFallback": True,
-            "note": "5168 APP provides relative new-listing tags, not an exact first-publish timestamp. Recent tags are converted to a Taipei calendar date and preserved once learned.",
+            "note": "Priority: APP PriceAnalyze.newKeyInDate (grouped-property first-listing date). If unavailable, recent publishDaysTag is converted to a Taipei calendar date. Monitor firstSeenAt is never substituted.",
         },
         "listings": listings,
         "recentRemoved": recent_removed,
