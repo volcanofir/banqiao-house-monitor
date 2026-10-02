@@ -299,7 +299,7 @@ def fetch_rakuya_http():
                         'sort': '11',
                         'page': page_no,
                     },
-                    headers={'Referer': result_url},
+                    headers={'Referer': requests.utils.requote_uri(result_url)},
                     timeout=25,
                 )
                 if r.status_code != 200:
@@ -413,7 +413,7 @@ def fetch_houseprice_api():
             try:
                 r = session.get(
                     url,
-                    headers={'Referer': SEARCH_HOUSEPRICE[road]},
+                    headers={'Referer': requests.utils.requote_uri(SEARCH_HOUSEPRICE[road])},
                     timeout=25,
                 )
                 if r.status_code != 200:
