@@ -113,6 +113,8 @@ tests=[
  ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"parameter":"中山路二段","page":1,"pageSize":50}),
  ("GET","/api/Case/Info?sid=33221169",None),
  ("GET","/api/Case/Info?caseSid=33221169",None),
+ ("GET","/api/Case/Info?caseSid=16758272",None),
+ ("GET","/api/Case/Info?caseSid=32950239",None),
  ("GET","/api/Case/Info/33221169",None),
  ("POST","/api/Case/Info",{"sid":33221169}),
 ]
@@ -129,6 +131,23 @@ for method,path2,payload in tests:
       if isinstance(jj,dict):
         rec["jsonKeys"]=list(jj.keys())
         data=jj.get("data")
+        if path2.startswith("/api/Case/Info") and isinstance(data,dict):
+          hits=[]
+          def walk(v,prefix="data"):
+            if isinstance(v,dict):
+              for k,val in v.items():
+                path=prefix+"."+str(k)
+                kl=str(k).lower()
+                if any(q in kl for q in ["date","time","publish","create","update","keyin","new","online","modify"]):
+                  if isinstance(val,(str,int,float,bool)) or val is None:
+                    hits.append({"path":path,"value":val})
+                walk(val,path)
+            elif isinstance(v,list):
+              for i,val in enumerate(v[:50]):
+                walk(val,prefix+f"[{i}]")
+          walk(data)
+          rec["dateLikeFields"]=hits[:200]
+          rec["detailTopLevelKeys"]=list(data.keys())
         if path2=="/api/Case/List" and isinstance(data,dict):
           rows=data.get("list") or []
           rec["caseSummary"]={
