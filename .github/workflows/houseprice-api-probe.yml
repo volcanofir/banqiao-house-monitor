@@ -1,0 +1,34 @@
+name: 5168 API probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/houseprice_api_probe.py"
+      - ".github/workflows/houseprice-api-probe.yml"
+permissions:
+  contents: write
+concurrency:
+  group: houseprice-api-probe
+  cancel-in-progress: true
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python scripts/houseprice_api_probe.py
+      - name: Save probe
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/preview/houseprice-api-probe.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Save 5168 API probe"
+          git pull --rebase
+          git push
