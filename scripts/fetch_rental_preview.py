@@ -235,14 +235,7 @@ def parse_rakuya_cards(html_text, road):
         if house_id in seen:
             continue
 
-        card = link
-        for _ in range(8):
-            if card is None:
-                break
-            classes = set(card.get('class') or [])
-            if card.get('data-ehid') or 'search-obj' in classes or 'grid-item' in classes:
-                break
-            card = card.parent
+        card = link.find_parent('section')
         if card is None:
             continue
 
@@ -494,6 +487,93 @@ def fetch_houseprice_api():
     return dedupe(rows), ok == len(WATCH_ROADS), logs
 
 
+
+def fetch_houseprice_browser(context, current_rows, current_ok, current_logs):
+    """Fallback for GitHub IP/TLS blocks on the 5168 web API.
+
+    Load the public rent result page in real Chrome, then issue the same API
+    request from that first-party browser context.
+    """
+    if current_ok:
+        return current_rows, current_ok, current_logs
+
+    rows, logs = [], list(current_logs)
+    ok = 0
+    for road, list_url in SEARCH_HOUSEPRICE.items():
+        page = context.new_page()
+        road_rows, seen = [], set()
+        loaded, status = load_page(page, list_url, wait_ms=1600, attempts=2)
+        if not loaded:
+            logs.append(f'{road} 5168瀏覽器備援入口失敗：{status}')
+            page.close()
+            continue
+
+        success = False
+        total_count = None
+        total_pages = None
+        for page_no in range(1, 20):
+            api_url = houseprice_api_url(road, page_no)
+            try:
+                result = page.evaluate(
+                    """async ({url}) => {
+                      const r = await fetch(url, {
+                        method: 'GET',
+                        headers: {accept: 'application/json, text/plain, */*'},
+                        credentials: 'include',
+                        cache: 'no-store'
+                      });
+                      return {status:r.status, text:await r.text()};
+                    }""",
+                    {'url': api_url},
+                )
+                if int(result.get('status') or 0) != 200:
+                    logs.append(f'{road} 5168瀏覽器API第{page_no}頁失敗：HTTP {result.get("status")}')
+                    break
+                payload = json.loads(result.get('text') or '{}')
+                if payload.get('status') != 'Success' or not isinstance(payload.get('data'), dict):
+                    logs.append(f'{road} 5168瀏覽器API第{page_no}頁格式異常')
+                    break
+                success = True
+                data = payload['data']
+                page_info = data.get('page') or {}
+                total_count = int(page_info.get('totalItemCount') or 0)
+                total_pages = int(page_info.get('totalPageCount') or 0)
+                parsed = []
+                for item in data.get('rentCaseInfo') or []:
+                    row = normalize_houseprice_row(item, road)
+                    if row:
+                        parsed.append(row)
+                new_rows = [x for x in parsed if x['id'] not in seen]
+                for item in new_rows:
+                    seen.add(item['id'])
+                    road_rows.append(item)
+                logs.append(
+                    f'{road} 5168瀏覽器API第{page_no}頁：符合 {len(parsed)}／新增 {len(new_rows)}'
+                    f'／來源總數 {total_count}'
+                )
+                if page_no >= total_pages or len(road_rows) >= total_count:
+                    break
+                if not data.get('rentCaseInfo'):
+                    break
+            except Exception as exc:
+                logs.append(f'{road} 5168瀏覽器API第{page_no}頁例外：{type(exc).__name__}: {exc}')
+                break
+
+        if success and total_count is not None and len(road_rows) == total_count:
+            ok += 1
+        elif success and total_count == 0:
+            ok += 1
+        elif success:
+            logs.append(f'{road} 5168瀏覽器完整性警告：來源 {total_count} 筆，實得 {len(road_rows)} 筆')
+        rows.extend(road_rows)
+        logs.append(f'{road} 5168瀏覽器備援完成，共 {len(road_rows)} 筆')
+        page.close()
+
+    if rows:
+        return dedupe(rows), ok == len(WATCH_ROADS), logs
+    return current_rows, current_ok, logs
+
+
 def fetch_all():
     # HAR-verified HTTP sources first. They do not depend on browser/VPN.
     rows_rakuya, ok_rakuya, logs_rakuya = fetch_rakuya_http()
@@ -551,6 +631,9 @@ def fetch_all():
                 ok_sinyi += 1
                 logs_sinyi.append(f'{road} 信義租屋：DOM {len(parsed)} 筆')
                 page.close()
+            rows_houseprice, ok_houseprice, logs_houseprice = fetch_houseprice_browser(
+                context, rows_houseprice, ok_houseprice, logs_houseprice
+            )
         finally:
             context.close()
             browser.close()
