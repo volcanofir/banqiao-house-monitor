@@ -16,12 +16,20 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install playwright requests
-      - name: Connect Surfshark
+      - name: Find usable Surfshark exit
         env:
           SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
-        run: bash scripts/connect_surfshark_wireguard.sh
-      - name: Preflight
-        run: python scripts/run_with_system_chrome.py scripts/yungching_browser_preflight.py
+        shell: bash
+        run: |
+          for attempt in 1 2 3 4 5; do
+            echo "Yongching probe exit $attempt/5"
+            sudo wg-quick down surfshark >/dev/null 2>&1 || true
+            if bash scripts/connect_surfshark_wireguard.sh && python scripts/run_with_system_chrome.py scripts/yungching_browser_preflight.py; then
+              exit 0
+            fi
+            sleep 3
+          done
+          exit 1
       - name: Probe decode path
         run: python scripts/run_with_system_chrome.py scripts/probe_yungching_api_decode.py
       - if: always()
