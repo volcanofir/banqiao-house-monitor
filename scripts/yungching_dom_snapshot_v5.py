@@ -50,23 +50,21 @@ def direct_next_page(page, target):
     before = page.url
     target_url = v4.pg_url(before, target)
     try:
-        response, net = v3.base.navigate_with_list_api(page, target_url, road="", page_no=target)
-        # navigate_with_list_api normally validates keyword against a road. For
-        # pagination calls we already know the target URL is the same road, but the
-        # helper cannot infer it from an empty road; if no API capture was recorded,
-        # fall back to a local URL-aware observer below.
+        from urllib.parse import parse_qs, unquote, urlsplit
+        q = parse_qs(urlsplit(target_url).query)
+        keyword = (q.get("keyword") or [""])[0]
+        if not keyword:
+            # The keyword normally lives in the pretty path, not the query string.
+            path = unquote(urlsplit(target_url).path)
+            m = __import__("re").search(r"/([^/]+)_kw", path)
+            keyword = m.group(1) if m else ""
+        road_name = f"板橋區{keyword}" if keyword else ""
+
+        response, net = v3.base.navigate_with_list_api(
+            page, target_url, road_name, target
+        )
         http = response.status if response else None
         api_success = bool(net.get("apiListSuccess"))
-        if not api_success:
-            from urllib.parse import parse_qs, urlsplit
-            keyword = (parse_qs(urlsplit(target_url).query).get("keyword") or [""])[0]
-            road_name = f"板橋區{keyword}" if keyword else ""
-            if road_name:
-                # A second same-URL navigation is acceptable only when the first one
-                # lacked API evidence; it gives the official list endpoint one clean retry.
-                response, net = v3.base.navigate_with_list_api(page, target_url, road_name, target)
-                http = response.status if response else http
-                api_success = bool(net.get("apiListSuccess"))
         page.wait_for_timeout(1800)
         active = v3.wait_pager_active(page, target, timeout=5000)
         after = pager_meta(page)
