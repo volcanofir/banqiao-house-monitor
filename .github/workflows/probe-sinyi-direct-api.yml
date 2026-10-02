@@ -1,0 +1,19 @@
+name: Sinyi direct API probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/probe_sinyi_direct_api.py"
+      - ".github/workflows/probe-sinyi-direct-api.yml"
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python scripts/probe_sinyi_direct_api.py
