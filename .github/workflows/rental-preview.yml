@@ -41,14 +41,6 @@ jobs:
             cp docs/preview/rental-data.json /tmp/rental-data-previous.json
           fi
 
-      - name: Connect Surfshark
-        id: vpn
-        continue-on-error: true
-        env:
-          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
-        shell: bash
-        run: timeout 90 bash scripts/connect_surfshark_wireguard.sh
-
       - name: Fetch Preview rental listings
         id: fetch
         continue-on-error: true
@@ -67,15 +59,9 @@ jobs:
         continue-on-error: true
         run: python scripts/stamp_rental_first_seen.py
 
-      - name: Disconnect Surfshark
-        if: always()
-        continue-on-error: true
-        run: sudo wg-quick down surfshark || true
-
       - name: Write rental Preview diagnostics
         if: always()
         env:
-          VPN_OUTCOME: ${{ steps.vpn.outcome }}
           FETCH_OUTCOME: ${{ steps.fetch.outcome }}
           FETCH_RC: ${{ steps.fetch.outputs.rc }}
           STAMP_OUTCOME: ${{ steps.stamp.outcome }}
@@ -90,7 +76,6 @@ jobs:
           if p.exists(): log=p.read_text(encoding='utf-8', errors='replace')[-12000:]
           data={
             'checkedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
-            'vpnOutcome':os.getenv('VPN_OUTCOME'),
             'fetchOutcome':os.getenv('FETCH_OUTCOME'),
             'fetchReturnCode':os.getenv('FETCH_RC'),
             'stampOutcome':os.getenv('STAMP_OUTCOME'),
