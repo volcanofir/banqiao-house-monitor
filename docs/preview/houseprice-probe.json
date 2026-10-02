@@ -1,4 +1,40 @@
 {
+  "apiProbe": [
+    {
+      "url": "https://ws-buy.houseprice.tw/",
+      "error": "ConnectionError: HTTPSConnectionPool(host='ws-buy.houseprice.tw', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='ws-buy.houseprice.tw', port=443): Failed to resolve 'ws-buy.houseprice.tw' ([Errno -2] Name or service not known)\"))"
+    },
+    {
+      "url": "https://ws-buy.houseprice.tw/swagger/index.html",
+      "error": "ConnectionError: HTTPSConnectionPool(host='ws-buy.houseprice.tw', port=443): Max retries exceeded with url: /swagger/index.html (Caused by NameResolutionError(\"HTTPSConnection(host='ws-buy.houseprice.tw', port=443): Failed to resolve 'ws-buy.houseprice.tw' ([Errno -2] Name or service not known)\"))"
+    },
+    {
+      "url": "https://ws-buy.houseprice.tw/swagger/v1/swagger.json",
+      "error": "ConnectionError: HTTPSConnectionPool(host='ws-buy.houseprice.tw', port=443): Max retries exceeded with url: /swagger/v1/swagger.json (Caused by NameResolutionError(\"HTTPSConnection(host='ws-buy.houseprice.tw', port=443): Failed to resolve 'ws-buy.houseprice.tw' ([Errno -2] Name or service not known)\"))"
+    },
+    {
+      "url": "https://ws-buy.houseprice.tw/swagger.json",
+      "error": "ConnectionError: HTTPSConnectionPool(host='ws-buy.houseprice.tw', port=443): Max retries exceeded with url: /swagger.json (Caused by NameResolutionError(\"HTTPSConnection(host='ws-buy.houseprice.tw', port=443): Failed to resolve 'ws-buy.houseprice.tw' ([Errno -2] Name or service not known)\"))"
+    },
+    {
+      "url": "https://ws-buycase.houseprice.tw/",
+      "error": "ConnectionError: HTTPSConnectionPool(host='ws-buycase.houseprice.tw', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='ws-buycase.houseprice.tw', port=443): Failed to resolve 'ws-buycase.houseprice.tw' ([Errno -2] Name or service not known)\"))"
+    },
+    {
+      "url": "https://ws-buycase.houseprice.tw/swagger/index.html",
+      "error": "ConnectionError: HTTPSConnectionPool(host='ws-buycase.houseprice.tw', port=443): Max retries exceeded with url: /swagger/index.html (Caused by NameResolutionError(\"HTTPSConnection(host='ws-buycase.houseprice.tw', port=443): Failed to resolve 'ws-buycase.houseprice.tw' ([Errno -2] Name or service not known)\"))"
+    },
+    {
+      "url": "https://ws-buycase.houseprice.tw/swagger/v1/swagger.json",
+      "error": "ConnectionError: HTTPSConnectionPool(host='ws-buycase.houseprice.tw', port=443): Max retries exceeded with url: /swagger/v1/swagger.json (Caused by NameResolutionError(\"HTTPSConnection(host='ws-buycase.houseprice.tw', port=443): Failed to resolve 'ws-buycase.houseprice.tw' ([Errno -2] Name or service not known)\"))"
+    },
+    {
+      "url": "https://mt.houseprice.tw/",
+      "status": 200,
+      "contentType": null,
+      "body": ""
+    }
+  ],
   "listStatus": 403,
   "listUrl": "https://buy.houseprice.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82_city/%E6%9D%BF%E6%A9%8B%E5%8D%80_zip/%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw",
   "title": "403 Forbidden",
