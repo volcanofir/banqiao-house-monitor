@@ -9,7 +9,8 @@ import json
 import math
 import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 import requests
@@ -19,6 +20,7 @@ API = "https://app.houseprice.tw"
 DEVICE_ID = "banqiao-house-monitor-preview"
 RECENT_REMOVED_DAYS = 10
 DETAIL_WORKERS = 6
+TAIPEI = ZoneInfo("Asia/Taipei")
 
 ROADS = (
     "中山路二段",
@@ -142,6 +144,63 @@ def fetch_road(token, road):
     return {"road": road, "sourceTotal": total, "pageCount": pages, "pageSize": page_size, "pages": status, "listings": rows}
 
 
+def infer_source_date(tag, checked_at, old=None):
+    """Convert 5168's source-relative new-listing tag to a Taipei calendar date.
+
+    The APP does not expose an exact first-publish timestamp. We preserve an
+    already-learned source date once the relative tag later disappears. Monitor
+    firstSeenAt is deliberately never used as a source listing date.
+    """
+    if old and old.get("sourcePublishedAtType") == "housepriceRelativeTagInferred" and old.get("sourcePublishedAt"):
+        return {
+            "sourcePublishedDate": old.get("sourcePublishedDate"),
+            "sourcePublishedAt": old.get("sourcePublishedAt"),
+            "sourcePublishedAtType": "housepriceRelativeTagInferred",
+            "sourcePublishedRaw": tag or old.get("sourcePublishedRaw"),
+            "sourcePublishedEvidence": old.get("sourcePublishedEvidence") or "5168 publishDaysTag",
+        }
+
+    raw = str(tag or "").strip()
+    if not raw:
+        return {
+            "sourcePublishedDate": None,
+            "sourcePublishedAt": None,
+            "sourcePublishedAtType": "housepriceListingDateUnavailable",
+            "sourcePublishedRaw": None,
+            "sourcePublishedEvidence": "5168 APP API exposes no exact publish date and current publishDaysTag is empty",
+        }
+
+    now_local = datetime.fromisoformat(checked_at.replace("Z", "+00:00")).astimezone(TAIPEI)
+    days = None
+    if "今天" in raw or "剛剛" in raw or "小時前" in raw or "分鐘前" in raw:
+        days = 0
+    elif "昨天" in raw:
+        days = 1
+    else:
+        m = re.search(r"(\d+)\s*天前", raw)
+        if m:
+            days = int(m.group(1))
+
+    if days is None:
+        return {
+            "sourcePublishedDate": None,
+            "sourcePublishedAt": None,
+            "sourcePublishedAtType": "housepriceListingDateUnavailable",
+            "sourcePublishedRaw": raw,
+            "sourcePublishedEvidence": "5168 publishDaysTag could not be safely converted",
+        }
+
+    d = now_local.date() - timedelta(days=days)
+    midnight = datetime(d.year, d.month, d.day, tzinfo=TAIPEI)
+    return {
+        "sourcePublishedDate": d.isoformat(),
+        "sourcePublishedAt": int(midnight.timestamp()),
+        "sourcePublishedAtType": "housepriceRelativeTagInferred",
+        "sourcePublishedRaw": raw,
+        "sourcePublishedEvidence": "5168 APP publishDaysTag converted to Asia/Taipei calendar date; date-level inference, not exact timestamp",
+    }
+
+
 def best_publish_tag(list_row, detail):
     tag = str(list_row.get("publishDaysTag") or "").strip()
     if tag:
@@ -221,10 +280,8 @@ def normalize_row(list_row, detail, road):
         "lat": detail.get("lat"),
         "agentCount": detail.get("agent_count"),
         "sourcePublishText": publish_tag,
-        # 5168 app API exposes source-relative labels such as "2天前新上架", not
-        # an exact original timestamp. Never substitute our monitor firstSeenAt.
-        "sourcePublishedAt": None,
-        "sourcePublishedAtType": "housepriceRelativePublishTag" if publish_tag else "housepriceListingDateUnavailable",
+        # Exact source date is attached later using the source-relative tag plus
+        # the current Taipei date, with prior learned values preserved.
         "detailComplete": True,
     }
 
@@ -290,6 +347,7 @@ def main():
     price_changes = []
     for sid, row in normalized.items():
         old = prev_rows.get(sid)
+        row.update(infer_source_date(row.get("sourcePublishText"), checked_at, old))
         row["firstSeenAt"] = (old or {}).get("firstSeenAt") or checked_at
         row["lastSeenAt"] = checked_at
         row["newAt"] = None
@@ -358,7 +416,14 @@ def main():
         "sourceTimePolicy": {
             "exactDateExposed": False,
             "relativeTagField": "publishDaysTag",
+            "relativeTagConvertedToTaipeiDate": True,
             "monitorFirstSeenUsedAsSourceTime": False,
+        },
+        "sourcePublishedAtSummary": {
+            "availableCount": sum(1 for x in listings if x.get("sourcePublishedAtType") == "housepriceRelativeTagInferred"),
+            "unavailableCount": sum(1 for x in listings if x.get("sourcePublishedAtType") == "housepriceListingDateUnavailable"),
+            "noFirstSeenFallback": True,
+            "note": "5168 APP provides relative new-listing tags, not an exact first-publish timestamp. Recent tags are converted to a Taipei calendar date and preserved once learned.",
         },
         "listings": listings,
         "recentRemoved": recent_removed,
