@@ -7,6 +7,7 @@ on:
     paths:
       - ".github/workflows/rental-preview.yml"
       - "scripts/fetch_rental_preview.py"
+      - "scripts/fetch_houseprice_rental_vpn.py"
       - "scripts/stamp_rental_first_seen.py"
       - "trigger/rental-preview-wakeup.txt"
 
@@ -32,7 +33,10 @@ jobs:
           python-version: "3.12"
 
       - name: Install crawler packages
-        run: python -m pip install requests beautifulsoup4 playwright curl_cffi
+        run: |
+          python -m pip install requests beautifulsoup4 playwright curl_cffi
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq wireguard-tools
 
       - name: Preserve previous rental first-seen data
         shell: bash
@@ -44,14 +48,43 @@ jobs:
       - name: Fetch Preview rental listings
         id: fetch
         continue-on-error: true
+        env:
+          SKIP_HOUSEPRICE: "1"
         shell: bash
         run: |
           set +e
-          timeout 180 python scripts/fetch_rental_preview.py > /tmp/rental-fetch.log 2>&1
+          timeout 150 python scripts/fetch_rental_preview.py > /tmp/rental-fetch.log 2>&1
           rc=$?
           cat /tmp/rental-fetch.log
           echo "rc=$rc" >> "$GITHUB_OUTPUT"
           exit $rc
+
+      - name: Connect Surfshark for 5168 only
+        id: vpn
+        if: steps.fetch.outcome == 'success'
+        continue-on-error: true
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        shell: bash
+        run: timeout 45 bash scripts/connect_surfshark_wireguard.sh
+
+      - name: Fetch 5168 rentals through VPN
+        id: houseprice_vpn
+        if: steps.fetch.outcome == 'success' && steps.vpn.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          timeout 90 python scripts/fetch_houseprice_rental_vpn.py > /tmp/houseprice-vpn.log 2>&1
+          rc=$?
+          cat /tmp/houseprice-vpn.log
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          exit $rc
+
+      - name: Disconnect Surfshark
+        if: always() && steps.vpn.outcome == 'success'
+        continue-on-error: true
+        run: timeout 20 sudo wg-quick down surfshark || true
 
       - name: Stamp first-seen time from our monitor
         id: stamp
@@ -64,6 +97,9 @@ jobs:
         env:
           FETCH_OUTCOME: ${{ steps.fetch.outcome }}
           FETCH_RC: ${{ steps.fetch.outputs.rc }}
+          VPN_OUTCOME: ${{ steps.vpn.outcome }}
+          HOUSEPRICE_VPN_OUTCOME: ${{ steps.houseprice_vpn.outcome }}
+          HOUSEPRICE_VPN_RC: ${{ steps.houseprice_vpn.outputs.rc }}
           STAMP_OUTCOME: ${{ steps.stamp.outcome }}
         shell: bash
         run: |
@@ -74,14 +110,21 @@ jobs:
           log=''
           p=Path('/tmp/rental-fetch.log')
           if p.exists(): log=p.read_text(encoding='utf-8', errors='replace')[-12000:]
+          hp=''
+          hp_path=Path('/tmp/houseprice-vpn.log')
+          if hp_path.exists(): hp=hp_path.read_text(encoding='utf-8', errors='replace')[-8000:]
           data={
             'checkedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
             'fetchOutcome':os.getenv('FETCH_OUTCOME'),
             'fetchReturnCode':os.getenv('FETCH_RC'),
+            'vpnOutcome':os.getenv('VPN_OUTCOME'),
+            'housepriceVpnOutcome':os.getenv('HOUSEPRICE_VPN_OUTCOME'),
+            'housepriceVpnReturnCode':os.getenv('HOUSEPRICE_VPN_RC'),
             'stampOutcome':os.getenv('STAMP_OUTCOME'),
             'rentalDataExists':Path('docs/preview/rental-data.json').exists(),
             'uiOwnership':'canonical-preview-index',
             'logTail':log,
+            'housepriceVpnLogTail':hp,
           }
           Path('docs/preview/rental-run-diagnostic.json').write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(data,ensure_ascii=False))
