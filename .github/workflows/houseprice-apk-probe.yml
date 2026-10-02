@@ -21,6 +21,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install requests
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq apktool
       - run: python scripts/houseprice_apk_probe.py
       - name: Save endpoint report only
         shell: bash
