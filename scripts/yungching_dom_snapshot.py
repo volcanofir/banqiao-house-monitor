@@ -1,8 +1,9 @@
 import json
 import re
+import time
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import parse_qs, quote, urlsplit
 
 from playwright.sync_api import sync_playwright
 
@@ -40,6 +41,98 @@ def road_url(road: str) -> str:
 def road_404_confirmation_url(road: str):
     scope = ROAD_404_CONFIRMATION_SCOPES.get(road)
     return scoped_road_url(road, scope) if scope else None
+
+
+
+def _list_api_matches(url: str, road: str, page_no: int) -> bool:
+    try:
+        parts = urlsplit(url)
+        if parts.path != "/api/v2/list":
+            return False
+        q = parse_qs(parts.query)
+        keyword = road.replace("板橋區", "")
+        return (
+            (q.get("keyword") or [""])[0] == keyword
+            and int((q.get("pg") or ["0"])[0]) == int(page_no)
+        )
+    except Exception:
+        return False
+
+
+def _api_wrapper_meta(response):
+    meta = {
+        "apiListHttp": response.status if response else None,
+        "apiListSuccess": False,
+        "apiListStatus": None,
+        "apiListVersion": None,
+        "apiListDataLength": 0,
+    }
+    if response is None:
+        return meta
+    try:
+        body = response.json()
+        if isinstance(body, dict):
+            meta["apiListStatus"] = body.get("status")
+            meta["apiListVersion"] = body.get("apiVersion")
+            meta["apiListDataLength"] = len(str(body.get("data") or ""))
+            meta["apiListSuccess"] = bool(
+                response.status == 200
+                and body.get("status") == "Success"
+                and body.get("data")
+            )
+    except Exception as exc:
+        meta["apiListError"] = f"{type(exc).__name__}: {str(exc)[:160]}"
+    return meta
+
+
+def navigate_with_list_api(page, url: str, road: str, page_no: int, timeout=45000):
+    """Navigate while independently observing Yongching's real /api/v2/list request.
+
+    HAR evidence shows the rendered search page obtains its listings from this API.
+    A navigation response can occasionally be None even though the official list API
+    returned HTTP 200 + status=Success. Treat the API response as authoritative
+    transport evidence and the DOM as the source of decoded listing fields.
+    """
+    captured = []
+    def on_response(resp):
+        if _list_api_matches(resp.url, road, page_no):
+            captured.append(resp)
+
+    page.on("response", on_response)
+    nav = None
+    nav_error = None
+    try:
+        try:
+            nav = page.goto(url, wait_until="domcontentloaded", timeout=timeout)
+        except Exception as exc:
+            nav_error = f"{type(exc).__name__}: {str(exc)[:220]}"
+
+        deadline = time.time() + 12
+        while not captured and time.time() < deadline:
+            page.wait_for_timeout(250)
+    finally:
+        try:
+            page.remove_listener("response", on_response)
+        except Exception:
+            pass
+
+    meta = {
+        "navigationHttp": nav.status if nav else None,
+        "navigationError": nav_error,
+    }
+    if captured:
+        meta.update(_api_wrapper_meta(captured[-1]))
+        meta["apiListUrl"] = captured[-1].url
+    else:
+        meta.update({
+            "apiListHttp": None,
+            "apiListSuccess": False,
+            "apiListStatus": None,
+            "apiListVersion": None,
+            "apiListDataLength": 0,
+        })
+    return nav, meta
+
 
 
 def num(value):
@@ -386,19 +479,27 @@ def main():
                 "confirmationUsed": False,
             }
             try:
-                response = page.goto(primary_url, wait_until="domcontentloaded", timeout=45000)
+                response, primary_net = navigate_with_list_api(page, primary_url, road, 1)
                 info["primaryHttp"] = response.status if response else None
                 info["primaryFinalUrl"] = page.url
+                info["primaryApiListHttp"] = primary_net.get("apiListHttp")
+                info["primaryApiListSuccess"] = primary_net.get("apiListSuccess")
+                info["primaryApiListStatus"] = primary_net.get("apiListStatus")
+                info["primaryApiListVersion"] = primary_net.get("apiListVersion")
+                info["primaryApiListDataLength"] = primary_net.get("apiListDataLength")
+                info["primaryNavigationError"] = primary_net.get("navigationError")
                 info["mainHttp"] = info["primaryHttp"]
 
                 confirmation_url = road_404_confirmation_url(road)
                 if info["primaryHttp"] == 404 and confirmation_url:
                     info["confirmationUsed"] = True
                     info["confirmationUrl"] = confirmation_url
-                    response = page.goto(
-                        confirmation_url, wait_until="domcontentloaded", timeout=45000
-                    )
+                    response, confirm_net = navigate_with_list_api(page, confirmation_url, road, 1)
                     info["confirmationHttp"] = response.status if response else None
+                    info["confirmationApiListHttp"] = confirm_net.get("apiListHttp")
+                    info["confirmationApiListSuccess"] = confirm_net.get("apiListSuccess")
+                    info["confirmationApiListStatus"] = confirm_net.get("apiListStatus")
+                    info["confirmationApiListDataLength"] = confirm_net.get("apiListDataLength")
                     info["mainHttp"] = info["confirmationHttp"]
 
                 page.wait_for_timeout(3500)
@@ -410,6 +511,30 @@ def main():
                 info["searchUrl"] = page.url
                 rows, diag = collect_road(page, road)
                 info.update(diag)
+
+                # When the official list API succeeded but decoded DOM cards are still
+                # empty, retry the same road with a fresh navigation. This specifically
+                # protects against the intermittent "HTTP None / 0 cards" condition.
+                retry_log = []
+                if info.get("primaryApiListSuccess") and not rows:
+                    for retry_no in range(1, 3):
+                        _, retry_net = navigate_with_list_api(page, primary_url, road, 1)
+                        page.wait_for_timeout(4500)
+                        retry_rows, retry_diag = collect_road(page, road)
+                        retry_log.append({
+                            "attempt": retry_no,
+                            "apiListHttp": retry_net.get("apiListHttp"),
+                            "apiListSuccess": retry_net.get("apiListSuccess"),
+                            "apiListStatus": retry_net.get("apiListStatus"),
+                            "apiListDataLength": retry_net.get("apiListDataLength"),
+                            "count": len(retry_rows),
+                        })
+                        if retry_rows:
+                            rows, diag = retry_rows, retry_diag
+                            info.update(diag)
+                            break
+                info["apiDomRetry"] = retry_log
+
                 for row in rows.values():
                     listings[(road, row["id"])] = row
                 info["count"] = len(rows)
@@ -433,7 +558,17 @@ def main():
                         "原板橋路段網址 HTTP 404；官方新北市關鍵字頁完整複查後，"
                         "確認沒有新北市板橋區精確地址案件"
                     )
-                info["available"] = info["mainHttp"] == 200 and (
+                transport_ok = bool(
+                    info["mainHttp"] == 200
+                    or info.get("primaryApiListSuccess") is True
+                    or info.get("confirmationApiListSuccess") is True
+                )
+                info["transportEvidence"] = (
+                    "official_api_v2_list_success"
+                    if (info.get("primaryApiListSuccess") or info.get("confirmationApiListSuccess"))
+                    else "navigation_http"
+                )
+                info["available"] = transport_ok and (
                     info["count"] > 0 or info["emptyResultVerified"]
                 )
             except Exception as exc:
@@ -452,7 +587,7 @@ def main():
     payload = {
         "capturedAt": captured,
         "previewOnly": True,
-        "source": "Yongching official public result cards via Surfshark + Chromium DOM",
+        "source": "Yongching official /api/v2/list transport evidence + rendered Chromium DOM via Surfshark",
         "availableRoads": [r for r, st in road_status.items() if st.get("available")],
         "roadStatus": road_status,
         "listingCount": len(rows),
