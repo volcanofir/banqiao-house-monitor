@@ -94,18 +94,22 @@ jobs:
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp docs/preview/rental-run-diagnostic.json /tmp/rental-run-diagnostic.json
+          [[ -f docs/preview/rental-data.json ]] && cp docs/preview/rental-data.json /tmp/rental-data.json || true
+
+          git fetch origin main
+          git reset --hard origin/main
+
+          cp /tmp/rental-run-diagnostic.json docs/preview/rental-run-diagnostic.json
+          [[ -f /tmp/rental-data.json ]] && cp /tmp/rental-data.json docs/preview/rental-data.json || true
+
           git add docs/preview/rental-run-diagnostic.json
           [[ -f docs/preview/rental-data.json ]] && git add docs/preview/rental-data.json || true
           if git diff --cached --quiet; then
             echo "No rental Preview changes."
           else
             git commit -m "Update rental Preview data"
-            for attempt in 1 2 3; do
-              if git pull --rebase && git push; then break; fi
-              git rebase --abort >/dev/null 2>&1 || true
-              sleep 3
-              [[ "$attempt" == "3" ]] && exit 1
-            done
+            git push
           fi
 
       - name: Request GitHub Pages rebuild
