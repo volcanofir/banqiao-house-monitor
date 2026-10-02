@@ -1,0 +1,38 @@
+name: 5168 seven-road snapshot
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/fetch_houseprice_seven_roads_preview.py"
+      - "scripts/validate_houseprice_preview_snapshot.py"
+      - ".github/workflows/houseprice-seven-roads.yml"
+permissions:
+  contents: write
+concurrency:
+  group: houseprice-seven-roads
+  cancel-in-progress: true
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Fetch and validate 5168 seven roads
+        run: |
+          python scripts/fetch_houseprice_seven_roads_preview.py
+          python scripts/validate_houseprice_preview_snapshot.py
+      - name: Save verified snapshot
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/preview/houseprice-seven-roads.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Refresh 5168 seven-road snapshot"
+          git pull --rebase
+          git push
