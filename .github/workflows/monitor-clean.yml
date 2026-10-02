@@ -81,9 +81,9 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         run: pip install requests beautifulsoup4 cryptography playwright
 
-      - name: Fetch Sinyi 7 roads in parallel
+      - name: Fetch Sinyi via official filterObject API
         if: steps.gate.outputs.run == 'true'
-        run: python scripts/monitor_sinyi_parallel.py
+        run: python scripts/run_with_system_chrome.py scripts/monitor_sinyi_parallel.py
 
       - name: Enrich Sinyi publish time
         if: steps.gate.outputs.run == 'true'
