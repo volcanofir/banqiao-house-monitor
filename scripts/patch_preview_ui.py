@@ -141,6 +141,14 @@ if 'async function fetchJson(url,label)' not in text:
         flags=re.S,
     )
 
+# The canonical Preview page may already contain the modern fetchJson loader, so the
+# legacy regex above can legitimately be a no-op. Force the runtime integrity guard
+# to the current 5168-aware v5 value explicitly.
+text = text.replace(
+    "scheme-a-canonical-v4-sinyi-rakuya-floor-neartie",
+    "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
+)
+
 required_fragments = [
     'id="mNew"',
     'id="mGroups"',
@@ -169,6 +177,19 @@ subprocess.run([sys.executable, 'scripts/patch_r420_preview_ui.py'], check=True)
 subprocess.run([sys.executable, 'scripts/patch_rakuya_integrated_ui.py'], check=True)
 
 final_text = PATH.read_text(encoding='utf-8')
+# Layer patches must never regress the runtime guard back to the pre-5168 v4 value.
+if "scheme-a-canonical-v4-sinyi-rakuya-floor-neartie" in final_text:
+    final_text = final_text.replace(
+        "scheme-a-canonical-v4-sinyi-rakuya-floor-neartie",
+        "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
+    )
+    PATH.write_text(final_text, encoding='utf-8')
+if "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie" not in final_text:
+    raise RuntimeError("Canonical Preview UI composition failed; v5 integrity guard missing")
+if "scheme-a-canonical-v4-sinyi-rakuya-floor-neartie" in final_text:
+    raise RuntimeError("Canonical Preview UI composition failed; stale v4 integrity guard remains")
+if final_text.count("function verificationMatches(") != 1:
+    raise RuntimeError("Canonical Preview UI composition failed; duplicate verificationMatches runtime")
 final_required = [
     'id="marketSwitch"',
     'data-market="sale"',
