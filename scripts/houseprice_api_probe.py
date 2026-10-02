@@ -100,8 +100,13 @@ tests=[
  ("GET","/api/County/CityDistrict",None),
  ("GET","/api/Case/List",None),
  ("POST","/api/Case/List",{}),
- ("POST","/api/Case/List",{"city":"新北市","district":"板橋區","keyword":"中山路二段","page":1,"pageSize":20}),
- ("POST","/api/Case/List",{"City":"新北市","District":"板橋區","Keyword":"中山路二段","Page":1,"Rows":20}),
+ ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"page":1,"pageSize":50}),
+ ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"road":["中山路二段"],"page":1,"pageSize":50}),
+ ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"road":"中山路二段","page":1,"pageSize":50}),
+ ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"keyword":"中山路二段","page":1,"pageSize":50}),
+ ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"keyWord":"中山路二段","page":1,"pageSize":50}),
+ ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"searchText":"中山路二段","page":1,"pageSize":50}),
+ ("POST","/api/Case/List",{"city":"新北市","district":["板橋區"],"parameter":"中山路二段","page":1,"pageSize":50}),
 ]
 for method,path2,payload in tests:
   try:
@@ -115,6 +120,18 @@ for method,path2,payload in tests:
       rec["jsonType"]=type(jj).__name__
       if isinstance(jj,dict):
         rec["jsonKeys"]=list(jj.keys())
+        data=jj.get("data")
+        if path2=="/api/Case/List" and isinstance(data,dict):
+          rows=data.get("list") or []
+          rec["caseSummary"]={
+            "resultCount":data.get("resultCount"),
+            "sortField":data.get("sortField"),
+            "sortOrder":data.get("sortOrder"),
+            "listCount":len(rows),
+            "firstRows":[{
+              k:x.get(k) for k in ["caseSid","caseName","caseUrl","city","district","road","totalPrice","buildPin","rm","publishDaysTag"]
+            } for x in rows[:12] if isinstance(x,dict)]
+          }
     except Exception: pass
     app["tests"].append(rec)
   except Exception as e:
