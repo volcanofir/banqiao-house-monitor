@@ -16,13 +16,19 @@ def main():
     stats = json.loads(SINYI_STATS.read_text(encoding="utf-8"))
     source = json.loads(SOURCE_DATA.read_text(encoding="utf-8"))
 
-    assert p.get("mode") == "preview_only_591_sinyi_rakuya_grouping_then_company_v10", p.get("mode")
+    assert p.get("mode") == "preview_only_591_sinyi_rakuya_5168_grouping_then_company_v11", p.get("mode")
     assert p.get("rakuyaIntegrated") is True, p.get("rakuyaIntegrated")
+    assert p.get("housepriceIntegrated") is True, p.get("housepriceIntegrated")
     rk = p.get("rakuyaSnapshot") or {}
     assert rk.get("complete") is True, rk
     assert int(rk.get("totalCount") or 0) > 0, rk
     grouping = p.get("rakuyaGrouping") or {}
     assert int(grouping.get("inputCount") or 0) == int(rk.get("uniqueListingCount") or 0), (grouping, rk)
+    hp = p.get("housepriceSnapshot") or {}
+    assert hp.get("complete") is True, hp
+    assert int(hp.get("totalCount") or 0) > 0, hp
+    hp_grouping = p.get("housepriceGrouping") or {}
+    assert int(hp_grouping.get("inputCount") or 0) == int(hp.get("uniqueListingCount") or 0), (hp_grouping, hp)
     assert p.get("sinyiStructuredFloorMatching") is True, p.get("sinyiStructuredFloorMatching")
 
     # The visible monitor data and the company comparison must come from the same
@@ -74,6 +80,9 @@ def main():
         "rakuyaInput": (p.get("rakuyaGrouping") or {}).get("inputCount"),
         "rakuyaRegrouped": (p.get("rakuyaGrouping") or {}).get("regroupedCount"),
         "rakuyaAttached": (p.get("rakuyaGrouping") or {}).get("attachedToExistingGroupCount"),
+        "housepriceInput": (p.get("housepriceGrouping") or {}).get("inputCount"),
+        "housepriceRegrouped": (p.get("housepriceGrouping") or {}).get("regroupedCount"),
+        "housepriceAttached": (p.get("housepriceGrouping") or {}).get("attachedToExistingGroupCount"),
         "remainingAutoNearTie": guard.get("remainingAutoNearTieCount"),
         "valid": True,
     }, ensure_ascii=False))
