@@ -148,7 +148,7 @@ def group_source_date(raw_value, old=None):
     """Use 5168 APP PriceAnalyze.newKeyInDate as the grouped-property first-listing date."""
     raw = str(raw_value or "").strip()
     if raw:
-        m = re.match(r"^(20\\d{2})-(\\d{2})-(\\d{2})", raw)
+        m = re.match(r"^(20\d{2})-(\d{2})-(\d{2})", raw)
         if m:
             try:
                 d = datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=TAIPEI)
