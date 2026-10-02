@@ -1,0 +1,34 @@
+name: 5168 PriceAnalyze probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/probe_5168_priceanalyze.py"
+      - ".github/workflows/probe-5168-priceanalyze.yml"
+permissions:
+  contents: write
+concurrency:
+  group: probe-5168-priceanalyze
+  cancel-in-progress: true
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python scripts/probe_5168_priceanalyze.py
+      - name: Save result
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/preview/houseprice-priceanalyze-probe.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Save 5168 PriceAnalyze probe"
+          git pull --rebase
+          git push
