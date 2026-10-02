@@ -93,7 +93,13 @@ def main():
 
     # Preview-only overlay: keep existing 591 stale-listing confirmation behavior.
     if PROBE.exists():
-        subprocess.run([sys.executable, "scripts/apply_preview_591_offmarket_probe.py"], check=True)
+        try:
+            subprocess.run([sys.executable, "scripts/apply_preview_591_offmarket_probe.py"], check=True)
+        except subprocess.CalledProcessError:
+            # A stale probe from an older source snapshot must not invalidate the
+            # fresh Sinyi API/floor snapshot. The CLEAN workflow will apply a fresh
+            # 591 probe when one exists for the same source timestamp.
+            print("略過過期的 591 Preview probe；信義 API/floor snapshot 保持有效。")
 
     print(json.dumps(stats, ensure_ascii=False))
 
