@@ -58,6 +58,23 @@ def main():
     api_lines=sorted(set(api_lines))
 
     interesting_urls=[u for u in urls if any(k in u.lower() for k in ["houseprice","/ws/","api","buy","case","search"])]
+    decompile={}
+    base_apk=next((x for x in apk_files if x.name=="com.houseprice.hp5168.apk"),None)
+    if base_apk and subprocess.run(["bash","-lc","command -v apktool >/dev/null 2>&1"]).returncode==0:
+        ddir=Path("/tmp/5168-apktool")
+        subprocess.run(["apktool","d","-r","-f","-o",str(ddir),str(base_apk)],capture_output=True,text=True,timeout=240)
+        wanted=["ApiService.smali","SearchHouseListRequest.smali","SearchRequest.smali","SearchCountResult.smali","SearchHouseListResult.smali"]
+        found={}
+        for name in wanted:
+            for fp in ddir.rglob(name):
+                try:
+                    txt=fp.read_text(encoding="utf-8",errors="ignore")
+                    found[name]={"path":str(fp.relative_to(ddir)),"content":txt[:60000]}
+                    break
+                except Exception:
+                    pass
+        decompile=found
+
     result={
       "package":"com.houseprice.hp5168",
       "version":"4.0.1",
@@ -67,6 +84,7 @@ def main():
       "housepriceDomains":domains,
       "interestingUrls":interesting_urls[:500],
       "interestingStrings":api_lines[:1000],
+      "decompile":decompile,
     }
     OUT.parent.mkdir(parents=True,exist_ok=True)
     OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding="utf-8")
