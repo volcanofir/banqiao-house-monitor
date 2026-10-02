@@ -1,0 +1,1532 @@
+{
+  "authStatus": 200,
+  "tests": [
+    {
+      "label": "CaseInfo",
+      "url": "https://app.houseprice.tw/api/Case/Info?caseSid=33221169",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "jsonType": "dict",
+      "jsonKeys": [
+        "code",
+        "message",
+        "data"
+      ],
+      "interesting": [
+        {
+          "path": "data.data.caseSid",
+          "value": 33221169
+        },
+        {
+          "path": "data.data.groupSid",
+          "value": 28718235
+        },
+        {
+          "path": "data.data.showPriceAnalyze",
+          "value": true
+        },
+        {
+          "path": "data.data.deal_list[0].dealSid",
+          "value": 10722649
+        },
+        {
+          "path": "data.data.deal_list[0].historyCount",
+          "value": 2
+        },
+        {
+          "path": "data.data.deal_list[1].dealSid",
+          "value": 10192258
+        },
+        {
+          "path": "data.data.deal_list[1].historyCount",
+          "value": 1
+        },
+        {
+          "path": "data.data.agent_list[0].caseSid",
+          "value": 38288165
+        },
+        {
+          "path": "data.data.agent_list[0].publishDaysTag",
+          "value": null
+        },
+        {
+          "path": "data.data.agent_list[1].caseSid",
+          "value": 38011086
+        },
+        {
+          "path": "data.data.agent_list[1].publishDaysTag",
+          "value": null
+        },
+        {
+          "path": "data.data.agent_list[2].caseSid",
+          "value": 37102805
+        },
+        {
+          "path": "data.data.agent_list[2].publishDaysTag",
+          "value": null
+        },
+        {
+          "path": "data.data.agent_list[3].caseSid",
+          "value": 33219882
+        },
+        {
+          "path": "data.data.agent_list[3].publishDaysTag",
+          "value": null
+        },
+        {
+          "path": "data.data.agent_list[4].caseSid",
+          "value": 37534368
+        },
+        {
+          "path": "data.data.agent_list[4].publishDaysTag",
+          "value": null
+        },
+        {
+          "path": "data.data.agent_list[5].caseSid",
+          "value": 37291444
+        },
+        {
+          "path": "data.data.agent_list[5].publishDaysTag",
+          "value": null
+        },
+        {
+          "path": "data.data.recommend_list[0].caseSid",
+          "value": 36564894
+        },
+        {
+          "path": "data.data.recommend_list[0].publishDaysTag",
+          "value": "今天新上架"
+        },
+        {
+          "path": "data.data.recommend_list[1].caseSid",
+          "value": 36564806
+        },
+        {
+          "path": "data.data.recommend_list[1].publishDaysTag",
+          "value": "今天新上架"
+        },
+        {
+          "path": "data.data.recommend_list[2].caseSid",
+          "value": 31749160
+        },
+        {
+          "path": "data.data.recommend_list[2].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[3].caseSid",
+          "value": 37320231
+        },
+        {
+          "path": "data.data.recommend_list[3].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[4].caseSid",
+          "value": 37956350
+        },
+        {
+          "path": "data.data.recommend_list[4].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[5].caseSid",
+          "value": 32801695
+        },
+        {
+          "path": "data.data.recommend_list[5].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[6].caseSid",
+          "value": 38286009
+        },
+        {
+          "path": "data.data.recommend_list[6].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[7].caseSid",
+          "value": 37715230
+        },
+        {
+          "path": "data.data.recommend_list[7].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[8].caseSid",
+          "value": 37750331
+        },
+        {
+          "path": "data.data.recommend_list[8].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[9].caseSid",
+          "value": 29639239
+        },
+        {
+          "path": "data.data.recommend_list[9].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[10].caseSid",
+          "value": 36610742
+        },
+        {
+          "path": "data.data.recommend_list[10].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[11].caseSid",
+          "value": 38247069
+        },
+        {
+          "path": "data.data.recommend_list[11].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[12].caseSid",
+          "value": 38300529
+        },
+        {
+          "path": "data.data.recommend_list[12].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[13].caseSid",
+          "value": 37835273
+        },
+        {
+          "path": "data.data.recommend_list[13].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[14].caseSid",
+          "value": 38010008
+        },
+        {
+          "path": "data.data.recommend_list[14].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[15].caseSid",
+          "value": 35963612
+        },
+        {
+          "path": "data.data.recommend_list[15].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[16].caseSid",
+          "value": 36823966
+        },
+        {
+          "path": "data.data.recommend_list[16].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[17].caseSid",
+          "value": 38367871
+        },
+        {
+          "path": "data.data.recommend_list[17].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[18].caseSid",
+          "value": 36986898
+        },
+        {
+          "path": "data.data.recommend_list[18].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[19].caseSid",
+          "value": 37066505
+        },
+        {
+          "path": "data.data.recommend_list[19].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[20].caseSid",
+          "value": 31138297
+        },
+        {
+          "path": "data.data.recommend_list[20].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[21].caseSid",
+          "value": 22903433
+        },
+        {
+          "path": "data.data.recommend_list[21].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[22].caseSid",
+          "value": 38039367
+        },
+        {
+          "path": "data.data.recommend_list[22].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[23].caseSid",
+          "value": 33012730
+        },
+        {
+          "path": "data.data.recommend_list[23].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[24].caseSid",
+          "value": 37913406
+        },
+        {
+          "path": "data.data.recommend_list[24].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[25].caseSid",
+          "value": 36664433
+        },
+        {
+          "path": "data.data.recommend_list[25].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[26].caseSid",
+          "value": 36095645
+        },
+        {
+          "path": "data.data.recommend_list[26].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[27].caseSid",
+          "value": 32185101
+        },
+        {
+          "path": "data.data.recommend_list[27].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[28].caseSid",
+          "value": 37981958
+        },
+        {
+          "path": "data.data.recommend_list[28].publishDaysTag",
+          "value": ""
+        },
+        {
+          "path": "data.data.recommend_list[29].caseSid",
+          "value": 25676357
+        },
+        {
+          "path": "data.data.recommend_list[29].publishDaysTag",
+          "value": ""
+        }
+      ],
+      "body": "{\"code\": 200, \"message\": \"Success\", \"data\": {\"caseSid\": 33221169, \"caseUrl\": \"https://buy.houseprice.tw/house/33221169_930688\", \"groupSid\": 28718235, \"description\": \"★一層二戶             方正邊間\\n★生活機能便利     交通便捷\\n★三面採光              房房有開窗\\n★大房大廳              屋況佳免整理\\n\\n☆建物主要用途：住家用\\n☆土地使用分區：住宅區\\n★★★24小時服務專線：鄭秋足 0915-812-335★★★\\n\\n中信房屋板橋江子翠捷運三店加盟店(承品不動產經紀有限公司)\\n經紀人證號:蔡耀郎(103)新北經字2885號\\n\\n1.以上房屋物件資料若與實際情形有所差異時，仍以地政機關登記為準。\\n2.本頁面所刊照片若有室外照而非物件本身時，單純是以房屋標地附近街景照片提供參考示意用。\\n3.本頁面若有刊登格局圖，係未依一定比例縮小繪製之概繪圖，與實況仍有差距，仍須以房屋現場為準。\\n4.上述房屋特色說明若有註記步行至捷運站距離與時間，其相關資料來源於Google地圖規劃及建議路線，實際步行距離與時間可能會因道路施工、交通狀況、天氣或其他活動而與地圖結果有出入，仍須以實際路況為準。\\n5.本頁面所標示屋齡資料若與實際屋齡有所誤差，乃因地政機關資料及建物權狀登記皆無標示建築完成日，為配合售屋網系統刊登廣告必須登載屋齡的規定，是故以地政謄本登記房屋第一次登記日期或建物成果圖登載日期資料所粗估概算，並非切確實際屋齡，特此明確告知。\\n\", \"caseName\": \"專人服務👍家樂福商圈.邊間方正👍天然瓦斯\", \"totalPrice\": 1580, \"unitPrice\": 44.3, \"purPoseName\": \"住宅\", \"caseType\": \"公寓\", \"buildAge\": \"37.6年\", \"isPreSoldHouse\": null, \"floor\": \"4\", \"totalFloor\": 5, \"publicRatio\": 10.7, \"hasParkingLot\": false, \"parkingLotType\": \"\", \"parkingLotPin\": null, \"rm\": 3, \"livingRm\": 2, \"bathRm\": 2, \"balcony\": 2, \"facing\": \"\", \"city\": \"新北市\", \"district\": \"板橋區\", \"road\": \"中山路二段\", \"landNo\": \"\", \"lng\": 121.483521809, \"lat\": 25.0193613299, \"buildPin\": 35.68, \"mainPin\": 28.25, \"landPin\": 9.74, \"attachedPin\": 3.62, \"publicPin\": 3.81, \"otherPin\": null, \"loanToValueRatio\": \"70%\", \"interestRate\": \"2.5%\", \"loanTerm\": 30, \"shareLink\": \"https://buy.houseprice.tw/house/33221169_930688\", \"isCollected\": false, \"isSubscribed\": false, \"showPriceAnalyze\": true, \"communityInfo\": null, \"photoInfo\": {\"patternPhoto\": null, \"coverPhoto\": \"https://image.houseprice.tw/p1-hpimage/MTA4OTY5NjlocGltYWdl/52eac9b070984a63_1706x960.jpg\", \"photoList\": [{\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTA4OTY5NzBocGltYWdl/4289436fe61d4b08_1706x960.jpg\", \"sort\": 2, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTA4OTY5NzFocGltYWdl/7306eee4114e49c2_1477x1108.jpg\", \"sort\": 3, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTA4OTY5ODRocGltYWdl/127d055848794942_1477x1108.jpg\", \"sort\": 4, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTA4OTY5ODdocGltYWdl/8db434203276441d_1477x1108.jpg\", \"sort\": 5, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTA4OTY5ODhocGltYWdl/eb28c6dbc5d94087_1477x1108.jpg\", \"sort\": 6, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTA4OTY5ODlocGltYWdl/9136802611ee4af7_1477x1108.jpg\", \"sort\": 7, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTA4OTcwNDhocGltYWdl/963e596b88854d0a_1706x960.jpg\", \"sort\": 8, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTA4OTcwNDlocGltYWdl/ba790dd1034a43d7_1706x960.jpg\", \"sort\": 9, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTA4OTcwNTBocGltYWdl/34696c1d628f44ba_1706x960.jpg\", \"sort\": 10, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTA4OTcwNTFocGltYWdl/2e96da85ab1c42f2_1706x960.jpg\", \"sort\": 11, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTA4OTcwNjJocGltYWdl/0ad1afa43f624ca7_1477x1108.jpg\", \"sort\": 12, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTA4OTcwNjNocGltYWdl/0a60da7cfe9f40d7_1477x1108.jpg\", \"sort\": 13, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTA4OTcwODFocGltYWdl/fd1fee45af6344d7_1706x960.jpg\", \"sort\": 14, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTA4OTY5NjlocGltYWdl/52eac9b070984a63_1706x960.jpg\", \"sort\": 1, \"type\": 2}], \"vrUrl\": \"\", \"youtubeUrl\": \"\"}, \"agent\": {\"id\": \"99b0864f-d0da-4d8a-b4fc-ae24fe5eb1ec\", \"seqNo\": 930688, \"name\": \"鄭秋足\", \"phone\": \"0915812335\", \"profilePicture\": \"https://image.houseprice.tw/p1-hpimage/MTMwODA2MDhocGltYWdl/ad9ba739ea4642ce_600x600.png\", \"brand\": \"中信房屋\", \"contactCompany\": \"承品不動產經紀有限公司\", \"contactStore\": \"板橋江子翠捷運三店加盟店\", \"lineFriendLink\": \"https://liff.line.me/1657625362-QRw9Woya?caseSId=33221169\"}, \"deal_count\": 3, \"deal_list\": [{\"dealSid\": 10722649, \"similarFlagValue\": 30, \"dealYear\": 115, \"dealMonth\": 4, \"caseType\": \"華廈\", \"city\": \"新北市\", \"district\": \"板橋區\", \"address\": \"板橋區中山路二段62號6樓之5\", \"historyCount\": 2, \"totalPrice\": 1700, \"totalCarPrice\": \"\", \"unitPrice\": 52.1, \"unitCarPrice\": \"\", \"parkKind\": \"\", \"buCarPing\": null, \"buildPin\": 32.65, \"landPin\": 5.54, \"floor\": \"6\", \"upFloor\": 10, \"room\": 0, \"livingRoom\": 0, \"bathRoom\": 0, \"buildAge\": \"36.9年\", \"note\": \"\", \"similarFlagSet\": [\"同路段\", \"相似坪數\", \"相似屋齡\"], \"communityId\": 25492, \"communityName\": \"統領新都\"}, {\"dealSid\": 10192258, \"similarFlagValue\": 30, \"dealYear\": 114, \"dealMonth\": 5, \"caseType\": \"華廈\", \"city\": \"新北市\", \"district\": \"板橋區\", \"address\": \"板橋區中山路二段443巷70號3樓\", \"historyCount\": 1, \"totalPrice\": 1700, \"totalCarPrice\": \"\", \"unitPrice\": 51.1, \"unitCarPrice\": \"\", \"parkKind\": \"\", \"buCarPing\": null, \"buildPin\": 33.29, \"landPin\": 5.78, \"floor\": \"3\", \"upFloor\": 7, \"room\": 3, \"livingRoom\": 2, \"bathRoom\": 2, \"buildAge\": \"36.5年\", \"note\": \"其他增建；\", \"similarFlagSet\": [\"同路段\", \"相似坪數\", \"相似屋齡\"], \"communityId\": 0, \"communityName\": \"\"}], \"communitySummary\": null, \"communityForSale\": [], \"agent_count\": 7, \"agent_list\": [{\"caseSid\": 38288165, \"caseName\": \"自在琉璃綠園道🎀景觀雙主臥.雙車位🎁間間採光\", \"caseUrl\": \"https://buy.houseprice.tw/house/38288165_930688/\", \"district\": \"北區\", \"totalPrice\": 3380, \"coverPhoto\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk3MzJocGltYWdl/74a897e49b964b5e_1706x960.jpg\", \"photoList\": [{\"sort\": 2, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk3MzNocGltYWdl/d34e449f67184617_1706x960.jpg\", \"type\": 0}, {\"sort\": 3, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk3MzRocGltYWdl/45efc112e09f4edf_1706x960.jpg\", \"type\": 0}, {\"sort\": 4, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk4MTBocGltYWdl/25fae135708842c4_1706x960.jpg\", \"type\": 0}, {\"sort\": 5, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk4MjFocGltYWdl/e006d26b9c5a4714_1706x960.jpg\", \"type\": 0}, {\"sort\": 6, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk4MjZocGltYWdl/cfc062df0a554d40_1706x960.jpg\", \"type\": 0}, {\"sort\": 7, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk4MjdocGltYWdl/6ed823bcf34b4eaa_1706x960.jpg\", \"type\": 0}, {\"sort\": 8, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk4MzBocGltYWdl/53b0ef56cd2441c4_1706x960.jpg\", \"type\": 0}, {\"sort\": 9, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk4MzFocGltYWdl/65e1d3c5897f4fcc_1706x960.jpg\", \"type\": 0}, {\"sort\": 10, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk4MzJocGltYWdl/6c74b2a37ed84382_1706x960.jpg\", \"type\": 0}, {\"sort\": 11, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk4NDlocGltYWdl/e97605dd3096465c_1706x960.jpg\", \"type\": 0}, {\"sort\": 12, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk4NjNocGltYWdl/60676740952b4c10_1706x960.jpg\", \"type\": 0}, {\"sort\": 13, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk4NjRocGltYWdl/8e4a22fff6e949b8_1706x960.jpg\", \"type\": 0}, {\"sort\": 14, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk4NjVocGltYWdl/48d365c889fb4289_1706x960.jpg\", \"type\": 0}, {\"sort\": 15, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk4NjdocGltYWdl/ef9914b9823e42a8_1706x960.jpg\", \"type\": 0}, {\"sort\": 1, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NTk3MzJocGltYWdl/74a897e49b964b5e_1706x960.jpg\", \"type\": 2}], \"hasVideo\": false, \"hasVr\": false, \"hasAIVideoTag\": false, \"hasAIPictureTag\": false, \"rm\": 5, \"buildPin\": 100.85, \"landPin\": 8.33, \"floor\": \"13\", \"publishDaysTag\": null, \"coverTag\": [\"焦點\"], \"metroTag\": [], \"isCollected\": false}, {\"caseSid\": 38011086, \"caseName\": \"🎁中庭花園社區型透天✨有天有地.雙車位\", \"caseUrl\": \"https://buy.houseprice.tw/house/38011086_930688/\", \"district\": \"竹北市\", \"totalPrice\": 2658, \"coverPhoto\": \"https://image.houseprice.tw/p1-hpimage/MTM0NjI4NjRocGltYWdl/9bf495b087364a2e_300x225.jpg\", \"photoList\": [{\"sort\": 2, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NjI4NjVocGltYWdl/da5cec36049e465f_800x600.jpg\", \"type\": 0}, {\"sort\": 3, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NjI4NjZocGltYWdl/f5de3fa135d8419e_800x600.jpg\", \"type\": 0}, {\"sort\": 4, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NjI4NjhocGltYWdl/55968f75e53140b8_300x225.jpg\", \"type\": 0}, {\"sort\": 5, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NjI4NzBocGltYWdl/7061aac6d5014ee7_300x225.jpg\", \"type\": 0}, {\"sort\": 6, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NjI4NzJocGltYWdl/7fc947a1556c491a_300x225.jpg\", \"type\": 0}, {\"sort\": 7, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NjI4NzRocGltYWdl/2b76dbac2d3b493b_300x225.jpg\", \"type\": 0}, {\"sort\": 1, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NjI4NjdocGltYWdl/3abc710e94814b33_800x553.jpg\", \"type\": 1}, {\"sort\": 1, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTM0NjI4NjRocGltYWdl/9bf495b087364a2e_300x225.jpg\", \"type\": 2}], \"hasVideo\": false, \"hasVr\": false, \"hasAIVideoTag\": false, \"hasAIPictureTag\": false, \"rm\": 5, \"buildPin\": 74.88, \"landPin\": 23.12, \"floor\": \"1~4\", \"publishDaysTag\": null, \"coverTag\": [\"焦點\"], \"metroTag\": [], \"isCollected\": false}, {\"caseSid\": 37102805, \"caseName\": \"🎁海山捷運商圈  成熟商圈✨*生活便利一次擁有*\", \"caseUrl\": \"https://buy.houseprice.tw/house/37102805_930688/\", \"district\": \"土城區\", \"totalPrice\": 2100, \"coverPhoto\": \"https://image.houseprice.tw/p1-hpimage/MTIzOTk1MjRocGltYWdl/8cc3ff81601047ed_1824x1376.jpg\", \"photoList\": [{\"sort\": 2, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTIzOTk1MjVocGltYWdl/bf35181262f646ef_1824x1376.jpg\", \"type\": 0}, {\"sort\": 3, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTIzOTk1MjZocGltYWdl/bc0094248a384726_1824x1376.jpg\", \"type\": 0}, {\"sort\": 4, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTIzOTk2MjJocGltYWdl/4c711283283141e3_1824x1376.jpg\", \"type\": 0}, {\"sort\": 5, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTIzOTk2MjNocGltYWdl/6969a08b761a4c72_1824x1376.jpg\", \"type\": 0}, {\"sort\": 6, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTIzOTk2MjRocGltYWdl/4cc4feb90bd24898_1824x1376.jpg\", \"type\": 0}, {\"sort\": 7, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTIzOTk2MjVocGltYWdl/1e3b62e19c9e41ac_1824x1376.jpg\", \"type\": 0}, {\"sort\": 8, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTIzOTk2MjhocGltYWdl/033f897bd786437b_1824x1376.jpg\", \"type\": 0}, {\"sort\": 9, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTIzOTk2MzFocGltYWdl/aa83e303a9dd48e7_1824x1376.jpg\", \"type\": 0}, {\"sort\": 10, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTIzOTk2MzJocGltYWdl/f41978a9b576480d_1824x1376.jpg\", \"type\": 0}, {\"sort\": 11, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTIzOTk2MzNocGltYWdl/bb96fc95d0a9489a_1824x1376.jpg\", \"type\": 0}, {\"sort\": 12, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTIzOTk2NTZocGltYWdl/1779291f2a114ee3_1824x1376.jpg\", \"type\": 0}, {\"sort\": 13, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTIzOTk2NjBocGltYWdl/5f0f4bd362c84309_1920x1440.jpg\", \"type\": 0}, {\"sort\": null, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTIzOTk3OTBocGltYWdl/03e886db07ee4169_800x553.jpg\", \"type\": 1}, {\"sort\": 1, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTIzOTk1MjRocGltYWdl/8cc3ff81601047ed_1824x1376.jpg\", \"type\": 2}], \"hasVideo\": false, \"hasVr\": false, \"hasAIVideoTag\": false, \"hasAIPictureTag\": false, \"rm\": 3, \"buildPin\": 35.71, \"landPin\": 5.73, \"floor\": \"5\", \"publishDaysTag\": null, \"coverTag\": [\"焦點\"], \"metroTag\": [\"捷運海山站\"], \"isCollected\": false}, {\"caseSid\": 33219882, \"caseName\": \"大家門第大三房\", \"caseUrl\": \"https://buy.houseprice.tw/house/33219882_930688/\", \"district\": \"桃園區\", \"totalPrice\": 1148, \"coverPhoto\": \"https://image.houseprice.tw/p1-hpimage/MTI5MzczMjZocGltYWdl/3b38c3cd3d384daf_1889x867.jpg\", \"photoList\": [{\"sort\": 2, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI5MzczMjhocGltYWdl/b0426b83350e4af5_1889x867.jpg\", \"type\": 0}, {\"sort\": 3, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI5MzczNDFocGltYWdl/67cfcdef987f4a67_1887x868.jpg\", \"type\": 0}, {\"sort\": 4, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI5MzczNDJocGltYWdl/6396488baa204aab_1887x868.jpg\", \"type\": 0}, {\"sort\": 5, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI5MzczNTBocGltYWdl/7290b943d03b4cbc_1887x868.jpg\", \"type\": 0}, {\"sort\": 6, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI5MzczNTFocGltYWdl/a8bfd227ac9a47f0_1887x868.jpg\", \"type\": 0}, {\"sort\": 7, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI5MzczNzFocGltYWdl/822ec520598e4d2d_1887x868.jpg\", \"type\": 0}, {\"sort\": 8, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI5MzczNzJocGltYWdl/92404e73dae24603_1889x867.jpg\", \"type\": 0}, {\"sort\": 9, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI5Mzc0MjJocGltYWdl/9a21325351cb443c_1887x868.jpg\", \"type\": 0}, {\"sort\": 1, \"pictureUrl\": \"https://media.cthouse.com.tw/photo/project2/house_photo/202510/2058051-5_new.jpg\", \"type\": 1}, {\"sort\": 1, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI5MzczMjZocGltYWdl/3b38c3cd3d384daf_1889x867.jpg\", \"type\": 2}], \"hasVideo\": false, \"hasVr\": false, \"hasAIVideoTag\": false, \"hasAIPictureTag\": false, \"rm\": 3, \"buildPin\": 37.96, \"landPin\": 7.73, \"floor\": \"6\", \"publishDaysTag\": null, \"coverTag\": [\"\"], \"metroTag\": [\"捷運中正力行站(桃園夜市)(施工中)\", \"捷運中正大興站(施工中)\"], \"isCollected\": false}, {\"caseSid\": 37534368, \"caseName\": \"✨高樓河岸景觀戶♦享受城市河岸景緻.💎雙車位.\", \"caseUrl\": \"https://buy.houseprice.tw/house/37534368_930688/\", \"district\": \"萬華區\", \"totalPrice\": 4988, \"coverPhoto\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc0ODZocGltYWdl/990567d1d41a4fa8_1706x960.jpg\", \"photoList\": [{\"sort\": 2, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc0ODhocGltYWdl/007bc13bd44a4a49_1706x960.jpg\", \"type\": 0}, {\"sort\": 3, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc0OTFocGltYWdl/06666633b9a24054_1706x960.jpg\", \"type\": 0}, {\"sort\": 4, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc0NTJocGltYWdl/bcd604c3234c41c3_1706x960.jpg\", \"type\": 0}, {\"sort\": 5, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc0NzNocGltYWdl/813df67ff24a4303_1706x960.jpg\", \"type\": 0}, {\"sort\": 6, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc0ODBocGltYWdl/4cf46d32bc334aac_1706x960.jpg\", \"type\": 0}, {\"sort\": 7, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc0ODNocGltYWdl/bf58439f3eca43f2_1706x960.jpg\", \"type\": 0}, {\"sort\": 8, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc1MTBocGltYWdl/9de31d2ae8ff495a_1706x960.jpg\", \"type\": 0}, {\"sort\": 9, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc0OTBocGltYWdl/93cf3be4945f4192_1706x960.jpg\", \"type\": 0}, {\"sort\": 10, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc0ODlocGltYWdl/ab4692edc1a947cc_1706x960.jpg\", \"type\": 0}, {\"sort\": 11, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc0ODJocGltYWdl/d30aead2cda44edb_1706x960.jpg\", \"type\": 0}, {\"sort\": 12, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc0NzlocGltYWdl/21307c6a25b84922_1672x941.jpg\", \"type\": 0}, {\"sort\": 13, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc1NDZocGltYWdl/6ddebd2c957f47e5_1706x960.jpg\", \"type\": 0}, {\"sort\": 14, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc1NTdocGltYWdl/20686866b9c64e66_1706x960.jpg\", \"type\": 0}, {\"sort\": 15, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc1NTlocGltYWdl/c8122d87560a4d21_1706x960.jpg\", \"type\": 0}, {\"sort\": 1, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI3Mjc0ODZocGltYWdl/990567d1d41a4fa8_1706x960.jpg\", \"type\": 2}], \"hasVideo\": false, \"hasVr\": false, \"hasAIVideoTag\": false, \"hasAIPictureTag\": false, \"rm\": 5, \"buildPin\": 94.77, \"landPin\": null, \"floor\": \"12\", \"publishDaysTag\": null, \"coverTag\": [\"\"], \"metroTag\": [], \"isCollected\": false}, {\"caseSid\": 37291444, \"caseName\": \"低總價店面好入手🎁 住♦辦♦店♦皆宜\", \"caseUrl\": \"https://buy.houseprice.tw/house/37291444_930688/\", \"district\": \"大同區\", \"totalPrice\": 1398, \"coverPhoto\": \"https://image.houseprice.tw/p1-hpimage/MTI1MzEyOTJocGltYWdl/736af77a9ca443bd_300x138.jpg\", \"photoList\": [{\"sort\": 2, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI1MzEyOTRocGltYWdl/d95b614b9c2b4841_300x138.jpg\", \"type\": 0}, {\"sort\": 3, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI1MzEyOTNocGltYWdl/f65fd6b1eb4249c1_300x138.jpg\", \"type\": 0}, {\"sort\": 4, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI1MzEyOTFocGltYWdl/da5c0be00a3e4081_300x138.jpg\", \"type\": 0}, {\"sort\": 1, \"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI1MzEyOTJocGltYWdl/736af77a9ca443bd_300x138.jpg\", \"type\": 2}], \"hasVideo\": false, \"hasVr\": false, \"hasAIVideoTag\": false, \"hasAIPictureTag\": false, \"rm\": null, \"buildPin\": 16.19, \"landPin\": 3.35, \"floor\": \"1\", \"publishDaysTag\": null, \"coverTag\": [\"\"], \"metroTag\": [\"捷運SB01站(規劃中)\", \"捷運北門站\"], \"isCollected\": false}], \"recommend_list\": [{\"caseSid\": 36564894, \"caseName\": \"江子翠~立川琚重劃區3房+坡平車位~\", \"caseUrl\": \"https://buy.houseprice.tw/house/36564894_310574/\", \"district\": \"板橋區\", \"totalPrice\": 3511, \"coverPhoto\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NDhocGltYWdl/bd64360a0f234422_1024x768.jpg\", \"photoList\": [{\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NDZocGltYWdl/971cc1c3c90c4dfa_1024x768.jpg\", \"sort\": 2, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NDdocGltYWdl/20986170747f4960_1024x768.jpg\", \"sort\": 3, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NTBocGltYWdl/9bca5c79f7ad4665_1024x768.jpg\", \"sort\": 4, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NTFocGltYWdl/61af22282fdd45c5_1024x768.jpg\", \"sort\": 5, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NTRocGltYWdl/2e86870904e64c3e_1024x768.jpg\", \"sort\": 6, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NTJocGltYWdl/143aa5eebfd741db_576x768.jpg\", \"sort\": 7, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NTVocGltYWdl/49c8d38287644ccd_1024x768.jpg\", \"sort\": 8, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NTNocGltYWdl/816fb25a7c704eb9_576x768.jpg\", \"sort\": 9, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NTZocGltYWdl/c526c36b058a4cd3_576x768.jpg\", \"sort\": 10, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NTdocGltYWdl/25572222ab984880_576x768.jpg\", \"sort\": 11, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NThocGltYWdl/341900895f4843f8_1024x768.jpg\", \"sort\": 12, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NjBocGltYWdl/f5c9934fa9974e1e_1024x768.jpg\", \"sort\": 13, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NTlocGltYWdl/9c93173586f4498d_1024x768.jpg\", \"sort\": 14, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NjFocGltYWdl/5cc608f2d88e44d7_1024x768.jpg\", \"sort\": 15, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NjJocGltYWdl/6f696861d3e648cc_742x553.jpg\", \"sort\": 16, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NDlocGltYWdl/49f524c999dc42ad_1024x768.jpg\", \"sort\": 17, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTAwOTI5NDhocGltYWdl/bd64360a0f234422_1024x768.jpg\", \"sort\": 1, \"type\": 2}], \"hasVideo\": false, \"hasVr\": false, \"rm\": 3, \"buildPin\": 50.95, \"floor\": \"3\", \"publishDaysTag\": \"今天新上架\", \"coverTag\": [\"關注焦點\"], \"metroTag\": [], \"isCollected\": false}, {\"caseSid\": 36564806, \"caseName\": \"江子翠~立川琚面河景3房+坡平車位~\", \"caseUrl\": \"https://buy.houseprice.tw/house/36564806_310574/\", \"district\": \"板橋區\", \"totalPrice\": 3422, \"coverPhoto\": \"https://image.houseprice.tw/p1-hpimage/OTk1Nzg5OGhwaW1hZ2U,/f70b9469b2184232_1024x768.jpg\", \"photoList\": [{\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkxNGhwaW1hZ2U,/b34694a581314100_1024x768.jpg\", \"sort\": 2, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkwMWhwaW1hZ2U,/37c5b31f81dc44a5_1024x768.jpg\", \"sort\": 3, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkxM2hwaW1hZ2U,/47a98b696af74d8c_1024x768.jpg\", \"sort\": 4, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkwMmhwaW1hZ2U,/fb306fa1d2be457b_1024x768.jpg\", \"sort\": 5, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkxOWhwaW1hZ2U,/d171e9ee6b954e64_1024x768.jpg\", \"sort\": 6, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkxOGhwaW1hZ2U,/52eb259e354844fe_1024x768.jpg\", \"sort\": 7, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkxN2hwaW1hZ2U,/cdaf0285a14a49f3_1024x768.jpg\", \"sort\": 8, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkyMGhwaW1hZ2U,/40ae1906d8d24514_1024x768.jpg\", \"sort\": 9, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkyMWhwaW1hZ2U,/b9e8556fd3e844f3_1024x768.jpg\", \"sort\": 10, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkyNmhwaW1hZ2U,/fe973b88a74e4fa1_1024x768.jpg\", \"sort\": 11, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkyNGhwaW1hZ2U,/408865a390b84bdf_1024x768.jpg\", \"sort\": 12, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkyM2hwaW1hZ2U,/a75c92d74cfa446e_1024x768.jpg\", \"sort\": 13, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkyN2hwaW1hZ2U,/a64b98a6e0ee4b77_1024x768.jpg\", \"sort\": 14, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkyNWhwaW1hZ2U,/14ddfe22a6854c0e_1024x768.jpg\", \"sort\": 15, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkyOGhwaW1hZ2U,/9aa323fe308144ec_1024x768.jpg\", \"sort\": 16, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkzMWhwaW1hZ2U,/e89ca445a73a4630_670x553.jpg\", \"sort\": 17, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1NzkwMGhwaW1hZ2U,/088e00f5dcc741c6_1024x768.jpg\", \"sort\": 18, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTE2NDUxMzlocGltYWdl/df882936b3d7468c_1024x768.jpg\", \"sort\": 19, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/OTk1Nzg5OGhwaW1hZ2U,/f70b9469b2184232_1024x768.jpg\", \"sort\": 1, \"type\": 2}], \"hasVideo\": false, \"hasVr\": false, \"rm\": 3, \"buildPin\": 49.78, \"floor\": \"3\", \"publishDaysTag\": \"今天新上架\", \"coverTag\": [\"關注焦點\"], \"metroTag\": [], \"isCollected\": false}, {\"caseSid\": 31749160, \"caseName\": \"大搶手👍板橋低總價邊間美妝3房近環球百貨中心\", \"caseUrl\": \"https://buy.houseprice.tw/house/31749160_494681/\", \"district\": \"板橋區\", \"totalPrice\": 1488, \"coverPhoto\": \"https://img.hbhousing.com.tw/pictures/A218%2fA218WS67064a.jpg?1766551023\", \"photoList\": [{\"pictureUrl\": \"https://img.hbhousing.com.tw/pictures/A218%2fA218WS67064e.jpg?1766551023\", \"sort\": 2, \"type\": 0}, {\"pictureUrl\": \"https://img.hbhousing.com.tw/pictures/A218%2fA218WS67064o.jpg?1766551023\", \"sort\": 3, \"type\": 0}, {\"pictureUrl\": \"https://img.hbhousing.com.tw/pictures/A218%2fA218WS67064f.jpg?1766551023\", \"sort\": 4, \"type\": 0}, {\"pictureUrl\": \"https://img.hbhousing.com.tw/pictures/A218%2fA218WS67064g.jpg?1766551023\", \"sort\": 5, \"type\": 0}, {\"pictureUrl\": \"https://img.hbhousing.com.tw/pictures/A218%2fA218WS67064h.jpg?1766551023\", \"sort\": 6, \"type\": 0}, {\"pictureUrl\": \"https://img.hbhousing.com.tw/pictures/A218%2fA218WS67064j.jpg?1766551023\", \"sort\": 7, \"type\": 0}, {\"pictureUrl\": \"https://img.hbhousing.com.tw/pictures/A218%2fA218WS67064l.jpg?1766551023\", \"sort\": 8, \"type\": 0}, {\"pictureUrl\": \"https://img.hbhousing.com.tw/pictures/A218%2fA218WS67064m.jpg?1766551023\", \"sort\": 9, \"type\": 0}, {\"pictureUrl\": \"https://img.hbhousing.com.tw/pictures/A218%2fA218WS67064k.jpg?1766551023\", \"sort\": 10, \"type\": 0}, {\"pictureUrl\": \"https://img.hbhousing.com.tw/pictures/A218%2fA218WS67064d.jpg?1766551023\", \"sort\": 11, \"type\": 0}, {\"pictureUrl\": \"https://img.hbhousing.com.tw/pictures/A218%2fA218WS67064n.jpg?1766551023\", \"sort\": 12, \"type\": 0}, {\"pictureUrl\": \"https://img.hbhousing.com.tw/pictures/A218%2fA218WS67064b.jpg?1766551023\", \"sort\": 9999, \"type\": 1}, {\"pictureUrl\": \"https://img.hbhousing.com.tw/pictures/A218%2fA218WS67064a.jpg?1766551023\", \"sort\": 1, \"type\": 2}], \"hasVideo\": false, \"hasVr\": false, \"rm\": 3, \"buildPin\": 26.84, \"floor\": \"3\", \"publishDaysTag\": \"\", \"coverTag\": [\"關注焦點\"], \"metroTag\": [], \"isCollected\": false}, {\"caseSid\": 37320231, \"caseName\": \"板橋店住\", \"caseUrl\": \"https://buy.houseprice.tw/house/37320231_1401939/\", \"district\": \"板橋區\", \"totalPrice\": 2280, \"coverPhoto\": \"https://yccdn.yungching.com.tw/v1/image/?key=NF58Ko5oaCu3k7T8cQps_mDhBTq647cny7h8eFEKty5juDOg2KvwxGRE_L406WTIqVhtUUJ4lA_cF1mBh5MY1RWd5eEaa7mn9qxu8f6s-rs3QB1qzhlP20dQWbTXPeiPJpfT6ht43JBkfHZIEYYrhmRa7xD8tkkGWDypSMYaotadfCdPPdyK19FSCfYimac0JwLV9dFNdB42TOcpRZzC2FALbPXRd5sFG9a01IDS5Lr9CQta-cPrPAM9mbMrNw2FpMBpPJjHPqFUlRzOpEBxhdrN1oYcHVt7&width=1024&height=768\", \"photoList\": [{\"pictureUrl\": \"https://yccdn.yungching.com.tw/v1/image/?key=NF58Ko5oaCt7ScSgKfaYtz83dAfQ6xP0ex0zNnynXjl34qwdZQLeUwggldoEWb-oqVhtUUJ4lA_cF1mBh5MY1RWd5eEaa7mn9qxu8f6s-rs3QB1qzhlP20dQWbTXPeiPJpfT6ht43JBkfHZIEYYrhmRa7xD8tkkGWDypSMYaotadfCdPPdyK19FSCfYimac0JwLV9dFNdB42TOcpRZzC2FALbPXRd5sFG9a01IDS5Lr9CQta-cPrPAM9mbMrNw2FpMBpPJjHPqFUlRzOpEBxhdrN1oYcHVt7&width=1024&height=768\", \"sort\": 2, \"type\": 0}, {\"pictureUrl\": \"https://yccdn.yungching.com.tw/v1/image/?key=NF58Ko5oaCvDecEzx7TutX0qsdqVl92usT33ocZBjMa0jwmoZt9Ic1M0yLAriBx9qVhtUUJ4lA_cF1mBh5MY1RWd5eEaa7mn9qxu8f6s-rs3QB1qzhlP20dQWbTXPeiPJpfT6ht43JBkfHZIEYYrhmRa7xD8tkkGWDypSMYaotadfCdPPdyK19FSCfYimac0JwLV9dFNdB42TOcpRZzC2FALbPXRd5sFG9a01IDS5Lr9CQta-cPrPAM9mbMrNw2FpMBpPJjHPqFUlRzOpEBxhdrN1oYcHVt7&width=1024&height=768\", \"sort\": 3, \"type\": 0}, {\"pictureUrl\": \"https://yccdn.yungching.com.tw/v1/image/?key=NF58Ko5oaCt7xwWY30NcTfVNcrHY2CKt4AtvXytB1KnLqYI8AVZXmNkhB2diWkV4qVhtUUJ4lA_cF1mBh5MY1RWd5eEaa7mn9qxu8f6s-rs3QB1qzhlP20dQWbTXPeiPJpfT6ht43JBkfHZIEYYrhmRa7xD8tkkGWDypSMYaotadfCdPPdyK19FSCfYimac0JwLV9dFNdB42TOcpRZzC2FALbPXRd5sFG9a01IDS5Lr9CQta-cPrPAM9mbMrNw2FpMBpPJjHPqFUlRzOpEBxhdrN1oYcHVt7&width=1024&height=768\", \"sort\": 4, \"type\": 0}, {\"pictureUrl\": \"https://yccdn.yungching.com.tw/v1/image/?key=NF58Ko5oaCuLJiEmnNAdhgryaxRcJGWMmErKnLSr7SCkFOamN7odHkY_14Iv2RjgqVhtUUJ4lA_cF1mBh5MY1RWd5eEaa7mn9qxu8f6s-rs3QB1qzhlP20dQWbTXPeiPJpfT6ht43JBkfHZIEYYrhmRa7xD8tkkGWDypSMYaotadfCdPPdyK19FSCfYimac0JwLV9dFNdB42TOcpRZzC2FALbPXRd5sFG9a01IDS5Lr9CQta-cPrPAM9mbMrNw2FpMBpPJjHPqFUlRzOpEBxhdrN1oYcHVt7&width=1024&height=768\", \"sort\": 5, \"type\": 0}, {\"pictureUrl\": \"https://yccdn.yungching.com.tw/v1/image/?key=NF58Ko5oaCvEWgEnmljqfNjE_EXccJHL4lcXF07Y3cEXpbRkLF6ZU-qE34zfYKorqVhtUUJ4lA_cF1mBh5MY1RWd5eEaa7mn9qxu8f6s-rs3QB1qzhlP20dQWbTXPeiPJpfT6ht43JBkfHZIEYYrhmRa7xD8tkkGWDypSMYaotadfCdPPdyK19FSCfYimac0JwLV9dFNdB42TOcpRZzC2FALbPXRd5sFG9a01IDS5Lr9CQta-cPrPAM9mbMrNw2FpMBpPJjHPqFUlRzOpEBxhdrN1oYcHVt7&width=1024&height=768\", \"sort\": 6, \"type\": 0}, {\"pictureUrl\": \"https://yccdn.yungching.com.tw/v1/image/?key=NF58Ko5oaCtq542OITGvEn0SlLMzlDpbM44MMTlTL9OG_jP50oksFzmd4sQZnlUyqVhtUUJ4lA_cF1mBh5MY1RWd5eEaa7mn9qxu8f6s-rs3QB1qzhlP20dQWbTXPeiPJpfT6ht43JBkfHZIEYYrhmRa7xD8tkkGWDypSMYaotadfCdPPdyK19FSCfYimac0JwLV9dFNdB42TOcpRZzC2FALbPXRd5sFG9a01IDS5Lr9CQta-cPrPAM9mbMrNw2FpMBpPJjHPqFUlRzOpEBxhdrN1oYcHVt7&width=1024&height=768\", \"sort\": 7, \"type\": 0}, {\"pictureUrl\": \"https://yccdn.yungching.com.tw/v1/image/?key=NF58Ko5oaCuF5iebvb5Upc3ztMVZKKzLnxi0KVzbeb9d9f1PET2PlAHqgaXldgzrqVhtUUJ4lA_cF1mBh5MY1RWd5eEaa7mn9qxu8f6s-rs3QB1qzhlP20dQWbTXPeiPJpfT6ht43JBkfHZIEYYrhmRa7xD8tkkGWDypSMYaotadfCdPPdyK19FSCfYimac0JwLV9dFNdB42TOcpRZzC2FALbPXRd5sFG9a01IDS5Lr9CQta-cPrPAM9mbMrNw2FpMBpPJjHPqFUlRzOpEBxhdrN1oYcHVt7&width=1024&height=768\", \"sort\": 8, \"type\": 0}, {\"pictureUrl\": \"https://yccdn.yungching.com.tw/v1/image/?key=NF58Ko5oaCvU6MhyMR0cX7z6b_E1lbP04XaW07ddp0naV02E6FSpFQ8nzqin16f5qVhtUUJ4lA_cF1mBh5MY1RWd5eEaa7mn9qxu8f6s-rs3QB1qzhlP20dQWbTXPeiPJpfT6ht43JBkfHZIEYYrhmRa7xD8tkkGWDypSMYaotadfCdPPdyK19FSCfYimac0JwLV9dFNdB42TOcpRZzC2FALbPXRd5sFG9a01IDS5Lr9CQta-cPrPAM9mbMrNw2FpMBpPJjHPqFUlRzOpEBxhdrN1oYcHVt7&width=1024&height=768\", \"sort\": 9, \"type\": 0}, {\"pictureUrl\": \"https://yccdn.yungching.com.tw/v1/image/?key=NF58Ko5oaCv36EH2u19D52vbB83imVU7srvEXTPHPfUvW8xe4HjcgxpNQJOWZz9pqVhtUUJ4lA_cF1mBh5MY1RWd5eEaa7mn9qxu8f6s-rs3QB1qzhlP20dQWbTXPeiPJpfT6ht43JBkfHZIEYYrhmRa7xD8tkkGWDypSMYaotadfCdPPdyK19FSCfYimac0JwLV9dFNdB42TOcpRZzC2FALbPXRd5sFG9a01IDS5Lr9CQta-cPrPAM9mbMrNw2FpMBpPJjHPqFUlRzOpEBxhdrN1oYcHVt7&width=1024&height=768\", \"sort\": 10, \"type\": 0}, {\"pictureUrl\": \"https://yccdn.yungching.com.tw/v1/image/?key=NF58Ko5oaCse_tIYnozNoVxv2uPGfICb58WxDn_NxB2qJIBLs7OqEPW-I14CvMm6qVhtUUJ4lA_cF1mBh5MY1RWd5eEaa7mn9qxu8f6s-rs3QB1qzhlP20dQWbTXPeiPJpfT6ht43JBkfHZIEYYrhmRa7xD8tkkGWDypSMYaotadfCdPPdyK19FSCfYimac0JwLV9dFNdB42TOcpRZzC2FALbPXRd5sFG9a01IDS5Lr9CQta-cPrPAM9mbMrNw2FpMBpPJjHPqFUlRzOpEBxhdrN1oYcHVt7&width=1024&height=768\", \"sort\": 11, \"type\": 0}, {\"pictureUrl\": \"https://image.houseprice.tw/p1-hpimage/MTI1NTY0MTdocGltYWdl/759ec9abcdc445e1_1116x805.png\", \"sort\": 9999, \"type\": 1}, {\"pictureUrl\": \"https://yccdn.yungching.com.tw/v1/image/?key=NF58Ko5oaCu3k7T8cQps_mDhBTq647cny7h8eFEKty5juDOg2KvwxGRE_L406WTIqVhtUUJ4lA_cF1mBh5MY1RWd5eEaa7mn9qxu8f6s-rs3QB1qzhlP20dQWbTXPeiPJpfT6ht43JBkfHZIEYYrhmRa7xD8tkkGWDypSMYaotadfCdPPdyK19FSCfYimac0JwLV9dFNdB42TOcpRZzC2FALbPXRd5sFG9a01IDS5Lr9CQta-cPrPAM9mbMrNw2FpMBpPJjHPqFUlRzOpEBxhdrN1oYcHVt7&width=1024&height=768\", \"sort\": 1, \"type\": 2}], \"hasVideo\": false, \"hasVr\": false, \"rm\": 3, \"buildPin\": 23.98, \"floor\": \"1\", \"publishDaysTag\": \"\", \"coverTag\": [\"關注焦點\"], \"metroTag\": [\"捷運新埔站\", \"捷運板橋站\", \"捷運板新站\"], \"isCollected\": false}, {\"caseSid\": 37956350, \"caseName\": \"青茵悅電梯3房車\", \"caseUrl\": \"https://buy.houseprice.tw/house/37956350_2611499/\", \"district\": \"板橋區\", \"totalPrice\": 2250, \"coverPhoto\": \"https://img.twhg.com.tw/admin/images/OB01/TFS6/TF0251357114389396966a69748fee770.jpg\", \"photoList\": [{\"pictureUrl\": \"https://img.twhg.com.tw/admin/images/OB01/TFS6/TF02513571"
+    },
+    {
+      "label": "WebCaseRealtor-group",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/28718235/WebCaseRealtor",
+      "status": 404,
+      "contentType": null,
+      "body": ""
+    },
+    {
+      "label": "WebCaseRealtor-case",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/33221169/WebCaseRealtor",
+      "status": 404,
+      "contentType": null,
+      "body": ""
+    },
+    {
+      "label": "SaleRecord-group",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/28718235/SaleRecord",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "jsonType": "dict",
+      "jsonKeys": [
+        "code",
+        "message",
+        "data"
+      ],
+      "interesting": [
+        {
+          "path": "data.data.deal_list[0].dealSid",
+          "value": 10722649
+        },
+        {
+          "path": "data.data.deal_list[0].historyCount",
+          "value": 2
+        },
+        {
+          "path": "data.data.deal_list[1].dealSid",
+          "value": 10192258
+        },
+        {
+          "path": "data.data.deal_list[1].historyCount",
+          "value": 1
+        },
+        {
+          "path": "data.data.realtor[0].adaptedWebCaseSid",
+          "value": 33221169
+        },
+        {
+          "path": "data.data.realtor[0].webCaseIdx",
+          "value": null
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].sid",
+          "value": 29014697
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].groupId",
+          "value": "350027b6-5296-47aa-a1a4-a3f9965def65"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].caseName",
+          "value": " 『永慶裕龍』麗池經典二房"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].city",
+          "value": "新北市"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].district",
+          "value": "板橋區"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].road",
+          "value": "金門街"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].totalPrice",
+          "value": 1338
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].buildPin",
+          "value": 24.09
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].landPin",
+          "value": 3.71
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].room",
+          "value": 2
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].buildAge",
+          "value": 21.4
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].pageViewCount",
+          "value": 40
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].caseUrl",
+          "value": "https://buy.houseprice.tw/house/32458396_873246"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].coverPicture",
+          "value": "https://image.houseprice.tw/p1-hpimage/MTEyNDgyMDFocGltYWdl/302b5bb7347542a1_1920x1440.jpg"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].communityName",
+          "value": "麗池經典"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].purposeName",
+          "value": "住宅"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].caseType",
+          "value": "大樓"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].parkingLotType",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].sid",
+          "value": 19375116
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].groupId",
+          "value": "b92816cc-769a-4e5c-9e83-5cb56d90f8aa"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].caseName",
+          "value": "(117)府中捷運電梯邊間三房"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].city",
+          "value": "新北市"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].district",
+          "value": "板橋區"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].road",
+          "value": "南雅南路一段"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].totalPrice",
+          "value": 1450
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].buildPin",
+          "value": 29.68
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].landPin",
+          "value": 3.36
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].room",
+          "value": 3
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].buildAge",
+          "value": 26.4
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].pageViewCount",
+          "value": 32
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].caseUrl",
+          "value": "https://buy.houseprice.tw/house/35883323_288772"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].coverPicture",
+          "value": "https://image.houseprice.tw/p1-hpimage/MTE5MTM2NjlocGltYWdl/0dc6aa75cd0f4c46_1477x1108.jpg"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].communityName",
+          "value": "南雅尊邸"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].purposeName",
+          "value": "住宅"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].caseType",
+          "value": "大樓"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].parkingLotType",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].sid",
+          "value": 28780655
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].groupId",
+          "value": "f03355a6-1cd1-4413-94ec-9b2f22c68a26"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].caseName",
+          "value": "018BH裕民街3樓3房美美屋,新埔.新埔民生捷運"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].city",
+          "value": "新北市"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].district",
+          "value": "板橋區"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].road",
+          "value": "裕民街"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].totalPrice",
+          "value": 1298
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].buildPin",
+          "value": 19.54
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].landPin",
+          "value": 4.99
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].room",
+          "value": 3
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].buildAge",
+          "value": 49.4
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].pageViewCount",
+          "value": 28
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].caseUrl",
+          "value": "https://buy.houseprice.tw/house/35484078_644501"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].coverPicture",
+          "value": "https://img.hbhousing.com.tw/pictures/A264%2fA264TS145138a.jpg?1779333996"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].communityName",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].purposeName",
+          "value": "住宅"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].caseType",
+          "value": "公寓"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].parkingLotType",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].sid",
+          "value": 29265845
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].groupId",
+          "value": "2a89d899-bb07-4299-bc6d-f085ca01763a"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].caseName",
+          "value": "專任約🔥面公園樹海🔥🔥金門街華廈三房"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].city",
+          "value": "新北市"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].district",
+          "value": "板橋區"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].road",
+          "value": "金門街"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].totalPrice",
+          "value": 1498
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].buildPin",
+          "value": 29.4
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].landPin",
+          "value": null
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].room",
+          "value": 3
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].buildAge",
+          "value": 29.0
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].pageViewCount",
+          "value": 27
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].caseUrl",
+          "value": "https://buy.houseprice.tw/house/33508995_319649"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].coverPicture",
+          "value": "https://image.houseprice.tw/p1-hpimage/MTE3ODMyNTFocGltYWdl/b773cfa4cb234b32_1192x892.jpg"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].communityName",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].purposeName",
+          "value": "住宅"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].caseType",
+          "value": "華廈"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].parkingLotType",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].sid",
+          "value": 27396274
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].groupId",
+          "value": "15882f3a-688b-4272-ac5a-d77a873bc0b4"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].caseName",
+          "value": "溪州國小麒麟天地次頂邊間方正三房 (板橋區金門街)"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].city",
+          "value": "新北市"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].district",
+          "value": "板橋區"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].road",
+          "value": "金門街"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].totalPrice",
+          "value": 1488
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].buildPin",
+          "value": 33.51
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].landPin",
+          "value": 5.1
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].room",
+          "value": 3
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].buildAge",
+          "value": 31.3
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].pageViewCount",
+          "value": 25
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].caseUrl",
+          "value": "https://buy.houseprice.tw/house/32323162_296615"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].coverPicture",
+          "value": "https://image.houseprice.tw/p1-hpimage/OTAxOTkzM2hwaW1hZ2U,/5d7402e8183047f9_1477x1108.jpg"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].communityName",
+          "value": "麒麟天地"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].purposeName",
+          "value": "住宅"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].caseType",
+          "value": "大樓"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].parkingLotType",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].sid",
+          "value": 24956350
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].groupId",
+          "value": "02531ea3-a4f0-4327-a94a-b4e5d69a1baf"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].caseName",
+          "value": "新埔首購邊間小資美寓/住商符店長"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].city",
+          "value": "新北市"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].district",
+          "value": "板橋區"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].road",
+          "value": "縣民大道三段"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].totalPrice",
+          "value": 1298
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].buildPin",
+          "value": 24.27
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].landPin",
+          "value": 7.1
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].room",
+          "value": 3
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].buildAge",
+          "value": 43.7
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].pageViewCount",
+          "value": 20
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].caseUrl",
+          "value": "https://buy.houseprice.tw/house/20747345_1745359"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].coverPicture",
+          "value": "https://image.houseprice.tw/p1-hpimage/NTI2NzMzNWhwaW1hZ2U,/1308f3f8b2504d50_1024x768.jpg"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].communityName",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].purposeName",
+          "value": "住宅"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].caseType",
+          "value": "公寓"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].parkingLotType",
+          "value": ""
+        },
+        {
+          "path": "data.data.webCaseInfo.city",
+          "value": "新北市"
+        },
+        {
+          "path": "data.data.webCaseInfo.district",
+          "value": "板橋區"
+        },
+        {
+          "path": "data.data.webCaseInfo.caseType",
+          "value": "公寓"
+        },
+        {
+          "path": "data.data.webCaseInfo.purposeName",
+          "value": "住宅"
+        },
+        {
+          "path": "data.data.webCaseInfo.totalPrice",
+          "value": 1580
+        },
+        {
+          "path": "data.data.webCaseInfo.groupId",
+          "value": "f29f31ed-2cda-4924-913a-21f5162ce95d"
+        },
+        {
+          "path": "data.data.webCaseInfo.memberSeqNo",
+          "value": null
+        },
+        {
+          "path": "data.data.webCaseInfo.road",
+          "value": "中山路二段"
+        },
+        {
+          "path": "data.data.webCaseInfo.communityGroupId",
+          "value": "00000000-0000-0000-0000-000000000000"
+        },
+        {
+          "path": "data.data.webCaseInfo.buildPin",
+          "value": 35.68
+        },
+        {
+          "path": "data.data.webCaseInfo.landPin",
+          "value": 9.74
+        },
+        {
+          "path": "data.data.webCaseInfo.buildAge",
+          "value": 37.0
+        }
+      ],
+      "body": "{\"code\": 200, \"message\": \"Success\", \"data\": {\"deal_list\": [{\"dealSid\": 10722649, \"similarFlagValue\": 30, \"dealYear\": 115, \"dealMonth\": 4, \"caseType\": \"華廈\", \"city\": \"新北市\", \"district\": \"板橋區\", \"address\": \"板橋區中山路二段62號6樓之5\", \"historyCount\": 2, \"totalPrice\": 1700, \"totalCarPrice\": \"\", \"unitPrice\": 52.1, \"unitCarPrice\": \"\", \"parkKind\": \"\", \"buCarPing\": null, \"buildPin\": 32.65, \"landPin\": 5.54, \"floor\": \"6\", \"upFloor\": 10, \"room\": 0, \"livingRoom\": 0, \"bathRoom\": 0, \"buildAge\": \"36.9年\", \"note\": \"\", \"similarFlagSet\": [\"同路段\", \"相似坪數\", \"相似屋齡\"], \"communityId\": 25492, \"communityName\": \"統領新都\"}, {\"dealSid\": 10192258, \"similarFlagValue\": 30, \"dealYear\": 114, \"dealMonth\": 5, \"caseType\": \"華廈\", \"city\": \"新北市\", \"district\": \"板橋區\", \"address\": \"板橋區中山路二段443巷70號3樓\", \"historyCount\": 1, \"totalPrice\": 1700, \"totalCarPrice\": \"\", \"unitPrice\": 51.1, \"unitCarPrice\": \"\", \"parkKind\": \"\", \"buCarPing\": null, \"buildPin\": 33.29, \"landPin\": 5.78, \"floor\": \"3\", \"upFloor\": 7, \"room\": 3, \"livingRoom\": 2, \"bathRoom\": 2, \"buildAge\": \"36.5年\", \"note\": \"其他增建；\", \"similarFlagSet\": [\"同路段\", \"相似坪數\", \"相似屋齡\"], \"communityId\": 0, \"communityName\": \"\"}], \"maxDealPrice\": 1700, \"minDealPrice\": 1238, \"resultCount\": 3, \"realtor\": [{\"avatar\": null, \"contactName\": \"鄭秋足\", \"contactPhone\": \"0915812335\", \"brand\": \"中信房屋\", \"store\": \"板橋江子翠捷運三店加盟店\", \"memberId\": \"99b0864f-d0da-4d8a-b4fc-ae24fe5eb1ec\", \"adaptedWebCaseSid\": 33221169, \"phone\": \"0915812335\", \"webCaseIdx\": null, \"company\": \"承品不動產經紀有限公司\"}], \"similarWebCaseList\": [{\"sid\": 29014697, \"groupId\": \"350027b6-5296-47aa-a1a4-a3f9965def65\", \"caseName\": \" 『永慶裕龍』麗池經典二房\", \"city\": \"新北市\", \"district\": \"板橋區\", \"road\": \"金門街\", \"totalPrice\": 1338, \"buildPin\": 24.09, \"landPin\": 3.71, \"room\": 2, \"buildAge\": 21.4, \"pageViewCount\": 40, \"caseUrl\": \"https://buy.houseprice.tw/house/32458396_873246\", \"coverPicture\": \"https://image.houseprice.tw/p1-hpimage/MTEyNDgyMDFocGltYWdl/302b5bb7347542a1_1920x1440.jpg\", \"communityName\": \"麗池經典\", \"purposeName\": \"住宅\", \"caseType\": \"大樓\", \"parkingLotType\": \"\"}, {\"sid\": 19375116, \"groupId\": \"b92816cc-769a-4e5c-9e83-5cb56d90f8aa\", \"caseName\": \"(117)府中捷運電梯邊間三房\", \"city\": \"新北市\", \"district\": \"板橋區\", \"road\": \"南雅南路一段\", \"totalPrice\": 1450, \"buildPin\": 29.68, \"landPin\": 3.36, \"room\": 3, \"buildAge\": 26.4, \"pageViewCount\": 32, \"caseUrl\": \"https://buy.houseprice.tw/house/35883323_288772\", \"coverPicture\": \"https://image.houseprice.tw/p1-hpimage/MTE5MTM2NjlocGltYWdl/0dc6aa75cd0f4c46_1477x1108.jpg\", \"communityName\": \"南雅尊邸\", \"purposeName\": \"住宅\", \"caseType\": \"大樓\", \"parkingLotType\": \"\"}, {\"sid\": 28780655, \"groupId\": \"f03355a6-1cd1-4413-94ec-9b2f22c68a26\", \"caseName\": \"018BH裕民街3樓3房美美屋,新埔.新埔民生捷運\", \"city\": \"新北市\", \"district\": \"板橋區\", \"road\": \"裕民街\", \"totalPrice\": 1298, \"buildPin\": 19.54, \"landPin\": 4.99, \"room\": 3, \"buildAge\": 49.4, \"pageViewCount\": 28, \"caseUrl\": \"https://buy.houseprice.tw/house/35484078_644501\", \"coverPicture\": \"https://img.hbhousing.com.tw/pictures/A264%2fA264TS145138a.jpg?1779333996\", \"communityName\": \"\", \"purposeName\": \"住宅\", \"caseType\": \"公寓\", \"parkingLotType\": \"\"}, {\"sid\": 29265845, \"groupId\": \"2a89d899-bb07-4299-bc6d-f085ca01763a\", \"caseName\": \"專任約🔥面公園樹海🔥🔥金門街華廈三房\", \"city\": \"新北市\", \"district\": \"板橋區\", \"road\": \"金門街\", \"totalPrice\": 1498, \"buildPin\": 29.4, \"landPin\": null, \"room\": 3, \"buildAge\": 29.0, \"pageViewCount\": 27, \"caseUrl\": \"https://buy.houseprice.tw/house/33508995_319649\", \"coverPicture\": \"https://image.houseprice.tw/p1-hpimage/MTE3ODMyNTFocGltYWdl/b773cfa4cb234b32_1192x892.jpg\", \"communityName\": \"\", \"purposeName\": \"住宅\", \"caseType\": \"華廈\", \"parkingLotType\": \"\"}, {\"sid\": 27396274, \"groupId\": \"15882f3a-688b-4272-ac5a-d77a873bc0b4\", \"caseName\": \"溪州國小麒麟天地次頂邊間方正三房 (板橋區金門街)\", \"city\": \"新北市\", \"district\": \"板橋區\", \"road\": \"金門街\", \"totalPrice\": 1488, \"buildPin\": 33.51, \"landPin\": 5.1, \"room\": 3, \"buildAge\": 31.3, \"pageViewCount\": 25, \"caseUrl\": \"https://buy.houseprice.tw/house/32323162_296615\", \"coverPicture\": \"https://image.houseprice.tw/p1-hpimage/OTAxOTkzM2hwaW1hZ2U,/5d7402e8183047f9_1477x1108.jpg\", \"communityName\": \"麒麟天地\", \"purposeName\": \"住宅\", \"caseType\": \"大樓\", \"parkingLotType\": \"\"}, {\"sid\": 24956350, \"groupId\": \"02531ea3-a4f0-4327-a94a-b4e5d69a1baf\", \"caseName\": \"新埔首購邊間小資美寓/住商符店長\", \"city\": \"新北市\", \"district\": \"板橋區\", \"road\": \"縣民大道三段\", \"totalPrice\": 1298, \"buildPin\": 24.27, \"landPin\": 7.1, \"room\": 3, \"buildAge\": 43.7, \"pageViewCount\": 20, \"caseUrl\": \"https://buy.houseprice.tw/house/20747345_1745359\", \"coverPicture\": \"https://image.houseprice.tw/p1-hpimage/NTI2NzMzNWhwaW1hZ2U,/1308f3f8b2504d50_1024x768.jpg\", \"communityName\": \"\", \"purposeName\": \"住宅\", \"caseType\": \"公寓\", \"parkingLotType\": \"\"}], \"webCaseInfo\": {\"city\": \"新北市\", \"district\": \"板橋區\", \"caseType\": \"公寓\", \"purposeName\": \"住宅\", \"totalPrice\": 1580, \"groupId\": \"f29f31ed-2cda-4924-913a-21f5162ce95d\", \"memberSeqNo\": null, \"road\": \"中山路二段\", \"communityGroupId\": \"00000000-0000-0000-0000-000000000000\", \"buildPin\": 35.68, \"landPin\": 9.74, \"buildAge\": 37.0}}}"
+    },
+    {
+      "label": "SaleRecord-case",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/33221169/SaleRecord",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "jsonType": "dict",
+      "jsonKeys": [
+        "code",
+        "message",
+        "data"
+      ],
+      "interesting": [],
+      "body": "{\"code\": 200, \"message\": \"Success\", \"data\": null}"
+    },
+    {
+      "label": "SurroundingRoad-group",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/28718235/SurroundingRoad",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "jsonType": "dict",
+      "jsonKeys": [
+        "code",
+        "message",
+        "data"
+      ],
+      "interesting": [
+        {
+          "path": "data.data.realtor[0].adaptedWebCaseSid",
+          "value": 33221169
+        },
+        {
+          "path": "data.data.realtor[0].webCaseIdx",
+          "value": null
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].sid",
+          "value": 29014697
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].groupId",
+          "value": "350027b6-5296-47aa-a1a4-a3f9965def65"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].caseName",
+          "value": " 『永慶裕龍』麗池經典二房"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].city",
+          "value": "新北市"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].district",
+          "value": "板橋區"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].road",
+          "value": "金門街"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].totalPrice",
+          "value": 1338
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].buildPin",
+          "value": 24.09
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].landPin",
+          "value": 3.71
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].room",
+          "value": 2
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].buildAge",
+          "value": 21.4
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].pageViewCount",
+          "value": 40
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].caseUrl",
+          "value": "https://buy.houseprice.tw/house/32458396_873246"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].coverPicture",
+          "value": "https://image.houseprice.tw/p1-hpimage/MTEyNDgyMDFocGltYWdl/302b5bb7347542a1_1920x1440.jpg"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].communityName",
+          "value": "麗池經典"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].purposeName",
+          "value": "住宅"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].caseType",
+          "value": "大樓"
+        },
+        {
+          "path": "data.data.similarWebCaseList[0].parkingLotType",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].sid",
+          "value": 19375116
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].groupId",
+          "value": "b92816cc-769a-4e5c-9e83-5cb56d90f8aa"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].caseName",
+          "value": "(117)府中捷運電梯邊間三房"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].city",
+          "value": "新北市"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].district",
+          "value": "板橋區"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].road",
+          "value": "南雅南路一段"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].totalPrice",
+          "value": 1450
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].buildPin",
+          "value": 29.68
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].landPin",
+          "value": 3.36
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].room",
+          "value": 3
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].buildAge",
+          "value": 26.4
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].pageViewCount",
+          "value": 32
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].caseUrl",
+          "value": "https://buy.houseprice.tw/house/35883323_288772"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].coverPicture",
+          "value": "https://image.houseprice.tw/p1-hpimage/MTE5MTM2NjlocGltYWdl/0dc6aa75cd0f4c46_1477x1108.jpg"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].communityName",
+          "value": "南雅尊邸"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].purposeName",
+          "value": "住宅"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].caseType",
+          "value": "大樓"
+        },
+        {
+          "path": "data.data.similarWebCaseList[1].parkingLotType",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].sid",
+          "value": 28780655
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].groupId",
+          "value": "f03355a6-1cd1-4413-94ec-9b2f22c68a26"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].caseName",
+          "value": "018BH裕民街3樓3房美美屋,新埔.新埔民生捷運"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].city",
+          "value": "新北市"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].district",
+          "value": "板橋區"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].road",
+          "value": "裕民街"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].totalPrice",
+          "value": 1298
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].buildPin",
+          "value": 19.54
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].landPin",
+          "value": 4.99
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].room",
+          "value": 3
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].buildAge",
+          "value": 49.4
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].pageViewCount",
+          "value": 28
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].caseUrl",
+          "value": "https://buy.houseprice.tw/house/35484078_644501"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].coverPicture",
+          "value": "https://img.hbhousing.com.tw/pictures/A264%2fA264TS145138a.jpg?1779333996"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].communityName",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].purposeName",
+          "value": "住宅"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].caseType",
+          "value": "公寓"
+        },
+        {
+          "path": "data.data.similarWebCaseList[2].parkingLotType",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].sid",
+          "value": 29265845
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].groupId",
+          "value": "2a89d899-bb07-4299-bc6d-f085ca01763a"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].caseName",
+          "value": "專任約🔥面公園樹海🔥🔥金門街華廈三房"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].city",
+          "value": "新北市"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].district",
+          "value": "板橋區"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].road",
+          "value": "金門街"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].totalPrice",
+          "value": 1498
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].buildPin",
+          "value": 29.4
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].landPin",
+          "value": null
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].room",
+          "value": 3
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].buildAge",
+          "value": 29.0
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].pageViewCount",
+          "value": 27
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].caseUrl",
+          "value": "https://buy.houseprice.tw/house/33508995_319649"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].coverPicture",
+          "value": "https://image.houseprice.tw/p1-hpimage/MTE3ODMyNTFocGltYWdl/b773cfa4cb234b32_1192x892.jpg"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].communityName",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].purposeName",
+          "value": "住宅"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].caseType",
+          "value": "華廈"
+        },
+        {
+          "path": "data.data.similarWebCaseList[3].parkingLotType",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].sid",
+          "value": 27396274
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].groupId",
+          "value": "15882f3a-688b-4272-ac5a-d77a873bc0b4"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].caseName",
+          "value": "溪州國小麒麟天地次頂邊間方正三房 (板橋區金門街)"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].city",
+          "value": "新北市"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].district",
+          "value": "板橋區"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].road",
+          "value": "金門街"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].totalPrice",
+          "value": 1488
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].buildPin",
+          "value": 33.51
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].landPin",
+          "value": 5.1
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].room",
+          "value": 3
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].buildAge",
+          "value": 31.3
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].pageViewCount",
+          "value": 25
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].caseUrl",
+          "value": "https://buy.houseprice.tw/house/32323162_296615"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].coverPicture",
+          "value": "https://image.houseprice.tw/p1-hpimage/OTAxOTkzM2hwaW1hZ2U,/5d7402e8183047f9_1477x1108.jpg"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].communityName",
+          "value": "麒麟天地"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].purposeName",
+          "value": "住宅"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].caseType",
+          "value": "大樓"
+        },
+        {
+          "path": "data.data.similarWebCaseList[4].parkingLotType",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].sid",
+          "value": 24956350
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].groupId",
+          "value": "02531ea3-a4f0-4327-a94a-b4e5d69a1baf"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].caseName",
+          "value": "新埔首購邊間小資美寓/住商符店長"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].city",
+          "value": "新北市"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].district",
+          "value": "板橋區"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].road",
+          "value": "縣民大道三段"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].totalPrice",
+          "value": 1298
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].buildPin",
+          "value": 24.27
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].landPin",
+          "value": 7.1
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].room",
+          "value": 3
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].buildAge",
+          "value": 43.7
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].pageViewCount",
+          "value": 20
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].caseUrl",
+          "value": "https://buy.houseprice.tw/house/20747345_1745359"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].coverPicture",
+          "value": "https://image.houseprice.tw/p1-hpimage/NTI2NzMzNWhwaW1hZ2U,/1308f3f8b2504d50_1024x768.jpg"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].communityName",
+          "value": ""
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].purposeName",
+          "value": "住宅"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].caseType",
+          "value": "公寓"
+        },
+        {
+          "path": "data.data.similarWebCaseList[5].parkingLotType",
+          "value": ""
+        },
+        {
+          "path": "data.data.webCaseInfo.city",
+          "value": "新北市"
+        },
+        {
+          "path": "data.data.webCaseInfo.district",
+          "value": "板橋區"
+        },
+        {
+          "path": "data.data.webCaseInfo.caseType",
+          "value": "公寓"
+        },
+        {
+          "path": "data.data.webCaseInfo.purposeName",
+          "value": "住宅"
+        },
+        {
+          "path": "data.data.webCaseInfo.totalPrice",
+          "value": 1580
+        },
+        {
+          "path": "data.data.webCaseInfo.groupId",
+          "value": "f29f31ed-2cda-4924-913a-21f5162ce95d"
+        },
+        {
+          "path": "data.data.webCaseInfo.memberSeqNo",
+          "value": null
+        },
+        {
+          "path": "data.data.webCaseInfo.road",
+          "value": "中山路二段"
+        },
+        {
+          "path": "data.data.webCaseInfo.communityGroupId",
+          "value": "00000000-0000-0000-0000-000000000000"
+        },
+        {
+          "path": "data.data.webCaseInfo.buildPin",
+          "value": 35.68
+        },
+        {
+          "path": "data.data.webCaseInfo.landPin",
+          "value": 9.74
+        },
+        {
+          "path": "data.data.webCaseInfo.buildAge",
+          "value": 37.0
+        }
+      ],
+      "body": "{\"code\": 200, \"message\": \"Success\", \"data\": {\"roadCompare\": {\"usedPeriod\": \"近1年\", \"dealAverageUnitPrice\": 41.41, \"segment\": \"公寓\", \"latestDealUnitPrice\": 50.3, \"latestDealYear\": \"115\", \"latestDealMonth\": \"08\"}, \"rent\": {\"rentDeals\": [{\"type\": \"三房\", \"caseType\": \"公寓\", \"communityRentPrice\": 0, \"nearRentPrice\": 26300, \"rentRateOfReturn\": 0.0}], \"monthlyLoan\": 42843}, \"realtor\": [{\"avatar\": null, \"contactName\": \"鄭秋足\", \"contactPhone\": \"0915812335\", \"brand\": \"中信房屋\", \"store\": \"板橋江子翠捷運三店加盟店\", \"memberId\": \"99b0864f-d0da-4d8a-b4fc-ae24fe5eb1ec\", \"adaptedWebCaseSid\": 33221169, \"phone\": \"0915812335\", \"webCaseIdx\": null, \"company\": \"承品不動產經紀有限公司\"}], \"similarWebCaseList\": [{\"sid\": 29014697, \"groupId\": \"350027b6-5296-47aa-a1a4-a3f9965def65\", \"caseName\": \" 『永慶裕龍』麗池經典二房\", \"city\": \"新北市\", \"district\": \"板橋區\", \"road\": \"金門街\", \"totalPrice\": 1338, \"buildPin\": 24.09, \"landPin\": 3.71, \"room\": 2, \"buildAge\": 21.4, \"pageViewCount\": 40, \"caseUrl\": \"https://buy.houseprice.tw/house/32458396_873246\", \"coverPicture\": \"https://image.houseprice.tw/p1-hpimage/MTEyNDgyMDFocGltYWdl/302b5bb7347542a1_1920x1440.jpg\", \"communityName\": \"麗池經典\", \"purposeName\": \"住宅\", \"caseType\": \"大樓\", \"parkingLotType\": \"\"}, {\"sid\": 19375116, \"groupId\": \"b92816cc-769a-4e5c-9e83-5cb56d90f8aa\", \"caseName\": \"(117)府中捷運電梯邊間三房\", \"city\": \"新北市\", \"district\": \"板橋區\", \"road\": \"南雅南路一段\", \"totalPrice\": 1450, \"buildPin\": 29.68, \"landPin\": 3.36, \"room\": 3, \"buildAge\": 26.4, \"pageViewCount\": 32, \"caseUrl\": \"https://buy.houseprice.tw/house/35883323_288772\", \"coverPicture\": \"https://image.houseprice.tw/p1-hpimage/MTE5MTM2NjlocGltYWdl/0dc6aa75cd0f4c46_1477x1108.jpg\", \"communityName\": \"南雅尊邸\", \"purposeName\": \"住宅\", \"caseType\": \"大樓\", \"parkingLotType\": \"\"}, {\"sid\": 28780655, \"groupId\": \"f03355a6-1cd1-4413-94ec-9b2f22c68a26\", \"caseName\": \"018BH裕民街3樓3房美美屋,新埔.新埔民生捷運\", \"city\": \"新北市\", \"district\": \"板橋區\", \"road\": \"裕民街\", \"totalPrice\": 1298, \"buildPin\": 19.54, \"landPin\": 4.99, \"room\": 3, \"buildAge\": 49.4, \"pageViewCount\": 28, \"caseUrl\": \"https://buy.houseprice.tw/house/35484078_644501\", \"coverPicture\": \"https://img.hbhousing.com.tw/pictures/A264%2fA264TS145138a.jpg?1779333996\", \"communityName\": \"\", \"purposeName\": \"住宅\", \"caseType\": \"公寓\", \"parkingLotType\": \"\"}, {\"sid\": 29265845, \"groupId\": \"2a89d899-bb07-4299-bc6d-f085ca01763a\", \"caseName\": \"專任約🔥面公園樹海🔥🔥金門街華廈三房\", \"city\": \"新北市\", \"district\": \"板橋區\", \"road\": \"金門街\", \"totalPrice\": 1498, \"buildPin\": 29.4, \"landPin\": null, \"room\": 3, \"buildAge\": 29.0, \"pageViewCount\": 27, \"caseUrl\": \"https://buy.houseprice.tw/house/33508995_319649\", \"coverPicture\": \"https://image.houseprice.tw/p1-hpimage/MTE3ODMyNTFocGltYWdl/b773cfa4cb234b32_1192x892.jpg\", \"communityName\": \"\", \"purposeName\": \"住宅\", \"caseType\": \"華廈\", \"parkingLotType\": \"\"}, {\"sid\": 27396274, \"groupId\": \"15882f3a-688b-4272-ac5a-d77a873bc0b4\", \"caseName\": \"溪州國小麒麟天地次頂邊間方正三房 (板橋區金門街)\", \"city\": \"新北市\", \"district\": \"板橋區\", \"road\": \"金門街\", \"totalPrice\": 1488, \"buildPin\": 33.51, \"landPin\": 5.1, \"room\": 3, \"buildAge\": 31.3, \"pageViewCount\": 25, \"caseUrl\": \"https://buy.houseprice.tw/house/32323162_296615\", \"coverPicture\": \"https://image.houseprice.tw/p1-hpimage/OTAxOTkzM2hwaW1hZ2U,/5d7402e8183047f9_1477x1108.jpg\", \"communityName\": \"麒麟天地\", \"purposeName\": \"住宅\", \"caseType\": \"大樓\", \"parkingLotType\": \"\"}, {\"sid\": 24956350, \"groupId\": \"02531ea3-a4f0-4327-a94a-b4e5d69a1baf\", \"caseName\": \"新埔首購邊間小資美寓/住商符店長\", \"city\": \"新北市\", \"district\": \"板橋區\", \"road\": \"縣民大道三段\", \"totalPrice\": 1298, \"buildPin\": 24.27, \"landPin\": 7.1, \"room\": 3, \"buildAge\": 43.7, \"pageViewCount\": 20, \"caseUrl\": \"https://buy.houseprice.tw/house/20747345_1745359\", \"coverPicture\": \"https://image.houseprice.tw/p1-hpimage/NTI2NzMzNWhwaW1hZ2U,/1308f3f8b2504d50_1024x768.jpg\", \"communityName\": \"\", \"purposeName\": \"住宅\", \"caseType\": \"公寓\", \"parkingLotType\": \"\"}], \"webCaseInfo\": {\"city\": \"新北市\", \"district\": \"板橋區\", \"caseType\": \"公寓\", \"purposeName\": \"住宅\", \"totalPrice\": 1580, \"groupId\": \"f29f31ed-2cda-4924-913a-21f5162ce95d\", \"memberSeqNo\": null, \"road\": \"中山路二段\", \"communityGroupId\": \"00000000-0000-0000-0000-000000000000\", \"buildPin\": 35.68, \"landPin\": 9.74, \"buildAge\": 37.0}}}"
+    },
+    {
+      "label": "SurroundingCommunity-group",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/28718235/SurroundingCommunity",
+      "status": 400,
+      "contentType": "application/json; charset=utf-8",
+      "jsonType": "dict",
+      "jsonKeys": [
+        "type",
+        "title",
+        "status",
+        "errors",
+        "traceId"
+      ],
+      "interesting": [],
+      "body": "{\"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.1\", \"title\": \"One or more validation errors occurred.\", \"status\": 400, \"errors\": {\"room\": [\"The room field is required.\"], \"groupId\": [\"The groupId field is required.\"]}, \"traceId\": \"00-2aa963a80c27b229b02c8073bc541335-17654f11118eb942-01\"}"
+    },
+    {
+      "label": "PriceAnalyze-GET-sid-group",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/PriceAnalyze?sid=28718235",
+      "status": 400,
+      "contentType": "application/json; charset=utf-8",
+      "jsonType": "dict",
+      "jsonKeys": [
+        "type",
+        "title",
+        "status",
+        "errors",
+        "traceId"
+      ],
+      "interesting": [],
+      "body": "{\"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.1\", \"title\": \"One or more validation errors occurred.\", \"status\": 400, \"errors\": {\"url\": [\"The url field is required.\"]}, \"traceId\": \"00-72c232f4450441cf6014692c87228e22-74b3c1e1b86ce1ac-01\"}"
+    },
+    {
+      "label": "PriceAnalyze-GET-groupId",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/PriceAnalyze?groupId=28718235",
+      "status": 400,
+      "contentType": "application/json; charset=utf-8",
+      "jsonType": "dict",
+      "jsonKeys": [
+        "type",
+        "title",
+        "status",
+        "errors",
+        "traceId"
+      ],
+      "interesting": [],
+      "body": "{\"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.1\", \"title\": \"One or more validation errors occurred.\", \"status\": 400, \"errors\": {\"url\": [\"The url field is required.\"]}, \"traceId\": \"00-84b56983c66a6a2aeafa8043bf8e91b4-f531cc2faef85434-01\"}"
+    },
+    {
+      "label": "PriceAnalyze-GET-caseSid",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/PriceAnalyze?caseSid=33221169",
+      "status": 400,
+      "contentType": "application/json; charset=utf-8",
+      "jsonType": "dict",
+      "jsonKeys": [
+        "type",
+        "title",
+        "status",
+        "errors",
+        "traceId"
+      ],
+      "interesting": [],
+      "body": "{\"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.1\", \"title\": \"One or more validation errors occurred.\", \"status\": 400, \"errors\": {\"url\": [\"The url field is required.\"]}, \"traceId\": \"00-9bffa4c57a02fd5e6838d37049218341-0276eb2195a57579-01\"}"
+    },
+    {
+      "label": "TotalCount-sid-group",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/TotalCount?sid=28718235",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "jsonType": "dict",
+      "jsonKeys": [
+        "code",
+        "message",
+        "data"
+      ],
+      "interesting": [],
+      "body": "{\"code\": 200, \"message\": \"Success\", \"data\": {\"pageViewCount\": 552992, \"messageCount\": 30318}}"
+    },
+    {
+      "label": "TotalCount-groupId",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/TotalCount?groupId=28718235",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "jsonType": "dict",
+      "jsonKeys": [
+        "code",
+        "message",
+        "data"
+      ],
+      "interesting": [],
+      "body": "{\"code\": 200, \"message\": \"Success\", \"data\": {\"pageViewCount\": 552992, \"messageCount\": 30318}}"
+    },
+    {
+      "label": "UrlValidation",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/UrlValidation?url=https%3A%2F%2Fbuy.houseprice.tw%2Fhouse%2F33221169_930688%2F",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "jsonType": "dict",
+      "jsonKeys": [
+        "code",
+        "message",
+        "data"
+      ],
+      "interesting": [],
+      "body": "{\"code\": 200, \"message\": \"Success\", \"data\": null}"
+    },
+    {
+      "label": "PriceAnalyze-POST-sid-group",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/PriceAnalyze",
+      "status": 405,
+      "contentType": null,
+      "body": "",
+      "requestPayload": {
+        "sid": 28718235
+      }
+    },
+    {
+      "label": "PriceAnalyze-POST-groupId",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/PriceAnalyze",
+      "status": 405,
+      "contentType": null,
+      "body": "",
+      "requestPayload": {
+        "groupId": 28718235
+      }
+    },
+    {
+      "label": "PriceAnalyze-POST-caseSid",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/PriceAnalyze",
+      "status": 405,
+      "contentType": null,
+      "body": "",
+      "requestPayload": {
+        "caseSid": 33221169
+      }
+    },
+    {
+      "label": "PriceAnalyze-POST-url",
+      "url": "https://app.houseprice.tw/api/PriceAnalyze/PriceAnalyze",
+      "status": 405,
+      "contentType": null,
+      "body": "",
+      "requestPayload": {
+        "url": "https://buy.houseprice.tw/house/33221169_930688/"
+      }
+    }
+  ]
+}
