@@ -1,19 +1,43 @@
-name: Sinyi browser API probe
+name: Sinyi production-path probe
 on:
   workflow_dispatch:
   push:
     branches: [main]
     paths:
-      - "scripts/probe_sinyi_browser_api.py"
       - ".github/workflows/probe-sinyi-browser-api.yml"
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - run: pip install playwright requests
-      - run: python scripts/run_with_system_chrome.py scripts/probe_sinyi_browser_api.py
+      - run: pip install requests beautifulsoup4 cryptography playwright
+      - name: Run production Sinyi API monitor
+        run: python scripts/run_with_system_chrome.py scripts/monitor_sinyi_parallel.py
+      - name: Build production Sinyi floor snapshot
+        run: python scripts/sinyi_preview_floor_enrich.py
+      - name: Verify production-path result
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("docs/data/listings.json").read_text())
+          s=[x for x in d["listings"] if x.get("source")=="信義房屋" and x.get("active",True)]
+          st=json.loads(Path("docs/preview/sinyi-floor-enrichment.json").read_text())
+          assert d["runs"]["信義房屋"]["mode"]=="official_filterObject_api_browser_auth"
+          assert len(s)>0
+          assert all(x.get("sinyiApiSource")=="filterObject.php" for x in s)
+          assert st.get("complete") is True
+          assert st.get("activeSinyiCount")==len(s)==st.get("appliedCount")
+          print(json.dumps({
+            "active":len(s),
+            "apiVerified":sum(1 for x in s if x.get("sinyiApiVerifiedAt")),
+            "withFloor":sum(1 for x in s if x.get("floor")),
+            "roadCounts":{r:sum(1 for x in s if x.get("road")==r) for r in sorted({x.get("road") for x in s})},
+            "run":d["runs"]["信義房屋"],
+            "floorStats":st,
+          },ensure_ascii=False))
+          PY
