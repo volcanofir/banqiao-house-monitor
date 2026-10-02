@@ -31,7 +31,8 @@ def compact_listing_with_structured_floor(x):
         "monitorFirstSeenAt", "rakuyaSourcePublishedDate", "rakuyaSourcePublishedRaw",
         "rakuyaSourcePublishedEvidence", "housepriceSourcePublishedDate",
         "housepriceSourcePublishedRaw", "housepriceSourcePublishedEvidence",
-        "housepricePublishDaysTag", "housepriceGroupSid",
+        "housepricePublishDaysTag", "housepriceGroupSid", "housepriceGroupId",
+        "housepriceGroupNewKeyInDate", "housepriceGroupPriceHistory",
         "housepriceUnitPrice", "housepriceMainArea", "housepriceBuildingAge",
         "housepriceCaseType", "housepriceAgentCount",
     ):
