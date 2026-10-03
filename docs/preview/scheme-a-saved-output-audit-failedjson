@@ -1,22 +1,22 @@
 {
-  "auditedAt": "2026-10-02T20:11:11+00:00",
+  "auditedAt": "2026-10-03T00:11:31+00:00",
   "scheme": "A",
   "target": "exact canonical Preview files before atomic publish",
   "validator": "validate_scheme_a_preview_v3",
   "passed": true,
   "error": null,
   "companyGap": {
-    "generatedAt": "2026-10-02T20:11:07+00:00",
+    "generatedAt": "2026-10-03T00:11:27+00:00",
     "capturedAt": null,
     "verifiedAt": null,
-    "companySnapshotCapturedAt": "2026-10-02T20:06:41+00:00",
+    "companySnapshotCapturedAt": "2026-10-03T00:07:00+00:00",
     "listingCount": null,
-    "companyListingCount": 74,
+    "companyListingCount": 73,
     "propertyGroupCount": 173,
     "counts": {
-      "company_match": 46,
+      "company_match": 45,
       "review": 8,
-      "missing": 119,
+      "missing": 120,
       "unavailable": 0
     },
     "idIntegrityGuard": null,
@@ -26,7 +26,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-10-02T20:11:01+00:00",
+      "generatedAt": "2026-10-03T00:11:20+00:00",
       "previewOnly": true,
       "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
       "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -49,7 +49,7 @@
     "companyNearTieGuard": {
       "enabled": true,
       "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-      "examinedCompanyMatchCount": 46,
+      "examinedCompanyMatchCount": 45,
       "downgradedCount": 0,
       "remainingAutoNearTieCount": 0,
       "groups": []
@@ -57,17 +57,17 @@
   },
   "browserSnapshot": {
     "generatedAt": null,
-    "capturedAt": "2026-10-02T20:06:41+00:00",
+    "capturedAt": "2026-10-03T00:07:00+00:00",
     "verifiedAt": null,
     "companySnapshotCapturedAt": null,
-    "listingCount": 74,
+    "listingCount": 73,
     "companyListingCount": null,
     "propertyGroupCount": null,
     "counts": null,
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 79,
-      "afterCount": 74,
+      "beforeCount": 78,
+      "afterCount": 73,
       "removedCount": 5,
       "collisionIds": [
         "4308114"
@@ -148,21 +148,21 @@
   "verification": {
     "generatedAt": null,
     "capturedAt": null,
-    "verifiedAt": "2026-10-02T20:11:11+00:00",
-    "companySnapshotCapturedAt": "2026-10-02T20:06:41+00:00",
+    "verifiedAt": "2026-10-03T00:11:31+00:00",
+    "companySnapshotCapturedAt": "2026-10-03T00:07:00+00:00",
     "listingCount": null,
-    "companyListingCount": 74,
+    "companyListingCount": 73,
     "propertyGroupCount": 173,
     "counts": {
-      "company_match": 46,
+      "company_match": 45,
       "review": 8,
-      "missing": 119,
+      "missing": 120,
       "unavailable": 0
     },
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 79,
-      "afterCount": 74,
+      "beforeCount": 78,
+      "afterCount": 73,
       "removedCount": 5,
       "collisionIds": [
         "4308114"
@@ -238,7 +238,7 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-10-02T20:11:01+00:00",
+      "generatedAt": "2026-10-03T00:11:20+00:00",
       "previewOnly": true,
       "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
       "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -261,7 +261,7 @@
     "companyNearTieGuard": {
       "enabled": true,
       "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-      "examinedCompanyMatchCount": 46,
+      "examinedCompanyMatchCount": 45,
       "downgradedCount": 0,
       "remainingAutoNearTieCount": 0,
       "groups": []
