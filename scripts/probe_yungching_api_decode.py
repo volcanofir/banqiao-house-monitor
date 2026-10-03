@@ -414,6 +414,121 @@ def main():
         script_matches = extract_targeted_bundle_functions(ctx, scripts)
         import_aliases = extract_import_aliases(ctx, scripts)
         crypto_chunk = extract_crypto_chunk(ctx)
+
+        direct_api = page.evaluate(r"""
+        async () => {
+          const road = '中山路二段';
+          const area = '新北市-板橋區';
+
+          async function derive(serviceName) {
+            const salt = new Uint8Array([2,7,0,5,1,3,8,0]);
+            const digest = new Uint8Array(
+              await crypto.subtle.digest('SHA-256', new TextEncoder().encode(serviceName))
+            );
+            const baseKey = await crypto.subtle.importKey(
+              'raw', digest, 'PBKDF2', false, ['deriveBits']
+            );
+            const bits = await crypto.subtle.deriveBits(
+              {name:'PBKDF2', salt, iterations:1000, hash:'SHA-1'},
+              baseKey,
+              384
+            );
+            const key = await crypto.subtle.importKey(
+              'raw',
+              bits.slice(0, 32),
+              {name:'AES-CBC'},
+              false,
+              ['decrypt']
+            );
+            return [key, bits.slice(32, 48)];
+          }
+
+          async function decryptData(value) {
+            const [key, iv] = await derive('YungChing.Buy');
+            const ct = new Uint8Array(Array.from(atob(value), c => c.charCodeAt(0)));
+            const raw = await crypto.subtle.decrypt(
+              {name:'AES-CBC', iv:new Uint8Array(iv)},
+              key,
+              ct
+            );
+            return JSON.parse(new TextDecoder().decode(raw));
+          }
+
+          async function getPage(pg) {
+            const u = new URL('/api/v2/list', location.origin);
+            u.searchParams.set('area', area);
+            u.searchParams.set('pinType', '0');
+            u.searchParams.set('isAddRoom', 'true');
+            u.searchParams.set('keyword', road);
+            u.searchParams.set('filter', '0');
+            u.searchParams.set('pg', String(pg));
+            u.searchParams.set('ps', '30');
+
+            const resp = await fetch(u.toString(), {
+              method: 'GET',
+              headers: {accept:'application/json, text/plain, */*'},
+              credentials: 'include'
+            });
+            const wrapper = await resp.json();
+            if (!resp.ok || wrapper?.status !== 'Success' || !wrapper?.data) {
+              throw new Error('API wrapper failed: ' + JSON.stringify({
+                http: resp.status,
+                status: wrapper?.status,
+                apiVersion: wrapper?.apiVersion,
+                method: wrapper?.method
+              }));
+            }
+            const body = await decryptData(wrapper.data);
+            return {
+              http: resp.status,
+              wrapper: {
+                status: wrapper.status,
+                apiVersion: wrapper.apiVersion,
+                method: wrapper.method,
+                dataLen: String(wrapper.data).length
+              },
+              body
+            };
+          }
+
+          const first = await getPage(1);
+          const totalPages = Number(first.body?.pa?.totalPageCount || 1);
+          const pages = [first];
+          for (let pg=2; pg<=totalPages; pg++) {
+            pages.push(await getPage(pg));
+          }
+
+          const all = pages.flatMap(x => Array.isArray(x.body?.list) ? x.body.list : []);
+          const uniqMap = new Map();
+          for (const x of all) {
+            if (x?.caseSId != null) uniqMap.set(String(x.caseSId), x);
+          }
+          const uniq = [...uniqMap.values()];
+          const prefix = '新北市板橋區' + road;
+          const exact = uniq.filter(x => String(x?.address || '').startsWith(prefix));
+
+          return {
+            road,
+            totalPages,
+            apiTotalCount: first.body?.totalCount ?? null,
+            paTotalItemCount: first.body?.pa?.totalItemCount ?? null,
+            rawRows: all.length,
+            uniqueRows: uniq.length,
+            exactRoadRows: exact.length,
+            wrappers: pages.map((x, idx) => ({pg:idx+1, ...x.wrapper})),
+            sample: exact.slice(0, 8).map(x => ({
+              caseSId: x.caseSId ?? null,
+              caseName: x.caseName ?? null,
+              address: x.address ?? null,
+              price: x.price ?? null,
+              regArea: x?.pinInfo?.regArea ?? null,
+              floorInfo: x.floorInfo ?? null,
+              patternInfo: x.patternInfo ?? null
+            }))
+          };
+        }
+        """)
+
         summary = {
             "road": ROAD,
             "pages": PAGES,
@@ -434,6 +549,10 @@ def main():
         print(json.dumps(import_aliases, ensure_ascii=False))
         print("=== YC_CRYPTO_CHUNK ===")
         print(json.dumps(crypto_chunk, ensure_ascii=False))
+        print("=== YC_BROWSER_DIRECT_API ===")
+        print(json.dumps(direct_api, ensure_ascii=False))
+        if not direct_api.get("exactRoadRows"):
+            raise RuntimeError("Browser direct API decrypt returned no exact-road listings")
         browser.close()
 
 if __name__ == "__main__":
