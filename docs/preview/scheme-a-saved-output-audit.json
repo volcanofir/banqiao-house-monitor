@@ -1,22 +1,22 @@
 {
-  "auditedAt": "2026-10-03T00:46:28+00:00",
+  "auditedAt": "2026-10-03T04:09:33+00:00",
   "scheme": "A",
   "target": "exact canonical Preview files before atomic publish",
   "validator": "validate_scheme_a_preview_v3",
   "passed": true,
   "error": null,
   "companyGap": {
-    "generatedAt": "2026-10-03T00:46:25+00:00",
+    "generatedAt": "2026-10-03T04:09:29+00:00",
     "capturedAt": null,
     "verifiedAt": null,
-    "companySnapshotCapturedAt": "2026-10-03T00:42:01+00:00",
+    "companySnapshotCapturedAt": "2026-10-03T04:05:25+00:00",
     "listingCount": null,
-    "companyListingCount": 73,
+    "companyListingCount": 74,
     "propertyGroupCount": 173,
     "counts": {
-      "company_match": 45,
+      "company_match": 46,
       "review": 8,
-      "missing": 120,
+      "missing": 119,
       "unavailable": 0
     },
     "idIntegrityGuard": null,
@@ -26,12 +26,12 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-10-03T00:46:18+00:00",
+      "generatedAt": "2026-10-03T04:09:22+00:00",
       "previewOnly": true,
       "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
       "sourceRunMode": "official_filterObject_api_browser_auth",
       "sourceRunStatus": "ok",
-      "sourceRunCheckedAt": "2026-10-03T00:19:52+00:00",
+      "sourceRunCheckedAt": "2026-10-03T04:01:43+00:00",
       "activeSinyiCount": 69,
       "matchedOfficialCount": 69,
       "appliedCount": 69,
@@ -49,7 +49,7 @@
     "companyNearTieGuard": {
       "enabled": true,
       "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-      "examinedCompanyMatchCount": 45,
+      "examinedCompanyMatchCount": 46,
       "downgradedCount": 0,
       "remainingAutoNearTieCount": 0,
       "groups": []
@@ -57,17 +57,17 @@
   },
   "browserSnapshot": {
     "generatedAt": null,
-    "capturedAt": "2026-10-03T00:42:01+00:00",
+    "capturedAt": "2026-10-03T04:05:25+00:00",
     "verifiedAt": null,
     "companySnapshotCapturedAt": null,
-    "listingCount": 73,
+    "listingCount": 74,
     "companyListingCount": null,
     "propertyGroupCount": null,
     "counts": null,
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 78,
-      "afterCount": 73,
+      "beforeCount": 79,
+      "afterCount": 74,
       "removedCount": 5,
       "collisionIds": [
         "4308114"
@@ -77,12 +77,12 @@
         {
           "id": "4308114",
           "road": "板橋區中山路二段",
-          "title": "正中山路人潮店面,埔墘核心地點",
-          "area": 30.36,
-          "price": 2180.0,
+          "title": "天生贏家兩房",
+          "area": 22.56,
+          "price": 1692.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
           "replacementIds": [
-            "6482848"
+            "7544310"
           ],
           "replacementFound": true
         },
@@ -148,21 +148,21 @@
   "verification": {
     "generatedAt": null,
     "capturedAt": null,
-    "verifiedAt": "2026-10-03T00:46:28+00:00",
-    "companySnapshotCapturedAt": "2026-10-03T00:42:01+00:00",
+    "verifiedAt": "2026-10-03T04:09:33+00:00",
+    "companySnapshotCapturedAt": "2026-10-03T04:05:25+00:00",
     "listingCount": null,
-    "companyListingCount": 73,
+    "companyListingCount": 74,
     "propertyGroupCount": 173,
     "counts": {
-      "company_match": 45,
+      "company_match": 46,
       "review": 8,
-      "missing": 120,
+      "missing": 119,
       "unavailable": 0
     },
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 78,
-      "afterCount": 73,
+      "beforeCount": 79,
+      "afterCount": 74,
       "removedCount": 5,
       "collisionIds": [
         "4308114"
@@ -172,12 +172,12 @@
         {
           "id": "4308114",
           "road": "板橋區中山路二段",
-          "title": "正中山路人潮店面,埔墘核心地點",
-          "area": 30.36,
-          "price": 2180.0,
+          "title": "天生贏家兩房",
+          "area": 22.56,
+          "price": 1692.0,
           "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
           "replacementIds": [
-            "6482848"
+            "7544310"
           ],
           "replacementFound": true
         },
@@ -238,12 +238,12 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-10-03T00:46:18+00:00",
+      "generatedAt": "2026-10-03T04:09:22+00:00",
       "previewOnly": true,
       "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
       "sourceRunMode": "official_filterObject_api_browser_auth",
       "sourceRunStatus": "ok",
-      "sourceRunCheckedAt": "2026-10-03T00:19:52+00:00",
+      "sourceRunCheckedAt": "2026-10-03T04:01:43+00:00",
       "activeSinyiCount": 69,
       "matchedOfficialCount": 69,
       "appliedCount": 69,
@@ -261,7 +261,7 @@
     "companyNearTieGuard": {
       "enabled": true,
       "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-      "examinedCompanyMatchCount": 45,
+      "examinedCompanyMatchCount": 46,
       "downgradedCount": 0,
       "remainingAutoNearTieCount": 0,
       "groups": []
