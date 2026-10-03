@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-10-03T09:28:40+00:00",
+  "verifiedAt": "2026-10-03T11:38:49+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-10-03T07:47:27+00:00",
+  "sourceDataUpdatedAt": "2026-10-03T11:32:11+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-10-03T09:28:30+00:00",
+    "generatedAt": "2026-10-03T11:38:39+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-10-03T07:46:00+00:00",
+    "sourceRunCheckedAt": "2026-10-03T11:30:47+00:00",
     "activeSinyiCount": 69,
     "matchedOfficialCount": 69,
     "appliedCount": 69,
@@ -30,7 +30,7 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-10-03T09:27:58+00:00",
+    "updatedAt": "2026-10-03T11:38:33+00:00",
     "status": "ok",
     "totalCount": 239,
     "uniqueListingCount": 239,
@@ -72,13 +72,17 @@
       }
     ],
     "changes": {
-      "newCount": 0,
-      "newIds": [],
+      "newCount": 1,
+      "newIds": [
+        "08c553357075771"
+      ],
       "priceChangeCount": 0,
       "priceChanges": [],
-      "removedCount": 0,
-      "removedIds": [],
-      "currentChangeCount": 0
+      "removedCount": 1,
+      "removedIds": [
+        "09b3fb356971511"
+      ],
+      "currentChangeCount": 2
     },
     "complete": true
   },
@@ -180,22 +184,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-10-03T09:28:40+00:00",
-    "propertyGroupCount": 172,
+    "auditedAt": "2026-10-03T11:38:49+00:00",
+    "propertyGroupCount": 171,
     "companyListingCount": 75,
     "companyMatchCount": 46,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 616
+    "weakIdentityAlreadyMergedPairCount": 638
   },
-  "snapshotCapturedAt": "2026-10-03T09:24:12+00:00",
-  "companySnapshotCapturedAt": "2026-10-03T09:24:12+00:00",
-  "companyGapGeneratedAt": "2026-10-03T09:28:36+00:00",
+  "snapshotCapturedAt": "2026-10-03T11:34:40+00:00",
+  "companySnapshotCapturedAt": "2026-10-03T11:34:40+00:00",
+  "companyGapGeneratedAt": "2026-10-03T11:38:46+00:00",
   "browserListingCount": 75,
   "companyListingCount": 75,
-  "propertyGroupCount": 172,
-  "rawListingCount": 656,
-  "comparisonCount": 172,
+  "propertyGroupCount": 171,
+  "rawListingCount": 659,
+  "comparisonCount": 171,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -260,15 +264,15 @@
   },
   "counts": {
     "company_match": 46,
-    "review": 8,
+    "review": 7,
     "missing": 118,
     "unavailable": 0
   },
   "crossPlatformMergedGroupCount": 107,
   "crossSourceReviewCount": 9,
   "preview591Regroup": {
-    "original591TopLevel": 116,
-    "regrouped591TopLevel": 100,
+    "original591TopLevel": 115,
+    "regrouped591TopLevel": 99,
     "regrouped591ClusterCount": 14,
     "regrouped591AbsorbedCount": 16,
     "clusterFloorConflictBlocked": 0
@@ -289,12 +293,12 @@
       {
         "id": "4308114",
         "road": "板橋區中山路二段",
-        "title": "埔墘中山路稀有三樓頂加出價可談",
-        "area": 32.33,
-        "price": 1380.0,
+        "title": "收租置產商辦首選",
+        "area": 30.78,
+        "price": 1488.0,
         "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
         "replacementIds": [
-          "6693666"
+          "6705632"
         ],
         "replacementFound": true
       },
@@ -349,11 +353,11 @@
     ],
     "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
   },
-  "candidateCount": 163,
-  "candidatesWithFloor": 147,
-  "candidatesWithYcCaseId": 147,
+  "candidateCount": 162,
+  "candidatesWithFloor": 146,
+  "candidatesWithYcCaseId": 146,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-03T09:27:27+00:00",
+    "generatedAt": "2026-10-03T11:38:00+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 69,
     "cacheHitCount": 69,
