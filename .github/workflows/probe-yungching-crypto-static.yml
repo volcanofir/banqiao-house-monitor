@@ -7,15 +7,29 @@ on:
       - "scripts/probe_yungching_crypto_static.py"
       - ".github/workflows/probe-yungching-crypto-static.yml"
 
+concurrency:
+  group: yongching-crypto-static-probe
+  cancel-in-progress: true
+
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 2
+    timeout-minutes: 4
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - run: pip install requests
+      - name: Install WireGuard
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y wireguard-tools >/dev/null
+      - name: Connect Surfshark
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        run: bash scripts/connect_surfshark_wireguard.sh
       - name: Inspect crypto chunk
         run: python scripts/probe_yungching_crypto_static.py
+      - if: always()
+        run: sudo wg-quick down surfshark || true
