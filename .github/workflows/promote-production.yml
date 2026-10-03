@@ -10,6 +10,7 @@ on:
       - "scripts/promote_preview_to_production.py"
       - "scripts/smoke_test_production_ui.py"
       - "scripts/run_with_system_chrome.py"
+      - "docs/preview/index.html"
 
 permissions:
   contents: write
