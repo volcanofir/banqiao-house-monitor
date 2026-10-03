@@ -167,6 +167,9 @@ def main():
 
             assert number(page.locator('#cUnavailable').inner_text()) == offmarket_count
             assert page.locator('.market-btn').count() == 2
+            assert page.locator('#sources .source-card').count() == 4
+            assert page.locator('.source-tab[data-source="rakuya"]').count() == 1
+            assert page.locator('.source-tab[data-source="houseprice"]').count() == 1
             assert page.evaluate('VERIFY && VERIFY.valid === true') is True
             assert page.evaluate('verificationMatches(DATA, GAP, VERIFY)') is True
             assert page.evaluate("document.querySelector('#sort').value") == 'timeDesc'
@@ -225,6 +228,10 @@ def main():
             assert number(page.locator('#mGroups').inner_text()) == rental_count
             assert number(page.locator('#mNew').inner_text()) == rental_new_count
             assert page.evaluate("typeof rentalIsTodayNew === 'function'") is True
+            assert page.locator('#sources .source-card').count() == 4
+            page.locator('.source-tab[data-source="houseprice"]').click()
+            assert 'active' in (page.locator('.source-tab[data-source="houseprice"]').get_attribute('class') or '')
+            page.locator('.source-tab[data-source="all"]').click()
             assert page.locator('#groups .rent-item .today-new').count() == rental_today_count
             assert page.locator('#groups .rent-item .pill').filter(has_text='新案').count() == rental_new_count
             rental_updated = page.locator('#updated').inner_text()
