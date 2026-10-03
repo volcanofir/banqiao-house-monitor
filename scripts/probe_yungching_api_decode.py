@@ -242,47 +242,6 @@ def safe_page_probe(page, page_no: int):
         except Exception:
             pass
 
-def scan_scripts(ctx, scripts):
-    needles = [
-        "/api/v2/list", "crypto.subtle", ".decrypt(", "decrypt(", "AES",
-        "TextDecoder", "atob(", "apiVersion", "doRequest",
-    ]
-    matches = []
-    for src in scripts:
-        if "yungching.com.tw" not in src:
-            continue
-        try:
-            rr = ctx.request.get(src, timeout=30000)
-            if not rr.ok:
-                continue
-            txt = rr.text()
-        except Exception:
-            continue
-        low = txt.lower()
-        hit_needles = [n for n in needles if n.lower() in low]
-        if not hit_needles:
-            continue
-        snippets = []
-        for needle in hit_needles:
-            start = 0
-            for _ in range(3):
-                pos = low.find(needle.lower(), start)
-                if pos < 0:
-                    break
-                snippets.append({
-                    "needle": needle,
-                    "position": pos,
-                    "snippet": txt[max(0, pos-1200):pos+3000],
-                })
-                start = pos + len(needle)
-        matches.append({
-            "src": src,
-            "len": len(txt),
-            "needles": hit_needles,
-            "snippets": snippets[:12],
-        })
-    return matches[:20]
-
 def main():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True, channel="chrome")
@@ -294,12 +253,7 @@ def main():
         for n in PAGES:
             results.append(safe_page_probe(page, n))
 
-        scripts = page.eval_on_selector_all(
-            "script[src]",
-            "els => [...new Set(els.map(x=>x.src).filter(Boolean))]",
-        )
-        script_matches = scan_scripts(ctx, scripts)
-
+        script_matches = []
         summary = {
             "road": ROAD,
             "pages": PAGES,
