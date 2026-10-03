@@ -1,6 +1,8 @@
 name: Yongching API vs DOM seven-road test
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "17 */2 * * *"
   push:
     branches: [main]
     paths:
