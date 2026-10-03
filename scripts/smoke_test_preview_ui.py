@@ -254,7 +254,7 @@ def main():
             assert number(page.locator("#mGroups").inner_text()) == rental_count
             assert number(page.locator("#mNew").inner_text()) == rental_new_count
             assert page.evaluate("typeof rentalIsNew === 'function'") is True
-            assert page.locator("#sources .source-card").count() == 2
+            assert page.locator("#sources .source-card").count() == 4
             rental_updated = page.locator("#updated").inner_text()
             assert "租屋資料最近更新" in rental_updated
             assert "新案以本監控首次抓到時間計算" in rental_updated
@@ -332,7 +332,7 @@ def main():
         print(
             f"Preview UI smoke test passed: sale integrity, {rakuya_group_count} integrated Rakuya group(s), {sale_new_count} clickable sale new group(s), "
             f"{current_changed} current-change group(s), {offmarket_count} off-market group(s), {rental_count} rental listing(s), "
-            f"{rental_new_count} rental new badge/filter result(s), two-line update notes, "
+            f"{rental_new_count} rental new badge/filter result(s), four rental source cards, two-line update notes, "
             "single-open road accordion, market switching and stale-source suppression"
         )
     finally:
