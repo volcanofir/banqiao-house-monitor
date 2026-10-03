@@ -80,6 +80,7 @@ function renderRentGroups(){
     ||(source==='sinyi'&&x.source==='信義房屋')
     ||(source==='591'&&x.source==='591')
     ||(source==='rakuya'&&x.source==='樂屋網')
+    ||(source==='houseprice'&&x.source==='5168')
   );
   if(state==='new')rows=rows.filter(rentalIsNew);
   if(sort==='priceDesc')rows.sort((a,b)=>(Number(b.rent)||0)-(Number(a.rent)||0));
@@ -91,8 +92,8 @@ function renderRentGroups(){
     const items=rows.filter(x=>x.road===road);
     if(!items.length)continue;
     html+=`<details class="road-group"><summary><span>${esc(road)}</span><span class="count">${items.length} 戶</span></summary><div class="list">${items.map(x=>{
-      const cls=x.source==='信義房屋'?'sinyi':(x.source==='樂屋網'?'rakuya':'m591');
-      const label=x.source==='信義房屋'?'信義':(x.source==='樂屋網'?'樂屋':'591');
+      const cls=x.source==='信義房屋'?'sinyi':x.source==='樂屋網'?'rakuya':x.source==='5168'?'houseprice':'m591';
+      const label=x.source==='信義房屋'?'信義':x.source==='樂屋網'?'樂屋':x.source==='5168'?'5168':'591';
       const size=Number(x.size); const sizeText=Number.isFinite(size)&&size>0?`${size}坪`:'坪數未取得';
       const newBadge=rentalIsTodayNew(x)?'<span class="pill today-new">今日新案</span>':(rentalIsNew(x)?'<span class="pill sinyi">新案</span>':'');
       return `<article class="item rent-item"><a class="item-title" href="${esc(x.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(x.title||x.houseId||'租屋案件')}</a><div class="row"><span class="pill ${cls}">${label}</span>${newBadge}<span class="rent-price">${esc(rentalPrice(x))}</span><span>${esc(sizeText)}</span><span>${esc(x.address||road)}</span><span>首次抓到：${fmt(x.firstSeenAt)}</span></div></article>`;
@@ -108,7 +109,7 @@ function renderRent(){
   document.querySelector('#mGroups').textContent=`${listings.length} 戶`;
   document.querySelector('#mNew').textContent=`${newCount} 戶`;
   document.querySelector('#mMerged').textContent=`${listings.length} 筆`;
-  const cards=['591','信義房屋','樂屋網'].map(name=>{const r=RENT.runs?.[name],ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${ok?'ok':'err'}">${ok?'正常':'異常'}</span></div><div class="note">目前刊登 ${r?.totalCount??0} 筆<br>最近更新：${fmt(RENT.updatedAt)}</div></div>`});
+  const cards=['591','信義房屋','樂屋網','5168'].map(name=>{const r=RENT.runs?.[name],ok=r?.status==='ok';return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${ok?'ok':'err'}">${ok?'正常':'異常'}</span></div><div class="note">目前刊登 ${r?.totalCount??0} 筆<br>最近更新：${fmt(RENT.updatedAt)}</div></div>`});
   document.querySelector('#sources').innerHTML=cards.join('');
   document.querySelector('#updated').innerHTML=`租屋資料最近更新：${fmt(RENT.updatedAt)}<br>新案以本監控首次抓到時間計算；今日新案依台灣日期判斷，新案標籤保留 ${RENT.newListingWindowDays??3} 天。`;
   renderRentGroups();
@@ -118,10 +119,7 @@ function setMarket(mode){
   document.querySelectorAll('.market-btn').forEach(b=>b.classList.toggle('active',b.dataset.market===MARKET_MODE));
   document.querySelectorAll('.source-tab').forEach(b=>b.classList.toggle('active',b.dataset.source==='all'));
   const rent=MARKET_MODE==='rent';
-  document.querySelectorAll('.source-tab').forEach(b=>{
-    const src=b.dataset.source||'all';
-    b.style.display=(rent&&src==='houseprice')?'none':'';
-  });
+  document.querySelectorAll('.source-tab').forEach(b=>{b.style.display='';});
   const company=document.querySelector('#companyPanel'); if(company)company.style.display=rent?'none':'';
   const state=document.querySelector('#state');
   if(state){
@@ -180,8 +178,8 @@ required = [
     'listings.filter(rentalIsNew).length',
     '<strong>${name}</strong>',
     "source==='rakuya'&&x.source==='樂屋網'",
-    "['591','信義房屋','樂屋網']",
-    "rent&&src==='houseprice'",
+    "['591','信義房屋','樂屋網','5168']",
+    "source==='houseprice'&&x.source==='5168'",
     '目前刊登 ${r?.totalCount??0} 筆',
     '<br>委託比對：${fmt(GAP.generatedAt)}。',
     '今日新案依台灣日期判斷',
