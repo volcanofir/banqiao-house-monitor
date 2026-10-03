@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - run: pip install requests
+      - run: pip install requests cryptography
       - name: Install WireGuard
         run: |
           sudo apt-get update -qq
@@ -31,6 +31,7 @@ jobs:
           SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
         run: bash scripts/connect_surfshark_wireguard.sh
       - name: Inspect crypto chunk
+        continue-on-error: true
         run: python scripts/probe_yungching_crypto_static.py
       - name: Probe direct encrypted API
         run: python scripts/probe_yungching_api_direct.py
