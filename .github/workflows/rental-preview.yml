@@ -8,6 +8,7 @@ on:
       - ".github/workflows/rental-preview.yml"
       - "scripts/fetch_rental_preview.py"
       - "scripts/fetch_houseprice_rental_vpn.py"
+      - "scripts/preflight_houseprice_rental_vpn.py"
       - "scripts/stamp_rental_first_seen.py"
       - "trigger/rental-preview-wakeup.txt"
 
@@ -59,14 +60,31 @@ jobs:
           echo "rc=$rc" >> "$GITHUB_OUTPUT"
           exit $rc
 
-      - name: Connect Surfshark for 5168 only
+      - name: Find Surfshark exit accepted by 5168
         id: vpn
         if: steps.fetch.outcome == 'success'
         continue-on-error: true
         env:
           SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
         shell: bash
-        run: timeout 45 bash scripts/connect_surfshark_wireguard.sh
+        run: |
+          set -o pipefail
+          : > /tmp/houseprice-vpn-preflight.log
+          for attempt in 1 2 3 4 5; do
+            echo "5168 Surfshark attempt $attempt/5" | tee -a /tmp/houseprice-vpn-preflight.log
+            timeout 20 sudo wg-quick down surfshark >/dev/null 2>&1 || true
+            if timeout 45 bash scripts/connect_surfshark_wireguard.sh; then
+              if timeout 15 python scripts/preflight_houseprice_rental_vpn.py 2>&1 | tee -a /tmp/houseprice-vpn-preflight.log; then
+                echo "5168 accepted this Surfshark exit." | tee -a /tmp/houseprice-vpn-preflight.log
+                exit 0
+              fi
+              echo "5168 rejected this exit; rotating." | tee -a /tmp/houseprice-vpn-preflight.log
+            fi
+            timeout 20 sudo wg-quick down surfshark >/dev/null 2>&1 || true
+            sleep 3
+          done
+          echo "No usable Surfshark exit found for 5168." | tee -a /tmp/houseprice-vpn-preflight.log
+          exit 1
 
       - name: Fetch 5168 rentals through VPN
         id: houseprice_vpn
@@ -82,9 +100,49 @@ jobs:
           exit $rc
 
       - name: Disconnect Surfshark
-        if: always() && steps.vpn.outcome == 'success'
+        if: always()
         continue-on-error: true
         run: timeout 20 sudo wg-quick down surfshark || true
+
+      - name: Restore last-good 5168 rental snapshot when VPN refresh fails
+        if: steps.fetch.outcome == 'success' && steps.houseprice_vpn.outcome != 'success'
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          cur_path=Path('docs/preview/rental-data.json')
+          last_path=Path('docs/preview/rental-houseprice-last-good.json')
+          if not cur_path.exists() or not last_path.exists():
+              raise SystemExit('Missing rental current or 5168 last-good snapshot')
+          cur=json.loads(cur_path.read_text(encoding='utf-8'))
+          last=json.loads(last_path.read_text(encoding='utf-8'))
+          rows=[x for x in (cur.get('listings') or []) if x.get('source')!='5168']
+          hp=list(last.get('listings') or [])
+          rows.extend(hp)
+          seen=set(); dedup=[]
+          for x in rows:
+              key=x.get('id') or (x.get('source'),x.get('houseId'))
+              if key in seen: continue
+              seen.add(key); dedup.append(x)
+          old_run=dict(last.get('run') or {})
+          cur.setdefault('runs',{})['5168']={
+              **old_run,
+              'status':'error',
+              'totalCount':len(hp),
+              'checkedAt':last.get('updatedAt'),
+              'message':'本輪找不到 5168 可用 VPN 出口；沿用最後成功快照，未以 0 筆覆蓋。',
+              'logs':['本輪 VPN/API 更新失敗，保留最後成功 5168 租屋資料。'] + list(old_run.get('logs') or []),
+          }
+          counts=cur.setdefault('counts',{})
+          counts['houseprice']=len(hp)
+          counts['total']=len(dedup)
+          roads=cur.get('watchRoads') or []
+          counts['roads']={road:sum(1 for x in dedup if x.get('road')==road) for road in roads}
+          cur['listings']=dedup
+          cur_path.write_text(json.dumps(cur,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps({'restored5168':len(hp),'lastGoodAt':last.get('updatedAt')},ensure_ascii=False))
+          PY
 
       - name: Stamp first-seen time from our monitor
         id: stamp
@@ -113,6 +171,9 @@ jobs:
           hp=''
           hp_path=Path('/tmp/houseprice-vpn.log')
           if hp_path.exists(): hp=hp_path.read_text(encoding='utf-8', errors='replace')[-8000:]
+          preflight=''
+          pf=Path('/tmp/houseprice-vpn-preflight.log')
+          if pf.exists(): preflight=pf.read_text(encoding='utf-8', errors='replace')[-6000:]
           data={
             'checkedAt':datetime.now(timezone.utc).isoformat(timespec='seconds'),
             'fetchOutcome':os.getenv('FETCH_OUTCOME'),
@@ -125,6 +186,7 @@ jobs:
             'uiOwnership':'canonical-preview-index',
             'logTail':log,
             'housepriceVpnLogTail':hp,
+            'housepriceVpnPreflightLogTail':preflight,
           }
           Path('docs/preview/rental-run-diagnostic.json').write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(data,ensure_ascii=False))
@@ -139,15 +201,18 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           cp docs/preview/rental-run-diagnostic.json /tmp/rental-run-diagnostic.json
           [[ -f docs/preview/rental-data.json ]] && cp docs/preview/rental-data.json /tmp/rental-data.json || true
+          [[ -f docs/preview/rental-houseprice-last-good.json ]] && cp docs/preview/rental-houseprice-last-good.json /tmp/rental-houseprice-last-good.json || true
 
           git fetch origin main
           git reset --hard origin/main
 
           cp /tmp/rental-run-diagnostic.json docs/preview/rental-run-diagnostic.json
           [[ -f /tmp/rental-data.json ]] && cp /tmp/rental-data.json docs/preview/rental-data.json || true
+          [[ -f /tmp/rental-houseprice-last-good.json ]] && cp /tmp/rental-houseprice-last-good.json docs/preview/rental-houseprice-last-good.json || true
 
           git add docs/preview/rental-run-diagnostic.json
           [[ -f docs/preview/rental-data.json ]] && git add docs/preview/rental-data.json || true
+          [[ -f docs/preview/rental-houseprice-last-good.json ]] && git add docs/preview/rental-houseprice-last-good.json || true
           if git diff --cached --quiet; then
             echo "No rental Preview changes."
           else
@@ -167,5 +232,5 @@ jobs:
             "repos/${GITHUB_REPOSITORY}/pages/builds"
 
       - name: Fail if rental data did not build
-        if: steps.fetch.outcome != 'success' || steps.stamp.outcome != 'success'
+        if: steps.fetch.outcome != 'success' || steps.stamp.outcome != 'success' || steps.houseprice_vpn.outcome != 'success'
         run: exit 1
