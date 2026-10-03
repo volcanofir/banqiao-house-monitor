@@ -336,6 +336,66 @@ def extract_import_aliases(ctx, scripts):
         })
     return out
 
+
+def extract_crypto_chunk(ctx):
+    src = "https://buy.yungching.com.tw/mansion/chunk-2ETE3COE.js"
+    try:
+        rr = ctx.request.get(src, timeout=30000)
+        if not rr.ok:
+            return {"src": src, "http": rr.status, "error": "fetch failed"}
+        txt = rr.text()
+    except Exception as exc:
+        return {"src": src, "error": f"{type(exc).__name__}: {exc}"}
+
+    out = {"src": src, "len": len(txt)}
+    exp = txt.rfind("export{")
+    if exp < 0:
+        exp = txt.rfind("export {")
+    out["exportPos"] = exp
+    out["exportTail"] = txt[max(0, exp-3000):] if exp >= 0 else txt[-5000:]
+
+    # Find local names exported as q and s from the final export map.
+    export_map = out["exportTail"]
+    mappings = {}
+    for target in ("q", "s"):
+        marker = " as " + target
+        pos = export_map.find(marker)
+        if pos >= 0:
+            left = export_map[:pos]
+            # walk backwards to previous delimiter
+            start = max(left.rfind(","), left.rfind("{")) + 1
+            local = left[start:].strip()
+            mappings[target] = local
+    out["mappings"] = mappings
+
+    snippets = {}
+    for target, local in mappings.items():
+        candidates = [
+            f"function {local}(",
+            f"async function {local}(",
+            f"var {local}=",
+            f"let {local}=",
+            f"const {local}=",
+            f"{local}=async",
+            f"{local}=function",
+        ]
+        positions = []
+        for needle in candidates:
+            start = 0
+            while True:
+                p = txt.find(needle, start)
+                if p < 0:
+                    break
+                positions.append((p, needle))
+                start = p + len(needle)
+        positions.sort()
+        snippets[target] = [
+            {"position": p, "needle": needle, "snippet": txt[max(0,p-4000):p+14000]}
+            for p, needle in positions[:5]
+        ]
+    out["snippets"] = snippets
+    return out
+
 def main():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True, channel="chrome")
@@ -353,6 +413,7 @@ def main():
         )
         script_matches = extract_targeted_bundle_functions(ctx, scripts)
         import_aliases = extract_import_aliases(ctx, scripts)
+        crypto_chunk = extract_crypto_chunk(ctx)
         summary = {
             "road": ROAD,
             "pages": PAGES,
@@ -371,6 +432,8 @@ def main():
         print(json.dumps(script_matches, ensure_ascii=False))
         print("=== YC_IMPORT_ALIASES ===")
         print(json.dumps(import_aliases, ensure_ascii=False))
+        print("=== YC_CRYPTO_CHUNK ===")
+        print(json.dumps(crypto_chunk, ensure_ascii=False))
         browser.close()
 
 if __name__ == "__main__":
