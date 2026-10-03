@@ -298,6 +298,44 @@ def extract_targeted_bundle_functions(ctx, scripts):
     return targets
 
 
+
+def extract_import_aliases(ctx, scripts):
+    out = []
+    for src in scripts:
+        if "buy.yungching.com.tw/mansion/main-" not in src:
+            continue
+        try:
+            rr = ctx.request.get(src, timeout=30000)
+            if not rr.ok:
+                out.append({"src": src, "http": rr.status, "error": "main bundle fetch failed"})
+                continue
+            txt = rr.text()
+        except Exception as exc:
+            out.append({"src": src, "error": f"{type(exc).__name__}: {exc}"})
+            continue
+
+        head = txt[:12000]
+        statements = []
+        for part in head.split(";"):
+            p = part.strip()
+            if p.startswith("import") and "from" in p and "chunk-" in p:
+                statements.append(p[:5000])
+
+        alias_hits = []
+        for stmt in statements:
+            compact = stmt.replace(" ", "")
+            if "asv" in compact or "asN" in compact or "{v" in compact or ",v" in compact or "{N" in compact or ",N" in compact:
+                alias_hits.append(stmt)
+
+        out.append({
+            "src": src,
+            "len": len(txt),
+            "head": head,
+            "importStatements": statements,
+            "aliasHits": alias_hits,
+        })
+    return out
+
 def main():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True, channel="chrome")
@@ -314,6 +352,7 @@ def main():
             "els => [...new Set(els.map(x=>x.src).filter(Boolean))]",
         )
         script_matches = extract_targeted_bundle_functions(ctx, scripts)
+        import_aliases = extract_import_aliases(ctx, scripts)
         summary = {
             "road": ROAD,
             "pages": PAGES,
@@ -330,6 +369,8 @@ def main():
         print(json.dumps(results, ensure_ascii=False))
         print("=== YC_TARGETED_BUNDLE_FUNCTIONS ===")
         print(json.dumps(script_matches, ensure_ascii=False))
+        print("=== YC_IMPORT_ALIASES ===")
+        print(json.dumps(import_aliases, ensure_ascii=False))
         browser.close()
 
 if __name__ == "__main__":
