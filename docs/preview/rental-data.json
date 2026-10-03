@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-03T23:07:03+00:00",
+  "updatedAt": "2026-10-03T23:17:40+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -111,7 +111,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 100,
-      "checkedAt": "2026-10-03T23:07:18+00:00",
+      "checkedAt": "2026-10-03T23:18:01+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 51",
         "板橋區中山路二段 5168 API第2頁：符合 15／新增 15／來源總數 51",
@@ -998,19 +998,6 @@
       "firstSeenAt": "2026-09-29T04:48:46+00:00"
     },
     {
-      "id": "591租屋:22090600",
-      "source": "591",
-      "houseId": "22090600",
-      "road": "板橋區三民路二段",
-      "title": "合理價位/中原站/理想住所/三民路二段",
-      "address": "板橋區三民路二段",
-      "rent": 14000.0,
-      "size": 8.0,
-      "url": "https://rent.591.com.tw/22090600",
-      "floor": null,
-      "firstSeenAt": "2026-09-30T05:18:04+00:00"
-    },
-    {
       "id": "591租屋:21955594",
       "source": "591",
       "houseId": "21955594",
@@ -1022,6 +1009,19 @@
       "url": "https://rent.591.com.tw/21955594",
       "floor": null,
       "firstSeenAt": "2026-09-04T14:33:01+00:00"
+    },
+    {
+      "id": "591租屋:22090600",
+      "source": "591",
+      "houseId": "22090600",
+      "road": "板橋區三民路二段",
+      "title": "合理價位/中原站/理想住所/三民路二段",
+      "address": "板橋區三民路二段",
+      "rent": 14000.0,
+      "size": 8.0,
+      "url": "https://rent.591.com.tw/22090600",
+      "floor": null,
+      "firstSeenAt": "2026-09-30T05:18:04+00:00"
     },
     {
       "id": "591租屋:22001730",
@@ -4305,7 +4305,7 @@
       "firstSeenAt": "2026-10-03T00:30:04+00:00"
     }
   ],
-  "elapsedSeconds": 119.32,
+  "elapsedSeconds": 87.65,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
