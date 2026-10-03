@@ -258,24 +258,28 @@ def extract_targeted_bundle_functions(ctx, scripts):
             continue
 
         findings = []
-        patterns = [
-            ("function_v", r"function v\\("),
-            ("async_function_v", r"async function v\\("),
-            ("function_N", r"function N\\("),
-            ("async_function_N", r"async function N\\("),
-            ("decrypt_call", r"await N\\("),
-            ("key_lookup", r"await v\\("),
+        needles = [
+            ("function_v", "function v("),
+            ("async_function_v", "async function v("),
+            ("function_N", "function N("),
+            ("async_function_N", "async function N("),
+            ("decrypt_call", "await N("),
+            ("key_lookup", "await v("),
         ]
-        for label, pat in patterns:
-            for m in re.finditer(pat, txt):
-                pos = m.start()
+        for label, needle in needles:
+            start = 0
+            found = 0
+            while found < 3:
+                pos = txt.find(needle, start)
+                if pos < 0:
+                    break
                 findings.append({
                     "label": label,
                     "position": pos,
                     "snippet": txt[max(0, pos-5000):pos+12000],
                 })
-                if len([x for x in findings if x["label"] == label]) >= 3:
-                    break
+                found += 1
+                start = pos + len(needle)
 
         # Also capture the whole encryption/decryption interceptor neighborhood.
         pos = txt.find("async function bt(")
