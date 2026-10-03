@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "scripts/probe_yungching_crypto_static.py"
+      - "scripts/probe_yungching_api_direct.py"
       - ".github/workflows/probe-yungching-crypto-static.yml"
 
 concurrency:
@@ -31,5 +32,7 @@ jobs:
         run: bash scripts/connect_surfshark_wireguard.sh
       - name: Inspect crypto chunk
         run: python scripts/probe_yungching_crypto_static.py
+      - name: Probe direct encrypted API
+        run: python scripts/probe_yungching_api_direct.py
       - if: always()
         run: sudo wg-quick down surfshark || true
