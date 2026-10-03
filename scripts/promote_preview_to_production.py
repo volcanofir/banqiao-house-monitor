@@ -31,7 +31,7 @@ def main():
         )
     if verify.get('canonicalPublisher') != 'yungching-preview.yml':
         raise RuntimeError('Unexpected canonical publisher')
-    if verify.get('integrityVersion') != 'scheme-a-canonical-v3-sinyi-floor-neartie':
+    if verify.get('integrityVersion') != 'scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie':
         raise RuntimeError('Unexpected canonical integrity version')
 
     if gap.get('recentOffMarketRetentionDays') != 10:
@@ -49,7 +49,7 @@ def main():
         raise RuntimeError('Rental data market contract failed')
     if int((rental.get('counts') or {}).get('total') or 0) != len(rental_listings):
         raise RuntimeError('Rental data count/list mismatch')
-    for source_name in ('591', '信義房屋'):
+    for source_name in ('591', '信義房屋', '樂屋網', '5168'):
         if (rental.get('runs') or {}).get(source_name, {}).get('status') != 'ok':
             raise RuntimeError(f'Rental source is not healthy: {source_name}')
 
@@ -96,6 +96,10 @@ def main():
         '首次抓到：${fmt(x.firstSeenAt)}',
         '<strong>${name}</strong>',
         '目前刊登 ${r?.totalCount??0} 筆',
+        "['591','信義房屋','樂屋網','5168']",
+        "source==='houseprice'&&x.source==='5168'",
+        'data-source="rakuya"',
+        'data-source="houseprice"',
     ]
     missing = [x for x in required if x not in text]
     if missing:
