@@ -3,6 +3,11 @@ name: 發布正式版網站
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - "板橋房屋監控 CLEAN"
+      - "永慶公司案件比對 PREVIEW"
+    types: [completed]
   push:
     branches: [main]
     paths:
@@ -23,6 +28,7 @@ concurrency:
 
 jobs:
   promote:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
