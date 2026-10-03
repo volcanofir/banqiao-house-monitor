@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-02T17:08:16+00:00",
+  "verifiedAt": "2026-10-03T00:24:40+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-10-02T17:08:06+00:00",
+    "generatedAt": "2026-10-03T00:24:30+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -30,7 +30,7 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-10-02T17:07:39+00:00",
+    "updatedAt": "2026-10-03T00:24:01+00:00",
     "status": "ok",
     "totalCount": 234,
     "uniqueListingCount": 234,
@@ -72,17 +72,13 @@
       }
     ],
     "changes": {
-      "newCount": 1,
-      "newIds": [
-        "017dc4357006241"
-      ],
+      "newCount": 0,
+      "newIds": [],
       "priceChangeCount": 0,
       "priceChanges": [],
-      "removedCount": 1,
-      "removedIds": [
-        "08caf535562438f"
-      ],
-      "currentChangeCount": 2
+      "removedCount": 0,
+      "removedIds": [],
+      "currentChangeCount": 0
     },
     "complete": true
   },
@@ -99,7 +95,7 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-10-02T17:07:45+00:00",
+    "updatedAt": "2026-10-03T00:24:06+00:00",
     "status": "ok",
     "totalCount": 67,
     "uniqueListingCount": 67,
@@ -178,25 +174,25 @@
   "companyNearTieGuard": {
     "enabled": true,
     "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-    "examinedCompanyMatchCount": 46,
+    "examinedCompanyMatchCount": 45,
     "downgradedCount": 0,
     "remainingAutoNearTieCount": 0,
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-10-02T17:08:16+00:00",
+    "auditedAt": "2026-10-03T00:24:40+00:00",
     "propertyGroupCount": 173,
-    "companyListingCount": 74,
-    "companyMatchCount": 46,
+    "companyListingCount": 73,
+    "companyMatchCount": 45,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
     "weakIdentityAlreadyMergedPairCount": 568
   },
-  "snapshotCapturedAt": "2026-10-02T17:03:49+00:00",
-  "companySnapshotCapturedAt": "2026-10-02T17:03:49+00:00",
-  "companyGapGeneratedAt": "2026-10-02T17:08:12+00:00",
-  "browserListingCount": 74,
-  "companyListingCount": 74,
+  "snapshotCapturedAt": "2026-10-03T00:20:11+00:00",
+  "companySnapshotCapturedAt": "2026-10-03T00:20:11+00:00",
+  "companyGapGeneratedAt": "2026-10-03T00:24:36+00:00",
+  "browserListingCount": 73,
+  "companyListingCount": 73,
   "propertyGroupCount": 173,
   "rawListingCount": 641,
   "comparisonCount": 173,
@@ -212,7 +208,7 @@
   "roadCounts": {
     "板橋區中山路二段": 34,
     "板橋區三民路一段": 5,
-    "板橋區三民路二段": 30,
+    "板橋區三民路二段": 29,
     "板橋區翠華街": 3,
     "板橋區林森街": 0,
     "板橋區萬安街": 2,
@@ -263,9 +259,9 @@
     }
   },
   "counts": {
-    "company_match": 46,
+    "company_match": 45,
     "review": 8,
-    "missing": 119,
+    "missing": 120,
     "unavailable": 0
   },
   "crossPlatformMergedGroupCount": 107,
@@ -282,8 +278,8 @@
   },
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 79,
-    "afterCount": 74,
+    "beforeCount": 78,
+    "afterCount": 73,
     "removedCount": 5,
     "collisionIds": [
       "4308114"
@@ -357,17 +353,17 @@
   "candidatesWithFloor": 148,
   "candidatesWithYcCaseId": 148,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-02T17:07:07+00:00",
+    "generatedAt": "2026-10-03T00:23:28+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
-    "eligibleBeforeCache": 68,
-    "cacheHitCount": 68,
+    "eligibleBeforeCache": 67,
+    "cacheHitCount": 67,
     "seededFromPreviousDiagnosticCount": 0,
     "liveAttempted": 0,
     "responseFastHitCount": 0,
     "domFallbackCount": 0,
-    "enriched": 68,
+    "enriched": 67,
     "liveEnriched": 0,
-    "officialCaseIdEnriched": 68,
+    "officialCaseIdEnriched": 67,
     "cacheWriteCount": 0,
     "cacheEntryCount": 91,
     "rejectedTitleFloorConflicts": 0,

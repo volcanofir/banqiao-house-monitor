@@ -337,6 +337,9 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}.hero{b
 
 .compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
 .compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
+
+.compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
 </style>
 <link rel="stylesheet" href="r420-widget.css?v=20260922-1" />
 </head>
@@ -841,6 +844,7 @@ function renderGroups(){
 
 
 
+
 function rentalPrice(x){const n=Number(x?.rent);return Number.isFinite(n)&&n>0?`${Math.round(n).toLocaleString('zh-TW')} 元/月`:'租金未取得'}
 function rentalFirstSeenMs(x){const t=new Date(x?.firstSeenAt||0).getTime();return Number.isFinite(t)?t:0}
 function rentalIsNew(x){
@@ -866,7 +870,13 @@ function renderRentGroups(){
   const source=SOURCE_FILTER;
   const state=document.querySelector('#state')?.value||'all';
   const sort=document.querySelector('#sort').value;
-  let rows=(RENT.listings||[]).filter(x=>source==='all'||(source==='sinyi'&&x.source==='信義房屋')||(source==='591'&&x.source==='591')||(source==='rakuya'&&x.source==='樂屋網')||(source==='houseprice'&&x.source==='5168'));
+  let rows=(RENT.listings||[]).filter(x=>
+    source==='all'
+    ||(source==='sinyi'&&x.source==='信義房屋')
+    ||(source==='591'&&x.source==='591')
+    ||(source==='rakuya'&&x.source==='樂屋網')
+    ||(source==='houseprice'&&x.source==='5168')
+  );
   if(state==='new')rows=rows.filter(rentalIsNew);
   if(sort==='priceDesc')rows.sort((a,b)=>(Number(b.rent)||0)-(Number(a.rent)||0));
   if(sort==='priceAsc')rows.sort((a,b)=>(Number(a.rent)||0)-(Number(b.rent)||0));
@@ -905,6 +915,7 @@ function setMarket(mode){
   document.querySelectorAll('.market-btn').forEach(b=>b.classList.toggle('active',b.dataset.market===MARKET_MODE));
   document.querySelectorAll('.source-tab').forEach(b=>b.classList.toggle('active',b.dataset.source==='all'));
   const rent=MARKET_MODE==='rent';
+  document.querySelectorAll('.source-tab').forEach(b=>{b.style.display='';});
   const company=document.querySelector('#companyPanel'); if(company)company.style.display=rent?'none':'';
   const state=document.querySelector('#state');
   if(state){
