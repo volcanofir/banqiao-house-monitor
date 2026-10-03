@@ -1,0 +1,55 @@
+name: Yongching API vs DOM seven-road test
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/probe_yungching_api_vs_dom.py"
+      - ".github/workflows/probe-yungching-api-vs-dom.yml"
+
+concurrency:
+  group: yongching-api-vs-dom-test
+  cancel-in-progress: true
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install playwright requests
+      - name: Install WireGuard
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y wireguard-tools >/dev/null
+      - name: Find usable Yongching VPN exit
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        shell: bash
+        run: |
+          for attempt in 1 2 3 4 5; do
+            echo "Yongching compare exit $attempt/5"
+            sudo wg-quick down surfshark >/dev/null 2>&1 || true
+            if bash scripts/connect_surfshark_wireguard.sh && python scripts/run_with_system_chrome.py scripts/yungching_browser_preflight.py; then
+              exit 0
+            fi
+            sleep 3
+          done
+          exit 1
+      - name: Run current DOM seven-road snapshot
+        run: python scripts/run_with_system_chrome.py scripts/yungching_dom_snapshot_v5.py
+      - name: Compare decrypted API against same-run DOM
+        run: python scripts/run_with_system_chrome.py scripts/probe_yungching_api_vs_dom.py
+      - name: Upload comparison report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: yungching-api-vs-dom-report
+          path: artifacts/yungching-api-vs-dom-report.json
+          if-no-files-found: warn
+          retention-days: 7
+      - if: always()
+        run: sudo wg-quick down surfshark || true
