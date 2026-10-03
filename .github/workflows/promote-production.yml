@@ -11,6 +11,7 @@ on:
       - "scripts/smoke_test_production_ui.py"
       - "scripts/run_with_system_chrome.py"
       - "docs/preview/index.html"
+      - "trigger/promote-production-wakeup.txt"
 
 permissions:
   contents: write
