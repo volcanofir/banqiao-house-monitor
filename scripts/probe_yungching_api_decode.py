@@ -242,6 +242,58 @@ def safe_page_probe(page, page_no: int):
         except Exception:
             pass
 
+
+def extract_targeted_bundle_functions(ctx, scripts):
+    targets = []
+    for src in scripts:
+        if "buy.yungching.com.tw/mansion/main-" not in src:
+            continue
+        try:
+            rr = ctx.request.get(src, timeout=30000)
+            if not rr.ok:
+                continue
+            txt = rr.text()
+        except Exception as exc:
+            targets.append({"src": src, "error": f"{type(exc).__name__}: {exc}"})
+            continue
+
+        findings = []
+        patterns = [
+            ("function_v", r"function v\\("),
+            ("async_function_v", r"async function v\\("),
+            ("function_N", r"function N\\("),
+            ("async_function_N", r"async function N\\("),
+            ("decrypt_call", r"await N\\("),
+            ("key_lookup", r"await v\\("),
+        ]
+        for label, pat in patterns:
+            for m in re.finditer(pat, txt):
+                pos = m.start()
+                findings.append({
+                    "label": label,
+                    "position": pos,
+                    "snippet": txt[max(0, pos-5000):pos+12000],
+                })
+                if len([x for x in findings if x["label"] == label]) >= 3:
+                    break
+
+        # Also capture the whole encryption/decryption interceptor neighborhood.
+        pos = txt.find("async function bt(")
+        if pos >= 0:
+            findings.append({
+                "label": "response_decrypt_interceptor",
+                "position": pos,
+                "snippet": txt[max(0, pos-7000):pos+18000],
+            })
+
+        targets.append({
+            "src": src,
+            "len": len(txt),
+            "findings": findings,
+        })
+    return targets
+
+
 def main():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True, channel="chrome")
@@ -253,7 +305,11 @@ def main():
         for n in PAGES:
             results.append(safe_page_probe(page, n))
 
-        script_matches = []
+        scripts = page.eval_on_selector_all(
+            "script[src]",
+            "els => [...new Set(els.map(x=>x.src).filter(Boolean))]",
+        )
+        script_matches = extract_targeted_bundle_functions(ctx, scripts)
         summary = {
             "road": ROAD,
             "pages": PAGES,
@@ -268,7 +324,7 @@ def main():
         print(json.dumps(summary, ensure_ascii=False))
         print("=== YC_PAGE_RESULTS ===")
         print(json.dumps(results, ensure_ascii=False))
-        print("=== YC_SCRIPT_MATCHES ===")
+        print("=== YC_TARGETED_BUNDLE_FUNCTIONS ===")
         print(json.dumps(script_matches, ensure_ascii=False))
         browser.close()
 
