@@ -1,0 +1,21 @@
+name: Yongching crypto static probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/probe_yungching_crypto_static.py"
+      - ".github/workflows/probe-yungching-crypto-static.yml"
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Inspect crypto chunk
+        run: python scripts/probe_yungching_crypto_static.py
