@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-03T15:54:04+00:00",
+  "verifiedAt": "2026-10-03T18:53:11+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-10-03T15:53:58+00:00",
+    "generatedAt": "2026-10-03T18:53:04+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -30,10 +30,10 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-10-03T15:53:53+00:00",
+    "updatedAt": "2026-10-03T18:52:33+00:00",
     "status": "ok",
-    "totalCount": 239,
-    "uniqueListingCount": 239,
+    "totalCount": 240,
+    "uniqueListingCount": 240,
     "roadCounts": [
       {
         "road": "中山路二段",
@@ -47,8 +47,8 @@
       },
       {
         "road": "三民路二段",
-        "count": 57,
-        "pages": 3
+        "count": 58,
+        "pages": 4
       },
       {
         "road": "翠華街",
@@ -72,30 +72,32 @@
       }
     ],
     "changes": {
-      "newCount": 0,
-      "newIds": [],
+      "newCount": 1,
+      "newIds": [
+        "07a8d432235664c"
+      ],
       "priceChangeCount": 0,
       "priceChanges": [],
       "removedCount": 0,
       "removedIds": [],
-      "currentChangeCount": 0
+      "currentChangeCount": 1
     },
     "complete": true
   },
   "rakuyaGrouping": {
-    "inputCount": 239,
-    "regroupedCount": 128,
+    "inputCount": 240,
+    "regroupedCount": 129,
     "mergedClusterCount": 49,
     "absorbedCount": 111,
     "attachedToExistingGroupCount": 107,
-    "standaloneGroupCount": 21,
+    "standaloneGroupCount": 22,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 0
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-10-03T14:28:18+00:00",
+    "updatedAt": "2026-10-03T18:52:38+00:00",
     "status": "ok",
     "totalCount": 67,
     "uniqueListingCount": 67,
@@ -180,22 +182,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-10-03T15:54:04+00:00",
-    "propertyGroupCount": 171,
+    "auditedAt": "2026-10-03T18:53:11+00:00",
+    "propertyGroupCount": 172,
     "companyListingCount": 75,
     "companyMatchCount": 46,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
     "weakIdentityAlreadyMergedPairCount": 638
   },
-  "snapshotCapturedAt": "2026-10-03T15:50:04+00:00",
-  "companySnapshotCapturedAt": "2026-10-03T15:50:04+00:00",
-  "companyGapGeneratedAt": "2026-10-03T15:54:02+00:00",
+  "snapshotCapturedAt": "2026-10-03T18:48:48+00:00",
+  "companySnapshotCapturedAt": "2026-10-03T18:48:48+00:00",
+  "companyGapGeneratedAt": "2026-10-03T18:53:09+00:00",
   "browserListingCount": 75,
   "companyListingCount": 75,
-  "propertyGroupCount": 171,
-  "rawListingCount": 659,
-  "comparisonCount": 171,
+  "propertyGroupCount": 172,
+  "rawListingCount": 660,
+  "comparisonCount": 172,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -261,11 +263,11 @@
   "counts": {
     "company_match": 46,
     "review": 7,
-    "missing": 118,
+    "missing": 119,
     "unavailable": 0
   },
   "crossPlatformMergedGroupCount": 107,
-  "crossSourceReviewCount": 9,
+  "crossSourceReviewCount": 10,
   "preview591Regroup": {
     "original591TopLevel": 116,
     "regrouped591TopLevel": 99,
@@ -349,11 +351,11 @@
     ],
     "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
   },
-  "candidateCount": 162,
-  "candidatesWithFloor": 146,
-  "candidatesWithYcCaseId": 146,
+  "candidateCount": 163,
+  "candidatesWithFloor": 147,
+  "candidatesWithYcCaseId": 147,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-03T15:53:22+00:00",
+    "generatedAt": "2026-10-03T18:52:02+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 69,
     "cacheHitCount": 69,
