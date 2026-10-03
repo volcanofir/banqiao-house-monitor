@@ -1,0 +1,36 @@
+name: Yongching browser direct API probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/probe_yungching_browser_api_direct.py"
+      - ".github/workflows/probe-yungching-browser-api-direct.yml"
+
+concurrency:
+  group: yongching-browser-api-direct
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install playwright
+      - name: Install WireGuard
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y wireguard-tools >/dev/null
+      - name: Connect Surfshark once
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        run: bash scripts/connect_surfshark_wireguard.sh
+      - name: Warm browser and call encrypted API
+        timeout-minutes: 1
+        run: python scripts/run_with_system_chrome.py scripts/probe_yungching_browser_api_direct.py
+      - if: always()
+        run: sudo wg-quick down surfshark || true
