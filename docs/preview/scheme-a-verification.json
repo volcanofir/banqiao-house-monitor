@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-04T02:40:16+00:00",
+  "verifiedAt": "2026-10-04T06:19:13+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-10-04T02:40:05+00:00",
+    "generatedAt": "2026-10-04T06:19:02+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -30,10 +30,10 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-10-04T02:40:01+00:00",
+    "updatedAt": "2026-10-04T06:18:35+00:00",
     "status": "ok",
-    "totalCount": 238,
-    "uniqueListingCount": 238,
+    "totalCount": 235,
+    "uniqueListingCount": 235,
     "roadCounts": [
       {
         "road": "中山路二段",
@@ -42,13 +42,13 @@
       },
       {
         "road": "三民路一段",
-        "count": 34,
+        "count": 33,
         "pages": 2
       },
       {
         "road": "三民路二段",
-        "count": 58,
-        "pages": 4
+        "count": 57,
+        "pages": 3
       },
       {
         "road": "翠華街",
@@ -57,8 +57,8 @@
       },
       {
         "road": "林森街",
-        "count": 1,
-        "pages": 1
+        "count": 0,
+        "pages": 0
       },
       {
         "road": "萬安街",
@@ -72,35 +72,29 @@
       }
     ],
     "changes": {
-      "newCount": 0,
-      "newIds": [],
-      "priceChangeCount": 2,
-      "priceChanges": [
-        {
-          "listingId": "04361a32587392c",
-          "from": 6900,
-          "to": 5900,
-          "at": "2026-10-04T02:40:01+00:00"
-        },
-        {
-          "listingId": "0fa49132586160b",
-          "from": 5900,
-          "to": 4900,
-          "at": "2026-10-04T02:40:01+00:00"
-        }
+      "newCount": 1,
+      "newIds": [
+        "016cdc356944695"
       ],
-      "removedCount": 0,
-      "removedIds": [],
-      "currentChangeCount": 2
+      "priceChangeCount": 0,
+      "priceChanges": [],
+      "removedCount": 4,
+      "removedIds": [
+        "04c3a6356816090",
+        "05372e356818231",
+        "0697ab35681626d",
+        "07656d35681795c"
+      ],
+      "currentChangeCount": 5
     },
     "complete": true
   },
   "rakuyaGrouping": {
-    "inputCount": 238,
-    "regroupedCount": 129,
-    "mergedClusterCount": 49,
-    "absorbedCount": 109,
-    "attachedToExistingGroupCount": 105,
+    "inputCount": 235,
+    "regroupedCount": 127,
+    "mergedClusterCount": 48,
+    "absorbedCount": 108,
+    "attachedToExistingGroupCount": 103,
     "standaloneGroupCount": 24,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
@@ -108,7 +102,7 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-10-04T02:32:39+00:00",
+    "updatedAt": "2026-10-04T06:18:40+00:00",
     "status": "ok",
     "totalCount": 67,
     "uniqueListingCount": 67,
@@ -193,22 +187,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-10-04T02:40:16+00:00",
-    "propertyGroupCount": 173,
+    "auditedAt": "2026-10-04T06:19:13+00:00",
+    "propertyGroupCount": 172,
     "companyListingCount": 74,
     "companyMatchCount": 46,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 632
+    "weakIdentityAlreadyMergedPairCount": 630
   },
-  "snapshotCapturedAt": "2026-10-04T02:36:02+00:00",
-  "companySnapshotCapturedAt": "2026-10-04T02:36:02+00:00",
-  "companyGapGeneratedAt": "2026-10-04T02:40:12+00:00",
+  "snapshotCapturedAt": "2026-10-04T06:14:49+00:00",
+  "companySnapshotCapturedAt": "2026-10-04T06:14:49+00:00",
+  "companyGapGeneratedAt": "2026-10-04T06:19:09+00:00",
   "browserListingCount": 74,
   "companyListingCount": 74,
-  "propertyGroupCount": 173,
-  "rawListingCount": 657,
-  "comparisonCount": 173,
+  "propertyGroupCount": 172,
+  "rawListingCount": 652,
+  "comparisonCount": 172,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -274,14 +268,14 @@
   "counts": {
     "company_match": 46,
     "review": 7,
-    "missing": 120,
+    "missing": 119,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 105,
-  "crossSourceReviewCount": 11,
+  "crossPlatformMergedGroupCount": 103,
+  "crossSourceReviewCount": 10,
   "preview591Regroup": {
-    "original591TopLevel": 117,
-    "regrouped591TopLevel": 100,
+    "original591TopLevel": 116,
+    "regrouped591TopLevel": 99,
     "regrouped591ClusterCount": 15,
     "regrouped591AbsorbedCount": 17,
     "clusterFloorConflictBlocked": 0
@@ -362,11 +356,11 @@
     ],
     "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
   },
-  "candidateCount": 164,
-  "candidatesWithFloor": 149,
-  "candidatesWithYcCaseId": 149,
+  "candidateCount": 163,
+  "candidatesWithFloor": 148,
+  "candidatesWithYcCaseId": 148,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-04T02:39:20+00:00",
+    "generatedAt": "2026-10-04T06:18:05+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 68,
     "cacheHitCount": 68,
