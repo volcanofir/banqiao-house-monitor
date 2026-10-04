@@ -1,0 +1,57 @@
+name: Yongching canonical API snapshot smoke
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-yungching-api-snapshot-smoke.yml"
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install playwright requests beautifulsoup4
+      - name: Find usable Yongching VPN exit
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        shell: bash
+        run: |
+          for attempt in 1 2 3 4 5; do
+            sudo wg-quick down surfshark >/dev/null 2>&1 || true
+            if bash scripts/connect_surfshark_wireguard.sh && python scripts/run_with_system_chrome.py scripts/yungching_browser_preflight.py; then
+              exit 0
+            fi
+            sleep 3
+          done
+          exit 1
+      - name: Build canonical API snapshot
+        run: python scripts/run_with_system_chrome.py scripts/yungching_api_snapshot.py
+      - name: Validate snapshot contract
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("docs/preview/yungching-browser-snapshot.json")
+          d=json.loads(p.read_text(encoding="utf-8"))
+          assert d.get("captureMode")=="yungching_official_api", d.get("captureMode")
+          assert d.get("listingCount")==len(d.get("listings") or [])
+          assert len(d.get("roadStatus") or {})==7
+          assert all((x or {}).get("available") for x in (d.get("roadStatus") or {}).values())
+          assert all((x or {}).get("paginationComplete") is True for x in (d.get("roadStatus") or {}).values())
+          assert all((x or {}).get("primaryApiListSuccess") is True for x in (d.get("roadStatus") or {}).values())
+          print({
+            "captureMode":d.get("captureMode"),
+            "listingCount":d.get("listingCount"),
+            "roadCounts":{k:v.get("count") for k,v in d["roadStatus"].items()},
+            "withFloor":sum(1 for x in d["listings"] if x.get("floor")),
+            "withoutFloor":sum(1 for x in d["listings"] if not x.get("floor")),
+          })
+          PY
+      - if: always()
+        run: sudo wg-quick down surfshark || true
