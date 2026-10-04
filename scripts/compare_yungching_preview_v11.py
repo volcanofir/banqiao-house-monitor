@@ -278,7 +278,7 @@ def main():
     payload["housepriceSnapshot"]["sourceTimePolicy"]=houseprice.get("sourceTimePolicy") or {}
     payload["note"]=(
         "PREVIEW v11：591先重新分組，信義維持優先主資料；樂屋與5168七路段各自先站內去重，"
-        "再依坪數、價格、案名與樓層證據依序併入既有房屋群組，最後整組比對永慶官方DOM。"
+        "再依坪數、價格、案名與樓層證據依序併入既有房屋群組，最後整組比對永慶官方資料（API主抓、DOM fallback）。"
         "5168另使用其APP API groupSid作站內直接同群證據；任何樓層衝突或多組近似且無唯一證據都不硬合併。"
     )
     path.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
