@@ -41,7 +41,8 @@ def browser_row(src, road):
     x.setdefault("area", None)
     x.setdefault("price", None)
     x["text"] = x.get("text") or x.get("rawText") or x.get("title") or ""
-    x["sourceMode"] = x.get("sourceMode") or "yungching_official_browser"
+    x["captureSourceMode"] = x.get("sourceMode") or "yungching_browser_dom"
+    x["sourceMode"] = "yungching_official_browser"
     return x
 
 
