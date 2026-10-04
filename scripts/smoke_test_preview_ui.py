@@ -292,6 +292,10 @@ def main():
                 road_groups.nth(0).locator(":scope > summary").click()
                 assert road_groups.nth(0).get_attribute("open") is not None
                 road_groups.nth(1).locator(":scope > summary").click()
+                page.wait_for_function(
+                    "() => { const g=document.querySelectorAll('#groups > details.road-group'); return g.length < 2 || (g[1].open && !g[0].open); }",
+                    timeout=3000,
+                )
                 assert road_groups.nth(1).get_attribute("open") is not None
                 assert road_groups.nth(0).get_attribute("open") is None
 
