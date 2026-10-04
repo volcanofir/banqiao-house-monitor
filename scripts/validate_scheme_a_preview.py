@@ -237,7 +237,7 @@ def main():
 
     for road in EXPECTED_ROADS:
         pst = (p.get("roadStatus") or {}).get(road) or {}
-        assert pst.get("available") is True and pst.get("mode") == "yungching_official_browser", (road, pst)
+        assert pst.get("available") is True and pst.get("mode") in {"yungching_official_browser", "yungching_official_api"}, (road, pst)
         assert int(pst.get("count") or 0) == actual_road_counts[road], (road, pst, actual_road_counts[road])
         assert pst.get("browserCapturedAt") == s.get("capturedAt"), (road, pst.get("browserCapturedAt"), s.get("capturedAt"))
 
