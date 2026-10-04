@@ -41,7 +41,7 @@ def browser_row(src, road):
     x.setdefault("area", None)
     x.setdefault("price", None)
     x["text"] = x.get("text") or x.get("rawText") or x.get("title") or ""
-    x["sourceMode"] = "yungching_official_browser"
+    x["sourceMode"] = x.get("sourceMode") or "yungching_official_browser"
     return x
 
 
@@ -118,7 +118,7 @@ def official_rendered_fetch_company():
                 "count": official_count,
                 "http": 200,
                 "available": True,
-                "mode": "yungching_official_browser",
+                "mode": ost.get("mode") or "yungching_official_browser",
                 "officialCount": official_count,
                 "browserCapturedAt": captured_at,
                 "paginationExpected": ost.get("paginationExpected"),
@@ -129,11 +129,11 @@ def official_rendered_fetch_company():
                 "confirmationUsed": ost.get("confirmationUsed"),
                 "confirmationHttp": ost.get("confirmationHttp"),
                 "skippedConfirmedEmpty": ost.get("skippedConfirmedEmpty"),
-                "source": "永慶房仲網官方公開搜尋頁實際渲染 DOM",
+                "source": ost.get("source") or "永慶房仲網官方公開搜尋資料",
             }
             OFFICIAL_STATS["acceptedRoadCount"] += 1
             OFFICIAL_STATS["roads"][road] = {
-                "mode": "official",
+                "mode": "official_api" if (ost.get("mode") == "yungching_official_api") else "official_dom",
                 "officialCount": official_count,
                 "http": road_http,
                 "paginationComplete": ost.get("paginationComplete"),
@@ -149,7 +149,8 @@ def official_rendered_fetch_company():
                     "官方新北市關鍵字頁完整複查為 0 筆，已跳過此路段公司案件。"
                 )
             else:
-                logs.append(f"永慶官方瀏覽器資料：{road} 採用官方渲染 DOM {official_count} 筆。")
+                source_label = "官方 API" if ost.get("mode") == "yungching_official_api" else "官方渲染 DOM"
+                logs.append(f"永慶官方資料：{road} 採用{source_label} {official_count} 筆。")
         else:
             if not fresh_snapshot:
                 reason = "官方快照過期或時間異常"
