@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-10-04T12:14:40+00:00",
+  "verifiedAt": "2026-10-04T12:23:02+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-10-04T10:16:48+00:00",
+  "sourceDataUpdatedAt": "2026-10-04T12:19:29+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-10-04T12:14:33+00:00",
+    "generatedAt": "2026-10-04T12:22:52+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-10-04T10:15:33+00:00",
+    "sourceRunCheckedAt": "2026-10-04T12:18:09+00:00",
     "activeSinyiCount": 67,
     "matchedOfficialCount": 67,
     "appliedCount": 67,
@@ -30,7 +30,7 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-10-04T12:14:12+00:00",
+    "updatedAt": "2026-10-04T12:22:47+00:00",
     "status": "ok",
     "totalCount": 236,
     "uniqueListingCount": 236,
@@ -95,7 +95,7 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-10-04T12:14:16+00:00",
+    "updatedAt": "2026-10-04T12:18:52+00:00",
     "status": "ok",
     "totalCount": 67,
     "uniqueListingCount": 67,
@@ -180,17 +180,17 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-10-04T12:14:40+00:00",
+    "auditedAt": "2026-10-04T12:23:02+00:00",
     "propertyGroupCount": 171,
     "companyListingCount": 74,
     "companyMatchCount": 46,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 643
+    "weakIdentityAlreadyMergedPairCount": 625
   },
-  "snapshotCapturedAt": "2026-10-04T12:10:26+00:00",
-  "companySnapshotCapturedAt": "2026-10-04T12:10:26+00:00",
-  "companyGapGeneratedAt": "2026-10-04T12:14:37+00:00",
+  "snapshotCapturedAt": "2026-10-04T12:21:59+00:00",
+  "companySnapshotCapturedAt": "2026-10-04T12:21:59+00:00",
+  "companyGapGeneratedAt": "2026-10-04T12:22:58+00:00",
   "browserListingCount": 74,
   "companyListingCount": 74,
   "propertyGroupCount": 171,
@@ -278,92 +278,29 @@
   },
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 79,
+    "beforeCount": 74,
     "afterCount": 74,
-    "removedCount": 5,
-    "collisionIds": [
-      "4308114"
-    ],
+    "removedCount": 0,
+    "collisionIds": [],
     "remainingCollisionIds": [],
-    "removed": [
-      {
-        "id": "4308114",
-        "road": "板橋區中山路二段",
-        "title": "收租置產商辦首選",
-        "area": 30.78,
-        "price": 1488.0,
-        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-        "replacementIds": [
-          "6705632"
-        ],
-        "replacementFound": true
-      },
-      {
-        "id": "4308114",
-        "road": "板橋區三民路一段",
-        "title": "稀有低總價挑高",
-        "area": 19.84,
-        "price": 1350.0,
-        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-        "replacementIds": [
-          "7532014"
-        ],
-        "replacementFound": true
-      },
-      {
-        "id": "4308114",
-        "road": "板橋區三民路二段",
-        "title": "板橋埔墘大兩房高樓邊間景觀宅",
-        "area": 35.83,
-        "price": 2038.0,
-        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-        "replacementIds": [
-          "7521423"
-        ],
-        "replacementFound": true
-      },
-      {
-        "id": "4308114",
-        "road": "板橋區翠華街",
-        "title": "近江子翠商圈｜面寬好停車一樓｜氣派門廳｜辦公規劃",
-        "area": 59.37,
-        "price": 3988.0,
-        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-        "replacementIds": [
-          "7455915"
-        ],
-        "replacementFound": true
-      },
-      {
-        "id": "4308114",
-        "road": "板橋區萬安街",
-        "title": "萬安簡約質感透天",
-        "area": 27.95,
-        "price": 1400.0,
-        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-        "replacementIds": [
-          "7532825"
-        ],
-        "replacementFound": true
-      }
-    ],
-    "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
+    "removed": [],
+    "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
   },
   "candidateCount": 162,
-  "candidatesWithFloor": 147,
-  "candidatesWithYcCaseId": 147,
+  "candidatesWithFloor": 162,
+  "candidatesWithYcCaseId": 6,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-04T12:13:42+00:00",
+    "generatedAt": "2026-10-04T12:22:14+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
-    "eligibleBeforeCache": 68,
-    "cacheHitCount": 68,
+    "eligibleBeforeCache": 2,
+    "cacheHitCount": 2,
     "seededFromPreviousDiagnosticCount": 0,
     "liveAttempted": 0,
     "responseFastHitCount": 0,
     "domFallbackCount": 0,
-    "enriched": 68,
+    "enriched": 2,
     "liveEnriched": 0,
-    "officialCaseIdEnriched": 68,
+    "officialCaseIdEnriched": 2,
     "cacheWriteCount": 0,
     "cacheEntryCount": 92,
     "rejectedTitleFloorConflicts": 0,
