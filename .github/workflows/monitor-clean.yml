@@ -16,6 +16,7 @@ on:
       - "scripts/smoke_test_preview_ui.py"
       - "scripts/patch_rental_preview_ui.py"
       - "scripts/yungching_dom_snapshot.py"
+      - "scripts/yungching_api_snapshot.py"
       - "scripts/yungching_dom_snapshot_v5.py"
       - "scripts/monitor_schedule_state.py"
       - "scripts/fetch_houseprice_seven_roads_preview.py"
@@ -231,9 +232,17 @@ jobs:
           done
           exit 1
 
-      - name: Extract Yongching official DOM through actual last page
+      - name: Fetch Yongching official API with DOM fallback
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
-        run: python scripts/run_with_system_chrome.py scripts/yungching_dom_snapshot_v5.py
+        shell: bash
+        run: |
+          set -o pipefail
+          if python scripts/run_with_system_chrome.py scripts/yungching_api_snapshot.py; then
+            echo "Yongching official API snapshot succeeded; DOM crawl skipped."
+          else
+            echo "Yongching official API snapshot failed; falling back to DOM v5."
+            python scripts/run_with_system_chrome.py scripts/yungching_dom_snapshot_v5.py
+          fi
 
       - name: Enrich Yongching floors from persistent cache or detail response
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
