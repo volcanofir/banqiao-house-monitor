@@ -1,4 +1,4 @@
-"""Final all-pages and one-to-one release gate for scheme A Preview."""
+"""Final all-pages and one-to-one release gate for scheme A Preview.\n\nAccepts either the verified DOM all-pages v5 snapshot or the official API all-pages v1 snapshot.\n"""
 
 import json
 from collections import Counter
@@ -39,7 +39,7 @@ def main():
     s = json.loads(SNAPSHOT.read_text(encoding="utf-8"))
     p = json.loads(GAP.read_text(encoding="utf-8"))
 
-    assert s.get("paginationGuardVersion") == "all-pages-v5", s.get("paginationGuardVersion")
+    assert s.get("paginationGuardVersion") in {"all-pages-v5", "api-all-pages-v1"}, s.get("paginationGuardVersion")
     for road, st in (s.get("roadStatus") or {}).items():
         assert st.get("paginationCompleteAllPages") is True, (road, st)
         assert st.get("paginationExhausted") is True, (road, st)
