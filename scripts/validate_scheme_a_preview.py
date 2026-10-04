@@ -142,9 +142,26 @@ def main():
         assert road_count >= 0, (road, st)
         if road_count == 0:
             assert st.get("emptyResultVerified") is True, (road, st)
-            assert st.get("primaryHttp") == 404, (road, st)
-            assert st.get("confirmationUsed") is True, (road, st)
-            assert st.get("confirmationHttp") == 200, (road, st)
+            api_mode = (
+                st.get("mode") == "yungching_official_api"
+                or st.get("transportEvidence") == "official_api_v2_decrypted"
+            )
+            if api_mode:
+                # Official /api/v2/list returns HTTP 200 + an empty decrypted result
+                # for a verified zero-result road. No 404 confirmation navigation is
+                # needed in API mode.
+                assert st.get("primaryHttp") == 200, (road, st)
+                assert st.get("primaryApiListHttp") == 200, (road, st)
+                assert st.get("primaryApiListSuccess") is True, (road, st)
+                assert int(st.get("apiTotalCount") or 0) == 0, (road, st)
+                assert int(st.get("apiTotalItemCount") or 0) == 0, (road, st)
+                assert st.get("confirmationUsed") is False, (road, st)
+            else:
+                # Legacy DOM collector verifies empty roads by retrying the wider
+                # official New Taipei keyword page after a road-scoped 404.
+                assert st.get("primaryHttp") == 404, (road, st)
+                assert st.get("confirmationUsed") is True, (road, st)
+                assert st.get("confirmationHttp") == 200, (road, st)
             assert st.get("skippedConfirmedEmpty") is True, (road, st)
             assert st.get("paginationCompleteAllPages") is True, (road, st)
             assert int(st.get("rawExactAddressTextCount") or 0) == 0, (road, st)
@@ -152,13 +169,26 @@ def main():
             road, st.get("count"), actual_road_counts[road]
         )
         if st.get("paginationExpected"):
-            direct = [
-                x for x in (st.get("nextClicks") or [])
-                if x.get("mode") == "yungching-direct-pg-v4" and int(x.get("target") or 0) >= 2
-            ]
             assert int(st.get("paginationActivePage") or 0) >= 2, (road, st)
-            assert direct, (road, st.get("nextClicks"))
-            assert all(x.get("http") == 200 and x.get("activeVerified") is True for x in direct), direct
+            api_mode = (
+                st.get("mode") == "yungching_official_api"
+                or st.get("transportEvidence") == "official_api_v2_decrypted"
+            )
+            if api_mode:
+                # API snapshot fetches every advertised page directly and records
+                # completeness in the snapshot contract rather than DOM click evidence.
+                assert st.get("paginationCompleteAllPages") is True, (road, st)
+                assert st.get("paginationExhausted") is True, (road, st)
+                assert int(st.get("pageRounds") or 0) >= 1, (road, st)
+                assert st.get("primaryApiListSuccess") is True, (road, st)
+            else:
+                direct = [
+                    x for x in (st.get("nextClicks") or [])
+                    if x.get("mode") in {"yungching-direct-pg-v4", "yungching-direct-pg-v5"}
+                    and int(x.get("target") or 0) >= 2
+                ]
+                assert direct, (road, st.get("nextClicks"))
+                assert all(x.get("http") == 200 and x.get("activeVerified") is True for x in direct), direct
 
     assert sum(actual_road_counts.values()) == len(listings) == int(s.get("listingCount") or -1), (
         dict(actual_road_counts), len(listings), s.get("listingCount")
