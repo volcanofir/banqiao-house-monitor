@@ -22,6 +22,7 @@ on:
       - "scripts/fetch_houseprice_seven_roads_preview.py"
       - "scripts/validate_houseprice_preview_snapshot.py"
       - "scripts/append_houseprice_to_scheme_a.py"
+      - "scripts/compare_yungching_preview_v6.py"
       - "scripts/compare_yungching_preview_v11.py"
       - "scripts/patch_rakuya_integrated_ui.py"
       - "trigger/monitor-wakeup.txt"
@@ -36,7 +37,7 @@ permissions:
 
 concurrency:
   group: banqiao-house-monitor-clean
-  cancel-in-progress: false
+  cancel-in-progress: ${{ github.event_name == 'push' }}
 
 jobs:
   monitor:
