@@ -1,12 +1,21 @@
-"""Compare current 591 crawler with parallel pagination on the same legacy mobile API.
+"""Validate a deterministic fast path for the SAME legacy 591 mobile API.
 
-No canonical data is mutated.
+Candidate strategy:
+1. keep the current per-road mobile Chrome warmup/session;
+2. force recom_community=0 to remove dynamic recommendation rows;
+3. use official totalRows to determine the exact page count;
+4. fetch pages 2..N concurrently;
+5. trim each page to its expected core-row count before the existing parser.
+
+Runs the current crawler once and the candidate twice. No canonical data is mutated.
 """
 import asyncio
+import copy
 import json
 import math
 import time
 from pathlib import Path
+from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
 from playwright.async_api import async_playwright
 
@@ -18,17 +27,22 @@ PAGE_SIZE = 30
 MAX_PAGE_CONCURRENCY_PER_ROAD = 4
 
 
-async def fetch_page(context, template_url, street_id, road, page_no):
-    first_row = (page_no - 1) * PAGE_SIZE
-    api_url = monitor_fast.build_api_url(template_url, street_id, first_row, page_no)
+def force_core_mode(url):
+    p = urlparse(url)
+    q = dict(parse_qsl(p.query, keep_blank_values=True))
+    q["recom_community"] = "0"
+    q["timestamp"] = str(int(time.time() * 1000))
+    return urlunparse(p._replace(query=urlencode(q)))
+
+
+async def request_payload(context, url):
     last_error = None
-    started = time.perf_counter()
-    for attempt, delay in enumerate((0, 0.4, 1.0), start=1):
+    for delay in (0, 0.4, 1.0):
         if delay:
             await asyncio.sleep(delay)
         try:
             response = await context.request.get(
-                api_url,
+                url,
                 headers={
                     "Accept": "application/json, text/plain, */*",
                     "Referer": "https://m.591.com.tw/",
@@ -37,36 +51,64 @@ async def fetch_page(context, template_url, street_id, road, page_no):
                 timeout=12000,
             )
             if response.status == 200:
-                payload = await response.json()
-                rows, raw_count = core.parse_591_api_payload(payload, road)
-                total_rows = 0
-                if isinstance(payload, dict):
-                    try:
-                        total_rows = int(payload.get("totalRows") or 0)
-                    except Exception:
-                        total_rows = 0
-                return {
-                    "ok": True,
-                    "page": page_no,
-                    "payload": payload,
-                    "rows": rows,
-                    "rawCount": raw_count,
-                    "totalRows": total_rows,
-                    "seconds": round(time.perf_counter() - started, 3),
-                }
+                return await response.json()
             last_error = f"HTTP {response.status}"
         except Exception as exc:
             last_error = f"{type(exc).__name__}: {exc}"
+    raise RuntimeError(last_error or "unknown request failure")
+
+
+async def fetch_page(context, template_url, street_id, road, page_no, total_rows=None):
+    first_row = (page_no - 1) * PAGE_SIZE
+    url = force_core_mode(
+        monitor_fast.build_api_url(template_url, street_id, first_row, page_no)
+    )
+    started = time.perf_counter()
+    payload = await request_payload(context, url)
+
+    if not isinstance(payload, dict):
+        raise RuntimeError(f"{road} page {page_no}: wrapper is not dict")
+
+    wrapper_total = int(payload.get("totalRows") or 0)
+    if total_rows is None:
+        total_rows = wrapper_total
+    if total_rows <= 0:
+        raise RuntimeError(f"{road} page {page_no}: missing totalRows")
+    if wrapper_total and wrapper_total != total_rows:
+        raise RuntimeError(
+            f"{road} page {page_no}: totalRows changed {total_rows}->{wrapper_total}"
+        )
+
+    data = payload.get("data")
+    if not isinstance(data, list):
+        raise RuntimeError(f"{road} page {page_no}: data is not list")
+
+    expected = max(0, min(PAGE_SIZE, total_rows - first_row))
+    if len(data) < expected:
+        raise RuntimeError(
+            f"{road} page {page_no}: core rows incomplete {len(data)} < {expected}"
+        )
+
+    # In core mode, any rows beyond the official page capacity are dynamic extras.
+    core_data = data[:expected]
+    core_payload = copy.deepcopy(payload)
+    core_payload["data"] = core_data
+    rows, raw_count = core.parse_591_api_payload(core_payload, road)
+
     return {
-        "ok": False,
         "page": page_no,
-        "error": last_error,
+        "firstRow": first_row,
+        "totalRows": total_rows,
+        "rawReturned": len(data),
+        "coreRawCount": len(core_data),
+        "parsedRawCount": raw_count,
+        "exactCount": len(rows),
+        "rows": rows,
         "seconds": round(time.perf_counter() - started, 3),
     }
 
 
 async def fetch_one_road(browser, road, street_id):
-    logs = []
     started = time.perf_counter()
     context = await browser.new_context(
         user_agent=(
@@ -103,15 +145,16 @@ async def fetch_one_road(browser, road, street_id):
     page.on("response", on_response)
 
     try:
-        bootstrap_url = core.build_591_page_url(road, street_id)
+        bootstrap = core.build_591_page_url(road, street_id)
         for round_no in (1, 2):
-            target = bootstrap_url
+            target = bootstrap
             if round_no == 2:
-                target += f"&_parallel={int(time.time())}-{round_no}"
+                target += f"&_core={int(time.time())}-{round_no}"
             try:
                 await page.goto(target, wait_until="domcontentloaded", timeout=20000)
-            except Exception as exc:
-                logs.append(f"warmup {round_no}: {type(exc).__name__}")
+            except Exception:
+                pass
+
             for tick in range(24):
                 if captured:
                     break
@@ -125,19 +168,12 @@ async def fetch_one_road(browser, road, street_id):
                 break
 
         if not captured:
-            return {"road": road, "ok": False, "error": "no API template", "rows": []}
+            raise RuntimeError(f"{road}: no 591 API template")
 
         template = captured[-1]
         first = await fetch_page(context, template, street_id, road, 1)
-        if not first["ok"]:
-            return {"road": road, "ok": False, "error": first.get("error"), "rows": []}
-
-        total_rows = first.get("totalRows") or 0
-        if total_rows > 0:
-            total_pages = max(1, math.ceil(total_rows / PAGE_SIZE))
-        else:
-            # Metadata absent: preserve conservative old behavior by not guessing.
-            total_pages = 1
+        total_rows = first["totalRows"]
+        total_pages = max(1, math.ceil(total_rows / PAGE_SIZE))
 
         pages = [first]
         if total_pages > 1:
@@ -145,22 +181,13 @@ async def fetch_one_road(browser, road, street_id):
 
             async def guarded(page_no):
                 async with sem:
-                    return await fetch_page(context, template, street_id, road, page_no)
+                    return await fetch_page(
+                        context, template, street_id, road, page_no, total_rows
+                    )
 
-            tail = await asyncio.gather(*[
+            pages.extend(await asyncio.gather(*[
                 guarded(n) for n in range(2, total_pages + 1)
-            ])
-            pages.extend(tail)
-
-        failed = [x for x in pages if not x.get("ok")]
-        if failed:
-            return {
-                "road": road,
-                "ok": False,
-                "error": f"failed pages {[x.get('page') for x in failed]}",
-                "rows": [],
-                "pages": pages,
-            }
+            ]))
 
         by_id = {}
         for pg in sorted(pages, key=lambda x: x["page"]):
@@ -173,43 +200,38 @@ async def fetch_one_road(browser, road, street_id):
             "totalRows": total_rows,
             "totalPages": total_pages,
             "rows": list(by_id.values()),
+            "elapsedSeconds": round(time.perf_counter() - started, 3),
             "pages": [
-                {
-                    "page": x["page"],
-                    "rawCount": x["rawCount"],
-                    "exactCount": len(x["rows"]),
-                    "seconds": x["seconds"],
-                }
+                {k: x[k] for k in (
+                    "page", "firstRow", "rawReturned", "coreRawCount",
+                    "exactCount", "seconds"
+                )}
                 for x in sorted(pages, key=lambda x: x["page"])
             ],
-            "elapsedSeconds": round(time.perf_counter() - started, 3),
-            "logs": logs,
         }
     finally:
         await context.close()
 
 
-async def fast_parallel_pages():
+async def candidate_fetch():
     started = time.perf_counter()
     async with async_playwright() as p:
         browser = await monitor_fast.launch_591_browser(p)
         try:
-            results = await asyncio.gather(*[
+            roads = await asyncio.gather(*[
                 fetch_one_road(browser, road, sid)
                 for road, sid in core.WATCH_591_STREETS.items()
             ])
         finally:
             await browser.close()
 
-    ok = all(x.get("ok") for x in results)
     rows = []
-    for x in results:
-        rows.extend(x.get("rows") or [])
+    for rr in roads:
+        rows.extend(rr["rows"])
     return {
-        "ok": ok,
         "elapsedSeconds": round(time.perf_counter() - started, 3),
         "rows": rows,
-        "roads": results,
+        "roads": roads,
     }
 
 
@@ -233,89 +255,108 @@ def comparable(row):
     }
 
 
+def compare(left_rows, right_rows):
+    left = by_road(left_rows)
+    right = by_road(right_rows)
+    roads = []
+    left_only_total = right_only_total = mismatch_total = 0
+    for road in core.WATCH_591_STREETS:
+        l = left[road]
+        r = right[road]
+        left_only = sorted(set(l) - set(r))
+        right_only = sorted(set(r) - set(l))
+        mismatches = []
+        for rid in sorted(set(l) & set(r)):
+            if comparable(l[rid]) != comparable(r[rid]):
+                mismatches.append({
+                    "id": rid,
+                    "left": comparable(l[rid]),
+                    "right": comparable(r[rid]),
+                })
+        left_only_total += len(left_only)
+        right_only_total += len(right_only)
+        mismatch_total += len(mismatches)
+        roads.append({
+            "road": road,
+            "leftCount": len(l),
+            "rightCount": len(r),
+            "leftOnlyIds": left_only,
+            "rightOnlyIds": right_only,
+            "fieldMismatchCount": len(mismatches),
+            "fieldMismatches": mismatches[:20],
+        })
+    return {
+        "leftOnlyCount": left_only_total,
+        "rightOnlyCount": right_only_total,
+        "fieldMismatchCount": mismatch_total,
+        "allIdSetsMatch": left_only_total == 0 and right_only_total == 0,
+        "allComparedFieldsMatch": mismatch_total == 0,
+        "roads": roads,
+    }
+
+
 def main():
     baseline_started = time.perf_counter()
-    baseline_rows, baseline_ok, baseline_message, baseline_logs = asyncio.run(
+    baseline_rows, baseline_ok, baseline_message, _ = asyncio.run(
         monitor_fast.fast_fetch_591()
     )
     baseline_elapsed = round(time.perf_counter() - baseline_started, 3)
     if not baseline_ok:
         raise RuntimeError("baseline failed: " + baseline_message)
 
-    candidate = asyncio.run(fast_parallel_pages())
-    if not candidate["ok"]:
-        raise RuntimeError(
-            "parallel-pages failed: "
-            + json.dumps([x for x in candidate["roads"] if not x.get("ok")], ensure_ascii=False)
-        )
+    candidate_a = asyncio.run(candidate_fetch())
+    candidate_b = asyncio.run(candidate_fetch())
 
-    b = by_road(baseline_rows)
-    c = by_road(candidate["rows"])
-    road_reports = []
-    base_only_total = 0
-    cand_only_total = 0
-    mismatch_total = 0
-
-    for road in core.WATCH_591_STREETS:
-        br = b[road]
-        cr = c[road]
-        base_only = sorted(set(br) - set(cr))
-        cand_only = sorted(set(cr) - set(br))
-        common = sorted(set(br) & set(cr))
-        mismatches = []
-        for rid in common:
-            if comparable(br[rid]) != comparable(cr[rid]):
-                mismatches.append({
-                    "id": rid,
-                    "baseline": comparable(br[rid]),
-                    "candidate": comparable(cr[rid]),
-                })
-        base_only_total += len(base_only)
-        cand_only_total += len(cand_only)
-        mismatch_total += len(mismatches)
-        meta = next(x for x in candidate["roads"] if x["road"] == road)
-        road_reports.append({
-            "road": road,
-            "baselineCount": len(br),
-            "candidateCount": len(cr),
-            "baselineOnlyIds": base_only,
-            "candidateOnlyIds": cand_only,
-            "fieldMismatchCount": len(mismatches),
-            "fieldMismatches": mismatches[:20],
-            "totalRows": meta.get("totalRows"),
-            "totalPages": meta.get("totalPages"),
-            "elapsedSeconds": meta.get("elapsedSeconds"),
-            "pages": meta.get("pages"),
-        })
+    ab = compare(candidate_a["rows"], candidate_b["rows"])
+    base_a = compare(baseline_rows, candidate_a["rows"])
 
     report = {
-        "mode": "591_legacy_parallel_pages_probe_v1",
+        "mode": "591_legacy_core_parallel_pages_probe_v2",
         "baselineElapsedSeconds": baseline_elapsed,
-        "candidateElapsedSeconds": candidate["elapsedSeconds"],
+        "candidateAElapsedSeconds": candidate_a["elapsedSeconds"],
+        "candidateBElapsedSeconds": candidate_b["elapsedSeconds"],
         "baselineCount": len(baseline_rows),
-        "candidateCount": len(candidate["rows"]),
-        "baselineOnlyCount": base_only_total,
-        "candidateOnlyCount": cand_only_total,
-        "fieldMismatchCount": mismatch_total,
-        "allIdSetsMatch": base_only_total == 0 and cand_only_total == 0,
-        "allComparedFieldsMatch": mismatch_total == 0,
+        "candidateACount": len(candidate_a["rows"]),
+        "candidateBCount": len(candidate_b["rows"]),
+        "candidateRepeat": ab,
+        "baselineVsCandidate": base_a,
+        "candidateARoadMeta": [
+            {
+                "road": x["road"],
+                "totalRows": x["totalRows"],
+                "totalPages": x["totalPages"],
+                "elapsedSeconds": x["elapsedSeconds"],
+                "pages": x["pages"],
+            }
+            for x in candidate_a["roads"]
+        ],
+        "candidateBRoadMeta": [
+            {
+                "road": x["road"],
+                "totalRows": x["totalRows"],
+                "totalPages": x["totalPages"],
+                "elapsedSeconds": x["elapsedSeconds"],
+                "pages": x["pages"],
+            }
+            for x in candidate_b["roads"]
+        ],
         "baselineMessage": baseline_message,
-        "roads": road_reports,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({
-        k: report[k] for k in (
-            "baselineElapsedSeconds",
-            "candidateElapsedSeconds",
-            "baselineCount",
-            "candidateCount",
-            "baselineOnlyCount",
-            "candidateOnlyCount",
-            "fieldMismatchCount",
-            "allIdSetsMatch",
-            "allComparedFieldsMatch",
-        )
+        "baselineElapsedSeconds": baseline_elapsed,
+        "candidateAElapsedSeconds": candidate_a["elapsedSeconds"],
+        "candidateBElapsedSeconds": candidate_b["elapsedSeconds"],
+        "baselineCount": len(baseline_rows),
+        "candidateACount": len(candidate_a["rows"]),
+        "candidateBCount": len(candidate_b["rows"]),
+        "candidateRepeatAllIdSetsMatch": ab["allIdSetsMatch"],
+        "candidateRepeatAllComparedFieldsMatch": ab["allComparedFieldsMatch"],
+        "candidateRepeatLeftOnlyCount": ab["leftOnlyCount"],
+        "candidateRepeatRightOnlyCount": ab["rightOnlyCount"],
+        "baselineVsCandidateLeftOnlyCount": base_a["leftOnlyCount"],
+        "baselineVsCandidateRightOnlyCount": base_a["rightOnlyCount"],
     }, ensure_ascii=False))
 
 
