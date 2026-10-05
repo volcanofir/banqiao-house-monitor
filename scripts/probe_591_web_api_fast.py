@@ -5,6 +5,7 @@ Uses the current public BFF observed in a user-provided Chrome HAR:
 No canonical data is mutated. The probe compares the fresh API inventory with
 currently-active 591 IDs in docs/data/listings.json.
 """
+import asyncio
 import concurrent.futures
 import hashlib
 import json
@@ -14,6 +15,7 @@ from pathlib import Path
 import requests
 
 import monitor_pages as core
+import monitor_fast
 
 ENDPOINT = "https://bff-house.591.com.tw/v1/web/sale/list"
 OUT = Path("artifacts/591-web-api-fast-report.json")
@@ -160,6 +162,17 @@ def active_ids_by_road():
 
 def main():
     known, run = active_ids_by_road()
+
+    old_started = time.perf_counter()
+    old_rows, old_ok, old_message, old_logs = asyncio.run(monitor_fast.fast_fetch_591())
+    old_elapsed = round(time.perf_counter() - old_started, 3)
+    if not old_ok:
+        raise RuntimeError(f"same-run old mobile API baseline failed: {old_message}")
+    old_by_road = {road: set() for road in core.WATCH_591_STREETS}
+    for row in old_rows:
+        if row.get("road") in old_by_road and row.get("id"):
+            old_by_road[row["road"]].add(str(row["id"]))
+
     started = time.perf_counter()
     results = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=7) as ex:
@@ -173,21 +186,34 @@ def main():
 
     api_all = set()
     known_all = set()
+    old_all = set()
     for item in results:
         road = item["road"]
         api_ids = set(item["ids"])
         known_ids = known.get(road, set())
+        old_ids = old_by_road.get(road, set())
         api_all |= api_ids
         known_all |= known_ids
+        old_all |= old_ids
         item["currentActiveCount"] = len(known_ids)
         item["currentActiveMissingIds"] = sorted(known_ids - api_ids)
         item["freshApiNewVsCurrentIds"] = sorted(api_ids - known_ids)
+        item["sameRunOldCount"] = len(old_ids)
+        item["sameRunOldMissingFromWebIds"] = sorted(old_ids - api_ids)
+        item["sameRunWebExtraVsOldIds"] = sorted(api_ids - old_ids)
 
     report = {
         "mode": "591_desktop_web_api_direct_probe_v1",
         "endpoint": ENDPOINT,
+        "oldMobileElapsedSeconds": old_elapsed,
+        "oldMobileCount": len(old_all),
+        "oldMobileMessage": old_message,
         "elapsedSeconds": round(time.perf_counter() - started, 3),
         "roadsTested": len(results),
+        "sameRunOldMissingFromWebCount": len(old_all - api_all),
+        "sameRunOldMissingFromWebIds": sorted(old_all - api_all),
+        "sameRunWebExtraVsOldCount": len(api_all - old_all),
+        "sameRunWebExtraVsOldIds": sorted(api_all - old_all),
         "apiExactUniqueCount": len(api_all),
         "currentActiveCount": len(known_all),
         "currentActiveMissingCount": len(known_all - api_all),
@@ -201,7 +227,9 @@ def main():
     OUT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({
         k: report[k] for k in (
+            "oldMobileElapsedSeconds", "oldMobileCount",
             "elapsedSeconds", "roadsTested", "apiExactUniqueCount",
+            "sameRunOldMissingFromWebCount", "sameRunWebExtraVsOldCount",
             "currentActiveCount", "currentActiveMissingCount",
             "freshApiNewVsCurrentCount",
         )
