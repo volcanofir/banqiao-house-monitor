@@ -167,17 +167,29 @@ async def fetch_mobile_road(browser, road, sid, aliases):
         page_stats = []
         for page_no in range(1, 11):
             url = mutate_api_url(template, sid, (page_no - 1) * 30, page_no)
-            response = await context.request.get(
-                url,
-                headers={
-                    "Accept": "application/json, text/plain, */*",
-                    "Referer": "https://m.591.com.tw/",
-                    "Origin": "https://m.591.com.tw",
-                },
-                timeout=12000,
-            )
-            if response.status != 200:
-                raise RuntimeError(f"{road}: page {page_no} HTTP {response.status}")
+            response = None
+            last_error = None
+            for retry_no, delay in enumerate((0, 0.6, 1.5), start=1):
+                if delay:
+                    await asyncio.sleep(delay)
+                try:
+                    candidate = await context.request.get(
+                        url,
+                        headers={
+                            "Accept": "application/json, text/plain, */*",
+                            "Referer": "https://m.591.com.tw/",
+                            "Origin": "https://m.591.com.tw",
+                        },
+                        timeout=20000,
+                    )
+                    if candidate.status == 200:
+                        response = candidate
+                        break
+                    last_error = f"HTTP {candidate.status}"
+                except Exception as exc:
+                    last_error = f"{type(exc).__name__}: {exc}"
+            if response is None:
+                raise RuntimeError(f"{road}: page {page_no} failed after retries: {last_error}")
             payload = await response.json()
             rows = unwrap_mobile(payload)
             page_stats.append({"page": page_no, "rawCount": len(rows)})
@@ -211,10 +223,22 @@ async def fetch_mobile_all():
             args=["--disable-dev-shm-usage"],
         )
         try:
-            tasks = [
-                fetch_mobile_road(browser, road, cfg[0], cfg[1])
-                for road, cfg in ROADS.items()
-            ]
+            semaphore = asyncio.Semaphore(3)
+
+            async def guarded(road, cfg):
+                async with semaphore:
+                    try:
+                        return await fetch_mobile_road(browser, road, cfg[0], cfg[1])
+                    except Exception as exc:
+                        return {
+                            "road": road,
+                            "error": f"{type(exc).__name__}: {exc}",
+                            "pairCount": 0,
+                            "pairs": [],
+                            "pages": [],
+                        }
+
+            tasks = [guarded(road, cfg) for road, cfg in ROADS.items()]
             return await asyncio.gather(*tasks)
         finally:
             await browser.close()
@@ -329,6 +353,7 @@ def main():
 
         summary.append({
             "road": road,
+            "mobileError": mr.get("error"),
             "mobilePairCount": len(pairs),
             "webExactCount": len(web_ids),
             "mobilePairsPresentInWeb": len(exact_web_hits),
