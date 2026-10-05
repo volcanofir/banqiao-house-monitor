@@ -21,6 +21,7 @@ from playwright.async_api import async_playwright
 
 import monitor_fast
 import monitor_pages as core
+import dedupe_listings_v2 as deduper
 
 OUT = Path("artifacts/591-parallel-pages-report.json")
 PAGE_SIZE = 30
@@ -295,6 +296,63 @@ def compare(left_rows, right_rows):
     }
 
 
+def simulate_canonical(base_state, rows, checked_at):
+    state = copy.deepcopy(base_state)
+    core.merge_source(
+        state,
+        "591",
+        rows,
+        True,
+        "simulation",
+        [],
+        checked_at,
+    )
+    deduped, removed, raw_count = deduper.dedupe(state.get("listings") or [])
+    visible = [
+        x for x in deduped
+        if x.get("source") == "591" and x.get("active", True) is True
+    ]
+    visible.sort(key=lambda x: str(x.get("id") or ""))
+    return visible
+
+
+def canonical_projection(rows):
+    return [
+        {
+            "id": x.get("id"),
+            "road": x.get("road"),
+            "title": x.get("title"),
+            "price": x.get("price"),
+            "size": x.get("size"),
+            "address": x.get("address"),
+            "active": x.get("active", True),
+            "mergedListingCount": int(x.get("mergedListingCount") or 1),
+            "mergedActiveListingCount": int(x.get("mergedActiveListingCount") or (1 if x.get("active", True) else 0)),
+        }
+        for x in rows
+    ]
+
+
+def canonical_diff(left, right):
+    l = {str(x.get("id")): x for x in canonical_projection(left)}
+    r = {str(x.get("id")): x for x in canonical_projection(right)}
+    common = sorted(set(l) & set(r))
+    mismatches = [
+        {"id": rid, "left": l[rid], "right": r[rid]}
+        for rid in common
+        if l[rid] != r[rid]
+    ]
+    return {
+        "leftCount": len(l),
+        "rightCount": len(r),
+        "leftOnlyIds": sorted(set(l) - set(r)),
+        "rightOnlyIds": sorted(set(r) - set(l)),
+        "fieldMismatchCount": len(mismatches),
+        "fieldMismatches": mismatches[:30],
+        "allMatch": set(l) == set(r) and not mismatches,
+    }
+
+
 def main():
     baseline_started = time.perf_counter()
     baseline_rows, baseline_ok, baseline_message, _ = asyncio.run(
@@ -310,6 +368,14 @@ def main():
     ab = compare(candidate_a["rows"], candidate_b["rows"])
     base_a = compare(baseline_rows, candidate_a["rows"])
 
+    base_state = core.load_state()
+    checked_at = core.now_iso()
+    canonical_baseline = simulate_canonical(base_state, baseline_rows, checked_at)
+    canonical_a = simulate_canonical(base_state, candidate_a["rows"], checked_at)
+    canonical_b = simulate_canonical(base_state, candidate_b["rows"], checked_at)
+    canonical_base_a = canonical_diff(canonical_baseline, canonical_a)
+    canonical_a_b = canonical_diff(canonical_a, canonical_b)
+
     report = {
         "mode": "591_legacy_core_parallel_pages_probe_v2",
         "baselineElapsedSeconds": baseline_elapsed,
@@ -320,6 +386,11 @@ def main():
         "candidateBCount": len(candidate_b["rows"]),
         "candidateRepeat": ab,
         "baselineVsCandidate": base_a,
+        "canonicalBaselineCount": len(canonical_baseline),
+        "canonicalCandidateACount": len(canonical_a),
+        "canonicalCandidateBCount": len(canonical_b),
+        "canonicalBaselineVsCandidateA": canonical_base_a,
+        "canonicalCandidateARepeat": canonical_a_b,
         "candidateARoadMeta": [
             {
                 "road": x["road"],
@@ -357,6 +428,14 @@ def main():
         "candidateRepeatRightOnlyCount": ab["rightOnlyCount"],
         "baselineVsCandidateLeftOnlyCount": base_a["leftOnlyCount"],
         "baselineVsCandidateRightOnlyCount": base_a["rightOnlyCount"],
+        "canonicalBaselineCount": len(canonical_baseline),
+        "canonicalCandidateACount": len(canonical_a),
+        "canonicalCandidateBCount": len(canonical_b),
+        "canonicalBaselineVsCandidateAllMatch": canonical_base_a["allMatch"],
+        "canonicalCandidateRepeatAllMatch": canonical_a_b["allMatch"],
+        "canonicalBaselineVsCandidateLeftOnly": len(canonical_base_a["leftOnlyIds"]),
+        "canonicalBaselineVsCandidateRightOnly": len(canonical_base_a["rightOnlyIds"]),
+        "canonicalBaselineVsCandidateFieldMismatch": canonical_base_a["fieldMismatchCount"],
     }, ensure_ascii=False))
 
 
