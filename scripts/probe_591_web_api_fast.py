@@ -83,7 +83,9 @@ def fetch_road(road, street_id):
 
     by_id = {}
     raw_rows = 0
-    exact_rows = []
+    banqiao_regular = {}
+    non_exact_banqiao = {}
+    aliases = core.WATCH_ROADS[road]
     for page in pages:
         raw_rows += len(page["houseList"])
         parsed, _ = core.parse_591_api_payload(
@@ -91,6 +93,32 @@ def fetch_road(road, street_id):
         )
         for row in parsed:
             by_id[row["id"]] = row
+
+        for raw in page["houseList"]:
+            if not isinstance(raw, dict) or raw.get("is_newhouse") == 1:
+                continue
+            region = core.normalize_text(raw.get("region_name") or raw.get("region") or "")
+            section = core.normalize_text(raw.get("section_name") or raw.get("section") or "")
+            if region and region != "新北市":
+                continue
+            if section and section != "板橋區":
+                continue
+            hid = core.normalize_text(raw.get("houseid") or raw.get("houseId") or "")
+            if not hid:
+                continue
+            address = core.normalize_text(raw.get("address") or raw.get("street_name") or "")
+            item = {
+                "id": f"591:{hid}",
+                "houseId": hid,
+                "title": core.normalize_text(raw.get("title") or raw.get("name") or ""),
+                "address": address,
+                "section": section,
+                "isNewhouse": raw.get("is_newhouse"),
+            }
+            banqiao_regular[item["id"]] = item
+            if not any(alias in address for alias in aliases):
+                non_exact_banqiao[item["id"]] = item
+
     exact_rows = list(by_id.values())
     return {
         "road": road,
@@ -99,7 +127,11 @@ def fetch_road(road, street_id):
         "pageCount": len(pages),
         "rawRows": raw_rows,
         "exactCount": len(exact_rows),
+        "banqiaoRegularCount": len(banqiao_regular),
+        "nonExactBanqiaoCount": len(non_exact_banqiao),
+        "nonExactBanqiao": list(non_exact_banqiao.values())[:80],
         "ids": sorted(x["id"] for x in exact_rows),
+        "banqiaoRegularIds": sorted(banqiao_regular),
         "pages": [
             {
                 "firstRow": x["firstRow"],
