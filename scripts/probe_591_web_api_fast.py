@@ -1,31 +1,68 @@
 """Isolated 591 desktop web API speed/coverage probe.
 
-Uses the current public BFF observed in a user-provided Chrome HAR:
-  /v1/web/sale/list
-No canonical data is mutated. The probe compares the fresh API inventory with
-currently-active 591 IDs in docs/data/listings.json.
+Pure requests version: no Chrome, Playwright, BeautifulSoup, or canonical mutation.
+The endpoint and request shape come from the user-provided Chrome HAR.
 """
-import asyncio
 import concurrent.futures
 import hashlib
 import json
+import re
 import time
 from pathlib import Path
 
 import requests
 
-import monitor_pages as core
-import monitor_fast
-
 ENDPOINT = "https://bff-house.591.com.tw/v1/web/sale/list"
 OUT = Path("artifacts/591-web-api-fast-report.json")
 SOURCE = Path("docs/data/listings.json")
+
+ROADS = {
+    "板橋區中山路二段": ("27507", ("中山路二段", "中山路2段")),
+    "板橋區三民路二段": ("27485", ("三民路二段", "三民路2段")),
+    "板橋區光復街": ("27550", ("光復街",)),
+    "板橋區萬安街": ("27630", ("萬安街",)),
+    "板橋區林森街": ("27574", ("林森街",)),
+    "板橋區三民路一段": ("27484", ("三民路一段", "三民路1段")),
+    "板橋區翠華街": ("27644", ("翠華街",)),
+}
+
 DEVICE_ID = hashlib.md5(b"banqiao-house-monitor-591-web-api").hexdigest()
 UA = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) "
     "Chrome/146.0.0.0 Safari/537.36"
 )
+
+
+def norm(value):
+    text = "" if value is None else str(value)
+    text = re.sub(r"\s+", " ", text).strip().replace("臺", "台")
+    return (
+        text.replace("中山路2段", "中山路二段")
+        .replace("三民路1段", "三民路一段")
+        .replace("三民路2段", "三民路二段")
+    )
+
+
+def format_price(value):
+    if value in (None, ""):
+        return None
+    try:
+        return f"{float(value):g}萬"
+    except Exception:
+        return norm(value) or None
+
+
+def format_area(item):
+    value = item.get("area")
+    if value not in (None, ""):
+        try:
+            return f"{float(value):g}坪"
+        except Exception:
+            pass
+    text = norm(item.get("showarea"))
+    m = re.search(r"([1-9]\d{0,2}(?:\.\d+)?)", text)
+    return f"{m.group(1)}坪" if m else None
 
 
 def request_page(road, street_id, first_row):
@@ -50,249 +87,160 @@ def request_page(road, street_id, first_row):
         "deviceid": DEVICE_ID,
     }
     started = time.perf_counter()
-    r = requests.get(ENDPOINT, params=params, headers=headers, timeout=15)
+    response = requests.get(ENDPOINT, params=params, headers=headers, timeout=15)
     elapsed = time.perf_counter() - started
-    if r.status_code != 200:
-        raise RuntimeError(f"{road} firstRow={first_row}: HTTP {r.status_code}")
-    payload = r.json()
-    if payload.get("status") != 1 or not isinstance(payload.get("data"), dict):
+    if response.status_code != 200:
+        raise RuntimeError(f"{road} firstRow={first_row}: HTTP {response.status_code}")
+    payload = response.json()
+    data = payload.get("data") if isinstance(payload, dict) else None
+    if payload.get("status") != 1 or not isinstance(data, dict):
         raise RuntimeError(f"{road} firstRow={first_row}: invalid wrapper {str(payload)[:300]}")
-    data = payload["data"]
     rows = data.get("house_list")
     if not isinstance(rows, list):
         raise RuntimeError(f"{road} firstRow={first_row}: house_list missing")
     return {
         "firstRow": first_row,
-        "http": r.status_code,
         "elapsedSeconds": round(elapsed, 3),
         "total": int(data.get("total") or 0),
-        "deviceIdReturned": data.get("device_id"),
-        "houseList": rows,
+        "rows": rows,
     }
 
 
-def fetch_road(road, street_id):
+def parse_exact(road, aliases, raw_rows):
+    out = {}
+    for item in raw_rows:
+        if not isinstance(item, dict):
+            continue
+        if item.get("is_newhouse") == 1:
+            continue
+        if norm(item.get("region_name")) not in ("", "新北市"):
+            continue
+        if norm(item.get("section_name")) not in ("", "板橋區"):
+            continue
+        address = norm(item.get("street_name") or item.get("address"))
+        if not any(norm(alias) in address for alias in aliases):
+            continue
+        hid = norm(item.get("houseid") or item.get("houseId"))
+        if not re.fullmatch(r"\d{6,}", hid):
+            continue
+        out[f"591:{hid}"] = {
+            "id": f"591:{hid}",
+            "houseId": hid,
+            "road": road,
+            "title": norm(item.get("title") or item.get("name")) or f"591案件 {hid}",
+            "address": address,
+            "price": format_price(item.get("show_price") or item.get("price")),
+            "size": format_area(item),
+            "postTime": item.get("posttime"),
+        }
+    return out
+
+
+def fetch_road(road, street_id, aliases):
     started = time.perf_counter()
     first = request_page(road, street_id, 0)
     total = first["total"]
-    offsets = list(range(30, total, 30))
+
+    # 591 may mix promoted/new-house rows into house_list, so fetch enough offsets
+    # to cover the advertised total and one extra page as a completeness guard.
+    offsets = list(range(30, total + 30, 30))
     pages = [first]
     if offsets:
-        with concurrent.futures.ThreadPoolExecutor(max_workers=min(5, len(offsets))) as ex:
-            futs = [ex.submit(request_page, road, street_id, x) for x in offsets]
-            pages.extend(f.result() for f in futs)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=min(6, len(offsets))) as ex:
+            pages.extend(ex.map(lambda x: request_page(road, street_id, x), offsets))
     pages.sort(key=lambda x: x["firstRow"])
 
-    by_id = {}
-    raw_rows = 0
-    banqiao_regular = {}
-    non_exact_banqiao = {}
-    aliases = core.WATCH_ROADS[road]
-    for page in pages:
-        raw_rows += len(page["houseList"])
-        parsed, _ = core.parse_591_api_payload(
-            {"data": {"items": page["houseList"]}}, road
-        )
-        for row in parsed:
-            by_id[row["id"]] = row
+    all_raw = []
+    for p in pages:
+        all_raw.extend(p["rows"])
+    exact = parse_exact(road, aliases, all_raw)
 
-        for raw in page["houseList"]:
-            if not isinstance(raw, dict) or raw.get("is_newhouse") == 1:
-                continue
-            region = core.normalize_text(raw.get("region_name") or raw.get("region") or "")
-            section = core.normalize_text(raw.get("section_name") or raw.get("section") or "")
-            if region and region != "新北市":
-                continue
-            if section and section != "板橋區":
-                continue
-            hid = core.normalize_text(raw.get("houseid") or raw.get("houseId") or "")
-            if not hid:
-                continue
-            address = core.normalize_text(raw.get("address") or raw.get("street_name") or "")
-            item = {
-                "id": f"591:{hid}",
-                "houseId": hid,
-                "title": core.normalize_text(raw.get("title") or raw.get("name") or ""),
-                "address": address,
-                "section": section,
-                "isNewhouse": raw.get("is_newhouse"),
-            }
-            banqiao_regular[item["id"]] = item
-            if not any(alias in address for alias in aliases):
-                non_exact_banqiao[item["id"]] = item
-
-    exact_rows = list(by_id.values())
     return {
         "road": road,
         "streetId": street_id,
-        "total": total,
+        "advertisedTotal": total,
         "pageCount": len(pages),
-        "rawRows": raw_rows,
-        "exactCount": len(exact_rows),
-        "banqiaoRegularCount": len(banqiao_regular),
-        "nonExactBanqiaoCount": len(non_exact_banqiao),
-        "nonExactBanqiao": list(non_exact_banqiao.values())[:80],
-        "ids": sorted(x["id"] for x in exact_rows),
-        "banqiaoRegularIds": sorted(banqiao_regular),
-        "rowsDetail": [
+        "rawRows": len(all_raw),
+        "exactCount": len(exact),
+        "ids": sorted(exact),
+        "rows": list(exact.values()),
+        "pageTimings": [
             {
-                "id": x.get("id"),
-                "title": x.get("title"),
-                "price": x.get("price"),
-                "size": x.get("size"),
-                "address": x.get("address"),
+                "firstRow": p["firstRow"],
+                "seconds": p["elapsedSeconds"],
+                "rawCount": len(p["rows"]),
             }
-            for x in exact_rows
-        ],
-        "pages": [
-            {
-                "firstRow": x["firstRow"],
-                "http": x["http"],
-                "elapsedSeconds": x["elapsedSeconds"],
-                "rawCount": len(x["houseList"]),
-                "deviceIdReturnedMatches": x["deviceIdReturned"] == DEVICE_ID,
-            }
-            for x in pages
+            for p in pages
         ],
         "elapsedSeconds": round(time.perf_counter() - started, 3),
     }
 
 
-def active_ids_by_road():
+def current_active():
     payload = json.loads(SOURCE.read_text(encoding="utf-8"))
-    out = {road: set() for road in core.WATCH_591_STREETS}
+    out = {road: set() for road in ROADS}
     for row in payload.get("listings") or []:
         if row.get("source") != "591" or row.get("active", True) is not True:
             continue
         road = row.get("road")
-        if road in out and row.get("id"):
-            out[road].add(str(row["id"]))
+        rid = row.get("id")
+        if road in out and rid:
+            out[road].add(str(rid))
     return out, (payload.get("runs") or {}).get("591") or {}
 
 
 def main():
-    known, run = active_ids_by_road()
-
-    old_started = time.perf_counter()
-    old_rows, old_ok, old_message, old_logs = asyncio.run(monitor_fast.fast_fetch_591())
-    old_elapsed = round(time.perf_counter() - old_started, 3)
-    if not old_ok:
-        raise RuntimeError(f"same-run old mobile API baseline failed: {old_message}")
-    old_by_road = {road: set() for road in core.WATCH_591_STREETS}
-    for row in old_rows:
-        if row.get("road") in old_by_road and row.get("id"):
-            old_by_road[row["road"]].add(str(row["id"]))
-
+    known, run = current_active()
     started = time.perf_counter()
+
     results = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=7) as ex:
-        futs = {
-            ex.submit(fetch_road, road, sid): road
-            for road, sid in core.WATCH_591_STREETS.items()
+        future_map = {
+            ex.submit(fetch_road, road, cfg[0], cfg[1]): road
+            for road, cfg in ROADS.items()
         }
-        for fut in concurrent.futures.as_completed(futs):
+        for fut in concurrent.futures.as_completed(future_map):
             results.append(fut.result())
-    results.sort(key=lambda x: list(core.WATCH_591_STREETS).index(x["road"]))
 
-    def fp(row):
-        return (
-            core.normalize_text(row.get("road") or ""),
-            core.normalize_text(row.get("title") or ""),
-            core.normalize_text(row.get("price") or ""),
-            core.normalize_text(row.get("size") or ""),
-        )
-
-    old_rows_by_id = {str(x.get("id")): x for x in old_rows if x.get("id")}
-    old_fp = {}
-    for x in old_rows:
-        old_fp.setdefault(fp(x), []).append(str(x.get("id")))
+    order = list(ROADS)
+    results.sort(key=lambda x: order.index(x["road"]))
 
     api_all = set()
     known_all = set()
-    old_all = set()
-    api_rows_by_id = {}
-    api_fp = {}
     for item in results:
-        road = item["road"]
         api_ids = set(item["ids"])
-        for x in item.get("rowsDetail") or []:
-            row = dict(x)
-            row["road"] = road
-            if row.get("id"):
-                api_rows_by_id[str(row["id"])] = row
-                api_fp.setdefault(fp(row), []).append(str(row["id"]))
-        known_ids = known.get(road, set())
-        old_ids = old_by_road.get(road, set())
+        known_ids = known.get(item["road"], set())
         api_all |= api_ids
         known_all |= known_ids
-        old_all |= old_ids
         item["currentActiveCount"] = len(known_ids)
         item["currentActiveMissingIds"] = sorted(known_ids - api_ids)
         item["freshApiNewVsCurrentIds"] = sorted(api_ids - known_ids)
-        item["sameRunOldCount"] = len(old_ids)
-        item["sameRunOldMissingFromWebIds"] = sorted(old_ids - api_ids)
-        item["sameRunWebExtraVsOldIds"] = sorted(api_ids - old_ids)
-
-    old_missing = sorted(old_all - api_all)
-    web_extra = sorted(api_all - old_all)
-    id_compat_matches = []
-    for old_id in old_missing:
-        row = old_rows_by_id.get(old_id) or {}
-        candidates = api_fp.get(fp(row), [])
-        if candidates:
-            id_compat_matches.append({
-                "oldId": old_id,
-                "webIds": sorted(candidates),
-                "title": row.get("title"),
-                "price": row.get("price"),
-                "size": row.get("size"),
-                "road": row.get("road"),
-            })
-    for web_id in web_extra:
-        row = api_rows_by_id.get(web_id) or {}
-        candidates = old_fp.get(fp(row), [])
-        if candidates and not any(web_id in (m.get("webIds") or []) for m in id_compat_matches):
-            id_compat_matches.append({
-                "oldIds": sorted(candidates),
-                "webId": web_id,
-                "title": row.get("title"),
-                "price": row.get("price"),
-                "size": row.get("size"),
-                "road": row.get("road"),
-            })
 
     report = {
-        "mode": "591_desktop_web_api_direct_probe_v1",
+        "mode": "591_desktop_web_api_direct_pure_requests_v2",
         "endpoint": ENDPOINT,
-        "oldMobileElapsedSeconds": old_elapsed,
-        "oldMobileCount": len(old_all),
-        "oldMobileMessage": old_message,
         "elapsedSeconds": round(time.perf_counter() - started, 3),
         "roadsTested": len(results),
-        "sameRunOldMissingFromWebCount": len(old_all - api_all),
-        "sameRunOldMissingFromWebIds": sorted(old_all - api_all),
-        "sameRunWebExtraVsOldCount": len(api_all - old_all),
-        "sameRunWebExtraVsOldIds": web_extra,
-        "idCompatibilityMatches": id_compat_matches,
         "apiExactUniqueCount": len(api_all),
         "currentActiveCount": len(known_all),
         "currentActiveMissingCount": len(known_all - api_all),
         "currentActiveMissingIds": sorted(known_all - api_all),
         "freshApiNewVsCurrentCount": len(api_all - known_all),
+        "freshApiNewVsCurrentIds": sorted(api_all - known_all),
         "source591CheckedAt": run.get("checkedAt"),
         "source591Message": run.get("message"),
         "roads": results,
     }
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({
-        k: report[k] for k in (
-            "oldMobileElapsedSeconds", "oldMobileCount",
-            "elapsedSeconds", "roadsTested", "apiExactUniqueCount",
-            "sameRunOldMissingFromWebCount", "sameRunWebExtraVsOldCount",
-            "currentActiveCount", "currentActiveMissingCount",
-            "freshApiNewVsCurrentCount",
-        )
+        "elapsedSeconds": report["elapsedSeconds"],
+        "roadsTested": report["roadsTested"],
+        "apiExactUniqueCount": report["apiExactUniqueCount"],
+        "currentActiveCount": report["currentActiveCount"],
+        "currentActiveMissingCount": report["currentActiveMissingCount"],
+        "freshApiNewVsCurrentCount": report["freshApiNewVsCurrentCount"],
     }, ensure_ascii=False))
 
 
