@@ -1,0 +1,41 @@
+name: 591 dynamic row marker probe
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/probe_591_dynamic_row_markers.py"
+      - ".github/workflows/probe-591-dynamic-row-markers.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 playwright
+      - name: Connect Surfshark
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        run: bash scripts/connect_surfshark_wireguard.sh
+      - name: Inspect dynamic row markers
+        run: python scripts/probe_591_dynamic_row_markers.py
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 591-dynamic-row-markers-report
+          path: artifacts/591-dynamic-row-markers.json
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Disconnect Surfshark
+        if: always()
+        run: sudo wg-quick down surfshark || true
