@@ -134,6 +134,16 @@ def fetch_road(road, street_id):
         "nonExactBanqiao": list(non_exact_banqiao.values())[:80],
         "ids": sorted(x["id"] for x in exact_rows),
         "banqiaoRegularIds": sorted(banqiao_regular),
+        "rowsDetail": [
+            {
+                "id": x.get("id"),
+                "title": x.get("title"),
+                "price": x.get("price"),
+                "size": x.get("size"),
+                "address": x.get("address"),
+            }
+            for x in exact_rows
+        ],
         "pages": [
             {
                 "firstRow": x["firstRow"],
@@ -184,12 +194,33 @@ def main():
             results.append(fut.result())
     results.sort(key=lambda x: list(core.WATCH_591_STREETS).index(x["road"]))
 
+    def fp(row):
+        return (
+            core.normalize_text(row.get("road") or ""),
+            core.normalize_text(row.get("title") or ""),
+            core.normalize_text(row.get("price") or ""),
+            core.normalize_text(row.get("size") or ""),
+        )
+
+    old_rows_by_id = {str(x.get("id")): x for x in old_rows if x.get("id")}
+    old_fp = {}
+    for x in old_rows:
+        old_fp.setdefault(fp(x), []).append(str(x.get("id")))
+
     api_all = set()
     known_all = set()
     old_all = set()
+    api_rows_by_id = {}
+    api_fp = {}
     for item in results:
         road = item["road"]
         api_ids = set(item["ids"])
+        for x in item.get("rowsDetail") or []:
+            row = dict(x)
+            row["road"] = road
+            if row.get("id"):
+                api_rows_by_id[str(row["id"])] = row
+                api_fp.setdefault(fp(row), []).append(str(row["id"]))
         known_ids = known.get(road, set())
         old_ids = old_by_road.get(road, set())
         api_all |= api_ids
@@ -202,6 +233,34 @@ def main():
         item["sameRunOldMissingFromWebIds"] = sorted(old_ids - api_ids)
         item["sameRunWebExtraVsOldIds"] = sorted(api_ids - old_ids)
 
+    old_missing = sorted(old_all - api_all)
+    web_extra = sorted(api_all - old_all)
+    id_compat_matches = []
+    for old_id in old_missing:
+        row = old_rows_by_id.get(old_id) or {}
+        candidates = api_fp.get(fp(row), [])
+        if candidates:
+            id_compat_matches.append({
+                "oldId": old_id,
+                "webIds": sorted(candidates),
+                "title": row.get("title"),
+                "price": row.get("price"),
+                "size": row.get("size"),
+                "road": row.get("road"),
+            })
+    for web_id in web_extra:
+        row = api_rows_by_id.get(web_id) or {}
+        candidates = old_fp.get(fp(row), [])
+        if candidates and not any(web_id in (m.get("webIds") or []) for m in id_compat_matches):
+            id_compat_matches.append({
+                "oldIds": sorted(candidates),
+                "webId": web_id,
+                "title": row.get("title"),
+                "price": row.get("price"),
+                "size": row.get("size"),
+                "road": row.get("road"),
+            })
+
     report = {
         "mode": "591_desktop_web_api_direct_probe_v1",
         "endpoint": ENDPOINT,
@@ -213,7 +272,8 @@ def main():
         "sameRunOldMissingFromWebCount": len(old_all - api_all),
         "sameRunOldMissingFromWebIds": sorted(old_all - api_all),
         "sameRunWebExtraVsOldCount": len(api_all - old_all),
-        "sameRunWebExtraVsOldIds": sorted(api_all - old_all),
+        "sameRunWebExtraVsOldIds": web_extra,
+        "idCompatibilityMatches": id_compat_matches,
         "apiExactUniqueCount": len(api_all),
         "currentActiveCount": len(known_all),
         "currentActiveMissingCount": len(known_all - api_all),
