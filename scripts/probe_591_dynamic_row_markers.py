@@ -103,11 +103,13 @@ def raw_summary(item,index):
                 "is_newhouse","is_full","label","company","role_name","posttime","refreshtime",
                 "price","total_price","area","area_str","floor","floor_str","is_pro_advertisement"
             }
-            or "recommend" in kl
+            or "recom" in kl
+            or "guess" in kl
             or "advert" in kl
             or "promot" in kl
             or "sponsor" in kl
             or "source" in kl
+            or k in {"bid_rank","identity","role","preferred","showBigCard"}
         ):
             selected[k]=v
     return {
@@ -123,14 +125,27 @@ async def inspect_target(browser, road, sid, page_no):
     try:
         runs=[]
         raw_by_id={}
-        for rep in range(3):
+        flagged_by_id={}
+        for rep in range(8):
             payload,rows=await fetch_page(context,template,sid,page_no)
             ids=[]
             for idx,item in enumerate(rows):
                 rid=id_of(item)
                 if rid:
                     ids.append(rid)
-                    raw_by_id.setdefault(rid,[]).append(raw_summary(item,idx))
+                    summary=raw_summary(item,idx)
+                    raw_by_id.setdefault(rid,[]).append(summary)
+                    post_id=norm(item.get("post_id") or item.get("postId"))
+                    house_id=norm(item.get("houseid") or item.get("houseId"))
+                    is_recom=item.get("isRecom")
+                    is_guess=item.get("is_guess_like")
+                    if (
+                        is_recom not in (None,0,"0",False,"")
+                        or is_guess not in (None,0,"0",False,"")
+                        or not post_id
+                        or (post_id and house_id not in (post_id, "S"+post_id))
+                    ):
+                        flagged_by_id.setdefault(rid,[]).append(summary)
             runs.append({
                 "totalRows":int(payload.get("totalRows") or 0),
                 "rawLen":len(rows),
@@ -149,6 +164,7 @@ async def inspect_target(browser, road, sid, page_no):
             "stableCount":len(stable),
             "dynamicIds":dynamic,
             "dynamicRows":{rid:raw_by_id.get(rid,[]) for rid in dynamic},
+            "flaggedRows":flagged_by_id,
             "stableSamples":{
                 rid:raw_by_id[rid][:1]
                 for rid in sorted(stable)[:5]
@@ -178,6 +194,7 @@ async def main():
                 "runs":[{"totalRows":r["totalRows"],"rawLen":r["rawLen"],"ids":r["ids"]} for r in x["runs"]],
                 "dynamicIds":x["dynamicIds"],
                 "dynamicRows":x["dynamicRows"],
+                "flaggedRows":x["flaggedRows"],
             }
             for x in results
         ]
