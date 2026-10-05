@@ -1,14 +1,14 @@
 {
-  "checkedAt": "2026-10-05T03:08:14+00:00",
-  "fetchOutcome": "skipped",
-  "fetchReturnCode": "",
-  "vpnOutcome": "skipped",
-  "housepriceVpnOutcome": "skipped",
-  "housepriceVpnReturnCode": "",
-  "stampOutcome": "skipped",
+  "checkedAt": "2026-10-05T03:10:36+00:00",
+  "fetchOutcome": "success",
+  "fetchReturnCode": "0",
+  "vpnOutcome": "success",
+  "housepriceVpnOutcome": "success",
+  "housepriceVpnReturnCode": "0",
+  "stampOutcome": "success",
   "rentalDataExists": true,
   "uiOwnership": "canonical-preview-index",
-  "logTail": "",
-  "housepriceVpnLogTail": "",
-  "housepriceVpnPreflightLogTail": ""
+  "logTail": "/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:120: SyntaxWarning: invalid escape sequence '\\/'\n  if(u.hostname!=='rent.591.com.tw' || !/^\\/\\d{6,}$/.test(u.pathname)) continue;\n/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:177: SyntaxWarning: invalid escape sequence '\\/'\n  const m=href.match(/\\/houseno\\/([A-Za-z0-9_-]+)/);\n{\"updatedAt\": \"2026-10-05T03:10:28+00:00\", \"counts\": {\"total\": 151, \"sinyi\": 15, \"591\": 109, \"rakuya\": 27, \"houseprice\": 0, \"roads\": {\"板橋區中山路二段\": 79, \"板橋區三民路一段\": 23, \"板橋區光復街\": 2, \"板橋區三民路二段\": 35, \"板橋區萬安街\": 10, \"板橋區翠華街\": 2, \"板橋區林森街\": 0}}, \"runs\": {\"591\": \"ok\", \"信義房屋\": \"ok\", \"樂屋網\": \"ok\", \"5168\": \"error\"}, \"elapsedSeconds\": 107.92}\n",
+  "housepriceVpnLogTail": "{\"source\": \"5168\", \"status\": \"ok\", \"count\": 105, \"checkedAt\": \"2026-10-05T03:10:36+00:00\", \"logs\": [\"板橋區中山路二段 5168 API第1頁：符合 18／新增 18／來源總數 56\", \"板橋區中山路二段 5168 API第2頁：符合 16／新增 16／來源總數 56\", \"板橋區中山路二段 5168 API第3頁：符合 16／新增 16／來源總數 56\", \"板橋區中山路二段 5168精準路段過濾：來源搜尋總數 56 筆，保留精準路段 50 筆\", \"板橋區中山路二段 5168租屋完成，共 50 筆\", \"板橋區三民路一段 5168 API第1頁：符合 12／新增 12／來源總數 12\", \"板橋區三民路一段 5168租屋完成，共 12 筆\", \"板橋區光復街 5168 API第1頁：符合 2／新增 2／來源總數 2\", \"板橋區光復街 5168租屋完成，共 2 筆\", \"板橋區三民路二段 5168 API第1頁：符合 17／新增 17／來源總數 26\", \"板橋區三民路二段 5168 API第2頁：符合 6／新增 6／來源總數 26\", \"板橋區三民路二段 5168精準路段過濾：來源搜尋總數 26 筆，保留精準路段 23 筆\", \"板橋區三民路二段 5168租屋完成，共 23 筆\", \"板橋區萬安街 5168 API第1頁：符合 14／新增 14／來源總數 14\", \"板橋區萬安街 5168租屋完成，共 14 筆\", \"板橋區翠華街 5168 API第1頁：符合 4／新增 4／來源總數 4\", \"板橋區翠華街 5168租屋完成，共 4 筆\", \"板橋區林森街 5168 API第1頁：符合 0／新增 0／來源總數 0\", \"板橋區林森街 5168租屋完成，共 0 筆\"]}\n",
+  "housepriceVpnPreflightLogTail": "5168 Surfshark attempt 1/5\n/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:120: SyntaxWarning: invalid escape sequence '\\/'\n  if(u.hostname!=='rent.591.com.tw' || !/^\\/\\d{6,}$/.test(u.pathname)) continue;\n/home/runner/work/banqiao-house-monitor/banqiao-house-monitor/scripts/fetch_rental_preview.py:177: SyntaxWarning: invalid escape sequence '\\/'\n  const m=href.match(/\\/houseno\\/([A-Za-z0-9_-]+)/);\n{\"road\": \"板橋區中山路二段\", \"httpStatus\": 200, \"payloadStatus\": \"Success\", \"usable\": true}\n5168 accepted this Surfshark exit.\n"
 }
