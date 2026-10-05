@@ -1,24 +1,24 @@
-"""Preview-only rendered-browser confirmation for stale 591 sale listings.
+"""Rendered-browser confirmation for stale 591 sale listings.
 
-This does not mutate docs/data/listings.json. It only inspects active 591 rows that were
-not seen in the latest completed 591 crawl, opens their detail pages in real Chrome,
-and records explicit rendered evidence such as `不存在此物件`.
+Checks stale candidates concurrently while preserving the same conservative rule:
+only explicit 591 invalid/off-market wording or HTTP 404/410 confirms removal.
 """
 
+import asyncio
 import json
 import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-from playwright.sync_api import sync_playwright
+from playwright.async_api import async_playwright
 
 SOURCE = Path("docs/data/listings.json")
 OUT = Path("docs/preview/591-offmarket-probe.json")
 MAX_CANDIDATES = 40
 STALE_GRACE_SECONDS = 60
 POLL_SECONDS = 3.4
+MAX_PARALLEL = 4
 
-# Keep this conservative: only explicit 591 invalid/off-market wording counts.
 MARKERS = (
     "不存在此物件",
     "此物件不存在",
@@ -72,7 +72,6 @@ def detail_urls(row):
     house_id = str(row.get("houseId") or "").strip()
     urls = []
     if house_id:
-        # This is the URL shape that currently shows the rendered `不存在此物件` toast.
         urls.append(f"https://sale.591.com.tw/home/house/detail/2/{house_id}.html")
         urls.append(f"https://m.591.com.tw/v2/sale/{house_id}")
     if row.get("url"):
@@ -80,10 +79,10 @@ def detail_urls(row):
     return list(dict.fromkeys(urls))
 
 
-def rendered_probe(page, url):
+async def rendered_probe(page, url):
     status = None
     try:
-        response = page.goto(url, wait_until="domcontentloaded", timeout=18000)
+        response = await page.goto(url, wait_until="domcontentloaded", timeout=18000)
         status = response.status if response is not None else None
     except Exception as exc:
         return {"url": url, "httpStatus": status, "confirmed": False, "error": str(exc)[:500]}
@@ -101,7 +100,7 @@ def rendered_probe(page, url):
     last_text = ""
     while time.monotonic() < deadline:
         try:
-            text = page.locator("body").inner_text(timeout=1000)
+            text = await page.locator("body").inner_text(timeout=1000)
         except Exception:
             text = ""
         if text:
@@ -115,7 +114,7 @@ def rendered_probe(page, url):
                         "evidence": last_text[:500],
                         "marker": marker,
                     }
-        page.wait_for_timeout(150)
+        await page.wait_for_timeout(150)
 
     return {
         "url": url,
@@ -126,94 +125,121 @@ def rendered_probe(page, url):
     }
 
 
+async def check_candidate(context, row, semaphore, generated_at):
+    async with semaphore:
+        page = await context.new_page()
+        attempts = []
+        hit = None
+        started = time.perf_counter()
+        try:
+            for url in detail_urls(row):
+                result = await rendered_probe(page, url)
+                attempts.append(result)
+                if result.get("confirmed") is True:
+                    hit = result
+                    break
+        finally:
+            await page.close()
+
+        record = {
+            "id": row.get("id"),
+            "houseId": row.get("houseId"),
+            "title": row.get("title"),
+            "road": row.get("road"),
+            "lastSeenAt": row.get("lastSeenAt"),
+            "checkedAt": generated_at,
+            "attempts": attempts,
+            "elapsedSeconds": round(time.perf_counter() - started, 3),
+        }
+        if hit:
+            record.update({
+                "confirmedInactive": True,
+                "confirmedAt": generated_at,
+                "evidenceUrl": hit.get("url"),
+                "evidenceHttpStatus": hit.get("httpStatus"),
+                "evidenceMarker": hit.get("marker"),
+                "evidence": hit.get("evidence"),
+            })
+        else:
+            record["confirmedInactive"] = False
+        return record
+
+
+async def run_parallel(candidates, generated_at):
+    started = time.perf_counter()
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(
+            channel="chrome",
+            headless=True,
+            args=["--disable-dev-shm-usage"],
+        )
+        try:
+            context = await browser.new_context(
+                user_agent=(
+                    "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) "
+                    "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1"
+                ),
+                viewport={"width": 390, "height": 844},
+                is_mobile=True,
+                has_touch=True,
+                locale="zh-TW",
+                timezone_id="Asia/Taipei",
+            )
+
+            async def route_handler(route):
+                if route.request.resource_type in {"image", "media", "font"}:
+                    await route.abort()
+                else:
+                    await route.continue_()
+
+            await context.route("**/*", route_handler)
+            semaphore = asyncio.Semaphore(MAX_PARALLEL)
+            records = await asyncio.gather(*[
+                check_candidate(context, row, semaphore, generated_at)
+                for row in candidates
+            ])
+            await context.close()
+        finally:
+            await browser.close()
+    return records, round(time.perf_counter() - started, 3)
+
+
 def main():
     payload = json.loads(SOURCE.read_text(encoding="utf-8"))
     candidates, source_checked_at = candidate_rows(payload)
     generated_at = now_iso()
-    confirmed = []
-    uncertain = []
-
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        context = browser.new_context(
-            user_agent=(
-                "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) "
-                "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1"
-            ),
-            viewport={"width": 390, "height": 844},
-            is_mobile=True,
-            has_touch=True,
-            locale="zh-TW",
-            timezone_id="Asia/Taipei",
-        )
-        context.route(
-            "**/*",
-            lambda route: route.abort()
-            if route.request.resource_type in {"image", "media", "font"}
-            else route.continue_(),
-        )
-
-        for row in candidates:
-            page = context.new_page()
-            attempts = []
-            hit = None
-            try:
-                for url in detail_urls(row):
-                    result = rendered_probe(page, url)
-                    attempts.append(result)
-                    if result.get("confirmed") is True:
-                        hit = result
-                        break
-            finally:
-                page.close()
-
-            record = {
-                "id": row.get("id"),
-                "houseId": row.get("houseId"),
-                "title": row.get("title"),
-                "road": row.get("road"),
-                "lastSeenAt": row.get("lastSeenAt"),
-                "checkedAt": generated_at,
-                "attempts": attempts,
-            }
-            if hit:
-                record.update({
-                    "confirmedInactive": True,
-                    "confirmedAt": generated_at,
-                    "evidenceUrl": hit.get("url"),
-                    "evidenceHttpStatus": hit.get("httpStatus"),
-                    "evidenceMarker": hit.get("marker"),
-                    "evidence": hit.get("evidence"),
-                })
-                confirmed.append(record)
-            else:
-                record["confirmedInactive"] = False
-                uncertain.append(record)
-
-        browser.close()
+    records, elapsed = asyncio.run(run_parallel(candidates, generated_at))
+    confirmed = [x for x in records if x.get("confirmedInactive") is True]
+    uncertain = [x for x in records if x.get("confirmedInactive") is not True]
 
     result = {
         "previewOnly": True,
+        # Keep the established mode token so the conservative apply gate remains unchanged.
         "mode": "rendered_chrome_explicit_591_inactive_marker_v1",
+        "executionMode": "parallel_v1",
         "generatedAt": generated_at,
         "sourceDataUpdatedAt": payload.get("updatedAt"),
         "source591CheckedAt": source_checked_at,
         "candidateRule": "active 591 listing whose lastSeenAt is older than latest successful 591 checkedAt",
         "maxCandidates": MAX_CANDIDATES,
+        "maxParallel": MAX_PARALLEL,
         "markers": list(MARKERS),
         "candidateCount": len(candidates),
-        "checkedCount": len(confirmed) + len(uncertain),
+        "checkedCount": len(records),
         "confirmedInactiveCount": len(confirmed),
         "confirmedInactive": confirmed,
         "uncertain": uncertain,
+        "elapsedSeconds": elapsed,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({
         "candidateCount": result["candidateCount"],
         "confirmedInactiveCount": result["confirmedInactiveCount"],
-        "confirmedIds": [x.get("id") for x in confirmed],
+        "confirmedIds": sorted(str(x.get("id")) for x in confirmed if x.get("id")),
         "confirmedMarkers": [x.get("evidenceMarker") for x in confirmed],
+        "elapsedSeconds": result["elapsedSeconds"],
+        "executionMode": result["executionMode"],
     }, ensure_ascii=False))
 
 
