@@ -23,7 +23,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install probe dependencies
-        run: pip install requests
+        run: pip install requests beautifulsoup4
 
       - name: Connect Surfshark
         env:
