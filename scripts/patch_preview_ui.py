@@ -34,6 +34,8 @@ text = PATH.read_text(encoding='utf-8')
 # inline guard before any UI patching or publication can continue.
 if 'BQM_INLINE_AUTH_V4' not in text:
     raise RuntimeError('Preview strict one-time access guard is missing; refuse to publish an unprotected page')
+if "window.addEventListener('pageshow'" not in text or 'sessionStorage.removeItem(GRANT_KEY)' not in text:
+    raise RuntimeError('Preview one-time access guard is incomplete; refuse to publish')
 # Legacy external-gate tags are not trusted because browser cache/load failures can leak the page.
 text = re.sub(r'\\n?<script src="(?:\\.\\./)?access-gate\\.js\\?v=[^"]+"></script>', '', text)
 replacements = {
