@@ -50,7 +50,8 @@ button:disabled{opacity:.65;cursor:wait}
 <script>
 (() => {
   const AUTH_HASH = '31be948c5e8804d5ec85869504c1ea7593c42cc6dfefb25ddf29fdb86c327b29';
-  const GRANT_KEY = 'bqm-one-time-grant-v4';
+  const GRANT_KEY = 'bqm-one-time-grant-v5';
+  const LOCK_KEY = 'bqm-relock-required-v5';
   const GRANT_MS = 60 * 1000;
   const BASE = '/banqiao-house-monitor/';
   const params = new URLSearchParams(location.search);
@@ -91,6 +92,7 @@ button:disabled{opacity:.65;cursor:wait}
         pass.focus();
         return;
       }
+      try { sessionStorage.removeItem(LOCK_KEY); } catch (_) {}
       sessionStorage.setItem(GRANT_KEY, JSON.stringify({
         hash: AUTH_HASH,
         path: new URL(next, location.origin).pathname,
