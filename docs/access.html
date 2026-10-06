@@ -44,14 +44,14 @@ button:disabled{opacity:.65;cursor:wait}
         <button id="gateBtn" type="submit">進入網站</button>
         <div id="gateMsg" class="msg" role="alert" aria-live="polite"></div>
       </form>
-      <div class="note">驗證成功後，此裝置 12 小時內免重新輸入。</div>
+      <div class="note">每次進入網站都需要重新驗證。</div>
     </div>
   </main>
 <script>
 (() => {
   const AUTH_HASH = '31be948c5e8804d5ec85869504c1ea7593c42cc6dfefb25ddf29fdb86c327b29';
-  const STORAGE_KEY = 'bqm-access-v3';
-  const VALID_MS = 12 * 60 * 60 * 1000;
+  const GRANT_KEY = 'bqm-one-time-grant-v4';
+  const GRANT_MS = 60 * 1000;
   const BASE = '/banqiao-house-monitor/';
   const params = new URLSearchParams(location.search);
   let next = params.get('next') || BASE;
@@ -63,14 +63,6 @@ button:disabled{opacity:.65;cursor:wait}
   if (isPreview) {
     document.getElementById('loginTitle').textContent = '板橋房屋監控 · Preview';
   }
-
-  try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-    if (saved && saved.hash === AUTH_HASH && Number(saved.expiresAt) > Date.now()) {
-      location.replace(next);
-      return;
-    }
-  } catch (_) {}
 
   const form = document.getElementById('gateForm');
   const user = document.getElementById('gateUser');
@@ -99,9 +91,10 @@ button:disabled{opacity:.65;cursor:wait}
         pass.focus();
         return;
       }
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      sessionStorage.setItem(GRANT_KEY, JSON.stringify({
         hash: AUTH_HASH,
-        expiresAt: Date.now() + VALID_MS
+        path: new URL(next, location.origin).pathname,
+        expiresAt: Date.now() + GRANT_MS
       }));
       btn.textContent = '驗證成功';
       location.replace(next);
