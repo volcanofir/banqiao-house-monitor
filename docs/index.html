@@ -3,16 +3,21 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="板橋指定路段 591、信義房屋刊登與永慶公司庫存比對" />
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
-<style id="bqm-auth-shield">html{visibility:hidden!important}</style>
+<style id="bqm-auth-shield">html{visibility:hidden!important}
+.compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
+</style>
 <script>
-/* BQM_INLINE_AUTH_V4 */
+/* BQM_INLINE_AUTH_V3 */
 (() => {
   'use strict';
   const AUTH_HASH = '31be948c5e8804d5ec85869504c1ea7593c42cc6dfefb25ddf29fdb86c327b29';
-  const GRANT_KEY = 'bqm-one-time-grant-v4';
+  const STORAGE_KEY = 'bqm-access-v3';
+  const VALID_MS = 12 * 60 * 60 * 1000;
   const BASE = '/banqiao-house-monitor/';
   const shield = document.getElementById('bqm-auth-shield');
 
@@ -23,31 +28,22 @@
 
   let ok = false;
   try {
-    const grant = JSON.parse(sessionStorage.getItem(GRANT_KEY) || 'null');
-    ok = !!(
-      grant &&
-      grant.hash === AUTH_HASH &&
-      grant.path === location.pathname &&
-      Number(grant.expiresAt) > Date.now()
-    );
-  } catch (_) {}
-
-  // The grant is single-use: consume it immediately.
-  try { sessionStorage.removeItem(GRANT_KEY); } catch (_) {}
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+    ok = !!(saved && saved.hash === AUTH_HASH && Number(saved.expiresAt) > Date.now());
+    if (!ok) localStorage.removeItem(STORAGE_KEY);
+  } catch (_) {
+    try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
+  }
 
   if (!ok) {
     const next = location.pathname + location.search + location.hash;
-    location.replace(BASE + 'access.html?v=20261006e&next=' + encodeURIComponent(next));
+    location.replace(BASE + 'access.html?v=20261006d&next=' + encodeURIComponent(next));
     return;
   }
 
   if (shield) shield.remove();
 })();
 </script>
-<meta name="description" content="板橋指定路段 591、信義房屋刊登與永慶公司庫存比對" />
-<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-title" content="板橋新案監控" />
 <link rel="apple-touch-icon" sizes="180x180" href="/banqiao-house-monitor/icon-safe-180.png?v=202608211301" />
@@ -84,9 +80,6 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}.hero{b
 .change-price-line.up{background:#eef4ff;color:#35577d}
 
 .pill.today-new{background:#ffe9a8;color:#704d00;border:1px solid #ddb948}
-
-.compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
-.compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
 
 .compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
 .compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
