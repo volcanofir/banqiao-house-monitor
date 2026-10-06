@@ -104,9 +104,9 @@ def main():
         "source==='houseprice'&&x.source==='5168'",
         'data-source="rakuya"',
         'data-source="houseprice"',
-        'BQM_INLINE_AUTH_V3',
-        "const STORAGE_KEY = 'bqm-access-v3';",
-        "location.replace(BASE + 'access.html?v=20261006d&next='",
+        'BQM_INLINE_AUTH_V4',
+        "const GRANT_KEY = 'bqm-one-time-grant-v4';",
+        "location.replace(BASE + 'access.html?v=20261006e&next='",
     ]
     missing = [x for x in required if x not in text]
     if missing:
