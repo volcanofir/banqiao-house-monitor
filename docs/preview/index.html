@@ -11,7 +11,7 @@
 <link rel="shortcut icon" href="/banqiao-house-monitor/favicon.ico?v=202608211301" />
 <meta name="theme-color" content="#f5d331" />
 <title>Banqiao House Monitor Preview</title>
-<script src="../access-gate.js?v=20261006b"></script>
+<script src="../access-gate.js?v=20261006a"></script>
 <style>
 :root{--cream:#fff8df;--paper:#fffef8;--yellow:#f5d331;--green:#124b37;--red:#cf3f4a;--ink:#30312f;--muted:#756f64;--line:#e3ca73;--gray:#515861}
 *{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif}a{color:inherit}
@@ -41,6 +41,9 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}.hero{b
 .change-price-line.up{background:#eef4ff;color:#35577d}
 
 .pill.today-new{background:#ffe9a8;color:#704d00;border:1px solid #ddb948}
+
+.compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
 
 .compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
 .compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
@@ -669,6 +672,7 @@ function renderGroups(){
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的房屋群組。</div>';
   bindRoadAccordion();
 }
+
 
 
 
