@@ -41,7 +41,6 @@
     );
   } catch (_) {}
 
-  // One login grants exactly one navigation into a protected page.
   try { sessionStorage.removeItem(GRANT_KEY); } catch (_) {}
 
   if (!ok) {
@@ -49,7 +48,6 @@
     return;
   }
 
-  // A valid one-time grant starts a fresh foreground visit.
   try { sessionStorage.removeItem(LOCK_KEY); } catch (_) {}
   if (shield) shield.remove();
 
@@ -63,29 +61,17 @@
     if (locked) goLogin();
   };
 
-  // iOS Home Screen web apps can be frozen before a redirect finishes.
-  // Mark on every reliable "leaving foreground" signal, then enforce on return.
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      markLocked();
-    } else {
-      relockIfMarked();
-    }
+    if (document.hidden) markLocked();
+    else relockIfMarked();
   });
-
   window.addEventListener('pagehide', markLocked);
   window.addEventListener('blur', markLocked);
-
   window.addEventListener('pageshow', (event) => {
     if (event.persisted) markLocked();
     relockIfMarked();
   });
-
-  window.addEventListener('focus', () => {
-    setTimeout(relockIfMarked, 0);
-  });
-
-  // Page Lifecycle API where supported.
+  window.addEventListener('focus', () => setTimeout(relockIfMarked, 0));
   document.addEventListener('freeze', markLocked);
   document.addEventListener('resume', relockIfMarked);
 })();
@@ -759,6 +745,7 @@ function renderGroups(){
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的房屋群組。</div>';
   bindRoadAccordion();
 }
+
 
 
 
