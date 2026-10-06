@@ -2,124 +2,35 @@
   'use strict';
 
   const AUTH_HASH = 'a4296c4ea0b7c65ae46a83a1e9e85d8b42b3b8640b90433cac63d32c5242af79';
-  const STORAGE_KEY = 'bqm-access-v1';
+  const STORAGE_KEY = 'bqm-access-v2';
   const VALID_MS = 12 * 60 * 60 * 1000;
 
-  // CI/browser smoke tests run only on localhost. Never bypass on the public site.
+  // Local CI/browser smoke tests must continue to exercise the application itself.
   if (['127.0.0.1', 'localhost', '::1'].includes(location.hostname)) return;
 
-  const now = Date.now();
+  // Hide the document before the rest of the page can paint.
+  document.documentElement.style.visibility = 'hidden';
+
+  let authorized = false;
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-    if (saved && saved.hash === AUTH_HASH && Number(saved.expiresAt) > now) return;
-    localStorage.removeItem(STORAGE_KEY);
+    authorized = !!(
+      saved &&
+      saved.hash === AUTH_HASH &&
+      Number(saved.expiresAt) > Date.now()
+    );
+    if (!authorized) localStorage.removeItem(STORAGE_KEY);
   } catch (_) {
     try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
   }
 
-  const title = location.pathname.includes('/preview/') ? '板橋房屋監控 · Preview' : '板橋房屋監控';
-  const safeHash = JSON.stringify(AUTH_HASH);
-  const safeKey = JSON.stringify(STORAGE_KEY);
-  const safeValid = String(VALID_MS);
-
-  document.open();
-  document.write(`<!doctype html>
-<html lang="zh-Hant">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<meta name="robots" content="noindex,nofollow,noarchive" />
-<meta name="theme-color" content="#f5d331" />
-<title>${title}｜登入</title>
-<style>
-:root{--cream:#fff8df;--paper:#fffef8;--yellow:#f5d331;--green:#124b37;--ink:#30312f;--muted:#756f64;--line:#e3ca73;--danger:#a52d39}
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--cream);color:var(--ink)}
-body{min-height:100dvh;display:grid;place-items:center;padding:24px}
-.card{width:min(430px,100%);background:var(--paper);border:1px solid var(--line);border-radius:28px;box-shadow:0 18px 48px rgba(71,58,16,.12);overflow:hidden}
-.stripe{height:8px;background:linear-gradient(90deg,#cf3f4a 0 66%,#515861 66%)}
-.inside{padding:28px}
-.badge{display:inline-block;background:var(--yellow);color:var(--green);border-radius:999px;padding:7px 11px;font-size:12px;font-weight:900;letter-spacing:.04em}
-h1{margin:16px 0 8px;color:var(--green);font-size:30px;line-height:1.2}
-p{margin:0 0 22px;color:var(--muted);font-size:14px;line-height:1.7}
-label{display:block;margin:14px 0 6px;font-size:13px;font-weight:850;color:var(--green)}
-input{width:100%;border:1px solid #d9c56f;border-radius:14px;padding:13px 14px;background:#fff;font:inherit;font-size:16px;outline:none}
-input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(18,75,55,.12)}
-button{width:100%;margin-top:18px;border:0;border-radius:14px;padding:14px 16px;background:var(--green);color:#fff;font:inherit;font-size:16px;font-weight:900;cursor:pointer}
-button:disabled{opacity:.65;cursor:wait}
-.msg{min-height:22px;margin-top:12px;color:var(--danger);font-size:13px;font-weight:800;text-align:center}
-.note{margin-top:14px;text-align:center;color:#8a816f;font-size:12px;line-height:1.6}
-</style>
-</head>
-<body>
-  <main class="card" aria-labelledby="loginTitle">
-    <div class="stripe"></div>
-    <div class="inside">
-      <span class="badge">PRIVATE ACCESS</span>
-      <h1 id="loginTitle">${title}</h1>
-      <p>請輸入正確的帳號與密碼後再瀏覽監控資料。</p>
-      <form id="gateForm" autocomplete="on">
-        <label for="gateUser">帳號</label>
-        <input id="gateUser" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required />
-        <label for="gatePass">密碼</label>
-        <input id="gatePass" name="password" type="password" autocomplete="current-password" required />
-        <button id="gateBtn" type="submit">進入網站</button>
-        <div id="gateMsg" class="msg" role="alert" aria-live="polite"></div>
-      </form>
-      <div class="note">驗證成功後，此裝置 12 小時內免重新輸入。</div>
-    </div>
-  </main>
-<script>
-(() => {
-  const AUTH_HASH = ${safeHash};
-  const STORAGE_KEY = ${safeKey};
-  const VALID_MS = ${safeValid};
-  const form = document.getElementById('gateForm');
-  const user = document.getElementById('gateUser');
-  const pass = document.getElementById('gatePass');
-  const btn = document.getElementById('gateBtn');
-  const msg = document.getElementById('gateMsg');
-
-  async function sha256(text) {
-    const bytes = new TextEncoder().encode(text);
-    const digest = await crypto.subtle.digest('SHA-256', bytes);
-    return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2,'0')).join('');
+  if (authorized) {
+    document.documentElement.style.visibility = '';
+    return;
   }
 
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    msg.textContent = '';
-    btn.disabled = true;
-    btn.textContent = '驗證中…';
-    try {
-      const account = user.value.trim().toLowerCase();
-      const password = pass.value;
-      const digest = await sha256(account + '\\n' + password);
-      if (digest !== AUTH_HASH) {
-        msg.textContent = '帳號或密碼不正確';
-        pass.value = '';
-        pass.focus();
-        return;
-      }
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({
-        hash: AUTH_HASH,
-        expiresAt: Date.now() + VALID_MS
-      }));
-      btn.textContent = '驗證成功';
-      location.reload();
-    } catch (error) {
-      msg.textContent = '驗證功能暫時無法使用，請重新整理後再試';
-    } finally {
-      if (!msg.textContent) return;
-      btn.disabled = false;
-      btn.textContent = '進入網站';
-    }
-  });
-
-  user.focus();
-})();
-</script>
-</body>
-</html>`);
-  document.close();
+  const base = '/banqiao-house-monitor/';
+  const current = location.pathname + location.search + location.hash;
+  const login = base + 'access.html?next=' + encodeURIComponent(current);
+  location.replace(login);
 })();
