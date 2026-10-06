@@ -43,6 +43,14 @@
   }
 
   if (shield) shield.remove();
+
+  // Safari may restore a protected page from the back-forward cache without rerunning
+  // the document. Force a fresh login whenever such a restore occurs.
+  window.addEventListener('pageshow', (event) => {
+    if (!event.persisted) return;
+    const next = location.pathname + location.search + location.hash;
+    location.replace(BASE + 'access.html?v=20261006e&next=' + encodeURIComponent(next));
+  });
 })();
 </script>
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
