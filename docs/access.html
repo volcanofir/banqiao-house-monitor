@@ -36,11 +36,11 @@ button:disabled{opacity:.65;cursor:wait}
       <span class="badge">PRIVATE ACCESS</span>
       <h1 id="loginTitle">板橋房屋監控</h1>
       <p id="loginDesc">請輸入正確的帳號與密碼後再瀏覽監控資料。</p>
-      <form id="gateForm" autocomplete="on">
+      <form id="gateForm" autocomplete="off">
         <label for="gateUser">帳號</label>
-        <input id="gateUser" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required />
+        <input id="gateUser" name="username" autocomplete="off" autocapitalize="none" spellcheck="false" required />
         <label for="gatePass">密碼</label>
-        <input id="gatePass" name="password" type="password" autocomplete="current-password" required />
+        <input id="gatePass" name="password" type="password" autocomplete="new-password" required />
         <button id="gateBtn" type="submit">進入網站</button>
         <div id="gateMsg" class="msg" role="alert" aria-live="polite"></div>
       </form>
