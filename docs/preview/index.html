@@ -6,28 +6,23 @@
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
-<style id="bqm-auth-shield">html{visibility:hidden!important}</style>
+<style id="bqm-auth-shield">html{visibility:hidden!important}
+.compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
+</style>
 <script>
-/* BQM_INLINE_AUTH_V5 */
+/* BQM_INLINE_AUTH_V4 */
 (() => {
   'use strict';
   const AUTH_HASH = '31be948c5e8804d5ec85869504c1ea7593c42cc6dfefb25ddf29fdb86c327b29';
-  const GRANT_KEY = 'bqm-one-time-grant-v5';
-  const LOCK_KEY = 'bqm-relock-required-v5';
+  const GRANT_KEY = 'bqm-one-time-grant-v4';
   const BASE = '/banqiao-house-monitor/';
-  const LOGIN = BASE + 'access.html?v=20261006g';
   const shield = document.getElementById('bqm-auth-shield');
 
   if (['127.0.0.1','localhost','::1'].includes(location.hostname)) {
     if (shield) shield.remove();
     return;
   }
-
-  const nextUrl = () => location.pathname + location.search + location.hash;
-  const goLogin = () => {
-    try { sessionStorage.removeItem(GRANT_KEY); } catch (_) {}
-    location.replace(LOGIN + '&next=' + encodeURIComponent(nextUrl()));
-  };
 
   let ok = false;
   try {
@@ -40,53 +35,34 @@
     );
   } catch (_) {}
 
-  // One login grants exactly one navigation into a protected page.
+  // The grant is single-use: consume it immediately.
   try { sessionStorage.removeItem(GRANT_KEY); } catch (_) {}
 
   if (!ok) {
-    goLogin();
+    const next = location.pathname + location.search + location.hash;
+    location.replace(BASE + 'access.html?v=20261006f&next=' + encodeURIComponent(next));
     return;
   }
 
-  // A valid one-time grant starts a fresh foreground visit.
-  try { sessionStorage.removeItem(LOCK_KEY); } catch (_) {}
   if (shield) shield.remove();
 
-  /* BQM_FOREGROUND_RELOCK_V5 */
-  const markLocked = () => {
-    try { sessionStorage.setItem(LOCK_KEY, '1'); } catch (_) {}
-  };
-  const relockIfMarked = () => {
-    let locked = false;
-    try { locked = sessionStorage.getItem(LOCK_KEY) === '1'; } catch (_) {}
-    if (locked) goLogin();
-  };
-
-  // iOS Home Screen web apps can be frozen before a redirect finishes.
-  // Mark on every reliable "leaving foreground" signal, then enforce on return.
+  /* BQM_VISIBILITY_RELOCK_V4 */
+  // Leaving this protected document locks it again. Returning from another tab/app
+  // must go through the login form instead of reusing the still-alive Safari page.
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      markLocked();
-    } else {
-      relockIfMarked();
-    }
+    if (!document.hidden) return;
+    const next = location.pathname + location.search + location.hash;
+    try { sessionStorage.removeItem(GRANT_KEY); } catch (_) {}
+    location.replace(BASE + 'access.html?v=20261006f&next=' + encodeURIComponent(next));
   });
 
-  window.addEventListener('pagehide', markLocked);
-  window.addEventListener('blur', markLocked);
-
+  // Safari may restore a protected page from the back-forward cache without rerunning
+  // the document. Force a fresh login whenever such a restore occurs.
   window.addEventListener('pageshow', (event) => {
-    if (event.persisted) markLocked();
-    relockIfMarked();
+    if (!event.persisted) return;
+    const next = location.pathname + location.search + location.hash;
+    location.replace(BASE + 'access.html?v=20261006f&next=' + encodeURIComponent(next));
   });
-
-  window.addEventListener('focus', () => {
-    setTimeout(relockIfMarked, 0);
-  });
-
-  // Page Lifecycle API where supported.
-  document.addEventListener('freeze', markLocked);
-  document.addEventListener('resume', relockIfMarked);
 })();
 </script>
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
@@ -760,6 +736,7 @@ function renderGroups(){
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的房屋群組。</div>';
   bindRoadAccordion();
 }
+
 
 
 
