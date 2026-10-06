@@ -30,7 +30,7 @@ if GAP_PATH.exists() and SNAPSHOT_PATH.exists():
 
 text = PATH.read_text(encoding='utf-8')
 
-ACCESS_GATE_TAG = '<script src="../access-gate.js?v=20261006a"></script>'
+ACCESS_GATE_TAG = '<script src="../access-gate.js?v=20261006b"></script>'
 if 'access-gate.js' not in text:
     if '</title>' not in text:
         raise RuntimeError('Preview access gate injection failed: missing </title>')
