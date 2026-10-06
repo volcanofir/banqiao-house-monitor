@@ -68,7 +68,7 @@ def main():
     text = text.replace('src="r420-widget.js', 'src="preview/r420-widget.js')
     text = text.replace('Preview 資料', '網站資料')
     text = text.replace('canonical Preview', 'canonical production')
-    text = text.replace('src="../access-gate.js?v=20261006a"', 'src="access-gate.js?v=20261006a"')
+    text = text.replace('src="../access-gate.js?v=20261006b"', 'src="access-gate.js?v=20261006b"')
 
     if '<meta name="description"' not in text:
         text = text.replace(
@@ -105,7 +105,7 @@ def main():
         "source==='houseprice'&&x.source==='5168'",
         'data-source="rakuya"',
         'data-source="houseprice"',
-        'src="access-gate.js?v=20261006a"',
+        'src="access-gate.js?v=20261006b"',
     ]
     missing = [x for x in required if x not in text]
     if missing:
@@ -118,7 +118,7 @@ def main():
         '`rental-data.json?ts=${Date.now()}`',
         'href="r420-widget.css',
         'src="r420-widget.js',
-        'src="../access-gate.js?v=20261006a"',
+        'src="../access-gate.js?v=20261006b"',
         '目前保留 ${r?.totalCount??0} 筆',
         '目前抓到 ${r?.totalCount??0} 筆',
         "${name}${name==='591'?' 租屋':'租屋'}",
