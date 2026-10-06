@@ -104,13 +104,17 @@ def main():
         "source==='houseprice'&&x.source==='5168'",
         'data-source="rakuya"',
         'data-source="houseprice"',
-        'BQM_INLINE_AUTH_V4',
-        "const GRANT_KEY = 'bqm-one-time-grant-v4';",
-        "location.replace(BASE + 'access.html?v=20261006f&next='",
+        'BQM_INLINE_AUTH_V5',
+        "const GRANT_KEY = 'bqm-one-time-grant-v5';",
+        "location.replace(BASE + 'access.html?v=20261006g&next='",
         'sessionStorage.removeItem(GRANT_KEY)',
         "window.addEventListener('pageshow'",
-        'BQM_VISIBILITY_RELOCK_V4',
+        'BQM_FOREGROUND_RELOCK_V5',
         "document.addEventListener('visibilitychange'",
+        "window.addEventListener('pagehide'",
+        "window.addEventListener('blur'",
+        "window.addEventListener('focus'",
+        "const LOCK_KEY = 'bqm-relock-required-v5';",
     ]
     missing = [x for x in required if x not in text]
     if missing:
