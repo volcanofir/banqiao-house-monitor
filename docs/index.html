@@ -38,18 +38,28 @@
 
   if (!ok) {
     const next = location.pathname + location.search + location.hash;
-    location.replace(BASE + 'access.html?v=20261006e&next=' + encodeURIComponent(next));
+    location.replace(BASE + 'access.html?v=20261006f&next=' + encodeURIComponent(next));
     return;
   }
 
   if (shield) shield.remove();
+
+  /* BQM_VISIBILITY_RELOCK_V4 */
+  // Leaving this protected document locks it again. Returning from another tab/app
+  // must go through the login form instead of reusing the still-alive Safari page.
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) return;
+    const next = location.pathname + location.search + location.hash;
+    try { sessionStorage.removeItem(GRANT_KEY); } catch (_) {}
+    location.replace(BASE + 'access.html?v=20261006f&next=' + encodeURIComponent(next));
+  });
 
   // Safari may restore a protected page from the back-forward cache without rerunning
   // the document. Force a fresh login whenever such a restore occurs.
   window.addEventListener('pageshow', (event) => {
     if (!event.persisted) return;
     const next = location.pathname + location.search + location.hash;
-    location.replace(BASE + 'access.html?v=20261006e&next=' + encodeURIComponent(next));
+    location.replace(BASE + 'access.html?v=20261006f&next=' + encodeURIComponent(next));
   });
 })();
 </script>
