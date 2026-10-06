@@ -106,9 +106,11 @@ def main():
         'data-source="houseprice"',
         'BQM_INLINE_AUTH_V4',
         "const GRANT_KEY = 'bqm-one-time-grant-v4';",
-        "location.replace(BASE + 'access.html?v=20261006e&next='",
+        "location.replace(BASE + 'access.html?v=20261006f&next='",
         'sessionStorage.removeItem(GRANT_KEY)',
         "window.addEventListener('pageshow'",
+        'BQM_VISIBILITY_RELOCK_V4',
+        "document.addEventListener('visibilitychange'",
     ]
     missing = [x for x in required if x not in text]
     if missing:
