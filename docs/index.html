@@ -7,7 +7,10 @@
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
-<style id="bqm-auth-shield">html{visibility:hidden!important}</style>
+<style id="bqm-auth-shield">html{visibility:hidden!important}
+.compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
+</style>
 <script>
 /* BQM_INLINE_AUTH_V5 */
 (() => {
@@ -745,6 +748,7 @@ function renderGroups(){
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的房屋群組。</div>';
   bindRoadAccordion();
 }
+
 
 
 
