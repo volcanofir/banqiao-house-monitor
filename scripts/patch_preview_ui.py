@@ -30,11 +30,12 @@ if GAP_PATH.exists() and SNAPSHOT_PATH.exists():
 
 text = PATH.read_text(encoding='utf-8')
 
-ACCESS_GATE_TAG = '<script src="../access-gate.js?v=20261006c"></script>'
-if 'access-gate.js' not in text:
-    if '</title>' not in text:
-        raise RuntimeError('Preview access gate injection failed: missing </title>')
-    text = text.replace('</title>', '</title>\\n' + ACCESS_GATE_TAG, 1)
+# Security is fail-closed: the canonical Preview must already contain the
+# inline guard before any UI patching or publication can continue.
+if 'BQM_INLINE_AUTH_V3' not in text:
+    raise RuntimeError('Preview inline access guard is missing; refuse to publish an unprotected page')
+# Legacy external-gate tags are not trusted because browser cache/load failures can leak the page.
+text = re.sub(r'\\n?<script src="(?:\\.\\./)?access-gate\\.js\\?v=[^"]+"></script>', '', text)
 replacements = {
     '🧪 PREVIEW 測試版本｜信義優先整併測試｜不影響正式網站': '🧪 PREVIEW 測試版本｜不影響正式網站',
     '591 ＋ 信義先整併，再比對永慶公司公開庫存': '比對591、信義刊登案件',
