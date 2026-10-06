@@ -95,6 +95,16 @@ jobs:
           cp docs/production-verification.json /tmp/production-verification.json
           git fetch origin main
 
+          # Never let an older promotion run overwrite a newer access-control/UI patch.
+          if [[ "$(git rev-parse HEAD:scripts/promote_preview_to_production.py)" != "$(git rev-parse origin/main:scripts/promote_preview_to_production.py)" ]] || \
+             [[ "$(git rev-parse HEAD:scripts/patch_preview_ui.py)" != "$(git rev-parse origin/main:scripts/patch_preview_ui.py)" ]]; then
+            echo "Security/promotion scripts changed while this run was executing; skip stale publish."
+            exit 0
+          fi
+          grep -q "BQM_INLINE_AUTH_V5" /tmp/production-index.html
+          grep -q "BQM_FOREGROUND_RELOCK_V5" /tmp/production-index.html
+          grep -q "bqm-relock-required-v5" /tmp/production-index.html
+
           # Refuse to publish if monitor/canonical changed while this promotion was running.
           python - <<'PY'
           import json, subprocess
