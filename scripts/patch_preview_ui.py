@@ -32,8 +32,8 @@ text = PATH.read_text(encoding='utf-8')
 
 # Security is fail-closed: the canonical Preview must already contain the
 # inline guard before any UI patching or publication can continue.
-if 'BQM_INLINE_AUTH_V3' not in text:
-    raise RuntimeError('Preview inline access guard is missing; refuse to publish an unprotected page')
+if 'BQM_INLINE_AUTH_V4' not in text:
+    raise RuntimeError('Preview strict one-time access guard is missing; refuse to publish an unprotected page')
 # Legacy external-gate tags are not trusted because browser cache/load failures can leak the page.
 text = re.sub(r'\\n?<script src="(?:\\.\\./)?access-gate\\.js\\?v=[^"]+"></script>', '', text)
 replacements = {
