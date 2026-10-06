@@ -107,6 +107,8 @@ def main():
         'BQM_INLINE_AUTH_V4',
         "const GRANT_KEY = 'bqm-one-time-grant-v4';",
         "location.replace(BASE + 'access.html?v=20261006e&next='",
+        'sessionStorage.removeItem(GRANT_KEY)',
+        "window.addEventListener('pageshow'",
     ]
     missing = [x for x in required if x not in text]
     if missing:
