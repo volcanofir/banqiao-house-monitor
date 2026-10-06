@@ -32,12 +32,16 @@ text = PATH.read_text(encoding='utf-8')
 
 # Security is fail-closed: the canonical Preview must already contain the
 # inline guard before any UI patching or publication can continue.
-if 'BQM_INLINE_AUTH_V4' not in text:
+if 'BQM_INLINE_AUTH_V5' not in text:
     raise RuntimeError('Preview strict one-time access guard is missing; refuse to publish an unprotected page')
 if "window.addEventListener('pageshow'" not in text or 'sessionStorage.removeItem(GRANT_KEY)' not in text:
     raise RuntimeError('Preview one-time access guard is incomplete; refuse to publish')
-if 'BQM_VISIBILITY_RELOCK_V4' not in text or "document.addEventListener('visibilitychange'" not in text:
-    raise RuntimeError('Preview leave-page relock is missing; refuse to publish')
+if 'BQM_FOREGROUND_RELOCK_V5' not in text or "document.addEventListener('visibilitychange'" not in text:
+    raise RuntimeError('Preview foreground relock is missing; refuse to publish')
+if "window.addEventListener('pagehide'" not in text or "window.addEventListener('blur'" not in text or "window.addEventListener('focus'" not in text:
+    raise RuntimeError('Preview iOS foreground relock signals are incomplete; refuse to publish')
+if "const LOCK_KEY = 'bqm-relock-required-v5';" not in text:
+    raise RuntimeError('Preview relock marker key is missing; refuse to publish')
 # Legacy external-gate tags are not trusted because browser cache/load failures can leak the page.
 text = re.sub(r'\\n?<script src="(?:\\.\\./)?access-gate\\.js\\?v=[^"]+"></script>', '', text)
 replacements = {
