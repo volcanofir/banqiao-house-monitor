@@ -51,9 +51,9 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}
 .hero{background:var(--yellow);border-radius:28px;padding:26px}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;color:#876500}.hero h1{margin:7px 0 8px;color:var(--green);font-size:clamp(32px,7vw,54px)}.hero p{margin:0;color:#315244;line-height:1.75}
 .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.metric{background:#fffef8;border:1px solid #dcc875;border-radius:20px;padding:15px}.metric span{display:block;font-size:13px;font-weight:850;color:var(--muted)}.metric strong{display:block;margin-top:5px;font-size:26px;color:var(--green)}
 .panel{margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:24px;overflow:hidden}.stripe{height:7px;background:linear-gradient(90deg,var(--red) 0 66%,#515861 66%)}.inside{padding:20px}
-.store-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.store-card{appearance:none;text-align:left;border:1px solid #e3ca73;background:#fff4c8;border-radius:16px;padding:12px;cursor:pointer;font:inherit}.store-card.active{background:var(--green);color:#fff;border-color:var(--green)}.store-card b{display:block;font-size:15px}.store-card span{display:block;margin-top:5px;font-size:12px;opacity:.8}.store-card strong{font-size:22px}.store-card .removed-count{color:#a52d39;opacity:1;font-weight:900}.store-card .removed-count strong{font-size:14px}
+.store-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.store-card{appearance:none;text-align:left;border:1px solid #e3ca73;background:#fff4c8;border-radius:16px;padding:12px;cursor:pointer;font:inherit}.store-card.active{background:var(--green);color:#fff;border-color:var(--green)}.store-card b{display:block;font-size:15px}.store-card span{display:block;margin-top:5px;font-size:12px;opacity:.8}.store-card strong{font-size:22px}.store-card .new-count{color:#19724f;opacity:1;font-weight:900}.store-card .new-count strong{font-size:14px}.store-card .removed-count{color:#a52d39;opacity:1;font-weight:900}.store-card .removed-count strong{font-size:14px}
 .filters{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:9px;margin-top:16px}input,select{width:100%;border:1px solid var(--line);border-radius:12px;background:#fff;padding:11px 12px;font:inherit}
-.summary{margin-top:13px;color:var(--muted);font-size:13px}.district-summary{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.district-chip{border:1px solid #e3ca73;background:#fff4c8;border-radius:999px;padding:7px 11px;font-size:13px;font-weight:850;color:var(--green)}.district-chip.primary{background:#dcefe7;border-color:#b9d8ca}.list{margin-top:12px}.group{border:1px solid var(--line);border-radius:18px;background:#fff;margin:10px 0;overflow:hidden}.group>summary{list-style:none;cursor:pointer;padding:14px 16px;background:#fff4c8;display:flex;justify-content:space-between;gap:10px;font-weight:900;color:var(--green)}.group>summary::-webkit-details-marker{display:none}.group.removed-group{border-color:#e6a8ae}.group.removed-group>summary{background:#fbe1e3;color:#9c2833}.items{padding:0 14px}
+.summary{margin-top:13px;color:var(--muted);font-size:13px}.district-summary{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.district-chip{border:1px solid #e3ca73;background:#fff4c8;border-radius:999px;padding:7px 11px;font-size:13px;font-weight:850;color:var(--green)}.district-chip.primary{background:#dcefe7;border-color:#b9d8ca}.list{margin-top:12px}.group{border:1px solid var(--line);border-radius:18px;background:#fff;margin:10px 0;overflow:hidden}.group>summary{list-style:none;cursor:pointer;padding:14px 16px;background:#fff4c8;display:flex;justify-content:space-between;gap:10px;font-weight:900;color:var(--green)}.group>summary::-webkit-details-marker{display:none}.group.new-group{border-color:#a8d7c3}.group.new-group>summary{background:#dff3e9;color:#176347}.group.removed-group{border-color:#e6a8ae}.group.removed-group>summary{background:#fbe1e3;color:#9c2833}.items{padding:0 14px}
 .item{padding:15px 0;border-bottom:1px solid #eee3bd}.item:last-child{border-bottom:0}.item-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.title{font-weight:900;color:var(--green);text-decoration:none;line-height:1.5}.price{font-size:20px;font-weight:950;color:#a52d39;white-space:nowrap}.meta{display:flex;flex-wrap:wrap;gap:7px 10px;margin-top:8px;color:#665f54;font-size:13px}.pill{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:850}.store{background:#dcefe7;color:#14503c}.id{background:#fff0bd;color:#755600}.comm{background:var(--blue);color:#35577d}.empty{padding:28px;text-align:center;color:var(--muted)}.error{background:#f7dadd;color:#972a35;padding:12px 14px;border-radius:14px;margin-top:12px}
 @media(max-width:900px){.store-grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){main{width:min(100% - 14px,1180px)}.hero{padding:22px 18px}.inside{padding:15px}.filters{grid-template-columns:1fr}.store-grid{grid-template-columns:1fr 1fr}.item-head{display:block}.price{margin-top:6px}}
 </style>
@@ -105,6 +105,7 @@ function renderStores(){
     '<button class="store-card '+(chosen===s.storeCode?'active':'')+'" data-code="'+esc(s.storeCode)+'">'+
     '<b>'+esc(s.storeName)+'</b>'+
     '<span><strong>'+Number(s.totalCount||0)+'</strong> 戶｜'+(s.status==='ok'?'完整':'異常')+'</span>'+
+    (Number(s.recentNewCount||0)>0?'<span class="new-count">近 10 日新上架 <strong>'+Number(s.recentNewCount||0)+'</strong> 戶</span>':'')+
     (Number(s.recentRemovedCount||0)>0?'<span class="removed-count">近 10 日下架 <strong>'+Number(s.recentRemovedCount||0)+'</strong> 戶</span>':'')+
     '</button>'
   ).join('');
@@ -119,6 +120,14 @@ function itemHtml(x){
   (x.community?'<span class="pill comm">'+esc(x.community)+'</span>':'')+
   '<span>'+area(x.areaBuilding)+'</span><span>'+esc(x.layout||'格局未取得')+'</span><span>'+esc(floor(x))+'</span><span>'+esc(x.age||'屋齡未取得')+'</span></div>'+
   '<div class="meta"><span>'+esc(x.address||'地址未取得')+'</span>'+(x.firstDisplay?'<span>原始上架：'+esc(String(x.firstDisplay).replace(/-/g,'/'))+'</span>':'')+'</div></article>';
+}
+
+function newItemHtml(x){
+  return '<article class="item"><div class="item-head"><a class="title" href="'+esc(x.url||'#')+'" target="_blank" rel="noopener noreferrer">'+esc(x.name||'未命名案件')+'</a><div class="price">'+money(x.price)+'</div></div>'+
+  '<div class="meta"><span class="pill store">'+esc(x.storeName)+'</span><span class="pill id">'+esc(x.houseNo)+'</span>'+
+  (x.community?'<span class="pill comm">'+esc(x.community)+'</span>':'')+
+  '<span>'+area(x.areaBuilding)+'</span><span>'+esc(x.layout||'格局未取得')+'</span><span>'+esc(floor(x))+'</span><span>'+esc(x.age||'屋齡未取得')+'</span></div>'+
+  '<div class="meta"><span>'+esc(x.address||'地址未取得')+'</span>'+(x.firstDisplay?'<span>原始上架：'+esc(String(x.firstDisplay).replace(/-/g,'/'))+'</span>':'')+'<span style="color:#19724f;font-weight:900">偵測新上架：'+(x.newAt?new Date(x.newAt).toLocaleString('zh-TW',{hour12:false}):'—')+'</span></div></article>';
 }
 
 function removedItemHtml(x){
@@ -140,6 +149,11 @@ function render(){
     if(q&&!([x.name,x.address,x.community,x.houseNo,x.storeName].join(' ').toLowerCase().includes(q)))return false;
     return true;
   });
+  let newRows=(DATA.recentNew||[]).filter(x=>{
+    if(store&&x.storeCode!==store)return false;
+    if(q&&!([x.name,x.address,x.community,x.houseNo,x.storeName].join(' ').toLowerCase().includes(q)))return false;
+    return true;
+  }).sort((a,b)=>new Date(b.newAt||0)-new Date(a.newAt||0));
   let removedRows=(DATA.recentRemoved||[]).filter(x=>{
     if(store&&x.storeCode!==store)return false;
     if(q&&!([x.name,x.address,x.community,x.houseNo,x.storeName].join(' ').toLowerCase().includes(q)))return false;
@@ -173,10 +187,13 @@ function render(){
       const countDiff=(byDistrict.get(b)?.length||0)-(byDistrict.get(a)?.length||0);
       return countDiff||a.localeCompare(b,'zh-Hant');
     });
-    districtSummary.innerHTML=districts.map(d=>
+    districtSummary.innerHTML=(newRows.length?'<span class="district-chip" style="background:#dff3e9;border-color:#a8d7c3;color:#176347">近 10 日新上架 '+newRows.length+' 戶</span>':'')+districts.map(d=>
       '<span class="district-chip '+(d==='板橋區'?'primary':'')+'">'+esc(d)+' '+byDistrict.get(d).length+' 戶</span>'
     ).join('')+(removedRows.length?'<span class="district-chip" style="background:#fbe1e3;border-color:#e6a8ae;color:#9c2833">近 10 日下架 '+removedRows.length+' 戶</span>':'');
 
+    if(newRows.length){
+      html+='<details class="group new-group"><summary><span>近 10 日新上架</span><span>'+newRows.length+' 戶</span></summary><div class="items">'+newRows.map(newItemHtml).join('')+'</div></details>';
+    }
     for(const d of districts){
       const items=sortRows(byDistrict.get(d));
       html+='<details class="group"><summary><span>'+esc(d)+'</span><span>'+items.length+' 戶</span></summary><div class="items">'+items.map(itemHtml).join('')+'</div></details>';
@@ -184,15 +201,20 @@ function render(){
     if(removedRows.length){
       html+='<details class="group removed-group"><summary><span>近 10 日下架</span><span>'+removedRows.length+' 戶</span></summary><div class="items">'+removedRows.map(removedItemHtml).join('')+'</div></details>';
     }
-    document.querySelector('#summary').textContent=(storeInfo?storeInfo.storeName:'目前門市')+'共 '+rows.length+' 戶｜板橋區 '+(byDistrict.get('板橋區')?.length||0)+' 戶｜其他區域 '+(rows.length-(byDistrict.get('板橋區')?.length||0))+' 戶｜近 10 日下架 '+removedRows.length+' 戶｜資料更新：'+(DATA.updatedAt?new Date(DATA.updatedAt).toLocaleString('zh-TW',{hour12:false}):'—');
+    document.querySelector('#summary').textContent=(storeInfo?storeInfo.storeName:'目前門市')+'共 '+rows.length+' 戶｜板橋區 '+(byDistrict.get('板橋區')?.length||0)+' 戶｜其他區域 '+(rows.length-(byDistrict.get('板橋區')?.length||0))+' 戶｜近 10 日新上架 '+newRows.length+' 戶｜近 10 日下架 '+removedRows.length+' 戶｜資料更新：'+(DATA.updatedAt?new Date(DATA.updatedAt).toLocaleString('zh-TW',{hour12:false}):'—');
   }else{
     for(const s of (DATA.stores||[])){
       const items=sortRows(rows.filter(x=>x.storeCode===s.storeCode));
+      const recentNew=newRows.filter(x=>x.storeCode===s.storeCode);
       const removed=removedRows.filter(x=>x.storeCode===s.storeCode);
-      if(!items.length&&!removed.length)continue;
-      html+='<details class="group"><summary><span>'+esc(s.storeName)+'</span><span>'+items.length+' 戶'+(removed.length?'｜近 10 日下架 '+removed.length:'')+'</span></summary><div class="items">'+items.map(itemHtml).join('')+(removed.length?'<details class="group removed-group"><summary><span>近 10 日下架</span><span>'+removed.length+' 戶</span></summary><div class="items">'+removed.map(removedItemHtml).join('')+'</div></details>':'')+'</div></details>';
+      if(!items.length&&!recentNew.length&&!removed.length)continue;
+      html+='<details class="group"><summary><span>'+esc(s.storeName)+'</span><span>'+items.length+' 戶'+(recentNew.length?'｜近 10 日新上架 '+recentNew.length:'')+(removed.length?'｜近 10 日下架 '+removed.length:'')+'</span></summary><div class="items">'+
+        (recentNew.length?'<details class="group new-group"><summary><span>近 10 日新上架</span><span>'+recentNew.length+' 戶</span></summary><div class="items">'+recentNew.map(newItemHtml).join('')+'</div></details>':'')+
+        items.map(itemHtml).join('')+
+        (removed.length?'<details class="group removed-group"><summary><span>近 10 日下架</span><span>'+removed.length+' 戶</span></summary><div class="items">'+removed.map(removedItemHtml).join('')+'</div></details>':'')+
+        '</div></details>';
     }
-    document.querySelector('#summary').textContent='目前顯示 '+rows.length+' 筆｜近 10 日下架 '+removedRows.length+' 戶｜資料更新：'+(DATA.updatedAt?new Date(DATA.updatedAt).toLocaleString('zh-TW',{hour12:false}):'—');
+    document.querySelector('#summary').textContent='目前顯示 '+rows.length+' 筆｜近 10 日新上架 '+newRows.length+' 戶｜近 10 日下架 '+removedRows.length+' 戶｜資料更新：'+(DATA.updatedAt?new Date(DATA.updatedAt).toLocaleString('zh-TW',{hour12:false}):'—');
   }
 
   document.querySelector('#list').innerHTML=html||'<div class="empty">目前沒有符合條件的案件。</div>';
