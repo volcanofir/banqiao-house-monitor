@@ -1,22 +1,22 @@
 {
-  "auditedAt": "2026-10-07T13:52:36+00:00",
+  "auditedAt": "2026-10-07T14:04:30+00:00",
   "scheme": "A",
   "target": "exact canonical Preview files before atomic publish",
   "validator": "validate_scheme_a_preview_v3",
   "passed": true,
   "error": null,
   "companyGap": {
-    "generatedAt": "2026-10-07T13:52:32+00:00",
+    "generatedAt": "2026-10-07T14:04:28+00:00",
     "capturedAt": null,
     "verifiedAt": null,
-    "companySnapshotCapturedAt": "2026-10-07T13:48:38+00:00",
+    "companySnapshotCapturedAt": "2026-10-07T14:04:05+00:00",
     "listingCount": null,
     "companyListingCount": 73,
-    "propertyGroupCount": 174,
+    "propertyGroupCount": 169,
     "counts": {
-      "company_match": 45,
-      "review": 8,
-      "missing": 121,
+      "company_match": 44,
+      "review": 6,
+      "missing": 119,
       "unavailable": 0
     },
     "idIntegrityGuard": null,
@@ -26,12 +26,12 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-10-07T13:52:25+00:00",
+      "generatedAt": "2026-10-07T14:04:25+00:00",
       "previewOnly": true,
       "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
       "sourceRunMode": "official_filterObject_api_browser_auth",
       "sourceRunStatus": "ok",
-      "sourceRunCheckedAt": "2026-10-07T10:15:17+00:00",
+      "sourceRunCheckedAt": "2026-10-07T14:00:44+00:00",
       "activeSinyiCount": 68,
       "matchedOfficialCount": 68,
       "appliedCount": 68,
@@ -49,7 +49,7 @@
     "companyNearTieGuard": {
       "enabled": true,
       "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-      "examinedCompanyMatchCount": 45,
+      "examinedCompanyMatchCount": 44,
       "downgradedCount": 0,
       "remainingAutoNearTieCount": 0,
       "groups": []
@@ -57,7 +57,7 @@
   },
   "browserSnapshot": {
     "generatedAt": null,
-    "capturedAt": "2026-10-07T13:48:38+00:00",
+    "capturedAt": "2026-10-07T14:04:05+00:00",
     "verifiedAt": null,
     "companySnapshotCapturedAt": null,
     "listingCount": 73,
@@ -66,76 +66,13 @@
     "counts": null,
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 78,
+      "beforeCount": 73,
       "afterCount": 73,
-      "removedCount": 5,
-      "collisionIds": [
-        "4308114"
-      ],
+      "removedCount": 0,
+      "collisionIds": [],
       "remainingCollisionIds": [],
-      "removed": [
-        {
-          "id": "4308114",
-          "road": "板橋區中山路二段",
-          "title": "埔墘中山路稀有三樓頂加出價可談",
-          "area": 32.33,
-          "price": 1380.0,
-          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-          "replacementIds": [
-            "6693666"
-          ],
-          "replacementFound": true
-        },
-        {
-          "id": "4308114",
-          "road": "板橋區三民路一段",
-          "title": "稀有低總價挑高",
-          "area": 19.84,
-          "price": 1350.0,
-          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-          "replacementIds": [
-            "7532014"
-          ],
-          "replacementFound": true
-        },
-        {
-          "id": "4308114",
-          "road": "板橋區三民路二段",
-          "title": "板橋埔墘大兩房高樓邊間景觀宅",
-          "area": 35.83,
-          "price": 2038.0,
-          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-          "replacementIds": [
-            "7521423"
-          ],
-          "replacementFound": true
-        },
-        {
-          "id": "4308114",
-          "road": "板橋區翠華街",
-          "title": "近江子翠商圈｜面寬好停車一樓｜氣派門廳｜辦公規劃",
-          "area": 59.37,
-          "price": 3988.0,
-          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-          "replacementIds": [
-            "7455915"
-          ],
-          "replacementFound": true
-        },
-        {
-          "id": "4308114",
-          "road": "板橋區萬安街",
-          "title": "萬安簡約質感透天",
-          "area": 27.95,
-          "price": 1400.0,
-          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-          "replacementIds": [
-            "7532825"
-          ],
-          "replacementFound": true
-        }
-      ],
-      "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
+      "removed": [],
+      "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
     },
     "canonicalPublisher": null,
     "valid": null,
@@ -148,89 +85,26 @@
   "verification": {
     "generatedAt": null,
     "capturedAt": null,
-    "verifiedAt": "2026-10-07T13:52:36+00:00",
-    "companySnapshotCapturedAt": "2026-10-07T13:48:38+00:00",
+    "verifiedAt": "2026-10-07T14:04:30+00:00",
+    "companySnapshotCapturedAt": "2026-10-07T14:04:05+00:00",
     "listingCount": null,
     "companyListingCount": 73,
-    "propertyGroupCount": 174,
+    "propertyGroupCount": 169,
     "counts": {
-      "company_match": 45,
-      "review": 8,
-      "missing": 121,
+      "company_match": 44,
+      "review": 6,
+      "missing": 119,
       "unavailable": 0
     },
     "idIntegrityGuard": {
       "enabled": true,
-      "beforeCount": 78,
+      "beforeCount": 73,
       "afterCount": 73,
-      "removedCount": 5,
-      "collisionIds": [
-        "4308114"
-      ],
+      "removedCount": 0,
+      "collisionIds": [],
       "remainingCollisionIds": [],
-      "removed": [
-        {
-          "id": "4308114",
-          "road": "板橋區中山路二段",
-          "title": "埔墘中山路稀有三樓頂加出價可談",
-          "area": 32.33,
-          "price": 1380.0,
-          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-          "replacementIds": [
-            "6693666"
-          ],
-          "replacementFound": true
-        },
-        {
-          "id": "4308114",
-          "road": "板橋區三民路一段",
-          "title": "稀有低總價挑高",
-          "area": 19.84,
-          "price": 1350.0,
-          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-          "replacementIds": [
-            "7532014"
-          ],
-          "replacementFound": true
-        },
-        {
-          "id": "4308114",
-          "road": "板橋區三民路二段",
-          "title": "板橋埔墘大兩房高樓邊間景觀宅",
-          "area": 35.83,
-          "price": 2038.0,
-          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-          "replacementIds": [
-            "7521423"
-          ],
-          "replacementFound": true
-        },
-        {
-          "id": "4308114",
-          "road": "板橋區翠華街",
-          "title": "近江子翠商圈｜面寬好停車一樓｜氣派門廳｜辦公規劃",
-          "area": 59.37,
-          "price": 3988.0,
-          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-          "replacementIds": [
-            "7455915"
-          ],
-          "replacementFound": true
-        },
-        {
-          "id": "4308114",
-          "road": "板橋區萬安街",
-          "title": "萬安簡約質感透天",
-          "area": 27.95,
-          "price": 1400.0,
-          "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-          "replacementIds": [
-            "7532825"
-          ],
-          "replacementFound": true
-        }
-      ],
-      "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
+      "removed": [],
+      "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
     },
     "canonicalPublisher": "yungching-preview.yml",
     "valid": true,
@@ -238,12 +112,12 @@
     "safeFloorParser": true,
     "sinyiStructuredFloorMatching": true,
     "sinyiFloorEnrichment": {
-      "generatedAt": "2026-10-07T13:52:25+00:00",
+      "generatedAt": "2026-10-07T14:04:25+00:00",
       "previewOnly": true,
       "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
       "sourceRunMode": "official_filterObject_api_browser_auth",
       "sourceRunStatus": "ok",
-      "sourceRunCheckedAt": "2026-10-07T10:15:17+00:00",
+      "sourceRunCheckedAt": "2026-10-07T14:00:44+00:00",
       "activeSinyiCount": 68,
       "matchedOfficialCount": 68,
       "appliedCount": 68,
@@ -261,7 +135,7 @@
     "companyNearTieGuard": {
       "enabled": true,
       "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-      "examinedCompanyMatchCount": 45,
+      "examinedCompanyMatchCount": 44,
       "downgradedCount": 0,
       "remainingAutoNearTieCount": 0,
       "groups": []
