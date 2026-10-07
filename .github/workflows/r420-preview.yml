@@ -1,34 +1,28 @@
-name: 信義 R420 相對店 Preview
+name: 信義板橋 16 店相對店資料
 
 on:
   workflow_dispatch:
   schedule:
-    # Preview-only competitor refresh every 3 hours.
     - cron: "25 */3 * * *"
   push:
     branches: [main]
     paths:
       - ".github/workflows/r420-preview.yml"
-      - "scripts/fetch_sinyi_r420_preview.py"
-      - "scripts/enrich_r420_first_display.py"
-      - "scripts/enrich_sinyi_first_display.py"
-      - "scripts/patch_r420_preview_ui.py"
-      - "scripts/smoke_test_r420_preview.py"
-      - "docs/preview/r420-widget.css"
-      - "docs/preview/r420-widget.js"
+      - "scripts/fetch_sinyi_banqiao_stores.py"
+      - "docs/company/index.html"
 
 permissions:
   contents: write
   pages: write
 
 concurrency:
-  group: r420-preview
+  group: sinyi-banqiao-company
   cancel-in-progress: true
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -39,41 +33,41 @@ jobs:
           python-version: "3.12"
 
       - name: Install packages
-        run: pip install requests beautifulsoup4 playwright
+        run: pip install requests beautifulsoup4
 
-      - name: Fetch R420 store snapshot
-        run: python scripts/fetch_sinyi_r420_preview.py
+      - name: Fetch all 16 Sinyi stores
+        run: python scripts/fetch_sinyi_banqiao_stores.py
 
-      - name: Enrich earliest Sinyi listing time
-        run: python scripts/run_with_system_chrome.py scripts/enrich_r420_first_display.py
+      - name: Validate complete snapshot
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('docs/company/sinyi-banqiao-stores.json').read_text(encoding='utf-8'))
+          assert d['storeCount'] == 16
+          assert d['healthyStoreCount'] == 16, d.get('failures')
+          assert not d.get('failures'), d.get('failures')
+          assert all(x.get('status') == 'ok' for x in d['stores'])
+          assert all(int(x.get('totalCount') or 0) == int(x.get('sourceTotalCount') or 0) for x in d['stores'])
+          print('validated', d['totalStoreListings'], 'store-listings', d['uniquePropertyCount'], 'unique properties')
+          PY
 
-      - name: Preserve snapshot
-        run: cp docs/preview/r420-store.json /tmp/r420-store.json
-
-      - name: Rebase onto latest main and patch latest Preview
+      - name: Publish competitor dataset
         shell: bash
         run: |
           set -e
+          cp docs/company/sinyi-banqiao-stores.json /tmp/sinyi-banqiao-stores.json
           git fetch origin main
           git reset --hard origin/main
-          cp /tmp/r420-store.json docs/preview/r420-store.json
-          python scripts/patch_r420_preview_ui.py
-
-      - name: Smoke test R420 Preview in system Chrome
-        run: python scripts/run_with_system_chrome.py scripts/smoke_test_r420_preview.py
-
-      - name: Publish R420 Preview
-        shell: bash
-        run: |
-          set -e
+          cp /tmp/sinyi-banqiao-stores.json docs/company/sinyi-banqiao-stores.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/preview/r420-store.json docs/preview/index.html docs/preview/r420-widget.css docs/preview/r420-widget.js
+          git add docs/company/sinyi-banqiao-stores.json
           if git diff --cached --quiet; then
-            echo "R420 Preview already current."
+            echo "Competitor data already current."
             exit 0
           fi
-          git commit -m "Update R420 competitor Preview"
+          git commit -m "Update 16-store Sinyi competitor data"
           for attempt in 1 2 3; do
             if git pull --rebase && git push; then exit 0; fi
             git rebase --abort >/dev/null 2>&1 || true
