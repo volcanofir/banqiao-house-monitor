@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<style id="bqm-auth-shield">html{visibility:hidden!important}</style>
+<script>
+/* BQM_INLINE_AUTH_V5 */
+(() => {
+  'use strict';
+  const AUTH_HASH = '31be948c5e8804d5ec85869504c1ea7593c42cc6dfefb25ddf29fdb86c327b29';
+  const GRANT_KEY = 'bqm-one-time-grant-v5';
+  const LOCK_KEY = 'bqm-relock-required-v5';
+  const BASE = '/banqiao-house-monitor/';
+  const LOGIN = BASE + 'access.html?v=20261006g';
+  const shield = document.getElementById('bqm-auth-shield');
+
+  if (['127.0.0.1','localhost','::1'].includes(location.hostname)) {
+    if (shield) shield.remove();
+    return;
+  }
+
+  const nextUrl = () => location.pathname + location.search + location.hash;
+  const goLogin = () => {
+    try { sessionStorage.removeItem(GRANT_KEY); } catch (_) {}
+    location.replace(LOGIN + '&next=' + encodeURIComponent(nextUrl()));
+  };
+
+  let ok = false;
+  try {
+    const grant = JSON.parse(sessionStorage.getItem(GRANT_KEY) || 'null');
+    ok = !!(
+      grant &&
+      grant.hash === AUTH_HASH &&
+      grant.path === location.pathname &&
+      Number(grant.expiresAt) > Date.now()
+    );
+  } catch (_) {}
+
+  try { sessionStorage.removeItem(GRANT_KEY); } catch (_) {}
+  if (!ok) { goLogin(); return; }
+
+  try { sessionStorage.removeItem(LOCK_KEY); } catch (_) {}
+  if (shield) shield.remove();
+
+  const markLocked = () => {
+    try { sessionStorage.setItem(LOCK_KEY, '1'); } catch (_) {}
+  };
+  const relockIfMarked = () => {
+    let locked = false;
+    try { locked = sessionStorage.getItem(LOCK_KEY) === '1'; } catch (_) {}
+    if (locked) goLogin();
+  };
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) markLocked();
+    else relockIfMarked();
+  });
+  window.addEventListener('pagehide', markLocked);
+  window.addEventListener('blur', markLocked);
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) markLocked();
+    relockIfMarked();
+  });
+  window.addEventListener('focus', () => setTimeout(relockIfMarked, 0));
+  document.addEventListener('freeze', markLocked);
+  document.addEventListener('resume', relockIfMarked);
+})();
+</script>
+<meta name="robots" content="noindex,nofollow,noarchive" />
+<meta name="theme-color" content="#f5d331" />
+<title>相對店資料｜Banqiao House Monitor</title>
+<style>
+:root{--cream:#fff8df;--paper:#fffef8;--yellow:#f5d331;--green:#124b37;--red:#cf3f4a;--ink:#30312f;--muted:#756f64;--line:#e3ca73;--soft:#fff3bd}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--cream);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif}
+a{color:inherit}
+.top{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #eee;padding:14px 16px;text-align:center;font-weight:900}
+main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}
+.hero{background:var(--yellow);border-radius:28px;padding:26px}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;color:#876500}
+.hero h1{margin:7px 0 8px;color:var(--green);font-size:clamp(32px,7vw,54px)}
+.hero p{margin:0;color:#315244;line-height:1.75}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.metric{background:#fffef8;border:1px solid #dcc875;border-radius:20px;padding:15px}
+.metric span{display:block;font-size:13px;font-weight:850;color:var(--muted)}
+.metric strong{display:block;margin-top:5px;font-size:27px;color:var(--green)}
+.panel{margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:24px;overflow:hidden}
+.stripe{height:7px;background:linear-gradient(90deg,var(--red) 0 66%,#515861 66%)}
+.inside{padding:20px}
+.filters{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:9px}
+input,select{width:100%;border:1px solid var(--line);border-radius:12px;background:#fff;padding:11px 12px;font:inherit}
+.road-summary{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin-top:14px}
+.road-chip{border:1px solid #e3ca73;background:#fff4c8;border-radius:14px;padding:10px;text-align:center}
+.road-chip b{display:block;color:var(--green);font-size:18px}
+.road-chip span{font-size:11px;color:var(--muted)}
+.list{margin-top:14px}
+.item{border:1px solid #ead58b;border-radius:18px;background:#fff;padding:16px;margin:10px 0}
+.item-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.item-title{font-size:17px;font-weight:900;color:var(--green);line-height:1.5;text-decoration:none}
+.price{white-space:nowrap;color:#a52d39;font-size:21px;font-weight:950}
+.meta{display:flex;flex-wrap:wrap;gap:7px 10px;margin-top:9px;color:#635d52;font-size:13px}
+.pill{display:inline-block;border-radius:999px;padding:5px 9px;background:#eee9df;font-size:12px;font-weight:850}
+.pill.road{background:#dcefe7;color:#14503c}
+.pill.type{background:#e8eef9;color:#35577d}
+.pill.id{background:#fff0bd;color:#755600}
+.empty{padding:24px;text-align:center;color:var(--muted)}
+.updated{margin-top:12px;color:var(--muted);font-size:12px;line-height:1.6}
+@media(max-width:820px){.metrics{grid-template-columns:1fr 1fr 1fr}.filters{grid-template-columns:1fr}.road-summary{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){main{width:min(100% - 14px,1180px)}.hero{padding:22px 18px}.inside{padding:15px}.metrics{grid-template-columns:1fr 1fr}.metric:last-child{grid-column:1/-1}.item-head{display:block}.price{margin-top:7px}.road-summary{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="top">Banqiao House Monitor · 相對店資料</div>
+<main>
+  <section class="hero">
+    <div class="eyebrow">INTERNAL REFERENCE</div>
+    <h1>相對店資料</h1>
+    <p>集中查看板橋指定 7 路段的永慶房仲網公開案件。這個頁面獨立存在，不會出現在正式版或 Preview 的導覽中。</p>
+    <div class="metrics">
+      <div class="metric"><span>目前案件</span><strong id="mTotal">—</strong></div>
+      <div class="metric"><span>監控路段</span><strong id="mRoads">7</strong></div>
+      <div class="metric"><span>資料來源</span><strong style="font-size:19px">永慶官方</strong></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="stripe"></div>
+    <div class="inside">
+      <div class="filters">
+        <input id="q" type="search" placeholder="搜尋案名、地址、永慶 ID" />
+        <select id="road"><option value="">全部路段</option></select>
+        <select id="type"><option value="">全部類型</option></select>
+      </div>
+      <div id="roadSummary" class="road-summary"></div>
+      <div id="list" class="list"><div class="empty">資料載入中…</div></div>
+      <div id="updated" class="updated"></div>
+    </div>
+  </section>
+</main>
+<script>
+const ROAD_ORDER=['板橋區中山路二段','板橋區三民路一段','板橋區三民路二段','板橋區翠華街','板橋區林森街','板橋區萬安街','板橋區光復街'];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const shortRoad=s=>String(s||'').replace(/^板橋區/,'');
+const fmt=n=>n==null||n===''?'—':Number(n).toLocaleString('zh-TW');
+
+let DATA=[];
+let CAPTURED='';
+
+function layoutText(x){
+  const p=x.patternInfo||{};
+  const parts=[];
+  if(p.room!=null)parts.push(p.room+'房');
+  if(p.livingRoom!=null)parts.push(p.livingRoom+'廳');
+  if(p.bathRoom!=null)parts.push(p.bathRoom+'衛');
+  return parts.join(' ');
+}
+function renderRoadSummary(){
+  const html=ROAD_ORDER.map(r=>{
+    const n=DATA.filter(x=>x.road===r).length;
+    return '<div class="road-chip"><b>'+n+'</b><span>'+esc(shortRoad(r))+'</span></div>';
+  }).join('');
+  document.querySelector('#roadSummary').innerHTML=html;
+}
+function render(){
+  const q=document.querySelector('#q').value.trim().toLowerCase();
+  const road=document.querySelector('#road').value;
+  const type=document.querySelector('#type').value;
+  const rows=DATA.filter(x=>{
+    if(road&&x.road!==road)return false;
+    if(type&&x.type!==type)return false;
+    if(q){
+      const hay=[x.title,x.address,x.id,x.road,x.type].join(' ').toLowerCase();
+      if(!hay.includes(q))return false;
+    }
+    return true;
+  }).sort((a,b)=>(a.road||'').localeCompare(b.road||'zh-Hant')-(0)||Number(b.price||0)-Number(a.price||0));
+
+  document.querySelector('#list').innerHTML=rows.length?rows.map(x=>{
+    const title=x.url?'<a class="item-title" target="_blank" rel="noopener noreferrer" href="'+esc(x.url)+'">'+esc(x.title||'未命名案件')+'</a>':'<div class="item-title">'+esc(x.title||'未命名案件')+'</div>';
+    return '<article class="item">'+
+      '<div class="item-head"><div>'+title+'</div><div class="price">'+fmt(x.price)+' 萬</div></div>'+
+      '<div class="meta">'+
+        '<span class="pill road">'+esc(shortRoad(x.road))+'</span>'+
+        (x.type?'<span class="pill type">'+esc(x.type)+'</span>':'')+
+        '<span>'+fmt(x.area)+' 坪</span>'+
+        (x.floor?'<span>'+esc(x.floor)+'</span>':'')+
+        (layoutText(x)?'<span>'+esc(layoutText(x))+'</span>':'')+
+        '<span class="pill id">永慶 ID '+esc(x.id)+'</span>'+
+      '</div>'+
+    '</article>';
+  }).join(''):'<div class="empty">沒有符合目前條件的案件。</div>';
+}
+async function load(){
+  try{
+    const r=await fetch('../preview/yungching-browser-snapshot.json?ts='+Date.now(),{cache:'no-store'});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    const d=await r.json();
+    DATA=(d.listings||[]);
+    CAPTURED=d.capturedAt||'';
+    document.querySelector('#mTotal').textContent=DATA.length+' 筆';
+
+    const roads=[...new Set(DATA.map(x=>x.road).filter(Boolean))].sort((a,b)=>ROAD_ORDER.indexOf(a)-ROAD_ORDER.indexOf(b));
+    document.querySelector('#road').innerHTML='<option value="">全部路段</option>'+roads.map(x=>'<option>'+esc(x)+'</option>').join('');
+    const types=[...new Set(DATA.map(x=>x.type).filter(Boolean))].sort();
+    document.querySelector('#type').innerHTML='<option value="">全部類型</option>'+types.map(x=>'<option>'+esc(x)+'</option>').join('');
+
+    renderRoadSummary();
+    render();
+    document.querySelector('#updated').textContent='資料擷取時間：'+(CAPTURED?new Date(CAPTURED).toLocaleString('zh-TW',{hour12:false}):'—')+'｜來源：永慶房仲網官方資料';
+  }catch(e){
+    console.error(e);
+    document.querySelector('#list').innerHTML='<div class="empty">相對店資料目前無法載入，請稍後重新整理。</div>';
+  }
+}
+['q','road','type'].forEach(id=>document.querySelector('#'+id).addEventListener(id==='q'?'input':'change',render));
+load();
+</script>
+</body>
+</html>
