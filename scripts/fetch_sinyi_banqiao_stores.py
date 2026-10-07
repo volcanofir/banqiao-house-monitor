@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 OUT = Path("docs/company/sinyi-banqiao-stores.json")
 MAX_PAGES = 30
 RECENT_REMOVED_DAYS = 10
+RECENT_NEW_DAYS = 10
 STORES = [
     ("R420","板橋中山店"),("R340","板橋中正店"),("R574","板橋亞東店"),("R471","板橋府中店"),
     ("R688","板橋重慶店"),("R120","板橋店"),("R820","新埔捷運店"),("R502","板橋江翠店"),
@@ -81,6 +82,7 @@ def main():
             previous={}
     prev_listings={str(x.get("id")):x for x in (previous.get("listings") or []) if x.get("id")}
     prev_removed={str(x.get("id")):x for x in (previous.get("recentRemoved") or []) if x.get("id")}
+    prev_new={str(x.get("id")):x for x in (previous.get("recentNew") or []) if x.get("id")}
     stores=[]; listings=[]; failures=[]
     for code,name in STORES:
         try:
@@ -127,8 +129,21 @@ def main():
             })
             print(code,name,"ERROR",exc)
 
-    # Only a complete successful 16-store crawl is allowed to create removal events.
+    # Only a complete successful 16-store crawl is allowed to create
+    # new/removal events. This prevents transient crawl failures from becoming
+    # false market changes.
     current_ids={str(x.get("id")) for x in listings if x.get("id")}
+    current_by_id={str(x.get("id")):x for x in listings if x.get("id")}
+
+    newly_added=[]
+    if not failures and prev_listings:
+        for ident,row in current_by_id.items():
+            if ident in prev_listings:
+                continue
+            fresh=dict(row)
+            fresh["newAt"]=updated
+            newly_added.append(fresh)
+
     newly_removed=[]
     if not failures and prev_listings:
         for ident,old in prev_listings.items():
@@ -151,16 +166,43 @@ def main():
         retained_removed[str(row.get("id"))]=row
     recent_removed=list(retained_removed.values())
 
+    # Keep only currently-active new listings inside the 10-day window.
+    # If a new listing is later removed it disappears from recentNew and is
+    # represented only in recentRemoved, avoiding duplicate change signals.
+    retained_new={}
+    for ident,old in prev_new.items():
+        if ident not in current_ids:
+            continue
+        new_dt=parse_dt(old.get("newAt"))
+        if now_dt and new_dt and 0 <= (now_dt-new_dt).total_seconds() <= RECENT_NEW_DAYS*86400:
+            latest=dict(current_by_id[ident])
+            latest["newAt"]=old.get("newAt")
+            retained_new[ident]=latest
+    for row in newly_added:
+        ident=str(row.get("id"))
+        retained_new[ident]=row
+    recent_new=list(retained_new.values())
+
     recent_by_store={}
     new_removed_by_store={}
+    recent_new_by_store={}
+    newly_added_by_store={}
     for row in recent_removed:
         code=str(row.get("storeCode") or "")
         recent_by_store[code]=recent_by_store.get(code,0)+1
     for row in newly_removed:
         code=str(row.get("storeCode") or "")
         new_removed_by_store[code]=new_removed_by_store.get(code,0)+1
+    for row in recent_new:
+        code=str(row.get("storeCode") or "")
+        recent_new_by_store[code]=recent_new_by_store.get(code,0)+1
+    for row in newly_added:
+        code=str(row.get("storeCode") or "")
+        newly_added_by_store[code]=newly_added_by_store.get(code,0)+1
     for store in stores:
         code=str(store.get("storeCode") or "")
+        store["recentNewCount"]=recent_new_by_store.get(code,0)
+        store["newlyAddedCount"]=newly_added_by_store.get(code,0)
         store["recentRemovedCount"]=recent_by_store.get(code,0)
         store["newlyRemovedCount"]=new_removed_by_store.get(code,0)
 
@@ -172,12 +214,16 @@ def main():
         "healthyStoreCount":sum(x["status"]=="ok" for x in stores),
         "totalStoreListings":len(listings),
         "uniquePropertyCount":len({x["houseNo"] for x in listings}),
+        "recentNewRetentionDays":RECENT_NEW_DAYS,
+        "recentNewCount":len(recent_new),
+        "newlyAddedCount":len(newly_added),
         "recentRemovedRetentionDays":RECENT_REMOVED_DAYS,
         "recentRemovedCount":len(recent_removed),
         "newlyRemovedCount":len(newly_removed),
         "stores":stores,
         "failures":failures,
         "listings":listings,
+        "recentNew":recent_new,
         "recentRemoved":recent_removed,
     }
     OUT.parent.mkdir(parents=True,exist_ok=True)
