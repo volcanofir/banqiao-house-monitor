@@ -9,6 +9,7 @@ on:
     paths:
       - ".github/workflows/r420-preview.yml"
       - "scripts/fetch_sinyi_banqiao_stores.py"
+      - "scripts/enrich_sinyi_company_first_display.py"
       - "docs/company/index.html"
 
 permissions:
@@ -22,7 +23,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -33,10 +34,13 @@ jobs:
           python-version: "3.12"
 
       - name: Install packages
-        run: pip install requests beautifulsoup4
+        run: pip install requests beautifulsoup4 playwright
 
       - name: Fetch all 16 Sinyi stores
         run: python scripts/fetch_sinyi_banqiao_stores.py
+
+      - name: Enrich original Sinyi publish times
+        run: python scripts/enrich_sinyi_company_first_display.py
 
       - name: Validate complete snapshot
         run: |
@@ -50,6 +54,7 @@ jobs:
           assert all(x.get('status') == 'ok' for x in d['stores'])
           assert all(int(x.get('totalCount') or 0) == int(x.get('sourceTotalCount') or 0) for x in d['stores'])
           print('validated', d['totalStoreListings'], 'store-listings', d['uniquePropertyCount'], 'unique properties')
+          print('firstDisplay', d.get('firstDisplayResolved',0), '/', d.get('firstDisplayTotal',0), 'missing', d.get('firstDisplayMissing',0))
           PY
 
       - name: Publish competitor dataset
@@ -57,12 +62,14 @@ jobs:
         run: |
           set -e
           cp docs/company/sinyi-banqiao-stores.json /tmp/sinyi-banqiao-stores.json
+          cp docs/data/sinyi-first-display-cache.json /tmp/sinyi-first-display-cache.json
           git fetch origin main
           git reset --hard origin/main
           cp /tmp/sinyi-banqiao-stores.json docs/company/sinyi-banqiao-stores.json
+          cp /tmp/sinyi-first-display-cache.json docs/data/sinyi-first-display-cache.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/company/sinyi-banqiao-stores.json
+          git add docs/company/sinyi-banqiao-stores.json docs/data/sinyi-first-display-cache.json
           if git diff --cached --quiet; then
             echo "Competitor data already current."
             exit 0
