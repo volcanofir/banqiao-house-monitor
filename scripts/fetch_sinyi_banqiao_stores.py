@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 
 OUT = Path("docs/company/sinyi-banqiao-stores.json")
 MAX_PAGES = 30
+RECENT_REMOVED_DAYS = 10
 STORES = [
     ("R420","板橋中山店"),("R340","板橋中正店"),("R574","板橋亞東店"),("R471","板橋府中店"),
     ("R688","板橋重慶店"),("R120","板橋店"),("R820","新埔捷運店"),("R502","板橋江翠店"),
@@ -64,16 +65,32 @@ def fetch_store(code,name):
                 time.sleep(attempt*2)
     raise RuntimeError(str(last))
 
+def parse_dt(value):
+    try:
+        return datetime.fromisoformat(str(value).replace("Z","+00:00")).astimezone(timezone.utc)
+    except Exception:
+        return None
+
 def main():
     updated=datetime.now(timezone.utc).isoformat(timespec="seconds")
+    previous={}
+    if OUT.exists():
+        try:
+            previous=json.loads(OUT.read_text(encoding="utf-8"))
+        except Exception:
+            previous={}
+    prev_listings={str(x.get("id")):x for x in (previous.get("listings") or []) if x.get("id")}
+    prev_removed={str(x.get("id")):x for x in (previous.get("recentRemoved") or []) if x.get("id")}
     stores=[]; listings=[]; failures=[]
     for code,name in STORES:
         try:
             raw,total,pages,attempt=fetch_store(code,name)
             for item in raw:
                 hid=str(item.get("houseNo") or "").strip()
+                ident=f"{code}:{hid}"
+                old=prev_listings.get(ident) or {}
                 listings.append({
-                    "id":f"{code}:{hid}",
+                    "id":ident,
                     "storeCode":code,
                     "storeName":name,
                     "houseNo":hid,
@@ -86,7 +103,9 @@ def main():
                     "totalfloor":item.get("totalfloor"),
                     "age":item.get("age"),
                     "community":item.get("commName"),
-                    "firstDisplay":item.get("firstDisplay"),
+                    "firstDisplay":item.get("firstDisplay") or old.get("firstDisplay"),
+                    "firstSeenAt":old.get("firstSeenAt") or old.get("lastSeenAt") or previous.get("updatedAt") or updated,
+                    "lastSeenAt":updated,
                     "url":f"https://www.sinyi.com.tw/buy/house/{quote(hid)}?breadcrumb=list",
                 })
             stores.append({
@@ -108,6 +127,43 @@ def main():
             })
             print(code,name,"ERROR",exc)
 
+    # Only a complete successful 16-store crawl is allowed to create removal events.
+    current_ids={str(x.get("id")) for x in listings if x.get("id")}
+    newly_removed=[]
+    if not failures and prev_listings:
+        for ident,old in prev_listings.items():
+            if ident in current_ids:
+                continue
+            gone=dict(old)
+            gone["active"]=False
+            gone["removedAt"]=updated
+            newly_removed.append(gone)
+
+    now_dt=parse_dt(updated)
+    retained_removed={}
+    for ident,old in prev_removed.items():
+        if ident in current_ids:
+            continue
+        removed_dt=parse_dt(old.get("removedAt"))
+        if now_dt and removed_dt and 0 <= (now_dt-removed_dt).total_seconds() <= RECENT_REMOVED_DAYS*86400:
+            retained_removed[ident]=old
+    for row in newly_removed:
+        retained_removed[str(row.get("id"))]=row
+    recent_removed=list(retained_removed.values())
+
+    recent_by_store={}
+    new_removed_by_store={}
+    for row in recent_removed:
+        code=str(row.get("storeCode") or "")
+        recent_by_store[code]=recent_by_store.get(code,0)+1
+    for row in newly_removed:
+        code=str(row.get("storeCode") or "")
+        new_removed_by_store[code]=new_removed_by_store.get(code,0)+1
+    for store in stores:
+        code=str(store.get("storeCode") or "")
+        store["recentRemovedCount"]=recent_by_store.get(code,0)
+        store["newlyRemovedCount"]=new_removed_by_store.get(code,0)
+
     payload={
         "source":"信義房屋",
         "scope":"user_selected_16_banqiao_stores",
@@ -116,9 +172,13 @@ def main():
         "healthyStoreCount":sum(x["status"]=="ok" for x in stores),
         "totalStoreListings":len(listings),
         "uniquePropertyCount":len({x["houseNo"] for x in listings}),
+        "recentRemovedRetentionDays":RECENT_REMOVED_DAYS,
+        "recentRemovedCount":len(recent_removed),
+        "newlyRemovedCount":len(newly_removed),
         "stores":stores,
         "failures":failures,
         "listings":listings,
+        "recentRemoved":recent_removed,
     }
     OUT.parent.mkdir(parents=True,exist_ok=True)
     OUT.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
