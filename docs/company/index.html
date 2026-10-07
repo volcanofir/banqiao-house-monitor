@@ -53,7 +53,7 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}
 .panel{margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:24px;overflow:hidden}.stripe{height:7px;background:linear-gradient(90deg,var(--red) 0 66%,#515861 66%)}.inside{padding:20px}
 .store-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.store-card{appearance:none;text-align:left;border:1px solid #e3ca73;background:#fff4c8;border-radius:16px;padding:12px;cursor:pointer;font:inherit}.store-card.active{background:var(--green);color:#fff;border-color:var(--green)}.store-card b{display:block;font-size:15px}.store-card span{display:block;margin-top:5px;font-size:12px;opacity:.8}.store-card strong{font-size:22px}
 .filters{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:9px;margin-top:16px}input,select{width:100%;border:1px solid var(--line);border-radius:12px;background:#fff;padding:11px 12px;font:inherit}
-.summary{margin-top:13px;color:var(--muted);font-size:13px}.list{margin-top:12px}.group{border:1px solid var(--line);border-radius:18px;background:#fff;margin:10px 0;overflow:hidden}.group>summary{list-style:none;cursor:pointer;padding:14px 16px;background:#fff4c8;display:flex;justify-content:space-between;gap:10px;font-weight:900;color:var(--green)}.group>summary::-webkit-details-marker{display:none}.items{padding:0 14px}
+.summary{margin-top:13px;color:var(--muted);font-size:13px}.district-summary{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.district-chip{border:1px solid #e3ca73;background:#fff4c8;border-radius:999px;padding:7px 11px;font-size:13px;font-weight:850;color:var(--green)}.district-chip.primary{background:#dcefe7;border-color:#b9d8ca}.list{margin-top:12px}.group{border:1px solid var(--line);border-radius:18px;background:#fff;margin:10px 0;overflow:hidden}.group>summary{list-style:none;cursor:pointer;padding:14px 16px;background:#fff4c8;display:flex;justify-content:space-between;gap:10px;font-weight:900;color:var(--green)}.group>summary::-webkit-details-marker{display:none}.items{padding:0 14px}
 .item{padding:15px 0;border-bottom:1px solid #eee3bd}.item:last-child{border-bottom:0}.item-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.title{font-weight:900;color:var(--green);text-decoration:none;line-height:1.5}.price{font-size:20px;font-weight:950;color:#a52d39;white-space:nowrap}.meta{display:flex;flex-wrap:wrap;gap:7px 10px;margin-top:8px;color:#665f54;font-size:13px}.pill{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:850}.store{background:#dcefe7;color:#14503c}.id{background:#fff0bd;color:#755600}.comm{background:var(--blue);color:#35577d}.empty{padding:28px;text-align:center;color:var(--muted)}.error{background:#f7dadd;color:#972a35;padding:12px 14px;border-radius:14px;margin-top:12px}
 @media(max-width:900px){.store-grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){main{width:min(100% - 14px,1180px)}.hero{padding:22px 18px}.inside{padding:15px}.filters{grid-template-columns:1fr}.store-grid{grid-template-columns:1fr 1fr}.item-head{display:block}.price{margin-top:6px}}
 </style>
@@ -81,6 +81,7 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}
     <select id="sort"><option value="store">依門市</option><option value="priceDesc">總價高 → 低</option><option value="priceAsc">總價低 → 高</option><option value="areaDesc">坪數大 → 小</option></select>
   </div>
   <div id="summary" class="summary">資料載入中…</div>
+  <div id="districtSummary" class="district-summary"></div>
   <div id="failures"></div>
   <div id="list" class="list"><div class="empty">資料載入中…</div></div>
 </div></section>
@@ -90,13 +91,19 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const money=v=>v==null?'—':Number(v).toLocaleString('zh-TW')+' 萬';
 const area=v=>v==null?'—':Number(v).toLocaleString('zh-TW')+' 坪';
 const floor=x=>x.floor?(String(x.floor)+(x.totalfloor?'/'+x.totalfloor+'樓':'')):'樓層未取得';
+const districtOf=x=>{
+  const address=String(x?.address||'').trim();
+  const m=address.match(/^[^縣市]{2,3}[縣市](.+?[區鄉鎮市])/);
+  return m?m[1]:'其他區域';
+};
+const DISTRICT_ORDER=['板橋區','中和區','土城區','新莊區','三重區','樹林區','萬華區','桃園區'];
 let DATA=null;
 
 function renderStores(){
   const chosen=document.querySelector('#store').value;
   document.querySelector('#stores').innerHTML=(DATA.stores||[]).map(s =>
     '<button class="store-card '+(chosen===s.storeCode?'active':'')+'" data-code="'+esc(s.storeCode)+'">'+
-    '<b>'+esc(s.storeName)+' <small>'+esc(s.storeCode)+'</small></b>'+
+    '<b>'+esc(s.storeName)+'</b>'+
     '<span><strong>'+Number(s.totalCount||0)+'</strong> 戶｜'+(s.status==='ok'?'完整':'異常')+'</span></button>'
   ).join('');
   document.querySelectorAll('.store-card').forEach(b=>b.addEventListener('click',()=>{
@@ -106,7 +113,7 @@ function renderStores(){
 
 function itemHtml(x){
   return '<article class="item"><div class="item-head"><a class="title" href="'+esc(x.url||'#')+'" target="_blank" rel="noopener noreferrer">'+esc(x.name||'未命名案件')+'</a><div class="price">'+money(x.price)+'</div></div>'+
-  '<div class="meta"><span class="pill store">'+esc(x.storeName)+' '+esc(x.storeCode)+'</span><span class="pill id">'+esc(x.houseNo)+'</span>'+
+  '<div class="meta"><span class="pill store">'+esc(x.storeName)+'</span><span class="pill id">'+esc(x.houseNo)+'</span>'+
   (x.community?'<span class="pill comm">'+esc(x.community)+'</span>':'')+
   '<span>'+area(x.areaBuilding)+'</span><span>'+esc(x.layout||'格局未取得')+'</span><span>'+esc(floor(x))+'</span><span>'+esc(x.age||'屋齡未取得')+'</span></div>'+
   '<div class="meta"><span>'+esc(x.address||'地址未取得')+'</span>'+(x.firstDisplay?'<span>最早上架：'+esc(String(x.firstDisplay).replace(/-/g,'/'))+'</span>':'')+'</div></article>';
@@ -120,26 +127,56 @@ function render(){
   const sort=document.querySelector('#sort').value;
   let rows=(DATA.listings||[]).filter(x=>{
     if(store&&x.storeCode!==store)return false;
-    if(q&&!([x.name,x.address,x.community,x.houseNo,x.storeName,x.storeCode].join(' ').toLowerCase().includes(q)))return false;
+    if(q&&!([x.name,x.address,x.community,x.houseNo,x.storeName].join(' ').toLowerCase().includes(q)))return false;
     return true;
   });
-  if(sort==='priceDesc')rows.sort((a,b)=>Number(b.price||0)-Number(a.price||0));
-  else if(sort==='priceAsc')rows.sort((a,b)=>Number(a.price||0)-Number(b.price||0));
-  else if(sort==='areaDesc')rows.sort((a,b)=>Number(b.areaBuilding||0)-Number(a.areaBuilding||0));
-  else rows.sort((a,b)=>String(a.storeName).localeCompare(String(b.storeName),'zh-Hant')||Number(b.price||0)-Number(a.price||0));
+
+  const sortRows=items=>{
+    const out=[...items];
+    if(sort==='priceDesc')out.sort((a,b)=>Number(b.price||0)-Number(a.price||0));
+    else if(sort==='priceAsc')out.sort((a,b)=>Number(a.price||0)-Number(b.price||0));
+    else if(sort==='areaDesc')out.sort((a,b)=>Number(b.areaBuilding||0)-Number(a.areaBuilding||0));
+    else out.sort((a,b)=>Number(b.price||0)-Number(a.price||0));
+    return out;
+  };
 
   let html='';
-  if(sort==='store'){
-    for(const s of (DATA.stores||[])){
-      const items=rows.filter(x=>x.storeCode===s.storeCode);
-      if(!items.length)continue;
-      html+='<details class="group" open><summary><span>'+esc(s.storeName)+'｜'+esc(s.storeCode)+'</span><span>'+items.length+' 戶</span></summary><div class="items">'+items.map(itemHtml).join('')+'</div></details>';
-    }
-  }else html=rows.map(itemHtml).join('');
-  document.querySelector('#list').innerHTML=html||'<div class="empty">目前沒有符合條件的案件。</div>';
-  document.querySelector('#summary').textContent='目前顯示 '+rows.length+' 筆｜資料更新：'+(DATA.updatedAt?new Date(DATA.updatedAt).toLocaleString('zh-TW',{hour12:false}):'—');
-}
+  const districtSummary=document.querySelector('#districtSummary');
+  districtSummary.innerHTML='';
 
+  if(store){
+    const storeInfo=(DATA.stores||[]).find(s=>s.storeCode===store);
+    const byDistrict=new Map();
+    for(const x of rows){
+      const d=districtOf(x);
+      if(!byDistrict.has(d))byDistrict.set(d,[]);
+      byDistrict.get(d).push(x);
+    }
+    const districts=[...byDistrict.keys()].sort((a,b)=>{
+      const ai=DISTRICT_ORDER.indexOf(a), bi=DISTRICT_ORDER.indexOf(b);
+      const av=ai<0?999:ai, bv=bi<0?999:bi;
+      return av-bv||a.localeCompare(b,'zh-Hant');
+    });
+    districtSummary.innerHTML=districts.map(d=>
+      '<span class="district-chip '+(d==='板橋區'?'primary':'')+'">'+esc(d)+' '+byDistrict.get(d).length+' 戶</span>'
+    ).join('');
+
+    for(const d of districts){
+      const items=sortRows(byDistrict.get(d));
+      html+='<details class="group"><summary><span>'+esc(d)+'</span><span>'+items.length+' 戶</span></summary><div class="items">'+items.map(itemHtml).join('')+'</div></details>';
+    }
+    document.querySelector('#summary').textContent=(storeInfo?storeInfo.storeName:'目前門市')+'共 '+rows.length+' 戶｜板橋區 '+(byDistrict.get('板橋區')?.length||0)+' 戶｜其他區域 '+(rows.length-(byDistrict.get('板橋區')?.length||0))+' 戶｜資料更新：'+(DATA.updatedAt?new Date(DATA.updatedAt).toLocaleString('zh-TW',{hour12:false}):'—');
+  }else{
+    for(const s of (DATA.stores||[])){
+      const items=sortRows(rows.filter(x=>x.storeCode===s.storeCode));
+      if(!items.length)continue;
+      html+='<details class="group"><summary><span>'+esc(s.storeName)+'</span><span>'+items.length+' 戶</span></summary><div class="items">'+items.map(itemHtml).join('')+'</div></details>';
+    }
+    document.querySelector('#summary').textContent='目前顯示 '+rows.length+' 筆｜資料更新：'+(DATA.updatedAt?new Date(DATA.updatedAt).toLocaleString('zh-TW',{hour12:false}):'—');
+  }
+
+  document.querySelector('#list').innerHTML=html||'<div class="empty">目前沒有符合條件的案件。</div>';
+}
 async function load(){
   try{
     const r=await fetch('sinyi-banqiao-stores.json?ts='+Date.now(),{cache:'no-store'});
