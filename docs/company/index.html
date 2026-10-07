@@ -153,9 +153,10 @@ function render(){
       byDistrict.get(d).push(x);
     }
     const districts=[...byDistrict.keys()].sort((a,b)=>{
-      const ai=DISTRICT_ORDER.indexOf(a), bi=DISTRICT_ORDER.indexOf(b);
-      const av=ai<0?999:ai, bv=bi<0?999:bi;
-      return av-bv||a.localeCompare(b,'zh-Hant');
+      if(a==='板橋區'&&b!=='板橋區')return -1;
+      if(b==='板橋區'&&a!=='板橋區')return 1;
+      const countDiff=(byDistrict.get(b)?.length||0)-(byDistrict.get(a)?.length||0);
+      return countDiff||a.localeCompare(b,'zh-Hant');
     });
     districtSummary.innerHTML=districts.map(d=>
       '<span class="district-chip '+(d==='板橋區'?'primary':'')+'">'+esc(d)+' '+byDistrict.get(d).length+' 戶</span>'
