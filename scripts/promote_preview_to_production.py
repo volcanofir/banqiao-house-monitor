@@ -64,8 +64,6 @@ def main():
     text = text.replace('`company-gap.json?ts=${Date.now()}`', '`preview/company-gap.json?ts=${Date.now()}`')
     text = text.replace('`scheme-a-verification.json?ts=${Date.now()}`', '`preview/scheme-a-verification.json?ts=${Date.now()}`')
     text = text.replace('`rental-data.json?ts=${Date.now()}`', '`preview/rental-data.json?ts=${Date.now()}`')
-    text = text.replace('href="r420-widget.css', 'href="preview/r420-widget.css')
-    text = text.replace('src="r420-widget.js', 'src="preview/r420-widget.js')
     text = text.replace('Preview 資料', '網站資料')
     text = text.replace('canonical Preview', 'canonical production')
 
@@ -83,8 +81,6 @@ def main():
         '`preview/company-gap.json?ts=${Date.now()}`',
         '`preview/scheme-a-verification.json?ts=${Date.now()}`',
         '`preview/rental-data.json?ts=${Date.now()}`',
-        'href="preview/r420-widget.css',
-        'src="preview/r420-widget.js',
         'function verificationMatches(d,g,v)',
         '案件清單暫停顯示',
         '<span>已下架</span><strong id="cUnavailable">',
@@ -126,8 +122,6 @@ def main():
         'Banqiao House Monitor · Preview',
         '`../data/listings.json?ts=${Date.now()}`',
         '`rental-data.json?ts=${Date.now()}`',
-        'href="r420-widget.css',
-        'src="r420-widget.js',
         'access-gate.js',
         '目前保留 ${r?.totalCount??0} 筆',
         '目前抓到 ${r?.totalCount??0} 筆',
