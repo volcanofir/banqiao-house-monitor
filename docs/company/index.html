@@ -118,7 +118,7 @@ function itemHtml(x){
   '<div class="meta"><span class="pill store">'+esc(x.storeName)+'</span><span class="pill id">'+esc(x.houseNo)+'</span>'+
   (x.community?'<span class="pill comm">'+esc(x.community)+'</span>':'')+
   '<span>'+area(x.areaBuilding)+'</span><span>'+esc(x.layout||'格局未取得')+'</span><span>'+esc(floor(x))+'</span><span>'+esc(x.age||'屋齡未取得')+'</span></div>'+
-  '<div class="meta"><span>'+esc(x.address||'地址未取得')+'</span>'+(x.firstDisplay?'<span>最早上架：'+esc(String(x.firstDisplay).replace(/-/g,'/'))+'</span>':'')+'</div></article>';
+  '<div class="meta"><span>'+esc(x.address||'地址未取得')+'</span>'+(x.firstDisplay?'<span>原始上架：'+esc(String(x.firstDisplay).replace(/-/g,'/'))+'</span>':'')+'</div></article>';
 }
 
 function removedItemHtml(x){
@@ -126,7 +126,7 @@ function removedItemHtml(x){
   '<div class="meta"><span class="pill store">'+esc(x.storeName)+'</span><span class="pill id">'+esc(x.houseNo)+'</span>'+
   (x.community?'<span class="pill comm">'+esc(x.community)+'</span>':'')+
   '<span>'+area(x.areaBuilding)+'</span><span>'+esc(x.layout||'格局未取得')+'</span><span>'+esc(floor(x))+'</span><span>'+esc(x.age||'屋齡未取得')+'</span></div>'+
-  '<div class="meta"><span>'+esc(x.address||'地址未取得')+'</span><span style="color:#a52d39;font-weight:900">下架：'+(x.removedAt?new Date(x.removedAt).toLocaleString('zh-TW',{hour12:false}):'—')+'</span></div></article>';
+  '<div class="meta"><span>'+esc(x.address||'地址未取得')+'</span>'+(x.firstDisplay?'<span>原始上架：'+esc(String(x.firstDisplay).replace(/-/g,'/'))+'</span>':'')+'<span style="color:#a52d39;font-weight:900">下架：'+(x.removedAt?new Date(x.removedAt).toLocaleString('zh-TW',{hour12:false}):'—')+'</span></div></article>';
 }
 
 function render(){
