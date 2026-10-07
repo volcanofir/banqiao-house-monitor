@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-07T14:04:05+00:00",
+  "capturedAt": "2026-10-07T17:48:41+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -2084,33 +2084,6 @@
       }
     },
     {
-      "id": "7521423",
-      "road": "板橋區三民路二段",
-      "title": "板橋埔墘大兩房高樓邊間景觀宅",
-      "price": 2038,
-      "area": 35.83,
-      "floor": "12/12樓",
-      "address": "新北市板橋區三民路二段",
-      "type": "住宅大樓",
-      "url": "https://buy.yungching.com.tw/house/7521423",
-      "sourceMode": "yungching_official_api",
-      "text": "板橋埔墘大兩房高樓邊間景觀宅 新北市板橋區三民路二段 住宅大樓 建坪35.83 12/12樓 2房(室)2廳2衛 2038萬",
-      "rawText": "板橋埔墘大兩房高樓邊間景觀宅 新北市板橋區三民路二段 住宅大樓 建坪35.83 12/12樓 2房(室)2廳2衛 2038萬",
-      "patternInfo": {
-        "room": 2,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 12,
-        "toFloor": 12,
-        "upFloor": 12
-      }
-    },
-    {
       "id": "7512495",
       "road": "板橋區三民路二段",
       "title": "板橋埔墘方正三房採光三樓美寓",
@@ -2135,6 +2108,33 @@
         "fromFloor": 3,
         "toFloor": 3,
         "upFloor": 5
+      }
+    },
+    {
+      "id": "7521423",
+      "road": "板橋區三民路二段",
+      "title": "板橋埔墘大兩房高樓邊間景觀宅",
+      "price": 2038,
+      "area": 35.83,
+      "floor": "12/12樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7521423",
+      "sourceMode": "yungching_official_api",
+      "text": "板橋埔墘大兩房高樓邊間景觀宅 新北市板橋區三民路二段 住宅大樓 建坪35.83 12/12樓 2房(室)2廳2衛 2038萬",
+      "rawText": "板橋埔墘大兩房高樓邊間景觀宅 新北市板橋區三民路二段 住宅大樓 建坪35.83 12/12樓 2房(室)2廳2衛 2038萬",
+      "patternInfo": {
+        "room": 2,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 12,
+        "toFloor": 12,
+        "upFloor": 12
       }
     },
     {
@@ -2537,7 +2537,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-07T14:04:19+00:00",
+    "generatedAt": "2026-10-07T17:48:55+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
