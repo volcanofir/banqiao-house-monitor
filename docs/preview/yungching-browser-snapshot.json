@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-07T06:34:31+00:00",
+  "capturedAt": "2026-10-07T10:18:07+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -728,33 +728,6 @@
       }
     },
     {
-      "id": "6327691",
-      "road": "板橋區中山路二段",
-      "title": "埔墘中山路美寓歡迎預約賞屋",
-      "price": 1198,
-      "area": 25,
-      "floor": "5/5樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "公寓",
-      "url": "https://buy.yungching.com.tw/house/6327691",
-      "sourceMode": "yungching_official_api",
-      "text": "埔墘中山路美寓歡迎預約賞屋 新北市板橋區中山路二段 公寓 建坪25 5/5樓 3房(室)2廳1衛 1198萬",
-      "rawText": "埔墘中山路美寓歡迎預約賞屋 新北市板橋區中山路二段 公寓 建坪25 5/5樓 3房(室)2廳1衛 1198萬",
-      "patternInfo": {
-        "room": 3,
-        "livingRoom": 2,
-        "bathRoom": 1,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 5,
-        "toFloor": 5,
-        "upFloor": 5
-      }
-    },
-    {
       "id": "6481434",
       "road": "板橋區中山路二段",
       "title": "大空間花園露臺商業用途好貸",
@@ -779,6 +752,33 @@
         "fromFloor": 2,
         "toFloor": 2,
         "upFloor": 12
+      }
+    },
+    {
+      "id": "6327691",
+      "road": "板橋區中山路二段",
+      "title": "埔墘中山路美寓歡迎預約賞屋",
+      "price": 1198,
+      "area": 25,
+      "floor": "5/5樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/6327691",
+      "sourceMode": "yungching_official_api",
+      "text": "埔墘中山路美寓歡迎預約賞屋 新北市板橋區中山路二段 公寓 建坪25 5/5樓 3房(室)2廳1衛 1198萬",
+      "rawText": "埔墘中山路美寓歡迎預約賞屋 新北市板橋區中山路二段 公寓 建坪25 5/5樓 3房(室)2廳1衛 1198萬",
+      "patternInfo": {
+        "room": 3,
+        "livingRoom": 2,
+        "bathRoom": 1,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 5,
+        "toFloor": 5,
+        "upFloor": 5
       }
     },
     {
@@ -2537,7 +2537,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-07T06:34:45+00:00",
+    "generatedAt": "2026-10-07T10:18:20+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,

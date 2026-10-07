@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-10-07T06:35:01+00:00",
+  "verifiedAt": "2026-10-07T10:18:37+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-10-07T06:32:46+00:00",
+  "sourceDataUpdatedAt": "2026-10-07T10:16:33+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-10-07T06:34:51+00:00",
+    "generatedAt": "2026-10-07T10:18:28+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-10-07T06:31:32+00:00",
+    "sourceRunCheckedAt": "2026-10-07T10:15:17+00:00",
     "activeSinyiCount": 68,
     "matchedOfficialCount": 68,
     "appliedCount": 68,
@@ -30,14 +30,14 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-10-07T06:34:46+00:00",
+    "updatedAt": "2026-10-07T10:18:21+00:00",
     "status": "ok",
-    "totalCount": 237,
-    "uniqueListingCount": 237,
+    "totalCount": 235,
+    "uniqueListingCount": 235,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 123,
+        "count": 122,
         "pages": 7
       },
       {
@@ -47,7 +47,7 @@
       },
       {
         "road": "三民路二段",
-        "count": 59,
+        "count": 58,
         "pages": 4
       },
       {
@@ -72,22 +72,30 @@
       }
     ],
     "changes": {
-      "newCount": 0,
-      "newIds": [],
+      "newCount": 2,
+      "newIds": [
+        "0c177c35747476c",
+        "0c2e18357466703"
+      ],
       "priceChangeCount": 0,
       "priceChanges": [],
-      "removedCount": 0,
-      "removedIds": [],
-      "currentChangeCount": 0
+      "removedCount": 4,
+      "removedIds": [
+        "00536c355668474",
+        "07a8d432235664c",
+        "0c627535701548f",
+        "0e1ef4357183860"
+      ],
+      "currentChangeCount": 6
     },
     "complete": true
   },
   "rakuyaGrouping": {
-    "inputCount": 237,
-    "regroupedCount": 129,
-    "mergedClusterCount": 51,
-    "absorbedCount": 108,
-    "attachedToExistingGroupCount": 100,
+    "inputCount": 235,
+    "regroupedCount": 128,
+    "mergedClusterCount": 52,
+    "absorbedCount": 107,
+    "attachedToExistingGroupCount": 99,
     "standaloneGroupCount": 29,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
@@ -95,7 +103,7 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-10-07T06:26:18+00:00",
+    "updatedAt": "2026-10-07T10:15:53+00:00",
     "status": "ok",
     "totalCount": 68,
     "uniqueListingCount": 68,
@@ -141,8 +149,21 @@
       "newCount": 0,
       "removedIds": [],
       "removedCount": 0,
-      "priceChanges": [],
-      "priceChangeCount": 0
+      "priceChanges": [
+        {
+          "listingId": "34991949",
+          "from": 2288,
+          "to": 2388,
+          "at": "2026-10-07T10:15:53+00:00"
+        },
+        {
+          "listingId": "34976164",
+          "from": 2288,
+          "to": 2388,
+          "at": "2026-10-07T10:15:53+00:00"
+        }
+      ],
+      "priceChangeCount": 2
     },
     "complete": true,
     "detailSummary": {
@@ -165,8 +186,8 @@
     "regroupedCount": 43,
     "mergedClusterCount": 16,
     "absorbedCount": 25,
-    "attachedToExistingGroupCount": 38,
-    "standaloneGroupCount": 5,
+    "attachedToExistingGroupCount": 37,
+    "standaloneGroupCount": 6,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 25
@@ -180,22 +201,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-10-07T06:35:01+00:00",
-    "propertyGroupCount": 170,
+    "auditedAt": "2026-10-07T10:18:37+00:00",
+    "propertyGroupCount": 169,
     "companyListingCount": 73,
     "companyMatchCount": 44,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 385
+    "weakIdentityAlreadyMergedPairCount": 346
   },
-  "snapshotCapturedAt": "2026-10-07T06:34:31+00:00",
-  "companySnapshotCapturedAt": "2026-10-07T06:34:31+00:00",
-  "companyGapGeneratedAt": "2026-10-07T06:34:57+00:00",
+  "snapshotCapturedAt": "2026-10-07T10:18:07+00:00",
+  "companySnapshotCapturedAt": "2026-10-07T10:18:07+00:00",
+  "companyGapGeneratedAt": "2026-10-07T10:18:34+00:00",
   "browserListingCount": 73,
   "companyListingCount": 73,
-  "propertyGroupCount": 170,
-  "rawListingCount": 569,
-  "comparisonCount": 170,
+  "propertyGroupCount": 169,
+  "rawListingCount": 564,
+  "comparisonCount": 169,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -261,16 +282,16 @@
   "counts": {
     "company_match": 44,
     "review": 6,
-    "missing": 120,
+    "missing": 119,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 105,
-  "crossSourceReviewCount": 12,
+  "crossPlatformMergedGroupCount": 104,
+  "crossSourceReviewCount": 11,
   "preview591Regroup": {
-    "original591TopLevel": 104,
-    "regrouped591TopLevel": 86,
-    "regrouped591ClusterCount": 16,
-    "regrouped591AbsorbedCount": 18,
+    "original591TopLevel": 101,
+    "regrouped591TopLevel": 84,
+    "regrouped591ClusterCount": 15,
+    "regrouped591AbsorbedCount": 17,
     "clusterFloorConflictBlocked": 0
   },
   "schemeAGroupIntegrity": {
@@ -286,11 +307,11 @@
     "removed": [],
     "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
   },
-  "candidateCount": 161,
-  "candidatesWithFloor": 161,
+  "candidateCount": 160,
+  "candidatesWithFloor": 160,
   "candidatesWithYcCaseId": 6,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-07T06:34:45+00:00",
+    "generatedAt": "2026-10-07T10:18:20+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
