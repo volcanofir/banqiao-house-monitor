@@ -3,6 +3,8 @@ name: 信義板橋 16 店相對店資料
 on:
   workflow_dispatch:
   schedule:
+    # Primary cadence: every 3 hours. monitor-clean.yml also dispatches this workflow
+    # when the published competitor snapshot is 4+ hours stale.
     - cron: "25 */3 * * *"
   push:
     branches: [main]
