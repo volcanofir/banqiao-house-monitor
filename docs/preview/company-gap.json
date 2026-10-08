@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-08T05:03:54+00:00",
-  "sourceDataUpdatedAt": "2026-10-08T05:01:40+00:00",
+  "generatedAt": "2026-10-08T08:49:38+00:00",
+  "sourceDataUpdatedAt": "2026-10-08T08:47:23+00:00",
   "mode": "preview_only_591_sinyi_rakuya_5168_grouping_then_company_v11",
   "fetchMode": "yungching_official_rendered_dom_only",
   "company": "永慶房屋",
   "companyDataSource": "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM；缺樓層時同路徑開官方案件頁補值",
-  "companyListingCount": 66,
-  "companySnapshotCapturedAt": "2026-10-08T05:03:21+00:00",
+  "companyListingCount": 67,
+  "companySnapshotCapturedAt": "2026-10-08T08:49:06+00:00",
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -16,14 +16,14 @@
     "板橋區三民路一段",
     "板橋區翠華街"
   ],
-  "externalActiveCount": 476,
-  "propertyGroupCount": 168,
-  "rawListingCount": 565,
+  "externalActiveCount": 475,
+  "propertyGroupCount": 169,
+  "rawListingCount": 560,
   "crossPlatformMergedGroupCount": 104,
   "crossSourceReviewCount": 11,
   "companyConflictDowngradedCount": 5,
   "counts": {
-    "company_match": 41,
+    "company_match": 42,
     "review": 5,
     "missing": 122,
     "unavailable": 0
@@ -35,7 +35,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 35,
-      "browserCapturedAt": "2026-10-08T05:03:21+00:00",
+      "browserCapturedAt": "2026-10-08T08:49:06+00:00",
       "paginationExpected": true,
       "paginationComplete": true,
       "paginationActivePage": 2,
@@ -47,12 +47,12 @@
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     },
     "板橋區三民路二段": {
-      "count": 21,
+      "count": 22,
       "http": 200,
       "available": true,
       "mode": "yungching_official_api",
-      "officialCount": 21,
-      "browserCapturedAt": "2026-10-08T05:03:21+00:00",
+      "officialCount": 22,
+      "browserCapturedAt": "2026-10-08T08:49:06+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -69,7 +69,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 0,
-      "browserCapturedAt": "2026-10-08T05:03:21+00:00",
+      "browserCapturedAt": "2026-10-08T08:49:06+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -86,7 +86,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 2,
-      "browserCapturedAt": "2026-10-08T05:03:21+00:00",
+      "browserCapturedAt": "2026-10-08T08:49:06+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -103,7 +103,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 0,
-      "browserCapturedAt": "2026-10-08T05:03:21+00:00",
+      "browserCapturedAt": "2026-10-08T08:49:06+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -120,7 +120,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 5,
-      "browserCapturedAt": "2026-10-08T05:03:21+00:00",
+      "browserCapturedAt": "2026-10-08T08:49:06+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -137,7 +137,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 3,
-      "browserCapturedAt": "2026-10-08T05:03:21+00:00",
+      "browserCapturedAt": "2026-10-08T08:49:06+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -2308,7 +2308,6 @@
       "active": true,
       "sources": [
         "信義房屋",
-        "591",
         "樂屋網",
         "5168"
       ],
@@ -2336,39 +2335,6 @@
           "structuredTotalFloor": "5",
           "floorSourceMode": "sinyi_official_filterObject_api",
           "sinyiObjectType": 1
-        },
-        {
-          "id": "591:20528223",
-          "houseId": "20528223",
-          "source": "591",
-          "road": "板橋區三民路二段",
-          "title": "埔墘市場旁公寓三房二衞頂佳",
-          "url": "https://m.591.com.tw/v2/sale/20528223",
-          "price": "1498萬",
-          "effectivePrice": 1498,
-          "size": "33.5坪",
-          "address": "三民路二段186巷6弄8號 板橋區-三民路二段",
-          "sourcePublishedAt": 1783662609,
-          "sourcePublishedAtType": "posttime",
-          "newAt": null,
-          "active": true,
-          "mergedListingCount": 1,
-          "mergedActiveListingCount": 1,
-          "mergedListings": [
-            {
-              "id": "591:20528223",
-              "houseId": "20528223",
-              "source": "591",
-              "title": "埔墘市場旁公寓三房二衞頂佳",
-              "url": "https://m.591.com.tw/v2/sale/20528223",
-              "price": "1498萬",
-              "effectivePrice": 1498,
-              "size": "33.5坪",
-              "address": "三民路二段186巷6弄8號 板橋區-三民路二段",
-              "sourcePublishedAt": 1783662609,
-              "active": true
-            }
-          ]
         },
         {
           "id": "樂屋:05075835664436c",
@@ -2533,28 +2499,6 @@
       "crossPlatformMerged": true,
       "crossPlatformMatchInfo": [
         {
-          "listing591Id": "591:20528223",
-          "score": 25,
-          "preview591TopLevelCount": 1,
-          "preview591TopLevelIds": [
-            "591:20528223"
-          ],
-          "areaDelta": 0.03,
-          "priceDelta": 0.0,
-          "titleRatio": 0.435,
-          "shared": [
-            "公寓三房",
-            "公寓三",
-            "寓三房"
-          ],
-          "exactFingerprint": true,
-          "floorRelation": "unknown",
-          "sinyiFloors": [
-            5
-          ],
-          "listing591Floors": []
-        },
-        {
           "source": "樂屋網",
           "sourceId": "樂屋:05075835664436c",
           "score": 33,
@@ -2604,7 +2548,7 @@
           "floorMatch": true
         }
       ],
-      "rawListingCount": 9
+      "rawListingCount": 8
     },
     {
       "groupId": "GROUP:信義房屋:6300AU",
@@ -2837,7 +2781,7 @@
           "address": "新北市板橋區中山路二段",
           "sourcePublishedAt": 1791388800,
           "sourcePublishedAtType": "rakuyaListingDate",
-          "newAt": "2026-10-08T05:03:36+00:00",
+          "newAt": null,
           "active": true,
           "mergedListingCount": 4,
           "mergedActiveListingCount": 4,
@@ -6954,6 +6898,7 @@
           "housepriceSourcePublishedDate": "2026-06-18",
           "housepriceSourcePublishedRaw": "2026-06-18T00:00:00Z",
           "housepriceSourcePublishedEvidence": "5168 APP PriceAnalyze.newKeyInDate; grouped-property first-listing date",
+          "housepricePublishDaysTag": "今天新上架",
           "housepriceGroupSid": 29268369,
           "housepriceGroupId": "7c72f426-e8d6-429c-bb23-1829b6fd3fc7",
           "housepriceGroupNewKeyInDate": "2026-06-18T00:00:00Z",
@@ -6971,7 +6916,7 @@
           "housepriceMainArea": 19.22,
           "housepriceBuildingAge": "44.8年",
           "housepriceCaseType": "公寓",
-          "housepriceAgentCount": 67
+          "housepriceAgentCount": 72
         }
       ],
       "crossPlatformMerged": true,
@@ -10864,7 +10809,7 @@
           "houseId": "20719297",
           "source": "591",
           "road": "板橋區中山路二段",
-          "title": "板新站🍎7800萬🍎中山路二段",
+          "title": "唯一釋出🙏板新站🙏大車位🙏低樓層",
           "url": "https://m.591.com.tw/v2/sale/20719297",
           "price": "7600萬",
           "effectivePrice": 7600,
@@ -10881,7 +10826,7 @@
               "id": "591:20719297",
               "houseId": "20719297",
               "source": "591",
-              "title": "板新站🍎7800萬🍎中山路二段",
+              "title": "唯一釋出🙏板新站🙏大車位🙏低樓層",
               "url": "https://m.591.com.tw/v2/sale/20719297",
               "price": "7600萬",
               "effectivePrice": null,
@@ -11060,6 +11005,7 @@
           "housepriceSourcePublishedDate": "2017-06-05",
           "housepriceSourcePublishedRaw": "2017-06-05T00:00:00Z",
           "housepriceSourcePublishedEvidence": "5168 APP PriceAnalyze.newKeyInDate; grouped-property first-listing date",
+          "housepricePublishDaysTag": "今天新上架",
           "housepriceGroupSid": 9040398,
           "housepriceGroupId": "b5634b11-e9df-40f0-8e9d-0b70d463d536",
           "housepriceGroupNewKeyInDate": "2017-06-05T00:00:00Z",
@@ -11073,21 +11019,21 @@
           "housepriceMainArea": 80.37,
           "housepriceBuildingAge": "28.8年",
           "housepriceCaseType": "華廈",
-          "housepriceAgentCount": 52
+          "housepriceAgentCount": 57
         }
       ],
       "crossPlatformMerged": true,
       "crossPlatformMatchInfo": [
         {
           "listing591Id": "591:20719297",
-          "score": 28,
+          "score": 29,
           "preview591TopLevelCount": 1,
           "preview591TopLevelIds": [
             "591:20719297"
           ],
           "areaDelta": 0.01,
           "priceDelta": 0.0,
-          "titleRatio": 0.0,
+          "titleRatio": 0.364,
           "shared": [],
           "exactFingerprint": true,
           "floorRelation": "match",
@@ -11102,14 +11048,12 @@
         {
           "source": "樂屋網",
           "sourceId": "樂屋:00a417332467360",
-          "score": 31,
-          "evidenceSource": "591",
-          "areaDelta": 0.01,
+          "score": 28,
+          "evidenceSource": "信義房屋",
+          "areaDelta": 0.0,
           "priceDelta": 0.0,
-          "titleRatio": 0.296,
-          "shared": [
-            "中山路"
-          ],
+          "titleRatio": 0.261,
+          "shared": [],
           "exactFingerprint": true,
           "floorRelation": "match",
           "sinyiFloors": [
@@ -11634,23 +11578,36 @@
           ]
         },
         {
-          "id": "樂屋:034f63357470885",
-          "houseId": "034f63357470885",
+          "id": "樂屋:0f92bf35756908a",
+          "houseId": "0f92bf35756908a",
           "source": "樂屋網",
           "road": "板橋區中山路二段",
           "title": "㊝埔墘社區型公寓",
-          "url": "https://community.rakuya.com.tw/106005/sell/info?ehid=034f63357470885",
+          "url": "https://community.rakuya.com.tw/106005/sell/info?ehid=0f92bf35756908a",
           "price": "1388萬",
           "effectivePrice": 1388,
           "size": "32.53坪",
           "address": "新北市板橋區中山路二段",
           "sourcePublishedAt": 1791388800,
           "sourcePublishedAtType": "rakuyaListingDate",
-          "newAt": "2026-10-08T05:03:36+00:00",
+          "newAt": "2026-10-08T08:49:23+00:00",
           "active": true,
           "mergedListingCount": 5,
           "mergedActiveListingCount": 5,
           "mergedListings": [
+            {
+              "id": "樂屋:0f92bf35756908a",
+              "houseId": "0f92bf35756908a",
+              "source": "樂屋網",
+              "title": "㊝埔墘社區型公寓",
+              "url": "https://community.rakuya.com.tw/106005/sell/info?ehid=0f92bf35756908a",
+              "price": "1388萬",
+              "effectivePrice": 1388,
+              "size": "32.53坪",
+              "address": "新北市板橋區中山路二段",
+              "sourcePublishedAt": 1791388800,
+              "active": true
+            },
             {
               "id": "樂屋:034f63357470885",
               "houseId": "034f63357470885",
@@ -11691,19 +11648,6 @@
               "active": true
             },
             {
-              "id": "樂屋:0c177c35747476c",
-              "houseId": "0c177c35747476c",
-              "source": "樂屋網",
-              "title": "㊝埔墘社區型公寓",
-              "url": "https://community.rakuya.com.tw/106005/sell/info?ehid=0c177c35747476c",
-              "price": "1388萬",
-              "effectivePrice": 1388,
-              "size": "32.53坪",
-              "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": 1791302400,
-              "active": true
-            },
-            {
               "id": "樂屋:0b76af356545193",
               "houseId": "0b76af356545193",
               "source": "樂屋網",
@@ -11718,7 +11662,7 @@
             }
           ],
           "floor": "4/5樓",
-          "monitorFirstSeenAt": "2026-10-08T05:03:36+00:00",
+          "monitorFirstSeenAt": "2026-10-08T08:49:23+00:00",
           "rakuyaSourcePublishedDate": "2026-10-08",
           "rakuyaSourcePublishedRaw": "2026-10-08",
           "rakuyaSourcePublishedEvidence": "script:object_upload_time"
@@ -11728,7 +11672,7 @@
       "crossPlatformMatchInfo": [
         {
           "source": "樂屋網",
-          "sourceId": "樂屋:034f63357470885",
+          "sourceId": "樂屋:0f92bf35756908a",
           "score": 20,
           "evidenceSource": "591",
           "areaDelta": 0.03,
@@ -12471,7 +12415,7 @@
           "address": "新北市板橋區三民路二段",
           "sourcePublishedAt": 1791388800,
           "sourcePublishedAtType": "rakuyaListingDate",
-          "newAt": "2026-10-08T05:03:36+00:00",
+          "newAt": null,
           "active": true,
           "mergedListingCount": 1,
           "mergedActiveListingCount": 1,
@@ -13019,6 +12963,89 @@
       "crossPlatformMerged": false,
       "crossPlatformMatchInfo": [],
       "rawListingCount": 1
+    },
+    {
+      "groupId": "GROUP:591:20908976",
+      "primaryId": "591:20908976",
+      "primarySource": "591",
+      "road": "板橋區中山路二段",
+      "title": "🍎專約埔墘光復國小國中美寓3房",
+      "address": "板橋區-中山路二段",
+      "price": "1298萬",
+      "effectivePrice": 1298,
+      "size": "28.4坪",
+      "url": "https://m.591.com.tw/v2/sale/20908976",
+      "sourcePublishedAt": 1789448705,
+      "sourcePublishedAtType": "posttime",
+      "newAt": "2026-10-08T08:47:23+00:00",
+      "active": true,
+      "sources": [
+        "591"
+      ],
+      "sourceListings": [
+        {
+          "id": "591:20908976",
+          "houseId": "20908976",
+          "source": "591",
+          "road": "板橋區中山路二段",
+          "title": "🍎專約埔墘光復國小國中美寓3房",
+          "url": "https://m.591.com.tw/v2/sale/20908976",
+          "price": "1298萬",
+          "effectivePrice": 1298,
+          "size": "28.4坪",
+          "address": "板橋區-中山路二段",
+          "sourcePublishedAt": 1789448705,
+          "sourcePublishedAtType": "posttime",
+          "newAt": "2026-10-08T08:47:23+00:00",
+          "active": true,
+          "mergedListingCount": 3,
+          "mergedActiveListingCount": 3,
+          "mergedListings": [
+            {
+              "id": "591:20908976",
+              "houseId": "20908976",
+              "source": "591",
+              "title": "🍎專約埔墘光復國小國中美寓3房",
+              "url": "https://m.591.com.tw/v2/sale/20908976",
+              "price": "1298萬",
+              "effectivePrice": 1298,
+              "size": "28.4坪",
+              "address": "板橋區-中山路二段",
+              "sourcePublishedAt": 1789448705,
+              "active": true
+            },
+            {
+              "id": "591:20773827",
+              "houseId": "20773827",
+              "source": "591",
+              "title": "優質明亮|東南朝向|時尚",
+              "url": "https://m.591.com.tw/v2/sale/20773827",
+              "price": "1298萬",
+              "effectivePrice": 1298,
+              "size": "28.4坪",
+              "address": "近台北光復橋河濱公園 板橋區-中山路二段",
+              "sourcePublishedAt": 1787307392,
+              "active": true
+            },
+            {
+              "id": "591:20773812",
+              "houseId": "20773812",
+              "source": "591",
+              "title": "/28.41坪/東南朝向",
+              "url": "https://m.591.com.tw/v2/sale/20773812",
+              "price": "1298萬",
+              "effectivePrice": 1298,
+              "size": "28.4坪",
+              "address": "近光復橋、河濱公園 板橋區-中山路二段",
+              "sourcePublishedAt": 1787307292,
+              "active": true
+            }
+          ]
+        }
+      ],
+      "crossPlatformMerged": false,
+      "crossPlatformMatchInfo": [],
+      "rawListingCount": 3
     },
     {
       "groupId": "GROUP:591:20890426",
@@ -14767,7 +14794,7 @@
       "primaryId": "591:20809429",
       "primarySource": "591",
       "road": "板橋區中山路二段",
-      "title": "高質感社區-3房3衛🍎🍎30.47坪",
+      "title": "中原站|1488萬♦西北朝向♦溫馨",
       "address": "板橋區-中山路二段",
       "price": "1488萬",
       "effectivePrice": 1488,
@@ -14786,7 +14813,7 @@
           "houseId": "20809429",
           "source": "591",
           "road": "板橋區中山路二段",
-          "title": "高質感社區-3房3衛🍎🍎30.47坪",
+          "title": "中原站|1488萬♦西北朝向♦溫馨",
           "url": "https://m.591.com.tw/v2/sale/20809429",
           "price": "1488萬",
           "effectivePrice": 1488,
@@ -14803,7 +14830,7 @@
               "id": "591:20809429",
               "houseId": "20809429",
               "source": "591",
-              "title": "高質感社區-3房3衛🍎🍎30.47坪",
+              "title": "中原站|1488萬♦西北朝向♦溫馨",
               "url": "https://m.591.com.tw/v2/sale/20809429",
               "price": "1488萬",
               "effectivePrice": 1488,
@@ -14853,7 +14880,7 @@
           "sourcePublishedAtType": "posttime",
           "newAt": null,
           "active": true,
-          "mergedListingCount": 4,
+          "mergedListingCount": 3,
           "mergedActiveListingCount": 3,
           "mergedListings": [
             {
@@ -14883,26 +14910,13 @@
               "active": true
             },
             {
-              "id": "591:20649630",
-              "houseId": "20649630",
-              "source": "591",
-              "title": "🌈板新捷運站🎀3房2廳2衛👍低總低單價⚡",
-              "url": "https://m.591.com.tw/v2/sale/20649630",
-              "price": "1380萬",
-              "effectivePrice": null,
-              "size": "33.5坪",
-              "address": "板橋區-三民路二段",
-              "sourcePublishedAt": 1785489695,
-              "active": false
-            },
-            {
               "id": "591:20794953",
               "houseId": "20794953",
               "source": "591",
-              "title": "小資最首選🌺中原站-3房2廳2衛",
+              "title": "~三民路二段➖精美宅🌹➖41.1萬/坪",
               "url": "https://m.591.com.tw/v2/sale/20794953",
               "price": "1380萬",
-              "effectivePrice": null,
+              "effectivePrice": 1380,
               "size": "33.5坪",
               "address": "板橋區-三民路二段",
               "sourcePublishedAt": 1787714565,
@@ -14913,7 +14927,7 @@
       ],
       "crossPlatformMerged": false,
       "crossPlatformMatchInfo": [],
-      "rawListingCount": 4
+      "rawListingCount": 3
     },
     {
       "groupId": "GROUP:591:20796102",
@@ -15762,7 +15776,7 @@
           "housepriceSourcePublishedDate": "2025-08-01",
           "housepriceSourcePublishedRaw": "2025-08-01T00:00:00Z",
           "housepriceSourcePublishedEvidence": "5168 APP PriceAnalyze.newKeyInDate; grouped-property first-listing date",
-          "housepricePublishDaysTag": "6天前新上架",
+          "housepricePublishDaysTag": "今天新上架",
           "housepriceGroupSid": 25873670,
           "housepriceGroupId": "b07b2cb9-9c1e-4ae8-aee0-2268a4efe68a",
           "housepriceGroupNewKeyInDate": "2025-08-01T00:00:00Z",
@@ -15780,7 +15794,7 @@
           "housepriceMainArea": 18.1,
           "housepriceBuildingAge": "17.0年",
           "housepriceCaseType": "大樓",
-          "housepriceAgentCount": 21
+          "housepriceAgentCount": 23
         }
       ],
       "crossPlatformMerged": true,
@@ -15832,89 +15846,6 @@
         }
       ],
       "rawListingCount": 4
-    },
-    {
-      "groupId": "GROUP:591:20773827",
-      "primaryId": "591:20773827",
-      "primarySource": "591",
-      "road": "板橋區中山路二段",
-      "title": "新北市立溪崑國民中學/28.41坪",
-      "address": "近台北光復橋河濱公園 板橋區-中山路二段",
-      "price": "1298萬",
-      "effectivePrice": 1298,
-      "size": "28.4坪",
-      "url": "https://m.591.com.tw/v2/sale/20773827",
-      "sourcePublishedAt": 1787307392,
-      "sourcePublishedAtType": "posttime",
-      "newAt": "2026-10-07T17:47:08+00:00",
-      "active": true,
-      "sources": [
-        "591"
-      ],
-      "sourceListings": [
-        {
-          "id": "591:20773827",
-          "houseId": "20773827",
-          "source": "591",
-          "road": "板橋區中山路二段",
-          "title": "新北市立溪崑國民中學/28.41坪",
-          "url": "https://m.591.com.tw/v2/sale/20773827",
-          "price": "1298萬",
-          "effectivePrice": 1298,
-          "size": "28.4坪",
-          "address": "近台北光復橋河濱公園 板橋區-中山路二段",
-          "sourcePublishedAt": 1787307392,
-          "sourcePublishedAtType": "posttime",
-          "newAt": "2026-10-07T17:47:08+00:00",
-          "active": true,
-          "mergedListingCount": 3,
-          "mergedActiveListingCount": 3,
-          "mergedListings": [
-            {
-              "id": "591:20773827",
-              "houseId": "20773827",
-              "source": "591",
-              "title": "新北市立溪崑國民中學/28.41坪",
-              "url": "https://m.591.com.tw/v2/sale/20773827",
-              "price": "1298萬",
-              "effectivePrice": 1298,
-              "size": "28.4坪",
-              "address": "近台北光復橋河濱公園 板橋區-中山路二段",
-              "sourcePublishedAt": 1787307392,
-              "active": true
-            },
-            {
-              "id": "591:20773812",
-              "houseId": "20773812",
-              "source": "591",
-              "title": "時尚🌟3房2廳2衛🌟新北市立溪崑國民中學",
-              "url": "https://m.591.com.tw/v2/sale/20773812",
-              "price": "1298萬",
-              "effectivePrice": null,
-              "size": "28.4坪",
-              "address": "近光復橋、河濱公園 板橋區-中山路二段",
-              "sourcePublishedAt": 1787307292,
-              "active": true
-            },
-            {
-              "id": "591:20908976",
-              "houseId": "20908976",
-              "source": "591",
-              "title": "🍎專約埔墘光復國小國中美寓3房",
-              "url": "https://m.591.com.tw/v2/sale/20908976",
-              "price": "1298萬",
-              "effectivePrice": null,
-              "size": "28.4坪",
-              "address": "板橋區-中山路二段",
-              "sourcePublishedAt": 1789448705,
-              "active": true
-            }
-          ]
-        }
-      ],
-      "crossPlatformMerged": false,
-      "crossPlatformMatchInfo": [],
-      "rawListingCount": 3
     },
     {
       "groupId": "GROUP:591:20773779",
@@ -16457,8 +16388,8 @@
           "sourcePublishedAtType": "posttime",
           "newAt": null,
           "active": true,
-          "mergedListingCount": 5,
-          "mergedActiveListingCount": 5,
+          "mergedListingCount": 4,
+          "mergedActiveListingCount": 4,
           "mergedListings": [
             {
               "id": "591:20737473",
@@ -16500,19 +16431,6 @@
               "active": true
             },
             {
-              "id": "591:25225314",
-              "houseId": "25225314",
-              "source": "591",
-              "title": "收租頂佳.三面採光大空間.收租近百.自住兩相宜",
-              "url": "https://m.591.com.tw/v2/sale/25225314",
-              "price": "1780萬",
-              "effectivePrice": null,
-              "size": "26.2坪",
-              "address": "板橋區-翠華街",
-              "sourcePublishedAt": 1791185010,
-              "active": true
-            },
-            {
               "id": "591:21020530",
               "houseId": "21020530",
               "source": "591",
@@ -16530,7 +16448,7 @@
       ],
       "crossPlatformMerged": false,
       "crossPlatformMatchInfo": [],
-      "rawListingCount": 5
+      "rawListingCount": 4
     },
     {
       "groupId": "GROUP:591:20734554",
@@ -17318,8 +17236,8 @@
           "sourcePublishedAtType": "posttime",
           "newAt": null,
           "active": true,
-          "mergedListingCount": 4,
-          "mergedActiveListingCount": 4,
+          "mergedListingCount": 3,
+          "mergedActiveListingCount": 3,
           "mergedListings": [
             {
               "id": "591:20717420",
@@ -17327,19 +17245,6 @@
               "source": "591",
               "title": "🚇板新捷運🚇中山靜巷大空間3房",
               "url": "https://m.591.com.tw/v2/sale/20717420",
-              "price": "1398萬",
-              "effectivePrice": null,
-              "size": "25.2坪",
-              "address": "板橋區-中山路二段",
-              "sourcePublishedAt": 1786463522,
-              "active": true
-            },
-            {
-              "id": "591:24862197",
-              "houseId": "24862197",
-              "source": "591",
-              "title": "🚇板新捷運🚇中山靜巷大空間3房",
-              "url": "https://m.591.com.tw/v2/sale/24862197",
               "price": "1398萬",
               "effectivePrice": null,
               "size": "25.2坪",
@@ -17378,7 +17283,7 @@
       ],
       "crossPlatformMerged": false,
       "crossPlatformMatchInfo": [],
-      "rawListingCount": 4
+      "rawListingCount": 3
     },
     {
       "groupId": "GROUP:591:20714964",
@@ -18749,7 +18654,7 @@
               "id": "591:20821220",
               "houseId": "20821220",
               "source": "591",
-              "title": "家的感覺/馥華大台北/30.28坪",
+              "title": "馥華大台北-時尚-中山路二段-埔墘生活圈",
               "url": "https://m.591.com.tw/v2/sale/20821220",
               "price": "1636萬",
               "effectivePrice": null,
@@ -18904,7 +18809,7 @@
           "housepriceMainArea": 14.92,
           "housepriceBuildingAge": "19.1年",
           "housepriceCaseType": "辦公/大樓",
-          "housepriceAgentCount": 32
+          "housepriceAgentCount": 31
         }
       ],
       "crossPlatformMerged": true,
@@ -19397,6 +19302,7 @@
           "housepriceSourcePublishedDate": "2026-04-30",
           "housepriceSourcePublishedRaw": "2026-04-30T00:00:00Z",
           "housepriceSourcePublishedEvidence": "5168 APP PriceAnalyze.newKeyInDate; grouped-property first-listing date",
+          "housepricePublishDaysTag": "今天新上架",
           "housepriceGroupSid": 28846198,
           "housepriceGroupId": "6930d1cf-5173-47ea-b32f-8472ea41697d",
           "housepriceGroupNewKeyInDate": "2026-04-30T00:00:00Z",
@@ -19414,7 +19320,7 @@
           "housepriceMainArea": 38.67,
           "housepriceBuildingAge": "12.2年",
           "housepriceCaseType": "大樓",
-          "housepriceAgentCount": 67
+          "housepriceAgentCount": 72
         }
       ],
       "crossPlatformMerged": true,
@@ -19858,94 +19764,6 @@
       "crossPlatformMerged": false,
       "crossPlatformMatchInfo": [],
       "rawListingCount": 1
-    },
-    {
-      "groupId": "GROUP:樂屋:0bb2ef356945268",
-      "primaryId": "樂屋:0bb2ef356945268",
-      "primarySource": "樂屋網",
-      "road": "板橋區中山路二段",
-      "title": "新埔雙捷運電梯兩房｜精美裝潢即可入住｜社區達人小熊",
-      "address": "新北市板橋區中山路二段",
-      "price": "1692萬",
-      "effectivePrice": 1692,
-      "size": "22.56坪",
-      "url": "https://community.rakuya.com.tw/1490/sell/info?ehid=0bb2ef356945268",
-      "sourcePublishedAt": 1790870400,
-      "sourcePublishedAtType": "rakuyaListingDate",
-      "newAt": null,
-      "active": true,
-      "sources": [
-        "樂屋網"
-      ],
-      "sourceListings": [
-        {
-          "id": "樂屋:0bb2ef356945268",
-          "houseId": "0bb2ef356945268",
-          "source": "樂屋網",
-          "road": "板橋區中山路二段",
-          "title": "新埔雙捷運電梯兩房｜精美裝潢即可入住｜社區達人小熊",
-          "url": "https://community.rakuya.com.tw/1490/sell/info?ehid=0bb2ef356945268",
-          "price": "1692萬",
-          "effectivePrice": 1692,
-          "size": "22.56坪",
-          "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": 1790870400,
-          "sourcePublishedAtType": "rakuyaListingDate",
-          "newAt": null,
-          "active": true,
-          "mergedListingCount": 3,
-          "mergedActiveListingCount": 3,
-          "mergedListings": [
-            {
-              "id": "樂屋:0bb2ef356945268",
-              "houseId": "0bb2ef356945268",
-              "source": "樂屋網",
-              "title": "新埔雙捷運電梯兩房｜精美裝潢即可入住｜社區達人小熊",
-              "url": "https://community.rakuya.com.tw/1490/sell/info?ehid=0bb2ef356945268",
-              "price": "1692萬",
-              "effectivePrice": 1692,
-              "size": "22.56坪",
-              "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": 1790870400,
-              "active": true
-            },
-            {
-              "id": "樂屋:0e0ccb35673042e",
-              "houseId": "0e0ccb35673042e",
-              "source": "樂屋網",
-              "title": "❤️板新捷運❤️⭐首購成家⭐精美裝潢電梯兩房",
-              "url": "https://community.rakuya.com.tw/1490/sell/info?ehid=0e0ccb35673042e",
-              "price": "1692萬",
-              "effectivePrice": 1692,
-              "size": "22.56坪",
-              "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": 1790784000,
-              "active": true
-            },
-            {
-              "id": "樂屋:05e96f35677810c",
-              "houseId": "05e96f35677810c",
-              "source": "樂屋網",
-              "title": "板橋買房米奇 首購成家/精美裝潢電梯兩房/雙捷運",
-              "url": "https://community.rakuya.com.tw/1490/sell/info?ehid=05e96f35677810c",
-              "price": "1692萬",
-              "effectivePrice": 1692,
-              "size": "22.56坪",
-              "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": 1790784000,
-              "active": true
-            }
-          ],
-          "floor": "5/24樓",
-          "monitorFirstSeenAt": "2026-10-02T11:25:23+00:00",
-          "rakuyaSourcePublishedDate": "2026-10-02",
-          "rakuyaSourcePublishedRaw": "2026-10-02",
-          "rakuyaSourcePublishedEvidence": "script:object_upload_time"
-        }
-      ],
-      "crossPlatformMerged": false,
-      "crossPlatformMatchInfo": [],
-      "rawListingCount": 3
     },
     {
       "groupId": "GROUP:樂屋:0cfdad35604835c",
@@ -20781,6 +20599,68 @@
           "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
           "rakuyaSourcePublishedDate": "2026-09-01",
           "rakuyaSourcePublishedRaw": "2026-09-01",
+          "rakuyaSourcePublishedEvidence": "script:object_upload_time"
+        }
+      ],
+      "crossPlatformMerged": false,
+      "crossPlatformMatchInfo": [],
+      "rawListingCount": 1
+    },
+    {
+      "groupId": "GROUP:樂屋:05e96f35677810c",
+      "primaryId": "樂屋:05e96f35677810c",
+      "primarySource": "樂屋網",
+      "road": "板橋區中山路二段",
+      "title": "板橋買房米奇 首購成家/精美裝潢電梯兩房/雙捷運",
+      "address": "新北市板橋區中山路二段",
+      "price": "1692萬",
+      "effectivePrice": 1692,
+      "size": "22.56坪",
+      "url": "https://community.rakuya.com.tw/1490/sell/info?ehid=05e96f35677810c",
+      "sourcePublishedAt": 1790784000,
+      "sourcePublishedAtType": "rakuyaListingDate",
+      "newAt": null,
+      "active": true,
+      "sources": [
+        "樂屋網"
+      ],
+      "sourceListings": [
+        {
+          "id": "樂屋:05e96f35677810c",
+          "houseId": "05e96f35677810c",
+          "source": "樂屋網",
+          "road": "板橋區中山路二段",
+          "title": "板橋買房米奇 首購成家/精美裝潢電梯兩房/雙捷運",
+          "url": "https://community.rakuya.com.tw/1490/sell/info?ehid=05e96f35677810c",
+          "price": "1692萬",
+          "effectivePrice": 1692,
+          "size": "22.56坪",
+          "address": "新北市板橋區中山路二段",
+          "sourcePublishedAt": 1790784000,
+          "sourcePublishedAtType": "rakuyaListingDate",
+          "newAt": null,
+          "active": true,
+          "mergedListingCount": 1,
+          "mergedActiveListingCount": 1,
+          "mergedListings": [
+            {
+              "id": "樂屋:05e96f35677810c",
+              "houseId": "05e96f35677810c",
+              "source": "樂屋網",
+              "title": "板橋買房米奇 首購成家/精美裝潢電梯兩房/雙捷運",
+              "url": "https://community.rakuya.com.tw/1490/sell/info?ehid=05e96f35677810c",
+              "price": "1692萬",
+              "effectivePrice": 1692,
+              "size": "22.56坪",
+              "address": "新北市板橋區中山路二段",
+              "sourcePublishedAt": 1790784000,
+              "active": true
+            }
+          ],
+          "floor": "5/24樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedDate": "2026-10-01",
+          "rakuyaSourcePublishedRaw": "2026-10-01",
           "rakuyaSourcePublishedEvidence": "script:object_upload_time"
         }
       ],
@@ -21828,7 +21708,7 @@
           "housepriceMainArea": 20.25,
           "housepriceBuildingAge": "3.1年",
           "housepriceCaseType": "大樓",
-          "housepriceAgentCount": 6
+          "housepriceAgentCount": 5
         }
       ],
       "crossPlatformMerged": true,
@@ -22237,6 +22117,68 @@
         }
       ],
       "rawListingCount": 3
+    },
+    {
+      "groupId": "GROUP:樂屋:0d3c8b35746887b",
+      "primaryId": "樂屋:0d3c8b35746887b",
+      "primarySource": "樂屋網",
+      "road": "板橋區林森街",
+      "title": "㊝林森街4+5樓",
+      "address": "新北市板橋區林森街",
+      "price": "990萬",
+      "effectivePrice": 990,
+      "size": "20.04坪",
+      "url": "https://www.rakuya.com.tw/sell_item/info?ehid=0d3c8b35746887b",
+      "sourcePublishedAt": 1791388800,
+      "sourcePublishedAtType": "rakuyaListingDate",
+      "newAt": "2026-10-08T08:49:23+00:00",
+      "active": true,
+      "sources": [
+        "樂屋網"
+      ],
+      "sourceListings": [
+        {
+          "id": "樂屋:0d3c8b35746887b",
+          "houseId": "0d3c8b35746887b",
+          "source": "樂屋網",
+          "road": "板橋區林森街",
+          "title": "㊝林森街4+5樓",
+          "url": "https://www.rakuya.com.tw/sell_item/info?ehid=0d3c8b35746887b",
+          "price": "990萬",
+          "effectivePrice": 990,
+          "size": "20.04坪",
+          "address": "新北市板橋區林森街",
+          "sourcePublishedAt": 1791388800,
+          "sourcePublishedAtType": "rakuyaListingDate",
+          "newAt": "2026-10-08T08:49:23+00:00",
+          "active": true,
+          "mergedListingCount": 1,
+          "mergedActiveListingCount": 1,
+          "mergedListings": [
+            {
+              "id": "樂屋:0d3c8b35746887b",
+              "houseId": "0d3c8b35746887b",
+              "source": "樂屋網",
+              "title": "㊝林森街4+5樓",
+              "url": "https://www.rakuya.com.tw/sell_item/info?ehid=0d3c8b35746887b",
+              "price": "990萬",
+              "effectivePrice": 990,
+              "size": "20.04坪",
+              "address": "新北市板橋區林森街",
+              "sourcePublishedAt": 1791388800,
+              "active": true
+            }
+          ],
+          "floor": "4/4樓",
+          "monitorFirstSeenAt": "2026-10-08T08:49:23+00:00",
+          "rakuyaSourcePublishedDate": "2026-10-08",
+          "rakuyaSourcePublishedRaw": "2026-10-08",
+          "rakuyaSourcePublishedEvidence": "script:object_upload_time"
+        }
+      ],
+      "crossPlatformMerged": false,
+      "crossPlatformMatchInfo": [],
+      "rawListingCount": 1
     },
     {
       "groupId": "GROUP:樂屋:0173cb313559461",
@@ -22962,7 +22904,7 @@
           "housepriceUnitPrice": 50.2,
           "housepriceBuildingAge": "50.0年",
           "housepriceCaseType": "公寓",
-          "housepriceAgentCount": 83
+          "housepriceAgentCount": 85
         }
       ],
       "crossPlatformMerged": false,
@@ -25764,29 +25706,30 @@
       "primaryId": "591:21020368",
       "primarySource": "591",
       "road": "板橋區三民路二段",
-      "status": "missing",
-      "statusLabel": "未接回",
-      "score": -91,
+      "status": "company_match",
+      "statusLabel": "庫存",
+      "score": 22,
       "companyCandidate": {
-        "id": "YC:7078318",
-        "title": "一樓免爬高｜近埔墘公園傳統市場｜光復學區完全中學",
+        "id": "YC:7552986",
+        "title": "埔墘家樂福｜可住可辦可店｜好停車一樓｜大空間雙衛",
         "address": "新北市板橋區三民路二段",
-        "area": 52.52,
-        "price": 2688,
-        "url": "https://buy.yungching.com.tw/house/7078318",
+        "area": 35.24,
+        "price": 2388,
+        "url": "https://buy.yungching.com.tw/house/7552986",
         "sourceMode": "yungching_official_browser",
-        "officialId": "7078318",
-        "officialCaseId": "YC1235235",
-        "floor": "1~1/5樓",
-        "floorSourceMode": "yungching_verified_detail_cache",
-        "floorEvidence": "verified cache 2026-08-24T10:31:44+00:00",
-        "type": "華廈"
+        "officialId": "7552986",
+        "officialCaseId": null,
+        "floor": "1/5樓",
+        "floorSourceMode": null,
+        "floorEvidence": null,
+        "type": "公寓"
       },
       "matchInfo": {
-        "areaDelta": 17.32,
-        "priceDelta": 300.0,
+        "areaDelta": 0.04,
+        "priceDelta": 0.0,
         "shared": [],
-        "titleRatio": 0,
+        "titleRatio": 0.182,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "match",
         "externalFloors": [
           1
@@ -25797,7 +25740,10 @@
         "floorMatch": true,
         "evidenceSource": "591",
         "evidenceListingId": "591:21020368"
-      }
+      },
+      "companyStrongCandidateCount": 1,
+      "companyTopStrongScore": 22,
+      "companyNearTieStrong": false
     },
     {
       "groupId": "GROUP:591:21019804",
@@ -25884,7 +25830,7 @@
         ],
         "floorMatch": true,
         "evidenceSource": "樂屋網",
-        "evidenceListingId": "樂屋:034f63357470885"
+        "evidenceListingId": "樂屋:0f92bf35756908a"
       },
       "companyStrongCandidateCount": 1,
       "companyTopStrongScore": 29,
@@ -26451,6 +26397,44 @@
       "companyStrongCandidateCount": 1,
       "companyTopStrongScore": 14,
       "companyNearTieStrong": false
+    },
+    {
+      "groupId": "GROUP:591:20908976",
+      "primaryId": "591:20908976",
+      "primarySource": "591",
+      "road": "板橋區中山路二段",
+      "status": "missing",
+      "statusLabel": "未接回",
+      "score": -1,
+      "companyCandidate": {
+        "id": "YC:7455140",
+        "title": "板新捷運站、新板埔墘商圈交界、面寬約八米五停車",
+        "address": "新北市板橋區中山路二段",
+        "area": 27.92,
+        "price": 2188,
+        "url": "https://buy.yungching.com.tw/house/7455140",
+        "sourceMode": "yungching_official_browser",
+        "officialId": "7455140",
+        "officialCaseId": null,
+        "floor": "1/5樓",
+        "floorSourceMode": null,
+        "floorEvidence": null,
+        "type": "公寓"
+      },
+      "matchInfo": {
+        "areaDelta": 0.48,
+        "priceDelta": 890.0,
+        "shared": [],
+        "titleRatio": 0.114,
+        "companySourceMode": "yungching_official_browser",
+        "floorRelation": "unknown",
+        "externalFloors": [],
+        "companyFloors": [
+          1
+        ],
+        "evidenceSource": "591",
+        "evidenceListingId": "591:20908976"
+      }
     },
     {
       "groupId": "GROUP:591:20890426",
@@ -27372,44 +27356,6 @@
       "companyStrongCandidateCount": 1,
       "companyTopStrongScore": 23,
       "companyNearTieStrong": false
-    },
-    {
-      "groupId": "GROUP:591:20773827",
-      "primaryId": "591:20773827",
-      "primarySource": "591",
-      "road": "板橋區中山路二段",
-      "status": "missing",
-      "statusLabel": "未接回",
-      "score": -1,
-      "companyCandidate": {
-        "id": "YC:7455140",
-        "title": "板新捷運站、新板埔墘商圈交界、面寬約八米五停車",
-        "address": "新北市板橋區中山路二段",
-        "area": 27.92,
-        "price": 2188,
-        "url": "https://buy.yungching.com.tw/house/7455140",
-        "sourceMode": "yungching_official_browser",
-        "officialId": "7455140",
-        "officialCaseId": null,
-        "floor": "1/5樓",
-        "floorSourceMode": null,
-        "floorEvidence": null,
-        "type": "公寓"
-      },
-      "matchInfo": {
-        "areaDelta": 0.48,
-        "priceDelta": 890.0,
-        "shared": [],
-        "titleRatio": 0.056,
-        "companySourceMode": "yungching_official_browser",
-        "floorRelation": "unknown",
-        "externalFloors": [],
-        "companyFloors": [
-          1
-        ],
-        "evidenceSource": "591",
-        "evidenceListingId": "591:20773827"
-      }
     },
     {
       "groupId": "GROUP:591:20773779",
@@ -28533,50 +28479,6 @@
       }
     },
     {
-      "groupId": "GROUP:樂屋:0bb2ef356945268",
-      "primaryId": "樂屋:0bb2ef356945268",
-      "primarySource": "樂屋網",
-      "road": "板橋區中山路二段",
-      "status": "company_match",
-      "statusLabel": "庫存",
-      "score": 23,
-      "companyCandidate": {
-        "id": "YC:7544310",
-        "title": "近新埔捷運。北歐風裝潢天生贏家兩房",
-        "address": "新北市板橋區中山路二段",
-        "area": 22.56,
-        "price": 1692,
-        "url": "https://buy.yungching.com.tw/house/7544310",
-        "sourceMode": "yungching_official_browser",
-        "officialId": "7544310",
-        "officialCaseId": null,
-        "floor": "5/24樓",
-        "floorSourceMode": null,
-        "floorEvidence": null,
-        "type": "住宅大樓"
-      },
-      "matchInfo": {
-        "areaDelta": 0.0,
-        "priceDelta": 0.0,
-        "shared": [],
-        "titleRatio": 0.308,
-        "companySourceMode": "yungching_official_browser",
-        "floorRelation": "match",
-        "externalFloors": [
-          5
-        ],
-        "companyFloors": [
-          5
-        ],
-        "floorMatch": true,
-        "evidenceSource": "樂屋網",
-        "evidenceListingId": "樂屋:0bb2ef356945268"
-      },
-      "companyStrongCandidateCount": 1,
-      "companyTopStrongScore": 23,
-      "companyNearTieStrong": false
-    },
-    {
       "groupId": "GROUP:樂屋:0cfdad35604835c",
       "primaryId": "樂屋:0cfdad35604835c",
       "primarySource": "樂屋網",
@@ -28987,6 +28889,50 @@
         "evidenceSource": "樂屋網",
         "evidenceListingId": "樂屋:05f79c35304441f"
       }
+    },
+    {
+      "groupId": "GROUP:樂屋:05e96f35677810c",
+      "primaryId": "樂屋:05e96f35677810c",
+      "primarySource": "樂屋網",
+      "road": "板橋區中山路二段",
+      "status": "company_match",
+      "statusLabel": "庫存",
+      "score": 22,
+      "companyCandidate": {
+        "id": "YC:7544310",
+        "title": "近新埔捷運。北歐風裝潢天生贏家兩房",
+        "address": "新北市板橋區中山路二段",
+        "area": 22.56,
+        "price": 1692,
+        "url": "https://buy.yungching.com.tw/house/7544310",
+        "sourceMode": "yungching_official_browser",
+        "officialId": "7544310",
+        "officialCaseId": null,
+        "floor": "5/24樓",
+        "floorSourceMode": null,
+        "floorEvidence": null,
+        "type": "住宅大樓"
+      },
+      "matchInfo": {
+        "areaDelta": 0.0,
+        "priceDelta": 0.0,
+        "shared": [],
+        "titleRatio": 0.216,
+        "companySourceMode": "yungching_official_browser",
+        "floorRelation": "match",
+        "externalFloors": [
+          5
+        ],
+        "companyFloors": [
+          5
+        ],
+        "floorMatch": true,
+        "evidenceSource": "樂屋網",
+        "evidenceListingId": "樂屋:05e96f35677810c"
+      },
+      "companyStrongCandidateCount": 1,
+      "companyTopStrongScore": 22,
+      "companyNearTieStrong": false
     },
     {
       "groupId": "GROUP:樂屋:0275df348470098",
@@ -29474,6 +29420,21 @@
         "reason": "外部案件與公司候選樓層明確不同",
         "evidenceSource": "樂屋網",
         "evidenceListingId": "樂屋:0dc84135046546a"
+      }
+    },
+    {
+      "groupId": "GROUP:樂屋:0d3c8b35746887b",
+      "primaryId": "樂屋:0d3c8b35746887b",
+      "primarySource": "樂屋網",
+      "road": "板橋區林森街",
+      "status": "missing",
+      "statusLabel": "未接回",
+      "score": 0,
+      "companyCandidate": null,
+      "matchInfo": {
+        "reason": "此路段公開代理資料中沒有永慶房屋直營案件",
+        "evidenceSource": "樂屋網",
+        "evidenceListingId": "樂屋:0d3c8b35746887b"
       }
     },
     {
@@ -30726,35 +30687,6 @@
       "captureSourceMode": "yungching_official_api"
     },
     {
-      "id": "YC:5945842",
-      "road": "板橋區中山路二段",
-      "title": "中山路門牌近埔墘市場周邊連鎖店面匯聚",
-      "price": 3388,
-      "area": 36.12,
-      "floor": "1~2/5樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "店面",
-      "url": "https://buy.yungching.com.tw/house/5945842",
-      "sourceMode": "yungching_official_browser",
-      "text": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 店面 建坪36.12 1~2/5樓 2房(室)2廳3衛 3388萬",
-      "rawText": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 店面 建坪36.12 1~2/5樓 2房(室)2廳3衛 3388萬",
-      "patternInfo": {
-        "room": 2,
-        "livingRoom": 2,
-        "bathRoom": 3,
-        "addRoom": 0,
-        "addLivingRoom": 0,
-        "addBathRoom": 2
-      },
-      "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 2,
-        "upFloor": 5
-      },
-      "officialId": "5945842",
-      "captureSourceMode": "yungching_official_api"
-    },
-    {
       "id": "YC:7473603",
       "road": "板橋區中山路二段",
       "title": "稀有正大馬路商業用低總價純一樓金店面自用收租皆可",
@@ -30781,6 +30713,35 @@
         "upFloor": 5
       },
       "officialId": "7473603",
+      "captureSourceMode": "yungching_official_api"
+    },
+    {
+      "id": "YC:5945842",
+      "road": "板橋區中山路二段",
+      "title": "中山路門牌近埔墘市場周邊連鎖店面匯聚",
+      "price": 3388,
+      "area": 36.12,
+      "floor": "1~2/5樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "店面",
+      "url": "https://buy.yungching.com.tw/house/5945842",
+      "sourceMode": "yungching_official_browser",
+      "text": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 店面 建坪36.12 1~2/5樓 2房(室)2廳3衛 3388萬",
+      "rawText": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 店面 建坪36.12 1~2/5樓 2房(室)2廳3衛 3388萬",
+      "patternInfo": {
+        "room": 2,
+        "livingRoom": 2,
+        "bathRoom": 3,
+        "addRoom": 0,
+        "addLivingRoom": 0,
+        "addBathRoom": 2
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 2,
+        "upFloor": 5
+      },
+      "officialId": "5945842",
       "captureSourceMode": "yungching_official_api"
     },
     {
@@ -31396,6 +31357,35 @@
       "captureSourceMode": "yungching_official_api"
     },
     {
+      "id": "YC:7552986",
+      "road": "板橋區三民路二段",
+      "title": "埔墘家樂福｜可住可辦可店｜好停車一樓｜大空間雙衛",
+      "price": 2388,
+      "area": 35.24,
+      "floor": "1/5樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7552986",
+      "sourceMode": "yungching_official_browser",
+      "text": "埔墘家樂福｜可住可辦可店｜好停車一樓｜大空間雙衛 新北市板橋區三民路二段 公寓 建坪35.24 1/5樓 2房(室)3廳2衛 2388萬",
+      "rawText": "埔墘家樂福｜可住可辦可店｜好停車一樓｜大空間雙衛 新北市板橋區三民路二段 公寓 建坪35.24 1/5樓 2房(室)3廳2衛 2388萬",
+      "patternInfo": {
+        "room": 2,
+        "livingRoom": 3,
+        "bathRoom": 2,
+        "addRoom": 0,
+        "addLivingRoom": 1,
+        "addBathRoom": 0
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 1,
+        "upFloor": 5
+      },
+      "officialId": "7552986",
+      "captureSourceMode": "yungching_official_api"
+    },
+    {
       "id": "YC:7452730",
       "road": "板橋區三民路二段",
       "title": "國泰建設方正前後陽台三房附加代收垃圾",
@@ -31865,7 +31855,7 @@
   ],
   "logs": [
     "永慶官方資料：板橋區中山路二段 採用官方 API 35 筆。",
-    "永慶官方資料：板橋區三民路二段 採用官方 API 21 筆。",
+    "永慶官方資料：板橋區三民路二段 採用官方 API 22 筆。",
     "永慶官方瀏覽器資料：板橋區光復街 原路段網址 HTTP 404；官方新北市關鍵字頁完整複查為 0 筆，已跳過此路段公司案件。",
     "永慶官方資料：板橋區萬安街 採用官方 API 2 筆。",
     "永慶官方瀏覽器資料：板橋區林森街 原路段網址 HTTP 404；官方新北市關鍵字頁完整複查為 0 筆，已跳過此路段公司案件。",
@@ -31876,9 +31866,9 @@
   "note": "PREVIEW v11：591先重新分組，信義維持優先主資料；樂屋與5168七路段各自先站內去重，再依坪數、價格、案名與樓層證據依序併入既有房屋群組，最後整組比對永慶官方資料（API主抓、DOM fallback）。5168另使用其APP API groupSid作站內直接同群證據；任何樓層衝突或多組近似且無唯一證據都不硬合併。",
   "preview591Regroup": {
     "original591TopLevel": 103,
-    "regrouped591TopLevel": 84,
+    "regrouped591TopLevel": 83,
     "regrouped591ClusterCount": 16,
-    "regrouped591AbsorbedCount": 19,
+    "regrouped591AbsorbedCount": 20,
     "clusterFloorConflictBlocked": 0
   },
   "schemeAGroupIntegrity": {
@@ -31893,8 +31883,8 @@
   },
   "officialBrowserCompany": {
     "enabled": true,
-    "capturedAt": "2026-10-08T05:03:21+00:00",
-    "snapshotAgeMinutes": 0.5,
+    "capturedAt": "2026-10-08T08:49:06+00:00",
+    "snapshotAgeMinutes": 0.4,
     "acceptedRoadCount": 7,
     "unavailableRoadCount": 0,
     "roads": {
@@ -31911,7 +31901,7 @@
       },
       "板橋區三民路二段": {
         "mode": "official_api",
-        "officialCount": 21,
+        "officialCount": 22,
         "http": 200,
         "paginationComplete": true,
         "emptyResultVerified": false,
@@ -31988,12 +31978,12 @@
   "safeFloorParser": true,
   "safeFloorParserRule": "subject floor must be physically valid against total floor; glued area digits are trimmed instead of becoming impossible floors",
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-10-08T05:03:48+00:00",
+    "generatedAt": "2026-10-08T08:49:32+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-10-08T05:00:25+00:00",
+    "sourceRunCheckedAt": "2026-10-08T08:46:03+00:00",
     "activeSinyiCount": 68,
     "matchedOfficialCount": 68,
     "appliedCount": 68,
@@ -32012,13 +32002,13 @@
   "companyNearTieGuard": {
     "enabled": true,
     "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-    "examinedCompanyMatchCount": 41,
+    "examinedCompanyMatchCount": 42,
     "downgradedCount": 0,
     "remainingAutoNearTieCount": 0,
     "groups": []
   },
   "recentOffMarketRetentionDays": 10,
-  "recentOffMarketGeneratedAt": "2026-10-08T05:03:54+00:00",
+  "recentOffMarketGeneratedAt": "2026-10-08T08:49:38+00:00",
   "recentOffMarketCount": 14,
   "recentOffMarketGroups": [
     {
@@ -32958,12 +32948,12 @@
   "rakuyaIntegrated": true,
   "housepriceIntegrated": true,
   "rakuyaGrouping": {
-    "inputCount": 237,
-    "regroupedCount": 127,
-    "mergedClusterCount": 52,
-    "absorbedCount": 110,
+    "inputCount": 236,
+    "regroupedCount": 128,
+    "mergedClusterCount": 51,
+    "absorbedCount": 108,
     "attachedToExistingGroupCount": 99,
-    "standaloneGroupCount": 28,
+    "standaloneGroupCount": 29,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 0
@@ -32980,14 +32970,14 @@
     "directGroupIdMergeCount": 25
   },
   "rakuyaSnapshot": {
-    "updatedAt": "2026-10-08T05:03:36+00:00",
+    "updatedAt": "2026-10-08T08:49:23+00:00",
     "status": "ok",
-    "totalCount": 237,
-    "uniqueListingCount": 237,
+    "totalCount": 236,
+    "uniqueListingCount": 236,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 125,
+        "count": 123,
         "pages": 7
       },
       {
@@ -33007,8 +32997,8 @@
       },
       {
         "road": "林森街",
-        "count": 0,
-        "pages": 0
+        "count": 1,
+        "pages": 1
       },
       {
         "road": "萬安街",
@@ -33022,33 +33012,25 @@
       }
     ],
     "changes": {
-      "newCount": 3,
+      "newCount": 2,
       "newIds": [
-        "0011c9357470473",
-        "02bca3357470763",
-        "034f63357470885"
+        "0d3c8b35746887b",
+        "0f92bf35756908a"
       ],
-      "priceChangeCount": 1,
-      "priceChanges": [
-        {
-          "listingId": "0a84d534701460e",
-          "from": 2288,
-          "to": 2388,
-          "at": "2026-10-08T05:03:36+00:00"
-        }
-      ],
+      "priceChangeCount": 0,
+      "priceChanges": [],
       "removedCount": 3,
       "removedIds": [
-        "0cca1a35715569e",
-        "0d692a35715738a",
-        "0ed056357157662"
+        "0bb2ef356945268",
+        "0c177c35747476c",
+        "0e0ccb35673042e"
       ],
-      "currentChangeCount": 7
+      "currentChangeCount": 5
     },
     "complete": true
   },
   "housepriceSnapshot": {
-    "updatedAt": "2026-10-08T05:01:01+00:00",
+    "updatedAt": "2026-10-08T08:46:46+00:00",
     "status": "ok",
     "totalCount": 68,
     "uniqueListingCount": 68,
