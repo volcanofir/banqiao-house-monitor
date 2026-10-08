@@ -47,6 +47,48 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Wake competitor monitor when overdue
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          p=Path('docs/company/sinyi-banqiao-stores.json')
+          stale=True
+          age_minutes=None
+          updated=None
+          if p.exists():
+              try:
+                  d=json.loads(p.read_text(encoding='utf-8'))
+                  updated=d.get('updatedAt')
+                  if updated:
+                      last=datetime.fromisoformat(str(updated).replace('Z','+00:00'))
+                      if last.tzinfo is None:
+                          last=last.replace(tzinfo=timezone.utc)
+                      age_minutes=(datetime.now(timezone.utc)-last.astimezone(timezone.utc)).total_seconds()/60
+                      stale=age_minutes >= 240
+              except Exception as exc:
+                  print(f'competitor freshness parse error: {exc}')
+          print(f'competitor updatedAt={updated}; age_minutes={age_minutes}; stale={stale}')
+          raise SystemExit(0 if stale else 1)
+          PY
+          then
+            active="$(gh run list --workflow r420-preview.yml --limit 10 --json status --jq '[.[] | select(.status == "in_progress" or .status == "queued" or .status == "pending")] | length')"
+            if [[ "$active" == "0" ]]; then
+              gh workflow run r420-preview.yml --ref main
+              echo "Competitor refresh dispatched because snapshot is at least 240 minutes old."
+            else
+              echo "Competitor refresh is already active; no duplicate dispatch."
+            fi
+          else
+            echo "Competitor snapshot is still within the 240-minute freshness window."
+          fi
+
       - name: Decide whether this run should fetch
         id: gate
         env:
