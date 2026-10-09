@@ -115,7 +115,7 @@ def main():
         "const GRACE_KEY = 'bqm-access-grace-v6';",
         "const GRACE_MS = 3 * 60 * 1000;",
         "function groupFirstPublishedMs(g)",
-        "GAP.newListingWindowDays??3",
+        "GAP.newListingWindowDays??7",
     ]
     missing = [x for x in required if x not in text]
     if missing:
