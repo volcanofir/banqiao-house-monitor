@@ -275,19 +275,19 @@ function render(){
       const countDiff=(byDistrict.get(b)?.length||0)-(byDistrict.get(a)?.length||0);
       return countDiff||a.localeCompare(b,'zh-Hant');
     });
-    districtSummary.innerHTML=(newRows.length?'<span class="district-chip" style="background:#dff3e9;border-color:#a8d7c3;color:#176347">近 10 日新上架 '+newRows.length+' 戶</span>':'')+districts.map(d=>
+    districtSummary.innerHTML=(newRows.length?'<span class="district-chip jump" data-jump="recent-new-group" style="background:#dff3e9;border-color:#a8d7c3;color:#176347">近 10 日新上架 '+newRows.length+' 戶</span>':'')+districts.map(d=>
       '<span class="district-chip '+(d==='板橋區'?'primary':'')+'">'+esc(d)+' '+byDistrict.get(d).length+' 戶</span>'
-    ).join('')+(removedRows.length?'<span class="district-chip" style="background:#fbe1e3;border-color:#e6a8ae;color:#9c2833">近 10 日下架 '+removedRows.length+' 戶</span>':'');
+    ).join('')+(removedRows.length?'<span class="district-chip jump" data-jump="recent-removed-group" style="background:#fbe1e3;border-color:#e6a8ae;color:#9c2833">近 10 日下架 '+removedRows.length+' 戶</span>':'');
 
     if(newRows.length){
-      html+='<details class="group new-group"><summary><span>近 10 日新上架</span><span>'+newRows.length+' 戶</span></summary><div class="items">'+newRows.map(newItemHtml).join('')+'</div></details>';
+      html+='<details id="recent-new-group" class="group new-group"><summary><span>近 10 日新上架</span><span>'+newRows.length+' 戶</span></summary><div class="items">'+newRows.map(newItemHtml).join('')+'</div></details>';
     }
     for(const d of districts){
       const items=sortRows(byDistrict.get(d));
       html+='<details class="group"><summary><span>'+esc(d)+'</span><span>'+items.length+' 戶</span></summary><div class="items">'+items.map(itemHtml).join('')+'</div></details>';
     }
     if(removedRows.length){
-      html+='<details class="group removed-group"><summary><span>近 10 日下架</span><span>'+removedRows.length+' 戶</span></summary><div class="items">'+removedRows.map(removedItemHtml).join('')+'</div></details>';
+      html+='<details id="recent-removed-group" class="group removed-group"><summary><span>近 10 日下架</span><span>'+removedRows.length+' 戶</span></summary><div class="items">'+removedRows.map(removedItemHtml).join('')+'</div></details>';
     }
     document.querySelector('#summary').textContent=(storeInfo?storeInfo.storeName:'目前門市')+'共 '+rows.length+' 戶｜板橋區 '+(byDistrict.get('板橋區')?.length||0)+' 戶｜其他區域 '+(rows.length-(byDistrict.get('板橋區')?.length||0))+' 戶｜近 10 日新上架 '+newRows.length+' 戶｜近 10 日下架 '+removedRows.length+' 戶｜資料更新：'+(DATA.updatedAt?new Date(DATA.updatedAt).toLocaleString('zh-TW',{hour12:false}):'—');
   }else{
@@ -306,6 +306,14 @@ function render(){
   }
 
   document.querySelector('#list').innerHTML=html||'<div class="empty">目前沒有符合條件的案件。</div>';
+  document.querySelectorAll('#districtSummary .district-chip.jump').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      const target=document.getElementById(chip.dataset.jump);
+      if(!target)return;
+      target.open=true;
+      requestAnimationFrame(()=>target.scrollIntoView({behavior:'smooth',block:'start'}));
+    });
+  });
 }
 async function load(){
   try{
