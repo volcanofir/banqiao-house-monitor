@@ -104,6 +104,8 @@
   const AUTH_HASH = '31be948c5e8804d5ec85869504c1ea7593c42cc6dfefb25ddf29fdb86c327b29';
   const GRANT_KEY = 'bqm-one-time-grant-v5';
   const LOCK_KEY = 'bqm-relock-required-v5';
+  const GRACE_KEY = 'bqm-access-grace-v6';
+  const GRACE_MS = 3 * 60 * 1000;
   const BASE = '/banqiao-house-monitor/';
   const LOGIN = BASE + 'access.html?v=20261006g';
   const shield = document.getElementById('bqm-auth-shield');
@@ -114,55 +116,88 @@
   }
 
   const nextUrl = () => location.pathname + location.search + location.hash;
+  const clearGrace = () => {
+    try { localStorage.removeItem(GRACE_KEY); } catch (_) {}
+  };
+  const writeGrace = () => {
+    try {
+      localStorage.setItem(GRACE_KEY, JSON.stringify({
+        hash: AUTH_HASH,
+        expiresAt: Date.now() + GRACE_MS
+      }));
+    } catch (_) {}
+  };
+  const hasGrace = () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(GRACE_KEY) || 'null');
+      const ok = !!(saved && saved.hash === AUTH_HASH && Number(saved.expiresAt) > Date.now());
+      if (!ok) localStorage.removeItem(GRACE_KEY);
+      return ok;
+    } catch (_) {
+      clearGrace();
+      return false;
+    }
+  };
   const goLogin = () => {
     try { sessionStorage.removeItem(GRANT_KEY); } catch (_) {}
+    try { sessionStorage.removeItem(LOCK_KEY); } catch (_) {}
+    clearGrace();
     location.replace(LOGIN + '&next=' + encodeURIComponent(nextUrl()));
   };
 
-  let ok = false;
+  let grantOk = false;
   try {
     const grant = JSON.parse(sessionStorage.getItem(GRANT_KEY) || 'null');
-    ok = !!(
+    grantOk = !!(
       grant &&
       grant.hash === AUTH_HASH &&
       grant.path === location.pathname &&
       Number(grant.expiresAt) > Date.now()
     );
   } catch (_) {}
-
   try { sessionStorage.removeItem(GRANT_KEY); } catch (_) {}
 
-  if (!ok) {
+  if (!grantOk && !hasGrace()) {
     goLogin();
     return;
   }
 
+  if (grantOk) writeGrace();
   try { sessionStorage.removeItem(LOCK_KEY); } catch (_) {}
   if (shield) shield.remove();
 
   /* BQM_FOREGROUND_RELOCK_V5 */
-  const markLocked = () => {
-    try { sessionStorage.setItem(LOCK_KEY, '1'); } catch (_) {}
+  const markAway = () => {
+    const now = Date.now();
+    try { sessionStorage.setItem(LOCK_KEY, String(now)); } catch (_) {}
+    try {
+      localStorage.setItem(GRACE_KEY, JSON.stringify({
+        hash: AUTH_HASH,
+        expiresAt: now + GRACE_MS
+      }));
+    } catch (_) {}
   };
-  const relockIfMarked = () => {
-    let locked = false;
-    try { locked = sessionStorage.getItem(LOCK_KEY) === '1'; } catch (_) {}
-    if (locked) goLogin();
+  const relockIfExpired = () => {
+    let awayAt = 0;
+    try { awayAt = Number(sessionStorage.getItem(LOCK_KEY) || 0); } catch (_) {}
+    if (!awayAt) return;
+    if (Date.now() - awayAt >= GRACE_MS || !hasGrace()) {
+      goLogin();
+      return;
+    }
+    try { sessionStorage.removeItem(LOCK_KEY); } catch (_) {}
   };
 
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) markLocked();
-    else relockIfMarked();
+    if (document.hidden) markAway();
+    else relockIfExpired();
   });
-  window.addEventListener('pagehide', markLocked);
-  window.addEventListener('blur', markLocked);
-  window.addEventListener('pageshow', (event) => {
-    if (event.persisted) markLocked();
-    relockIfMarked();
-  });
-  window.addEventListener('focus', () => setTimeout(relockIfMarked, 0));
-  document.addEventListener('freeze', markLocked);
-  document.addEventListener('resume', relockIfMarked);
+  window.addEventListener('pagehide', markAway);
+  window.addEventListener('blur', markAway);
+  window.addEventListener('pageshow', () => relockIfExpired());
+  window.addEventListener('focus', () => setTimeout(relockIfExpired, 0));
+  document.addEventListener('freeze', markAway);
+  document.addEventListener('resume', relockIfExpired);
 })();
 </script>
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
