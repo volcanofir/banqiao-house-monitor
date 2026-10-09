@@ -44,6 +44,10 @@ if "const LOCK_KEY = 'bqm-relock-required-v5';" not in text:
     raise RuntimeError('Preview relock marker key is missing; refuse to publish')
 if "const GRACE_KEY = 'bqm-access-grace-v6';" not in text or "const GRACE_MS = 3 * 60 * 1000;" not in text:
     raise RuntimeError('Preview 3-minute access grace is missing; refuse to publish')
+if "const AUTH_HASH = 'd75acd6fee3ae85d59dcbb0383178e1b8d670c8fcfe0ea5cb099a23911efe75a';" not in text:
+    raise RuntimeError('Preview login credential hash is stale; refuse to publish')
+if "access.html?v=20261009h" not in text:
+    raise RuntimeError('Preview login page version is stale; refuse to publish')
 # Legacy external-gate tags are not trusted because browser cache/load failures can leak the page.
 text = re.sub(r'\\n?<script src="(?:\\.\\./)?access-gate\\.js\\?v=[^"]+"></script>', '', text)
 replacements = {
