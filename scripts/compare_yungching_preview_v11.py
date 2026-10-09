@@ -8,6 +8,7 @@ group only when evidence is strong and unambiguous.
 
 import json
 from collections import defaultdict
+from datetime import datetime, timezone
 from pathlib import Path
 
 import compare_yungching_preview_v4 as v4
@@ -17,6 +18,74 @@ ORIGINAL_BUILD_GROUPS = v4.build_groups
 ENRICHED = Path("docs/preview/scheme-a-external-enriched.json")
 RAKUYA_SNAPSHOT = Path("docs/preview/rakuya-seven-roads.json")
 HOUSEPRICE_SNAPSHOT = Path("docs/preview/houseprice-seven-roads.json")
+
+SALE_NEW_WINDOW_DAYS = 3
+
+
+def _time_value(value):
+    if value in (None, ""):
+        return None
+    try:
+        n=float(value)
+        if n > 0:
+            return n if n >= 1_000_000_000_000 else n * 1000
+    except (TypeError, ValueError):
+        pass
+    try:
+        dt=datetime.fromisoformat(str(value).replace("Z","+00:00"))
+        if dt.tzinfo is None:
+            dt=dt.replace(tzinfo=timezone.utc)
+        return dt.timestamp() * 1000
+    except Exception:
+        return None
+
+
+def _walk_listing_times(row, source_hint=None):
+    """Yield source-original times first; monitoring first-seen is fallback only."""
+    source=row.get("source") or source_hint
+    original=_time_value(row.get("sourcePublishedAt"))
+    if original:
+        yield ("original", original, source)
+    for member in row.get("mergedListings") or []:
+        member_source=member.get("source") or source
+        original=_time_value(member.get("sourcePublishedAt"))
+        if original:
+            yield ("original", original, member_source)
+
+
+def annotate_property_first_publish(group):
+    originals=[]
+    for item in [group] + list(group.get("sourceListings") or []):
+        originals.extend(_walk_listing_times(item, group.get("primarySource")))
+
+    if originals:
+        _, ms, source=min(originals, key=lambda x:x[1])
+        basis="earliest_source_original"
+    else:
+        fallbacks=[]
+        def add_fallback(row, source_hint=None):
+            source=row.get("source") or source_hint
+            for key in ("monitorFirstSeenAt","firstSeenAt","newAt"):
+                ms=_time_value(row.get(key))
+                if ms:
+                    fallbacks.append((key,ms,source))
+            for member in row.get("mergedListings") or []:
+                add_fallback(member, source)
+        for item in [group] + list(group.get("sourceListings") or []):
+            add_fallback(item, group.get("primarySource"))
+        if not fallbacks:
+            group["propertyFirstPublishedAt"]=None
+            group["propertyFirstPublishedSource"]=None
+            group["propertyFirstPublishedBasis"]="unavailable"
+            return group
+        _, ms, source=min(fallbacks, key=lambda x:x[1])
+        basis="earliest_monitor_seen_fallback"
+
+    group["propertyFirstPublishedAt"]=datetime.fromtimestamp(ms/1000, timezone.utc).isoformat(timespec="seconds")
+    group["propertyFirstPublishedSource"]=source
+    group["propertyFirstPublishedBasis"]=basis
+    return group
+
 
 
 def blank_stats():
@@ -266,6 +335,13 @@ def main():
     path=v4.prev.OUT_PATH
     payload=json.loads(path.read_text(encoding="utf-8"))
     source_state=json.loads(ENRICHED.read_text(encoding="utf-8"))
+
+    # "New property" is property-level, not platform-level. A later repost on
+    # Rakuya/591/Sinyi/5168 must never reset an older property's age.
+    for group in payload.get("propertyGroups") or []:
+        annotate_property_first_publish(group)
+    payload["newListingWindowDays"]=SALE_NEW_WINDOW_DAYS
+    payload["newListingTimePolicy"]="earliest_source_original_across_merged_property_with_monitor_seen_fallback"
 
     payload["mode"]="preview_only_591_sinyi_rakuya_5168_grouping_then_company_v11"
     payload["rakuyaIntegrated"]=True
