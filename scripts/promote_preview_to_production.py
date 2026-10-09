@@ -114,6 +114,8 @@ def main():
         "const LOCK_KEY = 'bqm-relock-required-v5';",
         "const GRACE_KEY = 'bqm-access-grace-v6';",
         "const GRACE_MS = 3 * 60 * 1000;",
+        "function groupFirstPublishedMs(g)",
+        "GAP.newListingWindowDays??3",
     ]
     missing = [x for x in required if x not in text]
     if missing:
