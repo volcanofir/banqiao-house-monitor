@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const AUTH_HASH = '31be948c5e8804d5ec85869504c1ea7593c42cc6dfefb25ddf29fdb86c327b29';
+  const AUTH_HASH = 'd75acd6fee3ae85d59dcbb0383178e1b8d670c8fcfe0ea5cb099a23911efe75a';
   const GRACE_KEY = 'bqm-access-grace-v6';
   const LOCK_KEY = 'bqm-relock-required-v5';
   const GRACE_MS = 3 * 60 * 1000;
@@ -32,7 +32,7 @@
   const current = location.pathname + location.search + location.hash;
   const goLogin = () => {
     clearGrace();
-    location.replace(base + 'access.html?v=20261006g&next=' + encodeURIComponent(current));
+    location.replace(base + 'access.html?v=20261009h&next=' + encodeURIComponent(current));
   };
 
   if (!hasGrace()) {
