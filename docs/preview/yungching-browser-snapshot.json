@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-09T05:35:33+00:00",
+  "capturedAt": "2026-10-09T09:18:55+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -49,7 +49,6 @@
       "paginationComplete": true,
       "paginationPageNewIds": {
         "1": [
-          "5945842",
           "6156655",
           "6195588",
           "6327691",
@@ -72,25 +71,25 @@
           "7359219",
           "7410045",
           "7443524",
+          "7443995",
           "7455140",
           "7460476",
-          "7473603",
           "7514442",
           "7532475",
-          "7532819"
+          "7532819",
+          "7544661"
         ],
         "2": [
+          "5945842",
           "6521665",
           "6948619",
-          "7443995",
           "7472136",
-          "7544310",
-          "7544661"
+          "7473603",
+          "7544310"
         ]
       },
       "paginationPageRawNewIds": {
         "1": [
-          "5945842",
           "6156655",
           "6195588",
           "6327691",
@@ -113,20 +112,21 @@
           "7359219",
           "7410045",
           "7443524",
+          "7443995",
           "7455140",
           "7460476",
-          "7473603",
           "7514442",
           "7532475",
-          "7532819"
+          "7532819",
+          "7544661"
         ],
         "2": [
+          "5945842",
           "6521665",
           "6948619",
-          "7443995",
           "7472136",
-          "7544310",
-          "7544661"
+          "7473603",
+          "7544310"
         ]
       },
       "rawHouseIdCount": 42,
@@ -1256,6 +1256,60 @@
       }
     },
     {
+      "id": "7544661",
+      "road": "板橋區中山路二段",
+      "title": "中山路挑高一樓",
+      "price": 1298,
+      "area": 23.88,
+      "floor": "1/4樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7544661",
+      "sourceMode": "yungching_official_api",
+      "text": "中山路挑高一樓 新北市板橋區中山路二段 公寓 建坪23.88 1/4樓 1房(室)1廳1衛 1298萬",
+      "rawText": "中山路挑高一樓 新北市板橋區中山路二段 公寓 建坪23.88 1/4樓 1房(室)1廳1衛 1298萬",
+      "patternInfo": {
+        "room": 1,
+        "livingRoom": 1,
+        "bathRoom": 1,
+        "addRoom": 1,
+        "addLivingRoom": 0,
+        "addBathRoom": 0
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 1,
+        "upFloor": 4
+      }
+    },
+    {
+      "id": "7443995",
+      "road": "板橋區中山路二段",
+      "title": "埔墘核心地點,萬家福旁頂加空間",
+      "price": 1580,
+      "area": 26.46,
+      "floor": "4/4樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7443995",
+      "sourceMode": "yungching_official_api",
+      "text": "埔墘核心地點,萬家福旁頂加空間 新北市板橋區中山路二段 公寓 建坪26.46 4/4樓 7房(室)0廳7衛 1580萬",
+      "rawText": "埔墘核心地點,萬家福旁頂加空間 新北市板橋區中山路二段 公寓 建坪26.46 4/4樓 7房(室)0廳7衛 1580萬",
+      "patternInfo": {
+        "room": 7,
+        "livingRoom": 0,
+        "bathRoom": 7,
+        "addRoom": 2,
+        "addLivingRoom": 0,
+        "addBathRoom": 2
+      },
+      "floorInfo": {
+        "fromFloor": 4,
+        "toFloor": 4,
+        "upFloor": 4
+      }
+    },
+    {
       "id": "7473603",
       "road": "板橋區中山路二段",
       "title": "稀有正大馬路商業用低總價純一樓金店面自用收租皆可",
@@ -1310,33 +1364,6 @@
       }
     },
     {
-      "id": "7443995",
-      "road": "板橋區中山路二段",
-      "title": "埔墘核心地點,萬家福旁頂加空間",
-      "price": 1580,
-      "area": 26.46,
-      "floor": "4/4樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "公寓",
-      "url": "https://buy.yungching.com.tw/house/7443995",
-      "sourceMode": "yungching_official_api",
-      "text": "埔墘核心地點,萬家福旁頂加空間 新北市板橋區中山路二段 公寓 建坪26.46 4/4樓 7房(室)0廳7衛 1580萬",
-      "rawText": "埔墘核心地點,萬家福旁頂加空間 新北市板橋區中山路二段 公寓 建坪26.46 4/4樓 7房(室)0廳7衛 1580萬",
-      "patternInfo": {
-        "room": 7,
-        "livingRoom": 0,
-        "bathRoom": 7,
-        "addRoom": 2,
-        "addLivingRoom": 0,
-        "addBathRoom": 2
-      },
-      "floorInfo": {
-        "fromFloor": 4,
-        "toFloor": 4,
-        "upFloor": 4
-      }
-    },
-    {
       "id": "7544310",
       "road": "板橋區中山路二段",
       "title": "近新埔捷運。北歐風裝潢天生贏家兩房",
@@ -1388,33 +1415,6 @@
         "fromFloor": 3,
         "toFloor": 3,
         "upFloor": 5
-      }
-    },
-    {
-      "id": "7544661",
-      "road": "板橋區中山路二段",
-      "title": "中山路挑高一樓",
-      "price": 1350,
-      "area": 23.88,
-      "floor": "1/4樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "公寓",
-      "url": "https://buy.yungching.com.tw/house/7544661",
-      "sourceMode": "yungching_official_api",
-      "text": "中山路挑高一樓 新北市板橋區中山路二段 公寓 建坪23.88 1/4樓 1房(室)1廳1衛 1350萬",
-      "rawText": "中山路挑高一樓 新北市板橋區中山路二段 公寓 建坪23.88 1/4樓 1房(室)1廳1衛 1350萬",
-      "patternInfo": {
-        "room": 1,
-        "livingRoom": 1,
-        "bathRoom": 1,
-        "addRoom": 1,
-        "addLivingRoom": 0,
-        "addBathRoom": 0
-      },
-      "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 1,
-        "upFloor": 4
       }
     },
     {
@@ -2363,7 +2363,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-09T05:35:50+00:00",
+    "generatedAt": "2026-10-09T09:19:08+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
