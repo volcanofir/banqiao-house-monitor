@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<style id="bqm-auth-shield">html{visibility:hidden!important}</style>
+<script>
+/* BQM_INLINE_AUTH_V5 */
+(() => {
+  'use strict';
+  const AUTH_HASH = 'd75acd6fee3ae85d59dcbb0383178e1b8d670c8fcfe0ea5cb099a23911efe75a';
+  const GRANT_KEY = 'bqm-one-time-grant-v5';
+  const LOCK_KEY = 'bqm-relock-required-v5';
+  const GRACE_KEY = 'bqm-access-grace-v6';
+  const GRACE_MS = 3 * 60 * 1000;
+  const BASE = '/banqiao-house-monitor/';
+  const LOGIN = BASE + 'access.html?v=20261009h';
+  const shield = document.getElementById('bqm-auth-shield');
+
+  if (['127.0.0.1','localhost','::1'].includes(location.hostname)) {
+    if (shield) shield.remove();
+    return;
+  }
+
+  const nextUrl = () => location.pathname + location.search + location.hash;
+  const clearGrace = () => {
+    try { localStorage.removeItem(GRACE_KEY); } catch (_) {}
+  };
+  const writeGrace = () => {
+    try {
+      localStorage.setItem(GRACE_KEY, JSON.stringify({
+        hash: AUTH_HASH,
+        expiresAt: Date.now() + GRACE_MS
+      }));
+    } catch (_) {}
+  };
+  const hasGrace = () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(GRACE_KEY) || 'null');
+      const ok = !!(saved && saved.hash === AUTH_HASH && Number(saved.expiresAt) > Date.now());
+      if (!ok) localStorage.removeItem(GRACE_KEY);
+      return ok;
+    } catch (_) {
+      clearGrace();
+      return false;
+    }
+  };
+  const goLogin = () => {
+    try { sessionStorage.removeItem(GRANT_KEY); } catch (_) {}
+    try { sessionStorage.removeItem(LOCK_KEY); } catch (_) {}
+    clearGrace();
+    location.replace(LOGIN + '&next=' + encodeURIComponent(nextUrl()));
+  };
+
+  let grantOk = false;
+  try {
+    const grant = JSON.parse(sessionStorage.getItem(GRANT_KEY) || 'null');
+    grantOk = !!(
+      grant &&
+      grant.hash === AUTH_HASH &&
+      grant.path === location.pathname &&
+      Number(grant.expiresAt) > Date.now()
+    );
+  } catch (_) {}
+  try { sessionStorage.removeItem(GRANT_KEY); } catch (_) {}
+
+  if (!grantOk && !hasGrace()) {
+    goLogin();
+    return;
+  }
+
+  if (grantOk) writeGrace();
+  try { sessionStorage.removeItem(LOCK_KEY); } catch (_) {}
+  if (shield) shield.remove();
+
+  /* BQM_FOREGROUND_RELOCK_V5 */
+  const markAway = () => {
+    const now = Date.now();
+    try { sessionStorage.setItem(LOCK_KEY, String(now)); } catch (_) {}
+    try {
+      localStorage.setItem(GRACE_KEY, JSON.stringify({
+        hash: AUTH_HASH,
+        expiresAt: now + GRACE_MS
+      }));
+    } catch (_) {}
+  };
+  const relockIfExpired = () => {
+    let awayAt = 0;
+    try { awayAt = Number(sessionStorage.getItem(LOCK_KEY) || 0); } catch (_) {}
+    if (!awayAt) return;
+    if (Date.now() - awayAt >= GRACE_MS || !hasGrace()) {
+      goLogin();
+      return;
+    }
+    try { sessionStorage.removeItem(LOCK_KEY); } catch (_) {}
+  };
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) markAway();
+    else relockIfExpired();
+  });
+  window.addEventListener('pagehide', markAway);
+  window.addEventListener('blur', markAway);
+  window.addEventListener('pageshow', () => relockIfExpired());
+  window.addEventListener('focus', () => setTimeout(relockIfExpired, 0));
+  document.addEventListener('freeze', markAway);
+  document.addEventListener('resume', relockIfExpired);
+})();
+</script>
+<meta name="robots" content="noindex,nofollow,noarchive" />
+<meta name="theme-color" content="#f5d331" />
+<title>信義相對店資料｜板橋 16 店</title>
+<style>
+:root{--cream:#fff8df;--paper:#fffef8;--yellow:#f5d331;--green:#124b37;--red:#cf3f4a;--ink:#30312f;--muted:#756f64;--line:#e3ca73;--soft:#fff3bd;--blue:#e8eef9}
+*{box-sizing:border-box}html,body{margin:0;background:var(--cream);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif}a{color:inherit}
+.top{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #eee;padding:14px 16px;text-align:center;font-weight:900}
+main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}
+.hero{background:var(--yellow);border-radius:28px;padding:26px}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;color:#876500}.hero h1{margin:7px 0 8px;color:var(--green);font-size:clamp(32px,7vw,54px)}.hero p{margin:0;color:#315244;line-height:1.75}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.metric{background:#fffef8;border:1px solid #dcc875;border-radius:20px;padding:15px}.metric span{display:block;font-size:13px;font-weight:850;color:var(--muted)}.metric strong{display:block;margin-top:5px;font-size:26px;color:var(--green)}
+.panel{margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:24px;overflow:hidden}.stripe{height:7px;background:linear-gradient(90deg,var(--red) 0 66%,#515861 66%)}.inside{padding:20px}
+.store-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.store-card{appearance:none;text-align:left;border:1px solid #e3ca73;background:#fff4c8;border-radius:16px;padding:12px;cursor:pointer;font:inherit}.store-card.active{background:var(--green);color:#fff;border-color:var(--green)}.store-card b{display:block;font-size:15px}.store-card span{display:block;margin-top:5px;font-size:12px;opacity:.8}.store-card strong{font-size:22px}.store-card .new-count{color:#19724f;opacity:1;font-weight:900}.store-card .new-count strong{font-size:14px}.store-card .removed-count{color:#a52d39;opacity:1;font-weight:900}.store-card .removed-count strong{font-size:14px}
+.filters{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:9px;margin-top:16px}input,select{width:100%;border:1px solid var(--line);border-radius:12px;background:#fff;padding:11px 12px;font:inherit}
+.summary{margin-top:13px;color:var(--muted);font-size:13px}.district-summary{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.district-chip{border:1px solid #e3ca73;background:#fff4c8;border-radius:999px;padding:7px 11px;font-size:13px;font-weight:850;color:var(--green)}.district-chip.primary{background:#dcefe7;border-color:#b9d8ca}.list{margin-top:12px}.group{border:1px solid var(--line);border-radius:18px;background:#fff;margin:10px 0;overflow:hidden}.group>summary{list-style:none;cursor:pointer;padding:14px 16px;background:#fff4c8;display:flex;justify-content:space-between;gap:10px;font-weight:900;color:var(--green)}.group>summary::-webkit-details-marker{display:none}.group.new-group{border-color:#a8d7c3}.group.new-group>summary{background:#dff3e9;color:#176347}.group.removed-group{border-color:#e6a8ae}.group.removed-group>summary{background:#fbe1e3;color:#9c2833}.items{padding:0 14px}
+.item{padding:15px 0;border-bottom:1px solid #eee3bd}.item:last-child{border-bottom:0}.item-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.title{font-weight:900;color:var(--green);text-decoration:none;line-height:1.5}.price{font-size:20px;font-weight:950;color:#a52d39;white-space:nowrap}.meta{display:flex;flex-wrap:wrap;gap:7px 10px;margin-top:8px;color:#665f54;font-size:13px}.pill{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:850}.store{background:#dcefe7;color:#14503c}.id{background:#fff0bd;color:#755600}.comm{background:var(--blue);color:#35577d}.empty{padding:28px;text-align:center;color:var(--muted)}.error{background:#f7dadd;color:#972a35;padding:12px 14px;border-radius:14px;margin-top:12px}
+@media(max-width:900px){.store-grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){main{width:min(100% - 14px,1180px)}.hero{padding:22px 18px}.inside{padding:15px}.filters{grid-template-columns:1fr}.store-grid{grid-template-columns:1fr 1fr}.item-head{display:block}.price{margin-top:6px}}
+</style>
+</head>
+<body>
+<div class="top">Banqiao House Monitor · 信義相對店</div>
+<main>
+<section class="hero">
+  <div class="eyebrow">COMPETITOR STORE TRACKING</div>
+  <h1>信義房屋｜板橋 16 店</h1>
+  <p>集中查看你指定的 16 間信義房屋門市目前所有上架案件。點門市可快速篩選，每筆案件可直接回到信義房屋原始物件頁。</p>
+  <div class="metrics">
+    <div class="metric"><span>追蹤門市</span><strong id="mStores">16</strong></div>
+    <div class="metric"><span>門市刊登筆數</span><strong id="mListings">—</strong></div>
+    <div class="metric"><span>不重複物件</span><strong id="mUnique">—</strong></div>
+    <div class="metric"><span>資料正常門市</span><strong id="mHealthy">—</strong></div>
+  </div>
+</section>
+<section class="panel"><div class="stripe"></div><div class="inside">
+  <div class="eyebrow">STORES</div><h2>門市刊登數量</h2>
+  <div id="stores" class="store-grid"><div class="empty">16 間門市資料抓取中…</div></div>
+  <div class="filters">
+    <input id="q" type="search" placeholder="搜尋案名、地址、社區、物件編號" autocomplete="off" />
+    <select id="store"><option value="">全部門市</option></select>
+    <select id="sort"><option value="priceDesc" selected>總價高 → 低</option><option value="priceAsc">總價低 → 高</option><option value="timeDesc">上架時間：新 → 舊</option><option value="timeAsc">上架時間：舊 → 新</option></select>
+  </div>
+  <div id="summary" class="summary">資料載入中…</div>
+  <div id="districtSummary" class="district-summary"></div>
+  <div id="failures"></div>
+  <div id="list" class="list"><div class="empty">資料載入中…</div></div>
+</div></section>
+</main>
+<script>
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=v=>v==null?'—':Number(v).toLocaleString('zh-TW')+' 萬';
+const area=v=>v==null?'—':Number(v).toLocaleString('zh-TW')+' 坪';
+const floor=x=>x.floor?(String(x.floor)+(x.totalfloor?'/'+x.totalfloor+'樓':'')):'樓層未取得';
+const districtOf=x=>{
+  const address=String(x?.address||'').trim();
+  const m=address.match(/^[^縣市]{2,3}[縣市](.+?[區鄉鎮市])/);
+  return m?m[1]:'其他區域';
+};
+const DISTRICT_ORDER=['板橋區','中和區','土城區','新莊區','三重區','樹林區','萬華區','桃園區'];
+let DATA=null;
+
+function renderStores(){
+  const chosen=document.querySelector('#store').value;
+  document.querySelector('#stores').innerHTML=(DATA.stores||[]).map(s =>
+    '<button class="store-card '+(chosen===s.storeCode?'active':'')+'" data-code="'+esc(s.storeCode)+'">'+
+    '<b>'+esc(s.storeName)+'</b>'+
+    '<span><strong>'+Number(s.totalCount||0)+'</strong> 戶｜'+(s.status==='ok'?'完整':'異常')+'</span>'+
+    (Number(s.recentNewCount||0)>0?'<span class="new-count">近 10 日新上架 <strong>'+Number(s.recentNewCount||0)+'</strong> 戶</span>':'')+
+    (Number(s.recentRemovedCount||0)>0?'<span class="removed-count">近 10 日下架 <strong>'+Number(s.recentRemovedCount||0)+'</strong> 戶</span>':'')+
+    '</button>'
+  ).join('');
+  document.querySelectorAll('.store-card').forEach(b=>b.addEventListener('click',()=>{
+    const sel=document.querySelector('#store'); sel.value=sel.value===b.dataset.code?'':b.dataset.code; render();
+  }));
+}
+
+function itemHtml(x){
+  return '<article class="item"><div class="item-head"><a class="title" href="'+esc(x.url||'#')+'" target="_blank" rel="noopener noreferrer">'+esc(x.name||'未命名案件')+'</a><div class="price">'+money(x.price)+'</div></div>'+
+  '<div class="meta"><span class="pill store">'+esc(x.storeName)+'</span><span class="pill id">'+esc(x.houseNo)+'</span>'+
+  (x.community?'<span class="pill comm">'+esc(x.community)+'</span>':'')+
+  '<span>'+area(x.areaBuilding)+'</span><span>'+esc(x.layout||'格局未取得')+'</span><span>'+esc(floor(x))+'</span><span>'+esc(x.age||'屋齡未取得')+'</span></div>'+
+  '<div class="meta"><span>'+esc(x.address||'地址未取得')+'</span>'+(x.firstDisplay?'<span>原始上架：'+esc(String(x.firstDisplay).replace(/-/g,'/'))+'</span>':'')+'</div></article>';
+}
+
+function newItemHtml(x){
+  return '<article class="item"><div class="item-head"><a class="title" href="'+esc(x.url||'#')+'" target="_blank" rel="noopener noreferrer">'+esc(x.name||'未命名案件')+'</a><div class="price">'+money(x.price)+'</div></div>'+
+  '<div class="meta"><span class="pill store">'+esc(x.storeName)+'</span><span class="pill id">'+esc(x.houseNo)+'</span>'+
+  (x.community?'<span class="pill comm">'+esc(x.community)+'</span>':'')+
+  '<span>'+area(x.areaBuilding)+'</span><span>'+esc(x.layout||'格局未取得')+'</span><span>'+esc(floor(x))+'</span><span>'+esc(x.age||'屋齡未取得')+'</span></div>'+
+  '<div class="meta"><span>'+esc(x.address||'地址未取得')+'</span>'+(x.firstDisplay?'<span>原始上架：'+esc(String(x.firstDisplay).replace(/-/g,'/'))+'</span>':'')+'<span style="color:#19724f;font-weight:900">偵測新上架：'+(x.newAt?new Date(x.newAt).toLocaleString('zh-TW',{hour12:false}):'—')+'</span></div></article>';
+}
+
+function removedItemHtml(x){
+  return '<article class="item"><div class="item-head"><a class="title" href="'+esc(x.url||'#')+'" target="_blank" rel="noopener noreferrer">'+esc(x.name||'未命名案件')+'</a><div class="price">'+money(x.price)+'</div></div>'+
+  '<div class="meta"><span class="pill store">'+esc(x.storeName)+'</span><span class="pill id">'+esc(x.houseNo)+'</span>'+
+  (x.community?'<span class="pill comm">'+esc(x.community)+'</span>':'')+
+  '<span>'+area(x.areaBuilding)+'</span><span>'+esc(x.layout||'格局未取得')+'</span><span>'+esc(floor(x))+'</span><span>'+esc(x.age||'屋齡未取得')+'</span></div>'+
+  '<div class="meta"><span>'+esc(x.address||'地址未取得')+'</span>'+(x.firstDisplay?'<span>原始上架：'+esc(String(x.firstDisplay).replace(/-/g,'/'))+'</span>':'')+'<span style="color:#a52d39;font-weight:900">下架：'+(x.removedAt?new Date(x.removedAt).toLocaleString('zh-TW',{hour12:false}):'—')+'</span></div></article>';
+}
+
+function render(){
+  if(!DATA)return;
+  renderStores();
+  const q=document.querySelector('#q').value.trim().toLowerCase();
+  const store=document.querySelector('#store').value;
+  const sort=document.querySelector('#sort').value;
+  let rows=(DATA.listings||[]).filter(x=>{
+    if(store&&x.storeCode!==store)return false;
+    if(q&&!([x.name,x.address,x.community,x.houseNo,x.storeName].join(' ').toLowerCase().includes(q)))return false;
+    return true;
+  });
+  let newRows=(DATA.recentNew||[]).filter(x=>{
+    if(store&&x.storeCode!==store)return false;
+    if(q&&!([x.name,x.address,x.community,x.houseNo,x.storeName].join(' ').toLowerCase().includes(q)))return false;
+    return true;
+  }).sort((a,b)=>new Date(b.newAt||0)-new Date(a.newAt||0));
+  let removedRows=(DATA.recentRemoved||[]).filter(x=>{
+    if(store&&x.storeCode!==store)return false;
+    if(q&&!([x.name,x.address,x.community,x.houseNo,x.storeName].join(' ').toLowerCase().includes(q)))return false;
+    return true;
+  }).sort((a,b)=>new Date(b.removedAt||0)-new Date(a.removedAt||0));
+
+  const firstDisplayMs=x=>{
+    if(!x?.firstDisplay)return null;
+    const t=new Date(String(x.firstDisplay).replace(' ','T')).getTime();
+    return Number.isFinite(t)?t:null;
+  };
+  const sortRows=items=>{
+    const out=[...items];
+    if(sort==='priceDesc')out.sort((a,b)=>Number(b.price||0)-Number(a.price||0));
+    else if(sort==='priceAsc')out.sort((a,b)=>Number(a.price||0)-Number(b.price||0));
+    else if(sort==='timeDesc')out.sort((a,b)=>{
+      const ta=firstDisplayMs(a),tb=firstDisplayMs(b);
+      if(ta==null&&tb==null)return 0;
+      if(ta==null)return 1;
+      if(tb==null)return -1;
+      return tb-ta;
+    });
+    else if(sort==='timeAsc')out.sort((a,b)=>{
+      const ta=firstDisplayMs(a),tb=firstDisplayMs(b);
+      if(ta==null&&tb==null)return 0;
+      if(ta==null)return 1;
+      if(tb==null)return -1;
+      return ta-tb;
+    });
+    else out.sort((a,b)=>Number(b.price||0)-Number(a.price||0));
+    return out;
+  };
+
+  let html='';
+  const districtSummary=document.querySelector('#districtSummary');
+  districtSummary.innerHTML='';
+
+  if(store){
+    const storeInfo=(DATA.stores||[]).find(s=>s.storeCode===store);
+    const byDistrict=new Map();
+    for(const x of rows){
+      const d=districtOf(x);
+      if(!byDistrict.has(d))byDistrict.set(d,[]);
+      byDistrict.get(d).push(x);
+    }
+    const districts=[...byDistrict.keys()].sort((a,b)=>{
+      if(a==='板橋區'&&b!=='板橋區')return -1;
+      if(b==='板橋區'&&a!=='板橋區')return 1;
+      const countDiff=(byDistrict.get(b)?.length||0)-(byDistrict.get(a)?.length||0);
+      return countDiff||a.localeCompare(b,'zh-Hant');
+    });
+    districtSummary.innerHTML=(newRows.length?'<span class="district-chip jump" data-jump="recent-new-group" style="background:#dff3e9;border-color:#a8d7c3;color:#176347">近 10 日新上架 '+newRows.length+' 戶</span>':'')+districts.map(d=>
+      '<span class="district-chip '+(d==='板橋區'?'primary':'')+'">'+esc(d)+' '+byDistrict.get(d).length+' 戶</span>'
+    ).join('')+(removedRows.length?'<span class="district-chip jump" data-jump="recent-removed-group" style="background:#fbe1e3;border-color:#e6a8ae;color:#9c2833">近 10 日下架 '+removedRows.length+' 戶</span>':'');
+
+    if(newRows.length){
+      html+='<details id="recent-new-group" class="group new-group"><summary><span>近 10 日新上架</span><span>'+newRows.length+' 戶</span></summary><div class="items">'+newRows.map(newItemHtml).join('')+'</div></details>';
+    }
+    for(const d of districts){
+      const items=sortRows(byDistrict.get(d));
+      html+='<details class="group"><summary><span>'+esc(d)+'</span><span>'+items.length+' 戶</span></summary><div class="items">'+items.map(itemHtml).join('')+'</div></details>';
+    }
+    if(removedRows.length){
+      html+='<details id="recent-removed-group" class="group removed-group"><summary><span>近 10 日下架</span><span>'+removedRows.length+' 戶</span></summary><div class="items">'+removedRows.map(removedItemHtml).join('')+'</div></details>';
+    }
+    document.querySelector('#summary').textContent=(storeInfo?storeInfo.storeName:'目前門市')+'共 '+rows.length+' 戶｜板橋區 '+(byDistrict.get('板橋區')?.length||0)+' 戶｜其他區域 '+(rows.length-(byDistrict.get('板橋區')?.length||0))+' 戶｜近 10 日新上架 '+newRows.length+' 戶｜近 10 日下架 '+removedRows.length+' 戶｜資料更新：'+(DATA.updatedAt?new Date(DATA.updatedAt).toLocaleString('zh-TW',{hour12:false}):'—');
+  }else{
+    for(const s of (DATA.stores||[])){
+      const items=sortRows(rows.filter(x=>x.storeCode===s.storeCode));
+      const recentNew=newRows.filter(x=>x.storeCode===s.storeCode);
+      const removed=removedRows.filter(x=>x.storeCode===s.storeCode);
+      if(!items.length&&!recentNew.length&&!removed.length)continue;
+      html+='<details class="group"><summary><span>'+esc(s.storeName)+'</span><span>'+items.length+' 戶'+(recentNew.length?'｜近 10 日新上架 '+recentNew.length:'')+(removed.length?'｜近 10 日下架 '+removed.length:'')+'</span></summary><div class="items">'+
+        (recentNew.length?'<details class="group new-group"><summary><span>近 10 日新上架</span><span>'+recentNew.length+' 戶</span></summary><div class="items">'+recentNew.map(newItemHtml).join('')+'</div></details>':'')+
+        items.map(itemHtml).join('')+
+        (removed.length?'<details class="group removed-group"><summary><span>近 10 日下架</span><span>'+removed.length+' 戶</span></summary><div class="items">'+removed.map(removedItemHtml).join('')+'</div></details>':'')+
+        '</div></details>';
+    }
+    document.querySelector('#summary').textContent='目前顯示 '+rows.length+' 筆｜近 10 日新上架 '+newRows.length+' 戶｜近 10 日下架 '+removedRows.length+' 戶｜資料更新：'+(DATA.updatedAt?new Date(DATA.updatedAt).toLocaleString('zh-TW',{hour12:false}):'—');
+  }
+
+  document.querySelector('#list').innerHTML=html||'<div class="empty">目前沒有符合條件的案件。</div>';
+  document.querySelectorAll('#districtSummary .district-chip.jump').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      const target=document.getElementById(chip.dataset.jump);
+      if(!target)return;
+      target.open=true;
+      requestAnimationFrame(()=>target.scrollIntoView({behavior:'smooth',block:'start'}));
+    });
+  });
+}
+async function load(){
+  try{
+    const r=await fetch('../company/sinyi-banqiao-stores.json?ts='+Date.now(),{cache:'no-store'});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    DATA=await r.json();
+    document.querySelector('#mStores').textContent=DATA.storeCount??16;
+    document.querySelector('#mListings').textContent=(DATA.totalStoreListings??0)+' 筆';
+    document.querySelector('#mUnique').textContent=(DATA.uniquePropertyCount??0)+' 戶';
+    document.querySelector('#mHealthy').textContent=(DATA.healthyStoreCount??0)+'/16';
+    document.querySelector('#store').innerHTML='<option value="">全部門市</option>'+(DATA.stores||[]).map(s=>'<option value="'+esc(s.storeCode)+'">'+esc(s.storeName)+'（'+Number(s.totalCount||0)+'）</option>').join('');
+    if((DATA.failures||[]).length)document.querySelector('#failures').innerHTML='<div class="error">'+esc(DATA.failures.map(x=>x.storeName+'：'+x.error).join('｜'))+'</div>';
+    ['q','store','sort'].forEach(id=>document.querySelector('#'+id).addEventListener(id==='q'?'input':'change',render));
+    render();
+  }catch(e){
+    document.querySelector('#summary').textContent='16 間門市資料正在建立，完成後此頁會自動讀取。';
+    document.querySelector('#list').innerHTML='<div class="empty">目前正在抓取 16 間信義門市的完整上架資料，請稍後重新整理。</div>';
+    console.error(e);
+  }
+}
+load();
+</script>
+</body>
+</html>
