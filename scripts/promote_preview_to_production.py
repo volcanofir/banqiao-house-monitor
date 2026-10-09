@@ -102,7 +102,7 @@ def main():
         'data-source="houseprice"',
         'BQM_INLINE_AUTH_V5',
         "const GRANT_KEY = 'bqm-one-time-grant-v5';",
-        "const LOGIN = BASE + 'access.html?v=20261006g';",
+        "const LOGIN = BASE + 'access.html?v=20261009h';",
         "location.replace(LOGIN + '&next='",
         'sessionStorage.removeItem(GRANT_KEY)',
         "window.addEventListener('pageshow'",
@@ -114,6 +114,7 @@ def main():
         "const LOCK_KEY = 'bqm-relock-required-v5';",
         "const GRACE_KEY = 'bqm-access-grace-v6';",
         "const GRACE_MS = 3 * 60 * 1000;",
+        "const AUTH_HASH = 'd75acd6fee3ae85d59dcbb0383178e1b8d670c8fcfe0ea5cb099a23911efe75a';",
         "function groupFirstPublishedMs(g)",
         "GAP.newListingWindowDays??7",
     ]
