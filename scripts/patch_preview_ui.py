@@ -93,7 +93,7 @@ function groupFirstPublishedMs(g){
   if(originals.length)return Math.min(...originals);
   return seen.length?Math.min(...seen):0;
 }
-const isNew=x=>{const first=groupFirstPublishedMs(x);const days=Number(GAP.newListingWindowDays??3);const age=Date.now()-first;return first>0&&Number.isFinite(days)&&days>0&&age>=0&&age<days*86400000;}'''
+const isNew=x=>{const first=groupFirstPublishedMs(x);const days=Number(GAP.newListingWindowDays??7);const age=Date.now()-first;return first>0&&Number.isFinite(days)&&days>0&&age>=0&&age<days*86400000;}'''
 policy_start = text.find('const timeMs=v=>')
 if policy_start < 0:
     policy_start = text.find('const isNew=')
@@ -108,7 +108,7 @@ text = re.sub(
     count=1,
     flags=re.S,
 )
-if 'function groupFirstPublishedMs(g)' not in text or 'GAP.newListingWindowDays??3' not in text:
+if 'function groupFirstPublishedMs(g)' not in text or 'GAP.newListingWindowDays??7' not in text:
     raise RuntimeError('Preview property-level 3-day new-listing policy missing')
 
 text = re.sub(r'\n<p>同一戶若同時出現在信義房屋與 591，Preview 會優先以信義資料顯示，591 收進同一戶下方；整併完成後再依坪數、價格、案名與樓層比對公司庫存。</p>', '', text)
@@ -215,7 +215,7 @@ required_fragments = [
     'rel="noopener noreferrer"',
     'aria-live="polite"',
     'function groupFirstPublishedMs(g)',
-    'GAP.newListingWindowDays??3',
+    'GAP.newListingWindowDays??7',
 ]
 missing = [x for x in required_fragments if x not in text]
 if missing:
@@ -265,7 +265,7 @@ final_required = [
     'function sourceClass(s)',
     '跨平台整併',
     'function groupFirstPublishedMs(g)',
-    'GAP.newListingWindowDays??3',
+    'GAP.newListingWindowDays??7',
 ]
 final_missing = [x for x in final_required if x not in final_text]
 if final_missing:
