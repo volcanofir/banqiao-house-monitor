@@ -148,7 +148,7 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}
   <div class="filters">
     <input id="q" type="search" placeholder="搜尋案名、地址、社區、物件編號" autocomplete="off" />
     <select id="store"><option value="">全部門市</option></select>
-    <select id="sort"><option value="priceDesc" selected>總價高 → 低</option><option value="priceAsc">總價低 → 高</option><option value="timeDesc">上架時間：新 → 舊</option><option value="timeAsc">上架時間：舊 → 新</option><option value="areaDesc">坪數大 → 小</option></select>
+    <select id="sort"><option value="priceDesc" selected>總價高 → 低</option><option value="priceAsc">總價低 → 高</option><option value="timeDesc">上架時間：新 → 舊</option><option value="timeAsc">上架時間：舊 → 新</option></select>
   </div>
   <div id="summary" class="summary">資料載入中…</div>
   <div id="districtSummary" class="district-summary"></div>
@@ -253,7 +253,6 @@ function render(){
       if(tb==null)return -1;
       return ta-tb;
     });
-    else if(sort==='areaDesc')out.sort((a,b)=>Number(b.areaBuilding||0)-Number(a.areaBuilding||0));
     else out.sort((a,b)=>Number(b.price||0)-Number(a.price||0));
     return out;
   };
