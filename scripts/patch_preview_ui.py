@@ -74,6 +74,43 @@ new_esc = '''const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':
 text = text.replace(old_esc, new_esc)
 text = text.replace('rel="noreferrer"', 'rel="noopener noreferrer"')
 
+# Sale "new listing" is property-level: use the earliest original publish time
+# across all merged sources, with monitor first-seen only as a fallback.
+sale_new_policy = r'''const timeMs=v=>{if(v==null||v==='')return 0;const n=Number(v);if(Number.isFinite(n)&&n>0)return n<1e12?n*1000:n;const t=new Date(v).getTime();return Number.isFinite(t)?t:0};
+function groupFirstPublishedMs(g){
+  const annotated=timeMs(g?.propertyFirstPublishedAt);
+  if(annotated>0)return annotated;
+  const originals=[];
+  const seen=[];
+  const walk=(x)=>{
+    if(!x)return;
+    const p=timeMs(x.sourcePublishedAt);if(p>0)originals.push(p);
+    for(const k of ['monitorFirstSeenAt','firstSeenAt','newAt']){const t=timeMs(x[k]);if(t>0)seen.push(t)}
+    for(const m of (x.mergedListings||[]))walk(m);
+  };
+  walk(g);
+  for(const m of (g?.sourceListings||[]))walk(m);
+  if(originals.length)return Math.min(...originals);
+  return seen.length?Math.min(...seen):0;
+}
+const isNew=x=>{const first=groupFirstPublishedMs(x);const days=Number(GAP.newListingWindowDays??3);const age=Date.now()-first;return first>0&&Number.isFinite(days)&&days>0&&age>=0&&age<days*86400000;}'''
+policy_start = text.find('const timeMs=v=>')
+if policy_start < 0:
+    policy_start = text.find('const isNew=')
+policy_end = text.find('const cmp=', policy_start) if policy_start >= 0 else -1
+if policy_start < 0 or policy_end < 0:
+    raise RuntimeError('Preview sale new-listing policy anchor missing')
+text = text[:policy_start] + sale_new_policy + '\n' + text[policy_end:]
+text = re.sub(
+    r"function sortGroups\(items,mode\)\{.*?\}(?=\nfunction render\()",
+    "function sortGroups(items,mode){const a=[...items];if(mode==='default')return a;const key=mode.startsWith('price')?priceValue:groupFirstPublishedMs;const dir=mode.endsWith('Desc')?-1:1;return a.sort((x,y)=>(key(x)-key(y))*dir)}",
+    text,
+    count=1,
+    flags=re.S,
+)
+if 'function groupFirstPublishedMs(g)' not in text or 'GAP.newListingWindowDays??3' not in text:
+    raise RuntimeError('Preview property-level 3-day new-listing policy missing')
+
 text = re.sub(r'\n<p>同一戶若同時出現在信義房屋與 591，Preview 會優先以信義資料顯示，591 收進同一戶下方；整併完成後再依坪數、價格、案名與樓層比對公司庫存。</p>', '', text)
 text = re.sub(r'\n<div class="company-note" id="companyNote">.*?</div>', '', text, count=1, flags=re.S)
 text = text.replace('\n<div id="companyNote" hidden></div>', '')
@@ -177,6 +214,8 @@ required_fragments = [
     '案件清單暫停顯示',
     'rel="noopener noreferrer"',
     'aria-live="polite"',
+    'function groupFirstPublishedMs(g)',
+    'GAP.newListingWindowDays??3',
 ]
 missing = [x for x in required_fragments if x not in text]
 if missing:
@@ -225,6 +264,8 @@ final_required = [
     'GAP.housepriceSnapshot',
     'function sourceClass(s)',
     '跨平台整併',
+    'function groupFirstPublishedMs(g)',
+    'GAP.newListingWindowDays??3',
 ]
 final_missing = [x for x in final_required if x not in final_text]
 if final_missing:
