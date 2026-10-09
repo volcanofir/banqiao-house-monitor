@@ -42,6 +42,8 @@ if "window.addEventListener('pagehide'" not in text or "window.addEventListener(
     raise RuntimeError('Preview iOS foreground relock signals are incomplete; refuse to publish')
 if "const LOCK_KEY = 'bqm-relock-required-v5';" not in text:
     raise RuntimeError('Preview relock marker key is missing; refuse to publish')
+if "const GRACE_KEY = 'bqm-access-grace-v6';" not in text or "const GRACE_MS = 3 * 60 * 1000;" not in text:
+    raise RuntimeError('Preview 3-minute access grace is missing; refuse to publish')
 # Legacy external-gate tags are not trusted because browser cache/load failures can leak the page.
 text = re.sub(r'\\n?<script src="(?:\\.\\./)?access-gate\\.js\\?v=[^"]+"></script>', '', text)
 replacements = {
