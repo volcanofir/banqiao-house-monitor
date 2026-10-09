@@ -679,7 +679,7 @@ function groupFirstPublishedMs(g){
   if(originals.length)return Math.min(...originals);
   return seen.length?Math.min(...seen):0;
 }
-const isNew=x=>{const first=groupFirstPublishedMs(x);const days=Number(GAP.newListingWindowDays??3);const age=Date.now()-first;return first>0&&Number.isFinite(days)&&days>0&&age>=0&&age<days*86400000;}
+const isNew=x=>{const first=groupFirstPublishedMs(x);const days=Number(GAP.newListingWindowDays??7);const age=Date.now()-first;return first>0&&Number.isFinite(days)&&days>0&&age>=0&&age<days*86400000;}
 const cmp=x=>CMAP.get(x.groupId)||null;
 const companyLabel=s=>({company_match:'庫存',review:'待確認',missing:'未接回',unavailable:'尚未比對',offmarket:'已下架'}[s]||s||'尚未比對');
 const companyClass=s=>s==='company_match'?'stock':s==='review'?'review':(s==='missing'||s==='offmarket')?'missing':'unavailable';
