@@ -112,6 +112,8 @@ def main():
         "window.addEventListener('blur'",
         "window.addEventListener('focus'",
         "const LOCK_KEY = 'bqm-relock-required-v5';",
+        "const GRACE_KEY = 'bqm-access-grace-v6';",
+        "const GRACE_MS = 3 * 60 * 1000;",
     ]
     missing = [x for x in required if x not in text]
     if missing:
