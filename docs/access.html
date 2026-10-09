@@ -44,7 +44,7 @@ button:disabled{opacity:.65;cursor:wait}
         <button id="gateBtn" type="submit">進入網站</button>
         <div id="gateMsg" class="msg" role="alert" aria-live="polite"></div>
       </form>
-      <div class="note">每次進入網站都需要重新驗證。</div>
+      <div class="note">離開網站 3 分鐘內返回免重新驗證；超過 3 分鐘需重新登入。</div>
     </div>
   </main>
 <script>
@@ -52,7 +52,9 @@ button:disabled{opacity:.65;cursor:wait}
   const AUTH_HASH = '31be948c5e8804d5ec85869504c1ea7593c42cc6dfefb25ddf29fdb86c327b29';
   const GRANT_KEY = 'bqm-one-time-grant-v5';
   const LOCK_KEY = 'bqm-relock-required-v5';
+  const GRACE_KEY = 'bqm-access-grace-v6';
   const GRANT_MS = 60 * 1000;
+  const GRACE_MS = 3 * 60 * 1000;
   const BASE = '/banqiao-house-monitor/';
   const params = new URLSearchParams(location.search);
   let next = params.get('next') || BASE;
@@ -98,6 +100,12 @@ button:disabled{opacity:.65;cursor:wait}
         path: new URL(next, location.origin).pathname,
         expiresAt: Date.now() + GRANT_MS
       }));
+      try {
+        localStorage.setItem(GRACE_KEY, JSON.stringify({
+          hash: AUTH_HASH,
+          expiresAt: Date.now() + GRACE_MS
+        }));
+      } catch (_) {}
       btn.textContent = '驗證成功';
       location.replace(next);
     } catch (_) {
