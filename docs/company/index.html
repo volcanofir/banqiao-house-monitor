@@ -148,7 +148,7 @@ main{width:min(1180px,calc(100% - 24px));margin:auto;padding:22px 0 60px}
   <div class="filters">
     <input id="q" type="search" placeholder="搜尋案名、地址、社區、物件編號" autocomplete="off" />
     <select id="store"><option value="">全部門市</option></select>
-    <select id="sort"><option value="store">依門市</option><option value="priceDesc">總價高 → 低</option><option value="priceAsc">總價低 → 高</option><option value="areaDesc">坪數大 → 小</option></select>
+    <select id="sort"><option value="priceDesc" selected>總價高 → 低</option><option value="priceAsc">總價低 → 高</option><option value="timeDesc">上架時間：新 → 舊</option><option value="timeAsc">上架時間：舊 → 新</option><option value="areaDesc">坪數大 → 小</option></select>
   </div>
   <div id="summary" class="summary">資料載入中…</div>
   <div id="districtSummary" class="district-summary"></div>
@@ -230,10 +230,29 @@ function render(){
     return true;
   }).sort((a,b)=>new Date(b.removedAt||0)-new Date(a.removedAt||0));
 
+  const firstDisplayMs=x=>{
+    if(!x?.firstDisplay)return null;
+    const t=new Date(String(x.firstDisplay).replace(' ','T')).getTime();
+    return Number.isFinite(t)?t:null;
+  };
   const sortRows=items=>{
     const out=[...items];
     if(sort==='priceDesc')out.sort((a,b)=>Number(b.price||0)-Number(a.price||0));
     else if(sort==='priceAsc')out.sort((a,b)=>Number(a.price||0)-Number(b.price||0));
+    else if(sort==='timeDesc')out.sort((a,b)=>{
+      const ta=firstDisplayMs(a),tb=firstDisplayMs(b);
+      if(ta==null&&tb==null)return 0;
+      if(ta==null)return 1;
+      if(tb==null)return -1;
+      return tb-ta;
+    });
+    else if(sort==='timeAsc')out.sort((a,b)=>{
+      const ta=firstDisplayMs(a),tb=firstDisplayMs(b);
+      if(ta==null&&tb==null)return 0;
+      if(ta==null)return 1;
+      if(tb==null)return -1;
+      return ta-tb;
+    });
     else if(sort==='areaDesc')out.sort((a,b)=>Number(b.areaBuilding||0)-Number(a.areaBuilding||0));
     else out.sort((a,b)=>Number(b.price||0)-Number(a.price||0));
     return out;
