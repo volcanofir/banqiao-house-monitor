@@ -19,7 +19,7 @@ ENRICHED = Path("docs/preview/scheme-a-external-enriched.json")
 RAKUYA_SNAPSHOT = Path("docs/preview/rakuya-seven-roads.json")
 HOUSEPRICE_SNAPSHOT = Path("docs/preview/houseprice-seven-roads.json")
 
-SALE_NEW_WINDOW_DAYS = 3
+SALE_NEW_WINDOW_DAYS = 7
 
 
 def _time_value(value):
