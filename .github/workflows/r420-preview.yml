@@ -36,6 +36,10 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Record public runner IP and approximate location
+        continue-on-error: true
+        run: python scripts/log_sinyi_runner_ip.py capture
+
       - name: Install packages
         run: pip install requests beautifulsoup4 playwright
 
@@ -93,3 +97,44 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2026-03-10" \
             "repos/${GITHUB_REPOSITORY}/pages/builds"
+
+      - name: Save IP sample as workflow artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sinyi-runner-ip-${{ github.run_id }}-${{ github.run_attempt }}
+          path: /tmp/sinyi-runner-ip-sample.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Save runner IP history to repository
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -e
+          if [ ! -s /tmp/sinyi-runner-ip-sample.json ]; then
+            echo "No runner IP sample was captured."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            if ! git fetch origin main; then
+              sleep 3
+              continue
+            fi
+            git reset --hard origin/main
+            python scripts/log_sinyi_runner_ip.py merge
+            git add docs/data/sinyi-runner-ip-history.json
+            if git diff --cached --quiet; then
+              echo "Runner IP history already current."
+              exit 0
+            fi
+            git commit -m "Record Sinyi runner IP sample ${GITHUB_RUN_ID} attempt ${GITHUB_RUN_ATTEMPT}"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 3
+          done
+          exit 1
