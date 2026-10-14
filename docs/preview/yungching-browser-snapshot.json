@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-14T01:04:36+00:00",
+  "capturedAt": "2026-10-14T04:50:33+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -49,7 +49,6 @@
       "paginationComplete": true,
       "paginationPageNewIds": {
         "1": [
-          "5945842",
           "6156655",
           "6195588",
           "6327691",
@@ -72,6 +71,7 @@
           "7359219",
           "7410045",
           "7443524",
+          "7443995",
           "7455140",
           "7460476",
           "7514442",
@@ -80,16 +80,15 @@
           "7544661"
         ],
         "2": [
+          "5945842",
           "6521665",
           "6948619",
-          "7443995",
           "7472136",
           "7473603"
         ]
       },
       "paginationPageRawNewIds": {
         "1": [
-          "5945842",
           "6156655",
           "6195588",
           "6327691",
@@ -112,6 +111,7 @@
           "7359219",
           "7410045",
           "7443524",
+          "7443995",
           "7455140",
           "7460476",
           "7514442",
@@ -120,9 +120,9 @@
           "7544661"
         ],
         "2": [
+          "5945842",
           "6521665",
           "6948619",
-          "7443995",
           "7472136",
           "7473603"
         ]
@@ -208,7 +208,7 @@
     },
     "板橋區三民路二段": {
       "mainHttp": 200,
-      "count": 26,
+      "count": 27,
       "primarySearchUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw?od=80",
       "confirmationUsed": false,
       "primaryHttp": 200,
@@ -217,10 +217,10 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 60416,
+      "primaryApiListDataLength": 62400,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
-      "roadTextCount": 26,
+      "roadTextCount": 27,
       "summary": [],
       "searchUrl": "https://buy.yungching.com.tw/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5&filter=0&pg=1&ps=30",
       "loadRounds": 0,
@@ -262,7 +262,8 @@
           "7516367",
           "7516413",
           "7521423",
-          "7552986"
+          "7552986",
+          "7559748"
         ]
       },
       "paginationPageRawNewIds": {
@@ -292,21 +293,22 @@
           "7516367",
           "7516413",
           "7521423",
-          "7552986"
+          "7552986",
+          "7559748"
         ]
       },
-      "rawHouseIdCount": 29,
-      "rawExactAddressTextCount": 26,
+      "rawHouseIdCount": 30,
+      "rawExactAddressTextCount": 27,
       "paginationError": null,
-      "apiTotalCount": 26,
-      "apiTotalItemCount": 27,
-      "apiRawRowCount": 29,
-      "apiUniqueRowCount": 29,
+      "apiTotalCount": 27,
+      "apiTotalItemCount": 28,
+      "apiRawRowCount": 30,
+      "apiUniqueRowCount": 30,
       "emptyResultVerified": false,
       "skippedConfirmedEmpty": false,
       "transportEvidence": "official_api_v2_decrypted",
       "available": true,
-      "rawCountBeforeIdIntegrity": 26,
+      "rawCountBeforeIdIntegrity": 27,
       "idIntegrityRemoved": 0,
       "mode": "yungching_official_api",
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
@@ -530,7 +532,7 @@
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     }
   },
-  "listingCount": 70,
+  "listingCount": 71,
   "listings": [
     {
       "id": "7514442",
@@ -548,6 +550,33 @@
       "patternInfo": {
         "room": 0,
         "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 2,
+        "upFloor": 2
+      }
+    },
+    {
+      "id": "6195588",
+      "road": "板橋區中山路二段",
+      "title": "中山路門牌近埔墘市場周邊連鎖店面匯聚",
+      "price": 4500,
+      "area": 79.49,
+      "floor": "1~2/2樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "透天厝",
+      "url": "https://buy.yungching.com.tw/house/6195588",
+      "sourceMode": "yungching_official_api",
+      "text": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 透天厝 建坪79.49 1~2/2樓 3房(室)3廳2衛 4500萬",
+      "rawText": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 透天厝 建坪79.49 1~2/2樓 3房(室)3廳2衛 4500萬",
+      "patternInfo": {
+        "room": 3,
+        "livingRoom": 3,
         "bathRoom": 2,
         "addRoom": null,
         "addLivingRoom": null,
@@ -965,33 +994,6 @@
       }
     },
     {
-      "id": "6195588",
-      "road": "板橋區中山路二段",
-      "title": "中山路門牌近埔墘市場周邊連鎖店面匯聚",
-      "price": 4500,
-      "area": 79.49,
-      "floor": "1~2/2樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "透天厝",
-      "url": "https://buy.yungching.com.tw/house/6195588",
-      "sourceMode": "yungching_official_api",
-      "text": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 透天厝 建坪79.49 1~2/2樓 3房(室)3廳2衛 4500萬",
-      "rawText": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 透天厝 建坪79.49 1~2/2樓 3房(室)3廳2衛 4500萬",
-      "patternInfo": {
-        "room": 3,
-        "livingRoom": 3,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 2,
-        "upFloor": 2
-      }
-    },
-    {
       "id": "6996810",
       "road": "板橋區中山路二段",
       "title": "板新捷運艾美酒店興隆市場旁熱鬧金店面",
@@ -1154,33 +1156,6 @@
       }
     },
     {
-      "id": "7359219",
-      "road": "板橋區中山路二段",
-      "title": "低總價採光三房,房間皆可放雙人床,採光通風佳",
-      "price": 1038,
-      "area": 23.01,
-      "floor": "5/5樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "公寓",
-      "url": "https://buy.yungching.com.tw/house/7359219",
-      "sourceMode": "yungching_official_api",
-      "text": "低總價採光三房,房間皆可放雙人床,採光通風佳 新北市板橋區中山路二段 公寓 建坪23.01 5/5樓 3房(室)2廳1衛 1038萬",
-      "rawText": "低總價採光三房,房間皆可放雙人床,採光通風佳 新北市板橋區中山路二段 公寓 建坪23.01 5/5樓 3房(室)2廳1衛 1038萬",
-      "patternInfo": {
-        "room": 3,
-        "livingRoom": 2,
-        "bathRoom": 1,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 5,
-        "toFloor": 5,
-        "upFloor": 5
-      }
-    },
-    {
       "id": "6482848",
       "road": "板橋區中山路二段",
       "title": "正中山路人潮店面,埔墘核心地點",
@@ -1205,6 +1180,33 @@
         "fromFloor": 1,
         "toFloor": 1,
         "upFloor": 8
+      }
+    },
+    {
+      "id": "7359219",
+      "road": "板橋區中山路二段",
+      "title": "低總價採光三房,房間皆可放雙人床,採光通風佳",
+      "price": 1038,
+      "area": 23.01,
+      "floor": "5/5樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7359219",
+      "sourceMode": "yungching_official_api",
+      "text": "低總價採光三房,房間皆可放雙人床,採光通風佳 新北市板橋區中山路二段 公寓 建坪23.01 5/5樓 3房(室)2廳1衛 1038萬",
+      "rawText": "低總價採光三房,房間皆可放雙人床,採光通風佳 新北市板橋區中山路二段 公寓 建坪23.01 5/5樓 3房(室)2廳1衛 1038萬",
+      "patternInfo": {
+        "room": 3,
+        "livingRoom": 2,
+        "bathRoom": 1,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 5,
+        "toFloor": 5,
+        "upFloor": 5
       }
     },
     {
@@ -1289,33 +1291,6 @@
       }
     },
     {
-      "id": "5945842",
-      "road": "板橋區中山路二段",
-      "title": "中山路門牌近埔墘市場周邊連鎖店面匯聚",
-      "price": 3388,
-      "area": 36.12,
-      "floor": "1~2/5樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "店面",
-      "url": "https://buy.yungching.com.tw/house/5945842",
-      "sourceMode": "yungching_official_api",
-      "text": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 店面 建坪36.12 1~2/5樓 2房(室)2廳3衛 3388萬",
-      "rawText": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 店面 建坪36.12 1~2/5樓 2房(室)2廳3衛 3388萬",
-      "patternInfo": {
-        "room": 2,
-        "livingRoom": 2,
-        "bathRoom": 3,
-        "addRoom": 0,
-        "addLivingRoom": 0,
-        "addBathRoom": 2
-      },
-      "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 2,
-        "upFloor": 5
-      }
-    },
-    {
       "id": "7443995",
       "road": "板橋區中山路二段",
       "title": "埔墘核心地點,萬家福旁頂加空間",
@@ -1340,6 +1315,33 @@
         "fromFloor": 4,
         "toFloor": 4,
         "upFloor": 4
+      }
+    },
+    {
+      "id": "5945842",
+      "road": "板橋區中山路二段",
+      "title": "中山路門牌近埔墘市場周邊連鎖店面匯聚",
+      "price": 3388,
+      "area": 36.12,
+      "floor": "1~2/5樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "店面",
+      "url": "https://buy.yungching.com.tw/house/5945842",
+      "sourceMode": "yungching_official_api",
+      "text": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 店面 建坪36.12 1~2/5樓 2房(室)2廳3衛 3388萬",
+      "rawText": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 店面 建坪36.12 1~2/5樓 2房(室)2廳3衛 3388萬",
+      "patternInfo": {
+        "room": 2,
+        "livingRoom": 2,
+        "bathRoom": 3,
+        "addRoom": 0,
+        "addLivingRoom": 0,
+        "addBathRoom": 2
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 2,
+        "upFloor": 5
       }
     },
     {
@@ -2105,6 +2107,33 @@
       }
     },
     {
+      "id": "7559748",
+      "road": "板橋區三民路二段",
+      "title": "板新捷運近公園鼎加美寓",
+      "price": 1388,
+      "area": 22.83,
+      "floor": "5/5樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7559748",
+      "sourceMode": "yungching_official_api",
+      "text": "板新捷運近公園鼎加美寓 新北市板橋區三民路二段 公寓 建坪22.83 5/5樓 5房(室)3廳2衛 1388萬",
+      "rawText": "板新捷運近公園鼎加美寓 新北市板橋區三民路二段 公寓 建坪22.83 5/5樓 5房(室)3廳2衛 1388萬",
+      "patternInfo": {
+        "room": 5,
+        "livingRoom": 3,
+        "bathRoom": 2,
+        "addRoom": 4,
+        "addLivingRoom": 1,
+        "addBathRoom": 1
+      },
+      "floorInfo": {
+        "fromFloor": 5,
+        "toFloor": 5,
+        "upFloor": 5
+      }
+    },
+    {
       "id": "6700174",
       "road": "板橋區三民路二段",
       "title": "三民路大馬路知名連鎖品牌穩定收租金店面",
@@ -2433,8 +2462,8 @@
   "paginationGuardVersion": "api-all-pages-v1",
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 70,
-    "afterCount": 70,
+    "beforeCount": 71,
+    "afterCount": 71,
     "removedCount": 0,
     "collisionIds": [],
     "remainingCollisionIds": [],
@@ -2450,7 +2479,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-14T01:04:51+00:00",
+    "generatedAt": "2026-10-14T04:50:47+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
