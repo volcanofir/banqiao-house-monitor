@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-16T01:14:14+00:00",
+  "capturedAt": "2026-10-16T04:48:37+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -484,7 +484,7 @@
     },
     "板橋區光復街": {
       "mainHttp": 200,
-      "count": 0,
+      "count": 1,
       "primarySearchUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E5%85%89%E5%BE%A9%E8%A1%97_kw?od=80",
       "confirmationUsed": false,
       "primaryHttp": 200,
@@ -493,10 +493,10 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 320,
+      "primaryApiListDataLength": 8768,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
-      "roadTextCount": 0,
+      "roadTextCount": 1,
       "summary": [],
       "searchUrl": "https://buy.yungching.com.tw/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E5%85%89%E5%BE%A9%E8%A1%97&filter=0&pg=1&ps=30",
       "loadRounds": 0,
@@ -512,29 +512,33 @@
       "paginationCompleteAllPages": true,
       "paginationComplete": true,
       "paginationPageNewIds": {
-        "1": []
+        "1": [
+          "7562907"
+        ]
       },
       "paginationPageRawNewIds": {
-        "1": []
+        "1": [
+          "7562907"
+        ]
       },
-      "rawHouseIdCount": 0,
-      "rawExactAddressTextCount": 0,
+      "rawHouseIdCount": 4,
+      "rawExactAddressTextCount": 1,
       "paginationError": null,
-      "apiTotalCount": 0,
-      "apiTotalItemCount": 0,
-      "apiRawRowCount": 0,
-      "apiUniqueRowCount": 0,
-      "emptyResultVerified": true,
-      "skippedConfirmedEmpty": true,
+      "apiTotalCount": 1,
+      "apiTotalItemCount": 2,
+      "apiRawRowCount": 4,
+      "apiUniqueRowCount": 4,
+      "emptyResultVerified": false,
+      "skippedConfirmedEmpty": false,
       "transportEvidence": "official_api_v2_decrypted",
       "available": true,
-      "rawCountBeforeIdIntegrity": 0,
+      "rawCountBeforeIdIntegrity": 1,
       "idIntegrityRemoved": 0,
       "mode": "yungching_official_api",
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     }
   },
-  "listingCount": 72,
+  "listingCount": 73,
   "listings": [
     {
       "id": "7514442",
@@ -2485,14 +2489,41 @@
         "toFloor": 1,
         "upFloor": 7
       }
+    },
+    {
+      "id": "7562907",
+      "road": "板橋區光復街",
+      "title": "光復靜巷稀有透天",
+      "price": 1954,
+      "area": 35.76,
+      "floor": "1~2/2樓",
+      "address": "新北市板橋區光復街",
+      "type": "透天厝",
+      "url": "https://buy.yungching.com.tw/house/7562907",
+      "sourceMode": "yungching_official_api",
+      "text": "光復靜巷稀有透天 新北市板橋區光復街 透天厝 建坪35.76 1~2/2樓 3房(室)2廳2衛 1954萬",
+      "rawText": "光復靜巷稀有透天 新北市板橋區光復街 透天厝 建坪35.76 1~2/2樓 3房(室)2廳2衛 1954萬",
+      "patternInfo": {
+        "room": 3,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": 0,
+        "addLivingRoom": 1,
+        "addBathRoom": 1
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 2,
+        "upFloor": 2
+      }
     }
   ],
   "paginationGuard": true,
   "paginationGuardVersion": "api-all-pages-v1",
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 72,
-    "afterCount": 72,
+    "beforeCount": 73,
+    "afterCount": 73,
     "removedCount": 0,
     "collisionIds": [],
     "remainingCollisionIds": [],
@@ -2508,7 +2539,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-16T01:14:27+00:00",
+    "generatedAt": "2026-10-16T04:48:50+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
