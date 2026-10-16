@@ -30,6 +30,17 @@ if GAP_PATH.exists() and SNAPSHOT_PATH.exists():
 
 text = PATH.read_text(encoding='utf-8')
 
+# Standalone competitor-store R420 panel was removed from Preview. Strip any
+# legacy injected copy on every rebuild; independent store tracking is untouched.
+text = re.sub(
+    r'\n<section class="panel r420-panel" id="r420Panel" hidden>[\s\S]*?</section>',
+    '',
+    text,
+    count=1,
+)
+text = re.sub(r'\n?<link rel="stylesheet" href="r420-widget\.css\?v=[^"]+"\s*/>', '', text)
+text = re.sub(r'\n?<script src="r420-widget\.js\?v=[^"]+"></script>', '', text)
+
 # Security is fail-closed: the canonical Preview must already contain the
 # inline guard before any UI patching or publication can continue.
 if 'BQM_INLINE_AUTH_V5' not in text:
@@ -233,7 +244,6 @@ PATH.write_text(text, encoding='utf-8')
 # the off-market renderer on top. Rental workflow is data-only and never owns index.html.
 subprocess.run([sys.executable, 'scripts/patch_rental_preview_ui.py'], check=True)
 subprocess.run([sys.executable, 'scripts/patch_offmarket_ui.py'], check=True)
-subprocess.run([sys.executable, 'scripts/patch_r420_preview_ui.py'], check=True)
 subprocess.run([sys.executable, 'scripts/patch_rakuya_integrated_ui.py'], check=True)
 
 final_text = PATH.read_text(encoding='utf-8')
@@ -260,8 +270,6 @@ final_required = [
     '<option value="removed">已下架</option>',
     'GAP.recentOffMarketGroups||[]',
     '下架：${fmt(g.removedAt)}',
-    'id="r420Panel"',
-    'r420-widget.js',
     'data-source="rakuya"',
     'data-source="houseprice"',
     'GAP.rakuyaSnapshot',
@@ -277,7 +285,10 @@ if final_missing:
 if 'id="rakuyaPanel"' in final_text or 'rakuya-widget.js' in final_text:
     raise RuntimeError('Canonical Preview UI composition failed; standalone Rakuya UI remains')
 
-print('Preview UI patched and hardened with canonical rental + off-market + R420 + integrated Rakuya composition')
+if 'id="r420Panel"' in final_text or 'r420-widget.js' in final_text or 'r420-widget.css' in final_text:
+    raise RuntimeError('Removed R420 standalone panel must not reappear in Preview')
+
+print('Preview UI patched with rental + off-market + integrated Rakuya composition (R420 panel removed)')
 
 try:
     import validate_scheme_a_preview_v3 as validator
