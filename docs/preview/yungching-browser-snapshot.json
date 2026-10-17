@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-17T06:54:17+00:00",
+  "capturedAt": "2026-10-17T10:33:59+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -206,7 +206,7 @@
     },
     "板橋區三民路二段": {
       "mainHttp": 200,
-      "count": 27,
+      "count": 28,
       "primarySearchUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw?od=80",
       "confirmationUsed": false,
       "primaryHttp": 200,
@@ -215,10 +215,10 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 62488,
+      "primaryApiListDataLength": 64472,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
-      "roadTextCount": 27,
+      "roadTextCount": 28,
       "summary": [],
       "searchUrl": "https://buy.yungching.com.tw/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5&filter=0&pg=1&ps=30",
       "loadRounds": 0,
@@ -261,7 +261,8 @@
           "7516413",
           "7521423",
           "7552986",
-          "7559748"
+          "7559748",
+          "7564581"
         ]
       },
       "paginationPageRawNewIds": {
@@ -292,21 +293,22 @@
           "7516413",
           "7521423",
           "7552986",
-          "7559748"
+          "7559748",
+          "7564581"
         ]
       },
-      "rawHouseIdCount": 30,
-      "rawExactAddressTextCount": 27,
+      "rawHouseIdCount": 31,
+      "rawExactAddressTextCount": 28,
       "paginationError": null,
-      "apiTotalCount": 27,
-      "apiTotalItemCount": 28,
-      "apiRawRowCount": 30,
-      "apiUniqueRowCount": 30,
+      "apiTotalCount": 28,
+      "apiTotalItemCount": 29,
+      "apiRawRowCount": 31,
+      "apiUniqueRowCount": 31,
       "emptyResultVerified": false,
       "skippedConfirmedEmpty": false,
       "transportEvidence": "official_api_v2_decrypted",
       "available": true,
-      "rawCountBeforeIdIntegrity": 27,
+      "rawCountBeforeIdIntegrity": 28,
       "idIntegrityRemoved": 0,
       "mode": "yungching_official_api",
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
@@ -536,7 +538,7 @@
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     }
   },
-  "listingCount": 72,
+  "listingCount": 73,
   "listings": [
     {
       "id": "7514442",
@@ -917,33 +919,6 @@
       }
     },
     {
-      "id": "6481434",
-      "road": "板橋區中山路二段",
-      "title": "大空間花園露臺商業用途好貸",
-      "price": 3458,
-      "area": 63.25,
-      "floor": "2/12樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "辦公商業大樓",
-      "url": "https://buy.yungching.com.tw/house/6481434",
-      "sourceMode": "yungching_official_api",
-      "text": "大空間花園露臺商業用途好貸 新北市板橋區中山路二段 辦公商業大樓 建坪63.25 2/12樓 1房(室)3廳1衛 3458萬",
-      "rawText": "大空間花園露臺商業用途好貸 新北市板橋區中山路二段 辦公商業大樓 建坪63.25 2/12樓 1房(室)3廳1衛 3458萬",
-      "patternInfo": {
-        "room": 1,
-        "livingRoom": 3,
-        "bathRoom": 1,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 2,
-        "toFloor": 2,
-        "upFloor": 12
-      }
-    },
-    {
       "id": "6327691",
       "road": "板橋區中山路二段",
       "title": "埔墘中山路美寓歡迎預約賞屋",
@@ -968,6 +943,33 @@
         "fromFloor": 5,
         "toFloor": 5,
         "upFloor": 5
+      }
+    },
+    {
+      "id": "6481434",
+      "road": "板橋區中山路二段",
+      "title": "大空間花園露臺商業用途好貸",
+      "price": 3458,
+      "area": 63.25,
+      "floor": "2/12樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "辦公商業大樓",
+      "url": "https://buy.yungching.com.tw/house/6481434",
+      "sourceMode": "yungching_official_api",
+      "text": "大空間花園露臺商業用途好貸 新北市板橋區中山路二段 辦公商業大樓 建坪63.25 2/12樓 1房(室)3廳1衛 3458萬",
+      "rawText": "大空間花園露臺商業用途好貸 新北市板橋區中山路二段 辦公商業大樓 建坪63.25 2/12樓 1房(室)3廳1衛 3458萬",
+      "patternInfo": {
+        "room": 1,
+        "livingRoom": 3,
+        "bathRoom": 1,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 2,
+        "toFloor": 2,
+        "upFloor": 12
       }
     },
     {
@@ -2084,18 +2086,45 @@
       }
     },
     {
+      "id": "7564581",
+      "road": "板橋區三民路二段",
+      "title": "正泰一樓邊間好停美寓",
+      "price": 2349,
+      "area": 33.69,
+      "floor": "1/5樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7564581",
+      "sourceMode": "yungching_official_api",
+      "text": "正泰一樓邊間好停美寓 新北市板橋區三民路二段 公寓 建坪33.69 1/5樓 3房(室)2廳2衛 2349萬",
+      "rawText": "正泰一樓邊間好停美寓 新北市板橋區三民路二段 公寓 建坪33.69 1/5樓 3房(室)2廳2衛 2349萬",
+      "patternInfo": {
+        "room": 3,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 1,
+        "upFloor": 5
+      }
+    },
+    {
       "id": "7559748",
       "road": "板橋區三民路二段",
       "title": "板新捷運近公園鼎加美寓",
-      "price": 1388,
+      "price": 1280,
       "area": 22.83,
       "floor": "5/5樓",
       "address": "新北市板橋區三民路二段",
       "type": "公寓",
       "url": "https://buy.yungching.com.tw/house/7559748",
       "sourceMode": "yungching_official_api",
-      "text": "板新捷運近公園鼎加美寓 新北市板橋區三民路二段 公寓 建坪22.83 5/5樓 5房(室)3廳2衛 1388萬",
-      "rawText": "板新捷運近公園鼎加美寓 新北市板橋區三民路二段 公寓 建坪22.83 5/5樓 5房(室)3廳2衛 1388萬",
+      "text": "板新捷運近公園鼎加美寓 新北市板橋區三民路二段 公寓 建坪22.83 5/5樓 5房(室)3廳2衛 1280萬",
+      "rawText": "板新捷運近公園鼎加美寓 新北市板橋區三民路二段 公寓 建坪22.83 5/5樓 5房(室)3廳2衛 1280萬",
       "patternInfo": {
         "room": 5,
         "livingRoom": 3,
@@ -2141,15 +2170,15 @@
       "id": "7452730",
       "road": "板橋區三民路二段",
       "title": "國泰建設方正前後陽台三房附加代收垃圾",
-      "price": 1380,
+      "price": 1498,
       "area": 33.53,
       "floor": "5/5樓",
       "address": "新北市板橋區三民路二段",
       "type": "公寓",
       "url": "https://buy.yungching.com.tw/house/7452730",
       "sourceMode": "yungching_official_api",
-      "text": "國泰建設方正前後陽台三房附加代收垃圾 新北市板橋區三民路二段 公寓 建坪33.53 5/5樓 6房(室)4廳3衛 1380萬",
-      "rawText": "國泰建設方正前後陽台三房附加代收垃圾 新北市板橋區三民路二段 公寓 建坪33.53 5/5樓 6房(室)4廳3衛 1380萬",
+      "text": "國泰建設方正前後陽台三房附加代收垃圾 新北市板橋區三民路二段 公寓 建坪33.53 5/5樓 6房(室)4廳3衛 1498萬",
+      "rawText": "國泰建設方正前後陽台三房附加代收垃圾 新北市板橋區三民路二段 公寓 建坪33.53 5/5樓 6房(室)4廳3衛 1498萬",
       "patternInfo": {
         "room": 6,
         "livingRoom": 4,
@@ -2493,8 +2522,8 @@
   "paginationGuardVersion": "api-all-pages-v1",
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 72,
-    "afterCount": 72,
+    "beforeCount": 73,
+    "afterCount": 73,
     "removedCount": 0,
     "collisionIds": [],
     "remainingCollisionIds": [],
@@ -2510,7 +2539,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-17T06:54:30+00:00",
+    "generatedAt": "2026-10-17T10:34:14+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
