@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-10-21T23:49:02+00:00",
+  "verifiedAt": "2026-10-22T03:34:27+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-10-21T23:45:57+00:00",
+  "sourceDataUpdatedAt": "2026-10-22T03:31:36+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-10-21T23:48:57+00:00",
+    "generatedAt": "2026-10-22T03:34:19+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-10-21T23:44:54+00:00",
+    "sourceRunCheckedAt": "2026-10-22T03:30:18+00:00",
     "activeSinyiCount": 68,
     "matchedOfficialCount": 68,
     "appliedCount": 68,
@@ -30,7 +30,7 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-10-21T23:48:50+00:00",
+    "updatedAt": "2026-10-22T03:34:06+00:00",
     "status": "ok",
     "totalCount": 238,
     "uniqueListingCount": 238,
@@ -72,20 +72,30 @@
       }
     ],
     "changes": {
-      "newCount": 0,
-      "newIds": [],
+      "newCount": 4,
+      "newIds": [
+        "01598235941111d",
+        "03385b35941051c",
+        "08ec68359410617",
+        "09320935941063b"
+      ],
       "priceChangeCount": 0,
       "priceChanges": [],
-      "removedCount": 0,
-      "removedIds": [],
-      "currentChangeCount": 0
+      "removedCount": 4,
+      "removedIds": [
+        "0a64a5358477147",
+        "0b62ff35847719e",
+        "0dc4cd359310453",
+        "0f27df358477011"
+      ],
+      "currentChangeCount": 8
     },
     "complete": true
   },
   "rakuyaGrouping": {
     "inputCount": 238,
     "regroupedCount": 128,
-    "mergedClusterCount": 51,
+    "mergedClusterCount": 50,
     "absorbedCount": 110,
     "attachedToExistingGroupCount": 96,
     "standaloneGroupCount": 32,
@@ -95,7 +105,7 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-10-21T22:00:18+00:00",
+    "updatedAt": "2026-10-22T03:31:02+00:00",
     "status": "ok",
     "totalCount": 59,
     "uniqueListingCount": 59,
@@ -180,17 +190,17 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-10-21T23:49:02+00:00",
+    "auditedAt": "2026-10-22T03:34:27+00:00",
     "propertyGroupCount": 161,
     "companyListingCount": 73,
     "companyMatchCount": 42,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 290
+    "weakIdentityAlreadyMergedPairCount": 283
   },
-  "snapshotCapturedAt": "2026-10-21T23:48:35+00:00",
-  "companySnapshotCapturedAt": "2026-10-21T23:48:35+00:00",
-  "companyGapGeneratedAt": "2026-10-21T23:49:00+00:00",
+  "snapshotCapturedAt": "2026-10-22T03:33:52+00:00",
+  "companySnapshotCapturedAt": "2026-10-22T03:33:52+00:00",
+  "companyGapGeneratedAt": "2026-10-22T03:34:24+00:00",
   "browserListingCount": 73,
   "companyListingCount": 73,
   "propertyGroupCount": 161,
@@ -290,7 +300,7 @@
   "candidatesWithFloor": 158,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-21T23:48:49+00:00",
+    "generatedAt": "2026-10-22T03:34:06+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
