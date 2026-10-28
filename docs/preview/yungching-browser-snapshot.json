@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-28T19:04:06+00:00",
+  "capturedAt": "2026-10-28T22:49:11+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -1732,33 +1732,6 @@
       }
     },
     {
-      "id": "7145115",
-      "road": "板橋區三民路二段",
-      "title": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福",
-      "price": 2313,
-      "area": 30.04,
-      "floor": "9/11樓",
-      "address": "新北市板橋區三民路二段",
-      "type": "住宅大樓",
-      "url": "https://buy.yungching.com.tw/house/7145115",
-      "sourceMode": "yungching_official_api",
-      "text": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
-      "rawText": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
-      "patternInfo": {
-        "room": 2,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 9,
-        "toFloor": 9,
-        "upFloor": 11
-      }
-    },
-    {
       "id": "7145052",
       "road": "板橋區三民路二段",
       "title": "全新可談8樓三房",
@@ -1782,6 +1755,33 @@
       "floorInfo": {
         "fromFloor": 8,
         "toFloor": 8,
+        "upFloor": 11
+      }
+    },
+    {
+      "id": "7145115",
+      "road": "板橋區三民路二段",
+      "title": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福",
+      "price": 2313,
+      "area": 30.04,
+      "floor": "9/11樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7145115",
+      "sourceMode": "yungching_official_api",
+      "text": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
+      "rawText": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
+      "patternInfo": {
+        "room": 2,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 9,
+        "toFloor": 9,
         "upFloor": 11
       }
     },
@@ -2539,7 +2539,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-28T19:04:28+00:00",
+    "generatedAt": "2026-10-28T22:49:26+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
