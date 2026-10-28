@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-28T03:03:46+00:00",
+  "capturedAt": "2026-10-28T06:48:44+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -20,7 +20,7 @@
   "roadStatus": {
     "板橋區中山路二段": {
       "mainHttp": 200,
-      "count": 32,
+      "count": 31,
       "primarySearchUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw?od=80",
       "confirmationUsed": false,
       "primaryHttp": 200,
@@ -29,10 +29,10 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 80300,
+      "primaryApiListDataLength": 78384,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
-      "roadTextCount": 32,
+      "roadTextCount": 31,
       "summary": [],
       "searchUrl": "https://buy.yungching.com.tw/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5&filter=0&pg=1&ps=30",
       "loadRounds": 0,
@@ -70,10 +70,10 @@
           "7310666",
           "7327430",
           "7359219",
-          "7410045",
           "7443995",
           "7455140",
           "7460476",
+          "7472136",
           "7514442",
           "7532475",
           "7532819",
@@ -81,8 +81,7 @@
         ],
         "2": [
           "6521665",
-          "6948619",
-          "7472136"
+          "6948619"
         ]
       },
       "paginationPageRawNewIds": {
@@ -108,10 +107,10 @@
           "7310666",
           "7327430",
           "7359219",
-          "7410045",
           "7443995",
           "7455140",
           "7460476",
+          "7472136",
           "7514442",
           "7532475",
           "7532819",
@@ -119,22 +118,21 @@
         ],
         "2": [
           "6521665",
-          "6948619",
-          "7472136"
+          "6948619"
         ]
       },
-      "rawHouseIdCount": 38,
-      "rawExactAddressTextCount": 32,
+      "rawHouseIdCount": 37,
+      "rawExactAddressTextCount": 31,
       "paginationError": null,
-      "apiTotalCount": 36,
-      "apiTotalItemCount": 37,
-      "apiRawRowCount": 39,
-      "apiUniqueRowCount": 38,
+      "apiTotalCount": 35,
+      "apiTotalItemCount": 36,
+      "apiRawRowCount": 38,
+      "apiUniqueRowCount": 37,
       "emptyResultVerified": false,
       "skippedConfirmedEmpty": false,
       "transportEvidence": "official_api_v2_decrypted",
       "available": true,
-      "rawCountBeforeIdIntegrity": 32,
+      "rawCountBeforeIdIntegrity": 31,
       "idIntegrityRemoved": 0,
       "mode": "yungching_official_api",
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
@@ -215,7 +213,7 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 62360,
+      "primaryApiListDataLength": 62380,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
       "roadTextCount": 28,
@@ -538,7 +536,7 @@
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     }
   },
-  "listingCount": 73,
+  "listingCount": 72,
   "listings": [
     {
       "id": "7514442",
@@ -1024,33 +1022,6 @@
         "fromFloor": 4,
         "toFloor": 4,
         "upFloor": 5
-      }
-    },
-    {
-      "id": "7410045",
-      "road": "板橋區中山路二段",
-      "title": "中山大空間三樓,房間皆可放雙人床",
-      "price": 1688,
-      "area": 37.83,
-      "floor": "3/4樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "公寓",
-      "url": "https://buy.yungching.com.tw/house/7410045",
-      "sourceMode": "yungching_official_api",
-      "text": "中山大空間三樓,房間皆可放雙人床 新北市板橋區中山路二段 公寓 建坪37.83 3/4樓 5房(室)2廳2衛 1688萬",
-      "rawText": "中山大空間三樓,房間皆可放雙人床 新北市板橋區中山路二段 公寓 建坪37.83 3/4樓 5房(室)2廳2衛 1688萬",
-      "patternInfo": {
-        "room": 5,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 3,
-        "toFloor": 3,
-        "upFloor": 4
       }
     },
     {
@@ -2005,33 +1976,6 @@
       }
     },
     {
-      "id": "7521423",
-      "road": "板橋區三民路二段",
-      "title": "板橋埔墘大兩房高樓邊間景觀宅",
-      "price": 2038,
-      "area": 35.83,
-      "floor": "12/12樓",
-      "address": "新北市板橋區三民路二段",
-      "type": "住宅大樓",
-      "url": "https://buy.yungching.com.tw/house/7521423",
-      "sourceMode": "yungching_official_api",
-      "text": "板橋埔墘大兩房高樓邊間景觀宅 新北市板橋區三民路二段 住宅大樓 建坪35.83 12/12樓 2房(室)2廳2衛 2038萬",
-      "rawText": "板橋埔墘大兩房高樓邊間景觀宅 新北市板橋區三民路二段 住宅大樓 建坪35.83 12/12樓 2房(室)2廳2衛 2038萬",
-      "patternInfo": {
-        "room": 2,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 12,
-        "toFloor": 12,
-        "upFloor": 12
-      }
-    },
-    {
       "id": "7512495",
       "road": "板橋區三民路二段",
       "title": "板橋埔墘方正三房採光三樓美寓",
@@ -2056,6 +2000,33 @@
         "fromFloor": 3,
         "toFloor": 3,
         "upFloor": 5
+      }
+    },
+    {
+      "id": "7521423",
+      "road": "板橋區三民路二段",
+      "title": "板橋埔墘大兩房高樓邊間景觀宅",
+      "price": 2038,
+      "area": 35.83,
+      "floor": "12/12樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7521423",
+      "sourceMode": "yungching_official_api",
+      "text": "板橋埔墘大兩房高樓邊間景觀宅 新北市板橋區三民路二段 住宅大樓 建坪35.83 12/12樓 2房(室)2廳2衛 2038萬",
+      "rawText": "板橋埔墘大兩房高樓邊間景觀宅 新北市板橋區三民路二段 住宅大樓 建坪35.83 12/12樓 2房(室)2廳2衛 2038萬",
+      "patternInfo": {
+        "room": 2,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 12,
+        "toFloor": 12,
+        "upFloor": 12
       }
     },
     {
@@ -2115,7 +2086,7 @@
     {
       "id": "7564581",
       "road": "板橋區三民路二段",
-      "title": "正泰一樓邊間好停美寓",
+      "title": "國泰建設一樓邊間好停美寓",
       "price": 2349,
       "area": 33.69,
       "floor": "1/5樓",
@@ -2123,8 +2094,8 @@
       "type": "公寓",
       "url": "https://buy.yungching.com.tw/house/7564581",
       "sourceMode": "yungching_official_api",
-      "text": "正泰一樓邊間好停美寓 新北市板橋區三民路二段 公寓 建坪33.69 1/5樓 3房(室)2廳2衛 2349萬",
-      "rawText": "正泰一樓邊間好停美寓 新北市板橋區三民路二段 公寓 建坪33.69 1/5樓 3房(室)2廳2衛 2349萬",
+      "text": "國泰建設一樓邊間好停美寓 新北市板橋區三民路二段 公寓 建坪33.69 1/5樓 3房(室)2廳2衛 2349萬",
+      "rawText": "國泰建設一樓邊間好停美寓 新北市板橋區三民路二段 公寓 建坪33.69 1/5樓 3房(室)2廳2衛 2349萬",
       "patternInfo": {
         "room": 3,
         "livingRoom": 2,
@@ -2169,7 +2140,7 @@
     {
       "id": "7452730",
       "road": "板橋區三民路二段",
-      "title": "國泰建設方正前後陽台三房附加代收垃圾",
+      "title": "國泰建設前後陽台三房免追垃圾車",
       "price": 1498,
       "area": 33.53,
       "floor": "5/5樓",
@@ -2177,8 +2148,8 @@
       "type": "公寓",
       "url": "https://buy.yungching.com.tw/house/7452730",
       "sourceMode": "yungching_official_api",
-      "text": "國泰建設方正前後陽台三房附加代收垃圾 新北市板橋區三民路二段 公寓 建坪33.53 5/5樓 6房(室)4廳3衛 1498萬",
-      "rawText": "國泰建設方正前後陽台三房附加代收垃圾 新北市板橋區三民路二段 公寓 建坪33.53 5/5樓 6房(室)4廳3衛 1498萬",
+      "text": "國泰建設前後陽台三房免追垃圾車 新北市板橋區三民路二段 公寓 建坪33.53 5/5樓 6房(室)4廳3衛 1498萬",
+      "rawText": "國泰建設前後陽台三房免追垃圾車 新北市板橋區三民路二段 公寓 建坪33.53 5/5樓 6房(室)4廳3衛 1498萬",
       "patternInfo": {
         "room": 6,
         "livingRoom": 4,
@@ -2522,8 +2493,8 @@
   "paginationGuardVersion": "api-all-pages-v1",
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 73,
-    "afterCount": 73,
+    "beforeCount": 72,
+    "afterCount": 72,
     "removedCount": 0,
     "collisionIds": [],
     "remainingCollisionIds": [],
@@ -2539,7 +2510,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-28T03:04:02+00:00",
+    "generatedAt": "2026-10-28T06:48:56+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
