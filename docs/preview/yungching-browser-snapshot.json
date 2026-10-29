@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-29T13:49:28+00:00",
+  "capturedAt": "2026-10-29T17:35:01+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -844,33 +844,6 @@
       }
     },
     {
-      "id": "6996810",
-      "road": "板橋區中山路二段",
-      "title": "板新捷運艾美酒店興隆市場旁熱鬧金店面",
-      "price": 1858,
-      "area": 15.52,
-      "floor": "1/14樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "店面",
-      "url": "https://buy.yungching.com.tw/house/6996810",
-      "sourceMode": "yungching_official_api",
-      "text": "板新捷運艾美酒店興隆市場旁熱鬧金店面 新北市板橋區中山路二段 店面 建坪15.52 1/14樓 0房(室)1廳1衛 1858萬",
-      "rawText": "板新捷運艾美酒店興隆市場旁熱鬧金店面 新北市板橋區中山路二段 店面 建坪15.52 1/14樓 0房(室)1廳1衛 1858萬",
-      "patternInfo": {
-        "room": 0,
-        "livingRoom": 1,
-        "bathRoom": 1,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 1,
-        "upFloor": 14
-      }
-    },
-    {
       "id": "6705632",
       "road": "板橋區中山路二段",
       "title": "收租置產商辦首選",
@@ -895,6 +868,33 @@
         "fromFloor": 6,
         "toFloor": 6,
         "upFloor": 12
+      }
+    },
+    {
+      "id": "6996810",
+      "road": "板橋區中山路二段",
+      "title": "板新捷運艾美酒店興隆市場旁熱鬧金店面",
+      "price": 1858,
+      "area": 15.52,
+      "floor": "1/14樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "店面",
+      "url": "https://buy.yungching.com.tw/house/6996810",
+      "sourceMode": "yungching_official_api",
+      "text": "板新捷運艾美酒店興隆市場旁熱鬧金店面 新北市板橋區中山路二段 店面 建坪15.52 1/14樓 0房(室)1廳1衛 1858萬",
+      "rawText": "板新捷運艾美酒店興隆市場旁熱鬧金店面 新北市板橋區中山路二段 店面 建坪15.52 1/14樓 0房(室)1廳1衛 1858萬",
+      "patternInfo": {
+        "room": 0,
+        "livingRoom": 1,
+        "bathRoom": 1,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 1,
+        "upFloor": 14
       }
     },
     {
@@ -2626,7 +2626,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-29T13:49:43+00:00",
+    "generatedAt": "2026-10-29T17:35:16+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,

@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-10-29T13:50:05+00:00",
+  "verifiedAt": "2026-10-29T17:35:35+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-10-29T13:46:58+00:00",
+  "sourceDataUpdatedAt": "2026-10-29T17:32:07+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-10-29T13:49:54+00:00",
+    "generatedAt": "2026-10-29T17:35:24+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-10-29T13:45:28+00:00",
+    "sourceRunCheckedAt": "2026-10-29T17:30:21+00:00",
     "activeSinyiCount": 69,
     "matchedOfficialCount": 69,
     "appliedCount": 69,
@@ -30,7 +30,7 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-10-29T13:49:43+00:00",
+    "updatedAt": "2026-10-29T17:35:16+00:00",
     "status": "ok",
     "totalCount": 229,
     "uniqueListingCount": 229,
@@ -95,7 +95,7 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-10-29T13:40:38+00:00",
+    "updatedAt": "2026-10-29T17:31:31+00:00",
     "status": "ok",
     "totalCount": 58,
     "uniqueListingCount": 58,
@@ -174,28 +174,28 @@
   "companyNearTieGuard": {
     "enabled": true,
     "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-    "examinedCompanyMatchCount": 42,
+    "examinedCompanyMatchCount": 43,
     "downgradedCount": 0,
     "remainingAutoNearTieCount": 0,
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-10-29T13:50:05+00:00",
-    "propertyGroupCount": 167,
+    "auditedAt": "2026-10-29T17:35:35+00:00",
+    "propertyGroupCount": 169,
     "companyListingCount": 76,
-    "companyMatchCount": 42,
+    "companyMatchCount": 43,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 643
+    "weakIdentityAlreadyMergedPairCount": 637
   },
-  "snapshotCapturedAt": "2026-10-29T13:49:28+00:00",
-  "companySnapshotCapturedAt": "2026-10-29T13:49:28+00:00",
-  "companyGapGeneratedAt": "2026-10-29T13:50:00+00:00",
+  "snapshotCapturedAt": "2026-10-29T17:35:01+00:00",
+  "companySnapshotCapturedAt": "2026-10-29T17:35:01+00:00",
+  "companyGapGeneratedAt": "2026-10-29T17:35:30+00:00",
   "browserListingCount": 76,
   "companyListingCount": 76,
-  "propertyGroupCount": 167,
-  "rawListingCount": 614,
-  "comparisonCount": 167,
+  "propertyGroupCount": 169,
+  "rawListingCount": 617,
+  "comparisonCount": 169,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -259,16 +259,16 @@
     }
   },
   "counts": {
-    "company_match": 42,
+    "company_match": 43,
     "review": 5,
-    "missing": 120,
+    "missing": 121,
     "unavailable": 0
   },
   "crossPlatformMergedGroupCount": 103,
   "crossSourceReviewCount": 10,
   "preview591Regroup": {
-    "original591TopLevel": 81,
-    "regrouped591TopLevel": 71,
+    "original591TopLevel": 83,
+    "regrouped591TopLevel": 73,
     "regrouped591ClusterCount": 10,
     "regrouped591AbsorbedCount": 10,
     "clusterFloorConflictBlocked": 0
@@ -286,11 +286,11 @@
     "removed": [],
     "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
   },
-  "candidateCount": 165,
-  "candidatesWithFloor": 165,
+  "candidateCount": 167,
+  "candidatesWithFloor": 167,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-29T13:49:43+00:00",
+    "generatedAt": "2026-10-29T17:35:16+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
