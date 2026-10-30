@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-30T22:32:19+00:00",
+  "updatedAt": "2026-10-30T22:43:05+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -88,12 +88,12 @@
     },
     "樂屋網": {
       "status": "ok",
-      "totalCount": 29,
+      "totalCount": 28,
       "logs": [
         "板橋區中山路二段 樂屋AJAX第1頁：符合板橋指定路段 17／新增 17／來源總數 23",
-        "板橋區中山路二段 樂屋AJAX第2頁：符合板橋指定路段 2／新增 2／來源總數 23",
-        "板橋區中山路二段 樂屋精準路段過濾：來源搜尋總數 23 筆，保留精準路段 19 筆",
-        "板橋區中山路二段 樂屋租屋完成，共 19 筆",
+        "板橋區中山路二段 樂屋AJAX第2頁：符合板橋指定路段 2／新增 1／來源總數 23",
+        "板橋區中山路二段 樂屋精準路段過濾：來源搜尋總數 23 筆，保留精準路段 18 筆",
+        "板橋區中山路二段 樂屋租屋完成，共 18 筆",
         "板橋區三民路一段 樂屋AJAX第1頁：符合板橋指定路段 8／新增 8／來源總數 8",
         "板橋區三民路一段 樂屋租屋完成，共 8 筆",
         "板橋區光復街 樂屋AJAX第1頁：符合板橋指定路段 0／新增 0／來源總數 1",
@@ -113,7 +113,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 95,
-      "checkedAt": "2026-10-30T22:32:34+00:00",
+      "checkedAt": "2026-10-30T22:43:13+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 56",
         "板橋區中山路二段 5168 API第2頁：符合 19／新增 19／來源總數 56",
@@ -138,13 +138,13 @@
     }
   },
   "counts": {
-    "total": 250,
+    "total": 249,
     "sinyi": 17,
     "591": 109,
-    "rakuya": 29,
+    "rakuya": 28,
     "houseprice": 95,
     "roads": {
-      "板橋區中山路二段": 142,
+      "板橋區中山路二段": 141,
       "板橋區三民路一段": 31,
       "板橋區光復街": 1,
       "板橋區三民路二段": 54,
@@ -2029,20 +2029,6 @@
       "floor": "1/14樓",
       "sourceUpdatedRaw": "1天前",
       "firstSeenAt": "2026-10-30T19:47:34+00:00"
-    },
-    {
-      "id": "樂屋租屋:01053a354566853",
-      "source": "樂屋網",
-      "houseId": "01053a354566853",
-      "road": "板橋區中山路二段",
-      "title": "板橋美套房",
-      "address": "板橋區中山路二段",
-      "rent": 15000.0,
-      "size": 7.0,
-      "url": "https://rent.rakuya.com.tw/item/01053a354566853?from=list_keyword&func=list_rent",
-      "floor": "5/5樓",
-      "sourceUpdatedRaw": "1天前",
-      "firstSeenAt": "2026-10-30T22:02:27+00:00"
     },
     {
       "id": "樂屋租屋:055a38355214644",
@@ -4289,10 +4275,10 @@
       "firstSeenAt": "2026-10-07T10:17:45+00:00"
     }
   ],
-  "elapsedSeconds": 102.89,
+  "elapsedSeconds": 105.18,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
   "newListingPolicy": "firstSeenAt_on_or_after_baseline_and_within_3_days",
-  "newListingCount": 38
+  "newListingCount": 37
 }
