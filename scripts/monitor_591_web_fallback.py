@@ -5,6 +5,7 @@ successful snapshot. The canonical monitor retains its previous data on failure.
 """
 import asyncio
 import re
+import time
 from urllib.parse import urlencode
 
 from playwright.async_api import async_playwright
@@ -12,9 +13,9 @@ from playwright.async_api import async_playwright
 import monitor_pages as core
 
 WEB_API = "https://bff-house.591.com.tw/v1/web/sale/list"
-WEB_ENTRY = "https://sale.591.com.tw/?shType=list&regionid=3&sectionid=26"
+WEB_ENTRY = "https://sale.591.com.tw/?regionid=3&section=26&firstRow=0&shType=list&type=2"
 PAGE_SIZE = 30
-MAX_PAGES = 100
+MAX_PAGES = 400
 MAX_SOURCE_ROWS = PAGE_SIZE * MAX_PAGES
 
 
@@ -126,12 +127,16 @@ async def fetch_web_sale_fallback():
                 collected = []
                 seen_ids = set()
                 for page_no in range(MAX_PAGES):
+                    # Match the real HTTP 200 request captured in a desktop
+                    # Chrome session. The API uses "section", not "sectionid".
                     params = {
-                        "type": "2", "shType": "list",
-                        "regionid": "3", "sectionid": "26",
-                        "sectionidStr": "26", "category": "1",
+                        "timestamp": str(int(time.time() * 1000)),
+                        "type": "2",
+                        "category": "1",
+                        "regionid": "3",
+                        "section": "26",
                         "firstRow": str(page_no * PAGE_SIZE),
-                        "totalRows": str(total or 0),
+                        "shType": "list",
                     }
                     url = WEB_API + "?" + urlencode(params)
                     response = await context.request.get(
