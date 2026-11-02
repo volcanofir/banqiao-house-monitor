@@ -1,0 +1,57 @@
+name: 591 mobile redirect diagnostic (read-only)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/diagnose-591-mobile-redirect.yml"
+      - "scripts/diagnose_591_mobile_redirect.py"
+
+permissions:
+  contents: read
+
+jobs:
+  check-mobile-entry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate diagnostic syntax
+        run: python -m py_compile scripts/diagnose_591_mobile_redirect.py
+
+      - name: Install diagnostic dependency
+        run: pip install playwright
+
+      - name: Check mobile redirect via direct GitHub network
+        run: python scripts/diagnose_591_mobile_redirect.py --label direct
+
+      - name: Connect existing Surfshark tunnel
+        id: vpn
+        continue-on-error: true
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        run: bash scripts/connect_surfshark_wireguard.sh
+
+      - name: Check mobile redirect via Surfshark
+        if: steps.vpn.outcome == 'success'
+        run: python scripts/diagnose_591_mobile_redirect.py --label surfshark
+
+      - name: Disconnect Surfshark
+        if: always() && steps.vpn.outcome == 'success'
+        run: sudo wg-quick down surfshark || true
+
+      - name: Confirm diagnostic is read-only
+        run: |
+          if [ -n "$(git status --porcelain -- docs/data docs/preview state)" ]; then
+            echo "::error::Unexpected data modification during redirect diagnosis."
+            exit 1
+          fi
+          echo "Read-only 591 redirect diagnosis complete; data and preview unchanged."
