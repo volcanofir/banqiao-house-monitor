@@ -15,9 +15,16 @@ URLS = {
         "https://m.591.com.tw/v2/sale?"
         "regionid=3&sectionidStr=26&o=32&streetid=27507&keywords=%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5"
     ),
+    "bare_desktop": "https://sale.591.com.tw/",
     "clean_desktop": (
         "https://sale.591.com.tw/"
         "?regionid=3&section=26&firstRow=0&shType=list&type=2"
+    ),
+    "redirect_style_desktop": (
+        "https://sale.591.com.tw/"
+        "?regionid=3&sectionidStr=26&o=32&streetid=27507"
+        "&keywords=%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5"
+        "&type=2&shType=list&firstRow=0"
     ),
 }
 
@@ -66,10 +73,23 @@ async def check(browser, name, target, environment):
 
         status = "none"
         error = "none"
+        response_header_clues = {}
+        response_block_clues = []
+        response_body_length = 0
         try:
             result = await page.goto(target, wait_until="domcontentloaded", timeout=25000)
             status = result.status if result else "none"
-            await page.wait_for_timeout(9000)
+            if result and result.status >= 400:
+                # Only metadata; never log response bodies, auth or cookies.
+                headers = await result.all_headers()
+                for key in ("server", "content-type", "cf-ray", "x-cache", "x-amz-cf-pop", "via", "x-request-id"):
+                    if key in headers:
+                        # Request IDs are often long, and are not needed verbatim.
+                        response_header_clues[key] = "present" if key in ("cf-ray", "x-request-id") else headers[key][:120]
+                body = (await result.text())[:32768].lower()
+                response_body_length = len(body)
+                response_block_clues = [word for word in ("access denied", "forbidden", "cloudflare", "captcha", "blocked", "request rejected", "reference #", "403") if word in body]
+            await page.wait_for_timeout(4000)
         except Exception as exc:
             error = type(exc).__name__
 
@@ -77,6 +97,8 @@ async def check(browser, name, target, environment):
         print(f"entry={display_url(target)}")
         print(f"navigation_status={status} navigation_error={error}")
         print(f"final_url={display_url(page.url)}")
+        print(f"error_header_clues={response_header_clues}")
+        print(f"error_page_clues={response_block_clues} truncated_body_length={response_body_length}")
         for index, (code, url) in enumerate(documents[:8], 1):
             print(f"document_{index} code={code} {url}")
 
