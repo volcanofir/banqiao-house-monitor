@@ -7,6 +7,7 @@ on:
     paths:
       - ".github/workflows/diagnose-591-mobile-redirect.yml"
       - "scripts/diagnose_591_mobile_redirect.py"
+      - "scripts/diagnose_591_desktop_load.py"
 
 permissions:
   contents: read
@@ -25,13 +26,16 @@ jobs:
           python-version: "3.12"
 
       - name: Validate diagnostic syntax
-        run: python -m py_compile scripts/diagnose_591_mobile_redirect.py
+        run: python -m py_compile scripts/diagnose_591_mobile_redirect.py scripts/diagnose_591_desktop_load.py
 
       - name: Install diagnostic dependency
         run: pip install playwright
 
       - name: Check mobile redirect via direct GitHub network
         run: python scripts/diagnose_591_mobile_redirect.py --label direct
+
+      - name: Inspect 591 desktop page load via direct GitHub network
+        run: python scripts/diagnose_591_desktop_load.py --label direct
 
       - name: Connect existing Surfshark tunnel
         id: vpn
@@ -43,6 +47,10 @@ jobs:
       - name: Check mobile redirect via Surfshark
         if: steps.vpn.outcome == 'success'
         run: python scripts/diagnose_591_mobile_redirect.py --label surfshark
+
+      - name: Inspect 591 desktop page load via Surfshark
+        if: steps.vpn.outcome == 'success'
+        run: python scripts/diagnose_591_desktop_load.py --label surfshark
 
       - name: Disconnect Surfshark
         if: always() && steps.vpn.outcome == 'success'
