@@ -79,8 +79,11 @@ async def inspect():
                                 # never listing values, IDs, addresses or full URLs.
                                 info = await page.evaluate("""() => {
                                     const state = window.__NUXT__?.pinia?.['sale-list'];
-                                    const list = state?.wareList;
-                                    const total = state?.wareTotal;
+                                    // Pinia may expose Vue refs rather than plain arrays.
+                                    const unref = x => x?.__v_isRef ? x.value : x;
+                                    const list = unref(state?.wareList);
+                                    const total = unref(state?.wareTotal);
+                                    const searchParams = unref(state?.searchParams);
                                     const controls = [...document.querySelectorAll('a,button,[role="button"]')];
                                     const pager = controls.filter(e => {
                                         const t = (e.innerText || e.getAttribute('aria-label') || '').trim();
@@ -91,8 +94,11 @@ async def inspect():
                                         nuxt_state_available: !!state,
                                         wareList_array: Array.isArray(list),
                                         wareList_count: Array.isArray(list) ? list.length : null,
+                                        wareList_unwrapped_type: Array.isArray(list) ? "array" : typeof list,
+                                        wareList_field_keys: list && !Array.isArray(list) && typeof list === "object" ? Object.keys(list).sort().slice(0,15) : [],
                                         wareTotal_type: typeof total,
-                                        searchParam_keys: Object.keys(state?.searchParams || {}).sort().slice(0,25),
+                                        wareTotal_number_available: typeof total === "number" || /^\\d+$/.test(String(total)),
+                                        searchParam_keys: Object.keys(searchParams || {}).sort().slice(0,25),
                                         pager_count: pager.length,
                                         pager_labels: pager.map(e => (e.innerText || e.getAttribute('aria-label') || '').trim()).slice(0,14)
                                     };
