@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T20:01:52+00:00",
+  "updatedAt": "2026-11-02T20:16:26+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -113,7 +113,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 94,
-      "checkedAt": "2026-11-02T20:01:59+00:00",
+      "checkedAt": "2026-11-02T20:16:33+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 57",
         "板橋區中山路二段 5168 API第2頁：符合 19／新增 19／來源總數 57",
@@ -1169,19 +1169,6 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
-      "id": "591租屋:22279938",
-      "source": "591",
-      "houseId": "22279938",
-      "road": "板橋區三民路二段",
-      "title": "可移工宿舍🦄可報稅入籍租補🦄可養寵🦄可補習班🦄可開伙",
-      "address": "板橋區三民路二段",
-      "rent": 39500.0,
-      "size": 39.6,
-      "url": "https://rent.591.com.tw/22279938",
-      "floor": "2F/12F",
-      "firstSeenAt": "2026-11-02T16:02:51+00:00"
-    },
-    {
       "id": "591租屋:22195070",
       "source": "591",
       "houseId": "22195070",
@@ -1219,6 +1206,19 @@
       "url": "https://rent.591.com.tw/22270629",
       "floor": "5F/5F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22279938",
+      "source": "591",
+      "houseId": "22279938",
+      "road": "板橋區三民路二段",
+      "title": "可移工宿舍🦄可報稅入籍租補🦄可養寵🦄可補習班🦄可開伙",
+      "address": "板橋區三民路二段",
+      "rent": 39500.0,
+      "size": 39.6,
+      "url": "https://rent.591.com.tw/22279938",
+      "floor": "2F/12F",
+      "firstSeenAt": "2026-11-02T16:02:51+00:00"
     },
     {
       "id": "591租屋:22156740",
@@ -4265,7 +4265,7 @@
       "firstSeenAt": "2026-10-13T21:18:13+00:00"
     }
   ],
-  "elapsedSeconds": 74.08,
+  "elapsedSeconds": 92.28,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
