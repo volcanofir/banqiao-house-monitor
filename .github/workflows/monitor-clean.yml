@@ -8,6 +8,7 @@ on:
       - ".github/workflows/monitor-clean.yml"
       - "scripts/monitor_fast.py"
       - "scripts/monitor_591_web_fallback.py"
+      - "scripts/retry_591_direct_egress.py"
       - "scripts/monitor_pages.py"
       - "scripts/monitor_sinyi_parallel.py"
       - "scripts/sinyi_preview_floor_enrich.py"
@@ -128,7 +129,7 @@ jobs:
 
       - name: Validate crawler Python syntax
         if: steps.gate.outputs.run == 'true'
-        run: python -m py_compile scripts/monitor_fast.py scripts/monitor_591_web_fallback.py scripts/monitor_sinyi_parallel.py
+        run: python -m py_compile scripts/monitor_fast.py scripts/monitor_591_web_fallback.py scripts/retry_591_direct_egress.py scripts/monitor_sinyi_parallel.py
 
       - name: Install shared crawler packages
         if: steps.gate.outputs.run == 'true'
@@ -207,6 +208,26 @@ jobs:
           d['runs']['591']=r
           p.write_text(json.dumps(d,ensure_ascii=False,indent=2),encoding='utf-8')
           PY
+
+      - name: Retry 591 without VPN if source verification failed
+        if: steps.gate.outputs.run == 'true'
+        continue-on-error: true
+        shell: bash
+        run: |
+          if python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('docs/data/listings.json').read_text(encoding='utf-8'))
+          source = (p.get('runs') or {}).get('591') or {}
+          raise SystemExit(0 if source.get('status') != 'ok' else 1)
+          PY
+          then
+            echo "591 Surfshark source failed; trying verified desktop API from direct GitHub egress."
+            sudo wg-quick down surfshark || true
+            python scripts/retry_591_direct_egress.py
+          else
+            echo "591 source already verified; direct egress retry skipped."
+          fi
 
       - name: Normalize and track
         if: steps.gate.outputs.run == 'true'
