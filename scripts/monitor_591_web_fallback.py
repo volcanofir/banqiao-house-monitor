@@ -130,7 +130,7 @@ async def fetch_web_sale_fallback():
                         "type": "2", "shType": "list",
                         "regionid": "3", "sectionid": "26",
                         "sectionidStr": "26", "category": "1",
-                        "firstRow": str(raw_count),
+                        "firstRow": str(page_no * PAGE_SIZE),
                         "totalRows": str(total or 0),
                     }
                     url = WEB_API + "?" + urlencode(params)
@@ -165,9 +165,9 @@ async def fetch_web_sale_fallback():
                         raise RuntimeError(
                             f"591 desktop API page {page_no + 1} empty before completion"
                         )
-                    if len(items) > PAGE_SIZE:
+                    if len(items) > PAGE_SIZE + 3:
                         raise RuntimeError(
-                            f"591 desktop API page {page_no + 1} returned {len(items)} > {PAGE_SIZE}"
+                            f"591 desktop API page {page_no + 1} returned unexpected {len(items)} items"
                         )
 
                     raw_count += len(items)
@@ -175,27 +175,28 @@ async def fetch_web_sale_fallback():
                         if row["id"] not in seen_ids:
                             seen_ids.add(row["id"])
                             collected.append(row)
-                    if page_no == 0 or (page_no + 1) % 10 == 0 or raw_count >= total:
+                    scanned = min((page_no + 1) * PAGE_SIZE, total)
+                    if page_no == 0 or (page_no + 1) % 10 == 0 or scanned >= total:
                         logs.append(
                             f"591 桌面 API 第 {page_no + 1} 頁："
-                            f"{raw_count}/{total} 原始筆，七路段 {len(collected)} 筆"
+                            f"{scanned}/{total} 已掃描（API 回傳 {raw_count}），七路段 {len(collected)} 筆"
                         )
-                    if raw_count >= total:
+                    if scanned >= total:
                         break
                     if len(items) < PAGE_SIZE:
                         raise RuntimeError("591 desktop API premature short page; no snapshot published")
                     if page_no % 8 == 7:
                         await asyncio.sleep(1)
-                if raw_count < total:
+                if scanned < total:
                     raise RuntimeError(
-                        f"591 desktop API incomplete: {raw_count}/{total}"
+                        f"591 desktop API incomplete: {scanned}/{total}"
                     )
                 if not collected:
                     raise RuntimeError(
                         "591 desktop API complete but no monitored-road results"
                     )
                 return collected, True, (
-                    f"591 桌面售屋 API 備援完成：{raw_count}/{total}，"
+                    f"591 桌面售屋 API 備援完成：{scanned}/{total}，
                     f"七路段 {len(collected)} 筆。"
                 ), logs
             finally:
