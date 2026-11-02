@@ -6,6 +6,7 @@ from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
 import monitor_pages as core
 from playwright.async_api import async_playwright
+from monitor_591_web_fallback import fetch_web_sale_fallback
 
 API_591_V1 = "bff-house.591.com.tw/v1/touch/sale/list"
 API_591_V2 = "bff-house.591.com.tw/v2/php-api"
@@ -57,13 +58,15 @@ async def fetch_one_591_road(browser, road, street_id):
 
     await page.route("**/*", route_handler)
     captured = []
+    api_statuses = set()
+    entry_statuses = []
 
     def on_response(response):
         url = response.url
-        if response.status == 200 and (
-            API_591_V1 in url or (API_591_V2 in url and "action=list" in url)
-        ):
-            captured.append(url)
+        if API_591_V1 in url or (API_591_V2 in url and "action=list" in url):
+            api_statuses.add(response.status)
+            if response.status == 200:
+                captured.append(url)
 
     page.on("response", on_response)
 
@@ -74,7 +77,8 @@ async def fetch_one_591_road(browser, road, street_id):
             if round_no == 2:
                 target += f"&_r={int(time.time())}-{round_no}"
             try:
-                await page.goto(target, wait_until="domcontentloaded", timeout=20000)
+                landing = await page.goto(target, wait_until="domcontentloaded", timeout=20000)
+                entry_statuses.append(landing.status if landing else "no-response")
             except Exception as exc:
                 logs.append(f"{road} 暖機第 {round_no} 次導航：{type(exc).__name__}")
 
@@ -91,7 +95,11 @@ async def fetch_one_591_road(browser, road, street_id):
                 break
 
         if not captured:
-            logs.append(f"{road} 暖機失敗：未取得列表 API。")
+            logs.append(
+                f"{road} 暖機失敗：未取得列表 API；"
+                f"入口 HTTP={entry_statuses}、列表 HTTP={sorted(api_statuses)}、"
+                f"最後站台={page.url.split('/')[2] if '://' in page.url else 'unknown'}。"
+            )
             return road_rows, False, logs
 
         logs.append(f"{road} 暖機成功。")
@@ -267,10 +275,49 @@ async def fast_fetch_591():
             logs,
         )
 
+    # Desktop 591 uses a separately maintained API and browser session.
+    # Only promote a complete, plausible seven-road snapshot, never partial data.
+    logs.append("591 手機版抓取不完整，嘗試獨立桌面售屋 API 備援。")
+    try:
+        alt_rows, alt_ok, alt_msg, alt_logs = await asyncio.wait_for(
+            fetch_web_sale_fallback(), timeout=240
+        )
+        logs.extend(alt_logs)
+        if alt_ok:
+            old_active = [
+                x for x in core.load_state().get("listings", [])
+                if x.get("source") == "591" and x.get("active", True)
+            ]
+            previous_by_road = {}
+            incoming_by_road = {}
+            for item in old_active:
+                previous_by_road[item["road"]] = previous_by_road.get(item["road"], 0) + 1
+            for item in alt_rows:
+                incoming_by_road[item["road"]] = incoming_by_road.get(item["road"], 0) + 1
+            missing_roads = [
+                road for road, count in previous_by_road.items()
+                if count >= 2 and incoming_by_road.get(road, 0) == 0
+            ]
+            minimum = max(1, int(len(old_active) * 0.4))
+            if len(alt_rows) < minimum or missing_roads:
+                logs.append(
+                    f"591 桌面備援資料量驗證拒絕：新 {len(alt_rows)}、"
+                    f"先前 {len(old_active)}、最低 {minimum}、缺漏路段 {missing_roads}。"
+                )
+            else:
+                logs.append(f"591 桌面備援各路段數量：{incoming_by_road}")
+                return (
+                    alt_rows, True,
+                    f"591 桌面備援完整成功 7/7 路段，{len(alt_rows)} 筆；"
+                    f"先前手機 API 只成功 {successful_roads}/7 路段。",
+                    logs,
+                )
+    except Exception as exc:
+        logs.append(f"591 桌面備援執行例外：{type(exc).__name__}: {exc}")
     return (
         [],
         False,
-        f"591 Surfshark 自動補抓後仍僅完整成功 {successful_roads}/7 路段，保留上一輪資料；核心耗時 {elapsed} 秒。",
+        f"591 手機 API {successful_roads}/7，桌面備援亦未通過完整性檢查，保留上一輪資料；核心耗時 {elapsed} 秒。",
         logs,
     )
 
@@ -312,15 +359,8 @@ def run_591():
     state = core.load_state()
     rows_591, ok_591, msg_591, logs_591 = asyncio.run(fast_fetch_591())
 
-    previous_591_run = (state.get("runs") or {}).get("591") or {}
-    previous_was_full = "成功 7/7" in (previous_591_run.get("message") or "")
-
-    if ok_591 and not previous_was_full:
-        state["listings"] = [
-            item for item in state.get("listings", [])
-            if item.get("source") != "591"
-        ]
-        state.setdefault("runs", {})["591"] = {}
+    # Preserve previous listing identity/history across error -> success transitions.
+    # Clearing the 591 baseline here would erase firstSeenAt and change history.
 
     core.merge_source(
         state, "591", rows_591, ok_591, msg_591, logs_591, checked_at
