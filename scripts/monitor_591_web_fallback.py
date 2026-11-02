@@ -196,7 +196,7 @@ async def fetch_web_sale_fallback():
                         "591 desktop API complete but no monitored-road results"
                     )
                 return collected, True, (
-                    f"591 桌面售屋 API 備援完成：{scanned}/{total}，
+                    f"591 桌面售屋 API 備援完成：{scanned}/{total}，"
                     f"七路段 {len(collected)} 筆。"
                 ), logs
             finally:
