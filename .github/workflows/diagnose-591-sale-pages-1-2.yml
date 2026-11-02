@@ -1,0 +1,35 @@
+name: 591 user supplied sale pages diagnostic (read-only)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/diagnose-591-sale-pages-1-2.yml"
+      - "scripts/diagnose_591_sale_pages_1_2.py"
+
+permissions:
+  contents: read
+
+jobs:
+  compare-pages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Verify syntax
+        run: python -m py_compile scripts/diagnose_591_sale_pages_1_2.py
+      - name: Install browser dependency
+        run: pip install playwright
+      - name: Compare first and second page from normal mobile browser context
+        run: python scripts/diagnose_591_sale_pages_1_2.py
+      - name: Check canonical data and Preview untouched
+        run: |
+          if [ -n "$(git status --porcelain -- docs/data docs/preview state)" ]; then
+            echo "::error::Diagnostic changed production data or Preview"
+            exit 1
+          fi
+          echo "Read-only check complete; all protected paths unchanged."
