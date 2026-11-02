@@ -1,0 +1,35 @@
+name: 591 mobile homepage navigation diagnostic (read-only)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/diagnose-591-mobile-home-navigation.yml"
+      - "scripts/diagnose_591_mobile_home_navigation.py"
+
+permissions:
+  contents: read
+
+jobs:
+  check-home-navigation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Verify syntax
+        run: python -m py_compile scripts/diagnose_591_mobile_home_navigation.py
+      - name: Install Playwright library
+        run: pip install playwright
+      - name: Inspect official mobile homepage navigation
+        run: python scripts/diagnose_591_mobile_home_navigation.py
+      - name: Confirm protected paths unchanged
+        run: |
+          if [ -n "$(git status --porcelain -- docs/data docs/preview state)" ]; then
+            echo "::error::Diagnostic unexpectedly changed protected paths"
+            exit 1
+          fi
+          echo "Read-only test verified; data and Preview unchanged."
