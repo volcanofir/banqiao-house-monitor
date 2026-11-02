@@ -7,6 +7,7 @@ on:
     paths:
       - ".github/workflows/monitor-clean.yml"
       - "scripts/monitor_fast.py"
+      - "scripts/monitor_591_web_fallback.py"
       - "scripts/monitor_pages.py"
       - "scripts/monitor_sinyi_parallel.py"
       - "scripts/sinyi_preview_floor_enrich.py"
@@ -124,6 +125,10 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
+
+      - name: Validate crawler Python syntax
+        if: steps.gate.outputs.run == 'true'
+        run: python -m py_compile scripts/monitor_fast.py scripts/monitor_591_web_fallback.py scripts/monitor_sinyi_parallel.py
 
       - name: Install shared crawler packages
         if: steps.gate.outputs.run == 'true'
