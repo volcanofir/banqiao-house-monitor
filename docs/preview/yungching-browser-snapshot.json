@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-02T16:03:20+00:00",
+  "capturedAt": "2026-11-02T16:17:58+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -29,7 +29,7 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 70208,
+      "primaryApiListDataLength": 70252,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
       "roadTextCount": 27,
@@ -556,33 +556,6 @@
       }
     },
     {
-      "id": "7310666",
-      "road": "板橋區中山路二段",
-      "title": "馥華綠意森活臻品",
-      "price": 3688,
-      "area": 63.47,
-      "floor": "3/14樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "辦公商業大樓",
-      "url": "https://buy.yungching.com.tw/house/7310666",
-      "sourceMode": "yungching_official_api",
-      "text": "馥華綠意森活臻品 新北市板橋區中山路二段 辦公商業大樓 建坪63.47 3/14樓 4房(室)2廳2衛 3688萬",
-      "rawText": "馥華綠意森活臻品 新北市板橋區中山路二段 辦公商業大樓 建坪63.47 3/14樓 4房(室)2廳2衛 3688萬",
-      "patternInfo": {
-        "room": 4,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 3,
-        "toFloor": 3,
-        "upFloor": 14
-      }
-    },
-    {
       "id": "6973967",
       "road": "板橋區中山路二段",
       "title": "大新板生活圈近捷運精緻裝潢邊間景觀戶",
@@ -607,6 +580,33 @@
         "fromFloor": 7,
         "toFloor": 7,
         "upFloor": 13
+      }
+    },
+    {
+      "id": "7310666",
+      "road": "板橋區中山路二段",
+      "title": "馥華綠意森活臻品",
+      "price": 3688,
+      "area": 63.47,
+      "floor": "3/14樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "辦公商業大樓",
+      "url": "https://buy.yungching.com.tw/house/7310666",
+      "sourceMode": "yungching_official_api",
+      "text": "馥華綠意森活臻品 新北市板橋區中山路二段 辦公商業大樓 建坪63.47 3/14樓 4房(室)2廳2衛 3688萬",
+      "rawText": "馥華綠意森活臻品 新北市板橋區中山路二段 辦公商業大樓 建坪63.47 3/14樓 4房(室)2廳2衛 3688萬",
+      "patternInfo": {
+        "room": 4,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 3,
+        "toFloor": 3,
+        "upFloor": 14
       }
     },
     {
@@ -2392,7 +2392,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-02T16:03:35+00:00",
+    "generatedAt": "2026-11-02T16:18:13+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
