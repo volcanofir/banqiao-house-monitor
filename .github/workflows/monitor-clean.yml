@@ -140,9 +140,20 @@ jobs:
 
       - name: Refresh 5168 seven-road APP snapshot
         if: steps.gate.outputs.run == 'true'
+        # A Preview-only 5168 API/schema failure must not stop canonical 591/Sinyi monitoring.
+        continue-on-error: true
+        shell: bash
         run: |
-          python scripts/fetch_houseprice_seven_roads_preview.py
-          python scripts/validate_houseprice_preview_snapshot.py
+          set -e
+          # Keep the last published and verified 5168 snapshot unless this refresh validates.
+          cp docs/preview/houseprice-seven-roads.json /tmp/houseprice-before-refresh.json
+          if python scripts/fetch_houseprice_seven_roads_preview.py && python scripts/validate_houseprice_preview_snapshot.py; then
+            echo "5168 snapshot validated; continuing monitor."
+          else
+            cp /tmp/houseprice-before-refresh.json docs/preview/houseprice-seven-roads.json
+            echo "::warning title=5168 Preview check failed::Restored last verified 5168 snapshot; continuing canonical 591/Sinyi monitoring."
+            exit 1
+          fi
 
       - name: Connect Surfshark for 591
         id: vpn
