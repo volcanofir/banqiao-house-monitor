@@ -97,6 +97,22 @@ async def check(browser, name, target, environment):
         print(f"entry={display_url(target)}")
         print(f"navigation_status={status} navigation_error={error}")
         print(f"final_url={display_url(page.url)}")
+        # A 200 document can include the initial listing state even when no
+        # subsequent XHR listing request occurs. Inspect markers only.
+        if status == 200:
+            try:
+                html = await page.content()
+                has_nuxt = "window.__NUXT__" in html
+                has_initial_rows = "wareList:" in html
+                has_total_marker = "wareTotal:" in html
+                print(
+                    "document_initial_data "
+                    f"nuxt={has_nuxt} wareList={has_initial_rows} "
+                    f"wareTotal={has_total_marker} "
+                    f"houseid_keys={html.count('houseid:')}"
+                )
+            except Exception as exc:
+                print(f"document_initial_data_error={type(exc).__name__}")
         print(f"error_header_clues={response_header_clues}")
         print(f"error_page_clues={response_block_clues} truncated_body_length={response_body_length}")
         for index, (code, url) in enumerate(documents[:8], 1):
