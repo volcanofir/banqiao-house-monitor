@@ -1,10 +1,12 @@
 """Read-only, low-volume reachability check for legacy 591 mobile listing APIs.
 
-Only HTTP response metadata is printed; no bodies, cookies, credentials,
-listing records or tokens are read or persisted. One request per path.
+Only aggregate JSON shape/field names and HTTP metadata are printed;
+no listing values, cookies, credentials or tokens are logged or persisted.
+One request per path.
 An HTTP error does not prove an API endpoint has been permanently retired.
 """
 import argparse
+import json
 import socket
 import urllib.error
 import urllib.request
@@ -42,6 +44,7 @@ def check(name, path, params, label):
     code = "none"
     headers = {}
     err = "none"
+    payload_info = {}
     try:
         response = urllib.request.urlopen(req, timeout=15)
     except urllib.error.HTTPError as exc:
@@ -52,6 +55,41 @@ def check(name, path, params, label):
     if response is not None:
         with response:
             code = response.status
+            content_type = response.headers.get("content-type", "")
+            raw = response.read(2_000_000)
+            payload_info["body_bytes_sampled"] = len(raw)
+            if "application/json" in content_type:
+                try:
+                    payload = json.loads(raw.decode("utf-8"))
+                    if isinstance(payload, dict):
+                        payload_info["root_keys"] = sorted(payload.keys())[:20]
+                        for key in ("status", "code", "success"):
+                            if key in payload:
+                                value = payload[key]
+                                if isinstance(value, (bool, int, float)) or (isinstance(value, str) and len(value) < 12):
+                                    payload_info[key] = value
+                        data = payload.get("data")
+                        payload_info["data_type"] = type(data).__name__
+                        if isinstance(data, list):
+                            payload_info["list_count"] = len(data)
+                            if data and isinstance(data[0], dict):
+                                payload_info["first_item_field_keys"] = sorted(data[0].keys())[:30]
+                        elif isinstance(data, dict):
+                            payload_info["data_keys"] = sorted(data.keys())[:25]
+                            for item_key in ("house_list", "items", "list", "data"):
+                                items = data.get(item_key)
+                                if isinstance(items, list):
+                                    payload_info["list_count"] = len(items)
+                                    payload_info["list_key"] = item_key
+                                    if items and isinstance(items[0], dict):
+                                        payload_info["first_item_field_keys"] = sorted(items[0].keys())[:30]
+                                    break
+                    else:
+                        payload_info["root_type"] = type(payload).__name__
+                except (ValueError, UnicodeError):
+                    payload_info["json_parse"] = "failed"
+            else:
+                payload_info["json_parse"] = "not_json"
             for k in ("server", "content-type", "x-cache"):
                 if response.headers.get(k):
                     headers[k] = response.headers[k][:90]
@@ -61,7 +99,7 @@ def check(name, path, params, label):
                 headers["redirect_host_path"] = parts.netloc + parts.path
     print(
         f"MOBILE_API_REACHABILITY environment={label} endpoint={name} "
-        f"http={code} error={err} response_metadata={headers}"
+        f"http={code} error={err} response_metadata={headers} payload_shape={payload_info}"
     )
 
 
@@ -71,4 +109,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     for name, path, params in ENDPOINTS:
         check(name, path, params, args.label)
-    print("READ_ONLY no API payload read; no cookies or tokens; no listing files modified")
+    print("READ_ONLY only in-memory response shape inspected; no listing values or credentials printed or persisted")
