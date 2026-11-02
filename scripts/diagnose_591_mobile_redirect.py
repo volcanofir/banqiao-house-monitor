@@ -6,7 +6,7 @@ copy cookies, store credentials, or modify preview/canonical data.
 """
 import argparse
 import asyncio
-from urllib.parse import parse_qs, urlencode, urlsplit
+from urllib.parse import parse_qs, urlencode, urljoin, urlsplit
 
 from playwright.async_api import async_playwright
 
@@ -58,7 +58,7 @@ async def diagnose(label):
                         documents.append({
                             "status": response.status,
                             "url": public_url(response.url),
-                            "location": public_url(location) if location.startswith("http") else location[:100],
+                            "location": public_url(urljoin(response.url, location)) if location else "",
                         })
                     elif "bff-house.591.com.tw" in urlsplit(response.url).netloc:
                         api_responses.append({
