@@ -66,8 +66,14 @@ async def check(browser):
                 print("natural_sale_link_count=",await sale_link.count())
         except Exception as e:
             print("entry_home_error=",type(e).__name__)
-        for pn in (1,2):
-            params=dict(PARAMS,page=str(pn))
+        cases = [
+            ("page1_original", 1, 0),
+            ("page2_original", 2, 0),
+            ("page2_offset30", 2, 30),
+            ("page3_offset60", 3, 60),
+        ]
+        for label, pn, offset in cases:
+            params=dict(PARAMS,page=str(pn),firstRow=str(offset))
             url=BASE+"?"+urlencode(params)
             meta_before=len(respmeta)
             try:
@@ -100,15 +106,20 @@ async def check(browser):
                 else:
                     summary={"hasState":False}
                     ids=set()
-                results.append((pn,status,summary,ids))
-                print(f"page{pn}_http={status} final={public_path(page.url)} state={summary}")
-                print(f"page{pn}_api_metadata={respmeta[meta_before:][:8]}")
+                results.append((label,status,summary,ids))
+                print(f"{label}_http={status} final={public_path(page.url)} state={summary}")
+                print(f"{label}_api_metadata={respmeta[meta_before:][:8]}")
             except Exception as e:
-                print(f"page{pn}_error={type(e).__name__}")
-                results.append((pn,None,{},set()))
-        if len(results)==2:
-            a,b=results
-            print(f"COMPARE valid_id_count_page1={len(a[3])} page2={len(b[3])} intersection={len(a[3]&b[3])} identical={bool(a[3]) and a[3]==b[3]}")
+                print(f"{label}_error={type(e).__name__}")
+                results.append((label,None,{},set()))
+        for a in results:
+            for b in results:
+                if a[0] >= b[0]:
+                    continue
+                print(
+                    f"COMPARE {a[0]} vs {b[0]} count_a={len(a[3])} count_b={len(b[3])} "
+                    f"intersection={len(a[3] & b[3])} identical={bool(a[3]) and a[3]==b[3]}"
+                )
         print("READ_ONLY no listing values or IDs logged or persisted; no credentials collected")
     finally:
         await context.close()
