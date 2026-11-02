@@ -74,6 +74,50 @@ async def inspect():
                                 f"has_nuxt={'window.__NUXT__' in html} "
                                 f"has_wareList={'wareList' in html}"
                             )
+                            if html:
+                                # Only structural counts and field names are returned,
+                                # never listing values, IDs, addresses or full URLs.
+                                info = await page.evaluate("""() => {
+                                    const state = window.__NUXT__?.pinia?.['sale-list'];
+                                    const list = state?.wareList;
+                                    const total = state?.wareTotal;
+                                    const controls = [...document.querySelectorAll('a,button,[role="button"]')];
+                                    const pager = controls.filter(e => {
+                                        const t = (e.innerText || e.getAttribute('aria-label') || '').trim();
+                                        const region = e.closest('[class*="pagination"],[class*="pager"],[aria-label*="Pagination"]');
+                                        return region && (/^([1-9]|下一頁|下一页|Next)$/i.test(t));
+                                    });
+                                    return {
+                                        nuxt_state_available: !!state,
+                                        wareList_array: Array.isArray(list),
+                                        wareList_count: Array.isArray(list) ? list.length : null,
+                                        wareTotal_type: typeof total,
+                                        searchParam_keys: Object.keys(state?.searchParams || {}).sort().slice(0,25),
+                                        pager_count: pager.length,
+                                        pager_labels: pager.map(e => (e.innerText || e.getAttribute('aria-label') || '').trim()).slice(0,14)
+                                    };
+                                }""")
+                                print(f"sale_page_structure={info} server_houseid_markers={html.count('houseid:')}")
+                                # A single naturally rendered page-navigation control,
+                                # if available. We do not synthesize alternate URLs.
+                                next_controls = page.locator('button,a,[role="button"]').filter(
+                                    has_text="下一頁"
+                                )
+                                if await next_controls.count() == 1 and await next_controls.first.is_visible():
+                                    before_count = len(api_responses)
+                                    try:
+                                        await next_controls.first.click(timeout=4500)
+                                        await page.wait_for_timeout(3500)
+                                        html2 = await page.content()
+                                        print(
+                                            f"pagination_click=next page={safe_url(page.url)} "
+                                            f"wareList_in_html={'wareList' in html2} "
+                                            f"api_response_delta={api_responses[before_count:]}"
+                                        )
+                                    except Exception as click_error:
+                                        print(f"pagination_click_error={type(click_error).__name__}")
+                                else:
+                                    print(f"pagination_click=not_attempted next_button_count={await next_controls.count()}")
                         except Exception as e:
                             print(f"sale_navigation_error={type(e).__name__}")
                     else:
