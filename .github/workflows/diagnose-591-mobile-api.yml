@@ -1,0 +1,49 @@
+name: 591 mobile API reachability diagnostic (read-only)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/diagnose-591-mobile-api.yml"
+      - "scripts/diagnose_591_mobile_api.py"
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose-mobile-api:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify syntax
+        run: python3 -m py_compile scripts/diagnose_591_mobile_api.py
+
+      - name: Mobile API reachability from GitHub direct network
+        run: python3 scripts/diagnose_591_mobile_api.py --label direct
+
+      - name: Connect existing Surfshark tunnel
+        id: vpn
+        continue-on-error: true
+        env:
+          SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
+        run: bash scripts/connect_surfshark_wireguard.sh
+
+      - name: Mobile API reachability from Surfshark
+        if: steps.vpn.outcome == 'success'
+        run: python3 scripts/diagnose_591_mobile_api.py --label surfshark
+
+      - name: Disconnect VPN
+        if: always() && steps.vpn.outcome == 'success'
+        run: sudo wg-quick down surfshark || true
+
+      - name: Confirm no production data or preview changes
+        run: |
+          if [ -n "$(git status --porcelain -- docs/data docs/preview state)" ]; then
+            echo "::error::Read-only diagnosis changed protected paths"
+            exit 1
+          fi
+          echo "Diagnostic complete. Production data and Preview untouched."
