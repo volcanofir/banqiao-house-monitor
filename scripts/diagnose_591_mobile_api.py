@@ -8,6 +8,7 @@ An HTTP error does not prove an API endpoint has been permanently retired.
 import argparse
 import json
 import socket
+import time
 import urllib.error
 import urllib.request
 from urllib.parse import urlencode, urlsplit
@@ -26,7 +27,11 @@ ENDPOINTS = [
 
 
 def check(name, path, params, label):
-    url = BASE + path + "?" + urlencode(params)
+    request_params = dict(params)
+    # The 2026-10-30 success code generated a fresh millisecond timestamp
+    # after capturing the real website's request template.
+    request_params["timestamp"] = str(int(time.time() * 1000))
+    url = BASE + path + "?" + urlencode(request_params)
     req = urllib.request.Request(
         url,
         method="GET",
@@ -99,7 +104,8 @@ def check(name, path, params, label):
                 headers["redirect_host_path"] = parts.netloc + parts.path
     print(
         f"MOBILE_API_REACHABILITY environment={label} endpoint={name} "
-        f"http={code} error={err} response_metadata={headers} payload_shape={payload_info}"
+        f"http={code} error={err} timestamp_included=True "
+        f"response_metadata={headers} payload_shape={payload_info}"
     )
 
 
