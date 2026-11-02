@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T12:36:21+00:00",
+  "updatedAt": "2026-11-02T12:49:29+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -52,12 +52,12 @@
   "runs": {
     "591": {
       "status": "ok",
-      "totalCount": 110,
+      "totalCount": 111,
       "logs": [
         "板橋區中山路二段 591租屋第1頁：DOM 30／新增 30",
-        "板橋區中山路二段 591租屋第2頁：DOM 29／新增 28",
+        "板橋區中山路二段 591租屋第2頁：DOM 30／新增 29",
         "板橋區中山路二段 591租屋第3頁：DOM 1／新增 0",
-        "板橋區中山路二段 591租屋完成，共 58 筆",
+        "板橋區中山路二段 591租屋完成，共 59 筆",
         "板橋區三民路一段 591租屋第1頁：DOM 13／新增 13",
         "板橋區三民路一段 591租屋完成，共 13 筆",
         "板橋區光復街 591租屋第1頁：DOM 1／新增 1",
@@ -113,7 +113,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 94,
-      "checkedAt": "2026-11-02T12:36:28+00:00",
+      "checkedAt": "2026-11-02T12:49:44+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 57",
         "板橋區中山路二段 5168 API第2頁：符合 19／新增 19／來源總數 57",
@@ -138,13 +138,13 @@
     }
   },
   "counts": {
-    "total": 246,
+    "total": 247,
     "sinyi": 15,
-    "591": 110,
+    "591": 111,
     "rakuya": 27,
     "houseprice": 94,
     "roads": {
-      "板橋區中山路二段": 141,
+      "板橋區中山路二段": 142,
       "板橋區三民路一段": 32,
       "板橋區光復街": 1,
       "板橋區三民路二段": 54,
@@ -543,6 +543,19 @@
       "url": "https://rent.591.com.tw/22273495",
       "floor": "4F/4F",
       "firstSeenAt": "2026-11-02T11:33:29+00:00"
+    },
+    {
+      "id": "591租屋:22161504",
+      "source": "591",
+      "houseId": "22161504",
+      "road": "板橋區中山路二段",
+      "title": "光復橋下優質公寓免仲介費",
+      "address": "板橋區中山路二段",
+      "rent": 25000.0,
+      "size": 22.0,
+      "url": "https://rent.591.com.tw/22161504",
+      "floor": "3F/5F",
+      "firstSeenAt": "2026-11-02T12:49:29+00:00"
     },
     {
       "id": "591租屋:22207731",
@@ -4226,10 +4239,10 @@
       "firstSeenAt": "2026-10-13T21:18:13+00:00"
     }
   ],
-  "elapsedSeconds": 115.61,
+  "elapsedSeconds": 130.98,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
   "newListingPolicy": "firstSeenAt_on_or_after_baseline_and_within_3_days",
-  "newListingCount": 167
+  "newListingCount": 168
 }
