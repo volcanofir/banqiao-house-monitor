@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-30T04:50:13+00:00",
+  "verifiedAt": "2026-11-02T12:35:14+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-10-30T04:50:02+00:00",
+    "generatedAt": "2026-11-02T12:35:02+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -30,24 +30,24 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-10-30T04:49:50+00:00",
+    "updatedAt": "2026-11-02T12:34:30+00:00",
     "status": "ok",
-    "totalCount": 229,
-    "uniqueListingCount": 229,
+    "totalCount": 228,
+    "uniqueListingCount": 228,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 126,
+        "count": 122,
         "pages": 7
       },
       {
         "road": "三民路一段",
-        "count": 30,
+        "count": 31,
         "pages": 2
       },
       {
         "road": "三民路二段",
-        "count": 50,
+        "count": 55,
         "pages": 3
       },
       {
@@ -67,42 +67,79 @@
       },
       {
         "road": "光復街",
-        "count": 16,
+        "count": 13,
         "pages": 1
       }
     ],
     "changes": {
-      "newCount": 0,
-      "newIds": [],
+      "newCount": 17,
+      "newIds": [
+        "002b00360640514",
+        "01595c360343132",
+        "02300a360726047",
+        "02687c360228379",
+        "02a8ff360279761",
+        "037f9f360450341",
+        "048080360694382",
+        "084a50360694576",
+        "087ee236018692d",
+        "08b0b8360616506",
+        "08fb4c360661137",
+        "093778358443681",
+        "0a3deb360608106",
+        "0c3cc8360796740",
+        "0c606e35946397e",
+        "0c745b360726178",
+        "0e0c01360570293"
+      ],
       "priceChangeCount": 0,
       "priceChanges": [],
-      "removedCount": 0,
-      "removedIds": [],
-      "currentChangeCount": 0
+      "removedCount": 18,
+      "removedIds": [
+        "006a3536005863d",
+        "01fc6234808796b",
+        "02c26d359610606",
+        "03207817819084f",
+        "041e5435961032e",
+        "04e167325937966",
+        "05f4eb34765705c",
+        "05fa3f306661356",
+        "06b12b36016172c",
+        "08b345360157899",
+        "092a27337343577",
+        "09974234338539e",
+        "09b67c34551880d",
+        "0b4722301637952",
+        "0c108736005874e",
+        "0c7507360055736",
+        "0d739132593795b",
+        "0f8ef732314233b"
+      ],
+      "currentChangeCount": 35
     },
     "complete": true
   },
   "rakuyaGrouping": {
-    "inputCount": 229,
+    "inputCount": 228,
     "regroupedCount": 128,
-    "mergedClusterCount": 48,
-    "absorbedCount": 101,
-    "attachedToExistingGroupCount": 95,
-    "standaloneGroupCount": 33,
+    "mergedClusterCount": 50,
+    "absorbedCount": 100,
+    "attachedToExistingGroupCount": 107,
+    "standaloneGroupCount": 21,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 0
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-10-30T04:46:04+00:00",
+    "updatedAt": "2026-11-02T12:34:45+00:00",
     "status": "ok",
-    "totalCount": 58,
-    "uniqueListingCount": 58,
+    "totalCount": 57,
+    "uniqueListingCount": 57,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 34,
+        "count": 35,
         "pages": 4
       },
       {
@@ -112,13 +149,13 @@
       },
       {
         "road": "三民路二段",
-        "count": 11,
-        "pages": 2
+        "count": 10,
+        "pages": 1
       },
       {
         "road": "翠華街",
-        "count": 1,
-        "pages": 1
+        "count": 0,
+        "pages": 0
       },
       {
         "road": "林森街",
@@ -137,17 +174,26 @@
       }
     ],
     "changes": {
-      "newIds": [],
-      "newCount": 0,
-      "removedIds": [],
-      "removedCount": 0,
+      "newIds": [
+        "39128983",
+        "39124231",
+        "39139796"
+      ],
+      "newCount": 3,
+      "removedIds": [
+        "37309429",
+        "34976164",
+        "34991949",
+        "37448557"
+      ],
+      "removedCount": 4,
       "priceChanges": [],
       "priceChangeCount": 0
     },
     "complete": true,
     "detailSummary": {
-      "requestedCount": 58,
-      "completeCount": 58,
+      "requestedCount": 57,
+      "completeCount": 57,
       "failedCount": 0,
       "allComplete": true
     },
@@ -161,41 +207,41 @@
     }
   },
   "housepriceGrouping": {
-    "inputCount": 58,
-    "regroupedCount": 39,
-    "mergedClusterCount": 13,
-    "absorbedCount": 19,
-    "attachedToExistingGroupCount": 33,
-    "standaloneGroupCount": 6,
+    "inputCount": 57,
+    "regroupedCount": 41,
+    "mergedClusterCount": 12,
+    "absorbedCount": 16,
+    "attachedToExistingGroupCount": 34,
+    "standaloneGroupCount": 7,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
-    "directGroupIdMergeCount": 19
+    "directGroupIdMergeCount": 16
   },
   "companyNearTieGuard": {
     "enabled": true,
     "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-    "examinedCompanyMatchCount": 41,
+    "examinedCompanyMatchCount": 39,
     "downgradedCount": 0,
     "remainingAutoNearTieCount": 0,
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-10-30T04:50:13+00:00",
-    "propertyGroupCount": 166,
-    "companyListingCount": 76,
-    "companyMatchCount": 41,
+    "auditedAt": "2026-11-02T12:35:14+00:00",
+    "propertyGroupCount": 180,
+    "companyListingCount": 68,
+    "companyMatchCount": 39,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 652
+    "weakIdentityAlreadyMergedPairCount": 1048
   },
-  "snapshotCapturedAt": "2026-10-30T04:49:35+00:00",
-  "companySnapshotCapturedAt": "2026-10-30T04:49:35+00:00",
-  "companyGapGeneratedAt": "2026-10-30T04:50:08+00:00",
-  "browserListingCount": 76,
-  "companyListingCount": 76,
-  "propertyGroupCount": 166,
-  "rawListingCount": 614,
-  "comparisonCount": 166,
+  "snapshotCapturedAt": "2026-11-02T12:31:32+00:00",
+  "companySnapshotCapturedAt": "2026-11-02T12:31:32+00:00",
+  "companyGapGeneratedAt": "2026-11-02T12:35:09+00:00",
+  "browserListingCount": 68,
+  "companyListingCount": 68,
+  "propertyGroupCount": 180,
+  "rawListingCount": 834,
+  "comparisonCount": 180,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -206,12 +252,12 @@
     "板橋區翠華街"
   ],
   "roadCounts": {
-    "板橋區中山路二段": 31,
+    "板橋區中山路二段": 27,
     "板橋區三民路一段": 6,
-    "板橋區三民路二段": 29,
+    "板橋區三民路二段": 26,
     "板橋區翠華街": 3,
     "板橋區林森街": 0,
-    "板橋區萬安街": 3,
+    "板橋區萬安街": 2,
     "板橋區光復街": 4
   },
   "pagination": {
@@ -259,18 +305,18 @@
     }
   },
   "counts": {
-    "company_match": 41,
-    "review": 5,
-    "missing": 120,
+    "company_match": 39,
+    "review": 4,
+    "missing": 137,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 103,
-  "crossSourceReviewCount": 10,
+  "crossPlatformMergedGroupCount": 111,
+  "crossSourceReviewCount": 9,
   "preview591Regroup": {
-    "original591TopLevel": 80,
-    "regrouped591TopLevel": 71,
-    "regrouped591ClusterCount": 9,
-    "regrouped591AbsorbedCount": 9,
+    "original591TopLevel": 118,
+    "regrouped591TopLevel": 101,
+    "regrouped591ClusterCount": 17,
+    "regrouped591AbsorbedCount": 17,
     "clusterFloorConflictBlocked": 0
   },
   "schemeAGroupIntegrity": {
@@ -278,29 +324,104 @@
   },
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 76,
-    "afterCount": 76,
-    "removedCount": 0,
-    "collisionIds": [],
+    "beforeCount": 74,
+    "afterCount": 68,
+    "removedCount": 6,
+    "collisionIds": [
+      "4308114"
+    ],
     "remainingCollisionIds": [],
-    "removed": [],
-    "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
+    "removed": [
+      {
+        "id": "4308114",
+        "road": "板橋區中山路二段",
+        "title": "中山路門牌近埔墘市場周邊連鎖店面匯聚",
+        "area": 36.12,
+        "price": 3388.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "5945842"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區三民路一段",
+        "title": "低總價挑高電梯",
+        "area": 19.84,
+        "price": 1350.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7532014"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區三民路二段",
+        "title": "A級辦公｜潤泰營造｜SRC鋼骨結構｜大空間好規劃",
+        "area": 104.34,
+        "price": 5500.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7576495"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區翠華街",
+        "title": "鄰近江子翠｜10米大面寬好停車一樓住辦好停車",
+        "area": 59.37,
+        "price": 3988.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7455915"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區萬安街",
+        "title": "埔墘知名商圈｜一樓好進出附平面車位｜挑高3.7米",
+        "area": 46.93,
+        "price": 2350.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7544941"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區光復街",
+        "title": "板橋埔墘|面寬店面|正面街道|高廣告效益",
+        "area": 55.41,
+        "price": 5360.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7577706"
+        ],
+        "replacementFound": true
+      }
+    ],
+    "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
   },
-  "candidateCount": 164,
-  "candidatesWithFloor": 164,
-  "candidatesWithYcCaseId": 2,
+  "candidateCount": 177,
+  "candidatesWithFloor": 159,
+  "candidatesWithYcCaseId": 159,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-10-30T04:49:50+00:00",
+    "generatedAt": "2026-11-02T12:34:30+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
-    "eligibleBeforeCache": 2,
-    "cacheHitCount": 2,
+    "eligibleBeforeCache": 62,
+    "cacheHitCount": 62,
     "seededFromPreviousDiagnosticCount": 0,
     "liveAttempted": 0,
     "responseFastHitCount": 0,
     "domFallbackCount": 0,
-    "enriched": 2,
+    "enriched": 62,
     "liveEnriched": 0,
-    "officialCaseIdEnriched": 2,
+    "officialCaseIdEnriched": 62,
     "cacheWriteCount": 0,
     "cacheEntryCount": 101,
     "rejectedTitleFloorConflicts": 0,
