@@ -1,6 +1,18 @@
 """Release gate for the Preview-only 5168 seven-road snapshot."""
 import json
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
+
+TAIPEI = ZoneInfo("Asia/Taipei")
+
+
+def matches_taipei_date(source_timestamp, source_date):
+    """Stored source dates are Taiwan calendar dates, not UTC calendar dates."""
+    try:
+        return datetime.fromtimestamp(float(source_timestamp), TAIPEI).date().isoformat() == str(source_date)
+    except (TypeError, ValueError, OverflowError, OSError):
+        return False
 
 P = Path("docs/preview/houseprice-seven-roads.json")
 ROADS = ["中山路二段","三民路一段","三民路二段","翠華街","林森街","萬安街","光復街"]
@@ -37,11 +49,24 @@ for x in rows:
     if x.get("sourcePublishedAtType")=="housepriceGroupNewKeyInDate":
         assert x.get("sourcePublishedAt"), x
         assert x.get("sourcePublishedDate"), x
-        assert x.get("groupNewKeyInDate"), x
+        # 5168's PriceAnalyze sometimes omits newKeyInDate in a later response.
+        # The crawler intentionally retains the previously verified source date
+        # as sourcePublishedRaw; do not reject that valid historical evidence.
+        current_raw = str(x.get("groupNewKeyInDate") or "").strip()
+        retained_raw = str(x.get("sourcePublishedRaw") or "").strip()
+        assert current_raw or retained_raw, x
+        expected_date = str(x["sourcePublishedDate"])
+        assert (current_raw or retained_raw)[:10] == expected_date, x
+        if current_raw and retained_raw:
+            assert current_raw[:10] == retained_raw[:10], x
+        assert matches_taipei_date(x["sourcePublishedAt"], expected_date), x
     elif x.get("sourcePublishedAtType")=="housepriceRelativeTagInferred":
         assert x.get("sourcePublishedAt"), x
         assert x.get("sourcePublishedDate"), x
-        assert x.get("sourcePublishText"), x
+        # The original relative tag may also disappear; its recorded evidence
+        # is retained separately by the crawler.
+        assert x.get("sourcePublishText") or x.get("sourcePublishedRaw"), x
+        assert matches_taipei_date(x["sourcePublishedAt"], x["sourcePublishedDate"]), x
     else:
         assert x.get("sourcePublishedAt") is None, x
 
