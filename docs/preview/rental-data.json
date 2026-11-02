@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T00:46:52+00:00",
+  "updatedAt": "2026-11-02T01:17:38+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -52,12 +52,12 @@
   "runs": {
     "591": {
       "status": "ok",
-      "totalCount": 113,
+      "totalCount": 114,
       "logs": [
         "板橋區中山路二段 591租屋第1頁：DOM 30／新增 30",
-        "板橋區中山路二段 591租屋第2頁：DOM 28／新增 27",
+        "板橋區中山路二段 591租屋第2頁：DOM 29／新增 28",
         "板橋區中山路二段 591租屋第3頁：DOM 1／新增 0",
-        "板橋區中山路二段 591租屋完成，共 57 筆",
+        "板橋區中山路二段 591租屋完成，共 58 筆",
         "板橋區三民路一段 591租屋第1頁：DOM 14／新增 14",
         "板橋區三民路一段 591租屋完成，共 14 筆",
         "板橋區光復街 591租屋第1頁：DOM 1／新增 1",
@@ -113,7 +113,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 91,
-      "checkedAt": "2026-11-02T00:47:00+00:00",
+      "checkedAt": "2026-11-02T01:17:45+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 55",
         "板橋區中山路二段 5168 API第2頁：符合 19／新增 19／來源總數 55",
@@ -138,13 +138,13 @@
     }
   },
   "counts": {
-    "total": 246,
+    "total": 247,
     "sinyi": 15,
-    "591": 113,
+    "591": 114,
     "rakuya": 27,
     "houseprice": 91,
     "roads": {
-      "板橋區中山路二段": 138,
+      "板橋區中山路二段": 139,
       "板橋區三民路一段": 33,
       "板橋區光復街": 1,
       "板橋區三民路二段": 55,
@@ -207,6 +207,19 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
+      "id": "591租屋:22205820",
+      "source": "591",
+      "houseId": "22205820",
+      "road": "板橋區中山路二段",
+      "title": "★光復橋前小7蝦皮旁★電梯★大對外窗★磚牆★代收垃圾/停機車",
+      "address": "板橋區中山路二段",
+      "rent": 11800.0,
+      "size": 10.0,
+      "url": "https://rent.591.com.tw/22205820",
+      "floor": "7F/8F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
       "id": "591租屋:22190798",
       "source": "591",
       "houseId": "22190798",
@@ -246,32 +259,6 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
-      "id": "591租屋:22258948",
-      "source": "591",
-      "houseId": "22258948",
-      "road": "板橋區中山路二段",
-      "title": "步行板新捷運站高品質平價溫馨大套房(走道窗)",
-      "address": "板橋區中山路二段",
-      "rent": 7300.0,
-      "size": 6.0,
-      "url": "https://rent.591.com.tw/22258948",
-      "floor": "3F/5F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
-      "id": "591租屋:22259097",
-      "source": "591",
-      "houseId": "22259097",
-      "road": "板橋區中山路二段",
-      "title": "步行板新捷運站高品質平價溫馨大套房(走道窗)",
-      "address": "板橋區中山路二段",
-      "rent": 7300.0,
-      "size": 6.0,
-      "url": "https://rent.591.com.tw/22259097",
-      "floor": "3F/5F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
       "id": "591租屋:22242970",
       "source": "591",
       "houseId": "22242970",
@@ -285,19 +272,6 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
-      "id": "591租屋:22207779",
-      "source": "591",
-      "houseId": "22207779",
-      "road": "板橋區中山路二段",
-      "title": "新北市板橋區光復橋旁全新套房出租",
-      "address": "板橋區中山路二段",
-      "rent": 7500.0,
-      "size": 6.0,
-      "url": "https://rent.591.com.tw/22207779",
-      "floor": "1F/1F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
       "id": "591租屋:22259075",
       "source": "591",
       "houseId": "22259075",
@@ -307,6 +281,19 @@
       "rent": 7300.0,
       "size": 6.0,
       "url": "https://rent.591.com.tw/22259075",
+      "floor": "3F/5F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22258948",
+      "source": "591",
+      "houseId": "22258948",
+      "road": "板橋區中山路二段",
+      "title": "步行板新捷運站高品質平價溫馨大套房(走道窗)",
+      "address": "板橋區中山路二段",
+      "rent": 7300.0,
+      "size": 6.0,
+      "url": "https://rent.591.com.tw/22258948",
       "floor": "3F/5F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
@@ -337,6 +324,19 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
+      "id": "591租屋:22259097",
+      "source": "591",
+      "houseId": "22259097",
+      "road": "板橋區中山路二段",
+      "title": "步行板新捷運站高品質平價溫馨大套房(走道窗)",
+      "address": "板橋區中山路二段",
+      "rent": 7300.0,
+      "size": 6.0,
+      "url": "https://rent.591.com.tw/22259097",
+      "floor": "3F/5F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
       "id": "591租屋:22263264",
       "source": "591",
       "houseId": "22263264",
@@ -347,6 +347,19 @@
       "size": 20.0,
       "url": "https://rent.591.com.tw/22263264",
       "floor": "5F/6F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22207779",
+      "source": "591",
+      "houseId": "22207779",
+      "road": "板橋區中山路二段",
+      "title": "新北市板橋區光復橋旁全新套房出租",
+      "address": "板橋區中山路二段",
+      "rent": 7500.0,
+      "size": 6.0,
+      "url": "https://rent.591.com.tw/22207779",
+      "floor": "1F/1F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
@@ -402,16 +415,42 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
-      "id": "591租屋:22205820",
+      "id": "591租屋:22272536",
       "source": "591",
-      "houseId": "22205820",
+      "houseId": "22272536",
       "road": "板橋區中山路二段",
-      "title": "★光復橋前小7蝦皮旁★電梯★大對外窗★磚牆★代收垃圾/停機車",
+      "title": "光復橋旁🏠可自行申請租補｜精美套房",
       "address": "板橋區中山路二段",
-      "rent": 11800.0,
-      "size": 10.0,
-      "url": "https://rent.591.com.tw/22205820",
-      "floor": "7F/8F",
+      "rent": 10500.0,
+      "size": 5.0,
+      "url": "https://rent.591.com.tw/22272536",
+      "floor": "4F/5F",
+      "firstSeenAt": "2026-11-02T01:17:38+00:00"
+    },
+    {
+      "id": "591租屋:22215156",
+      "source": "591",
+      "houseId": "22215156",
+      "road": "板橋區中山路二段",
+      "title": "光復橋【超值獨戶】流理台★獨洗衣機★垃圾代收",
+      "address": "板橋區中山路二段",
+      "rent": 16000.0,
+      "size": 6.0,
+      "url": "https://rent.591.com.tw/22215156",
+      "floor": "3F/5F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22241833",
+      "source": "591",
+      "houseId": "22241833",
+      "road": "板橋區中山路二段",
+      "title": "近捷運新埔【超值租案】警衛管理★大空間★免爬梯",
+      "address": "板橋區中山路二段",
+      "rent": 14000.0,
+      "size": 7.0,
+      "url": "https://rent.591.com.tw/22241833",
+      "floor": "1F/24F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
@@ -675,19 +714,6 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
-      "id": "591租屋:22215156",
-      "source": "591",
-      "houseId": "22215156",
-      "road": "板橋區中山路二段",
-      "title": "光復橋【超值獨戶】流理台★獨洗衣機★垃圾代收",
-      "address": "板橋區中山路二段",
-      "rent": 16000.0,
-      "size": 6.0,
-      "url": "https://rent.591.com.tw/22215156",
-      "floor": "3F/5F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
       "id": "591租屋:22161504",
       "source": "591",
       "houseId": "22161504",
@@ -698,19 +724,6 @@
       "size": 22.0,
       "url": "https://rent.591.com.tw/22161504",
       "floor": "3F/5F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
-      "id": "591租屋:22241833",
-      "source": "591",
-      "houseId": "22241833",
-      "road": "板橋區中山路二段",
-      "title": "近捷運新埔【超值租案】警衛管理★大空間★免爬梯",
-      "address": "板橋區中山路二段",
-      "rent": 14000.0,
-      "size": 7.0,
-      "url": "https://rent.591.com.tw/22241833",
-      "floor": "1F/24F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
@@ -909,29 +922,16 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
-      "id": "591租屋:22123222",
+      "id": "591租屋:22248642",
       "source": "591",
-      "houseId": "22123222",
+      "houseId": "22248642",
       "road": "板橋區三民路一段",
-      "title": "🔥板橋全新2房｜可租補報稅｜貓咪友善｜可開伙",
+      "title": "✨全新首租｜可租補｜貓咪友善｜可開伙｜獨立洗衣",
       "address": "板橋區三民路一段",
-      "rent": 26000.0,
-      "size": 14.0,
-      "url": "https://rent.591.com.tw/22123222",
+      "rent": 17000.0,
+      "size": 7.0,
+      "url": "https://rent.591.com.tw/22248642",
       "floor": "4F/4F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
-      "id": "591租屋:22223223",
-      "source": "591",
-      "houseId": "22223223",
-      "road": "板橋區三民路一段",
-      "title": "光復橋5分◆超值3房◆採光皆有窗★變頻冷氣",
-      "address": "板橋區三民路一段",
-      "rent": 16999.0,
-      "size": 22.0,
-      "url": "https://rent.591.com.tw/22223223",
-      "floor": null,
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
@@ -948,16 +948,16 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
-      "id": "591租屋:22260801",
+      "id": "591租屋:22223223",
       "source": "591",
-      "houseId": "22260801",
+      "houseId": "22223223",
       "road": "板橋區三民路一段",
-      "title": "可補助報稅‧全新首租‧貓咪友善‧流理台可煮‧板橋區三民路2房",
+      "title": "光復橋5分◆超值3房◆採光皆有窗★變頻冷氣",
       "address": "板橋區三民路一段",
-      "rent": 26000.0,
-      "size": 14.0,
-      "url": "https://rent.591.com.tw/22260801",
-      "floor": "4F/4F",
+      "rent": 16999.0,
+      "size": 22.0,
+      "url": "https://rent.591.com.tw/22223223",
+      "floor": null,
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
@@ -974,15 +974,28 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
-      "id": "591租屋:22248642",
+      "id": "591租屋:22123222",
       "source": "591",
-      "houseId": "22248642",
+      "houseId": "22123222",
       "road": "板橋區三民路一段",
-      "title": "✨全新首租｜可租補｜貓咪友善｜可開伙｜獨立洗衣",
+      "title": "🔥板橋全新2房｜可租補報稅｜貓咪友善｜可開伙",
       "address": "板橋區三民路一段",
-      "rent": 17000.0,
-      "size": 7.0,
-      "url": "https://rent.591.com.tw/22248642",
+      "rent": 26000.0,
+      "size": 14.0,
+      "url": "https://rent.591.com.tw/22123222",
+      "floor": "4F/4F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22260801",
+      "source": "591",
+      "houseId": "22260801",
+      "road": "板橋區三民路一段",
+      "title": "可補助報稅‧全新首租‧貓咪友善‧流理台可煮‧板橋區三民路2房",
+      "address": "板橋區三民路一段",
+      "rent": 26000.0,
+      "size": 14.0,
+      "url": "https://rent.591.com.tw/22260801",
       "floor": "4F/4F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
@@ -1182,6 +1195,71 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
+      "id": "591租屋:22189344",
+      "source": "591",
+      "houseId": "22189344",
+      "road": "板橋區三民路二段",
+      "title": "免佣）近捷運板新【超值2房2廳】瓦斯爐★雙陽台★變頻冷氣",
+      "address": "板橋區三民路二段",
+      "rent": 20000.0,
+      "size": 19.0,
+      "url": "https://rent.591.com.tw/22189344",
+      "floor": "6F/6F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22183581",
+      "source": "591",
+      "houseId": "22183581",
+      "road": "板橋區三民路二段",
+      "title": "捷運板新【電梯3房2衛】補助入籍★報稅養寵★可辦公室",
+      "address": "板橋區三民路二段",
+      "rent": 39000.0,
+      "size": 39.0,
+      "url": "https://rent.591.com.tw/22183581",
+      "floor": "2F/12F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22189325",
+      "source": "591",
+      "houseId": "22189325",
+      "road": "板橋區三民路二段",
+      "title": "近捷運板新【超值2房2廳】瓦斯爐★雙陽台★變頻冷氣",
+      "address": "板橋區三民路二段",
+      "rent": 19999.0,
+      "size": 19.0,
+      "url": "https://rent.591.com.tw/22189325",
+      "floor": "6F/6F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22182415",
+      "source": "591",
+      "houseId": "22182415",
+      "road": "板橋區三民路二段",
+      "title": "民生公園【超值2房1廳】皆有窗★垃圾代收",
+      "address": "板橋區三民路二段",
+      "rent": 18500.0,
+      "size": 24.0,
+      "url": "https://rent.591.com.tw/22182415",
+      "floor": "6F/6F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22259231",
+      "source": "591",
+      "houseId": "22259231",
+      "road": "板橋區三民路二段",
+      "title": "光復國小【優質4房2衛】可開伙★低樓層★雙陽台",
+      "address": "板橋區三民路二段",
+      "rent": 33000.0,
+      "size": 27.0,
+      "url": "https://rent.591.com.tw/22259231",
+      "floor": "2F/4F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
       "id": "591租屋:22239939",
       "source": "591",
       "houseId": "22239939",
@@ -1335,71 +1413,6 @@
       "size": 20.0,
       "url": "https://rent.591.com.tw/22247313",
       "floor": null,
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
-      "id": "591租屋:22259231",
-      "source": "591",
-      "houseId": "22259231",
-      "road": "板橋區三民路二段",
-      "title": "光復國小【優質4房2衛】可開伙★低樓層★雙陽台",
-      "address": "板橋區三民路二段",
-      "rent": 33000.0,
-      "size": 27.0,
-      "url": "https://rent.591.com.tw/22259231",
-      "floor": "2F/4F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
-      "id": "591租屋:22182415",
-      "source": "591",
-      "houseId": "22182415",
-      "road": "板橋區三民路二段",
-      "title": "民生公園【超值2房1廳】皆有窗★垃圾代收",
-      "address": "板橋區三民路二段",
-      "rent": 18500.0,
-      "size": 24.0,
-      "url": "https://rent.591.com.tw/22182415",
-      "floor": "6F/6F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
-      "id": "591租屋:22183581",
-      "source": "591",
-      "houseId": "22183581",
-      "road": "板橋區三民路二段",
-      "title": "捷運板新【電梯3房2衛】補助入籍★報稅養寵★可辦公室",
-      "address": "板橋區三民路二段",
-      "rent": 39000.0,
-      "size": 39.0,
-      "url": "https://rent.591.com.tw/22183581",
-      "floor": "2F/12F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
-      "id": "591租屋:22189325",
-      "source": "591",
-      "houseId": "22189325",
-      "road": "板橋區三民路二段",
-      "title": "近捷運板新【超值2房2廳】瓦斯爐★雙陽台★變頻冷氣",
-      "address": "板橋區三民路二段",
-      "rent": 19999.0,
-      "size": 19.0,
-      "url": "https://rent.591.com.tw/22189325",
-      "floor": "6F/6F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
-      "id": "591租屋:22189344",
-      "source": "591",
-      "houseId": "22189344",
-      "road": "板橋區三民路二段",
-      "title": "免佣）近捷運板新【超值2房2廳】瓦斯爐★雙陽台★變頻冷氣",
-      "address": "板橋區三民路二段",
-      "rent": 20000.0,
-      "size": 19.0,
-      "url": "https://rent.591.com.tw/22189344",
-      "floor": "6F/6F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
@@ -1899,7 +1912,7 @@
       "size": 6.0,
       "url": "https://rent.rakuya.com.tw/item/0d48e435149540b?from=list_keyword&func=list_rent",
       "floor": "8/12樓",
-      "sourceUpdatedRaw": "22小時前",
+      "sourceUpdatedRaw": "23小時前",
       "firstSeenAt": "2026-11-01T07:17:43+00:00"
     },
     {
@@ -1913,20 +1926,6 @@
       "size": 25.31,
       "url": "https://rent.rakuya.com.tw/item/044fa9351058516?from=list_keyword&func=list_rent",
       "floor": "5/9樓",
-      "sourceUpdatedRaw": "1天前",
-      "firstSeenAt": "2026-11-01T07:17:43+00:00"
-    },
-    {
-      "id": "樂屋租屋:0be435345909332",
-      "source": "樂屋網",
-      "houseId": "0be435345909332",
-      "road": "板橋區中山路二段",
-      "title": "鼎家花園金店面",
-      "address": "板橋區中山路二段",
-      "rent": 45000.0,
-      "size": 28.41,
-      "url": "https://rent.rakuya.com.tw/item/0be435345909332?from=list_keyword&func=list_rent",
-      "floor": "1/8樓",
       "sourceUpdatedRaw": "1天前",
       "firstSeenAt": "2026-11-01T07:17:43+00:00"
     },
@@ -1959,6 +1958,20 @@
       "firstSeenAt": "2026-11-01T07:17:43+00:00"
     },
     {
+      "id": "樂屋租屋:0be435345909332",
+      "source": "樂屋網",
+      "houseId": "0be435345909332",
+      "road": "板橋區中山路二段",
+      "title": "鼎家花園金店面",
+      "address": "板橋區中山路二段",
+      "rent": 45000.0,
+      "size": 28.41,
+      "url": "https://rent.rakuya.com.tw/item/0be435345909332?from=list_keyword&func=list_rent",
+      "floor": "1/8樓",
+      "sourceUpdatedRaw": "1天前",
+      "firstSeenAt": "2026-11-01T07:17:43+00:00"
+    },
+    {
       "id": "樂屋租屋:01a951344157662",
       "source": "樂屋網",
       "houseId": "01a951344157662",
@@ -1969,20 +1982,6 @@
       "size": 46.05,
       "url": "https://rent.rakuya.com.tw/item/01a951344157662?from=list_keyword&func=list_rent",
       "floor": "3/7樓",
-      "sourceUpdatedRaw": "1天前",
-      "firstSeenAt": "2026-11-01T07:17:43+00:00"
-    },
-    {
-      "id": "樂屋租屋:078c7b357856389",
-      "source": "樂屋網",
-      "houseId": "078c7b357856389",
-      "road": "板橋區中山路二段",
-      "title": "埔墘市場旁～正馬路店面",
-      "address": "板橋區中山路二段",
-      "rent": 40000.0,
-      "size": 21.48,
-      "url": "https://rent.rakuya.com.tw/item/078c7b357856389?from=list_keyword&func=list_rent",
-      "floor": "1/14樓",
       "sourceUpdatedRaw": "1天前",
       "firstSeenAt": "2026-11-01T07:17:43+00:00"
     },
@@ -2001,16 +2000,16 @@
       "firstSeenAt": "2026-11-01T07:17:43+00:00"
     },
     {
-      "id": "樂屋租屋:01053a354566853",
+      "id": "樂屋租屋:078c7b357856389",
       "source": "樂屋網",
-      "houseId": "01053a354566853",
+      "houseId": "078c7b357856389",
       "road": "板橋區中山路二段",
-      "title": "板橋美套房",
+      "title": "埔墘市場旁～正馬路店面",
       "address": "板橋區中山路二段",
-      "rent": 15000.0,
-      "size": 7.0,
-      "url": "https://rent.rakuya.com.tw/item/01053a354566853?from=list_keyword&func=list_rent",
-      "floor": "5/5樓",
+      "rent": 40000.0,
+      "size": 21.48,
+      "url": "https://rent.rakuya.com.tw/item/078c7b357856389?from=list_keyword&func=list_rent",
+      "floor": "1/14樓",
       "sourceUpdatedRaw": "1天前",
       "firstSeenAt": "2026-11-01T07:17:43+00:00"
     },
@@ -2025,6 +2024,20 @@
       "size": 32.55,
       "url": "https://rent.rakuya.com.tw/item/068e03357254961?from=list_keyword&func=list_rent",
       "floor": "1/14樓",
+      "sourceUpdatedRaw": "1天前",
+      "firstSeenAt": "2026-11-01T07:17:43+00:00"
+    },
+    {
+      "id": "樂屋租屋:01053a354566853",
+      "source": "樂屋網",
+      "houseId": "01053a354566853",
+      "road": "板橋區中山路二段",
+      "title": "板橋美套房",
+      "address": "板橋區中山路二段",
+      "rent": 15000.0,
+      "size": 7.0,
+      "url": "https://rent.rakuya.com.tw/item/01053a354566853?from=list_keyword&func=list_rent",
+      "floor": "5/5樓",
       "sourceUpdatedRaw": "1天前",
       "firstSeenAt": "2026-11-01T07:17:43+00:00"
     },
@@ -2236,7 +2249,7 @@
       "purposeName": "整層住家",
       "buildingStyle": "華廈",
       "sourcePublishedAt": "2026-03-06T19:38:57.12Z",
-      "sourceUpdatedAtRaw": "2026-11-01T20:35:47.293Z",
+      "sourceUpdatedAtRaw": "2026-11-02T01:15:38.29Z",
       "sourcePublishedAtType": "housepriceRentApiPublishTime",
       "firstSeenAt": "2026-10-03T00:30:04+00:00"
     },
@@ -4199,10 +4212,10 @@
       "firstSeenAt": "2026-10-13T21:18:13+00:00"
     }
   ],
-  "elapsedSeconds": 81.32,
+  "elapsedSeconds": 122.11,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
   "newListingPolicy": "firstSeenAt_on_or_after_baseline_and_within_3_days",
-  "newListingCount": 169
+  "newListingCount": 170
 }
