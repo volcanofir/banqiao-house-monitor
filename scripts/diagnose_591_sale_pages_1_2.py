@@ -71,6 +71,8 @@ async def check(browser):
             ("page2_original", 2, 0),
             ("page2_offset30", 2, 30),
             ("page3_offset60", 3, 60),
+            ("page4_offset90", 4, 90),
+            ("page5_offset120", 5, 120),
         ]
         for label, pn, offset in cases:
             params=dict(PARAMS,page=str(pn),firstRow=str(offset))
@@ -112,6 +114,12 @@ async def check(browser):
             except Exception as e:
                 print(f"{label}_error={type(e).__name__}")
                 results.append((label,None,{},set()))
+        real_pages=[r for r in results if r[0] != "page2_original"]
+        combined=set().union(*(r[3] for r in real_pages))
+        pages_ok=all(r[1] == 200 and r[2].get("count",0)>0 for r in real_pages)
+        totals=[r[2].get("totalNumber") for r in real_pages]
+        print(f"REAL_PAGES all_200_and_nonempty={pages_ok} per_page_counts={[len(r[3]) for r in real_pages]} "
+              f"union_unique_ids={len(combined)} total_values={totals}")
         for a in results:
             for b in results:
                 if a[0] >= b[0]:
