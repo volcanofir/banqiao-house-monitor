@@ -1,0 +1,35 @@
+name: 591 seven road wareList integrity (one-off read-only)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/diagnose-591-warelist-integrity.yml"
+      - "scripts/diagnose_591_warelist_integrity.py"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-warelist:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Syntax check
+        run: python -m py_compile scripts/diagnose_591_warelist_integrity.py
+      - name: Setup Playwright
+        run: pip install playwright
+      - name: Compare wareList to historical baseline in memory
+        run: python scripts/diagnose_591_warelist_integrity.py
+      - name: Check immutable production and Preview data
+        run: |
+          if [ -n "$(git status --porcelain -- docs/data docs/preview state)" ]; then
+            echo "::error::Diagnostic modified monitored data"
+            exit 1
+          fi
+          echo "Protected production data and Preview remain untouched."
