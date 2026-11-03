@@ -1,9 +1,15 @@
 {
   "lastSuccessfulFullCheckAt": "2026-10-30T04:49:11+00:00",
-  "cadenceMinutes": 170,
+  "cadenceMinutes": 180,
   "sourceStatuses": {
     "591": "ok",
     "信義房屋": "ok"
   },
-  "policy": "advance only after both 591 and Sinyi sale sources complete successfully; rental is dispatched in parallel"
+  "policy": "one full-check attempt about every 180 minutes, even when a source fails; success advances only after both sources and publication validate",
+  "lastFullCheckAttemptAt": "2026-11-03T02:13:59+00:00",
+  "lastAttemptSourceStatuses": {
+    "591": "error",
+    "信義房屋": "ok"
+  },
+  "lastAttemptOutcome": "incomplete"
 }
