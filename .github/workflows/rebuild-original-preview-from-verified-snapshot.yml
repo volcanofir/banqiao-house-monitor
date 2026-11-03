@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/rebuild-original-preview-from-verified-snapshot.yml"
+      - "scripts/add_recent_offmarket.py"
 
 permissions:
   contents: write
