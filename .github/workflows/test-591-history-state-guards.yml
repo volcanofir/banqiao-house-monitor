@@ -9,6 +9,8 @@ on:
       - "scripts/test_591_history_state_guards.py"
       - "scripts/dedupe_listings_v2.py"
       - "scripts/monitor_pages.py"
+      - "scripts/preserve_591_on_failed_refresh.py"
+      - "scripts/test_591_publish_guard.py"
 
 permissions:
   contents: read
@@ -30,6 +32,8 @@ jobs:
         run: python -m py_compile scripts/test_591_history_state_guards.py scripts/dedupe_listings_v2.py scripts/monitor_pages.py
       - name: Check archived data and source/member identity rules
         run: python -u scripts/test_591_history_state_guards.py
+      - name: Check stale publish protection against latest canonical state
+        run: python -u scripts/test_591_publish_guard.py
       - name: Verify Preview and production state untouched
         if: always()
         run: |
