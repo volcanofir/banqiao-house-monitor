@@ -159,7 +159,10 @@ function verificationMatches(d,g,v){
     v.sourceDataUpdatedAt===g.sourceDataUpdatedAt&&d.updatedAt===g.sourceDataUpdatedAt&&
     Number(v.companyListingCount)===Number(g.companyListingCount)&&Number(v.propertyGroupCount)===Number(g.propertyGroupCount)&&
     Number(v.rawListingCount)===Number(g.rawListingCount)&&Number(v.comparisonCount)===Number((g.comparisons||[]).length)&&
-    sameCounts(v.counts,g.counts)&&(v.sinyiFloorEnrichment||{}).complete===true);
+    sameCounts(v.counts,g.counts)&&(v.sinyiFloorEnrichment||{}).complete===true&&
+    g.preview591Warelist?.mode==='warelist_preview'&&
+    v.preview591Warelist?.updatedAt===g.preview591Warelist?.updatedAt&&
+    d.previewSources?.['591']?.updatedAt===g.preview591Warelist?.updatedAt);
 }
 async function fetchJson(url,label){
   const ctl=new AbortController();
@@ -171,7 +174,7 @@ async function fetchJson(url,label){
   }finally{clearTimeout(timer)}
 }
 Promise.all([
-  fetchJson(`../data/listings.json?ts=${Date.now()}`,'監控資料'),
+  fetchJson(`preview-monitor-state.json?ts=${Date.now()}`,'監控資料'),
   fetchJson(`company-gap.json?ts=${Date.now()}`,'比對資料'),
   fetchJson(`scheme-a-verification.json?ts=${Date.now()}`,'驗證資料'),
 ]).then(([d,g,v])=>{
@@ -210,6 +213,21 @@ if 'async function fetchJson(url,label)' not in text:
         flags=re.S,
     )
 
+# Rewrite the existing modern loader too. The legacy patterns above can be
+# no-ops on the current /preview/ page; never silently leave the canonical
+# docs/data/listings.json URL in an apparently verified wareList Preview.
+text, loader_rewrites = re.subn(
+    r"function sameCounts\(a,b\)\{.*?\.catch\(e=>\{.*?\n\}\);",
+    lambda match: runtime_loader,
+    text,
+    count=1,
+    flags=re.S,
+)
+if loader_rewrites != 1:
+    raise RuntimeError("Cannot locate original Preview runtime loader; refuse stale 591 data")
+if "fetchJson(`../data/listings.json" in text:
+    raise RuntimeError("Original Preview still references canonical 591 source")
+
 # The canonical Preview page may already contain the modern fetchJson loader, so the
 # legacy regex above can legitimately be a no-op. Force the runtime integrity guard
 # to the current 5168-aware v5 value explicitly.
@@ -225,6 +243,7 @@ required_fragments = [
     'function verificationMatches(d,g,v)',
     'async function fetchJson(url,label)',
     "d.updatedAt===g.sourceDataUpdatedAt",
+    "d.previewSources?.[\'591\']?.updatedAt===g.preview591Warelist?.updatedAt",
     'propertyGroups:[]',
     '案件清單暫停顯示',
     'rel="noopener noreferrer"',

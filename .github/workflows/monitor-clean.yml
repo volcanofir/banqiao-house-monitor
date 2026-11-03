@@ -26,6 +26,7 @@ on:
       - "scripts/append_houseprice_to_scheme_a.py"
       - "scripts/compare_yungching_preview_v6.py"
       - "scripts/compare_yungching_preview_v11.py"
+      - "scripts/apply_591_warelist_to_original_preview.py"
       - "scripts/patch_rakuya_integrated_ui.py"
       - "trigger/monitor-wakeup.txt"
   schedule:
@@ -348,6 +349,10 @@ jobs:
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
         run: python scripts/sinyi_preview_floor_enrich.py
 
+      - name: Feed verified 591 wareList into existing Preview grouping
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
+        run: python scripts/apply_591_warelist_to_original_preview.py
+
       - name: Append Rakuya into Preview external snapshot
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
         run: python scripts/append_rakuya_to_scheme_a.py
@@ -387,13 +392,19 @@ jobs:
           mkdir -p /tmp/fast-publish/preview /tmp/fast-publish/data
           cp docs/data/listings.json /tmp/fast-publish/data/listings.json
           [[ -f docs/data/sinyi-first-display-cache.json ]] && cp docs/data/sinyi-first-display-cache.json /tmp/fast-publish/data/sinyi-first-display-cache.json || true
-          core_files=(company-gap.json yungching-preview-run.log yungching-browser-snapshot.json yungching-detail-floor.json sinyi-floor-enrichment.json scheme-a-ambiguity-audit.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html rakuya-seven-roads.json houseprice-seven-roads.json)
+          core_files=(preview-monitor-state.json company-gap.json yungching-preview-run.log yungching-browser-snapshot.json yungching-detail-floor.json sinyi-floor-enrichment.json scheme-a-ambiguity-audit.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html rakuya-seven-roads.json houseprice-seven-roads.json)
           for f in "${core_files[@]}"; do
             [[ -f "docs/preview/$f" ]] || { echo "Missing canonical output: $f"; exit 1; }
             cp "docs/preview/$f" "/tmp/fast-publish/preview/$f"
           done
 
           git fetch origin main
+          # Refuse to overwrite newer Preview output built from a newer 591
+          # verified snapshot while this CLEAN job was running.
+          if [[ "$(git rev-parse HEAD:docs/591-preview/snapshot.json)" != "$(git rev-parse origin/main:docs/591-preview/snapshot.json)" ]]; then
+            echo "::warning::591 snapshot changed while CLEAN ran; skip stale output publish."
+            exit 0
+          fi
           git reset --hard origin/main
           # In-flight jobs may have checked out 591 data before a manual
           # correction. A failed 591 scrape must not overwrite newer canonical

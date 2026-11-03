@@ -343,6 +343,12 @@ def main():
     payload["newListingWindowDays"]=SALE_NEW_WINDOW_DAYS
     payload["newListingTimePolicy"]="earliest_source_original_across_merged_property_with_monitor_seen_fallback"
 
+    # This uses the original Scheme A property grouping and company comparison.
+    # The only changed input is 591's verified public wareList observations.
+    warelist=(source_state.get("previewSources") or {}).get("591") or {}
+    if not (warelist.get("mode")=="warelist_preview" and warelist.get("complete") is True):
+        raise RuntimeError("Existing Preview missing verified 591 wareList overlay")
+    payload["preview591Warelist"]=dict(warelist)
     payload["mode"]="preview_only_591_sinyi_rakuya_5168_grouping_then_company_v11"
     payload["rakuyaIntegrated"]=True
     payload["housepriceIntegrated"]=True

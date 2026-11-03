@@ -307,7 +307,7 @@ def main():
             stale_page = browser.new_page(viewport={"width": 390, "height": 844}, locale="zh-TW")
             stale_errors = []
             stale_page.on("pageerror", lambda exc: stale_errors.append(str(exc)))
-            source_payload = json.loads(SOURCE_DATA.read_text(encoding="utf-8"))
+            source_payload = json.loads((ROOT / "preview" / "preview-monitor-state.json").read_text(encoding="utf-8"))
             source_payload["updatedAt"] = "2099-01-01T00:00:00+00:00"
 
             def serve_newer_source(route):
@@ -317,7 +317,7 @@ def main():
                     body=json.dumps(source_payload, ensure_ascii=False),
                 )
 
-            stale_page.route("**/data/listings.json*", serve_newer_source)
+            stale_page.route("**/preview/preview-monitor-state.json*", serve_newer_source)
             stale_response = stale_page.goto(URL, wait_until="networkidle", timeout=30000)
             assert stale_response is not None and stale_response.status == 200
             stale_page.wait_for_function(

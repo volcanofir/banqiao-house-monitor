@@ -1,0 +1,73 @@
+name: Test 591 integration into original Preview
+
+on:
+  push:
+    branches:
+      - "feature/warelist-into-original-preview-20261103"
+    paths:
+      - "scripts/apply_591_warelist_to_original_preview.py"
+      - "tests/test_apply_591_original_preview.py"
+      - ".github/workflows/test-591-overlay-preview.yml"
+      - "scripts/patch_preview_ui.py"
+  pull_request:
+    paths:
+      - "scripts/apply_591_warelist_to_original_preview.py"
+      - "tests/test_apply_591_original_preview.py"
+      - "scripts/patch_preview_ui.py"
+      - "scripts/compare_yungching_preview_v11.py"
+      - ".github/workflows/test-591-overlay-preview.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-original-preview-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install parser dependencies
+        run: pip install requests beautifulsoup4 playwright
+      - name: Check syntax of original Preview integration
+        run: |
+          python -m py_compile scripts/apply_591_warelist_to_original_preview.py scripts/patch_preview_ui.py scripts/compare_yungching_preview_v11.py
+      - name: Test real 591 snapshot and historical identity without writes
+        run: python -m unittest discover -s tests -p "test_apply_591_original_preview.py" -v
+      - name: Build existing Preview-only source overlay
+        run: |
+          python scripts/sinyi_preview_floor_enrich.py
+          python scripts/apply_591_warelist_to_original_preview.py
+      - name: Rebuild original multi-source grouping using stored verified snapshots
+        run: |
+          python scripts/append_rakuya_to_scheme_a.py
+          python scripts/append_houseprice_to_scheme_a.py
+          python scripts/compare_yungching_preview_v11.py > /tmp/591-integrated-compare.log
+          python scripts/patch_preview_ui.py
+          python scripts/validate_scheme_a_preview_v3.py
+          python scripts/audit_scheme_a_ambiguity_v2.py
+          python scripts/write_scheme_a_verification.py > /tmp/591-integrated-verify.log
+          python scripts/write_scheme_a_saved_output_audit.py > /tmp/591-integrated-audit.log
+          python scripts/run_with_system_chrome.py scripts/smoke_test_preview_ui.py
+          echo "Original scheme A grouping, 591 duplicate merge, cross-platform comparison and mobile UI smoke passed."
+
+      - name: Ensure original dashboard input changes only locally
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          original=json.loads(Path("docs/data/listings.json").read_text(encoding="utf-8"))
+          overlay=json.loads(Path("docs/preview/preview-monitor-state.json").read_text(encoding="utf-8"))
+          assert original["updatedAt"] == overlay["updatedAt"]
+          assert original["listings"] != overlay["listings"]
+          assert overlay["previewSources"]["591"]["mode"] == "warelist_preview"
+          assert overlay["previewSources"]["591"]["missingIdIsNotDelisting"] is True
+          print("Original /preview/ data overlay verified; canonical remains unchanged.")
+          PY
+          if [[ -n "$(git status --porcelain -- docs/data docs/index.html state)" ]]; then
+            echo "::error::Production files were modified by Preview overlay."
+            exit 1
+          fi
+          grep -q 'preview-monitor-state.json' scripts/patch_preview_ui.py

@@ -35,21 +35,37 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Keep production unchanged during original Preview 591 trial
+        id: preview_gate
+        shell: bash
+        run: |
+          if [[ -f scripts/apply_591_warelist_to_original_preview.py ]]; then
+            echo "allow=false" >> "$GITHUB_OUTPUT"
+            echo "Original /preview/ is testing a new 591 source; production promotion stays paused."
+          else
+            echo "allow=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Setup Python
+        if: steps.preview_gate.outputs.allow == 'true'
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
       - name: Install browser test dependency
+        if: steps.preview_gate.outputs.allow == 'true'
         run: pip install playwright
 
       - name: Verify canonical is current and build production homepage
+        if: steps.preview_gate.outputs.allow == 'true'
         run: python scripts/promote_preview_to_production.py
 
       - name: Open production homepage in system Chrome
+        if: steps.preview_gate.outputs.allow == 'true'
         run: python scripts/run_with_system_chrome.py scripts/smoke_test_production_ui.py
 
       - name: Record successful production browser verification
+        if: steps.preview_gate.outputs.allow == 'true'
         shell: bash
         run: |
           python - <<'PY'
@@ -86,6 +102,7 @@ jobs:
           PY
 
       - name: Publish verified production homepage
+        if: steps.preview_gate.outputs.allow == 'true'
         shell: bash
         run: |
           set -e
@@ -135,6 +152,7 @@ jobs:
           fi
 
       - name: Request GitHub Pages rebuild
+        if: steps.preview_gate.outputs.allow == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
