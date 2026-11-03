@@ -44,7 +44,7 @@ jobs:
           assert "cron: \"23 */3 * * *\"" in f
           assert "only_591(read" in f
           assert '已超過4小時未成功更新' in p
-          assert 'outdated?\\'stale\\':' in p
+          assert "outdated?'stale':" in p
           print("Verified existing GitHub heartbeat fallback, 3-hour attempt gating, safe history guard and stale badge.")
           PY
       - name: Verify Python syntax
