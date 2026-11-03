@@ -20,6 +20,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import dedupe_listings_v2 as dedupe
+import track_price_changes as prices
 from diagnose_591_warelist_integrity import ROADS
 
 SOURCE = Path("docs/591-preview/snapshot.json")
@@ -135,6 +136,41 @@ def merge_for_preview(enriched_state, snapshot, now=None):
         unseen_history.append(archival)
     rebuilt, _, raw_count = dedupe.dedupe(cur + unseen_history)
     groups_591 = [x for x in rebuilt if x.get("source") == "591"]
+    # Restore property-level price histories by exact historic advertisement IDs,
+    # never by fuzzy title/price guesses. Preserve the existing rule of tracking
+    # only real effective-price changes on the same property.
+    previous_groups = [
+        (x, {m.get("id") for m in dedupe.flatten_591([x]) if m.get("id")})
+        for x in previous_591
+    ]
+    for group in groups_591:
+        member_ids = {m.get("id") for m in dedupe.flatten_591([group]) if m.get("id")}
+        matched = [old for old, ids in previous_groups if member_ids & ids]
+        if len(matched) != 1:
+            continue
+        old = matched[0]
+        for key in ("priceHistory", "previousEffectivePrice", "priceChangeAmount",
+                    "priceChangeDirection", "priceChangedAt"):
+            if old.get(key) is not None:
+                group[key] = copy.deepcopy(old[key])
+        prior_price = prices.effective_price(old)
+        current_price = prices.effective_price(group)
+        if prior_price is None or current_price is None:
+            continue
+        group["effectivePrice"] = current_price
+        diff = round(current_price - prior_price, 1)
+        if abs(diff) >= 0.1:
+            group["previousEffectivePrice"] = prior_price
+            group["priceChangeAmount"] = abs(diff)
+            group["priceChangeDirection"] = "down" if diff < 0 else "up"
+            group["priceChangedAt"] = snapshot["updatedAt"]
+            history = list(old.get("priceHistory") or [])
+            if not history:
+                history.append({"price": prior_price, "at": old.get("lastSeenAt")})
+            history.append({
+                "price": current_price, "at": snapshot["updatedAt"],
+                "direction": group["priceChangeDirection"], "change": abs(diff)})
+            group["priceHistory"] = history[-12:]
     new_flat = {x["id"]: x for x in dedupe.flatten_591(groups_591)}
     if set(new_flat) != set(historical) | observed:
         raise ValueError("591 identity loss during original property grouping")
