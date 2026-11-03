@@ -213,6 +213,21 @@ if 'async function fetchJson(url,label)' not in text:
         flags=re.S,
     )
 
+# Rewrite the existing modern loader too. The legacy patterns above can be
+# no-ops on the current /preview/ page; never silently leave the canonical
+# docs/data/listings.json URL in an apparently verified wareList Preview.
+text, loader_rewrites = re.subn(
+    r"function sameCounts\\(a,b\\)\\{.*?\\.catch\\(e=>\\{.*?\\n\\}\\);",
+    lambda match: runtime_loader,
+    text,
+    count=1,
+    flags=re.S,
+)
+if loader_rewrites != 1:
+    raise RuntimeError("Cannot locate original Preview runtime loader; refuse stale 591 data")
+if "fetchJson(\`../data/listings.json" in text:
+    raise RuntimeError("Original Preview still references canonical 591 source")
+
 # The canonical Preview page may already contain the modern fetchJson loader, so the
 # legacy regex above can legitimately be a no-op. Force the runtime integrity guard
 # to the current 5168-aware v5 value explicitly.
