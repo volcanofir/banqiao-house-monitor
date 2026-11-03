@@ -8,6 +8,7 @@ import validate_scheme_a_preview_v2 as v2
 GAP = Path("docs/preview/company-gap.json")
 SINYI_STATS = Path("docs/preview/sinyi-floor-enrichment.json")
 SOURCE_DATA = Path("docs/data/listings.json")
+UI_SOURCE = Path("docs/preview/preview-monitor-state.json")
 
 
 def main():
@@ -30,6 +31,16 @@ def main():
     hp_grouping = p.get("housepriceGrouping") or {}
     assert int(hp_grouping.get("inputCount") or 0) == int(hp.get("uniqueListingCount") or 0), (hp_grouping, hp)
     assert p.get("sinyiStructuredFloorMatching") is True, p.get("sinyiStructuredFloorMatching")
+    # Same Preview UI state + same comparator; no 591 edits to canonical history.
+    overlaid = json.loads(UI_SOURCE.read_text(encoding="utf-8"))
+    w = p.get("preview591Warelist") or {}
+    ui_w = (overlaid.get("previewSources") or {}).get("591") or {}
+    assert w.get("mode") == "warelist_preview" and w.get("complete") is True, w
+    assert ui_w.get("updatedAt") == w.get("updatedAt"), (ui_w, w)
+    assert overlaid.get("updatedAt") == source.get("updatedAt")
+    assert w.get("missingIdIsNotDelisting") is True and w.get("newIdIsNotNewProperty") is True
+    assert sum(x.get("source") == "591" for x in overlaid.get("listings") or []) > 0
+
 
     # The visible monitor data and the company comparison must come from the same
     # source snapshot. This prevents a valid-but-stale company-gap from being shown
