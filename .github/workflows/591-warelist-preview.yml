@@ -72,13 +72,28 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           cp docs/591-preview/snapshot.json /tmp/591-warelist-preview-snapshot.json
           git fetch origin main
-          # Reject an old run if the parser or historical baseline changed meanwhile.
-          for f in scripts/build_591_warelist_preview.py docs/data/listings.json; do
-            if [[ "$(git rev-parse "HEAD:$f")" != "$(git rev-parse "origin/main:$f")" ]]; then
-              echo "::warning::Parser or historical baseline changed while crawling; skip stale preview publish"
-              exit 0
-            fi
-          done
+          # Historical data refreshes every ~15 minutes for other sources.
+          # Only a 591 *historical identity/status change* makes this read-only
+          # capture invalid; a Sinyi-only canonical commit should not discard it.
+          if [[ "$(git rev-parse HEAD:scripts/build_591_warelist_preview.py)" != "$(git rev-parse origin/main:scripts/build_591_warelist_preview.py)" ]]; then
+            echo "::warning::591 parser changed while crawling; skip stale preview publish"
+            exit 0
+          fi
+          if [[ "$(git rev-parse HEAD:docs/data/listings.json)" != "$(git rev-parse origin/main:docs/data/listings.json)" ]]; then
+            python - <<'PY'
+          import json,subprocess
+          def read(ref):
+              b=subprocess.check_output(["git","show",f"{ref}:docs/data/listings.json"])
+              return json.loads(b)
+          def only_591(d):
+              return [x for x in d.get("listings",[]) if x.get("source")=="591"]
+          original=only_591(read("HEAD"))
+          latest=only_591(read("origin/main"))
+          if original != latest:
+              raise SystemExit("591 historical records changed; refuse stale publication")
+          print("Other-source changes occurred but exact historical 591 records are unchanged; safe to refresh")
+          PY
+          fi
           git reset --hard origin/main
           mkdir -p docs/591-preview
           cp /tmp/591-warelist-preview-snapshot.json docs/591-preview/snapshot.json
@@ -88,9 +103,16 @@ jobs:
             exit 0
           fi
           git commit -m "Refresh independent verified 591 wareList Preview"
-          git pull --rebase origin main
-          git push origin HEAD:main
-          echo "591 data feed saved for existing /preview/ grouping; canonical history untouched."
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              echo "591 data feed saved for existing /preview/ grouping; canonical history untouched."
+              exit 0
+            fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep 3
+          done
+          echo "::error::Could not publish verified 591 feed after three retries."
+          exit 1
 
       - name: Rebuild the EXISTING /preview/ with newly captured 591 data
         if: success()
