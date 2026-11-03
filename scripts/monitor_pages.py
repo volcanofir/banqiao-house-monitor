@@ -441,8 +441,19 @@ def merge_source(state, source, current, success, message, logs, checked_at):
     previous = [item for item in state["listings"] if item.get("source") == source]
     other = [item for item in state["listings"] if item.get("source") != source]
     previous_by_id = {item.get("id"): item for item in previous if item.get("id")}
+    # 591's top-level records are property groups. Their child listing IDs
+    # remain established identities, even when the representative ID differs.
+    # Prefer the actual member record over the aggregate group record.
+    previous_members_by_id = {}
+    if source == "591":
+        for parent in previous:
+            members = parent.get("mergedListings")
+            if isinstance(members, list):
+                for member in members:
+                    if isinstance(member, dict) and member.get("id"):
+                        previous_members_by_id[member["id"]] = member
     previous_run = (state.get("runs") or {}).get(source) or {}
-    baseline_ready = bool(previous_by_id)
+    baseline_ready = bool(previous_by_id or previous_members_by_id)
     if source == "591" and previous_run.get("mode") != "playwright_api":
         baseline_ready = False
 
@@ -463,7 +474,7 @@ def merge_source(state, source, current, success, message, logs, checked_at):
     current_ids = {item["id"] for item in current}
     new_ids, merged = [], []
     for item in current:
-        old = previous_by_id.get(item["id"])
+        old = previous_members_by_id.get(item["id"]) or previous_by_id.get(item["id"])
         first_seen = (old or {}).get("firstSeenAt") or checked_at
         new_at = (old or {}).get("newAt")
         if not old and baseline_ready:
@@ -482,6 +493,15 @@ def merge_source(state, source, current, success, message, logs, checked_at):
     for old in previous:
         old_id = old.get("id")
         if not old_id or old_id in current_ids:
+            continue
+        # A group's representative advertisement may be gone even while
+        # another member is present in the fresh result. In that case, a
+        # missing representative ID is *not* evidence of property delisting.
+        if source == "591" and any(
+            isinstance(member, dict) and member.get("id") in current_ids
+            for member in (old.get("mergedListings") or [])
+        ):
+            merged.append(old)
             continue
         if old.get("active", True) and definitely_inactive(old):
             changed = dict(old)
