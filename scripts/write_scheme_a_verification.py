@@ -59,6 +59,7 @@ def main():
         'crossPlatformMergedGroupCount': p.get('crossPlatformMergedGroupCount'),
         'crossSourceReviewCount': p.get('crossSourceReviewCount'),
         'preview591Regroup': p.get('preview591Regroup'),
+        'preview591Warelist': p.get('preview591Warelist'),
         'schemeAGroupIntegrity': p.get('schemeAGroupIntegrity'),
         'idIntegrityGuard': s.get('idIntegrityGuard'),
         'candidateCount': len(candidates),
