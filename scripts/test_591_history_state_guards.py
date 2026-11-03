@@ -154,10 +154,46 @@ def test_2026_10_30_archive():
     )
 
 
+def test_current_state_idempotence():
+    from pathlib import Path
+
+    state = json.loads(Path("docs/data/listings.json").read_text(encoding="utf-8"))
+    before = state.get("listings", [])
+    previous_591 = [x for x in before if x.get("source") == "591"]
+    other_sources = [x for x in before if x.get("source") != "591"]
+    flat_before = {
+        x["id"]: x for x in dedupe.flatten_591(previous_591) if x.get("id")
+    }
+    regrouped, _, _ = dedupe.dedupe(before)
+    flat_after = {
+        x["id"]: x for x in dedupe.flatten_591(
+            [x for x in regrouped if x.get("source") == "591"]
+        ) if x.get("id")
+    }
+    assert flat_before.keys() == flat_after.keys(), "Regrouping must not lose listing IDs"
+    for item_id in flat_before:
+        old, new = flat_before[item_id], flat_after[item_id]
+        assert old.get("active", True) == new.get("active", True), (
+            "Regrouping must not flip individual listing status"
+        )
+        assert old.get("removedAt") == new.get("removedAt"), (
+            "Regrouping must preserve confirmed delisting timestamps"
+        )
+    assert other_sources == [x for x in regrouped if x.get("source") != "591"], (
+        "Dedupe must not modify other portals"
+    )
+    print(
+        f"CURRENT idempotent_status_count={len(flat_before)} "
+        f"active_ads={sum(x.get('active',True) for x in flat_after.values())} "
+        f"other_portal_records_untouched={len(other_sources)}"
+    )
+
+
 def main():
     test_group_and_member_status()
     test_nested_previous_ids_not_new()
     test_2026_10_30_archive()
+    test_current_state_idempotence()
     print("REGRESSION_TESTS_ALL_PASS no production data updated")
 
 
