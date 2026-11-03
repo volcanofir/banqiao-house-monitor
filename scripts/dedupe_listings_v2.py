@@ -253,6 +253,17 @@ def flatten_591(source_rows):
                 if row.get("id"):
                     by_id[row["id"]] = merge_same_id(by_id.get(row["id"]), row)
     for item in source_rows:
+        old_members = item.get("mergedListings")
+        # A grouped property's active flag means *some* ad in the group is
+        # active, not that its representative ad ID is still active.
+        # When that representative is already present among the nested source
+        # listings, the nested record is authoritative for its active/removedAt
+        # status. Never merge the aggregate group status back onto that ID.
+        if isinstance(old_members, list) and any(
+            isinstance(member, dict) and member.get("id") == item.get("id")
+            for member in old_members
+        ):
+            continue
         row = raw_row(item)
         if row.get("id"):
             by_id[row["id"]] = merge_same_id(by_id.get(row["id"]), row)
