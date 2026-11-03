@@ -13,6 +13,7 @@ import json
 import math
 from collections import Counter, defaultdict
 from copy import deepcopy
+from unittest.mock import patch
 from pathlib import Path
 from urllib.parse import urlencode
 
@@ -231,15 +232,35 @@ def compare(current, old_parents, old_active, old_by_id, old_active_ids):
         f"combined_merged_count={combined_removed} "
         f"WARN_old_active_flags_are_carried_forward=True"
     )
-    # The current production merge_source has parent-level identities only.
-    # Count its theoretical 'new ID' logic WITHOUT calling network-backed
-    # definitely_inactive and WITHOUT writing any state.
-    parent_ids={x["id"] for x in old_parents}
+    # Run the real production identity merge in memory; do not let it query
+    # details or confirm any delistings.  This tests whether nested historical
+    # member IDs, not just old representative IDs, suppress false "new" flags.
+    hypothetical={"listings":deepcopy(old_parents),
+                  "runs":{"591":{"status":"error","mode":"playwright_api"}}}
+    with patch.object(core,"definitely_inactive",return_value=False):
+        actual_new,actual_removed=core.merge_source(
+            hypothetical,"591",deepcopy(rows),True,
+            "READ_ONLY_HYPOTHETICAL","", "2026-11-03T00:00:00+00:00")
+    current_unseen=set(unseen)
+    false_new=set(actual_new)&old_ids
+    missed_new=current_unseen-set(actual_new)
     print(
-        f"SAFETY production_parent_id_not_found={len(ids-parent_ids)} "
-        f"actual_unseen_id={len(unseen)} "
-        f"potential_false_new_id_events={len((ids-parent_ids)&old_ids)} "
-        f"PRODUCTION_AUTO_PUBLISH_SAFE=False"
+        f"PRODUCTION_MERGE_SIMULATION expected_unseen_ids={len(current_unseen)} "
+        f"new_marked={len(actual_new)} old_ids_falsely_new={len(false_new)} "
+        f"unseen_not_marked={len(missed_new)} removed={len(actual_removed)} "
+        f"detail_checks_disabled=True identity_consistent={not false_new and not missed_new}"
+    )
+    if false_new or missed_new or actual_removed:
+        raise AssertionError(
+            "Current merge_source identity is unsafe in read-only rehearsal"
+        )
+    # Passing identity is necessary but not sufficient for publication:
+    # absent ads need independent confirmation, property matches can be
+    # ambiguous, and the public source's continuity is not yet established.
+    print(
+        "SAFETY historical_ad_identity=pass "
+        "offmarket_and_property_grouping=unverified "
+        "PRODUCTION_AUTO_PUBLISH_SAFE=False"
     )
 
 
