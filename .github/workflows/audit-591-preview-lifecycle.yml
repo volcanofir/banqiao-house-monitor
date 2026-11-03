@@ -7,6 +7,8 @@ on:
       - "audit/591-lifecycle-duplicates-20261103"
     paths:
       - "scripts/audit_591_preview_lifecycle_readonly.py"
+      - "scripts/add_recent_offmarket.py"
+      - "tests/test_preview_offmarket_confirmation.py"
       - ".github/workflows/audit-591-preview-lifecycle.yml"
   pull_request:
     paths:
@@ -29,9 +31,38 @@ jobs:
         run: python -m py_compile scripts/audit_591_preview_lifecycle_readonly.py
       - name: Verify all observed IDs, historical absence and displayed grouping
         run: python -u scripts/audit_591_preview_lifecycle_readonly.py
+      - name: Test stronger all-member offmarket confirmation rule
+        run: |
+          python -m unittest discover -s tests -p "test_preview_offmarket_confirmation.py" -v
+
+      - name: Rebuild safe read-only comparison input and evaluate new policy
+        run: |
+          python scripts/sinyi_preview_floor_enrich.py
+          python scripts/apply_591_warelist_to_original_preview.py
+          python scripts/append_rakuya_to_scheme_a.py
+          python scripts/append_houseprice_to_scheme_a.py
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import sys
+          sys.path.insert(0,'scripts')
+          import add_recent_offmarket as mod
+          state=json.loads(Path("docs/preview/scheme-a-external-enriched.json").read_text(encoding="utf-8"))
+          gap=json.loads(Path("docs/preview/company-gap.json").read_text(encoding="utf-8"))
+          result=mod.build_offmarket_report(state,gap,datetime.now(timezone.utc))
+          print(json.dumps({
+              'oldOffmarketCount':gap.get('recentOffMarketCount'),
+              'newConfirmedCount':result.get('recentOffMarketCount'),
+              'unconfirmedCandidateCount':result.get('pendingOffMarketConfirmationCount'),
+              'include5168':True,
+          },ensure_ascii=False))
+          assert result['recentOffMarketCount']<=gap.get('recentOffMarketCount',0)
+          PY
+
       - name: Assert no files are modified
         run: |
-          if [[ -n "$(git status --porcelain -- docs state)" ]]; then
+          if [[ -n "$(git status --porcelain -- docs/data docs/index.html state)" ]]; then
             echo "::error::Read-only diagnostic mutated production or Preview"
             exit 1
           fi
