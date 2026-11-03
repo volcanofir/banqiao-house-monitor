@@ -51,6 +51,8 @@ on:
       - "scripts/write_scheme_a_verification.py"
       - "scripts/write_scheme_a_saved_output_audit.py"
       - "docs/data/listings.json"
+      - "docs/591-preview/snapshot.json"
+      - "scripts/apply_591_warelist_to_original_preview.py"
 
 permissions:
   contents: write
@@ -117,6 +119,9 @@ jobs:
       - name: Build Preview-only Sinyi structured floor snapshot
         run: python scripts/sinyi_preview_floor_enrich.py
 
+      - name: Feed verified 591 wareList into original Scheme A Preview
+        run: python scripts/apply_591_warelist_to_original_preview.py
+
       - name: Append Rakuya into Preview external snapshot
         run: python scripts/append_rakuya_to_scheme_a.py
 
@@ -156,6 +161,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p /tmp/yungching-preview-output
           core_files=(
+            preview-monitor-state.json
             company-gap.json
             yungching-preview-run.log
             yungching-browser-snapshot.json
@@ -174,6 +180,10 @@ jobs:
           done
 
           git fetch origin main
+          if [[ "$(git rev-parse HEAD:docs/591-preview/snapshot.json)" != "$(git rev-parse origin/main:docs/591-preview/snapshot.json)" ]]; then
+            echo "::warning::591 snapshot changed during Preview comparison; skip stale publish."
+            exit 0
+          fi
           # A runner that started before a newer security/UI patch must never publish
           # its older Preview output over the current main branch.
           if [[ "$(git rev-parse HEAD:scripts/patch_preview_ui.py)" != "$(git rev-parse origin/main:scripts/patch_preview_ui.py)" ]]; then
