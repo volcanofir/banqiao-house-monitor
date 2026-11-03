@@ -1,0 +1,61 @@
+name: Test 591 three-hour wakeup and Preview freshness
+
+on:
+  push:
+    branches:
+      - "fix/591-3h-wakeup-freshness-20261103"
+    paths:
+      - ".github/workflows/monitor-clean.yml"
+      - ".github/workflows/591-warelist-preview.yml"
+      - ".github/workflows/test-591-3h-wakeup.yml"
+      - "docs/preview/index.html"
+      - "scripts/smoke_test_preview_ui.py"
+  pull_request:
+    paths:
+      - ".github/workflows/monitor-clean.yml"
+      - ".github/workflows/591-warelist-preview.yml"
+      - ".github/workflows/test-591-3h-wakeup.yml"
+      - "docs/preview/index.html"
+      - "scripts/smoke_test_preview_ui.py"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Verify current three-hour retry safety contract
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          m=Path(".github/workflows/monitor-clean.yml").read_text()
+          f=Path(".github/workflows/591-warelist-preview.yml").read_text()
+          p=Path("docs/preview/index.html").read_text()
+          assert "Wake 591 wareList Preview if three-hour refresh is overdue" in m
+          assert "--limit 12 --json createdAt,status,conclusion" in m
+          assert "minutes >= 180" in m
+          assert "gh workflow run 591-warelist-preview.yml --ref main" in m
+          assert "cron: \"23 */3 * * *\"" in f
+          assert "only_591(read" in f
+          assert '已超過4小時未成功更新' in p
+          assert "outdated?'stale':" in p
+          print("Verified existing GitHub heartbeat fallback, 3-hour attempt gating, safe history guard and stale badge.")
+          PY
+      - name: Verify Python syntax
+        run: python -m py_compile scripts/smoke_test_preview_ui.py
+      - name: Test ORIGINAL mobile Preview UI, status freshness and source safety
+        run: |
+          pip install requests beautifulsoup4 playwright
+          python scripts/run_with_system_chrome.py scripts/smoke_test_preview_ui.py
+      - name: Prevent any canonical data modification
+        run: |
+          if [[ -n "$(git status --porcelain -- docs/data state docs/preview)" ]]; then
+            echo "::error::A test modified production data or Preview"
+            exit 1
+          fi

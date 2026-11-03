@@ -170,6 +170,22 @@ def main():
 
             assert number(page.locator("#cUnavailable").inner_text()) == offmarket_count
             assert page.locator("#sources .source-card").count() == 4
+            # Simulate the 591 source remaining untouched for five hours:
+            # stale data must be disclosed instead of displaying a false "正常".
+            stale_badge = page.evaluate("""() => {
+                const last=Date.parse(DATA?.runs?.['591']?.checkedAt||'');
+                if (!Number.isFinite(last)) throw new Error('591 checkedAt missing');
+                const originalNow=Date.now;
+                try {
+                    Date.now=()=>last+5*60*60*1000;
+                    render();
+                    return document.querySelector('#sources .source-card:first-child .badge')?.textContent;
+                } finally {
+                    Date.now=originalNow;
+                    render();
+                }
+            }""")
+            assert stale_badge == "資料過期", stale_badge
             assert page.locator('.source-tab[data-source="rakuya"]').count() == 1
             assert page.locator('.source-tab[data-source="houseprice"]').count() == 1
             assert page.locator("#rakuyaPanel").count() == 0
