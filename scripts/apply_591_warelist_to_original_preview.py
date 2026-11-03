@@ -186,6 +186,20 @@ def merge_for_preview(enriched_state, snapshot, now=None):
                 assert current.get("removedAt") is None, key
     result = copy.deepcopy(enriched_state)
     result["listings"] = non_591 + groups_591
+    # Only the Preview UI receives this successful 591 source status.
+    # The authoritative docs/data/listings.json still retains its real crawl
+    # status (including 403/error) and unchanged historical source timestamps.
+    result.setdefault("runs", {})["591"] = {
+        "checkedAt": snapshot["updatedAt"],
+        "status": "ok",
+        "mode": "warelist_preview",
+        "totalCount": sum(bool(g.get("active")) for g in groups_591),
+        "observedListingIdCount": len(cur),
+        "newCount": 0,
+        "removedCount": 0,
+        "message": "591 公開 wareList 七路段已驗證；新刊登及下架仍以原有房屋層級規則判定。",
+        "logs": [],
+    }
     result.setdefault("previewSources", {})["591"] = {
         "mode": "warelist_preview",
         "status": "ok", "complete": True,
