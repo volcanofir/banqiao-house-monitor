@@ -40,6 +40,19 @@ jobs:
         run: |
           python scripts/sinyi_preview_floor_enrich.py
           python scripts/apply_591_warelist_to_original_preview.py
+      - name: Rebuild original multi-source grouping using stored verified snapshots
+        run: |
+          python scripts/append_rakuya_to_scheme_a.py
+          python scripts/append_houseprice_to_scheme_a.py
+          python scripts/compare_yungching_preview_v11.py > /tmp/591-integrated-compare.log
+          python scripts/patch_preview_ui.py
+          python scripts/validate_scheme_a_preview_v3.py
+          python scripts/audit_scheme_a_ambiguity_v2.py
+          python scripts/write_scheme_a_verification.py > /tmp/591-integrated-verify.log
+          python scripts/write_scheme_a_saved_output_audit.py > /tmp/591-integrated-audit.log
+          python scripts/run_with_system_chrome.py scripts/smoke_test_preview_ui.py
+          echo "Original scheme A grouping, 591 duplicate merge, cross-platform comparison and mobile UI smoke passed."
+
       - name: Ensure original dashboard input changes only locally
         run: |
           python - <<'PY'
