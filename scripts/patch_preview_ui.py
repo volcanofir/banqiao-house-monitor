@@ -225,7 +225,7 @@ text, loader_rewrites = re.subn(
 )
 if loader_rewrites != 1:
     raise RuntimeError("Cannot locate original Preview runtime loader; refuse stale 591 data")
-if "fetchJson(\`../data/listings.json" in text:
+if "fetchJson(`../data/listings.json" in text:
     raise RuntimeError("Original Preview still references canonical 591 source")
 
 # The canonical Preview page may already contain the modern fetchJson loader, so the
