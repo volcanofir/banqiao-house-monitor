@@ -217,7 +217,7 @@ if 'async function fetchJson(url,label)' not in text:
 # no-ops on the current /preview/ page; never silently leave the canonical
 # docs/data/listings.json URL in an apparently verified wareList Preview.
 text, loader_rewrites = re.subn(
-    r"function sameCounts\\(a,b\\)\\{.*?\\.catch\\(e=>\\{.*?\\n\\}\\);",
+    r"function sameCounts\(a,b\)\{.*?\.catch\(e=>\{.*?\n\}\);",
     lambda match: runtime_loader,
     text,
     count=1,
