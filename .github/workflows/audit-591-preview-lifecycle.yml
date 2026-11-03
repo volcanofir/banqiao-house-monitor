@@ -1,0 +1,37 @@
+name: Audit 591 up/down and displayed duplicate groups
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "audit/591-lifecycle-duplicates-20261103"
+    paths:
+      - "scripts/audit_591_preview_lifecycle_readonly.py"
+      - ".github/workflows/audit-591-preview-lifecycle.yml"
+  pull_request:
+    paths:
+      - "scripts/audit_591_preview_lifecycle_readonly.py"
+      - ".github/workflows/audit-591-preview-lifecycle.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Static syntax check
+        run: python -m py_compile scripts/audit_591_preview_lifecycle_readonly.py
+      - name: Verify all observed IDs, historical absence and displayed grouping
+        run: python -u scripts/audit_591_preview_lifecycle_readonly.py
+      - name: Assert no files are modified
+        run: |
+          if [[ -n "$(git status --porcelain -- docs state)" ]]; then
+            echo "::error::Read-only diagnostic mutated production or Preview"
+            exit 1
+          fi
