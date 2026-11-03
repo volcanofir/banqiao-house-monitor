@@ -50,6 +50,45 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Wake 591 wareList Preview if three-hour refresh is overdue
+        # GitHub may delay/drop cron ticks; the existing CLEAN heartbeat provides
+        # a second cloud-only trigger. Throttle by *attempt time* rather than
+        # snapshot freshness so a failed fetch does not retry every 15 minutes.
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          recent="$(gh run list --workflow 591-warelist-preview.yml --limit 12 --json createdAt,status,conclusion)"
+          export RECENT_591_RUNS="$recent"
+          if python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          runs=json.loads(os.environ['RECENT_591_RUNS'])
+          now=datetime.now(timezone.utc)
+          checked=[]
+          for item in runs:
+              raw=item.get('createdAt')
+              if not raw:
+                  continue
+              dt=datetime.fromisoformat(raw.replace('Z','+00:00'))
+              if dt.tzinfo is None:
+                  dt=dt.replace(tzinfo=timezone.utc)
+              checked.append(dt.astimezone(timezone.utc))
+          last=max(checked) if checked else None
+          minutes=(now-last).total_seconds()/60 if last else None
+          due=last is None or minutes >= 180
+          print(f'591 wareList last attempt={last}; elapsedMinutes={minutes}; due={due}')
+          raise SystemExit(0 if due else 1)
+          PY
+          then
+            gh workflow run 591-warelist-preview.yml --ref main
+            echo "591 wareList three-hour refresh dispatched from existing GitHub CLEAN heartbeat."
+          else
+            echo "591 wareList attempted within three hours; no duplicate dispatch."
+          fi
+
       - name: Wake competitor monitor when overdue
         continue-on-error: true
         env:
