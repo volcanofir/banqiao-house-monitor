@@ -121,7 +121,7 @@ footer a{color:var(--green)}
   let data=[], activeRoad="全部", limit=40, fetchedAt="";
   const number=new Intl.NumberFormat("zh-TW",{maximumFractionDigits:1});
   function el(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=String(txt);return e;}
-  function priceNumber(x){const n=Number(String(x==null?"":x).replace(/[,萬]/g,""));return Number.isFinite(n)?n:0;}
+  function priceNumber(x){const n=Number(String(x==null?"":x).replace(/[,萬坪\s]/g,""));return Number.isFinite(n)?n:0;}
   function humanDate(value){const ms=Number(value)*1000;if(!Number.isFinite(ms)||ms<=0)return "日期未提供";return new Date(ms).toLocaleDateString("zh-TW",{timeZone:"Asia/Taipei",year:"numeric",month:"2-digit",day:"2-digit"});}
   function chip(cls,text){return el("span","pill "+cls,text);}
   function roads(){
