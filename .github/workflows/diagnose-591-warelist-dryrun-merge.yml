@@ -1,0 +1,36 @@
+name: 591 wareList merge and history dry-run (read-only)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/diagnose-591-warelist-dryrun-merge.yml"
+      - "scripts/diagnose_591_warelist_dryrun_merge.py"
+
+permissions:
+  contents: read
+
+jobs:
+  dryrun-merge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Validate syntax
+        run: python -m py_compile scripts/diagnose_591_warelist_dryrun_merge.py
+      - name: Install validation dependencies
+        run: pip install playwright requests beautifulsoup4
+      - name: Compare seven-road Nuxt source with historical member identities in memory
+        run: python -u scripts/diagnose_591_warelist_dryrun_merge.py
+      - name: Verify canonical state and Preview are unchanged
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain -- docs/data docs/preview state)" ]; then
+            echo "::error::Diagnostic changed protected paths"
+            exit 1
+          fi
+          echo "Production listings, history and Preview are unchanged."
