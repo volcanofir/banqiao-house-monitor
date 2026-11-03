@@ -1,0 +1,32 @@
+name: Verify three-hour monitor cadence
+
+on:
+  push:
+    paths:
+      - ".github/workflows/monitor-clean.yml"
+      - ".github/workflows/test-monitor-cadence.yml"
+      - "scripts/monitor_schedule_state.py"
+      - "tests/test_monitor_schedule_state.py"
+  pull_request:
+    paths:
+      - ".github/workflows/monitor-clean.yml"
+      - ".github/workflows/test-monitor-cadence.yml"
+      - "scripts/monitor_schedule_state.py"
+      - "tests/test_monitor_schedule_state.py"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-cadence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Check schedule script syntax
+        run: python -m py_compile scripts/monitor_schedule_state.py
+      - name: Exercise attempt and verified-success safety
+        run: python -m unittest discover -s tests -p "test_monitor_schedule_state.py" -v

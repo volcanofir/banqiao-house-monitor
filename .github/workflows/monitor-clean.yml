@@ -29,7 +29,7 @@ on:
       - "scripts/patch_rakuya_integrated_ui.py"
       - "trigger/monitor-wakeup.txt"
   schedule:
-    # Cheap heartbeat every 10 minutes; successful full refreshes are spaced ~3 hours apart.
+    # Ten-minute lightweight heartbeat; full-check attempts are spaced about three hours apart.
     - cron: "7,17,27,37,47,57 * * * *"
 
 permissions:
@@ -103,6 +103,11 @@ jobs:
           fi
           python scripts/monitor_schedule_state.py gate
 
+      - name: Start a three-hour full-check attempt
+        id: attempt
+        if: steps.gate.outputs.run == 'true'
+        run: python scripts/monitor_schedule_state.py begin
+
       - name: Preserve pre-refresh source for meaningful-change detection
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -129,7 +134,7 @@ jobs:
 
       - name: Validate crawler Python syntax
         if: steps.gate.outputs.run == 'true'
-        run: python -m py_compile scripts/monitor_fast.py scripts/monitor_591_web_fallback.py scripts/retry_591_direct_egress.py scripts/monitor_sinyi_parallel.py
+        run: python -m py_compile scripts/monitor_fast.py scripts/monitor_591_web_fallback.py scripts/retry_591_direct_egress.py scripts/monitor_sinyi_parallel.py scripts/monitor_schedule_state.py
 
       - name: Install shared crawler packages
         if: steps.gate.outputs.run == 'true'
@@ -372,6 +377,7 @@ jobs:
         run: python scripts/run_with_system_chrome.py scripts/smoke_test_preview_ui.py
 
       - name: Atomically save monitored data and verified Preview
+        id: publish
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
         shell: bash
         run: |
@@ -414,21 +420,13 @@ jobs:
           done
           exit 1
 
-      - name: Persist successful full-check time after verified publish
-        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true' && steps.fullcheck.outputs.success == 'true' && success()
-        run: python scripts/monitor_schedule_state.py persist
-
       - name: No meaningful listing change
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful != 'true'
         run: echo "No listing-level change; skipped Yongching/company comparison and kept canonical source timestamp unchanged."
 
-      - name: Persist successful no-change full-check time
-        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful != 'true' && steps.fullcheck.outputs.success == 'true'
-        run: python scripts/monitor_schedule_state.py persist
-
       - name: Full check incomplete; retry on next heartbeat
         if: steps.gate.outputs.run == 'true' && steps.fullcheck.outputs.success != 'true'
-        run: echo "591 or Sinyi did not complete successfully; schedule timestamp was not advanced, so the next 10-minute heartbeat can retry."
+        run: echo "591 or Sinyi incomplete; keep last successful timestamp unchanged but record this attempt to avoid ten-minute repeat crawls."
 
       - name: Request GitHub Pages rebuild
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true' && success()
@@ -442,6 +440,15 @@ jobs:
             "repos/${GITHUB_REPOSITORY}/pages/builds"
           echo "Fast canonical Pages rebuild queued."
 
+      - name: Persist attempted full-check cadence, preserving last verified success
+        if: always() && steps.gate.outputs.run == 'true' && steps.attempt.outcome == 'success'
+        env:
+          SOURCE_OK: ${{ steps.fullcheck.outputs.success }}
+          WORKFLOW_STATUS: ${{ job.status }}
+          LISTINGS_CHANGED: ${{ steps.changes.outputs.meaningful }}
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
+        run: python scripts/monitor_schedule_state.py persist
+
       - name: Heartbeat skipped
         if: steps.gate.outputs.run != 'true'
-        run: echo "Last successful full check is still fresh; heartbeat finished without a full fetch."
+        run: echo "Last full-check attempt is still within 180 minutes; heartbeat finished without a full fetch."
