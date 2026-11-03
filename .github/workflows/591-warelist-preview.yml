@@ -14,6 +14,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: banqiao-591-warelist-preview
@@ -90,3 +91,12 @@ jobs:
           git pull --rebase origin main
           git push origin HEAD:main
           echo "591 data feed saved for existing /preview/ grouping; canonical history untouched."
+
+      - name: Rebuild the EXISTING /preview/ with newly captured 591 data
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh workflow run yungching-preview.yml --ref main
+          echo "Dispatched original /preview/ property grouping; no separate website."
