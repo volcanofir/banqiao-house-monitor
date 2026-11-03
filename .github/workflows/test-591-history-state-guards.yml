@@ -1,0 +1,40 @@
+name: 591 history and grouping regression tests
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/test-591-history-state-guards.yml"
+      - "scripts/test_591_history_state_guards.py"
+      - "scripts/dedupe_listings_v2.py"
+      - "scripts/monitor_pages.py"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install production module import dependencies
+        run: pip install requests beautifulsoup4 playwright
+      - name: Compile regression and monitor modules
+        run: python -m py_compile scripts/test_591_history_state_guards.py scripts/dedupe_listings_v2.py scripts/monitor_pages.py
+      - name: Check archived data and source/member identity rules
+        run: python -u scripts/test_591_history_state_guards.py
+      - name: Verify Preview and production state untouched
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain -- docs/data docs/preview state)" ]; then
+            echo "::error::Regression tests changed canonical state or Preview"
+            exit 1
+          fi
+          echo "Canonical state and Preview unchanged."
