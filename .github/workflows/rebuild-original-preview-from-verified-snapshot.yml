@@ -1,0 +1,103 @@
+name: Rebuild ORIGINAL Preview from recent verified company snapshot
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/rebuild-original-preview-from-verified-snapshot.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: banqiao-verified-original-preview-rebuild
+  cancel-in-progress: false
+
+jobs:
+  rebuild-original-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install Scheme A comparator and browser dependencies
+        run: pip install requests beautifulsoup4 playwright
+
+      - name: Require RECENT verified official company snapshot
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          s=json.loads(Path('docs/preview/yungching-browser-snapshot.json').read_text(encoding='utf-8'))
+          v=json.loads(Path('docs/preview/scheme-a-verification.json').read_text(encoding='utf-8'))
+          t=datetime.fromisoformat(str(s['capturedAt']).replace('Z','+00:00'))
+          age=(datetime.now(timezone.utc)-t).total_seconds()/60
+          assert 0 <= age <= 75, f"Company snapshot too old: {age}"
+          assert s.get('previewOnly') is True
+          assert v.get('valid') is True and v.get('snapshotCapturedAt')==s.get('capturedAt')
+          assert s.get('paginationGuardVersion') in {'all-pages-v5','api-all-pages-v1'}
+          assert len(s.get('roadStatus') or {}) == 7
+          print(f"Reusing verified official Yongching snapshot at {s['capturedAt']} (age {age:.1f}m)")
+          PY
+
+      - name: Rebuild original Preview multi-source grouping
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/sinyi_preview_floor_enrich.py
+          python scripts/apply_591_warelist_to_original_preview.py
+          python scripts/append_rakuya_to_scheme_a.py
+          python scripts/append_houseprice_to_scheme_a.py
+          python scripts/compare_yungching_preview_v11.py 2>&1 | tee docs/preview/yungching-preview-run.log
+          python scripts/patch_preview_ui.py
+          python scripts/validate_scheme_a_preview_v3.py
+          python scripts/audit_scheme_a_ambiguity_v2.py
+          python scripts/write_scheme_a_verification.py
+          python scripts/write_scheme_a_saved_output_audit.py
+
+      - name: Test original /preview/ in mobile system Chrome
+        run: python scripts/run_with_system_chrome.py scripts/smoke_test_preview_ui.py
+
+      - name: Publish only original /preview/ files if source unchanged
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p /tmp/original-preview-rebuild
+          for f in preview-monitor-state.json company-gap.json yungching-preview-run.log yungching-browser-snapshot.json yungching-detail-floor.json sinyi-floor-enrichment.json scheme-a-ambiguity-audit.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html rakuya-seven-roads.json houseprice-seven-roads.json; do
+            [[ -f "docs/preview/$f" ]] || { echo "Missing Preview output $f"; exit 1; }
+            cp "docs/preview/$f" "/tmp/original-preview-rebuild/$f"
+          done
+          git fetch origin main
+          for p in docs/data/listings.json docs/591-preview/snapshot.json docs/preview/yungching-browser-snapshot.json scripts/patch_preview_ui.py scripts/apply_591_warelist_to_original_preview.py; do
+            if [[ "$(git rev-parse "HEAD:$p")" != "$(git rev-parse "origin/main:$p")" ]]; then
+              echo "::warning::Source changed while rebuilding; skip stale output publish"
+              exit 0
+            fi
+          done
+          git reset --hard origin/main
+          for f in preview-monitor-state.json company-gap.json yungching-preview-run.log yungching-browser-snapshot.json yungching-detail-floor.json sinyi-floor-enrichment.json scheme-a-ambiguity-audit.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html rakuya-seven-roads.json houseprice-seven-roads.json; do
+            cp "/tmp/original-preview-rebuild/$f" "docs/preview/$f"
+            git add "docs/preview/$f"
+          done
+          if git diff --cached --quiet; then
+            echo "Original Preview already current."
+            exit 0
+          fi
+          git commit -m "Refresh existing Preview with current 591 wareList and verified company snapshot"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              echo "Original /preview/ published. Production and canonical history not changed."
+              exit 0
+            fi
+            git rebase --abort >/dev/null 2>&1 || true
+            sleep 3
+          done
+          exit 1
