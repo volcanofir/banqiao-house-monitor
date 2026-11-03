@@ -1,4 +1,4 @@
-name: 591 wareList independent Preview
+name: 591 wareList feed for original Preview
 
 on:
   workflow_dispatch:
@@ -8,8 +8,6 @@ on:
       - ".github/workflows/591-warelist-preview.yml"
       - "scripts/build_591_warelist_preview.py"
       - "tests/test_591_warelist_preview.py"
-      - "docs/591-preview/index.html"
-      - "scripts/smoke_test_591_preview.py"
   schedule:
     # Independent GitHub cloud crawl about once every three hours (UTC).
     - cron: "23 */3 * * *"
@@ -65,10 +63,7 @@ jobs:
           print("Verified seven-road Preview-only snapshot, no canonical modification")
           PY
 
-      - name: Smoke test Preview in mobile system Chrome
-        run: python scripts/smoke_test_591_preview.py
-
-      - name: Publish only independent 591-preview snapshot
+      - name: Publish only 591 data feed for original Preview
         shell: bash
         run: |
           set -euo pipefail
@@ -94,4 +89,4 @@ jobs:
           git commit -m "Refresh independent verified 591 wareList Preview"
           git pull --rebase origin main
           git push origin HEAD:main
-          echo "591 Preview snapshot published; canonical source and original Preview untouched."
+          echo "591 data feed saved for existing /preview/ grouping; canonical history untouched."
