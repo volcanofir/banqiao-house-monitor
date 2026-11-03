@@ -1,12 +1,12 @@
 {
-  "capturedAt": "2026-11-03T11:47:58+00:00",
+  "capturedAt": "2026-11-03T12:03:17+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
   "warmup": {
     "http": 200,
     "url": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw?od=80",
-    "title": "新北市板橋區買房 | 永慶房仲網"
+    "title": "buy"
   },
   "availableRoads": [
     "板橋區中山路二段",
@@ -29,7 +29,7 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 70380,
+      "primaryApiListDataLength": 56684,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
       "roadTextCount": 27,
@@ -138,7 +138,7 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 16832,
+      "primaryApiListDataLength": 13292,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
       "roadTextCount": 6,
@@ -203,7 +203,7 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 60416,
+      "primaryApiListDataLength": 47916,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
       "roadTextCount": 27,
@@ -310,7 +310,7 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 10860,
+      "primaryApiListDataLength": 8408,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
       "roadTextCount": 3,
@@ -420,7 +420,7 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 8832,
+      "primaryApiListDataLength": 6956,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
       "roadTextCount": 2,
@@ -1587,33 +1587,6 @@
       }
     },
     {
-      "id": "7145115",
-      "road": "板橋區三民路二段",
-      "title": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福",
-      "price": 2313,
-      "area": 30.04,
-      "floor": "9/11樓",
-      "address": "新北市板橋區三民路二段",
-      "type": "住宅大樓",
-      "url": "https://buy.yungching.com.tw/house/7145115",
-      "sourceMode": "yungching_official_api",
-      "text": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
-      "rawText": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
-      "patternInfo": {
-        "room": 2,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 9,
-        "toFloor": 9,
-        "upFloor": 11
-      }
-    },
-    {
       "id": "7145052",
       "road": "板橋區三民路二段",
       "title": "全新可談8樓三房",
@@ -1637,6 +1610,33 @@
       "floorInfo": {
         "fromFloor": 8,
         "toFloor": 8,
+        "upFloor": 11
+      }
+    },
+    {
+      "id": "7145115",
+      "road": "板橋區三民路二段",
+      "title": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福",
+      "price": 2313,
+      "area": 30.04,
+      "floor": "9/11樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7145115",
+      "sourceMode": "yungching_official_api",
+      "text": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
+      "rawText": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
+      "patternInfo": {
+        "room": 2,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 9,
+        "toFloor": 9,
         "upFloor": 11
       }
     },
@@ -2421,7 +2421,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-03T11:48:12+00:00",
+    "generatedAt": "2026-11-03T12:04:20+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
