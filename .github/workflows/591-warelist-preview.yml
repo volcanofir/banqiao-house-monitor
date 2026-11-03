@@ -1,0 +1,93 @@
+name: 591 wareList independent Preview
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/591-warelist-preview.yml"
+      - "scripts/build_591_warelist_preview.py"
+      - "tests/test_591_warelist_preview.py"
+      - "docs/591-preview/index.html"
+  schedule:
+    # Independent GitHub cloud crawl about once every three hours (UTC).
+    - cron: "23 */3 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: banqiao-591-warelist-preview
+  cancel-in-progress: false
+
+jobs:
+  refresh-independent-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install public-list capture and parser dependencies
+        run: pip install playwright requests beautifulsoup4
+
+      - name: Run offline safety unit tests
+        run: |
+          python -m py_compile scripts/build_591_warelist_preview.py
+          python -m unittest discover -s tests -p "test_591_warelist_preview.py" -v
+
+      - name: Read and validate all seven 591 roads
+        run: python -u scripts/build_591_warelist_preview.py
+
+      - name: Assert original production and Preview are unchanged
+        run: |
+          if [[ -n "$(git status --porcelain -- docs/data docs/preview docs/index.html state)" ]]; then
+            echo "::error::Source test mutated protected canonical data or Preview"
+            exit 1
+          fi
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("docs/591-preview/snapshot.json")
+          d=json.loads(p.read_text(encoding="utf-8"))
+          assert d.get("mode")=="preview_only"
+          assert d.get("complete") is True
+          assert d.get("noOffmarketDecision") is True
+          assert d.get("noAutomaticNewPropertyDecision") is True
+          assert len(d.get("roadCounts") or []) == 7
+          assert len(d.get("listings") or []) == d.get("counts",{}).get("totalListings")
+          print("Verified seven-road Preview-only snapshot, no canonical modification")
+          PY
+
+      - name: Publish only independent 591-preview snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp docs/591-preview/snapshot.json /tmp/591-warelist-preview-snapshot.json
+          git fetch origin main
+          # Reject an old run if the parser or historical baseline changed meanwhile.
+          for f in scripts/build_591_warelist_preview.py docs/data/listings.json; do
+            if [[ "$(git rev-parse "HEAD:$f")" != "$(git rev-parse "origin/main:$f")" ]]; then
+              echo "::warning::Parser or historical baseline changed while crawling; skip stale preview publish"
+              exit 0
+            fi
+          done
+          git reset --hard origin/main
+          mkdir -p docs/591-preview
+          cp /tmp/591-warelist-preview-snapshot.json docs/591-preview/snapshot.json
+          git add docs/591-preview/snapshot.json
+          if git diff --cached --quiet; then
+            echo "Preview data unchanged; publishing unnecessary."
+            exit 0
+          fi
+          git commit -m "Refresh independent verified 591 wareList Preview"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "591 Preview snapshot published; canonical source and original Preview untouched."
