@@ -120,5 +120,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
+          # Quickly rebuild the SAME existing /preview/ using a verified
+          # recently captured company snapshot. This avoids needing a fresh
+          # Surfshark exit just to show already verified 591 data.
+          if gh workflow run rebuild-original-preview-from-verified-snapshot.yml --ref main; then
+            echo "Fast verified rebuild of existing /preview/ dispatched."
+          else
+            echo "::warning::Fast cached-company rebuild unavailable; full original Preview crawl will still run."
+          fi
+          # Full live company comparison remains an independent backstop.
           gh workflow run yungching-preview.yml --ref main
-          echo "Dispatched original /preview/ property grouping; no separate website."
+          echo "Dispatched full original /preview/ property grouping; no separate website."
