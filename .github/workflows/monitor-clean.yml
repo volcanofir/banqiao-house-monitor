@@ -389,6 +389,13 @@ jobs:
 
           git fetch origin main
           git reset --hard origin/main
+          # In-flight jobs may have checked out 591 data before a manual
+          # correction. A failed 591 scrape must not overwrite newer canonical
+          # 591 history when the rest of the preview is successfully refreshed.
+          python scripts/preserve_591_on_failed_refresh.py \
+            --incoming /tmp/fast-publish/data/listings.json \
+            --current docs/data/listings.json \
+            --output /tmp/fast-publish/data/listings.json
           cp /tmp/fast-publish/data/listings.json docs/data/listings.json
           [[ -f /tmp/fast-publish/data/sinyi-first-display-cache.json ]] && cp /tmp/fast-publish/data/sinyi-first-display-cache.json docs/data/sinyi-first-display-cache.json || true
           for f in /tmp/fast-publish/preview/*; do cp "$f" "docs/preview/$(basename "$f")"; done
