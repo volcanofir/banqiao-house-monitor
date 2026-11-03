@@ -1,0 +1,35 @@
+name: 591 remaining six roads check (read-only)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/diagnose-591-other-six-roads.yml"
+      - "scripts/diagnose_591_other_six_roads.py"
+
+permissions:
+  contents: read
+
+jobs:
+  check-six-roads:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Validate diagnostic syntax
+        run: python -m py_compile scripts/diagnose_591_other_six_roads.py
+      - name: Install browser library
+        run: pip install playwright
+      - name: Check first and last HTML pages of remaining six roads
+        run: python scripts/diagnose_591_other_six_roads.py
+      - name: Ensure canonical and Preview are untouched
+        run: |
+          if [ -n "$(git status --porcelain -- docs/data docs/preview state)" ]; then
+            echo "::error::Read-only test changed protected data"
+            exit 1
+          fi
+          echo "Read-only diagnostic complete; protected files unchanged."
