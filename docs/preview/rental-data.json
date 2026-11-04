@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-04T07:32:50+00:00",
+  "updatedAt": "2026-11-04T07:47:21+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -111,11 +111,10 @@
       ]
     },
     "5168": {
-      "status": "error",
+      "status": "ok",
       "totalCount": 95,
-      "checkedAt": "2026-11-04T07:17:26+00:00",
+      "checkedAt": "2026-11-04T07:47:29+00:00",
       "logs": [
-        "本輪 VPN/API 更新失敗，保留最後成功 5168 租屋資料。",
         "板橋區中山路二段 5168 API第1頁：符合 18／新增 18／來源總數 61",
         "板橋區中山路二段 5168 API第2頁：符合 19／新增 19／來源總數 61",
         "板橋區中山路二段 5168 API第3頁：符合 18／新增 18／來源總數 61",
@@ -136,8 +135,7 @@
         "板橋區翠華街 5168租屋完成，共 0 筆",
         "板橋區林森街 5168 API第1頁：符合 0／新增 0／來源總數 0",
         "板橋區林森街 5168租屋完成，共 0 筆"
-      ],
-      "message": "本輪找不到 5168 可用 VPN 出口；沿用最後成功快照，未以 0 筆覆蓋。"
+      ]
     }
   },
   "counts": {
@@ -379,19 +377,6 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
-      "id": "591租屋:22258948",
-      "source": "591",
-      "houseId": "22258948",
-      "road": "板橋區中山路二段",
-      "title": "步行板新捷運站高品質平價溫馨大套房(走道窗)",
-      "address": "板橋區中山路二段",
-      "rent": 7300.0,
-      "size": 6.0,
-      "url": "https://rent.591.com.tw/22258948",
-      "floor": "3F/5F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
       "id": "591租屋:22229325",
       "source": "591",
       "houseId": "22229325",
@@ -402,6 +387,19 @@
       "size": 7.0,
       "url": "https://rent.591.com.tw/22229325",
       "floor": "5F/5F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22258948",
+      "source": "591",
+      "houseId": "22258948",
+      "road": "板橋區中山路二段",
+      "title": "步行板新捷運站高品質平價溫馨大套房(走道窗)",
+      "address": "板橋區中山路二段",
+      "rent": 7300.0,
+      "size": 6.0,
+      "url": "https://rent.591.com.tw/22258948",
+      "floor": "3F/5F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
@@ -1941,7 +1939,7 @@
       "size": 6.0,
       "url": "https://rent.rakuya.com.tw/item/0d48e435149540b?from=list_keyword&func=list_rent",
       "floor": "8/12樓",
-      "sourceUpdatedRaw": "4小時前",
+      "sourceUpdatedRaw": "5小時前",
       "firstSeenAt": "2026-11-04T04:17:48+00:00"
     },
     {
@@ -2261,6 +2259,28 @@
       "firstSeenAt": "2026-10-17T10:32:11+00:00"
     },
     {
+      "id": "5168租屋:16923555",
+      "source": "5168",
+      "houseId": "16923555",
+      "road": "板橋區中山路二段",
+      "title": "板新🚉陽台獨洗曬☀️變頻冷暖❄️雙門冰箱🧊拎包入住💼",
+      "address": "板橋區中山路二段",
+      "rent": 18000,
+      "size": 6.0,
+      "url": "https://rent.591.com.tw/22211585",
+      "floor": "4/4樓",
+      "rooms": 1.0,
+      "livingRooms": 0.0,
+      "bathrooms": 1.0,
+      "balconies": 0.0,
+      "purposeName": "獨立套房",
+      "buildingStyle": "公寓",
+      "sourcePublishedAt": "2026-10-04T18:18:28.893Z",
+      "sourceUpdatedAtRaw": "2026-11-04T07:40:20.35Z",
+      "sourcePublishedAtType": "housepriceRentApiPublishTime",
+      "firstSeenAt": "2026-10-04T11:20:58+00:00"
+    },
+    {
       "id": "5168租屋:16908716",
       "source": "5168",
       "houseId": "16908716",
@@ -2303,28 +2323,6 @@
       "sourceUpdatedAtRaw": "2026-11-03T20:36:14.76Z",
       "sourcePublishedAtType": "housepriceRentApiPublishTime",
       "firstSeenAt": "2026-11-03T04:17:35+00:00"
-    },
-    {
-      "id": "5168租屋:16923555",
-      "source": "5168",
-      "houseId": "16923555",
-      "road": "板橋區中山路二段",
-      "title": "板新🚉陽台獨洗曬☀️變頻冷暖❄️雙門冰箱🧊拎包入住💼",
-      "address": "板橋區中山路二段",
-      "rent": 18000,
-      "size": 6.0,
-      "url": "https://rent.591.com.tw/22211585",
-      "floor": "4/4樓",
-      "rooms": 1.0,
-      "livingRooms": 0.0,
-      "bathrooms": 1.0,
-      "balconies": 0.0,
-      "purposeName": "獨立套房",
-      "buildingStyle": "公寓",
-      "sourcePublishedAt": "2026-10-04T18:18:28.893Z",
-      "sourceUpdatedAtRaw": "2026-11-03T20:36:13.427Z",
-      "sourcePublishedAtType": "housepriceRentApiPublishTime",
-      "firstSeenAt": "2026-10-04T11:20:58+00:00"
     },
     {
       "id": "5168租屋:15011887",
@@ -4329,7 +4327,7 @@
       "firstSeenAt": "2026-10-31T07:17:36+00:00"
     }
   ],
-  "elapsedSeconds": 131.62,
+  "elapsedSeconds": 106.95,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
