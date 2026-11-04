@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-11-04T06:33:56+00:00",
+  "verifiedAt": "2026-11-04T06:48:28+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-11-04T06:32:41+00:00",
+  "sourceDataUpdatedAt": "2026-11-04T06:47:32+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-04T06:33:49+00:00",
+    "generatedAt": "2026-11-04T06:48:22+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-04T06:30:18+00:00",
+    "sourceRunCheckedAt": "2026-11-04T06:45:19+00:00",
     "activeSinyiCount": 67,
     "matchedOfficialCount": 67,
     "appliedCount": 67,
@@ -30,7 +30,7 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-04T06:33:35+00:00",
+    "updatedAt": "2026-11-04T06:48:02+00:00",
     "status": "ok",
     "totalCount": 230,
     "uniqueListingCount": 230,
@@ -95,7 +95,7 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-04T04:35:10+00:00",
+    "updatedAt": "2026-11-04T06:45:48+00:00",
     "status": "ok",
     "totalCount": 57,
     "uniqueListingCount": 57,
@@ -180,7 +180,7 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-04T06:33:56+00:00",
+    "auditedAt": "2026-11-04T06:48:28+00:00",
     "propertyGroupCount": 167,
     "companyListingCount": 69,
     "companyMatchCount": 40,
@@ -188,9 +188,9 @@
     "chosenCandidateRecomputeMismatchCount": 0,
     "weakIdentityAlreadyMergedPairCount": 1035
   },
-  "snapshotCapturedAt": "2026-11-04T06:33:21+00:00",
-  "companySnapshotCapturedAt": "2026-11-04T06:33:21+00:00",
-  "companyGapGeneratedAt": "2026-11-04T06:33:53+00:00",
+  "snapshotCapturedAt": "2026-11-04T06:47:46+00:00",
+  "companySnapshotCapturedAt": "2026-11-04T06:47:46+00:00",
+  "companyGapGeneratedAt": "2026-11-04T06:48:26+00:00",
   "browserListingCount": 69,
   "companyListingCount": 69,
   "propertyGroupCount": 167,
@@ -334,7 +334,7 @@
   "candidatesWithFloor": 164,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-04T06:33:35+00:00",
+    "generatedAt": "2026-11-04T06:48:02+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
