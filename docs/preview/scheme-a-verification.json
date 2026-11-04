@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-11-04T07:36:09+00:00",
+  "verifiedAt": "2026-11-04T07:48:36+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-11-04T07:18:26+00:00",
+  "sourceDataUpdatedAt": "2026-11-04T07:47:48+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-04T07:35:56+00:00",
+    "generatedAt": "2026-11-04T07:48:28+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-04T07:15:25+00:00",
+    "sourceRunCheckedAt": "2026-11-04T07:45:18+00:00",
     "activeSinyiCount": 67,
     "matchedOfficialCount": 67,
     "appliedCount": 67,
@@ -30,7 +30,7 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-04T07:35:25+00:00",
+    "updatedAt": "2026-11-04T07:48:17+00:00",
     "status": "ok",
     "totalCount": 230,
     "uniqueListingCount": 230,
@@ -180,7 +180,7 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-04T07:36:09+00:00",
+    "auditedAt": "2026-11-04T07:48:36+00:00",
     "propertyGroupCount": 166,
     "companyListingCount": 69,
     "companyMatchCount": 40,
@@ -188,9 +188,9 @@
     "chosenCandidateRecomputeMismatchCount": 0,
     "weakIdentityAlreadyMergedPairCount": 1008
   },
-  "snapshotCapturedAt": "2026-11-04T07:32:10+00:00",
-  "companySnapshotCapturedAt": "2026-11-04T07:32:10+00:00",
-  "companyGapGeneratedAt": "2026-11-04T07:36:04+00:00",
+  "snapshotCapturedAt": "2026-11-04T07:48:02+00:00",
+  "companySnapshotCapturedAt": "2026-11-04T07:48:02+00:00",
+  "companyGapGeneratedAt": "2026-11-04T07:48:33+00:00",
   "browserListingCount": 69,
   "companyListingCount": 69,
   "propertyGroupCount": 166,
@@ -322,104 +322,29 @@
   },
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 75,
+    "beforeCount": 69,
     "afterCount": 69,
-    "removedCount": 6,
-    "collisionIds": [
-      "4308114"
-    ],
+    "removedCount": 0,
+    "collisionIds": [],
     "remainingCollisionIds": [],
-    "removed": [
-      {
-        "id": "4308114",
-        "road": "板橋區中山路二段",
-        "title": "中山路門牌近埔墘市場周邊連鎖店面匯聚",
-        "area": 36.12,
-        "price": 3388.0,
-        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-        "replacementIds": [
-          "5945842"
-        ],
-        "replacementFound": true
-      },
-      {
-        "id": "4308114",
-        "road": "板橋區三民路一段",
-        "title": "低總價挑高電梯",
-        "area": 19.84,
-        "price": 1350.0,
-        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-        "replacementIds": [
-          "7532014"
-        ],
-        "replacementFound": true
-      },
-      {
-        "id": "4308114",
-        "road": "板橋區三民路二段",
-        "title": "A級辦公｜潤泰營造｜SRC鋼骨結構｜高樓極新裝潢",
-        "area": 104.34,
-        "price": 5500.0,
-        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-        "replacementIds": [
-          "7576495"
-        ],
-        "replacementFound": true
-      },
-      {
-        "id": "4308114",
-        "road": "板橋區翠華街",
-        "title": "鄰近江子翠｜10米大面寬好停車一樓住辦好停車",
-        "area": 59.37,
-        "price": 3988.0,
-        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-        "replacementIds": [
-          "7455915"
-        ],
-        "replacementFound": true
-      },
-      {
-        "id": "4308114",
-        "road": "板橋區萬安街",
-        "title": "埔墘知名商圈｜一樓好進出附平面車位｜挑高3.7米",
-        "area": 46.93,
-        "price": 2350.0,
-        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-        "replacementIds": [
-          "7544941"
-        ],
-        "replacementFound": true
-      },
-      {
-        "id": "4308114",
-        "road": "板橋區光復街",
-        "title": "板橋埔墘|面寬店面|正面街道|高廣告效益",
-        "area": 55.41,
-        "price": 5360.0,
-        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
-        "replacementIds": [
-          "7577706"
-        ],
-        "replacementFound": true
-      }
-    ],
-    "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
+    "removed": [],
+    "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
   },
   "candidateCount": 163,
-  "candidatesWithFloor": 148,
-  "candidatesWithYcCaseId": 148,
+  "candidatesWithFloor": 163,
+  "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-04T07:35:25+00:00",
+    "generatedAt": "2026-11-04T07:48:16+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
-    "eligibleBeforeCache": 63,
-    "cacheHitCount": 63,
+    "eligibleBeforeCache": 2,
+    "cacheHitCount": 2,
     "seededFromPreviousDiagnosticCount": 0,
     "liveAttempted": 0,
     "responseFastHitCount": 0,
     "domFallbackCount": 0,
-    "enriched": 63,
+    "enriched": 2,
     "liveEnriched": 0,
-    "officialCaseIdEnriched": 63,
+    "officialCaseIdEnriched": 2,
     "cacheWriteCount": 0,
     "cacheEntryCount": 101,
     "rejectedTitleFloorConflicts": 0,
