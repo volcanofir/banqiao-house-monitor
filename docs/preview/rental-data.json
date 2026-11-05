@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-05T23:17:33+00:00",
+  "updatedAt": "2026-11-05T23:32:00+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -109,7 +109,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 92,
-      "checkedAt": "2026-11-05T23:17:41+00:00",
+      "checkedAt": "2026-11-05T23:32:08+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 61",
         "板橋區中山路二段 5168 API第2頁：符合 18／新增 18／來源總數 61",
@@ -217,19 +217,6 @@
       "firstSeenAt": "2026-11-05T02:46:58+00:00"
     },
     {
-      "id": "591租屋:22229423",
-      "source": "591",
-      "houseId": "22229423",
-      "road": "板橋區中山路二段",
-      "title": "板新站❤️公寓四樓全新採光四間大雅房❤️租補❤️台水電",
-      "address": "板橋區中山路二段",
-      "rent": 13800.0,
-      "size": 6.0,
-      "url": "https://rent.591.com.tw/22229423",
-      "floor": "4F/5F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
       "id": "591租屋:22269407",
       "source": "591",
       "houseId": "22269407",
@@ -240,6 +227,19 @@
       "size": 18.0,
       "url": "https://rent.591.com.tw/22269407",
       "floor": "5F/5F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22229423",
+      "source": "591",
+      "houseId": "22229423",
+      "road": "板橋區中山路二段",
+      "title": "板新站❤️公寓四樓全新採光四間大雅房❤️租補❤️台水電",
+      "address": "板橋區中山路二段",
+      "rent": 13800.0,
+      "size": 6.0,
+      "url": "https://rent.591.com.tw/22229423",
+      "floor": "4F/5F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
@@ -1846,7 +1846,7 @@
       "purposeName": "雅房",
       "buildingStyle": "公寓",
       "sourcePublishedAt": "2026-10-17T07:18:47.407Z",
-      "sourceUpdatedAtRaw": "2026-11-05T12:00:00Z",
+      "sourceUpdatedAtRaw": "2026-11-05T23:30:00Z",
       "sourcePublishedAtType": "housepriceRentApiPublishTime",
       "firstSeenAt": "2026-10-17T10:32:11+00:00"
     },
@@ -3853,7 +3853,7 @@
       "firstSeenAt": "2026-10-03T00:30:04+00:00"
     }
   ],
-  "elapsedSeconds": 105.04,
+  "elapsedSeconds": 87.29,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
