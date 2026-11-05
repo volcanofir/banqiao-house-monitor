@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-05T03:33:26+00:00",
-  "sourceDataUpdatedAt": "2026-11-05T03:32:36+00:00",
+  "generatedAt": "2026-11-05T03:49:04+00:00",
+  "sourceDataUpdatedAt": "2026-11-05T03:48:16+00:00",
   "mode": "preview_only_591_sinyi_rakuya_5168_grouping_then_company_v11",
   "fetchMode": "yungching_official_rendered_dom_only",
   "company": "永慶房屋",
   "companyDataSource": "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM；缺樓層時同路徑開官方案件頁補值",
   "companyListingCount": 69,
-  "companySnapshotCapturedAt": "2026-11-05T03:32:51+00:00",
+  "companySnapshotCapturedAt": "2026-11-05T03:48:34+00:00",
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -35,7 +35,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 27,
-      "browserCapturedAt": "2026-11-05T03:32:51+00:00",
+      "browserCapturedAt": "2026-11-05T03:48:34+00:00",
       "paginationExpected": true,
       "paginationComplete": true,
       "paginationActivePage": 2,
@@ -52,7 +52,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 27,
-      "browserCapturedAt": "2026-11-05T03:32:51+00:00",
+      "browserCapturedAt": "2026-11-05T03:48:34+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -69,7 +69,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 4,
-      "browserCapturedAt": "2026-11-05T03:32:51+00:00",
+      "browserCapturedAt": "2026-11-05T03:48:34+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -86,7 +86,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 2,
-      "browserCapturedAt": "2026-11-05T03:32:51+00:00",
+      "browserCapturedAt": "2026-11-05T03:48:34+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -103,7 +103,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 0,
-      "browserCapturedAt": "2026-11-05T03:32:51+00:00",
+      "browserCapturedAt": "2026-11-05T03:48:34+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -120,7 +120,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 6,
-      "browserCapturedAt": "2026-11-05T03:32:51+00:00",
+      "browserCapturedAt": "2026-11-05T03:48:34+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -137,7 +137,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 3,
-      "browserCapturedAt": "2026-11-05T03:32:51+00:00",
+      "browserCapturedAt": "2026-11-05T03:48:34+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -35483,8 +35483,8 @@
   },
   "officialBrowserCompany": {
     "enabled": true,
-    "capturedAt": "2026-11-05T03:32:51+00:00",
-    "snapshotAgeMinutes": 0.5,
+    "capturedAt": "2026-11-05T03:48:34+00:00",
+    "snapshotAgeMinutes": 0.4,
     "acceptedRoadCount": 7,
     "unavailableRoadCount": 0,
     "roads": {
@@ -35578,12 +35578,12 @@
   "safeFloorParser": true,
   "safeFloorParserRule": "subject floor must be physically valid against total floor; glued area digits are trimmed instead of becoming impossible floors",
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-05T03:33:18+00:00",
+    "generatedAt": "2026-11-05T03:48:56+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-05T03:30:20+00:00",
+    "sourceRunCheckedAt": "2026-11-05T03:45:41+00:00",
     "activeSinyiCount": 68,
     "matchedOfficialCount": 68,
     "appliedCount": 68,
@@ -35608,8 +35608,8 @@
     "groups": []
   },
   "recentOffMarketRetentionDays": 10,
-  "recentOffMarketGeneratedAt": "2026-11-05T03:33:27+00:00",
-  "recentOffMarketCount": 6,
+  "recentOffMarketGeneratedAt": "2026-11-05T03:49:05+00:00",
+  "recentOffMarketCount": 5,
   "recentOffMarketGroups": [
     {
       "groupId": "GROUP:信義房屋:9433FB",
@@ -36067,67 +36067,6 @@
       "offMarketRetentionDays": 10,
       "offMarket": true,
       "offMarketPendingConfirmation": false
-    },
-    {
-      "groupId": "GROUP:591:20963950",
-      "primaryId": "591:20963950",
-      "primarySource": "591",
-      "road": "板橋區翠華街",
-      "title": "🌈經紀人+風水+設計師💘低總價3樓精緻裝潢✨買房不踩雷",
-      "address": "板橋區-翠華街",
-      "price": "1390萬",
-      "effectivePrice": 1390.0,
-      "size": "25.4坪",
-      "url": "https://m.591.com.tw/v2/sale/20963950",
-      "sourcePublishedAt": 1790311048,
-      "sourcePublishedAtType": "posttime",
-      "newAt": null,
-      "active": false,
-      "sources": [
-        "591"
-      ],
-      "sourceListings": [
-        {
-          "id": "591:20963950",
-          "houseId": "20963950",
-          "source": "591",
-          "road": "板橋區翠華街",
-          "title": "🌈經紀人+風水+設計師💘低總價3樓精緻裝潢✨買房不踩雷",
-          "url": "https://m.591.com.tw/v2/sale/20963950",
-          "price": "1390萬",
-          "effectivePrice": 1390.0,
-          "size": "25.4坪",
-          "address": "板橋區-翠華街",
-          "sourcePublishedAt": 1790311048,
-          "sourcePublishedAtType": "posttime",
-          "newAt": null,
-          "active": false,
-          "mergedListingCount": 1,
-          "mergedActiveListingCount": 0,
-          "mergedListings": [
-            {
-              "id": "591:20963950",
-              "houseId": "20963950",
-              "source": "591",
-              "title": "🌈經紀人+風水+設計師💘低總價3樓精緻裝潢✨買房不踩雷",
-              "url": "https://m.591.com.tw/v2/sale/20963950",
-              "price": "1390萬",
-              "effectivePrice": 1390.0,
-              "size": "25.4坪",
-              "address": "板橋區-翠華街",
-              "sourcePublishedAt": 1790311048,
-              "active": false
-            }
-          ]
-        }
-      ],
-      "crossPlatformMerged": false,
-      "crossPlatformMatchInfo": [],
-      "rawListingCount": 1,
-      "removedAt": "2026-10-26T03:48:18+00:00",
-      "offMarketRetentionDays": 10,
-      "offMarket": true,
-      "offMarketPendingConfirmation": false
     }
   ],
   "pendingOffMarketConfirmationCount": 7,
@@ -36247,7 +36186,7 @@
     "directGroupIdMergeCount": 16
   },
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-05T03:33:04+00:00",
+    "updatedAt": "2026-11-05T03:48:48+00:00",
     "status": "ok",
     "totalCount": 232,
     "uniqueListingCount": 232,
@@ -36289,21 +36228,18 @@
       }
     ],
     "changes": {
-      "newCount": 2,
-      "newIds": [
-        "07f038347291839",
-        "0a08cb35845912e"
-      ],
+      "newCount": 0,
+      "newIds": [],
       "priceChangeCount": 0,
       "priceChanges": [],
       "removedCount": 0,
       "removedIds": [],
-      "currentChangeCount": 2
+      "currentChangeCount": 0
     },
     "complete": true
   },
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-05T03:16:04+00:00",
+    "updatedAt": "2026-11-05T03:46:18+00:00",
     "status": "ok",
     "totalCount": 57,
     "uniqueListingCount": 57,
