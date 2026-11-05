@@ -11,6 +11,9 @@ on:
       - "tests/test_591_warelist_structured_fields.py"
       - "tests/test_apply_591_original_preview.py"
       - ".github/workflows/test-591-overlay-preview.yml"
+      - "scripts/compare_yungching_preview_v3.py"
+      - "scripts/patch_rakuya_integrated_ui.py"
+      - "tests/test_preview_earliest_listing_time.py"
       - "scripts/patch_preview_ui.py"
   pull_request:
     paths:
@@ -36,11 +39,12 @@ jobs:
         run: pip install requests beautifulsoup4 playwright
       - name: Check syntax of original Preview integration
         run: |
-          python -m py_compile scripts/apply_591_warelist_to_original_preview.py scripts/patch_preview_ui.py scripts/compare_yungching_preview_v11.py
+          python -m py_compile scripts/apply_591_warelist_to_original_preview.py scripts/patch_preview_ui.py scripts/compare_yungching_preview_v11.py scripts/compare_yungching_preview_v3.py scripts/patch_rakuya_integrated_ui.py
       - name: Test real 591 snapshot and historical identity without writes
         run: |
           python -m unittest discover -s tests -p "test_591_warelist_structured_fields.py" -v
           python -m unittest discover -s tests -p "test_apply_591_original_preview.py" -v
+          python -m unittest discover -s tests -p "test_preview_earliest_listing_time.py" -v
       - name: Build existing Preview-only source overlay
         run: |
           python scripts/sinyi_preview_floor_enrich.py
@@ -76,3 +80,12 @@ jobs:
             exit 1
           fi
           grep -q 'preview-monitor-state.json' scripts/patch_preview_ui.py
+          grep -q '首次上架（最早已知）：' docs/preview/index.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          gap=json.loads(Path("docs/preview/company-gap.json").read_text(encoding="utf-8"))
+          assert gap["newListingTimePolicy"] == "earliest_known_source_time_from_merged_ids_and_permanent_id_history_no_monitor_discovery"
+          assert all(x.get("propertyFirstPublishedBasis") in ("earliest_known_source_timestamp","unavailable_no_source_publish_date") for x in gap.get("propertyGroups", []))
+          print("Earliest source dates and card labels verified.")
+          PY
