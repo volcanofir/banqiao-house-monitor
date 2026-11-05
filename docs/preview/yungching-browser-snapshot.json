@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-05T10:33:11+00:00",
+  "capturedAt": "2026-11-05T10:48:01+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -558,6 +558,33 @@
       }
     },
     {
+      "id": "7460476",
+      "road": "板橋區中山路二段",
+      "title": "中山邊間採光大戶",
+      "price": 1480,
+      "area": 35.68,
+      "floor": "4/5樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7460476",
+      "sourceMode": "yungching_official_api",
+      "text": "中山邊間採光大戶 新北市板橋區中山路二段 公寓 建坪35.68 4/5樓 3房(室)2廳2衛 1480萬",
+      "rawText": "中山邊間採光大戶 新北市板橋區中山路二段 公寓 建坪35.68 4/5樓 3房(室)2廳2衛 1480萬",
+      "patternInfo": {
+        "room": 3,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 4,
+        "toFloor": 4,
+        "upFloor": 5
+      }
+    },
+    {
       "id": "7327430",
       "road": "板橋區中山路二段",
       "title": "採光頂加大空間【天然瓦斯、周邊機能完善】",
@@ -925,33 +952,6 @@
         "room": 3,
         "livingRoom": 2,
         "bathRoom": 1,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 4,
-        "toFloor": 4,
-        "upFloor": 5
-      }
-    },
-    {
-      "id": "7460476",
-      "road": "板橋區中山路二段",
-      "title": "中山邊間採光大戶",
-      "price": 1580,
-      "area": 35.68,
-      "floor": "4/5樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "公寓",
-      "url": "https://buy.yungching.com.tw/house/7460476",
-      "sourceMode": "yungching_official_api",
-      "text": "中山邊間採光大戶 新北市板橋區中山路二段 公寓 建坪35.68 4/5樓 3房(室)2廳2衛 1580萬",
-      "rawText": "中山邊間採光大戶 新北市板橋區中山路二段 公寓 建坪35.68 4/5樓 3房(室)2廳2衛 1580萬",
-      "patternInfo": {
-        "room": 3,
-        "livingRoom": 2,
-        "bathRoom": 2,
         "addRoom": null,
         "addLivingRoom": null,
         "addBathRoom": null
@@ -2421,7 +2421,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-05T10:33:24+00:00",
+    "generatedAt": "2026-11-05T10:48:14+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
