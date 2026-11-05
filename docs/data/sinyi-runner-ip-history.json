@@ -1,7 +1,7 @@
 {
   "description": "GitHub Actions runner public egress IP samples and approximate GeoIP locations for Sinyi Banqiao 16-store workflow.",
   "locationAccuracy": "Approximate IP geolocation; not a precise host/runner location.",
-  "updatedAtUtc": "2026-11-05T01:34:31+00:00",
+  "updatedAtUtc": "2026-11-05T05:47:33+00:00",
   "entries": [
     {
       "sampledAtUtc": "2026-10-11T08:36:10+00:00",
@@ -3824,6 +3824,27 @@
       "isp": "Microsoft Corporation",
       "org": "Microsoft Limited",
       "asn": 8075
+    },
+    {
+      "sampledAtUtc": "2026-11-05T05:45:30+00:00",
+      "runId": "41975984186",
+      "runAttempt": "1",
+      "workflow": "信義板橋 16 店相對店資料",
+      "runnerOs": "Linux",
+      "ip": "3.42.157.29",
+      "ipVersion": 4,
+      "status": "ok",
+      "locationNote": "Approximate GeoIP database location, not a physical runner or GPS location.",
+      "geoProvider": "ipwho.is",
+      "country": "United States",
+      "countryCode": "US",
+      "region": "Oregon",
+      "city": "Boardman",
+      "latitude": 45.8398578,
+      "longitude": -119.7005791,
+      "isp": "Amazon.com, Inc.",
+      "org": "Amazon Data Services Ireland Limited",
+      "asn": 16509
     }
   ]
 }
