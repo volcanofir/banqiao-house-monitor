@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-05T02:18:13+00:00",
+  "capturedAt": "2026-11-05T02:48:09+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -2157,6 +2157,33 @@
       }
     },
     {
+      "id": "7455915",
+      "road": "板橋區翠華街",
+      "title": "鄰近江子翠｜10米大面寬一樓｜漂亮住辦好停車",
+      "price": 3988,
+      "area": 59.37,
+      "floor": "1/5樓",
+      "address": "新北市板橋區翠華街",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7455915",
+      "sourceMode": "yungching_official_api",
+      "text": "鄰近江子翠｜10米大面寬一樓｜漂亮住辦好停車 新北市板橋區翠華街 公寓 建坪59.37 1/5樓 5房(室)4廳4衛 3988萬",
+      "rawText": "鄰近江子翠｜10米大面寬一樓｜漂亮住辦好停車 新北市板橋區翠華街 公寓 建坪59.37 1/5樓 5房(室)4廳4衛 3988萬",
+      "patternInfo": {
+        "room": 5,
+        "livingRoom": 4,
+        "bathRoom": 4,
+        "addRoom": 1,
+        "addLivingRoom": 2,
+        "addBathRoom": 1
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 1,
+        "upFloor": 5
+      }
+    },
+    {
       "id": "7373642",
       "road": "板橋區翠華街",
       "title": "停車住辦一樓｜近10米大面寬｜格局方正｜靜巷住宅",
@@ -2175,33 +2202,6 @@
         "bathRoom": 4,
         "addRoom": 0,
         "addLivingRoom": 1,
-        "addBathRoom": 1
-      },
-      "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 1,
-        "upFloor": 5
-      }
-    },
-    {
-      "id": "7455915",
-      "road": "板橋區翠華街",
-      "title": "鄰近江子翠｜10米大面寬好停車一樓住辦好停車",
-      "price": 3988,
-      "area": 59.37,
-      "floor": "1/5樓",
-      "address": "新北市板橋區翠華街",
-      "type": "公寓",
-      "url": "https://buy.yungching.com.tw/house/7455915",
-      "sourceMode": "yungching_official_api",
-      "text": "鄰近江子翠｜10米大面寬好停車一樓住辦好停車 新北市板橋區翠華街 公寓 建坪59.37 1/5樓 5房(室)4廳4衛 3988萬",
-      "rawText": "鄰近江子翠｜10米大面寬好停車一樓住辦好停車 新北市板橋區翠華街 公寓 建坪59.37 1/5樓 5房(室)4廳4衛 3988萬",
-      "patternInfo": {
-        "room": 5,
-        "livingRoom": 4,
-        "bathRoom": 4,
-        "addRoom": 1,
-        "addLivingRoom": 2,
         "addBathRoom": 1
       },
       "floorInfo": {
@@ -2421,7 +2421,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-05T02:18:26+00:00",
+    "generatedAt": "2026-11-05T02:48:25+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
