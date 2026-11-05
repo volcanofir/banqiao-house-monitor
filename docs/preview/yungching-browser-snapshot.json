@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-05T09:17:26+00:00",
+  "capturedAt": "2026-11-05T09:32:51+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -29,7 +29,7 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 70424,
+      "primaryApiListDataLength": 70464,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
       "roadTextCount": 27,
@@ -558,33 +558,6 @@
       }
     },
     {
-      "id": "6973967",
-      "road": "板橋區中山路二段",
-      "title": "大新板生活圈近捷運精緻裝潢邊間景觀戶",
-      "price": 2388,
-      "area": 36.63,
-      "floor": "7/13樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "住宅大樓",
-      "url": "https://buy.yungching.com.tw/house/6973967",
-      "sourceMode": "yungching_official_api",
-      "text": "大新板生活圈近捷運精緻裝潢邊間景觀戶 新北市板橋區中山路二段 住宅大樓 建坪36.63 7/13樓 2房(室)2廳1衛 2388萬",
-      "rawText": "大新板生活圈近捷運精緻裝潢邊間景觀戶 新北市板橋區中山路二段 住宅大樓 建坪36.63 7/13樓 2房(室)2廳1衛 2388萬",
-      "patternInfo": {
-        "room": 2,
-        "livingRoom": 2,
-        "bathRoom": 1,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 7,
-        "toFloor": 7,
-        "upFloor": 13
-      }
-    },
-    {
       "id": "7327430",
       "road": "板橋區中山路二段",
       "title": "採光頂加大空間【天然瓦斯、周邊機能完善】",
@@ -609,6 +582,33 @@
         "fromFloor": 4,
         "toFloor": 4,
         "upFloor": 4
+      }
+    },
+    {
+      "id": "6973967",
+      "road": "板橋區中山路二段",
+      "title": "大新板生活圈近捷運精緻裝潢邊間景觀戶",
+      "price": 2388,
+      "area": 36.63,
+      "floor": "7/13樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/6973967",
+      "sourceMode": "yungching_official_api",
+      "text": "大新板生活圈近捷運精緻裝潢邊間景觀戶 新北市板橋區中山路二段 住宅大樓 建坪36.63 7/13樓 2房(室)2廳1衛 2388萬",
+      "rawText": "大新板生活圈近捷運精緻裝潢邊間景觀戶 新北市板橋區中山路二段 住宅大樓 建坪36.63 7/13樓 2房(室)2廳1衛 2388萬",
+      "patternInfo": {
+        "room": 2,
+        "livingRoom": 2,
+        "bathRoom": 1,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 7,
+        "toFloor": 7,
+        "upFloor": 13
       }
     },
     {
@@ -2421,7 +2421,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-05T09:17:38+00:00",
+    "generatedAt": "2026-11-05T09:33:05+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
