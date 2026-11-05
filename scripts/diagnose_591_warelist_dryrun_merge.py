@@ -21,6 +21,7 @@ from playwright.async_api import async_playwright
 
 import dedupe_listings_v2 as dedupe
 import track_price_changes as price_tracking
+from warelist_structured_fields import source_fields
 import monitor_pages as core
 import monitor_591_web_fallback as web
 from diagnose_591_warelist_integrity import ROADS, HOME, SEARCH, UA, EXTRACT, normalize
@@ -108,6 +109,8 @@ async def fetch_current(page):
                     drop["not_monitor_road"]+=1
                     continue
                 item=clean[0]
+                # Verified Nuxt structured fields; no title-based floor guesses.
+                item.update(source_fields(x))
                 if item["id"] in ids:
                     drop["duplicate_id"]+=1
                     continue
