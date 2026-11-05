@@ -16,6 +16,7 @@ from playwright.async_api import async_playwright
 
 import dedupe_listings_v2 as dedupe
 import track_price_changes as prices
+from warelist_structured_fields import carried_fields
 from diagnose_591_warelist_integrity import HOME, ROADS, UA
 from diagnose_591_warelist_dryrun_merge import fetch_current
 
@@ -86,7 +87,8 @@ def build_snapshot(current, stats, previous, now=None):
                 "url": raw["url"],
                 "identityStatus": status,
                 "propertyMatch": match,
-                "sameIdPriceDifference": difference
+                "sameIdPriceDifference": difference,
+                **carried_fields(raw),
             })
     if not rows or len(rows) > MAX_RECORDS:
         raise ValueError("Implausible record count, no data written")
@@ -125,6 +127,15 @@ def build_snapshot(current, stats, previous, now=None):
             "sameIdPriceDifference": sum(x["sameIdPriceDifference"] is not None for x in rows),
         },
         "roadCounts": road_counts,
+        "sourceFieldCoverage": {
+            "floor": sum(bool(r.get("structuredFloor")) for r in rows),
+            "layout": sum(bool(r.get("structuredLayout")) for r in rows),
+            "community": sum(bool(r.get("structuredCommunity")) for r in rows),
+            "houseAge": sum(r.get("sourceHouseAge") is not None for r in rows),
+            "parkingFlag": sum(r.get("sourceParkingFlag") is not None for r in rows),
+            "unverifiedFloor": sum(bool(r.get("structuredFloorRaw")) and not r.get("structuredFloor") for r in rows),
+            "total": len(rows),
+        },
         "listings": rows,
     }
     return result
@@ -169,6 +180,7 @@ def main():
         "historicalIdSeen": snapshot["counts"]["historicalIdSeen"],
         "idNotInHistory": snapshot["counts"]["idNotInHistory"],
         "propertyGroupsEstimated": snapshot["counts"]["estimatedPropertyGroups"],
+        "sourceFieldCoverage": snapshot["sourceFieldCoverage"],
         "noOffmarketDecision": True,
         "productionAndExistingPreviewUnchanged": True
     }, ensure_ascii=False))
