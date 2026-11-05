@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-05T14:03:39+00:00",
+  "verifiedAt": "2026-11-05T14:16:54+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-05T14:03:30+00:00",
+    "generatedAt": "2026-11-05T14:16:39+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -165,8 +165,8 @@
     "regroupedCount": 41,
     "mergedClusterCount": 13,
     "absorbedCount": 17,
-    "attachedToExistingGroupCount": 34,
-    "standaloneGroupCount": 7,
+    "attachedToExistingGroupCount": 35,
+    "standaloneGroupCount": 6,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 17
@@ -174,28 +174,28 @@
   "companyNearTieGuard": {
     "enabled": true,
     "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-    "examinedCompanyMatchCount": 38,
+    "examinedCompanyMatchCount": 40,
     "downgradedCount": 0,
     "remainingAutoNearTieCount": 0,
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-05T14:03:39+00:00",
-    "propertyGroupCount": 170,
+    "auditedAt": "2026-11-05T14:16:54+00:00",
+    "propertyGroupCount": 172,
     "companyListingCount": 68,
-    "companyMatchCount": 38,
+    "companyMatchCount": 40,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 1025
+    "weakIdentityAlreadyMergedPairCount": 1017
   },
   "snapshotCapturedAt": "2026-11-05T14:03:03+00:00",
   "companySnapshotCapturedAt": "2026-11-05T14:03:03+00:00",
-  "companyGapGeneratedAt": "2026-11-05T14:03:35+00:00",
+  "companyGapGeneratedAt": "2026-11-05T14:16:48+00:00",
   "browserListingCount": 68,
   "companyListingCount": 68,
-  "propertyGroupCount": 170,
+  "propertyGroupCount": 172,
   "rawListingCount": 792,
-  "comparisonCount": 170,
+  "comparisonCount": 172,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -259,40 +259,40 @@
     }
   },
   "counts": {
-    "company_match": 38,
-    "review": 5,
-    "missing": 127,
+    "company_match": 40,
+    "review": 4,
+    "missing": 128,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 109,
-  "crossSourceReviewCount": 10,
+  "crossPlatformMergedGroupCount": 110,
+  "crossSourceReviewCount": 9,
   "preview591Regroup": {
-    "original591TopLevel": 95,
-    "regrouped591TopLevel": 87,
-    "regrouped591ClusterCount": 8,
-    "regrouped591AbsorbedCount": 8,
+    "original591TopLevel": 96,
+    "regrouped591TopLevel": 89,
+    "regrouped591ClusterCount": 7,
+    "regrouped591AbsorbedCount": 7,
     "clusterFloorConflictBlocked": 0
   },
   "preview591Warelist": {
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-05T11:13:49+00:00",
-    "totalCount": 223,
-    "uniqueListingCount": 223,
-    "groupCount": 95,
+    "updatedAt": "2026-11-05T14:16:25+00:00",
+    "totalCount": 227,
+    "uniqueListingCount": 227,
+    "groupCount": 96,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 116
+        "count": 121
       },
       {
         "road": "三民路二段",
-        "count": 49
+        "count": 46
       },
       {
         "road": "光復街",
-        "count": 10
+        "count": 11
       },
       {
         "road": "萬安街",
@@ -308,11 +308,11 @@
       },
       {
         "road": "翠華街",
-        "count": 5
+        "count": 6
       }
     ],
-    "historyMatchedIdCount": 185,
-    "historyNotPresentUnconfirmed": 328,
+    "historyMatchedIdCount": 188,
+    "historyNotPresentUnconfirmed": 325,
     "historyReappearedCount": 0,
     "missingIdIsNotDelisting": true,
     "newIdIsNotNewProperty": true
@@ -330,8 +330,8 @@
     "removed": [],
     "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
   },
-  "candidateCount": 167,
-  "candidatesWithFloor": 167,
+  "candidateCount": 169,
+  "candidatesWithFloor": 169,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
     "generatedAt": "2026-11-05T14:03:18+00:00",
