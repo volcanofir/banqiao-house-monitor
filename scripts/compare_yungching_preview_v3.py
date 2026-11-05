@@ -34,6 +34,7 @@ def compact_listing(x):
             "size": m.get("size"),
             "address": m.get("address"),
             "sourcePublishedAt": m.get("sourcePublishedAt") if m.get("sourcePublishedAt") is not None else m.get("postTime"),
+            "postTime": m.get("postTime"),
             "active": m.get("active", True),
         })
     return {
@@ -48,6 +49,7 @@ def compact_listing(x):
         "size": x.get("size"),
         "address": x.get("address"),
         "sourcePublishedAt": x.get("sourcePublishedAt") if x.get("sourcePublishedAt") is not None else x.get("postTime"),
+        "postTime": x.get("postTime"),
         "sourcePublishedAtType": x.get("sourcePublishedAtType"),
         "newAt": x.get("newAt"),
         "active": x.get("active", True),
@@ -186,6 +188,7 @@ def make_group(primary, attached_591=None, match_infos=None):
         "size": primary.get("size"),
         "url": primary.get("url"),
         "sourcePublishedAt": primary.get("sourcePublishedAt") if primary.get("sourcePublishedAt") is not None else primary.get("postTime"),
+        "postTime": primary.get("postTime"),
         "sourcePublishedAtType": primary.get("sourcePublishedAtType"),
         "newAt": primary.get("newAt"),
         "active": primary.get("active", True),
