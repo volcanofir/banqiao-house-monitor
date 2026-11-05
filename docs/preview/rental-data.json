@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-05T20:32:20+00:00",
+  "updatedAt": "2026-11-05T20:47:26+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -109,7 +109,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 92,
-      "checkedAt": "2026-11-05T20:32:28+00:00",
+      "checkedAt": "2026-11-05T20:47:35+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 61",
         "板橋區中山路二段 5168 API第2頁：符合 18／新增 18／來源總數 61",
@@ -958,19 +958,6 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
-      "id": "591租屋:22193034",
-      "source": "591",
-      "houseId": "22193034",
-      "road": "板橋區三民路一段",
-      "title": "🍎採光佳天然瓦斯超值鼎佳美寓🍎",
-      "address": "板橋區三民路一段",
-      "rent": 17000.0,
-      "size": 20.2,
-      "url": "https://rent.591.com.tw/22193034",
-      "floor": null,
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
       "id": "591租屋:22223223",
       "source": "591",
       "houseId": "22223223",
@@ -980,6 +967,19 @@
       "rent": 16999.0,
       "size": 22.0,
       "url": "https://rent.591.com.tw/22223223",
+      "floor": null,
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22193034",
+      "source": "591",
+      "houseId": "22193034",
+      "road": "板橋區三民路一段",
+      "title": "🍎採光佳天然瓦斯超值鼎佳美寓🍎",
+      "address": "板橋區三民路一段",
+      "rent": 17000.0,
+      "size": 20.2,
+      "url": "https://rent.591.com.tw/22193034",
       "floor": null,
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
@@ -3853,7 +3853,7 @@
       "firstSeenAt": "2026-10-03T00:30:04+00:00"
     }
   ],
-  "elapsedSeconds": 92.6,
+  "elapsedSeconds": 98.86,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
