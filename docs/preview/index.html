@@ -1650,6 +1650,9 @@
 
 .compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
 .compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
+
+.compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
 </style>
 <script>
 /* BQM_INLINE_AUTH_V5 */
@@ -2267,7 +2270,7 @@ function groupFirstPublishedMs(g){
   const annotated=timeMs(g?.propertyFirstPublishedAt);
   if(annotated>0&&g?.propertyFirstPublishedBasis!=='earliest_monitor_seen_fallback')return annotated;
   const originals=[];
-  const walk=x=>{if(!x)return;const p=timeMs(x.sourcePublishedAt);if(p>0)originals.push(p);for(const m of (x.mergedListings||[]))walk(m);};
+  const walk=x=>{if(!x)return;for(const k of ['sourcePublishedAt','postTime']){const p=timeMs(x[k]);if(p>0)originals.push(p)}for(const m of (x.mergedListings||[]))walk(m);};
   walk(g);for(const m of (g?.sourceListings||[]))walk(m);
   return originals.length?Math.min(...originals):0;
 }
@@ -2407,12 +2410,13 @@ function renderGroups(){
     html+=`<details class="road-group"><summary><span>${esc(road)}</span><span class="count">${items.length} 戶</span></summary><div class="list">${items.map(g=>{
       const c=cmp(g),st=g.offMarket?'offmarket':(c?.status||'unavailable'),change=groupChangeInfo(g);
       const removedLine=g.offMarket&&g.removedAt?`<span>下架：${fmt(g.removedAt)}</span>`:'';
-      return `<article class="item" data-change="${change.changed?'1':'0'}"><a class="item-title" href="${esc(g.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(g.title||g.primaryId)}</a><div class="row">${sourcePills(g)}<span class="pill ${companyClass(st)}">${companyLabel(st)}</span>${changeBadges(g)}${g.crossPlatformMerged?'<span class="pill merged">跨平台整併</span>':''}${!g.offMarket&&isNew(g)?'<span class="pill sinyi">新進案件</span>':''}<span>${esc(displayPrice(g))}</span><span>${esc(g.size||'-')}</span><span>${esc(g.address||'-')}</span>${removedLine}</div>${changePriceLine(g)}${g.offMarket?'':candidateLine(g)}${sourceDetails(g)}</article>`;
+      return `<article class="item" data-change="${change.changed?'1':'0'}"><a class="item-title" href="${esc(g.url||'#')}" target="_blank" rel="noopener noreferrer">${esc(g.title||g.primaryId)}</a><div class="row">${sourcePills(g)}<span class="pill ${companyClass(st)}">${companyLabel(st)}</span>${changeBadges(g)}${g.crossPlatformMerged?'<span class="pill merged">跨平台整併</span>':''}${!g.offMarket&&isNew(g)?'<span class="pill sinyi">新進案件</span>':''}<span>${esc(displayPrice(g))}</span><span>${esc(g.size||'-')}</span><span>${esc(g.address||'-')}</span>${removedLine}<span>首次上架（最早已知）：${groupFirstPublishedMs(g)>0?fmt(groupFirstPublishedMs(g)):'日期未取得'}</span></div>${changePriceLine(g)}${g.offMarket?'':candidateLine(g)}${sourceDetails(g)}</article>`;
     }).join('')}</div></details>`;
   }
   document.querySelector('#groups').innerHTML=html||'<div class="empty">目前沒有符合條件的房屋群組。</div>';
   bindRoadAccordion();
 }
+
 
 
 
