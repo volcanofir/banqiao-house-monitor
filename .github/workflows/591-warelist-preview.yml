@@ -7,6 +7,10 @@ on:
     paths:
       - ".github/workflows/591-warelist-preview.yml"
       - "scripts/build_591_warelist_preview.py"
+      - "scripts/warelist_structured_fields.py"
+      - "scripts/diagnose_591_warelist_integrity.py"
+      - "scripts/diagnose_591_warelist_dryrun_merge.py"
+      - "tests/test_591_warelist_structured_fields.py"
       - "tests/test_591_warelist_preview.py"
   schedule:
     # Independent GitHub cloud crawl about once every three hours (UTC).
@@ -40,6 +44,7 @@ jobs:
         run: |
           python -m py_compile scripts/build_591_warelist_preview.py
           python -m unittest discover -s tests -p "test_591_warelist_preview.py" -v
+          python -m unittest discover -s tests -p "test_591_warelist_structured_fields.py" -v
 
       - name: Read and validate all seven 591 roads
         run: python -u scripts/build_591_warelist_preview.py
@@ -61,6 +66,9 @@ jobs:
           assert d.get("noAutomaticNewPropertyDecision") is True
           assert len(d.get("roadCounts") or []) == 7
           assert len(d.get("listings") or []) == d.get("counts",{}).get("totalListings")
+          assert (d.get("sourceFieldCoverage") or {}).get("total") == len(d["listings"])
+          assert sum(bool(x.get("structuredFloor")) for x in d["listings"]) == d["sourceFieldCoverage"]["floor"]
+          assert all(not x.get("structuredFloor") or x.get("floorSourceMode") == "591_warelist_structured" for x in d["listings"])
           print("Verified seven-road Preview-only snapshot, no canonical modification")
           PY
 
