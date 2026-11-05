@@ -103,5 +103,19 @@ if missing:
 if 'id="rakuyaPanel"' in text:
     raise RuntimeError("standalone Rakuya panel still present")
 
+# Render the verified 591 listing fields inside the existing group detail
+# accordion. Do not infer floor from title or append unverified addresses.
+source_date_anchor = "<span>${sourcePublishedText(m)}</span>"
+source_591_extra = "${m.source==='591'&&m.structuredFloor?`<span>591來源樓層：${esc(m.structuredFloor)}</span>`:''}${m.source==='591'&&m.structuredLayout?`<span>房型：${esc(m.structuredLayout)}</span>`:''}${m.source==='591'&&m.structuredCommunity?`<span>社區：${esc(m.structuredCommunity)}</span>`:''}"
+if source_date_anchor in text and "591來源樓層：" not in text:
+    text = text.replace(source_date_anchor, source_date_anchor + source_591_extra, 1)
+if "591來源樓層：" not in text:
+    raise RuntimeError("591 structured detail UI anchor missing")
+
+nested_anchor = "${esc(n.price||'')} ${esc(n.size||'')}</li>"
+nested_extra = "${n.structuredFloor?`｜樓層：${esc(n.structuredFloor)}`:''}${n.structuredLayout?`｜房型：${esc(n.structuredLayout)}`:''}"
+if nested_anchor in text and "｜房型：" not in text:
+    text = text.replace(nested_anchor, "${esc(n.price||'')} ${esc(n.size||'')}" + nested_extra + "</li>", 1)
+
 PATH.write_text(text, encoding="utf-8")
 print("Rakuya + 5168 integrated into main 591/Sinyi Preview UI")
