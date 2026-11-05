@@ -20,6 +20,7 @@ RAKUYA_SNAPSHOT = Path("docs/preview/rakuya-seven-roads.json")
 HOUSEPRICE_SNAPSHOT = Path("docs/preview/houseprice-seven-roads.json")
 
 SALE_NEW_WINDOW_DAYS = 7
+PERMANENT_ID_LEDGER = Path("docs/preview/platform-id-history.json")
 
 
 def _time_value(value):
@@ -40,37 +41,79 @@ def _time_value(value):
         return None
 
 
-def _walk_listing_times(row, source_hint=None):
-    """Yield source-original times first; monitoring first-seen is fallback only."""
-    source=row.get("source") or source_hint
-    original=_time_value(row.get("sourcePublishedAt"))
-    if original:
-        yield ("original", original, source)
+def _source_time_candidates(row, source_hint=None, historical_entries=None):
+    """Source-provided dates, including exact-ID stored history, never crawler discovery.
+
+    A currently returned 591 postTime can be later than a previously saved
+    publication time. Keep the earliest evidence across both, without joining
+    unrelated adverts by loose price/title similarity.
+    """
+    if not isinstance(row, dict):
+        return
+    source = row.get("source") or source_hint
+    rid = str(row.get("id") or "").strip()
+    seen = set()
+    for field in ("sourcePublishedAt", "postTime"):
+        ms = _time_value(row.get(field))
+        if ms and ms not in seen:
+            seen.add(ms)
+            yield (ms, source, rid or None, "source_field")
+    history = (historical_entries or {}).get(source) or {}
+    record = history.get(rid) if rid else None
+    if isinstance(record, dict):
+        ms = _time_value(record.get("sourcePublishedAt"))
+        if ms and ms not in seen:
+            yield (ms, source, rid, "permanent_id_history")
+
+
+def _walk_listing_times(row, source_hint=None, historical_entries=None):
+    if not isinstance(row, dict):
+        return
+    yield from _source_time_candidates(row, source_hint, historical_entries)
+    source = row.get("source") or source_hint
     for member in row.get("mergedListings") or []:
-        member_source=member.get("source") or source
-        original=_time_value(member.get("sourcePublishedAt"))
-        if original:
-            yield ("original", original, member_source)
+        yield from _walk_listing_times(member, source, historical_entries)
 
 
-def annotate_property_first_publish(group):
-    """Use real source publication only; crawler discovery is NOT publish time."""
-    originals=[]
+def load_source_history(path=PERMANENT_ID_LEDGER):
+    # Missing or malformed historical data is never a reason to invent an
+    # older timestamp; the current verified source remains authoritative.
+    if not path.exists():
+        return {}
+    try:
+        obj = json.loads(path.read_text(encoding="utf-8"))
+    except (ValueError, OSError):
+        return {}
+    entries = obj.get("entries") if isinstance(obj, dict) else None
+    return entries if isinstance(entries, dict) else {}
+
+
+def annotate_property_first_publish(group, historical_entries=None):
+    """Earliest known source time among exact IDs already grouped as one house.
+
+    No firstSeenAt, monitorFirstSeenAt, or newAt values participate. Reposts
+    with a new ID can still contribute via their verified same-house group,
+    but ungrouped homes and different floors never exchange dates.
+    """
+    candidates = []
     for item in [group] + list(group.get("sourceListings") or []):
-        originals.extend(_walk_listing_times(item, group.get("primarySource")))
+        candidates.extend(_walk_listing_times(item, group.get("primarySource"), historical_entries))
 
-    if not originals:
-        group["propertyFirstPublishedAt"]=None
-        group["propertyFirstPublishedSource"]=None
-        group["propertyFirstPublishedBasis"]="unavailable_no_source_publish_date"
+    if not candidates:
+        group["propertyFirstPublishedAt"] = None
+        group["propertyFirstPublishedSource"] = None
+        group["propertyFirstPublishedListingId"] = None
+        group["propertyFirstPublishedEvidence"] = None
+        group["propertyFirstPublishedBasis"] = "unavailable_no_source_publish_date"
         return group
 
-    _,ms,source=min(originals,key=lambda x:x[1])
-    group["propertyFirstPublishedAt"]=datetime.fromtimestamp(ms/1000,timezone.utc).isoformat(timespec="seconds")
-    group["propertyFirstPublishedSource"]=source
-    group["propertyFirstPublishedBasis"]="earliest_source_original"
+    ms, source, rid, evidence = min(candidates, key=lambda rec: rec[0])
+    group["propertyFirstPublishedAt"] = datetime.fromtimestamp(ms/1000, timezone.utc).isoformat(timespec="seconds")
+    group["propertyFirstPublishedSource"] = source
+    group["propertyFirstPublishedListingId"] = rid
+    group["propertyFirstPublishedEvidence"] = evidence
+    group["propertyFirstPublishedBasis"] = "earliest_known_source_timestamp"
     return group
-
 
 def blank_stats():
     return {
@@ -321,11 +364,14 @@ def main():
     source_state=json.loads(ENRICHED.read_text(encoding="utf-8"))
 
     # "New property" is property-level, not platform-level. A later repost on
-    # Rakuya/591/Sinyi/5168 must never reset an older property's age.
+    # 591/Sinyi/Rakuya/5168 must not reset the earlier known source date.
+    # Only exact advertisement IDs of already-matched house groups may draw
+    # from persistent history; the monitoring discovery time is excluded.
+    history_entries = load_source_history()
     for group in payload.get("propertyGroups") or []:
-        annotate_property_first_publish(group)
-    payload["newListingWindowDays"]=SALE_NEW_WINDOW_DAYS
-    payload["newListingTimePolicy"]="earliest_source_original_across_merged_property_with_monitor_seen_fallback"
+        annotate_property_first_publish(group, history_entries)
+    payload["newListingWindowDays"] = SALE_NEW_WINDOW_DAYS
+    payload["newListingTimePolicy"] = "earliest_known_source_time_from_merged_ids_and_permanent_id_history_no_monitor_discovery"
 
     # This uses the original Scheme A property grouping and company comparison.
     # The only changed input is 591's verified public wareList observations.
