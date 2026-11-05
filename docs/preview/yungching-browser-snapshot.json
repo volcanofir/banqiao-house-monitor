@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-05T16:03:57+00:00",
+  "capturedAt": "2026-11-05T16:15:17+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -181,7 +181,7 @@
     },
     "板橋區三民路一段": {
       "mainHttp": 200,
-      "count": 6,
+      "count": 5,
       "primarySearchUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%89%E6%B0%91%E8%B7%AF%E4%B8%80%E6%AE%B5_kw?od=80",
       "confirmationUsed": false,
       "primaryHttp": 200,
@@ -190,10 +190,10 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 16876,
+      "primaryApiListDataLength": 14808,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
-      "roadTextCount": 6,
+      "roadTextCount": 5,
       "summary": [],
       "searchUrl": "https://buy.yungching.com.tw/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E4%B8%89%E6%B0%91%E8%B7%AF%E4%B8%80%E6%AE%B5&filter=0&pg=1&ps=30",
       "loadRounds": 0,
@@ -210,7 +210,6 @@
       "paginationComplete": true,
       "paginationPageNewIds": {
         "1": [
-          "5289717",
           "6992286",
           "7004701",
           "7271295",
@@ -220,7 +219,6 @@
       },
       "paginationPageRawNewIds": {
         "1": [
-          "5289717",
           "6992286",
           "7004701",
           "7271295",
@@ -228,18 +226,18 @@
           "7532014"
         ]
       },
-      "rawHouseIdCount": 8,
-      "rawExactAddressTextCount": 6,
+      "rawHouseIdCount": 7,
+      "rawExactAddressTextCount": 5,
       "paginationError": null,
-      "apiTotalCount": 6,
-      "apiTotalItemCount": 7,
-      "apiRawRowCount": 8,
-      "apiUniqueRowCount": 8,
+      "apiTotalCount": 5,
+      "apiTotalItemCount": 6,
+      "apiRawRowCount": 7,
+      "apiUniqueRowCount": 7,
       "emptyResultVerified": false,
       "skippedConfirmedEmpty": false,
       "transportEvidence": "official_api_v2_decrypted",
       "available": true,
-      "rawCountBeforeIdIntegrity": 6,
+      "rawCountBeforeIdIntegrity": 5,
       "idIntegrityRemoved": 0,
       "mode": "yungching_official_api",
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
@@ -580,7 +578,7 @@
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     }
   },
-  "listingCount": 68,
+  "listingCount": 67,
   "listings": [
     {
       "id": "7514442",
@@ -607,6 +605,33 @@
         "fromFloor": 1,
         "toFloor": 2,
         "upFloor": 2
+      }
+    },
+    {
+      "id": "6973967",
+      "road": "板橋區中山路二段",
+      "title": "大新板生活圈近捷運精緻裝潢邊間景觀戶",
+      "price": 2388,
+      "area": 36.63,
+      "floor": "7/13樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/6973967",
+      "sourceMode": "yungching_official_api",
+      "text": "大新板生活圈近捷運精緻裝潢邊間景觀戶 新北市板橋區中山路二段 住宅大樓 建坪36.63 7/13樓 2房(室)2廳1衛 2388萬",
+      "rawText": "大新板生活圈近捷運精緻裝潢邊間景觀戶 新北市板橋區中山路二段 住宅大樓 建坪36.63 7/13樓 2房(室)2廳1衛 2388萬",
+      "patternInfo": {
+        "room": 2,
+        "livingRoom": 2,
+        "bathRoom": 1,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 7,
+        "toFloor": 7,
+        "upFloor": 13
       }
     },
     {
@@ -661,33 +686,6 @@
         "fromFloor": 4,
         "toFloor": 4,
         "upFloor": 4
-      }
-    },
-    {
-      "id": "6973967",
-      "road": "板橋區中山路二段",
-      "title": "大新板生活圈近捷運精緻裝潢邊間景觀戶",
-      "price": 2388,
-      "area": 36.63,
-      "floor": "7/13樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "住宅大樓",
-      "url": "https://buy.yungching.com.tw/house/6973967",
-      "sourceMode": "yungching_official_api",
-      "text": "大新板生活圈近捷運精緻裝潢邊間景觀戶 新北市板橋區中山路二段 住宅大樓 建坪36.63 7/13樓 2房(室)2廳1衛 2388萬",
-      "rawText": "大新板生活圈近捷運精緻裝潢邊間景觀戶 新北市板橋區中山路二段 住宅大樓 建坪36.63 7/13樓 2房(室)2廳1衛 2388萬",
-      "patternInfo": {
-        "room": 2,
-        "livingRoom": 2,
-        "bathRoom": 1,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 7,
-        "toFloor": 7,
-        "upFloor": 13
       }
     },
     {
@@ -1390,33 +1388,6 @@
         "fromFloor": 7,
         "toFloor": 7,
         "upFloor": 13
-      }
-    },
-    {
-      "id": "5289717",
-      "road": "板橋區三民路一段",
-      "title": "稀有純一樓連鎖店",
-      "price": 7128,
-      "area": 130.18,
-      "floor": "1/12樓",
-      "address": "新北市板橋區三民路一段",
-      "type": "店面",
-      "url": "https://buy.yungching.com.tw/house/5289717",
-      "sourceMode": "yungching_official_api",
-      "text": "稀有純一樓連鎖店 新北市板橋區三民路一段 店面 建坪130.18 1/12樓 0房(室)2廳3衛 7128萬",
-      "rawText": "稀有純一樓連鎖店 新北市板橋區三民路一段 店面 建坪130.18 1/12樓 0房(室)2廳3衛 7128萬",
-      "patternInfo": {
-        "room": 0,
-        "livingRoom": 2,
-        "bathRoom": 3,
-        "addRoom": 0,
-        "addLivingRoom": 0,
-        "addBathRoom": 0
-      },
-      "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 1,
-        "upFloor": 12
       }
     },
     {
@@ -2429,8 +2400,8 @@
   "paginationGuardVersion": "api-all-pages-v1",
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 68,
-    "afterCount": 68,
+    "beforeCount": 67,
+    "afterCount": 67,
     "removedCount": 0,
     "collisionIds": [],
     "remainingCollisionIds": [],
@@ -2446,7 +2417,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-05T16:04:11+00:00",
+    "generatedAt": "2026-11-05T16:15:29+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,

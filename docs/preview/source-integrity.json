@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-11-05T16:15:45+00:00",
+  "previewOnly": true,
+  "sourceStatus": {
+    "591": {
+      "status": "ok",
+      "lastVerifiedAt": "2026-11-05T14:16:25+00:00",
+      "observedIdCount": 227,
+      "historyIdCount": 552,
+      "firstSeenIdCount": 0,
+      "reappearedIdCount": 0,
+      "missingIdIsNotDelisting": true,
+      "newIdIsNotNewProperty": true
+    },
+    "信義房屋": {
+      "status": "ok",
+      "lastVerifiedAt": "2026-11-05T16:15:04+00:00",
+      "observedIdCount": 68,
+      "historyIdCount": 90,
+      "firstSeenIdCount": 0,
+      "reappearedIdCount": 0,
+      "missingIdIsNotDelisting": true,
+      "newIdIsNotNewProperty": true
+    },
+    "樂屋網": {
+      "status": "ok",
+      "lastVerifiedAt": "2026-11-05T16:15:29+00:00",
+      "observedIdCount": 231,
+      "historyIdCount": 231,
+      "firstSeenIdCount": 231,
+      "reappearedIdCount": 0,
+      "missingIdIsNotDelisting": true,
+      "newIdIsNotNewProperty": true
+    },
+    "5168": {
+      "status": "ok",
+      "lastVerifiedAt": "2026-11-05T14:19:56+00:00",
+      "observedIdCount": 58,
+      "historyIdCount": 58,
+      "firstSeenIdCount": 58,
+      "reappearedIdCount": 0,
+      "missingIdIsNotDelisting": true,
+      "newIdIsNotNewProperty": true
+    }
+  },
+  "rule": "Fail closed per source; ID absence cannot imply delisting; source publish time never inferred from discovery"
+}
