@@ -117,5 +117,14 @@ nested_extra = "${n.structuredFloor?`｜樓層：${esc(n.structuredFloor)}`:''}$
 if nested_anchor in text and "｜房型：" not in text:
     text = text.replace(nested_anchor, "${esc(n.price||'')} ${esc(n.size||'')}" + nested_extra + "</li>", 1)
 
+# Always show the property-level earliest known publication date, not when
+# our monitor discovered it. Source-level "上架" dates remain in the accordion.
+earliest_anchor = "<span>${esc(g.address||'-')}</span>${removedLine}</div>"
+earliest_badge = "<span>首次上架（最早已知）：${groupFirstPublishedMs(g)>0?fmt(groupFirstPublishedMs(g)):'日期未取得'}</span>"
+if earliest_anchor in text and "首次上架（最早已知）：" not in text:
+    text = text.replace(earliest_anchor, "<span>${esc(g.address||'-')}</span>${removedLine}" + earliest_badge + "</div>", 1)
+if "首次上架（最早已知）：" not in text:
+    raise RuntimeError("Property first publication UI anchor missing")
+
 PATH.write_text(text, encoding="utf-8")
 print("Rakuya + 5168 integrated into main 591/Sinyi Preview UI")
