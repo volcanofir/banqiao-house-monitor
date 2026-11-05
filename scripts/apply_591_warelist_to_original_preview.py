@@ -22,6 +22,54 @@ from pathlib import Path
 import dedupe_listings_v2 as dedupe
 import track_price_changes as prices
 from diagnose_591_warelist_integrity import ROADS
+from unittest.mock import patch
+from warelist_structured_fields import carried_fields, source_floor_tokens
+
+# Restrict floor-aware clustering to Preview. This never patches the canonical
+# crawler's deduplication code or its persisted historical records.
+_BASE_RAW_ROW = dedupe.raw_row
+_BASE_SAME_PROPERTY = dedupe.same_property
+
+
+def _preview_raw_row(item, parent=None):
+    row = _BASE_RAW_ROW(item, parent)
+    # Never inherit a parent's floor into a distinct nested advertisement ID.
+    row.update(carried_fields(item))
+    return row
+
+
+def _preview_same_property(a, b):
+    af, bf = source_floor_tokens(a), source_floor_tokens(b)
+    if af and bf and af.isdisjoint(bf):
+        return False
+    return _BASE_SAME_PROPERTY(a, b)
+
+
+def _preview_cluster_matches(item, members):
+    # Prevent transitive unknown-floor advertisements from bridging two
+    # explicitly different floors in the same building.
+    known = set().union(*(source_floor_tokens(x) for x in members))
+    incoming = source_floor_tokens(item)
+    if known and incoming and known.isdisjoint(incoming):
+        return False
+    return any(_preview_same_property(item, old) for old in members)
+
+
+def _preview_dedupe(rows):
+    with patch.object(dedupe, "raw_row", _preview_raw_row), \
+         patch.object(dedupe, "same_property", _preview_same_property), \
+         patch.object(dedupe, "cluster_matches", _preview_cluster_matches):
+        return dedupe.dedupe(rows)
+
+
+def _assert_floor_integrity(groups):
+    for group in groups:
+        members = group.get("mergedListings") or [group]
+        floors = [source_floor_tokens(x) for x in members]
+        floors = [x for x in floors if x]
+        if floors and not set.intersection(*floors):
+            raise ValueError("591 Preview floor conflict in grouped advertisements")
+
 
 SOURCE = Path("docs/591-preview/snapshot.json")
 CANONICAL = Path("docs/data/listings.json")
@@ -107,6 +155,7 @@ def merge_for_preview(enriched_state, snapshot, now=None):
             "url": raw["url"], "active": True, "removedAt": None,
             "lastSeenAt": snapshot["updatedAt"],
             "preview591Observation": "warelist_observed",
+            **carried_fields(raw),
         })
         if not row.get("firstSeenAt"):
             # Identity observation is not a verified new property event.
@@ -134,8 +183,9 @@ def merge_for_preview(enriched_state, snapshot, now=None):
             # Already confirmed removed; original removedAt must survive.
             archival["preview591Observation"] = "historical_inactive"
         unseen_history.append(archival)
-    rebuilt, _, raw_count = dedupe.dedupe(cur + unseen_history)
+    rebuilt, _, raw_count = _preview_dedupe(cur + unseen_history)
     groups_591 = [x for x in rebuilt if x.get("source") == "591"]
+    _assert_floor_integrity(groups_591)
     # Restore property-level price histories by exact historic advertisement IDs,
     # never by fuzzy title/price guesses. Preserve the existing rule of tracking
     # only real effective-price changes on the same property.
@@ -208,6 +258,8 @@ def merge_for_preview(enriched_state, snapshot, now=None):
         "uniqueListingCount": len(cur),
         "groupCount": sum(bool(x.get("active")) for x in groups_591),
         "roadCounts": road_counts,
+        "sourceFieldCoverage": snapshot.get("sourceFieldCoverage") or {},
+        "floorAwarePreviewGrouping": True,
         "historyMatchedIdCount": old_matched,
         "historyNotPresentUnconfirmed": len(unseen_history),
         "historyReappearedCount": known_reappeared,
