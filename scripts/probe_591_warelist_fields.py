@@ -22,8 +22,14 @@ GET_FIELDS=r"""() => {
    'posttime','houseid','post_id'];
   const counts=Object.fromEntries(wanted.map(k=>[k,rows.filter(x=>
    x?.[k]!==null && x?.[k]!==undefined && x?.[k]!=='' && x?.[k]!==false).length]));
-  return {ok:true,count:rows.length,keys:[...new Set(rows.flatMap(x=>Object.keys(x||{})))].sort(),
-          counts, sampleIds:rows.slice(0,2).map(x=>String(x?.post_id||x?.houseid||'').replace(/^S/,''))};
+  const examples={};for(const k of ['floor','room','houseage','kind','kind_name','has_carport','price_has_carport','community_name','housetype']){
+  const vals=rows.map(x=>x?.[k]).filter(v=>v!==null&&v!==undefined&&v!=='');
+  examples[k]={types:[...new Set(vals.map(v=>Array.isArray(v)?'array':typeof v))],
+               examples:k==='community_name'?[]:[...new Set(vals.map(v=>String(v).slice(0,50)))].slice(0,8),
+               populated:vals.length};
+}
+return {ok:true,count:rows.length,keys:[...new Set(rows.flatMap(x=>Object.keys(x||{})))].sort(),
+          counts, examples};
 }"""
 async def main():
   async with async_playwright() as p:
@@ -43,7 +49,7 @@ async def main():
         if not r or r.status!=200:raise RuntimeError('public sale page not 200')
         obj=await page.evaluate(GET_FIELDS)
         if not obj.get('ok'): raise RuntimeError('wareList state missing')
-        samples.append({'road':road,'rows':obj['count'],'keys':obj['keys'],'fieldCounts':obj['counts']})
+        samples.append({'road':road,'rows':obj['count'],'keys':obj['keys'],'fieldCounts':obj['counts'],'examples':obj['examples']})
       print('FIELD_PROBE '+json.dumps({'roads':samples},ensure_ascii=False))
       # Same first-page browser context, sample only two normal detail links.
       if False: pass
