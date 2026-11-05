@@ -28,6 +28,8 @@ on:
       - "scripts/compare_yungching_preview_v11.py"
       - "scripts/apply_591_warelist_to_original_preview.py"
       - "scripts/patch_rakuya_integrated_ui.py"
+      - "scripts/preview_source_integrity.py"
+      - "tests/test_preview_source_integrity.py"
       - "trigger/monitor-wakeup.txt"
   schedule:
     # Ten-minute lightweight heartbeat; full-check attempts are spaced about three hours apart.
@@ -174,7 +176,9 @@ jobs:
 
       - name: Validate crawler Python syntax
         if: steps.gate.outputs.run == 'true'
-        run: python -m py_compile scripts/monitor_fast.py scripts/monitor_591_web_fallback.py scripts/retry_591_direct_egress.py scripts/monitor_sinyi_parallel.py scripts/monitor_schedule_state.py
+        run: |
+          python -m py_compile scripts/monitor_fast.py scripts/monitor_591_web_fallback.py scripts/retry_591_direct_egress.py scripts/monitor_sinyi_parallel.py scripts/monitor_schedule_state.py scripts/preview_source_integrity.py
+          python -m unittest discover -s tests -p test_preview_source_integrity.py -v
 
       - name: Install shared crawler packages
         if: steps.gate.outputs.run == 'true'
@@ -380,9 +384,18 @@ jobs:
 
       - name: Refresh complete Rakuya seven-road snapshot
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
+        continue-on-error: true
+        shell: bash
         run: |
-          python scripts/fetch_rakuya_seven_roads_preview.py
-          python scripts/validate_rakuya_preview_snapshot.py
+          set -euo pipefail
+          cp docs/preview/rakuya-seven-roads.json /tmp/rakuya-before-refresh.json
+          if python scripts/fetch_rakuya_seven_roads_preview.py && python scripts/validate_rakuya_preview_snapshot.py; then
+            echo "Rakuya seven-road snapshot verified."
+          else
+            cp /tmp/rakuya-before-refresh.json docs/preview/rakuya-seven-roads.json
+            echo "::warning title=Rakuya Preview check failed::Restored previous verified snapshot; no delisting from failed scrape."
+            exit 1
+          fi
 
       - name: Build Sinyi structured floor snapshot
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
@@ -416,6 +429,19 @@ jobs:
           python scripts/write_scheme_a_verification.py
           python scripts/write_scheme_a_saved_output_audit.py
 
+      - name: Record four-source integrity and permanent listing ID history
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
+        run: |
+          python scripts/preview_source_integrity.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          ledger=json.loads(Path('docs/preview/platform-id-history.json').read_text(encoding='utf-8'))
+          assert ledger['schemaVersion']==1
+          assert set(ledger['entries'])=={'591','信義房屋','樂屋網','5168'}
+          assert all(x.get('missingIdIsNotDelisting') for x in ledger['sources'].values())
+          PY
+
       - name: Smoke test generated Preview in system Chrome
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true'
         run: python scripts/run_with_system_chrome.py scripts/smoke_test_preview_ui.py
@@ -431,7 +457,7 @@ jobs:
           mkdir -p /tmp/fast-publish/preview /tmp/fast-publish/data
           cp docs/data/listings.json /tmp/fast-publish/data/listings.json
           [[ -f docs/data/sinyi-first-display-cache.json ]] && cp docs/data/sinyi-first-display-cache.json /tmp/fast-publish/data/sinyi-first-display-cache.json || true
-          core_files=(preview-monitor-state.json company-gap.json yungching-preview-run.log yungching-browser-snapshot.json yungching-detail-floor.json sinyi-floor-enrichment.json scheme-a-ambiguity-audit.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html rakuya-seven-roads.json houseprice-seven-roads.json)
+          core_files=(preview-monitor-state.json company-gap.json yungching-preview-run.log yungching-browser-snapshot.json yungching-detail-floor.json sinyi-floor-enrichment.json scheme-a-ambiguity-audit.json scheme-a-verification.json scheme-a-saved-output-audit.json index.html rakuya-seven-roads.json houseprice-seven-roads.json platform-id-history.json source-integrity.json)
           for f in "${core_files[@]}"; do
             [[ -f "docs/preview/$f" ]] || { echo "Missing canonical output: $f"; exit 1; }
             cp "docs/preview/$f" "/tmp/fast-publish/preview/$f"
