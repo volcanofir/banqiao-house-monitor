@@ -1,0 +1,22 @@
+name: Diagnose 591 verified wareList field coverage
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/probe_591_warelist_fields.py"
+      - ".github/workflows/probe-591-warelist-fields.yml"
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install playwright
+      - name: Probe source field keys without modifying Preview
+        run: python -u scripts/probe_591_warelist_fields.py
