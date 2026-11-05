@@ -54,38 +54,22 @@ def _walk_listing_times(row, source_hint=None):
 
 
 def annotate_property_first_publish(group):
+    """Use real source publication only; crawler discovery is NOT publish time."""
     originals=[]
     for item in [group] + list(group.get("sourceListings") or []):
         originals.extend(_walk_listing_times(item, group.get("primarySource")))
 
-    if originals:
-        _, ms, source=min(originals, key=lambda x:x[1])
-        basis="earliest_source_original"
-    else:
-        fallbacks=[]
-        def add_fallback(row, source_hint=None):
-            source=row.get("source") or source_hint
-            for key in ("monitorFirstSeenAt","firstSeenAt","newAt"):
-                ms=_time_value(row.get(key))
-                if ms:
-                    fallbacks.append((key,ms,source))
-            for member in row.get("mergedListings") or []:
-                add_fallback(member, source)
-        for item in [group] + list(group.get("sourceListings") or []):
-            add_fallback(item, group.get("primarySource"))
-        if not fallbacks:
-            group["propertyFirstPublishedAt"]=None
-            group["propertyFirstPublishedSource"]=None
-            group["propertyFirstPublishedBasis"]="unavailable"
-            return group
-        _, ms, source=min(fallbacks, key=lambda x:x[1])
-        basis="earliest_monitor_seen_fallback"
+    if not originals:
+        group["propertyFirstPublishedAt"]=None
+        group["propertyFirstPublishedSource"]=None
+        group["propertyFirstPublishedBasis"]="unavailable_no_source_publish_date"
+        return group
 
-    group["propertyFirstPublishedAt"]=datetime.fromtimestamp(ms/1000, timezone.utc).isoformat(timespec="seconds")
+    _,ms,source=min(originals,key=lambda x:x[1])
+    group["propertyFirstPublishedAt"]=datetime.fromtimestamp(ms/1000,timezone.utc).isoformat(timespec="seconds")
     group["propertyFirstPublishedSource"]=source
-    group["propertyFirstPublishedBasis"]=basis
+    group["propertyFirstPublishedBasis"]="earliest_source_original"
     return group
-
 
 
 def blank_stats():
