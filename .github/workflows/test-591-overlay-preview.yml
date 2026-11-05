@@ -3,9 +3,12 @@ name: Test 591 integration into original Preview
 on:
   push:
     branches:
-      - "feature/warelist-into-original-preview-20261103"
+      - "main"
     paths:
       - "scripts/apply_591_warelist_to_original_preview.py"
+      - "scripts/compare_yungching_preview_v4.py"
+      - "scripts/warelist_structured_fields.py"
+      - "tests/test_591_warelist_structured_fields.py"
       - "tests/test_apply_591_original_preview.py"
       - ".github/workflows/test-591-overlay-preview.yml"
       - "scripts/patch_preview_ui.py"
@@ -35,7 +38,9 @@ jobs:
         run: |
           python -m py_compile scripts/apply_591_warelist_to_original_preview.py scripts/patch_preview_ui.py scripts/compare_yungching_preview_v11.py
       - name: Test real 591 snapshot and historical identity without writes
-        run: python -m unittest discover -s tests -p "test_apply_591_original_preview.py" -v
+        run: |
+          python -m unittest discover -s tests -p "test_591_warelist_structured_fields.py" -v
+          python -m unittest discover -s tests -p "test_apply_591_original_preview.py" -v
       - name: Build existing Preview-only source overlay
         run: |
           python scripts/sinyi_preview_floor_enrich.py
