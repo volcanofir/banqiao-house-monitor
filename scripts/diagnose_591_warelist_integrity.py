@@ -56,7 +56,13 @@ EXTRACT = """() => {
             isvip:x.isvip??null,
             m_recom:x.m_recom??null,
             bid_rank:x.bid_rank??null,
-            is_newhouse:x.is_newhouse??null
+            is_newhouse:x.is_newhouse??null,
+            floor:x.floor??null,
+            room:x.room??null,
+            houseage:x.houseage??null,
+            community_name:x.community_name??null,
+            kind_name:x.kind_name??null,
+            has_carport:x.has_carport??null
         })):null
     }
 }"""
