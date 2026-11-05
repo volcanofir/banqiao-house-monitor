@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-11-05T15:03:42+00:00",
+  "verifiedAt": "2026-11-05T15:18:54+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-11-05T15:02:55+00:00",
+  "sourceDataUpdatedAt": "2026-11-05T15:18:03+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-05T15:03:34+00:00",
+    "generatedAt": "2026-11-05T15:18:42+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-05T15:00:22+00:00",
+    "sourceRunCheckedAt": "2026-11-05T15:15:25+00:00",
     "activeSinyiCount": 68,
     "matchedOfficialCount": 68,
     "appliedCount": 68,
@@ -30,7 +30,7 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-05T15:03:23+00:00",
+    "updatedAt": "2026-11-05T15:18:32+00:00",
     "status": "ok",
     "totalCount": 234,
     "uniqueListingCount": 234,
@@ -180,7 +180,7 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-05T15:03:42+00:00",
+    "auditedAt": "2026-11-05T15:18:54+00:00",
     "propertyGroupCount": 172,
     "companyListingCount": 68,
     "companyMatchCount": 40,
@@ -188,9 +188,9 @@
     "chosenCandidateRecomputeMismatchCount": 0,
     "weakIdentityAlreadyMergedPairCount": 1017
   },
-  "snapshotCapturedAt": "2026-11-05T15:03:09+00:00",
-  "companySnapshotCapturedAt": "2026-11-05T15:03:09+00:00",
-  "companyGapGeneratedAt": "2026-11-05T15:03:39+00:00",
+  "snapshotCapturedAt": "2026-11-05T15:18:17+00:00",
+  "companySnapshotCapturedAt": "2026-11-05T15:18:17+00:00",
+  "companyGapGeneratedAt": "2026-11-05T15:18:49+00:00",
   "browserListingCount": 68,
   "companyListingCount": 68,
   "propertyGroupCount": 172,
@@ -334,7 +334,7 @@
   "candidatesWithFloor": 169,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-05T15:03:22+00:00",
+    "generatedAt": "2026-11-05T15:18:32+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
