@@ -93,20 +93,13 @@ text = text.replace('rel="noreferrer"', 'rel="noopener noreferrer"')
 # across all merged sources, with monitor first-seen only as a fallback.
 sale_new_policy = r'''const timeMs=v=>{if(v==null||v==='')return 0;const n=Number(v);if(Number.isFinite(n)&&n>0)return n<1e12?n*1000:n;const t=new Date(v).getTime();return Number.isFinite(t)?t:0};
 function groupFirstPublishedMs(g){
+  // Monitoring discovery is not a valid source publication timestamp.
   const annotated=timeMs(g?.propertyFirstPublishedAt);
-  if(annotated>0)return annotated;
+  if(annotated>0&&g?.propertyFirstPublishedBasis!=='earliest_monitor_seen_fallback')return annotated;
   const originals=[];
-  const seen=[];
-  const walk=(x)=>{
-    if(!x)return;
-    const p=timeMs(x.sourcePublishedAt);if(p>0)originals.push(p);
-    for(const k of ['monitorFirstSeenAt','firstSeenAt','newAt']){const t=timeMs(x[k]);if(t>0)seen.push(t)}
-    for(const m of (x.mergedListings||[]))walk(m);
-  };
-  walk(g);
-  for(const m of (g?.sourceListings||[]))walk(m);
-  if(originals.length)return Math.min(...originals);
-  return seen.length?Math.min(...seen):0;
+  const walk=x=>{if(!x)return;const p=timeMs(x.sourcePublishedAt);if(p>0)originals.push(p);for(const m of (x.mergedListings||[]))walk(m);};
+  walk(g);for(const m of (g?.sourceListings||[]))walk(m);
+  return originals.length?Math.min(...originals):0;
 }
 const isNew=x=>{const first=groupFirstPublishedMs(x);const days=Number(GAP.newListingWindowDays??7);const age=Date.now()-first;return first>0&&Number.isFinite(days)&&days>0&&age>=0&&age<days*86400000;}'''
 policy_start = text.find('const timeMs=v=>')
