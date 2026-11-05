@@ -7,6 +7,8 @@ when one source disappeared but the same property is still advertised elsewhere.
 """
 
 # Also acts as a canonical Preview rebuild trigger when display-only UI wording changes.
+# Trigger 2026-11-06: publish earliest-known first listing dates from persisted exact-ID history
+# to the EXISTING Preview only; do not change delisting logic or production files.
 
 import json
 from datetime import datetime, timezone, timedelta
