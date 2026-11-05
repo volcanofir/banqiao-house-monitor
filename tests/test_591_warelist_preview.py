@@ -50,6 +50,19 @@ class PreviewTests(unittest.TestCase):
         self.assertEqual(d["counts"]["historicallyInactiveReappeared"],1)
         self.assertEqual(d["counts"]["idNotInHistory"],6)
 
+    def test_structured_floor_and_layout_survive_snapshot(self):
+        target=self.current[self.roads[0]][0]
+        target.update({"structuredFloor":"3/5樓",
+                       "structuredFloorRaw":"3F/5F",
+                       "floorSourceMode":"591_warelist_structured",
+                       "structuredLayout":"3房2廳2衛",
+                       "sourceHouseAge":37,
+                       "sourceParkingFlag":False})
+        row=next(x for x in self.build()["listings"] if x["id"]==target["id"])
+        self.assertEqual(row["structuredFloor"],"3/5樓")
+        self.assertEqual(row["structuredLayout"],"3房2廳2衛")
+        self.assertFalse(row["sourceParkingFlag"])
+
     def test_missing_road_fails_closed(self):
         self.current.pop(self.roads[2])
         with self.assertRaises(ValueError):
