@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-05T07:48:05+00:00",
+  "capturedAt": "2026-11-05T08:03:20+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -138,7 +138,7 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 16832,
+      "primaryApiListDataLength": 16876,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
       "roadTextCount": 6,
@@ -1316,7 +1316,7 @@
     {
       "id": "7532014",
       "road": "板橋區三民路一段",
-      "title": "低總價挑高電梯",
+      "title": "近北市榮光教會對面電梯大樓管理嚴謹",
       "price": 1350,
       "area": 19.84,
       "floor": "3/9樓",
@@ -1324,8 +1324,8 @@
       "type": "其他",
       "url": "https://buy.yungching.com.tw/house/7532014",
       "sourceMode": "yungching_official_api",
-      "text": "低總價挑高電梯 新北市板橋區三民路一段 其他 建坪19.84 3/9樓 4房(室)2廳2衛 1350萬",
-      "rawText": "低總價挑高電梯 新北市板橋區三民路一段 其他 建坪19.84 3/9樓 4房(室)2廳2衛 1350萬",
+      "text": "近北市榮光教會對面電梯大樓管理嚴謹 新北市板橋區三民路一段 其他 建坪19.84 3/9樓 4房(室)2廳2衛 1350萬",
+      "rawText": "近北市榮光教會對面電梯大樓管理嚴謹 新北市板橋區三民路一段 其他 建坪19.84 3/9樓 4房(室)2廳2衛 1350萬",
       "patternInfo": {
         "room": 4,
         "livingRoom": 2,
@@ -1587,33 +1587,6 @@
       }
     },
     {
-      "id": "7145115",
-      "road": "板橋區三民路二段",
-      "title": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福",
-      "price": 2313,
-      "area": 30.04,
-      "floor": "9/11樓",
-      "address": "新北市板橋區三民路二段",
-      "type": "住宅大樓",
-      "url": "https://buy.yungching.com.tw/house/7145115",
-      "sourceMode": "yungching_official_api",
-      "text": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
-      "rawText": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
-      "patternInfo": {
-        "room": 2,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 9,
-        "toFloor": 9,
-        "upFloor": 11
-      }
-    },
-    {
       "id": "7145052",
       "road": "板橋區三民路二段",
       "title": "全新可談8樓三房",
@@ -1637,6 +1610,33 @@
       "floorInfo": {
         "fromFloor": 8,
         "toFloor": 8,
+        "upFloor": 11
+      }
+    },
+    {
+      "id": "7145115",
+      "road": "板橋區三民路二段",
+      "title": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福",
+      "price": 2313,
+      "area": 30.04,
+      "floor": "9/11樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7145115",
+      "sourceMode": "yungching_official_api",
+      "text": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
+      "rawText": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
+      "patternInfo": {
+        "room": 2,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 9,
+        "toFloor": 9,
         "upFloor": 11
       }
     },
@@ -2421,7 +2421,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-05T07:48:17+00:00",
+    "generatedAt": "2026-11-05T08:03:32+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
