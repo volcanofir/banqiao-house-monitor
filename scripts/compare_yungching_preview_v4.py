@@ -4,6 +4,7 @@ from collections import defaultdict
 from difflib import SequenceMatcher
 
 import compare_yungching_preview_v3 as prev
+from warelist_structured_fields import source_floor_tokens
 
 # PREVIEW v4 flow:
 # 1) regroup 591 against 591 first
@@ -83,6 +84,12 @@ def listing_floor_tokens(x):
     floors = set()
     if not x:
         return floors
+    # Actual source floor is more reliable than an advertising headline.
+    verified = source_floor_tokens(x)
+    for member in (x.get("mergedListings") or []):
+        verified |= source_floor_tokens(member)
+    if verified:
+        return verified
     floors |= title_floor_tokens(x.get("title"))
     floors |= title_floor_tokens(x.get("address"))
     for m in (x.get("mergedListings") or []):
