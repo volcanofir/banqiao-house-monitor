@@ -500,6 +500,33 @@ jobs:
         if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful != 'true'
         run: echo "No listing-level change; skipped Yongching/company comparison and kept canonical source timestamp unchanged."
 
+      - name: Preserve Preview ID history even when listings do not change
+        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful != 'true'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/preview_source_integrity.py
+          cp docs/preview/platform-id-history.json /tmp/platform-id-history.json
+          cp docs/preview/source-integrity.json /tmp/source-integrity.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/platform-id-history.json docs/preview/platform-id-history.json
+            cp /tmp/source-integrity.json docs/preview/source-integrity.json
+            git add docs/preview/platform-id-history.json docs/preview/source-integrity.json
+            if git diff --cached --quiet; then
+              echo "Permanent Preview ID history already current."
+              exit 0
+            fi
+            git commit -m "Record verified Preview source ID history"
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 3
+          done
+          exit 1
+
       - name: Full check incomplete; retry on next heartbeat
         if: steps.gate.outputs.run == 'true' && steps.fullcheck.outputs.success != 'true'
         run: echo "591 or Sinyi incomplete; keep last successful timestamp unchanged but record this attempt to avoid ten-minute repeat crawls."
