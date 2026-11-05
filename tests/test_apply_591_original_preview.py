@@ -106,6 +106,16 @@ class IntegrationTests(unittest.TestCase):
         for group in groups:
             overlay._assert_floor_integrity([group])
 
+    def test_cross_platform_floor_tokens_prefer_verified_591_field(self):
+        import compare_yungching_preview_v4 as matcher
+        row={"source":"591","title":"廣告文案寫四樓",
+             "structuredFloor":"3/5樓","floorSourceMode":"591_warelist_structured"}
+        self.assertEqual(matcher.listing_floor_tokens(row),{3})
+        sibling={"source":"591","title":"同社區三房",
+                 "structuredFloor":"4/5樓","floorSourceMode":"591_warelist_structured"}
+        self.assertTrue(matcher.listing_floor_tokens(row).isdisjoint(
+            matcher.listing_floor_tokens(sibling)))
+
     def test_pure_merge_no_files_written(self):
         with patch.object(Path,"write_text",side_effect=AssertionError("unexpected write")):
             self.merge()
