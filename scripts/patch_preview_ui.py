@@ -89,15 +89,16 @@ new_esc = '''const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':
 text = text.replace(old_esc, new_esc)
 text = text.replace('rel="noreferrer"', 'rel="noopener noreferrer"')
 
-# Sale "new listing" is property-level: use the earliest original publish time
-# across all merged sources, with monitor first-seen only as a fallback.
+# Sale "new listing" is property-level: use the earliest source-provided time
+# across all verified same-property adverts, including saved exact-ID history.
+# Never use monitoring discovery as the first listing date.
 sale_new_policy = r'''const timeMs=v=>{if(v==null||v==='')return 0;const n=Number(v);if(Number.isFinite(n)&&n>0)return n<1e12?n*1000:n;const t=new Date(v).getTime();return Number.isFinite(t)?t:0};
 function groupFirstPublishedMs(g){
   // Monitoring discovery is not a valid source publication timestamp.
   const annotated=timeMs(g?.propertyFirstPublishedAt);
   if(annotated>0&&g?.propertyFirstPublishedBasis!=='earliest_monitor_seen_fallback')return annotated;
   const originals=[];
-  const walk=x=>{if(!x)return;const p=timeMs(x.sourcePublishedAt);if(p>0)originals.push(p);for(const m of (x.mergedListings||[]))walk(m);};
+  const walk=x=>{if(!x)return;for(const k of ['sourcePublishedAt','postTime']){const p=timeMs(x[k]);if(p>0)originals.push(p)}for(const m of (x.mergedListings||[]))walk(m);};
   walk(g);for(const m of (g?.sourceListings||[]))walk(m);
   return originals.length?Math.min(...originals):0;
 }
