@@ -85,6 +85,7 @@ def main():
         raise RuntimeError(f"Preview smoke prerequisites missing: {missing}")
 
     gap_payload = json.loads(GAP_DATA.read_text(encoding="utf-8"))
+    source_payload = json.loads(SOURCE_DATA.read_text(encoding="utf-8"))
     rental_payload = json.loads(RENTAL_DATA.read_text(encoding="utf-8"))
     rakuya_payload = json.loads(RAKUYA_DATA.read_text(encoding="utf-8"))
     offmarket_count = int(gap_payload.get("recentOffMarketCount") or 0)
@@ -170,6 +171,19 @@ def main():
 
             assert number(page.locator("#cUnavailable").inner_text()) == offmarket_count
             assert page.locator("#sources .source-card").count() == 4
+            # Four sale platforms must show raw source IDs and grouped homes
+            # with comparable units (never 591 estimated homes as raw IDs).
+            source_metrics = page.evaluate("""() => ['591','信義房屋','樂屋網','5168'].map(name => ({
+                ids:saleSourceIdCount(name), homes:saleGroupCount(name)
+            }))""")
+            for i, metrics in enumerate(source_metrics):
+                card_text = page.locator("#sources .source-card").nth(i).inner_text()
+                assert f"刊登 ID {metrics['ids']} 筆" in card_text, (i, card_text, metrics)
+                assert f"涉及整併 {metrics['homes']} 戶" in card_text, (i, card_text, metrics)
+            assert source_metrics[0]["ids"] == int(
+                (source_payload.get("previewSources") or {}).get("591",{}).get("uniqueListingCount") or
+                (source_payload.get("runs") or {}).get("591",{}).get("observedListingIdCount") or 0
+            )
             # Simulate the 591 source remaining untouched for five hours:
             # stale data must be disclosed instead of displaying a false "正常".
             stale_badge = page.evaluate("""() => {
