@@ -173,28 +173,32 @@ def main():
             assert page.locator("#sources .source-card").count() == 4
             # Four sale platforms must show raw source IDs and grouped homes
             # with comparable units (never 591 estimated homes as raw IDs).
+            page.wait_for_function(
+                "() => ['591','信義房屋','樂屋網','5168'].every(n => Object.prototype.hasOwnProperty.call(liveSourceReports,n))",
+                timeout=15000,
+            )
             source_metrics = page.evaluate("""() => {
                 const groups=GAP.propertyGroups||[];
                 return ['591','信義房屋','樂屋網','5168'].map(name => ({
-                    ids: name==='591'?(DATA.previewSources?.['591']?.uniqueListingCount??DATA.runs?.['591']?.observedListingIdCount??DATA.runs?.['591']?.totalCount??0):
-                        name==='信義房屋'?(DATA.runs?.['信義房屋']?.totalCount??0):
-                        name==='樂屋網'?(GAP.rakuyaSnapshot?.uniqueListingCount??GAP.rakuyaSnapshot?.totalCount??0):
-                        (GAP.housepriceSnapshot?.uniqueListingCount??GAP.housepriceSnapshot?.totalCount??0),
-                    homes:groups.filter(g=>(g.sources||[]).includes(name)).length
+                    ids: liveSourceReports[name]?.count,
+                    homes:groups.filter(g=>(g.sources||[]).includes(name)).length,
+                    error:!!liveSourceReports[name]?.error,
+                    updatedAt:liveSourceReports[name]?.at
                 }));
             }""")
             for i, metrics in enumerate(source_metrics):
+                assert not metrics["error"], (i,metrics)
                 card_text = page.locator("#sources .source-card").nth(i).inner_text()
-                assert f"刊登 ID {metrics['ids']} 筆" in card_text, (i, card_text, metrics)
-                assert f"涉及整併 {metrics['homes']} 戶" in card_text, (i, card_text, metrics)
-            assert source_metrics[0]["ids"] == int(
-                (source_payload.get("previewSources") or {}).get("591",{}).get("uniqueListingCount") or
-                (source_payload.get("runs") or {}).get("591",{}).get("observedListingIdCount") or 0
-            )
+                assert f"刊登 ID {metrics['ids']} 筆" in card_text, (i,card_text,metrics)
+                assert f"最近整併 {metrics['homes']} 戶" in card_text, (i,card_text,metrics)
+                assert "最近成功檢查：" in card_text, (i,card_text)
+            known_591=json.loads((ROOT / "591-preview" / "snapshot.json").read_text(encoding="utf-8"))
+            assert source_metrics[0]["ids"] == known_591["counts"]["totalListings"]
+            assert page.evaluate("verificationMatches(DATA,GAP,VERIFY)") is True
             # Simulate the 591 source remaining untouched for five hours:
             # stale data must be disclosed instead of displaying a false "正常".
             stale_badge = page.evaluate("""() => {
-                const last=Date.parse(DATA?.runs?.['591']?.checkedAt||'');
+                const last=Date.parse(liveSourceReports['591']?.at||DATA?.runs?.['591']?.checkedAt||'');
                 if (!Number.isFinite(last)) throw new Error('591 checkedAt missing');
                 const originalNow=Date.now;
                 try {
