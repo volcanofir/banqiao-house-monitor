@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-06T12:48:20+00:00",
+  "updatedAt": "2026-11-06T13:06:32+00:00",
   "watchRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -22,34 +22,26 @@
       "logs": []
     },
     "信義房屋": {
-      "checkedAt": "2026-11-06T12:45:22+00:00",
-      "status": "ok",
+      "checkedAt": "2026-11-06T13:00:25+00:00",
+      "status": "error",
       "totalCount": 69,
       "newCount": 0,
       "removedCount": 0,
-      "message": "信義官方 filterObject API 完成：板橋 raw 1008 筆，七條監控路段 69 筆；認證由 rendered Chrome 即時取得。",
+      "message": "信義官方 filterObject API 抓取失敗，保留上一輪資料：TimeoutError: Page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://www.sinyi.com.tw/buy/list/NewTaipei-city/220-zip\", waiting until \"domcontentloaded\"\n",
       "logs": [
         "信義官方 API 完整抓取 attempt 1/3",
-        "信義 API 第 1 頁：raw 100／新增 100／累計 100/1008",
-        "信義 API 第 2 頁：raw 100／新增 100／累計 200/1008",
-        "信義 API 第 3 頁：raw 100／新增 100／累計 300/1008",
-        "信義 API 第 4 頁：raw 100／新增 100／累計 400/1008",
-        "信義 API 第 5 頁：raw 100／新增 100／累計 500/1008",
-        "信義 API 第 6 頁：raw 100／新增 100／累計 600/1008",
-        "信義 API 第 7 頁：raw 100／新增 100／累計 700/1008",
-        "信義 API 第 8 頁：raw 100／新增 100／累計 800/1008",
-        "信義 API 第 9 頁：raw 100／新增 100／累計 900/1008",
-        "信義 API 第 10 頁：raw 100／新增 100／累計 1000/1008",
-        "信義 API 第 11 頁：raw 8／新增 8／累計 1008/1008",
-        "信義 API 板橋區完整抓取：1008/1008",
-        "信義七路段：中山路二段 32、三民路二段 17、光復街 8、萬安街 1、林森街 0、三民路一段 11、翠華街 0"
+        "attempt 1 失敗：RuntimeError: 信義 rendered browser 未取得 filterObject.php 認證請求",
+        "信義官方 API 完整抓取 attempt 2/3",
+        "attempt 2 失敗：RuntimeError: 信義 rendered browser 未取得 filterObject.php 認證請求",
+        "信義官方 API 完整抓取 attempt 3/3",
+        "attempt 3 失敗：TimeoutError: Page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://www.sinyi.com.tw/buy/list/NewTaipei-city/220-zip\", waiting until \"domcontentloaded\"\n"
       ],
       "mode": "official_filterObject_api_browser_auth",
       "apiSource": "https://sinyiwebapi.sinyi.com.tw/filterObject.php",
       "authMode": "runtime_browser_issued_not_persisted"
     },
     "priceTracking": {
-      "checkedAt": "2026-11-06T12:48:20+00:00",
+      "checkedAt": "2026-11-06T13:06:32+00:00",
       "changedCount": 2,
       "message": "本輪偵測到 2 筆案件價格異動。",
       "version": 3,
@@ -12954,7 +12946,7 @@
         },
         {
           "price": 1688,
-          "at": "2026-11-06T12:48:20+00:00",
+          "at": "2026-11-06T13:06:32+00:00",
           "direction": "down",
           "change": 4
         }
@@ -12962,7 +12954,7 @@
       "previousEffectivePrice": 1692,
       "priceChangeAmount": 4,
       "priceChangeDirection": "down",
-      "priceChangedAt": "2026-11-06T12:48:20+00:00",
+      "priceChangedAt": "2026-11-06T13:06:32+00:00",
       "effectivePrice": 1688.0
     },
     {
@@ -16114,7 +16106,7 @@
         },
         {
           "price": 1298,
-          "at": "2026-11-06T12:48:20+00:00",
+          "at": "2026-11-06T13:06:32+00:00",
           "direction": "up",
           "change": 60
         }
@@ -16122,7 +16114,7 @@
       "previousEffectivePrice": 1238,
       "priceChangeAmount": 60,
       "priceChangeDirection": "up",
-      "priceChangedAt": "2026-11-06T12:48:20+00:00",
+      "priceChangedAt": "2026-11-06T13:06:32+00:00",
       "effectivePrice": 1298.0
     },
     {
@@ -19667,8 +19659,8 @@
     "sinyiFirstDisplayFetchedThisRun": 0,
     "sinyiFirstDisplayMissing": 2,
     "sinyiFirstDisplayErrors": [
-      "2823PG: firstDisplay API response not captured",
-      "8351DU: firstDisplay API response not captured"
+      "2823PG: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.sinyi.com.tw/buy/house/2823PG?breadcrumb=list\", waiting until \"domcontentloaded\"\n",
+      "8351DU: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.sinyi.com.tw/buy/house/8351DU?breadcrumb=list\", waiting until \"domcontentloaded\"\n"
     ],
     "sinyiSourceField": "firstDisplay",
     "sinyiFirstDisplayMode": "playwright_network_capture_safe"
