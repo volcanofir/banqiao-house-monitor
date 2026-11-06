@@ -16,6 +16,7 @@ on:
       - "tests/test_preview_earliest_listing_time.py"
       - "scripts/audit_scheme_a_ambiguity_v2.py"
       - "tests/test_preview_identity_retention.py"
+      - "scripts/smoke_test_preview_ui.py"
       - "scripts/patch_preview_ui.py"
   pull_request:
     paths:
