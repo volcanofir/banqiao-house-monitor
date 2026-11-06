@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-11-06T01:39:15+00:00",
+  "verifiedAt": "2026-11-06T01:59:50+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-11-06T01:38:10+00:00",
+  "sourceDataUpdatedAt": "2026-11-06T01:58:59+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-06T01:39:00+00:00",
+    "generatedAt": "2026-11-06T01:59:36+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-06T01:35:33+00:00",
+    "sourceRunCheckedAt": "2026-11-06T01:56:36+00:00",
     "activeSinyiCount": 68,
     "matchedOfficialCount": 68,
     "appliedCount": 68,
@@ -30,7 +30,7 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-06T01:38:51+00:00",
+    "updatedAt": "2026-11-06T01:59:27+00:00",
     "status": "ok",
     "totalCount": 231,
     "uniqueListingCount": 231,
@@ -74,18 +74,11 @@
     "changes": {
       "newCount": 0,
       "newIds": [],
-      "priceChangeCount": 1,
-      "priceChanges": [
-        {
-          "listingId": "044497352926068",
-          "from": 1618,
-          "to": 1598,
-          "at": "2026-11-06T01:38:51+00:00"
-        }
-      ],
+      "priceChangeCount": 0,
+      "priceChanges": [],
       "removedCount": 0,
       "removedIds": [],
-      "currentChangeCount": 1
+      "currentChangeCount": 0
     },
     "complete": true
   },
@@ -102,7 +95,7 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-06T01:36:16+00:00",
+    "updatedAt": "2026-11-06T01:57:10+00:00",
     "status": "ok",
     "totalCount": 57,
     "uniqueListingCount": 57,
@@ -144,10 +137,8 @@
       }
     ],
     "changes": {
-      "newIds": [
-        "37408231"
-      ],
-      "newCount": 1,
+      "newIds": [],
+      "newCount": 0,
       "removedIds": [],
       "removedCount": 0,
       "priceChanges": [],
@@ -189,22 +180,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-06T01:39:15+00:00",
-    "propertyGroupCount": 174,
+    "auditedAt": "2026-11-06T01:59:50+00:00",
+    "propertyGroupCount": 173,
     "companyListingCount": 67,
     "companyMatchCount": 39,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 875
+    "weakIdentityAlreadyMergedPairCount": 864
   },
-  "snapshotCapturedAt": "2026-11-06T01:38:35+00:00",
-  "companySnapshotCapturedAt": "2026-11-06T01:38:35+00:00",
-  "companyGapGeneratedAt": "2026-11-06T01:39:09+00:00",
+  "snapshotCapturedAt": "2026-11-06T01:59:13+00:00",
+  "companySnapshotCapturedAt": "2026-11-06T01:59:13+00:00",
+  "companyGapGeneratedAt": "2026-11-06T01:59:45+00:00",
   "browserListingCount": 67,
   "companyListingCount": 67,
-  "propertyGroupCount": 174,
-  "rawListingCount": 805,
-  "comparisonCount": 174,
+  "propertyGroupCount": 173,
+  "rawListingCount": 796,
+  "comparisonCount": 173,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -270,34 +261,34 @@
   "counts": {
     "company_match": 39,
     "review": 5,
-    "missing": 130,
+    "missing": 129,
     "unavailable": 0
   },
   "crossPlatformMergedGroupCount": 109,
-  "crossSourceReviewCount": 11,
+  "crossSourceReviewCount": 10,
   "preview591Regroup": {
-    "original591TopLevel": 101,
-    "regrouped591TopLevel": 93,
-    "regrouped591ClusterCount": 8,
-    "regrouped591AbsorbedCount": 8,
+    "original591TopLevel": 99,
+    "regrouped591TopLevel": 92,
+    "regrouped591ClusterCount": 7,
+    "regrouped591AbsorbedCount": 7,
     "clusterFloorConflictBlocked": 0
   },
   "preview591Warelist": {
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-05T23:16:10+00:00",
-    "totalCount": 249,
-    "uniqueListingCount": 249,
-    "groupCount": 101,
+    "updatedAt": "2026-11-06T01:40:21+00:00",
+    "totalCount": 242,
+    "uniqueListingCount": 242,
+    "groupCount": 99,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 136
+        "count": 133
       },
       {
         "road": "三民路二段",
-        "count": 56
+        "count": 49
       },
       {
         "road": "光復街",
@@ -309,29 +300,29 @@
       },
       {
         "road": "林森街",
-        "count": 3
+        "count": 4
       },
       {
         "road": "三民路一段",
-        "count": 23
+        "count": 24
       },
       {
         "road": "翠華街",
-        "count": 5
+        "count": 6
       }
     ],
     "sourceFieldCoverage": {
-      "floor": 237,
-      "layout": 249,
-      "community": 144,
-      "houseAge": 249,
-      "parkingFlag": 249,
+      "floor": 230,
+      "layout": 242,
+      "community": 139,
+      "houseAge": 242,
+      "parkingFlag": 242,
       "unverifiedFloor": 12,
-      "total": 249
+      "total": 242
     },
     "floorAwarePreviewGrouping": true,
-    "historyMatchedIdCount": 211,
-    "historyNotPresentUnconfirmed": 302,
+    "historyMatchedIdCount": 203,
+    "historyNotPresentUnconfirmed": 310,
     "historyReappearedCount": 0,
     "missingIdIsNotDelisting": true,
     "newIdIsNotNewProperty": true
@@ -349,11 +340,11 @@
     "removed": [],
     "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
   },
-  "candidateCount": 171,
-  "candidatesWithFloor": 171,
+  "candidateCount": 170,
+  "candidatesWithFloor": 170,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-06T01:38:51+00:00",
+    "generatedAt": "2026-11-06T01:59:26+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
