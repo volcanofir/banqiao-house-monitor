@@ -2395,7 +2395,7 @@ function candidateLine(g){
 function sortGroups(items,mode){const a=[...items];if(mode==='default')return a;const key=mode.startsWith('price')?priceValue:groupFirstPublishedMs;const dir=mode.endsWith('Desc')?-1:1;return a.sort((x,y)=>(key(x)-key(y))*dir)}
 function render(){if(MARKET_MODE==='rent'){renderRent();return;}const roads=DATA.watchRoads||defaultRoads;const groups=GAP.propertyGroups||[];document.querySelector('#mRoads').textContent=`${roads.length} 條`;document.querySelector('#mGroups').textContent=`${GAP.propertyGroupCount??groups.length} 戶`;document.querySelector('#mNew').textContent=`${groups.filter(isNew).length} 戶`;document.querySelector('#mMerged').textContent=`${GAP.rawListingCount??GAP.externalActiveCount??0} 筆`;
 const c=GAP.counts||{};document.querySelector('#cStock').textContent=`${c.company_match??0} 戶`;document.querySelector('#cReview').textContent=`${c.review??0} 戶`;document.querySelector('#cMissing').textContent=`${c.missing??0} 戶`;document.querySelector('#cUnavailable').textContent=`${GAP.recentOffMarketCount??0} 戶`;
-const saleSourceIdCount=name=>name==='591'?(DATA.previewSources?.['591']?.uniqueListingCount??DATA.runs?.['591']?.observedListingIdCount??DATA.runs?.['591']?.totalCount??0):name==='信義房屋'?(DATA.runs?.['信義房屋']?.totalCount??0):name==='樂屋網'?(GAP.rakuyaSnapshot?.uniqueListingCount??GAP.rakuyaSnapshot?.totalCount??0):(GAP.housepriceSnapshot?.uniqueListingCount??GAP.housepriceSnapshot?.totalCount??0);const saleGroupCount=name=>groups.filter(g=>(g.sources||[]).includes(name)).length;const cards=['591','信義房屋'].map(name=>{const r=DATA.runs?.[name],sourceMs=Date.parse(r?.checkedAt||''),age=Date.now()-sourceMs;const outdated=name==='591'&&r?.status==='ok'&&(!Number.isFinite(age)||age>=4*60*60*1000||age < -5*60*1000);const ok=r?.status==='ok'&&!outdated;const className=outdated?'stale':ok?'ok':'err',statusLabel=outdated?'資料過期':ok?'正常':'異常/沿用';return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${className}">${statusLabel}</span></div><div class="note">刊登 ID ${saleSourceIdCount(name)} 筆<br>涉及整併 ${saleGroupCount(name)} 戶<br>最近更新：${fmt(r?.checkedAt)}${outdated?'<br>已超過4小時未成功更新，顯示上次成功資料':''}</div></div>`});const rk=GAP.rakuyaSnapshot||{},rkOk=rk.complete===true&&rk.status==='ok';cards.push(`<div class="source-card"><div class="source-head"><strong>樂屋網</strong><span class="badge ${rkOk?'ok':'err'}">${rkOk?'正常':'異常/沿用'}</span></div><div class="note">刊登 ID ${saleSourceIdCount('樂屋網')} 筆<br>涉及整併 ${saleGroupCount('樂屋網')} 戶<br>最近更新：${fmt(rk.updatedAt)}</div></div>`);const hp=GAP.housepriceSnapshot||{},hpSourceOK=hp.complete===true&&hp.status==='ok',hpAge=Date.now()-Date.parse(hp.updatedAt||''),hpStale=hpSourceOK&&(!Number.isFinite(hpAge)||hpAge < -300000||hpAge>=240*60000),hpOk=hpSourceOK&&!hpStale;cards.push(`<div class="source-card"><div class="source-head"><strong>5168</strong><span class="badge ${hpStale?'err':hpOk?'ok':'err'}">${hpStale?'資料過期':hpOk?'正常':'異常/沿用'}</span></div><div class="note">刊登 ID ${saleSourceIdCount('5168')} 筆<br>涉及整併 ${saleGroupCount('5168')} 戶<br>最近更新：${fmt(hp.updatedAt)}${hpStale?'<br>已超過4小時未成功更新，顯示上次成功資料':''}</div></div>`);document.querySelector('#sources').innerHTML=cards.join('');
+const saleSourceIdCount=name=>name==='591'?(DATA.previewSources?.['591']?.uniqueListingCount??DATA.runs?.['591']?.observedListingIdCount??DATA.runs?.['591']?.totalCount??0):name==='信義房屋'?(DATA.runs?.['信義房屋']?.totalCount??0):name==='樂屋網'?(GAP.rakuyaSnapshot?.uniqueListingCount??GAP.rakuyaSnapshot?.totalCount??0):(GAP.housepriceSnapshot?.uniqueListingCount??GAP.housepriceSnapshot?.totalCount??0);const saleGroupCount=name=>groups.filter(g=>(g.sources||[]).includes(name)).length;const cards=['591','信義房屋'].map(name=>{const r=DATA.runs?.[name],sourceMs=Date.parse(r?.checkedAt||''),age=Date.now()-sourceMs;const outdated=name==='591'&&r?.status==='ok'&&(!Number.isFinite(age)||age>=4*60*60*1000||age < -5*60*1000);const ok=r?.status==='ok'&&!outdated;const className=outdated?'stale':ok?'ok':'err',statusLabel=outdated?'資料過期':ok?'正常':'異常/沿用';return `<div class="source-card"><div class="source-head"><strong>${name}</strong><span class="badge ${className}">${statusLabel}</span></div><div class="note">刊登 ID ${saleSourceIdCount(name)} 筆<br>涉及整併 ${saleGroupCount(name)} 戶<br>最近更新：${fmt(r?.checkedAt)}${outdated?'<br>已超過4小時未成功更新，顯示上次成功資料':''}</div></div>`});const rk=GAP.rakuyaSnapshot||{},rkOk=rk.complete===true&&rk.status==='ok';cards.push(`<div class="source-card"><div class="source-head"><strong>樂屋網</strong><span class="badge ${rkOk?'ok':'err'}">${rkOk?'正常':'異常/沿用'}</span></div><div class="note">刊登 ID ${saleSourceIdCount('樂屋網')} 筆<br>涉及整併 ${saleGroupCount('樂屋網')} 戶<br>最近更新：${fmt(rk.updatedAt)}</div></div>`);const hp=GAP.housepriceSnapshot||{},hpSourceOK=hp.complete===true&&hp.status==='ok',hpAge=Date.now()-Date.parse(hp.updatedAt||''),hpStale=hpSourceOK&&(!Number.isFinite(hpAge)||hpAge < -300000||hpAge>=240*60000),hpOk=hpSourceOK&&!hpStale;cards.push(`<div class="source-card"><div class="source-head"><strong>5168</strong><span class="badge ${hpStale?'err':hpOk?'ok':'err'}">${hpStale?'資料過期':hpOk?'正常':'異常/沿用'}</span></div><div class="note">刊登 ID ${saleSourceIdCount('5168')} 筆<br>涉及整併 ${saleGroupCount('5168')} 戶<br>最近更新：${fmt(hp.updatedAt)}${hpStale?'<br>已超過4小時未成功更新，顯示上次成功資料':''}</div></div>`);document.querySelector('#sources').innerHTML=cards.join('');applyLiveSourceReports();
 document.querySelector('#updated').innerHTML=`來源資料最近更新：${fmt(DATA.updatedAt)}<br>委託比對：${fmt(GAP.generatedAt)}。`;
 renderGroups()}
 function monitorRunMs(){
@@ -3518,6 +3518,68 @@ fetchJson(`rental-data.json?ts=${Date.now()}`,'租屋資料').then(r=>{RENT=r;if
 
 document.querySelectorAll('.source-tab').forEach(btn=>btn.addEventListener('click',()=>{SOURCE_FILTER=btn.dataset.source||'all';document.querySelectorAll('.source-tab').forEach(x=>x.classList.toggle('active',x===btn));renderGroups()}));
 ['state','companyState','sort'].forEach(id=>document.querySelector('#'+id).addEventListener('change',renderGroups));
+
+// Source health is independent of the property comparison snapshot.
+// A newer verified 5168 or 591 capture updates only the four status cards;
+// it must never replace GAP, comparisons, first-listing dates or delisting.
+const liveSourceReports = {};
+function applyLiveSourceReports(){
+  if(MARKET_MODE!=='sale')return;
+  const names=['591','信義房屋','樂屋網','5168'];
+  const cards=[...document.querySelectorAll('#sources .source-card')];
+  if(cards.length!==4)return;
+  names.forEach((name,i)=>{
+    const r=liveSourceReports[name];
+    if(!r)return;
+    const badge=cards[i].querySelector('.badge'),note=cards[i].querySelector('.note');
+    if(!badge||!note)return;
+    if(r.error){
+      badge.className='badge stale';
+      badge.textContent='狀態讀取失敗';
+      return;
+    }
+    const ms=Date.parse(r.at||''),age=Date.now()-ms;
+    const stale=!Number.isFinite(ms)||age < -300000||age>=240*60000;
+    const ok=r.ok&&!stale;
+    badge.className='badge '+(ok?'ok':stale?'stale':'err');
+    badge.textContent=ok?'正常':stale?'資料過期':'異常/沿用';
+    const homes=(GAP.propertyGroups||[]).filter(g=>(g.sources||[]).includes(name)).length;
+    const count=Math.max(0,Number(r.count)||0);
+    note.style.whiteSpace='pre-line';
+    note.textContent='刊登 ID '+count+' 筆\n最近整併 '+homes+' 戶\n最近成功檢查：'+fmt(r.at)+(stale?'\n超過4小時未成功檢查，顯示上次有效資料':'');
+  });
+}
+async function refreshLiveSourceReports(){
+  const urls=[
+    ['591','../591-preview/snapshot.json'],
+    ['信義房屋','../data/listings.json'],
+    ['樂屋網','rakuya-seven-roads.json'],
+    ['5168','houseprice-seven-roads.json']
+  ];
+  await Promise.all(urls.map(async([name,path])=>{
+    try{
+      const data=await fetchJson(path+'?ts='+Date.now(),name+'來源狀態');
+      let report;
+      if(name==='591'){
+        report={ok:data.complete===true&&data.mode==='warelist_preview',at:data.updatedAt,count:data.counts?.totalListings};
+      }else if(name==='信義房屋'){
+        const src=data.runs?.['信義房屋']||{};
+        report={ok:src.status==='ok',at:src.checkedAt,count:src.totalCount};
+      }else{
+        report={ok:data.complete===true,at:data.updatedAt,count:data.uniqueListingCount??data.totalCount};
+      }
+      const date=Date.parse(report.at||'');
+      if(!Number.isFinite(date)||!Number.isFinite(Number(report.count))||Number(report.count)<0){
+        report={error:true};
+      }
+      liveSourceReports[name]=report;
+    }catch(e){
+      console.warn('Source status read failed:',name,e);
+      liveSourceReports[name]={error:true};
+    }
+    applyLiveSourceReports();
+  }));
+}
 function sameCounts(a,b){
   return ['company_match','review','missing','unavailable'].every(k=>Number((a||{})[k]??-1)===Number((b||{})[k]??-2));
 }
@@ -3555,6 +3617,7 @@ Promise.all([
   CMAP=new Map((GAP.comparisons||[]).map(x=>[x.groupId,x]));
   // An in-flight sale fetch must not overwrite the currently selected rental UI.
   if(MARKET_MODE==='rent')renderRent();else render();
+  refreshLiveSourceReports();
   if(!verified&&MARKET_MODE==='sale'){
     for(const id of ['mGroups','mNew','mMerged','cStock','cReview','cMissing','cUnavailable']){
       const el=document.getElementById(id); if(el)el.textContent='—';
