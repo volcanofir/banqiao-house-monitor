@@ -99,21 +99,45 @@ if count_hook not in text:
     raise RuntimeError("Sale source card count anchor missing")
 if "const saleSourceIdCount=" not in text:
     text = text.replace(count_hook, count_helper + count_hook, 1)
-text = text.replace(
+# Limit replacements strictly to the SALE card block. A second invocation on
+# an already-patched page must never rewrite the RENT cards, whose source IDs
+# are unrelated and whose scope does not contain saleSourceIdCount().
+sale_start = text.index(count_hook)
+sale_end = text.find(source_anchor, sale_start)
+if sale_end < sale_start:
+    raise RuntimeError("Sale source card boundary missing")
+sale_segment = text[sale_start:sale_end]
+sale_segment = sale_segment.replace(
     "目前刊登 ${r?.totalCount??0} 筆<br>最近更新",
     "刊登 ID ${saleSourceIdCount(name)} 筆<br>涉及整併 ${saleGroupCount(name)} 戶<br>最近更新",
     1,
 )
-text = text.replace(
+sale_segment = sale_segment.replace(
     "目前刊登 ${rk.totalCount??0} 筆<br>最近更新",
     "刊登 ID ${saleSourceIdCount('樂屋網')} 筆<br>涉及整併 ${saleGroupCount('樂屋網')} 戶<br>最近更新",
     1,
 )
-text = text.replace(
+sale_segment = sale_segment.replace(
     "目前刊登 ${hp.totalCount??0} 筆<br>最近更新",
     "刊登 ID ${saleSourceIdCount('5168')} 筆<br>涉及整併 ${saleGroupCount('5168')} 戶<br>最近更新",
     1,
 )
+text = text[:sale_start] + sale_segment + text[sale_end:]
+# Self-heal any existing wrongly-patched rental card from earlier rebuilds.
+rent_hook = "const cards=['591','信義房屋','樂屋網','5168'].map(name=>"
+rent_start = text.find(rent_hook)
+if rent_start >= 0:
+    rent_end = text.find(source_anchor, rent_start)
+    if rent_end < rent_start:
+        raise RuntimeError("Rental source card boundary missing")
+    rent_segment = text[rent_start:rent_end]
+    rent_segment = rent_segment.replace(
+        "刊登 ID ${saleSourceIdCount(name)} 筆<br>涉及整併 ${saleGroupCount(name)} 戶<br>最近更新",
+        "目前刊登 ${r?.totalCount??0} 筆<br>最近更新",
+    )
+    if "saleSourceIdCount(" in rent_segment or "saleGroupCount(" in rent_segment:
+        raise RuntimeError("Sale source count helper leaked into Rental cards")
+    text = text[:rent_start] + rent_segment + text[rent_end:]
 if any(x not in text for x in (
     "saleSourceIdCount(name)", "saleGroupCount(name)",
     "saleGroupCount('樂屋網')", "saleGroupCount('5168')"
