@@ -1761,6 +1761,9 @@
 
 .compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
 .compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
+
+.compare-card strong.metric-filter-link,.metric strong.metric-filter-link{cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.compare-card strong.metric-filter-link:focus-visible,.metric strong.metric-filter-link:focus-visible{outline:3px solid #124b37;outline-offset:4px;border-radius:8px}
 </style>
 <script>
 /* BQM_INLINE_AUTH_V5 */
@@ -3429,6 +3432,7 @@ function renderGroups(){
 
 
 
+
 function rentalPrice(x){const n=Number(x?.rent);return Number.isFinite(n)&&n>0?`${Math.round(n).toLocaleString('zh-TW')} 元/月`:'租金未取得'}
 function rentalFirstSeenMs(x){const t=new Date(x?.firstSeenAt||0).getTime();return Number.isFinite(t)?t:0}
 function rentalIsNew(x){
@@ -3554,7 +3558,7 @@ function applyLiveSourceReports(){
     const homes=(GAP.propertyGroups||[]).filter(g=>(g.sources||[]).includes(name)).length;
     const count=Math.max(0,Number(r.count)||0);
     note.style.whiteSpace='pre-line';
-    note.textContent='刊登 ID '+count+' 筆\n最近整併 '+homes+' 戶\n最近成功檢查：'+fmt(r.at)+(stale?'\n超過4小時未成功檢查，顯示上次有效資料':'')+(name==='591'&&Number.isInteger(r.pending)?'\n連續未觀察、待確認：'+r.pending+' 筆':'')+(name==='591'&&r.missingOnce>0?'\n首次未觀察：'+r.missingOnce+' 筆':'');
+    note.textContent='刊登 ID '+count+' 筆\n最近整併 '+homes+' 戶\n最近成功檢查：'+fmt(r.at)+(stale?'\n超過4小時未成功檢查，顯示上次有效資料':'');
   });
 }
 async function refreshLiveSourceReports(){
@@ -3587,19 +3591,7 @@ async function refreshLiveSourceReports(){
     }
     applyLiveSourceReports();
   }));
-
-  // Exact-ID absence is diagnostic only; never create confirmed delistings.
-  try{
-    const observation=await fetchJson('591-presence-status.json?ts='+Date.now(),'591待確認狀態');
-    const src=liveSourceReports['591'];
-    if(src&&!src.error&&observation.previewOnly===true&&observation.source==='591'&&
-       observation.complete===true&&observation.checkedAt===src.at&&
-       observation.missingIdIsNotDelisting===true&&observation.confirmedOffmarketIdCount===0){
-      src.pending=Number(observation.pendingConfirmationIdCount);
-      src.missingOnce=Number(observation.unobservedOnceIdCount);
-    }
-  }catch(e){console.warn('591 pending status unavailable',e)}
-  applyLiveSourceReports();}
+}
 function sameCounts(a,b){
   return ['company_match','review','missing','unavailable'].every(k=>Number((a||{})[k]??-1)===Number((b||{})[k]??-2));
 }
