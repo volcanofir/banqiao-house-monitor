@@ -1,5 +1,5 @@
 import unittest
-from scripts.preview_source_integrity import build,verified
+from scripts.preview_source_integrity import build,verified,add_freshness
 
 ROADS=['中山路二段','三民路一段','三民路二段','翠華街','林森街','萬安街','光復街']
 def snapshot(ids):
@@ -29,4 +29,19 @@ class SafetyTests(unittest.TestCase):
         self.assertEqual(res['entries']['5168']['5168:1']['firstObservedAt'],'2026-01-01T00:00:00+00:00')
         self.assertEqual(res['sources']['5168']['reappearedIdCount'],1)
         self.assertTrue(res['sources']['5168']['newIdIsNotNewProperty'])
+    def test_four_sources_independently_report_freshness(self):
+        s=sources(); s['5168']=snapshot(['1'])
+        report=build({},s)
+        add_freshness(report,now='2026-11-05T03:30:00+00:00',limit_minutes=240)
+        self.assertEqual(report['sources']['5168']['health'],'healthy')
+        self.assertEqual(report['sources']['5168']['minutesSinceVerified'],210)
+        self.assertEqual(report['sources']['591']['health'],'unverified')
+        self.assertTrue(report['sources']['591']['alertRequired'])
+    def test_overdue_does_not_mark_property_offmarket(self):
+        s=sources(); s['5168']=snapshot(['1'])
+        report=build({},s)
+        add_freshness(report,now='2026-11-06T00:00:00+00:00',limit_minutes=240)
+        self.assertEqual(report['sources']['5168']['health'],'overdue')
+        self.assertEqual(report['sources']['5168']['status'],'ok')
+        self.assertTrue(report['entries']['5168']['5168:1']['seenOnLastVerifiedCheck'])
 if __name__=='__main__': unittest.main()
