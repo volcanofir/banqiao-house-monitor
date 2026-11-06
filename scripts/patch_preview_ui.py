@@ -351,11 +351,18 @@ if source_card_anchor not in sale_section:
 if "applyLiveSourceReports();" not in sale_section:
     sale_section=sale_section.replace(source_card_anchor,source_card_anchor+"applyLiveSourceReports();",1)
     final_text=final_text[:sale_section_start]+sale_section+final_text[sale_section_end:]
-loader_anchor = "  render();\n  if(!verified){"
-if loader_anchor not in final_text:
+# Main loader may retain a selected rental tab. Refresh health after the
+# verified data load without forcing a sale-mode repaint.
+loader_anchor = "  if(!verified&&MARKET_MODE==='sale'){"
+legacy_loader_anchor = "  if(!verified){"
+if loader_anchor in final_text:
+    if "  refreshLiveSourceReports();\n  if(!verified&&MARKET_MODE==='sale'){" not in final_text:
+        final_text=final_text.replace(loader_anchor,"  refreshLiveSourceReports();\n"+loader_anchor,1)
+elif legacy_loader_anchor in final_text:
+    if "  refreshLiveSourceReports();\n  if(!verified){" not in final_text:
+        final_text=final_text.replace(legacy_loader_anchor,"  refreshLiveSourceReports();\n"+legacy_loader_anchor,1)
+else:
     raise RuntimeError("Source health verified loader anchor missing")
-if "  refreshLiveSourceReports();\n  if(!verified){" not in final_text:
-    final_text=final_text.replace(loader_anchor,"  render();\n  refreshLiveSourceReports();\n  if(!verified){",1)
 if "function refreshLiveSourceReports()" not in final_text:
     raise RuntimeError("Source health status script was not installed")
 PATH.write_text(final_text, encoding="utf-8")
