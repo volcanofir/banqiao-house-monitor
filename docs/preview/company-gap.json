@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-06T03:48:50+00:00",
-  "sourceDataUpdatedAt": "2026-11-06T03:47:59+00:00",
+  "generatedAt": "2026-11-06T04:04:02+00:00",
+  "sourceDataUpdatedAt": "2026-11-06T04:03:11+00:00",
   "mode": "preview_only_591_sinyi_rakuya_5168_grouping_then_company_v11",
   "fetchMode": "yungching_official_rendered_dom_only",
   "company": "永慶房屋",
   "companyDataSource": "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM；缺樓層時同路徑開官方案件頁補值",
-  "companyListingCount": 67,
-  "companySnapshotCapturedAt": "2026-11-06T03:48:14+00:00",
+  "companyListingCount": 68,
+  "companySnapshotCapturedAt": "2026-11-06T04:03:26+00:00",
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -23,9 +23,9 @@
   "crossSourceReviewCount": 11,
   "companyConflictDowngradedCount": 5,
   "counts": {
-    "company_match": 38,
+    "company_match": 39,
     "review": 5,
-    "missing": 125,
+    "missing": 124,
     "unavailable": 0
   },
   "roadStatus": {
@@ -35,7 +35,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 26,
-      "browserCapturedAt": "2026-11-06T03:48:14+00:00",
+      "browserCapturedAt": "2026-11-06T04:03:26+00:00",
       "paginationExpected": true,
       "paginationComplete": true,
       "paginationActivePage": 2,
@@ -52,7 +52,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 27,
-      "browserCapturedAt": "2026-11-06T03:48:14+00:00",
+      "browserCapturedAt": "2026-11-06T04:03:26+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -69,7 +69,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 4,
-      "browserCapturedAt": "2026-11-06T03:48:14+00:00",
+      "browserCapturedAt": "2026-11-06T04:03:26+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -86,7 +86,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 2,
-      "browserCapturedAt": "2026-11-06T03:48:14+00:00",
+      "browserCapturedAt": "2026-11-06T04:03:26+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -103,7 +103,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 0,
-      "browserCapturedAt": "2026-11-06T03:48:14+00:00",
+      "browserCapturedAt": "2026-11-06T04:03:26+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -115,12 +115,12 @@
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     },
     "板橋區三民路一段": {
-      "count": 5,
+      "count": 6,
       "http": 200,
       "available": true,
       "mode": "yungching_official_api",
-      "officialCount": 5,
-      "browserCapturedAt": "2026-11-06T03:48:14+00:00",
+      "officialCount": 6,
+      "browserCapturedAt": "2026-11-06T04:03:26+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -137,7 +137,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 3,
-      "browserCapturedAt": "2026-11-06T03:48:14+00:00",
+      "browserCapturedAt": "2026-11-06T04:03:26+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -30920,29 +30920,30 @@
       "primaryId": "信義房屋:1867YM",
       "primarySource": "信義房屋",
       "road": "板橋區三民路一段",
-      "status": "missing",
-      "statusLabel": "未接回",
-      "score": -91,
+      "status": "company_match",
+      "statusLabel": "庫存",
+      "score": 22,
       "companyCandidate": {
-        "id": "YC:6992286",
-        "title": "埔墘黃金商圈｜住宅店面皆宜｜近埔墘市場",
+        "id": "YC:5289717",
+        "title": "稀有純一樓連鎖店",
         "address": "新北市板橋區三民路一段",
-        "area": 20.16,
-        "price": 1680,
-        "url": "https://buy.yungching.com.tw/house/6992286",
+        "area": 130.18,
+        "price": 7128,
+        "url": "https://buy.yungching.com.tw/house/5289717",
         "sourceMode": "yungching_official_browser",
-        "officialId": "6992286",
+        "officialId": "5289717",
         "officialCaseId": null,
-        "floor": "1/5樓",
+        "floor": "1/12樓",
         "floorSourceMode": null,
         "floorEvidence": null,
         "type": "店面"
       },
       "matchInfo": {
-        "areaDelta": 110.02,
-        "priceDelta": 5448.0,
+        "areaDelta": 0.0,
+        "priceDelta": 0.0,
         "shared": [],
-        "titleRatio": 0,
+        "titleRatio": 0.133,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "match",
         "externalFloors": [
           1
@@ -30953,7 +30954,10 @@
         "floorMatch": true,
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:1867YM"
-      }
+      },
+      "companyStrongCandidateCount": 1,
+      "companyTopStrongScore": 22,
+      "companyNearTieStrong": false
     },
     {
       "groupId": "GROUP:信義房屋:6522GX",
@@ -38946,6 +38950,35 @@
       "captureSourceMode": "yungching_official_api"
     },
     {
+      "id": "YC:5289717",
+      "road": "板橋區三民路一段",
+      "title": "稀有純一樓連鎖店",
+      "price": 7128,
+      "area": 130.18,
+      "floor": "1/12樓",
+      "address": "新北市板橋區三民路一段",
+      "type": "店面",
+      "url": "https://buy.yungching.com.tw/house/5289717",
+      "sourceMode": "yungching_official_browser",
+      "text": "稀有純一樓連鎖店 新北市板橋區三民路一段 店面 建坪130.18 1/12樓 0房(室)2廳3衛 7128萬",
+      "rawText": "稀有純一樓連鎖店 新北市板橋區三民路一段 店面 建坪130.18 1/12樓 0房(室)2廳3衛 7128萬",
+      "patternInfo": {
+        "room": 0,
+        "livingRoom": 2,
+        "bathRoom": 3,
+        "addRoom": 0,
+        "addLivingRoom": 0,
+        "addBathRoom": 0
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 1,
+        "upFloor": 12
+      },
+      "officialId": "5289717",
+      "captureSourceMode": "yungching_official_api"
+    },
+    {
       "id": "YC:7519605",
       "road": "板橋區三民路一段",
       "title": "三民路大樓車位",
@@ -39071,7 +39104,7 @@
     "永慶官方資料：板橋區光復街 採用官方 API 4 筆。",
     "永慶官方資料：板橋區萬安街 採用官方 API 2 筆。",
     "永慶官方瀏覽器資料：板橋區林森街 原路段網址 HTTP 404；官方新北市關鍵字頁完整複查為 0 筆，已跳過此路段公司案件。",
-    "永慶官方資料：板橋區三民路一段 採用官方 API 5 筆。",
+    "永慶官方資料：板橋區三民路一段 採用官方 API 6 筆。",
     "永慶官方資料：板橋區翠華街 採用官方 API 3 筆。",
     "PREVIEW v6：HAR fallback 已停用；公司資料僅允許本輪永慶官方 Chromium DOM。"
   ],
@@ -39095,7 +39128,7 @@
   },
   "officialBrowserCompany": {
     "enabled": true,
-    "capturedAt": "2026-11-06T03:48:14+00:00",
+    "capturedAt": "2026-11-06T04:03:26+00:00",
     "snapshotAgeMinutes": 0.5,
     "acceptedRoadCount": 7,
     "unavailableRoadCount": 0,
@@ -39157,7 +39190,7 @@
       },
       "板橋區三民路一段": {
         "mode": "official_api",
-        "officialCount": 5,
+        "officialCount": 6,
         "http": 200,
         "paginationComplete": true,
         "emptyResultVerified": false,
@@ -39190,12 +39223,12 @@
   "safeFloorParser": true,
   "safeFloorParserRule": "subject floor must be physically valid against total floor; glued area digits are trimmed instead of becoming impossible floors",
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-06T03:48:41+00:00",
+    "generatedAt": "2026-11-06T04:03:57+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-06T03:45:23+00:00",
+    "sourceRunCheckedAt": "2026-11-06T04:00:20+00:00",
     "activeSinyiCount": 68,
     "matchedOfficialCount": 68,
     "appliedCount": 68,
@@ -39214,13 +39247,13 @@
   "companyNearTieGuard": {
     "enabled": true,
     "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-    "examinedCompanyMatchCount": 38,
+    "examinedCompanyMatchCount": 39,
     "downgradedCount": 0,
     "remainingAutoNearTieCount": 0,
     "groups": []
   },
   "recentOffMarketRetentionDays": 10,
-  "recentOffMarketGeneratedAt": "2026-11-06T03:48:51+00:00",
+  "recentOffMarketGeneratedAt": "2026-11-06T04:04:02+00:00",
   "recentOffMarketCount": 3,
   "recentOffMarketGroups": [
     {
@@ -39649,7 +39682,7 @@
     "directGroupIdMergeCount": 17
   },
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-06T03:48:30+00:00",
+    "updatedAt": "2026-11-06T04:03:43+00:00",
     "status": "ok",
     "totalCount": 230,
     "uniqueListingCount": 230,
@@ -39702,7 +39735,7 @@
     "complete": true
   },
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-06T03:46:06+00:00",
+    "updatedAt": "2026-11-06T04:01:19+00:00",
     "status": "ok",
     "totalCount": 57,
     "uniqueListingCount": 57,
