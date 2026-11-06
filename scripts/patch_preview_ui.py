@@ -128,6 +128,15 @@ text = re.sub(r";const covered=GAP\.coveredRoads\|\|\[\];cards\.push\(.*?\);docu
 text = re.sub(r"document\.querySelector\('#mRaw'\)\.textContent=`\$\{GAP\.rawListingCount\?\?GAP\.externalActiveCount\?\?0\} 筆`;", "document.querySelector('#mNew').textContent=`${groups.filter(isNew).length} 戶`;", text, count=1)
 text = re.sub(r"document\.querySelector\('#mMerged'\)\.textContent=`\$\{GAP\.crossPlatformMergedGroupCount\?\?0\} 戶`;", "document.querySelector('#mMerged').textContent=`${GAP.rawListingCount??GAP.externalActiveCount??0} 筆`;", text, count=1)
 
+# Never draw sale results over the rental screen while asynchronous
+# source snapshots are completing. This is safe even if render() is
+# invoked by another UI callback after switching markets.
+text = text.replace(
+    "function render(){const roads=DATA.watchRoads||defaultRoads;",
+    "function render(){if(MARKET_MODE==='rent'){renderRent();return;}const roads=DATA.watchRoads||defaultRoads;",
+    1,
+)
+
 text = text.replace(
     "let DATA={listings:[],runs:{},watchRoads:defaultRoads};let GAP={propertyGroups:[],comparisons:[],counts:{},coveredRoads:[]};let CMAP=new Map();let SOURCE_FILTER='all';",
     "let DATA={listings:[],runs:{},watchRoads:defaultRoads};let GAP={propertyGroups:[],comparisons:[],counts:{},coveredRoads:[]};let VERIFY=null;let CMAP=new Map();let SOURCE_FILTER='all';",
