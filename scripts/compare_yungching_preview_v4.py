@@ -80,14 +80,31 @@ def title_floor_tokens(text):
     return nums
 
 
+def _trusted_floor_tokens(x):
+    """Prefer a verified source floor over promotional title text."""
+    if not x:
+        return set()
+    source = x.get("source")
+    mode = x.get("floorSourceMode")
+    if source == "591":
+        return source_floor_tokens(x)
+    if source == "信義房屋" and mode == "sinyi_official_filterObject_api":
+        return title_floor_tokens(x.get("floor") or x.get("structuredFloor"))
+    if source == "5168" and mode == "5168-app-detail":
+        return title_floor_tokens(x.get("structuredFloor") or x.get("floor"))
+    return set()
+
+
 def listing_floor_tokens(x):
     floors = set()
     if not x:
         return floors
-    # Actual source floor is more reliable than an advertising headline.
-    verified = source_floor_tokens(x)
+    # Never allow an advertising headline to override a structured floor.
+    verified = _trusted_floor_tokens(x)
     for member in (x.get("mergedListings") or []):
-        verified |= source_floor_tokens(member)
+        child = dict(member)
+        child.setdefault("source", x.get("source"))
+        verified |= _trusted_floor_tokens(child)
     if verified:
         return verified
     floors |= title_floor_tokens(x.get("title"))
