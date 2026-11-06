@@ -83,11 +83,52 @@ if "GAP.housepriceSnapshot" not in text:
 if injection:
     text = text.replace(source_anchor, injection + source_anchor, 1)
 
+# Separate source advertising IDs from merged property counts. The 591 run's
+# totalCount is a property estimate, not the count of verified wareList IDs.
+# All four sale sources must use the same two explicit units.
+count_hook = "const cards=['591','信義房屋'].map(name=>"
+count_helper = (
+    "const saleSourceIdCount=name=>name==='591'?"
+    "(DATA.previewSources?.['591']?.uniqueListingCount??DATA.runs?.['591']?.observedListingIdCount??DATA.runs?.['591']?.totalCount??0):"
+    "name==='信義房屋'?(DATA.runs?.['信義房屋']?.totalCount??0):"
+    "name==='樂屋網'?(GAP.rakuyaSnapshot?.uniqueListingCount??GAP.rakuyaSnapshot?.totalCount??0):"
+    "(GAP.housepriceSnapshot?.uniqueListingCount??GAP.housepriceSnapshot?.totalCount??0);"
+    "const saleGroupCount=name=>groups.filter(g=>(g.sources||[]).includes(name)).length;"
+)
+if count_hook not in text:
+    raise RuntimeError("Sale source card count anchor missing")
+if "const saleSourceIdCount=" not in text:
+    text = text.replace(count_hook, count_helper + count_hook, 1)
+text = text.replace(
+    "目前刊登 ${r?.totalCount??0} 筆<br>最近更新",
+    "刊登 ID ${saleSourceIdCount(name)} 筆<br>涉及整併 ${saleGroupCount(name)} 戶<br>最近更新",
+    1,
+)
+text = text.replace(
+    "目前刊登 ${rk.totalCount??0} 筆<br>最近更新",
+    "刊登 ID ${saleSourceIdCount('樂屋網')} 筆<br>涉及整併 ${saleGroupCount('樂屋網')} 戶<br>最近更新",
+    1,
+)
+text = text.replace(
+    "目前刊登 ${hp.totalCount??0} 筆<br>最近更新",
+    "刊登 ID ${saleSourceIdCount('5168')} 筆<br>涉及整併 ${saleGroupCount('5168')} 戶<br>最近更新",
+    1,
+)
+if any(x not in text for x in (
+    "saleSourceIdCount(name)", "saleGroupCount(name)",
+    "saleGroupCount('樂屋網')", "saleGroupCount('5168')"
+)):
+    raise RuntimeError("Sale source ID vs property count labels missing")
+
+
 # Upgrade existing 5168 card as well as new injected cards. Idempotent,
 # because the canonical Preview is rebuilt from its already-patched HTML.
 hp_old_declaration = "const hp=GAP.housepriceSnapshot||{},hpOk=hp.complete===true&&hp.status==='ok';"
 hp_new_declaration = "const hp=GAP.housepriceSnapshot||{},hpSourceOK=hp.complete===true&&hp.status==='ok',hpAge=Date.now()-Date.parse(hp.updatedAt||''),hpStale=hpSourceOK&&(!Number.isFinite(hpAge)||hpAge < -300000||hpAge>=240*60000),hpOk=hpSourceOK&&!hpStale;"
 text = text.replace(hp_old_declaration, hp_new_declaration)
+# Upgrade older already-patched Preview pages, not only the first installation.
+text = text.replace("hpAge>=90*60000", "hpAge>=240*60000")
+text = text.replace("已超過90分鐘未成功更新", "已超過4小時未成功更新")
 text = text.replace("${hpOk?'正常':'異常/沿用'}", "${hpStale?'資料過期':hpOk?'正常':'異常/沿用'}")
 # Scope the class-name replacement to the single 5168 card when present.
 text = text.replace(
