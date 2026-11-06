@@ -7,6 +7,8 @@ on:
     paths:
       - ".github/workflows/591-warelist-preview.yml"
       - "scripts/build_591_warelist_preview.py"
+      - "scripts/track_591_presence_preview.py"
+      - "tests/test_591_presence_preview.py"
       - "scripts/warelist_structured_fields.py"
       - "scripts/diagnose_591_warelist_integrity.py"
       - "scripts/diagnose_591_warelist_dryrun_merge.py"
@@ -44,6 +46,7 @@ jobs:
         run: |
           python -m py_compile scripts/build_591_warelist_preview.py
           python -m unittest discover -s tests -p "test_591_warelist_preview.py" -v
+          python -m unittest discover -s tests -p "test_591_presence_preview.py" -v
           python -m unittest discover -s tests -p "test_591_warelist_structured_fields.py" -v
 
       - name: Read and validate all seven 591 roads
@@ -105,7 +108,10 @@ jobs:
           git reset --hard origin/main
           mkdir -p docs/591-preview
           cp /tmp/591-warelist-preview-snapshot.json docs/591-preview/snapshot.json
-          git add docs/591-preview/snapshot.json
+          # Independent exact-ID observation ledger. A missing ID is never
+          # a confirmed delisting; two complete absences only flag review.
+          python scripts/track_591_presence_preview.py
+          git add docs/591-preview/snapshot.json docs/preview/591-presence-status.json
           if git diff --cached --quiet; then
             echo "Preview data unchanged; publishing unnecessary."
             exit 0
