@@ -480,6 +480,14 @@ jobs:
             echo "::warning::591 snapshot changed while CLEAN ran; skip stale output publish."
             exit 0
           fi
+          # In-flight old jobs must not overwrite a newer Preview UI/status
+          # patch or the 5168 heartbeat semantics with stale generated files.
+          for p in scripts/patch_rakuya_integrated_ui.py .github/workflows/monitor-clean.yml; do
+            if [[ "$(git rev-parse "HEAD:$p")" != "$(git rev-parse "origin/main:$p")" ]]; then
+              echo "::warning::Preview/5168 refresh logic changed during CLEAN; skip stale output publish ($p)."
+              exit 0
+            fi
+          done
           git reset --hard origin/main
           # In-flight jobs may have checked out 591 data before a manual
           # correction. A failed 591 scrape must not overwrite newer canonical
