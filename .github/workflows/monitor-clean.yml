@@ -326,8 +326,17 @@ jobs:
               hp_after,'listingId',('sourcePublishText','sourcePublishedRaw')
           )
 
-          changed=monitor_changed or hp_changed
-          print(f'meaningful monitor change={monitor_changed}; 5168 change={hp_changed}; combined={changed}')
+          # A fully verified 5168 fetch is fresh even when all listing IDs,
+          # prices and removal statuses are identical. Never throw away the
+          # new successful checkedAt/updatedAt just because content did not change.
+          # The downstream Preview still validates all four sources before publish.
+          hp_refreshed = (
+              hp_after.get('complete') is True
+              and bool(hp_after.get('updatedAt'))
+              and hp_after.get('updatedAt') != hp_before.get('updatedAt')
+          )
+          changed=monitor_changed or hp_changed or hp_refreshed
+          print(f'meaningful monitor change={monitor_changed}; 5168 listing change={hp_changed}; verified 5168 refresh={hp_refreshed}; rebuild Preview={changed}')
           with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as f:
               f.write(f"meaningful={'true' if changed else 'false'}\n")
           if not monitor_changed:
@@ -335,8 +344,9 @@ jobs:
               Path('docs/data/listings.json').write_text(
                   Path('/tmp/listings-before.json').read_text(encoding='utf-8'), encoding='utf-8'
               )
-          if not hp_changed and hp_before_path.exists():
-              hp_after_path.write_text(hp_before_path.read_text(encoding='utf-8'), encoding='utf-8')
+          # Keep successful source snapshot freshness independent of ad changes.
+          # The old behavior restored the entire prior snapshot here, making
+          # 5168 show an hours-old time even after every successful API request.
           PY
 
       - name: Ensure current Surfshark exit is accepted by Yongching
