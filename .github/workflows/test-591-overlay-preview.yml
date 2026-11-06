@@ -80,7 +80,11 @@ jobs:
             exit 1
           fi
           grep -q 'preview-monitor-state.json' scripts/patch_preview_ui.py
-          grep -q '首次上架（最早已知）：' docs/preview/index.html
+          grep -q '首次上架：' docs/preview/index.html
+          if grep -q '首次上架（最早已知）：' docs/preview/index.html; then
+            echo "::error::Deprecated first-listing label returned."
+            exit 1
+          fi
           python - <<'PY'
           import json
           from pathlib import Path
