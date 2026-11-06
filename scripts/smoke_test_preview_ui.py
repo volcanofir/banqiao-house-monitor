@@ -284,10 +284,20 @@ def main():
             # Rental data is fetched asynchronously. Wait for the actual
             # verified rental render instead of reading the sale header just
             # after switching tabs (a race on slower GitHub runners).
-            page.wait_for_function(
-                "() => MARKET_MODE==='rent' && !!RENT && document.querySelector('#updated')?.textContent.includes('租屋資料最近更新')",
-                timeout=15000,
-            )
+            try:
+                page.wait_for_function(
+                    "() => MARKET_MODE==='rent' && !!RENT && document.querySelector('#updated')?.textContent.includes('租屋資料最近更新')",
+                    timeout=15000,
+                )
+            except Exception:
+                print("Rental switch diagnostics:", page.evaluate("""() => ({
+                    market:MARKET_MODE, rentalUpdatedAt:RENT?.updatedAt,
+                    rentalRows:RENT?.listings?.length,
+                    updated:document.querySelector('#updated')?.textContent,
+                    listTitle:document.querySelector('#listTitle')?.textContent,
+                    sourceCards:document.querySelectorAll('#sources .source-card').length
+                })"""), "pageErrors:",page_errors,"requestFailures:",failed_requests,flush=True)
+                raise
             assert page.locator("#companyPanel").evaluate("el => getComputedStyle(el).display") == "none"
             assert page.locator("#companyState").evaluate("el => getComputedStyle(el).display") == "none"
             assert page.locator("#state").evaluate("el => getComputedStyle(el).display") != "none"
