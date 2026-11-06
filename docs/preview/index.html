@@ -3553,8 +3553,9 @@ Promise.all([
     GAP={...GAP,propertyGroups:[],comparisons:[],propertyGroupCount:0,rawListingCount:0,crossPlatformMergedGroupCount:0,counts:{company_match:0,review:0,missing:0,unavailable:0}};
   }
   CMAP=new Map((GAP.comparisons||[]).map(x=>[x.groupId,x]));
-  render();
-  if(!verified){
+  // An in-flight sale fetch must not overwrite the currently selected rental UI.
+  if(MARKET_MODE==='rent')renderRent();else render();
+  if(!verified&&MARKET_MODE==='sale'){
     for(const id of ['mGroups','mNew','mMerged','cStock','cReview','cMissing','cUnavailable']){
       const el=document.getElementById(id); if(el)el.textContent='—';
     }
