@@ -281,7 +281,13 @@ def main():
             page.select_option("#state", "all")
 
             page.locator('.market-btn[data-market="rent"]').click()
-            page.wait_for_function("MARKET_MODE === 'rent' && document.querySelector('#listTitle')?.textContent.includes('租屋')", timeout=5000)
+            # Rental data is fetched asynchronously. Wait for the actual
+            # verified rental render instead of reading the sale header just
+            # after switching tabs (a race on slower GitHub runners).
+            page.wait_for_function(
+                "() => MARKET_MODE==='rent' && !!RENT && document.querySelector('#updated')?.textContent.includes('租屋資料最近更新')",
+                timeout=15000,
+            )
             assert page.locator("#companyPanel").evaluate("el => getComputedStyle(el).display") == "none"
             assert page.locator("#companyState").evaluate("el => getComputedStyle(el).display") == "none"
             assert page.locator("#state").evaluate("el => getComputedStyle(el).display") != "none"
