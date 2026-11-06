@@ -77,11 +77,28 @@ if "GAP.rakuyaSnapshot" not in text:
     )
 if "GAP.housepriceSnapshot" not in text:
     injection += (
-        "const hp=GAP.housepriceSnapshot||{},hpOk=hp.complete===true&&hp.status==='ok';"
-        "cards.push(`<div class=\"source-card\"><div class=\"source-head\"><strong>5168</strong><span class=\"badge ${hpOk?'ok':'err'}\">${hpOk?'正常':'異常/沿用'}</span></div><div class=\"note\">目前刊登 ${hp.totalCount??0} 筆<br>最近更新：${fmt(hp.updatedAt)}</div></div>`);"
+        "const hp=GAP.housepriceSnapshot||{},hpSourceOK=hp.complete===true&&hp.status==='ok',hpAge=Date.now()-Date.parse(hp.updatedAt||''),hpStale=hpSourceOK&&(!Number.isFinite(hpAge)||hpAge < -300000||hpAge>=90*60000),hpOk=hpSourceOK&&!hpStale;"
+        "cards.push(`<div class=\"source-card\"><div class=\"source-head\"><strong>5168</strong><span class=\"badge ${hpStale?'err':hpOk?'ok':'err'}\">${hpStale?'資料過期':hpOk?'正常':'異常/沿用'}</span></div><div class=\"note\">目前刊登 ${hp.totalCount??0} 筆<br>最近更新：${fmt(hp.updatedAt)}${hpStale?'<br>已超過90分鐘未成功更新，顯示上次成功資料':''}</div></div>`);"
     )
 if injection:
     text = text.replace(source_anchor, injection + source_anchor, 1)
+
+# Upgrade existing 5168 card as well as new injected cards. Idempotent,
+# because the canonical Preview is rebuilt from its already-patched HTML.
+hp_old_declaration = "const hp=GAP.housepriceSnapshot||{},hpOk=hp.complete===true&&hp.status==='ok';"
+hp_new_declaration = "const hp=GAP.housepriceSnapshot||{},hpSourceOK=hp.complete===true&&hp.status==='ok',hpAge=Date.now()-Date.parse(hp.updatedAt||''),hpStale=hpSourceOK&&(!Number.isFinite(hpAge)||hpAge < -300000||hpAge>=90*60000),hpOk=hpSourceOK&&!hpStale;"
+text = text.replace(hp_old_declaration, hp_new_declaration)
+text = text.replace("${hpOk?'正常':'異常/沿用'}", "${hpStale?'資料過期':hpOk?'正常':'異常/沿用'}")
+# Scope the class-name replacement to the single 5168 card when present.
+text = text.replace(
+    '<strong>5168</strong><span class="badge ${hpOk?\'ok\':\'err\'}">',
+    '<strong>5168</strong><span class="badge ${hpStale?\'err\':hpOk?\'ok\':\'err\'}">'
+)
+text = text.replace(
+    "最近更新：${fmt(hp.updatedAt)}</div></div>","最近更新：${fmt(hp.updatedAt)}${hpStale?'<br>已超過90分鐘未成功更新，顯示上次成功資料':''}</div></div>"
+)
+if "hpStale" not in text:
+    raise RuntimeError("5168 freshness status rule missing from Preview UI")
 
 old_filter = "const sourceOK=source==='all'||(source==='sinyi'&&(g.sources||[]).includes('信義房屋'))||(source==='591'&&(g.sources||[]).includes('591'));"
 rk_filter = "const sourceOK=source==='all'||(source==='sinyi'&&(g.sources||[]).includes('信義房屋'))||(source==='591'&&(g.sources||[]).includes('591'))||(source==='rakuya'&&(g.sources||[]).includes('樂屋網'));"
