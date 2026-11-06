@@ -128,6 +128,21 @@ def build(previous, sources, canonical=None, preview=None):
                             'missingIdIsNotDelisting':True,'newIdIsNotNewProperty':True}
     return out
 
+def add_freshness(report, now=None, limit_minutes=240):
+    """Per-source health; never use crawler age alone to declare a property delisted."""
+    reference = as_time(now) if now is not None else datetime.now(timezone.utc).timestamp()
+    for source in PLATFORMS:
+        item = report['sources'][source]
+        stamp = item.get('lastVerifiedAt')
+        verified_at = as_time(stamp)
+        age = max(0, round((reference - verified_at) / 60, 1)) if verified_at is not None else None
+        item['minutesSinceVerified'] = age
+        item['freshness'] = 'unknown' if age is None else ('overdue' if age > limit_minutes else 'current')
+        item['health'] = ('unverified' if item.get('status') != 'ok'
+                          else 'overdue' if item['freshness'] != 'current' else 'healthy')
+        item['alertRequired'] = item['health'] != 'healthy'
+    return report
+
 def write_atomic(path, obj):
     path.parent.mkdir(parents=True,exist_ok=True)
     tmp=path.with_suffix(path.suffix+'.tmp')
@@ -140,6 +155,7 @@ def main():
              '樂屋網':load(ROOT/'rakuya-seven-roads.json'),
              '5168':load(ROOT/'houseprice-seven-roads.json')}
     history=build(load(LEDGER),sources,canonical,load(ROOT/'preview-monitor-state.json'))
+    add_freshness(history)
     if not any(x['status']=='ok' for x in history['sources'].values()):
         raise RuntimeError('No verified source; preserve prior Preview')
     write_atomic(LEDGER,history)
