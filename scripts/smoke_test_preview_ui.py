@@ -173,9 +173,16 @@ def main():
             assert page.locator("#sources .source-card").count() == 4
             # Four sale platforms must show raw source IDs and grouped homes
             # with comparable units (never 591 estimated homes as raw IDs).
-            source_metrics = page.evaluate("""() => ['591','信義房屋','樂屋網','5168'].map(name => ({
-                ids:saleSourceIdCount(name), homes:saleGroupCount(name)
-            }))""")
+            source_metrics = page.evaluate("""() => {
+                const groups=GAP.propertyGroups||[];
+                return ['591','信義房屋','樂屋網','5168'].map(name => ({
+                    ids: name==='591'?(DATA.previewSources?.['591']?.uniqueListingCount??DATA.runs?.['591']?.observedListingIdCount??DATA.runs?.['591']?.totalCount??0):
+                        name==='信義房屋'?(DATA.runs?.['信義房屋']?.totalCount??0):
+                        name==='樂屋網'?(GAP.rakuyaSnapshot?.uniqueListingCount??GAP.rakuyaSnapshot?.totalCount??0):
+                        (GAP.housepriceSnapshot?.uniqueListingCount??GAP.housepriceSnapshot?.totalCount??0),
+                    homes:groups.filter(g=>(g.sources||[]).includes(name)).length
+                }));
+            }""")
             for i, metrics in enumerate(source_metrics):
                 card_text = page.locator("#sources .source-card").nth(i).inner_text()
                 assert f"刊登 ID {metrics['ids']} 筆" in card_text, (i, card_text, metrics)
