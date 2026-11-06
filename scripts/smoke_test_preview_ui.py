@@ -85,7 +85,7 @@ def main():
         raise RuntimeError(f"Preview smoke prerequisites missing: {missing}")
 
     gap_payload = json.loads(GAP_DATA.read_text(encoding="utf-8"))
-    source_payload = json.loads(SOURCE_DATA.read_text(encoding="utf-8"))
+    source_payload = json.loads((ROOT / "preview" / "preview-monitor-state.json").read_text(encoding="utf-8"))
     rental_payload = json.loads(RENTAL_DATA.read_text(encoding="utf-8"))
     rakuya_payload = json.loads(RAKUYA_DATA.read_text(encoding="utf-8"))
     offmarket_count = int(gap_payload.get("recentOffMarketCount") or 0)
