@@ -59,6 +59,18 @@ jobs:
           python scripts/append_houseprice_to_scheme_a.py
           python scripts/compare_yungching_preview_v11.py > /tmp/591-integrated-compare.log
           python scripts/patch_preview_ui.py
+          # Ensure regenerated Preview can be patched repeatedly without ever
+          # injecting sale-only count helpers into rental source cards.
+          python scripts/patch_rakuya_integrated_ui.py
+          python scripts/patch_rakuya_integrated_ui.py
+          python - <<'PY'
+          from pathlib import Path
+          html=Path("docs/preview/index.html").read_text(encoding="utf-8")
+          start=html.index("const cards=['591','信義房屋','樂屋網','5168'].map")
+          end=html.index("document.querySelector('#sources').innerHTML=cards.join('');",start)
+          rent=html[start:end]
+          assert "saleSourceIdCount(" not in rent and "saleGroupCount(" not in rent
+          PY
           python scripts/validate_scheme_a_preview_v3.py
           python scripts/audit_scheme_a_ambiguity_v2.py
           python - <<'PY'
