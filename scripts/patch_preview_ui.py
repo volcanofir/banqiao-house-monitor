@@ -270,6 +270,97 @@ subprocess.run([sys.executable, 'scripts/patch_offmarket_ui.py'], check=True)
 subprocess.run([sys.executable, 'scripts/patch_rakuya_integrated_ui.py'], check=True)
 
 final_text = PATH.read_text(encoding='utf-8')
+# Source card freshness comes from independent verified platform snapshots,
+# never from a newer unverified multi-platform comparison.
+live_source_script = r'''
+// Source health is independent of the property comparison snapshot.
+// A newer verified 5168 or 591 capture updates only the four status cards;
+// it must never replace GAP, comparisons, first-listing dates or delisting.
+const liveSourceReports = {};
+function applyLiveSourceReports(){
+  if(MARKET_MODE!=='sale')return;
+  const names=['591','信義房屋','樂屋網','5168'];
+  const cards=[...document.querySelectorAll('#sources .source-card')];
+  if(cards.length!==4)return;
+  names.forEach((name,i)=>{
+    const r=liveSourceReports[name];
+    if(!r)return;
+    const badge=cards[i].querySelector('.badge'),note=cards[i].querySelector('.note');
+    if(!badge||!note)return;
+    if(r.error){
+      badge.className='badge stale';
+      badge.textContent='狀態讀取失敗';
+      return;
+    }
+    const ms=Date.parse(r.at||''),age=Date.now()-ms;
+    const stale=!Number.isFinite(ms)||age < -300000||age>=240*60000;
+    const ok=r.ok&&!stale;
+    badge.className='badge '+(ok?'ok':stale?'stale':'err');
+    badge.textContent=ok?'正常':stale?'資料過期':'異常/沿用';
+    const homes=(GAP.propertyGroups||[]).filter(g=>(g.sources||[]).includes(name)).length;
+    const count=Math.max(0,Number(r.count)||0);
+    note.style.whiteSpace='pre-line';
+    note.textContent='刊登 ID '+count+' 筆\n最近整併 '+homes+' 戶\n最近成功檢查：'+fmt(r.at)+(stale?'\n超過4小時未成功檢查，顯示上次有效資料':'');
+  });
+}
+async function refreshLiveSourceReports(){
+  const urls=[
+    ['591','../591-preview/snapshot.json'],
+    ['信義房屋','../data/listings.json'],
+    ['樂屋網','rakuya-seven-roads.json'],
+    ['5168','houseprice-seven-roads.json']
+  ];
+  await Promise.all(urls.map(async([name,path])=>{
+    try{
+      const data=await fetchJson(path+'?ts='+Date.now(),name+'來源狀態');
+      let report;
+      if(name==='591'){
+        report={ok:data.complete===true&&data.mode==='warelist_preview',at:data.updatedAt,count:data.counts?.totalListings};
+      }else if(name==='信義房屋'){
+        const src=data.runs?.['信義房屋']||{};
+        report={ok:src.status==='ok',at:src.checkedAt,count:src.totalCount};
+      }else{
+        report={ok:data.complete===true,at:data.updatedAt,count:data.uniqueListingCount??data.totalCount};
+      }
+      const date=Date.parse(report.at||'');
+      if(!Number.isFinite(date)||!Number.isFinite(Number(report.count))||Number(report.count)<0){
+        report={error:true};
+      }
+      liveSourceReports[name]=report;
+    }catch(e){
+      console.warn('Source status read failed:',name,e);
+      liveSourceReports[name]={error:true};
+    }
+    applyLiveSourceReports();
+  }));
+}
+'''
+if "function refreshLiveSourceReports()" not in final_text:
+    anchor = "function sameCounts(a,b){"
+    if anchor not in final_text:
+        raise RuntimeError("Source health insertion anchor absent")
+    final_text = final_text.replace(anchor, live_source_script + anchor, 1)
+sale_section_start=final_text.find("function render(){")
+sale_section_end=final_text.find("function monitorRunMs()",sale_section_start)
+if sale_section_start < 0 or sale_section_end < sale_section_start:
+    raise RuntimeError("Source health sale renderer boundaries absent")
+sale_section=final_text[sale_section_start:sale_section_end]
+source_card_anchor="document.querySelector('#sources').innerHTML=cards.join('');"
+if source_card_anchor not in sale_section:
+    raise RuntimeError("Source health sale card anchor absent")
+if "applyLiveSourceReports();" not in sale_section:
+    sale_section=sale_section.replace(source_card_anchor,source_card_anchor+"applyLiveSourceReports();",1)
+    final_text=final_text[:sale_section_start]+sale_section+final_text[sale_section_end:]
+loader_anchor = "  render();\n  if(!verified){"
+if loader_anchor not in final_text:
+    raise RuntimeError("Source health verified loader anchor missing")
+if "  refreshLiveSourceReports();\n  if(!verified){" not in final_text:
+    final_text=final_text.replace(loader_anchor,"  render();\n  refreshLiveSourceReports();\n  if(!verified){",1)
+if "function refreshLiveSourceReports()" not in final_text:
+    raise RuntimeError("Source health status script was not installed")
+PATH.write_text(final_text, encoding="utf-8")
+
+
 # Layer patches must never regress the runtime guard back to the pre-5168 v4 value.
 if "scheme-a-canonical-v4-sinyi-rakuya-floor-neartie" in final_text:
     final_text = final_text.replace(
