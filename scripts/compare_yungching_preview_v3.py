@@ -20,6 +20,22 @@ def area_of(x):
     return base.num(x.get("size") if x.get("size") is not None else x.get("area"))
 
 
+# Preserve verified property identity when compacting nested advertisements.
+# Previously dropping structured floors made the ambiguity audit treat known
+# floors as unknown and could weaken cross-platform merging safeguards.
+PREVIEW_IDENTITY_FIELDS = (
+    "structuredFloor", "structuredFloorRaw", "floor", "structuredTotalFloor",
+    "floorSourceMode", "structuredCommunity", "structuredLayout",
+    "housepriceGroupSid", "housepriceGroupId", "sourceKind",
+    "sourceHouseAge", "sourceParkingFlag",
+)
+
+
+def _identity_fields(row):
+    return {key: row[key] for key in PREVIEW_IDENTITY_FIELDS
+            if key in row and row[key] is not None}
+
+
 def compact_listing(x):
     merged = []
     for m in (x.get("mergedListings") or []):
@@ -36,6 +52,7 @@ def compact_listing(x):
             "sourcePublishedAt": m.get("sourcePublishedAt") if m.get("sourcePublishedAt") is not None else m.get("postTime"),
             "postTime": m.get("postTime"),
             "active": m.get("active", True),
+            **_identity_fields(m),
         })
     return {
         "id": x.get("id"),
@@ -56,6 +73,7 @@ def compact_listing(x):
         "mergedListingCount": x.get("mergedListingCount"),
         "mergedActiveListingCount": x.get("mergedActiveListingCount"),
         "mergedListings": merged,
+        **_identity_fields(x),
     }
 
 
