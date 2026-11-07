@@ -40,6 +40,7 @@ jobs:
       - name: Verify retry and no-false-delisting rules
         run: |
           python -m unittest discover -s tests -p test_preview_source_retry_gate.py -v
+          python -m unittest discover -s tests -p test_sinyi_independent_preview.py -v
           python -m py_compile scripts/refresh_sinyi_preview_source.py scripts/preview_source_retry_gate.py
 
       - name: Refresh only selected source
