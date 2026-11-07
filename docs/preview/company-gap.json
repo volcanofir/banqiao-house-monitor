@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-07T06:33:20+00:00",
-  "sourceDataUpdatedAt": "2026-11-07T06:32:38+00:00",
+  "generatedAt": "2026-11-07T06:49:27+00:00",
+  "sourceDataUpdatedAt": "2026-11-07T06:48:16+00:00",
   "mode": "preview_only_591_sinyi_rakuya_5168_grouping_then_company_v11",
   "fetchMode": "yungching_official_rendered_dom_only",
   "company": "永慶房屋",
   "companyDataSource": "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM；缺樓層時同路徑開官方案件頁補值",
-  "companyListingCount": 71,
-  "companySnapshotCapturedAt": "2026-11-07T06:32:52+00:00",
+  "companyListingCount": 72,
+  "companySnapshotCapturedAt": "2026-11-07T06:48:37+00:00",
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -35,7 +35,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 28,
-      "browserCapturedAt": "2026-11-07T06:32:52+00:00",
+      "browserCapturedAt": "2026-11-07T06:48:37+00:00",
       "paginationExpected": true,
       "paginationComplete": true,
       "paginationActivePage": 2,
@@ -52,7 +52,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 27,
-      "browserCapturedAt": "2026-11-07T06:32:52+00:00",
+      "browserCapturedAt": "2026-11-07T06:48:37+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -64,12 +64,12 @@
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     },
     "板橋區光復街": {
-      "count": 5,
+      "count": 6,
       "http": 200,
       "available": true,
       "mode": "yungching_official_api",
-      "officialCount": 5,
-      "browserCapturedAt": "2026-11-07T06:32:52+00:00",
+      "officialCount": 6,
+      "browserCapturedAt": "2026-11-07T06:48:37+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -86,7 +86,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 2,
-      "browserCapturedAt": "2026-11-07T06:32:52+00:00",
+      "browserCapturedAt": "2026-11-07T06:48:37+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -103,7 +103,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 0,
-      "browserCapturedAt": "2026-11-07T06:32:52+00:00",
+      "browserCapturedAt": "2026-11-07T06:48:37+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -120,7 +120,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 6,
-      "browserCapturedAt": "2026-11-07T06:32:52+00:00",
+      "browserCapturedAt": "2026-11-07T06:48:37+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -137,7 +137,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 3,
-      "browserCapturedAt": "2026-11-07T06:32:52+00:00",
+      "browserCapturedAt": "2026-11-07T06:48:37+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -32246,23 +32246,23 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "YC:7577270",
-        "title": "板橋埔墘|面寬店面|正面街道|高廣告效益",
+        "id": "YC:7589573",
+        "title": "光復街靜巷｜一層一戶｜三面採光、通風｜頂加大空間",
         "address": "新北市板橋區光復街",
-        "area": 28.08,
-        "price": 2680,
-        "url": "https://buy.yungching.com.tw/house/7577270",
+        "area": 25.7,
+        "price": 1298,
+        "url": "https://buy.yungching.com.tw/house/7589573",
         "sourceMode": "yungching_official_browser",
-        "officialId": "7577270",
+        "officialId": "7589573",
         "officialCaseId": null,
-        "floor": "1/5樓",
+        "floor": "5/5樓",
         "floorSourceMode": null,
         "floorEvidence": null,
-        "type": "店面"
+        "type": "公寓"
       },
       "matchInfo": {
-        "areaDelta": 25.13,
-        "priceDelta": 8.0,
+        "areaDelta": 27.51,
+        "priceDelta": 1390.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "conflict",
@@ -32270,7 +32270,7 @@
           6
         ],
         "companyFloors": [
-          1
+          5
         ],
         "floorConflict": true,
         "reason": "外部案件與公司候選樓層明確不同",
@@ -32679,23 +32679,23 @@
       "statusLabel": "未接回",
       "score": -91,
       "companyCandidate": {
-        "id": "YC:7577270",
+        "id": "YC:7577706",
         "title": "板橋埔墘|面寬店面|正面街道|高廣告效益",
         "address": "新北市板橋區光復街",
-        "area": 28.08,
-        "price": 2680,
-        "url": "https://buy.yungching.com.tw/house/7577270",
+        "area": 55.41,
+        "price": 5360,
+        "url": "https://buy.yungching.com.tw/house/7577706",
         "sourceMode": "yungching_official_browser",
-        "officialId": "7577270",
+        "officialId": "7577706",
         "officialCaseId": null,
         "floor": "1/5樓",
         "floorSourceMode": null,
         "floorEvidence": null,
-        "type": "店面"
+        "type": "公寓"
       },
       "matchInfo": {
-        "areaDelta": 8.9,
-        "priceDelta": 992.0,
+        "areaDelta": 36.23,
+        "priceDelta": 3672.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "match",
@@ -35899,29 +35899,29 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "YC:7577270",
-        "title": "板橋埔墘|面寬店面|正面街道|高廣告效益",
+        "id": "YC:7589573",
+        "title": "光復街靜巷｜一層一戶｜三面採光、通風｜頂加大空間",
         "address": "新北市板橋區光復街",
-        "area": 28.08,
-        "price": 2680,
-        "url": "https://buy.yungching.com.tw/house/7577270",
+        "area": 25.7,
+        "price": 1298,
+        "url": "https://buy.yungching.com.tw/house/7589573",
         "sourceMode": "yungching_official_browser",
-        "officialId": "7577270",
+        "officialId": "7589573",
         "officialCaseId": null,
-        "floor": "1/5樓",
+        "floor": "5/5樓",
         "floorSourceMode": null,
         "floorEvidence": null,
-        "type": "店面"
+        "type": "公寓"
       },
       "matchInfo": {
-        "areaDelta": 17.43,
-        "priceDelta": 300.0,
+        "areaDelta": 19.81,
+        "priceDelta": 1682.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "unknown",
         "externalFloors": [],
         "companyFloors": [
-          1
+          5
         ],
         "evidenceSource": "591",
         "evidenceListingId": "591:20980685"
@@ -40001,32 +40001,32 @@
       "captureSourceMode": "yungching_official_api"
     },
     {
-      "id": "YC:7577270",
+      "id": "YC:7589573",
       "road": "板橋區光復街",
-      "title": "板橋埔墘|面寬店面|正面街道|高廣告效益",
-      "price": 2680,
-      "area": 28.08,
-      "floor": "1/5樓",
+      "title": "光復街靜巷｜一層一戶｜三面採光、通風｜頂加大空間",
+      "price": 1298,
+      "area": 25.7,
+      "floor": "5/5樓",
       "address": "新北市板橋區光復街",
-      "type": "店面",
-      "url": "https://buy.yungching.com.tw/house/7577270",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7589573",
       "sourceMode": "yungching_official_browser",
-      "text": "板橋埔墘|面寬店面|正面街道|高廣告效益 新北市板橋區光復街 店面 建坪28.08 1/5樓 1房(室)0廳1衛 2680萬",
-      "rawText": "板橋埔墘|面寬店面|正面街道|高廣告效益 新北市板橋區光復街 店面 建坪28.08 1/5樓 1房(室)0廳1衛 2680萬",
+      "text": "光復街靜巷｜一層一戶｜三面採光、通風｜頂加大空間 新北市板橋區光復街 公寓 建坪25.7 5/5樓 4房(室)3廳2衛 1298萬",
+      "rawText": "光復街靜巷｜一層一戶｜三面採光、通風｜頂加大空間 新北市板橋區光復街 公寓 建坪25.7 5/5樓 4房(室)3廳2衛 1298萬",
       "patternInfo": {
-        "room": 1,
-        "livingRoom": 0,
-        "bathRoom": 1,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
+        "room": 4,
+        "livingRoom": 3,
+        "bathRoom": 2,
+        "addRoom": 2,
+        "addLivingRoom": 1,
+        "addBathRoom": 1
       },
       "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 1,
+        "fromFloor": 5,
+        "toFloor": 5,
         "upFloor": 5
       },
-      "officialId": "7577270",
+      "officialId": "7589573",
       "captureSourceMode": "yungching_official_api"
     },
     {
@@ -40056,6 +40056,35 @@
         "upFloor": 5
       },
       "officialId": "7577706",
+      "captureSourceMode": "yungching_official_api"
+    },
+    {
+      "id": "YC:7577270",
+      "road": "板橋區光復街",
+      "title": "板橋埔墘|面寬店面|正面街道|高廣告效益",
+      "price": 2680,
+      "area": 28.08,
+      "floor": "1/5樓",
+      "address": "新北市板橋區光復街",
+      "type": "店面",
+      "url": "https://buy.yungching.com.tw/house/7577270",
+      "sourceMode": "yungching_official_browser",
+      "text": "板橋埔墘|面寬店面|正面街道|高廣告效益 新北市板橋區光復街 店面 建坪28.08 1/5樓 1房(室)0廳1衛 2680萬",
+      "rawText": "板橋埔墘|面寬店面|正面街道|高廣告效益 新北市板橋區光復街 店面 建坪28.08 1/5樓 1房(室)0廳1衛 2680萬",
+      "patternInfo": {
+        "room": 1,
+        "livingRoom": 0,
+        "bathRoom": 1,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 1,
+        "upFloor": 5
+      },
+      "officialId": "7577270",
       "captureSourceMode": "yungching_official_api"
     },
     {
@@ -40471,7 +40500,7 @@
   "logs": [
     "永慶官方資料：板橋區中山路二段 採用官方 API 28 筆。",
     "永慶官方資料：板橋區三民路二段 採用官方 API 27 筆。",
-    "永慶官方資料：板橋區光復街 採用官方 API 5 筆。",
+    "永慶官方資料：板橋區光復街 採用官方 API 6 筆。",
     "永慶官方資料：板橋區萬安街 採用官方 API 2 筆。",
     "永慶官方瀏覽器資料：板橋區林森街 原路段網址 HTTP 404；官方新北市關鍵字頁完整複查為 0 筆，已跳過此路段公司案件。",
     "永慶官方資料：板橋區三民路一段 採用官方 API 6 筆。",
@@ -40498,8 +40527,8 @@
   },
   "officialBrowserCompany": {
     "enabled": true,
-    "capturedAt": "2026-11-07T06:32:52+00:00",
-    "snapshotAgeMinutes": 0.4,
+    "capturedAt": "2026-11-07T06:48:37+00:00",
+    "snapshotAgeMinutes": 0.7,
     "acceptedRoadCount": 7,
     "unavailableRoadCount": 0,
     "roads": {
@@ -40527,7 +40556,7 @@
       },
       "板橋區光復街": {
         "mode": "official_api",
-        "officialCount": 5,
+        "officialCount": 6,
         "http": 200,
         "paginationComplete": true,
         "emptyResultVerified": false,
@@ -40593,12 +40622,12 @@
   "safeFloorParser": true,
   "safeFloorParserRule": "subject floor must be physically valid against total floor; glued area digits are trimmed instead of becoming impossible floors",
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-07T06:33:16+00:00",
+    "generatedAt": "2026-11-07T06:49:17+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-07T06:30:18+00:00",
+    "sourceRunCheckedAt": "2026-11-07T06:45:24+00:00",
     "activeSinyiCount": 69,
     "matchedOfficialCount": 69,
     "appliedCount": 69,
@@ -40623,7 +40652,7 @@
     "groups": []
   },
   "recentOffMarketRetentionDays": 10,
-  "recentOffMarketGeneratedAt": "2026-11-07T06:33:21+00:00",
+  "recentOffMarketGeneratedAt": "2026-11-07T06:49:27+00:00",
   "recentOffMarketCount": 3,
   "recentOffMarketGroups": [
     {
@@ -41052,7 +41081,7 @@
     "directGroupIdMergeCount": 17
   },
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-07T06:33:06+00:00",
+    "updatedAt": "2026-11-07T06:48:59+00:00",
     "status": "ok",
     "totalCount": 231,
     "uniqueListingCount": 231,
@@ -41105,7 +41134,7 @@
     "complete": true
   },
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-07T06:30:52+00:00",
+    "updatedAt": "2026-11-07T06:46:03+00:00",
     "status": "ok",
     "totalCount": 57,
     "uniqueListingCount": 57,
