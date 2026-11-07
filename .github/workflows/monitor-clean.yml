@@ -21,6 +21,8 @@ on:
       - "scripts/yungching_api_snapshot.py"
       - "scripts/yungching_dom_snapshot_v5.py"
       - "scripts/monitor_schedule_state.py"
+      - "scripts/preview_source_retry_gate.py"
+      - "tests/test_preview_source_retry_gate.py"
       - "scripts/fetch_houseprice_seven_roads_preview.py"
       - "scripts/validate_houseprice_preview_snapshot.py"
       - "scripts/append_houseprice_to_scheme_a.py"
@@ -52,44 +54,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Wake 591 wareList Preview if three-hour refresh is overdue
-        # GitHub may delay/drop cron ticks; the existing CLEAN heartbeat provides
-        # a second cloud-only trigger. Throttle by *attempt time* rather than
-        # snapshot freshness so a failed fetch does not retry every 15 minutes.
+      - name: Wake independent sale-source checks (3h normal, 30m failed retry)
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
-          recent="$(gh run list --workflow 591-warelist-preview.yml --limit 12 --json createdAt,status,conclusion)"
-          export RECENT_591_RUNS="$recent"
-          if python - <<'PY'
-          import json, os
-          from datetime import datetime, timezone
-          runs=json.loads(os.environ['RECENT_591_RUNS'])
-          now=datetime.now(timezone.utc)
-          checked=[]
-          for item in runs:
-              raw=item.get('createdAt')
-              if not raw:
-                  continue
-              dt=datetime.fromisoformat(raw.replace('Z','+00:00'))
-              if dt.tzinfo is None:
-                  dt=dt.replace(tzinfo=timezone.utc)
-              checked.append(dt.astimezone(timezone.utc))
-          last=max(checked) if checked else None
-          minutes=(now-last).total_seconds()/60 if last else None
-          due=last is None or minutes >= 180
-          print(f'591 wareList last attempt={last}; elapsedMinutes={minutes}; due={due}')
-          raise SystemExit(0 if due else 1)
-          PY
-          then
-            gh workflow run 591-warelist-preview.yml --ref main
-            echo "591 wareList three-hour refresh dispatched from existing GitHub CLEAN heartbeat."
-          else
-            echo "591 wareList attempted within three hours; no duplicate dispatch."
-          fi
+          # Query actual attempt states so a failure cannot trigger every 10m tick.
+          recent_591="$(gh run list --workflow 591-warelist-preview.yml --limit 25 --json createdAt,status,conclusion,displayTitle)"
+          recent_other="$(gh run list --workflow preview-source-refresh.yml --limit 100 --json createdAt,status,conclusion,displayTitle)"
+          for source in 591 sinyi rakuya houseprice; do
+            if [[ "$source" == 591 ]]; then
+              export PREVIEW_SOURCE_RUNS="$recent_591"
+            else
+              export PREVIEW_SOURCE_RUNS="$recent_other"
+            fi
+            if python scripts/preview_source_retry_gate.py "$source"; then
+              if [[ "$source" == 591 ]]; then
+                gh workflow run 591-warelist-preview.yml --ref main
+              else
+                gh workflow run preview-source-refresh.yml --ref main -f source="$source"
+              fi
+              echo "Independent source $source refresh dispatched."
+            else
+              echo "Independent source $source not due, or prior attempt still active."
+            fi
+          done
 
       - name: Wake competitor monitor when overdue
         continue-on-error: true
@@ -178,6 +169,7 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         run: |
           python -m py_compile scripts/monitor_fast.py scripts/monitor_591_web_fallback.py scripts/retry_591_direct_egress.py scripts/monitor_sinyi_parallel.py scripts/monitor_schedule_state.py scripts/preview_source_integrity.py
+          python -m unittest discover -s tests -p test_preview_source_retry_gate.py -v
           python -m unittest discover -s tests -p test_preview_source_integrity.py -v
 
       - name: Install shared crawler packages
