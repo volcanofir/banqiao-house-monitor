@@ -3973,7 +3973,7 @@ async function refreshLiveSourceReports(){
       const data=await fetchJson(path+'?ts='+Date.now(),name+'來源狀態');
       let report;
       if(name==='591'){
-        report={ok:data.complete===true&&data.source==='591'&&data.mode==='preview_only',at:data.updatedAt,count:data.counts?.totalListings};
+        report={ok:data.complete===true&&data.source==='591_public_warelist_initial_state'&&data.mode==='preview_only'&&data.schemaVersion===1&&data.noOffmarketDecision===true&&data.noAutomaticNewPropertyDecision===true&&Array.isArray(data.roadCounts)&&data.roadCounts.length===7,at:data.updatedAt,count:data.counts?.totalListings};
       }else if(name==='信義房屋'){
         const src=data.runs?.['信義房屋']||{};
         report={ok:src.status==='ok',at:src.checkedAt,count:src.totalCount};
