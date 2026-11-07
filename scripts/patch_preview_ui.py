@@ -321,6 +321,18 @@ async function refreshLiveSourceReports(){
         if(name!=='信義房屋')throw primaryError;
         data=await fetchJson('../data/listings.json?ts='+Date.now(),'信義房屋原始來源狀態');
       }
+      // If a later full Sinyi check succeeds, do not regress to an older
+      // independent status snapshot. Both are read-only status sources.
+      if(name==='信義房屋'&&data.source==='信義房屋'){
+        try{
+          const canonical=await fetchJson('../data/listings.json?ts='+Date.now(),'信義房屋主來源時間');
+          const mainRun=canonical.runs?.['信義房屋']||{};
+          const mainAt=Date.parse(mainRun.checkedAt||'');
+          const independentAt=Date.parse(data.updatedAt||'');
+          if(mainRun.status==='ok'&&Number.isFinite(mainAt)&&
+             (!Number.isFinite(independentAt)||mainAt>independentAt))data=canonical;
+        }catch(e){console.warn('Canonical Sinyi status check unavailable, keeping verified independent feed',e);}
+      }
       let report;
       if(name==='591'){
         report={ok:data.complete===true&&data.source==='591_public_warelist_initial_state'&&data.mode==='preview_only'&&data.schemaVersion===1&&data.noOffmarketDecision===true&&data.noAutomaticNewPropertyDecision===true&&Array.isArray(data.roadCounts)&&data.roadCounts.length===7,at:data.updatedAt,count:data.counts?.totalListings};
