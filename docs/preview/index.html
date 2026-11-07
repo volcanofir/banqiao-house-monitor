@@ -4112,19 +4112,30 @@ function applyLiveSourceReports(){
 async function refreshLiveSourceReports(){
   const urls=[
     ['591','../591-preview/snapshot.json'],
-    ['信義房屋','../data/listings.json'],
+    ['信義房屋','sinyi-source.json'],
     ['樂屋網','rakuya-seven-roads.json'],
     ['5168','houseprice-seven-roads.json']
   ];
   await Promise.all(urls.map(async([name,path])=>{
     try{
-      const data=await fetchJson(path+'?ts='+Date.now(),name+'來源狀態');
+      let data;
+      try{
+        data=await fetchJson(path+'?ts='+Date.now(),name+'來源狀態');
+      }catch(primaryError){
+        // The independent Sinyi feed is deployed separately. During its first
+        // rollout keep the older canonical status as a fallback, not an error.
+        if(name!=='信義房屋')throw primaryError;
+        data=await fetchJson('../data/listings.json?ts='+Date.now(),'信義房屋原始來源狀態');
+      }
       let report;
       if(name==='591'){
         report={ok:data.complete===true&&data.source==='591_public_warelist_initial_state'&&data.mode==='preview_only'&&data.schemaVersion===1&&data.noOffmarketDecision===true&&data.noAutomaticNewPropertyDecision===true&&Array.isArray(data.roadCounts)&&data.roadCounts.length===7,at:data.updatedAt,count:data.counts?.totalListings};
       }else if(name==='信義房屋'){
         const src=data.runs?.['信義房屋']||{};
-        report={ok:src.status==='ok',at:src.checkedAt,count:src.totalCount};
+        const independent=data.source==='信義房屋'&&data.previewOnly===true;
+        report={ok:src.status==='ok'&&(!independent||data.complete===true),
+          at:independent?data.updatedAt:src.checkedAt,
+          count:independent?data.uniqueListingCount:src.totalCount};
       }else{
         report={ok:data.complete===true,at:data.updatedAt,count:data.uniqueListingCount??data.totalCount};
       }
