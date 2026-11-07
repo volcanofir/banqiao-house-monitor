@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-07T01:29:02+00:00",
+  "capturedAt": "2026-11-07T01:48:17+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -20,7 +20,7 @@
   "roadStatus": {
     "板橋區中山路二段": {
       "mainHttp": 200,
-      "count": 26,
+      "count": 27,
       "primarySearchUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw?od=80",
       "confirmationUsed": false,
       "primaryHttp": 200,
@@ -29,10 +29,10 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 70380,
+      "primaryApiListDataLength": 72368,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
-      "roadTextCount": 26,
+      "roadTextCount": 27,
       "summary": [],
       "searchUrl": "https://buy.yungching.com.tw/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5&filter=0&pg=1&ps=30",
       "loadRounds": 0,
@@ -63,6 +63,7 @@
           "6948619",
           "6973967",
           "7076685",
+          "7141398",
           "7219043",
           "7310666",
           "7327430",
@@ -94,6 +95,7 @@
           "6948619",
           "6973967",
           "7076685",
+          "7141398",
           "7219043",
           "7310666",
           "7327430",
@@ -109,18 +111,18 @@
         ],
         "2": []
       },
-      "rawHouseIdCount": 33,
-      "rawExactAddressTextCount": 26,
+      "rawHouseIdCount": 34,
+      "rawExactAddressTextCount": 27,
       "paginationError": null,
-      "apiTotalCount": 31,
-      "apiTotalItemCount": 32,
-      "apiRawRowCount": 34,
-      "apiUniqueRowCount": 33,
+      "apiTotalCount": 32,
+      "apiTotalItemCount": 33,
+      "apiRawRowCount": 35,
+      "apiUniqueRowCount": 34,
       "emptyResultVerified": false,
       "skippedConfirmedEmpty": false,
       "transportEvidence": "official_api_v2_decrypted",
       "available": true,
-      "rawCountBeforeIdIntegrity": 26,
+      "rawCountBeforeIdIntegrity": 27,
       "idIntegrityRemoved": 0,
       "mode": "yungching_official_api",
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
@@ -528,7 +530,7 @@
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     }
   },
-  "listingCount": 69,
+  "listingCount": 70,
   "listings": [
     {
       "id": "7514442",
@@ -555,6 +557,33 @@
         "fromFloor": 1,
         "toFloor": 2,
         "upFloor": 2
+      }
+    },
+    {
+      "id": "7141398",
+      "road": "板橋區中山路二段",
+      "title": "馥華精工天際極景",
+      "price": 4200,
+      "area": 73.43,
+      "floor": "10/14樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "辦公商業大樓",
+      "url": "https://buy.yungching.com.tw/house/7141398",
+      "sourceMode": "yungching_official_api",
+      "text": "馥華精工天際極景 新北市板橋區中山路二段 辦公商業大樓 建坪73.43 10/14樓 5房(室)2廳2衛 4200萬",
+      "rawText": "馥華精工天際極景 新北市板橋區中山路二段 辦公商業大樓 建坪73.43 10/14樓 5房(室)2廳2衛 4200萬",
+      "patternInfo": {
+        "room": 5,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 10,
+        "toFloor": 10,
+        "upFloor": 14
       }
     },
     {
@@ -2130,6 +2159,33 @@
       }
     },
     {
+      "id": "7455915",
+      "road": "板橋區翠華街",
+      "title": "鄰近江子翠｜10米大面寬一樓｜漂亮住辦好停車",
+      "price": 3988,
+      "area": 59.37,
+      "floor": "1/5樓",
+      "address": "新北市板橋區翠華街",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7455915",
+      "sourceMode": "yungching_official_api",
+      "text": "鄰近江子翠｜10米大面寬一樓｜漂亮住辦好停車 新北市板橋區翠華街 公寓 建坪59.37 1/5樓 5房(室)4廳4衛 3988萬",
+      "rawText": "鄰近江子翠｜10米大面寬一樓｜漂亮住辦好停車 新北市板橋區翠華街 公寓 建坪59.37 1/5樓 5房(室)4廳4衛 3988萬",
+      "patternInfo": {
+        "room": 5,
+        "livingRoom": 4,
+        "bathRoom": 4,
+        "addRoom": 1,
+        "addLivingRoom": 2,
+        "addBathRoom": 1
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 1,
+        "upFloor": 5
+      }
+    },
+    {
       "id": "7373642",
       "road": "板橋區翠華街",
       "title": "停車住辦一樓｜近10米大面寬｜格局方正｜靜巷住宅",
@@ -2176,33 +2232,6 @@
         "addRoom": 1,
         "addLivingRoom": 1,
         "addBathRoom": 0
-      },
-      "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 1,
-        "upFloor": 5
-      }
-    },
-    {
-      "id": "7455915",
-      "road": "板橋區翠華街",
-      "title": "鄰近江子翠｜10米大面寬一樓｜漂亮住辦好停車",
-      "price": 3988,
-      "area": 59.37,
-      "floor": "1/5樓",
-      "address": "新北市板橋區翠華街",
-      "type": "公寓",
-      "url": "https://buy.yungching.com.tw/house/7455915",
-      "sourceMode": "yungching_official_api",
-      "text": "鄰近江子翠｜10米大面寬一樓｜漂亮住辦好停車 新北市板橋區翠華街 公寓 建坪59.37 1/5樓 5房(室)4廳4衛 3988萬",
-      "rawText": "鄰近江子翠｜10米大面寬一樓｜漂亮住辦好停車 新北市板橋區翠華街 公寓 建坪59.37 1/5樓 5房(室)4廳4衛 3988萬",
-      "patternInfo": {
-        "room": 5,
-        "livingRoom": 4,
-        "bathRoom": 4,
-        "addRoom": 1,
-        "addLivingRoom": 2,
-        "addBathRoom": 1
       },
       "floorInfo": {
         "fromFloor": 1,
@@ -2404,8 +2433,8 @@
   "paginationGuardVersion": "api-all-pages-v1",
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 69,
-    "afterCount": 69,
+    "beforeCount": 70,
+    "afterCount": 70,
     "removedCount": 0,
     "collisionIds": [],
     "remainingCollisionIds": [],
@@ -2421,7 +2450,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-07T01:29:16+00:00",
+    "generatedAt": "2026-11-07T01:48:31+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
