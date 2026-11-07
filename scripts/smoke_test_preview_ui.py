@@ -183,6 +183,7 @@ def main():
                     ids: liveSourceReports[name]?.count,
                     homes:groups.filter(g=>(g.sources||[]).includes(name)).length,
                     error:!!liveSourceReports[name]?.error,
+                    ok:liveSourceReports[name]?.ok===true,
                     updatedAt:liveSourceReports[name]?.at
                 }));
             }""")
@@ -194,6 +195,9 @@ def main():
                 assert "最近成功檢查：" in card_text, (i,card_text)
             known_591=json.loads((ROOT / "591-preview" / "snapshot.json").read_text(encoding="utf-8"))
             assert source_metrics[0]["ids"] == known_591["counts"]["totalListings"]
+            # Verified 591 wareList must not be mislabeled abnormal by the UI parser.
+            assert known_591["source"] == "591_public_warelist_initial_state"
+            assert source_metrics[0]["ok"] is True, source_metrics[0]
             assert page.evaluate("verificationMatches(DATA,GAP,VERIFY)") is True
             # Simulate the 591 source remaining untouched for five hours:
             # stale data must be disclosed instead of displaying a false "正常".
