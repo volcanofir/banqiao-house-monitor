@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-07T06:21:12+00:00",
+  "capturedAt": "2026-11-07T06:32:52+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -20,7 +20,7 @@
   "roadStatus": {
     "板橋區中山路二段": {
       "mainHttp": 200,
-      "count": 27,
+      "count": 28,
       "primarySearchUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw?od=80",
       "confirmationUsed": false,
       "primaryHttp": 200,
@@ -29,10 +29,10 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 72368,
+      "primaryApiListDataLength": 74288,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
-      "roadTextCount": 27,
+      "roadTextCount": 28,
       "summary": [],
       "searchUrl": "https://buy.yungching.com.tw/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E4%B8%AD%E5%B1%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5&filter=0&pg=1&ps=30",
       "loadRounds": 0,
@@ -75,7 +75,8 @@
           "7514442",
           "7532475",
           "7532819",
-          "7544661"
+          "7544661",
+          "7589556"
         ],
         "2": []
       },
@@ -107,22 +108,23 @@
           "7514442",
           "7532475",
           "7532819",
-          "7544661"
+          "7544661",
+          "7589556"
         ],
         "2": []
       },
-      "rawHouseIdCount": 34,
-      "rawExactAddressTextCount": 27,
+      "rawHouseIdCount": 35,
+      "rawExactAddressTextCount": 28,
       "paginationError": null,
-      "apiTotalCount": 32,
-      "apiTotalItemCount": 33,
-      "apiRawRowCount": 35,
-      "apiUniqueRowCount": 34,
+      "apiTotalCount": 33,
+      "apiTotalItemCount": 34,
+      "apiRawRowCount": 36,
+      "apiUniqueRowCount": 35,
       "emptyResultVerified": false,
       "skippedConfirmedEmpty": false,
       "transportEvidence": "official_api_v2_decrypted",
       "available": true,
-      "rawCountBeforeIdIntegrity": 27,
+      "rawCountBeforeIdIntegrity": 28,
       "idIntegrityRemoved": 0,
       "mode": "yungching_official_api",
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
@@ -530,7 +532,7 @@
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     }
   },
-  "listingCount": 70,
+  "listingCount": 71,
   "listings": [
     {
       "id": "7514442",
@@ -1205,6 +1207,33 @@
         "fromFloor": 3,
         "toFloor": 3,
         "upFloor": 5
+      }
+    },
+    {
+      "id": "7589556",
+      "road": "板橋區中山路二段",
+      "title": "中山鼎家花園華廈",
+      "price": 1898,
+      "area": 32.5,
+      "floor": "6/8樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "華廈",
+      "url": "https://buy.yungching.com.tw/house/7589556",
+      "sourceMode": "yungching_official_api",
+      "text": "中山鼎家花園華廈 新北市板橋區中山路二段 華廈 建坪32.5 6/8樓 2房(室)2廳2衛 1898萬",
+      "rawText": "中山鼎家花園華廈 新北市板橋區中山路二段 華廈 建坪32.5 6/8樓 2房(室)2廳2衛 1898萬",
+      "patternInfo": {
+        "room": 2,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 6,
+        "toFloor": 6,
+        "upFloor": 8
       }
     },
     {
@@ -2433,8 +2462,8 @@
   "paginationGuardVersion": "api-all-pages-v1",
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 70,
-    "afterCount": 70,
+    "beforeCount": 71,
+    "afterCount": 71,
     "removedCount": 0,
     "collisionIds": [],
     "remainingCollisionIds": [],
@@ -2450,7 +2479,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-07T06:21:25+00:00",
+    "generatedAt": "2026-11-07T06:33:06+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,

@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-07T06:21:41+00:00",
-  "sourceDataUpdatedAt": "2026-11-07T06:20:49+00:00",
+  "generatedAt": "2026-11-07T06:33:20+00:00",
+  "sourceDataUpdatedAt": "2026-11-07T06:32:38+00:00",
   "mode": "preview_only_591_sinyi_rakuya_5168_grouping_then_company_v11",
   "fetchMode": "yungching_official_rendered_dom_only",
   "company": "永慶房屋",
   "companyDataSource": "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM；缺樓層時同路徑開官方案件頁補值",
-  "companyListingCount": 70,
-  "companySnapshotCapturedAt": "2026-11-07T06:21:12+00:00",
+  "companyListingCount": 71,
+  "companySnapshotCapturedAt": "2026-11-07T06:32:52+00:00",
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -30,12 +30,12 @@
   },
   "roadStatus": {
     "板橋區中山路二段": {
-      "count": 27,
+      "count": 28,
       "http": 200,
       "available": true,
       "mode": "yungching_official_api",
-      "officialCount": 27,
-      "browserCapturedAt": "2026-11-07T06:21:12+00:00",
+      "officialCount": 28,
+      "browserCapturedAt": "2026-11-07T06:32:52+00:00",
       "paginationExpected": true,
       "paginationComplete": true,
       "paginationActivePage": 2,
@@ -52,7 +52,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 27,
-      "browserCapturedAt": "2026-11-07T06:21:12+00:00",
+      "browserCapturedAt": "2026-11-07T06:32:52+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -69,7 +69,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 5,
-      "browserCapturedAt": "2026-11-07T06:21:12+00:00",
+      "browserCapturedAt": "2026-11-07T06:32:52+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -86,7 +86,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 2,
-      "browserCapturedAt": "2026-11-07T06:21:12+00:00",
+      "browserCapturedAt": "2026-11-07T06:32:52+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -103,7 +103,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 0,
-      "browserCapturedAt": "2026-11-07T06:21:12+00:00",
+      "browserCapturedAt": "2026-11-07T06:32:52+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -120,7 +120,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 6,
-      "browserCapturedAt": "2026-11-07T06:21:12+00:00",
+      "browserCapturedAt": "2026-11-07T06:32:52+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -137,7 +137,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 3,
-      "browserCapturedAt": "2026-11-07T06:21:12+00:00",
+      "browserCapturedAt": "2026-11-07T06:32:52+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -39128,6 +39128,35 @@
       "captureSourceMode": "yungching_official_api"
     },
     {
+      "id": "YC:7589556",
+      "road": "板橋區中山路二段",
+      "title": "中山鼎家花園華廈",
+      "price": 1898,
+      "area": 32.5,
+      "floor": "6/8樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "華廈",
+      "url": "https://buy.yungching.com.tw/house/7589556",
+      "sourceMode": "yungching_official_browser",
+      "text": "中山鼎家花園華廈 新北市板橋區中山路二段 華廈 建坪32.5 6/8樓 2房(室)2廳2衛 1898萬",
+      "rawText": "中山鼎家花園華廈 新北市板橋區中山路二段 華廈 建坪32.5 6/8樓 2房(室)2廳2衛 1898萬",
+      "patternInfo": {
+        "room": 2,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 6,
+        "toFloor": 6,
+        "upFloor": 8
+      },
+      "officialId": "7589556",
+      "captureSourceMode": "yungching_official_api"
+    },
+    {
       "id": "YC:6948619",
       "road": "板橋區中山路二段",
       "title": "中山外梯透天收租店面",
@@ -40440,7 +40469,7 @@
     }
   ],
   "logs": [
-    "永慶官方資料：板橋區中山路二段 採用官方 API 27 筆。",
+    "永慶官方資料：板橋區中山路二段 採用官方 API 28 筆。",
     "永慶官方資料：板橋區三民路二段 採用官方 API 27 筆。",
     "永慶官方資料：板橋區光復街 採用官方 API 5 筆。",
     "永慶官方資料：板橋區萬安街 採用官方 API 2 筆。",
@@ -40469,14 +40498,14 @@
   },
   "officialBrowserCompany": {
     "enabled": true,
-    "capturedAt": "2026-11-07T06:21:12+00:00",
+    "capturedAt": "2026-11-07T06:32:52+00:00",
     "snapshotAgeMinutes": 0.4,
     "acceptedRoadCount": 7,
     "unavailableRoadCount": 0,
     "roads": {
       "板橋區中山路二段": {
         "mode": "official_api",
-        "officialCount": 27,
+        "officialCount": 28,
         "http": 200,
         "paginationComplete": true,
         "emptyResultVerified": false,
@@ -40564,12 +40593,12 @@
   "safeFloorParser": true,
   "safeFloorParserRule": "subject floor must be physically valid against total floor; glued area digits are trimmed instead of becoming impossible floors",
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-07T06:21:36+00:00",
+    "generatedAt": "2026-11-07T06:33:16+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-07T06:15:22+00:00",
+    "sourceRunCheckedAt": "2026-11-07T06:30:18+00:00",
     "activeSinyiCount": 69,
     "matchedOfficialCount": 69,
     "appliedCount": 69,
@@ -40594,7 +40623,7 @@
     "groups": []
   },
   "recentOffMarketRetentionDays": 10,
-  "recentOffMarketGeneratedAt": "2026-11-07T06:21:42+00:00",
+  "recentOffMarketGeneratedAt": "2026-11-07T06:33:21+00:00",
   "recentOffMarketCount": 3,
   "recentOffMarketGroups": [
     {
@@ -41023,7 +41052,7 @@
     "directGroupIdMergeCount": 17
   },
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-07T06:21:26+00:00",
+    "updatedAt": "2026-11-07T06:33:06+00:00",
     "status": "ok",
     "totalCount": 231,
     "uniqueListingCount": 231,
@@ -41076,7 +41105,7 @@
     "complete": true
   },
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-07T06:18:56+00:00",
+    "updatedAt": "2026-11-07T06:30:52+00:00",
     "status": "ok",
     "totalCount": 57,
     "uniqueListingCount": 57,
