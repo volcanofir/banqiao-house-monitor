@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-08T07:03:26+00:00",
+  "capturedAt": "2026-11-08T07:18:08+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -194,7 +194,7 @@
     },
     "板橋區三民路二段": {
       "mainHttp": 200,
-      "count": 27,
+      "count": 28,
       "primarySearchUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw?od=80",
       "confirmationUsed": false,
       "primaryHttp": 200,
@@ -203,10 +203,10 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 60524,
+      "primaryApiListDataLength": 62444,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
-      "roadTextCount": 27,
+      "roadTextCount": 28,
       "summary": [],
       "searchUrl": "https://buy.yungching.com.tw/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5&filter=0&pg=1&ps=30",
       "loadRounds": 0,
@@ -249,7 +249,8 @@
           "7521423",
           "7559748",
           "7564581",
-          "7576495"
+          "7576495",
+          "7590014"
         ]
       },
       "paginationPageRawNewIds": {
@@ -280,21 +281,22 @@
           "7521423",
           "7559748",
           "7564581",
-          "7576495"
+          "7576495",
+          "7590014"
         ]
       },
-      "rawHouseIdCount": 29,
-      "rawExactAddressTextCount": 27,
+      "rawHouseIdCount": 30,
+      "rawExactAddressTextCount": 28,
       "paginationError": null,
-      "apiTotalCount": 27,
-      "apiTotalItemCount": 28,
-      "apiRawRowCount": 29,
-      "apiUniqueRowCount": 29,
+      "apiTotalCount": 28,
+      "apiTotalItemCount": 29,
+      "apiRawRowCount": 30,
+      "apiUniqueRowCount": 30,
       "emptyResultVerified": false,
       "skippedConfirmedEmpty": false,
       "transportEvidence": "official_api_v2_decrypted",
       "available": true,
-      "rawCountBeforeIdIntegrity": 27,
+      "rawCountBeforeIdIntegrity": 28,
       "idIntegrityRemoved": 0,
       "mode": "yungching_official_api",
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
@@ -532,7 +534,7 @@
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     }
   },
-  "listingCount": 71,
+  "listingCount": 72,
   "listings": [
     {
       "id": "7514442",
@@ -1918,6 +1920,33 @@
       }
     },
     {
+      "id": "7590014",
+      "road": "板橋區三民路二段",
+      "title": "板新綻高樓美兩房",
+      "price": 2550,
+      "area": 30.07,
+      "floor": "9/11樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7590014",
+      "sourceMode": "yungching_official_api",
+      "text": "板新綻高樓美兩房 新北市板橋區三民路二段 住宅大樓 建坪30.07 9/11樓 2房(室)2廳1衛 2550萬",
+      "rawText": "板新綻高樓美兩房 新北市板橋區三民路二段 住宅大樓 建坪30.07 9/11樓 2房(室)2廳1衛 2550萬",
+      "patternInfo": {
+        "room": 2,
+        "livingRoom": 2,
+        "bathRoom": 1,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 9,
+        "toFloor": 9,
+        "upFloor": 11
+      }
+    },
+    {
       "id": "7576495",
       "road": "板橋區三民路二段",
       "title": "A級辦公｜潤泰營造｜SRC鋼骨結構｜高樓極新裝潢",
@@ -2462,8 +2491,8 @@
   "paginationGuardVersion": "api-all-pages-v1",
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 71,
-    "afterCount": 71,
+    "beforeCount": 72,
+    "afterCount": 72,
     "removedCount": 0,
     "collisionIds": [],
     "remainingCollisionIds": [],
@@ -2479,7 +2508,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-08T07:03:41+00:00",
+    "generatedAt": "2026-11-08T07:18:23+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
