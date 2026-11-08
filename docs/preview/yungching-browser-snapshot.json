@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-08T01:33:11+00:00",
+  "capturedAt": "2026-11-08T01:48:08+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -562,6 +562,33 @@
       }
     },
     {
+      "id": "6195588",
+      "road": "板橋區中山路二段",
+      "title": "中山路門牌近埔墘市場周邊連鎖店面匯聚",
+      "price": 4500,
+      "area": 79.49,
+      "floor": "1~2/2樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "透天厝",
+      "url": "https://buy.yungching.com.tw/house/6195588",
+      "sourceMode": "yungching_official_api",
+      "text": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 透天厝 建坪79.49 1~2/2樓 3房(室)3廳2衛 4500萬",
+      "rawText": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 透天厝 建坪79.49 1~2/2樓 3房(室)3廳2衛 4500萬",
+      "patternInfo": {
+        "room": 3,
+        "livingRoom": 3,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 2,
+        "upFloor": 2
+      }
+    },
+    {
       "id": "7141398",
       "road": "板橋區中山路二段",
       "title": "馥華精工天際極景",
@@ -829,33 +856,6 @@
         "fromFloor": 5,
         "toFloor": 5,
         "upFloor": 5
-      }
-    },
-    {
-      "id": "6195588",
-      "road": "板橋區中山路二段",
-      "title": "中山路門牌近埔墘市場周邊連鎖店面匯聚",
-      "price": 4500,
-      "area": 79.49,
-      "floor": "1~2/2樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "透天厝",
-      "url": "https://buy.yungching.com.tw/house/6195588",
-      "sourceMode": "yungching_official_api",
-      "text": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 透天厝 建坪79.49 1~2/2樓 3房(室)3廳2衛 4500萬",
-      "rawText": "中山路門牌近埔墘市場周邊連鎖店面匯聚 新北市板橋區中山路二段 透天厝 建坪79.49 1~2/2樓 3房(室)3廳2衛 4500萬",
-      "patternInfo": {
-        "room": 3,
-        "livingRoom": 3,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 2,
-        "upFloor": 2
       }
     },
     {
@@ -2479,7 +2479,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-08T01:33:27+00:00",
+    "generatedAt": "2026-11-08T01:48:21+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
