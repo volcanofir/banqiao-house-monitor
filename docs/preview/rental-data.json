@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-09T20:32:06+00:00",
+  "updatedAt": "2026-11-09T20:47:51+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -110,7 +110,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 97,
-      "checkedAt": "2026-11-09T20:32:14+00:00",
+      "checkedAt": "2026-11-09T20:47:58+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 18／新增 18／來源總數 59",
         "板橋區中山路二段 5168 API第2頁：符合 19／新增 19／來源總數 59",
@@ -282,6 +282,19 @@
       "firstSeenAt": "2026-11-02T08:17:08+00:00"
     },
     {
+      "id": "591租屋:22259097",
+      "source": "591",
+      "houseId": "22259097",
+      "road": "板橋區中山路二段",
+      "title": "步行板新捷運站高品質平價溫馨大套房(走道窗)",
+      "address": "板橋區中山路二段",
+      "rent": 7300.0,
+      "size": 6.0,
+      "url": "https://rent.591.com.tw/22259097",
+      "floor": "3F/5F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
       "id": "591租屋:22207700",
       "source": "591",
       "houseId": "22207700",
@@ -343,19 +356,6 @@
       "rent": 7300.0,
       "size": 6.0,
       "url": "https://rent.591.com.tw/22259075",
-      "floor": "3F/5F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
-      "id": "591租屋:22259097",
-      "source": "591",
-      "houseId": "22259097",
-      "road": "板橋區中山路二段",
-      "title": "步行板新捷運站高品質平價溫馨大套房(走道窗)",
-      "address": "板橋區中山路二段",
-      "rent": 7300.0,
-      "size": 6.0,
-      "url": "https://rent.591.com.tw/22259097",
       "floor": "3F/5F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
@@ -997,19 +997,6 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
-      "id": "591租屋:22248642",
-      "source": "591",
-      "houseId": "22248642",
-      "road": "板橋區三民路一段",
-      "title": "✨全新首租｜可租補｜貓咪友善｜可開伙｜獨立洗衣",
-      "address": "板橋區三民路一段",
-      "rent": 17000.0,
-      "size": 7.0,
-      "url": "https://rent.591.com.tw/22248642",
-      "floor": "4F/4F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
       "id": "591租屋:22299971",
       "source": "591",
       "houseId": "22299971",
@@ -1021,6 +1008,19 @@
       "url": "https://rent.591.com.tw/22299971",
       "floor": "4F/4F",
       "firstSeenAt": "2026-11-05T16:19:57+00:00"
+    },
+    {
+      "id": "591租屋:22248642",
+      "source": "591",
+      "houseId": "22248642",
+      "road": "板橋區三民路一段",
+      "title": "✨全新首租｜可租補｜貓咪友善｜可開伙｜獨立洗衣",
+      "address": "板橋區三民路一段",
+      "rent": 17000.0,
+      "size": 7.0,
+      "url": "https://rent.591.com.tw/22248642",
+      "floor": "4F/4F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
       "id": "591租屋:22193034",
@@ -4614,10 +4614,10 @@
       "firstSeenAt": "2026-11-09T15:47:52+00:00"
     }
   ],
-  "elapsedSeconds": 86.14,
+  "elapsedSeconds": 130.11,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
   "newListingPolicy": "firstSeenAt_on_or_after_baseline_and_within_3_days",
-  "newListingCount": 69
+  "newListingCount": 68
 }
