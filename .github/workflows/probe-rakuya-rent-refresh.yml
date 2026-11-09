@@ -37,6 +37,12 @@ jobs:
               print('script src examples:',[s.get('src') for s in soup.select('script[src]')[:12]])
               print('links examples:',[(x.get('href') or '')[:160] for x in soup.select('a[href*="/item/"]')[:4]])
               print('html first:',re.sub(r'\s+',' ',r.text[:1000])[:700])
+              if 'keyword=' in u and r.status_code==200:
+                print('LDJSON', [(x.get_text() or '')[:6500] for x in soup.select('script[type="application/ld+json"]')])
+                for key in ['rent_item','searchResult','itemListElement','window.rent','window.search','rentSearch']:
+                  pos=r.text.find(key)
+                  print('HTML_CONTEXT',key,pos,re.sub(r'\s+',' ',r.text[max(0,pos-350):pos+1800])[:2200] if pos>=0 else '')
+                print('HTML_POSSIBLE_CARD_TAGS',[(tag.name,str(tag.get('class','')),(tag.get('href') or '')[:150]) for tag in soup.find_all(['a','div','section']) if 'rent_item' in str(tag.get('href') or '')][:5])
             except Exception as e:
               print('request failure',type(e).__name__,str(e)[:180])
           print('--- BROWSER ---')
@@ -71,6 +77,7 @@ jobs:
               print('BROWSER_BODY',re.sub(r'\s+',' ',page.locator('body').inner_text(timeout=10000))[:1700])
               print('BROWSER_HTML_MARKERS',[(s,page.content().count(s)) for s in ['/item/','/houseno/','__NUXT','itemListElement','card__head','info__geo']])
               print('BROWSER_LINKS',page.locator('a[href*="/item/"]').evaluate_all('(els)=>els.slice(0,5).map(e=>e.href)'))
+              print('BROWSER_CARD_HTML',page.locator('body').evaluate('el=>{let n=[...el.querySelectorAll("*")].find(x=>x.children.length===0 && x.textContent.includes("板橋大套房明亮通風禁煙"));return n?n.parentElement.parentElement.parentElement.outerHTML.slice(0,9000):"";}'))
               print('BROWSER_LINKS_DETAIL',page.locator('a[href*="rent_item"],a[href*="/houseno/"]').evaluate_all('(els)=>els.slice(0,5).map(e=>e.href)'))
               print('BROWSER_SCRIPTS',page.locator('script[src]').evaluate_all('(els)=>els.slice(0,30).map(e=>e.src).filter(u=>u.includes("rakuya"))'))
               browser.close()
