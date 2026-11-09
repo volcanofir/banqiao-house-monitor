@@ -9,78 +9,33 @@ permissions:
 jobs:
   inspect:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - run: pip install requests beautifulsoup4 playwright
-      - name: Inspect current Rakuya HTML and browser network (read-only)
-        shell: bash
+      - run: pip install requests
+      - name: Inspect embedded rentSearch payload pages (read-only)
         run: |
           python - <<'PY'
-          import re,requests,json
-          from bs4 import BeautifulSoup
-          from urllib.parse import urlsplit
-          urls=[
-            'https://rent.rakuya.com.tw/result?zipcode=220&keyword=%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5',
-            'https://rent.rakuya.com.tw/result?zipcode=220',
-            'https://rent.rakuya.com.tw/ajax/get-result?zipcode=220&keyword=%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5&page=1',
-          ]
-          for u in urls:
+          import json,re,requests
+          from urllib.parse import urlencode
+          for road,page in [('三民路二段',1),('中山路二段',1),('中山路二段',2),('翠華街',1)]:
+            url='https://rent.rakuya.com.tw/result?'+urlencode({'zipcode':'220','keyword':road,'page':page})
             try:
-              r=requests.get(u,timeout=18,headers={'User-Agent':'Mozilla/5.0','Accept-Language':'zh-TW,zh;q=0.9'})
-              soup=BeautifulSoup(r.text,'html.parser')
-              print('GET',r.status_code,'final=',r.url,'len=',len(r.content),'title=',str(soup.title)[:130])
-              print('html markers:',[(a, len(re.findall(a,r.text,re.I))) for a in ['__NUXT','__NEXT','itemListElement','/item/','get-result','fetch\\(','rent_item','searchResult','__INITIAL_STATE__','application/ld\\+json']])
-              print('script src examples:',[s.get('src') for s in soup.select('script[src]')[:12]])
-              print('links examples:',[(x.get('href') or '')[:160] for x in soup.select('a[href*="/item/"]')[:4]])
-              print('html first:',re.sub(r'\s+',' ',r.text[:1000])[:700])
-              if 'keyword=' in u and r.status_code==200:
-                print('LDJSON', [(x.get_text() or '')[:6500] for x in soup.select('script[type="application/ld+json"]')])
-                for key in ['rent_item','searchResult','itemListElement','window.rent','window.search','rentSearch']:
-                  pos=r.text.find(key)
-                  print('HTML_CONTEXT',key,pos,re.sub(r'\s+',' ',r.text[max(0,pos-350):pos+1800])[:2200] if pos>=0 else '')
-                print('HTML_POSSIBLE_CARD_TAGS',[(tag.name,str(tag.get('class','')),(tag.get('href') or '')[:150]) for tag in soup.find_all(['a','div','section']) if 'rent_item' in str(tag.get('href') or '')][:5])
-            except Exception as e:
-              print('request failure',type(e).__name__,str(e)[:180])
-          print('--- BROWSER ---')
-          try:
-            from playwright.sync_api import sync_playwright
-            with sync_playwright() as p:
-              browser=p.chromium.launch(channel='chrome',headless=True,args=['--no-sandbox'])
-              context=browser.new_context(locale='zh-TW')
-              page=context.new_page()
-              seen=[]
-              def observe(response):
-                u=response.url
-                if 'rakuya.com.tw' not in u: return
-                if any(s in u.lower() for s in ['/api/','/ajax/','/search','/result','/rent/','/v1/','/v2/','graphql','/list']):
-                  ident=u.split('?')[0]
-                  key=(response.status, ident)
-                  if key not in seen:
-                    seen.append(key)
-                    print('NETWORK',response.status,ident,'ctype=',response.headers.get('content-type','')[:75])
-                    if '/api/search-gold' in ident or '/api/count' in ident:
-                      print('API_METHOD',response.request.method,'REQUEST_URL',response.request.url[:1500],'POST_DATA',str(response.request.post_data or '')[:1600])
-                      try:
-                        data=response.json()
-                        print('API_RESPONSE',ident,'type',type(data).__name__,'PREVIEW',json.dumps(data,ensure_ascii=False)[:5500])
-                      except Exception as e:
-                        print('API_JSON_ERROR',str(e)[:150])
-              page.on('response',observe)
-              u=urls[0]
-              response=page.goto(u,wait_until='domcontentloaded',timeout=45000)
-              page.wait_for_timeout(7000)
-              print('BROWSER_STATUS',response.status if response else None,'URL',page.url,'TITLE',page.title())
-              print('BROWSER_BODY',re.sub(r'\s+',' ',page.locator('body').inner_text(timeout=10000))[:1700])
-              print('BROWSER_HTML_MARKERS',[(s,page.content().count(s)) for s in ['/item/','/houseno/','__NUXT','itemListElement','card__head','info__geo']])
-              print('BROWSER_LINKS',page.locator('a[href*="/item/"]').evaluate_all('(els)=>els.slice(0,5).map(e=>e.href)'))
-              print('BROWSER_CARD_HTML',page.locator('body').evaluate('el=>{let n=[...el.querySelectorAll("*")].find(x=>x.children.length===0 && x.textContent.includes("板橋大套房明亮通風禁煙"));return n?n.parentElement.parentElement.parentElement.outerHTML.slice(0,9000):"";}'))
-              print('BROWSER_LINKS_DETAIL',page.locator('a[href*="rent_item"],a[href*="/houseno/"]').evaluate_all('(els)=>els.slice(0,5).map(e=>e.href)'))
-              print('BROWSER_SCRIPTS',page.locator('script[src]').evaluate_all('(els)=>els.slice(0,30).map(e=>e.src).filter(u=>u.includes("rakuya"))'))
-              browser.close()
-          except Exception as e:
-            print('browser error',type(e).__name__,str(e)[:500])
+              r=requests.get(url,timeout=20,headers={'User-Agent':'Mozilla/5.0','Accept-Language':'zh-TW,zh;q=0.9'})
+              m=re.search(r'window\.rentSearch\s*=\s*',r.text)
+              if not m:
+                print('ROAD',road,page,'HTTP',r.status_code,'rentSearch missing');continue
+              obj,end=json.JSONDecoder().raw_decode(r.text[m.end():])
+              print('ROAD',road,page,'HTTP',r.status_code,'KEYS',list(obj.keys()))
+              for k,v in obj.items():
+                if isinstance(v,dict):
+                  print('DICT',k,'KEYS',list(v.keys())[:35])
+                  if 'pagination' in k.lower() or 'list' in k.lower(): print('DICT_DETAIL',k,json.dumps(v,ensure_ascii=False)[:700])
+                if isinstance(v,list):
+                  print('LIST',k,'COUNT',len(v),'SAMPLE',json.dumps(v[:1],ensure_ascii=False)[:1700])
+              print('PAGINATION',json.dumps(obj.get('pagination'),ensure_ascii=False))
+            except Exception as e:print('ERROR',road,page,type(e).__name__,str(e)[:250])
           PY
