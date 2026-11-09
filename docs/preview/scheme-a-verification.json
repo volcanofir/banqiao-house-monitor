@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-09T21:18:32+00:00",
+  "verifiedAt": "2026-11-09T21:46:34+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-09T21:18:24+00:00",
+    "generatedAt": "2026-11-09T21:46:27+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -165,8 +165,8 @@
     "regroupedCount": 36,
     "mergedClusterCount": 15,
     "absorbedCount": 19,
-    "attachedToExistingGroupCount": 31,
-    "standaloneGroupCount": 5,
+    "attachedToExistingGroupCount": 32,
+    "standaloneGroupCount": 4,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 19
@@ -174,27 +174,27 @@
   "companyNearTieGuard": {
     "enabled": true,
     "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-    "examinedCompanyMatchCount": 42,
+    "examinedCompanyMatchCount": 41,
     "downgradedCount": 0,
     "remainingAutoNearTieCount": 0,
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-09T21:18:32+00:00",
+    "auditedAt": "2026-11-09T21:46:34+00:00",
     "propertyGroupCount": 168,
     "companyListingCount": 75,
-    "companyMatchCount": 42,
+    "companyMatchCount": 41,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 882
+    "weakIdentityAlreadyMergedPairCount": 864
   },
   "snapshotCapturedAt": "2026-11-09T21:17:56+00:00",
   "companySnapshotCapturedAt": "2026-11-09T21:17:56+00:00",
-  "companyGapGeneratedAt": "2026-11-09T21:18:29+00:00",
+  "companyGapGeneratedAt": "2026-11-09T21:46:32+00:00",
   "browserListingCount": 75,
   "companyListingCount": 75,
   "propertyGroupCount": 168,
-  "rawListingCount": 784,
+  "rawListingCount": 789,
   "comparisonCount": 168,
   "coveredRoads": [
     "板橋區中山路二段",
@@ -259,16 +259,16 @@
     }
   },
   "counts": {
-    "company_match": 42,
+    "company_match": 41,
     "review": 5,
-    "missing": 121,
+    "missing": 122,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 104,
+  "crossPlatformMergedGroupCount": 105,
   "crossSourceReviewCount": 10,
   "preview591Regroup": {
-    "original591TopLevel": 94,
-    "regrouped591TopLevel": 87,
+    "original591TopLevel": 95,
+    "regrouped591TopLevel": 88,
     "regrouped591ClusterCount": 7,
     "regrouped591AbsorbedCount": 7,
     "clusterFloorConflictBlocked": 0
@@ -277,14 +277,14 @@
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-09T18:32:16+00:00",
-    "totalCount": 217,
-    "uniqueListingCount": 217,
-    "groupCount": 94,
+    "updatedAt": "2026-11-09T21:46:13+00:00",
+    "totalCount": 237,
+    "uniqueListingCount": 237,
+    "groupCount": 95,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 110
+        "count": 131
       },
       {
         "road": "三民路二段",
@@ -304,7 +304,7 @@
       },
       {
         "road": "三民路一段",
-        "count": 19
+        "count": 18
       },
       {
         "road": "翠華街",
@@ -312,17 +312,17 @@
       }
     ],
     "sourceFieldCoverage": {
-      "floor": 207,
-      "layout": 217,
-      "community": 120,
-      "houseAge": 217,
-      "parkingFlag": 217,
-      "unverifiedFloor": 10,
-      "total": 217
+      "floor": 226,
+      "layout": 237,
+      "community": 132,
+      "houseAge": 237,
+      "parkingFlag": 237,
+      "unverifiedFloor": 11,
+      "total": 237
     },
     "floorAwarePreviewGrouping": true,
-    "historyMatchedIdCount": 174,
-    "historyNotPresentUnconfirmed": 339,
+    "historyMatchedIdCount": 194,
+    "historyNotPresentUnconfirmed": 319,
     "historyReappearedCount": 0,
     "missingIdIsNotDelisting": true,
     "newIdIsNotNewProperty": true
