@@ -56,6 +56,13 @@ jobs:
                   if key not in seen:
                     seen.append(key)
                     print('NETWORK',response.status,ident,'ctype=',response.headers.get('content-type','')[:75])
+                    if '/api/search-gold' in ident or '/api/count' in ident:
+                      print('API_METHOD',response.request.method,'REQUEST_URL',response.request.url[:1500],'POST_DATA',str(response.request.post_data or '')[:1600])
+                      try:
+                        data=response.json()
+                        print('API_RESPONSE',ident,'type',type(data).__name__,'PREVIEW',json.dumps(data,ensure_ascii=False)[:5500])
+                      except Exception as e:
+                        print('API_JSON_ERROR',str(e)[:150])
               page.on('response',observe)
               u=urls[0]
               response=page.goto(u,wait_until='domcontentloaded',timeout=45000)
