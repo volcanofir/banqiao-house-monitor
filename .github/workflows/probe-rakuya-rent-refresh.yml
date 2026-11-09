@@ -15,27 +15,25 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - run: pip install requests
-      - name: Inspect embedded rentSearch payload pages (read-only)
+      - run: pip install requests beautifulsoup4
+      - name: Identify SSR listing payload exact variable and page split
         run: |
           python - <<'PY'
-          import json,re,requests
-          from urllib.parse import urlencode
+          import requests,json,re
+          from bs4 import BeautifulSoup
           for road,page in [('三民路二段',1),('中山路二段',1),('中山路二段',2),('翠華街',1)]:
-            url='https://rent.rakuya.com.tw/result?'+urlencode({'zipcode':'220','keyword':road,'page':page})
             try:
-              r=requests.get(url,timeout=20,headers={'User-Agent':'Mozilla/5.0','Accept-Language':'zh-TW,zh;q=0.9'})
-              m=re.search(r'window\.rentSearch\s*=\s*',r.text)
-              if not m:
-                print('ROAD',road,page,'HTTP',r.status_code,'rentSearch missing');continue
-              obj,end=json.JSONDecoder().raw_decode(r.text[m.end():])
-              print('ROAD',road,page,'HTTP',r.status_code,'KEYS',list(obj.keys()))
-              for k,v in obj.items():
-                if isinstance(v,dict):
-                  print('DICT',k,'KEYS',list(v.keys())[:35])
-                  if 'pagination' in k.lower() or 'list' in k.lower(): print('DICT_DETAIL',k,json.dumps(v,ensure_ascii=False)[:700])
-                if isinstance(v,list):
-                  print('LIST',k,'COUNT',len(v),'SAMPLE',json.dumps(v[:1],ensure_ascii=False)[:1700])
-              print('PAGINATION',json.dumps(obj.get('pagination'),ensure_ascii=False))
-            except Exception as e:print('ERROR',road,page,type(e).__name__,str(e)[:250])
+              r=requests.get('https://rent.rakuya.com.tw/result',params={'zipcode':'220','keyword':road,'page':page},headers={'User-Agent':'Mozilla/5.0'},timeout=20)
+              html=r.text
+              vars=list(re.finditer(r'window\.([A-Za-z_$][\w$]*)\s*=\s*',html))
+              print('ROAD',road,'PAGE',page,'HTTP',r.status_code,'VARIABLES',[(m.group(1),m.start()) for m in vars])
+              for tag in BeautifulSoup(html,'html.parser').find_all('script'):
+                body=tag.string or tag.get_text() or ''
+                if 'firstPublishAt' not in body:continue
+                print('PAYLOAD_SCRIPT_HEAD',re.sub(r'\s+',' ',body[:1100]))
+                for label,pat in [('global',r'window\.([A-Za-z_$][\w$]*)\s*=\s*'),('const',r'\b(?:var|let|const)\s+([A-Za-z_$][\w$]*)\s*=\s*')]:
+                  print('ASSIGN',label,re.findall(pat,body)[:12])
+                print('PAYLOAD_SCRIPT_LEN',len(body),'RECORDS',body.count('firstPublishAt'))
+              print('LDCOUNT',len(re.findall('firstPublishAt',html)))
+            except Exception as e:print('ERROR',road,page,str(e)[:230])
           PY
