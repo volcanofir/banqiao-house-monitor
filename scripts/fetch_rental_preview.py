@@ -379,9 +379,16 @@ def fetch_rakuya_http():
                         int(p.get('pageCount') or 0) != page_count):
                     raise ValueError(f'樂屋租屋第 {page_no} 頁分頁不一致: {p}')
                 items = data['items']
-                if len(items) > page_size or (page_count and not items):
+                # Rakuya pagination.total includes suggested nearby properties.
+                # Those are NOT exact-road hits. Validate them in the page count,
+                # but never ingest them as monitored listings.
+                recommended = data.get('recommendItems') or []
+                if not isinstance(recommended, list):
+                    raise ValueError(f'樂屋租屋第 {page_no} 頁推薦清單格式異常')
+                page_total = len(items) + len(recommended)
+                if page_total > page_size or (page_count and not page_total):
                     raise ValueError(f'樂屋租屋第 {page_no} 頁回傳不完整')
-                source_seen += len(items)
+                source_seen += page_total
                 added = 0
                 for item in items:
                     listing = parse_rakuya_rental_row(item, road)
@@ -391,10 +398,10 @@ def fetch_rakuya_http():
                     road_rows.append(listing)
                     added += 1
                 logs.append(
-                    f'{road} 樂屋SSR第{page_no}頁：來源 {len(items)}／精準路段新增 {added}／來源總數 {expected_total}'
+                    f'{road} 樂屋SSR第{page_no}頁：主清單 {len(items)}／附近推薦 {len(recommended)}／精準路段新增 {added}／頁面總數 {expected_total}'
                 )
             if source_seen != expected_total:
-                raise ValueError(f'樂屋來源總數 {expected_total} 與完整分頁 {source_seen} 不符')
+                raise ValueError(f'樂屋頁面總數 {expected_total} 與主清單加附近推薦 {source_seen} 不符')
             complete = True
         except Exception as exc:
             logs.append(f'{road} 樂屋SSR抓取失敗：{type(exc).__name__}: {exc}')
