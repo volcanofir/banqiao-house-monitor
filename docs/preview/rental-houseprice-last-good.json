@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-11-09T15:32:30+00:00",
+  "updatedAt": "2026-11-09T15:48:00+00:00",
   "source": "5168",
   "run": {
     "status": "ok",
-    "totalCount": 95,
-    "checkedAt": "2026-11-09T15:32:30+00:00",
+    "totalCount": 96,
+    "checkedAt": "2026-11-09T15:48:00+00:00",
     "logs": [
       "板橋區中山路二段 5168 API第1頁：符合 18／新增 18／來源總數 57",
       "板橋區中山路二段 5168 API第2頁：符合 19／新增 19／來源總數 57",
@@ -23,8 +23,8 @@
       "板橋區萬安街 5168租屋完成，共 9 筆",
       "板橋區翠華街 5168 API第1頁：符合 0／新增 0／來源總數 0",
       "板橋區翠華街 5168租屋完成，共 0 筆",
-      "板橋區林森街 5168 API第1頁：符合 0／新增 0／來源總數 0",
-      "板橋區林森街 5168租屋完成，共 0 筆"
+      "板橋區林森街 5168 API第1頁：符合 1／新增 1／來源總數 1",
+      "板橋區林森街 5168租屋完成，共 1 筆"
     ]
   },
   "listings": [
@@ -2020,6 +2020,27 @@
       "purposeName": "整層住家",
       "buildingStyle": "透天",
       "sourcePublishedAt": "2026-11-07T04:29:31.403Z",
+      "sourceUpdatedAtRaw": null,
+      "sourcePublishedAtType": "housepriceRentApiPublishTime"
+    },
+    {
+      "id": "5168租屋:17192210",
+      "source": "5168",
+      "houseId": "17192210",
+      "road": "板橋區林森街",
+      "title": "可申請補助‧寵物友善‧台電計價‧板橋區林森街",
+      "address": "板橋區林森街",
+      "rent": 17000,
+      "size": 7.0,
+      "url": "https://rent.591.com.tw/22321294",
+      "floor": "2/2樓",
+      "rooms": 1.0,
+      "livingRooms": 0.0,
+      "bathrooms": 1.0,
+      "balconies": 0.0,
+      "purposeName": "獨立套房",
+      "buildingStyle": "透天",
+      "sourcePublishedAt": "2026-11-09T23:31:56.08Z",
       "sourceUpdatedAtRaw": null,
       "sourcePublishedAtType": "housepriceRentApiPublishTime"
     }
