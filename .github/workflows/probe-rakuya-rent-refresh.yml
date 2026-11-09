@@ -1,0 +1,72 @@
+name: Probe Rakuya rental data endpoint (diagnostic)
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/workflows/probe-rakuya-rent-refresh.yml"]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install requests beautifulsoup4 playwright
+      - name: Inspect current Rakuya HTML and browser network (read-only)
+        shell: bash
+        run: |
+          python - <<'PY'
+          import re,requests,json
+          from bs4 import BeautifulSoup
+          from urllib.parse import urlsplit
+          urls=[
+            'https://rent.rakuya.com.tw/result?zipcode=220&keyword=%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5',
+            'https://rent.rakuya.com.tw/result?zipcode=220',
+            'https://rent.rakuya.com.tw/ajax/get-result?zipcode=220&keyword=%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5&page=1',
+          ]
+          for u in urls:
+            try:
+              r=requests.get(u,timeout=18,headers={'User-Agent':'Mozilla/5.0','Accept-Language':'zh-TW,zh;q=0.9'})
+              soup=BeautifulSoup(r.text,'html.parser')
+              print('GET',r.status_code,'final=',r.url,'len=',len(r.content),'title=',str(soup.title)[:130])
+              print('html markers:',[(a, len(re.findall(a,r.text,re.I))) for a in ['__NUXT','__NEXT','itemListElement','/item/','get-result','fetch\\(','rent_item','searchResult','__INITIAL_STATE__','application/ld\\+json']])
+              print('script src examples:',[s.get('src') for s in soup.select('script[src]')[:12]])
+              print('links examples:',[(x.get('href') or '')[:160] for x in soup.select('a[href*="/item/"]')[:4]])
+              print('html first:',re.sub(r'\s+',' ',r.text[:1000])[:700])
+            except Exception as e:
+              print('request failure',type(e).__name__,str(e)[:180])
+          print('--- BROWSER ---')
+          try:
+            from playwright.sync_api import sync_playwright
+            with sync_playwright() as p:
+              browser=p.chromium.launch(channel='chrome',headless=True,args=['--no-sandbox'])
+              context=browser.new_context(locale='zh-TW')
+              page=context.new_page()
+              seen=[]
+              def observe(response):
+                u=response.url
+                if 'rakuya.com.tw' not in u: return
+                if any(s in u.lower() for s in ['/api/','/ajax/','/search','/result','/rent/','/v1/','/v2/','graphql','/list']):
+                  ident=u.split('?')[0]
+                  key=(response.status, ident)
+                  if key not in seen:
+                    seen.append(key)
+                    print('NETWORK',response.status,ident,'ctype=',response.headers.get('content-type','')[:75])
+              page.on('response',observe)
+              u=urls[0]
+              response=page.goto(u,wait_until='domcontentloaded',timeout=45000)
+              page.wait_for_timeout(7000)
+              print('BROWSER_STATUS',response.status if response else None,'URL',page.url,'TITLE',page.title())
+              print('BROWSER_BODY',re.sub(r'\s+',' ',page.locator('body').inner_text(timeout=10000))[:1700])
+              print('BROWSER_HTML_MARKERS',[(s,page.content().count(s)) for s in ['/item/','/houseno/','__NUXT','itemListElement','card__head','info__geo']])
+              print('BROWSER_LINKS',page.locator('a[href*="/item/"]').evaluate_all('(els)=>els.slice(0,5).map(e=>e.href)'))
+              print('BROWSER_LINKS_DETAIL',page.locator('a[href*="rent_item"],a[href*="/houseno/"]').evaluate_all('(els)=>els.slice(0,5).map(e=>e.href)'))
+              print('BROWSER_SCRIPTS',page.locator('script[src]').evaluate_all('(els)=>els.slice(0,30).map(e=>e.src).filter(u=>u.includes("rakuya"))'))
+              browser.close()
+          except Exception as e:
+            print('browser error',type(e).__name__,str(e)[:500])
+          PY
