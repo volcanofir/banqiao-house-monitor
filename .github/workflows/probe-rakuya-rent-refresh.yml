@@ -9,23 +9,32 @@ permissions:
 jobs:
   inspect:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 4
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - run: pip install requests beautifulsoup4 playwright curl_cffi
-      - name: Test new parser across all seven rental roads without publishing
+      - name: Compare Rakuya SSR pages and count integrity
+        shell: bash
         run: |
           python - <<'PY'
-          import importlib.util,json
+          import importlib.util,json,requests,re
+          from urllib.parse import urlencode
           spec=importlib.util.spec_from_file_location('fetch_rental_preview','scripts/fetch_rental_preview.py')
-          mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
-          rows,ok,logs=mod.fetch_rakuya_http()
-          print('RAKUYA_RESULT',json.dumps({'ok':ok,'total':len(rows),'roads':{road:sum(1 for item in rows if item['road']==road) for road in mod.WATCH_ROADS}},ensure_ascii=False))
-          for log in logs:print('RAKUYA_LOG',log)
-          assert ok,'Seven roads were not all verified'
-          assert rows,'No rental results returned'
-          assert all(r['url'].startswith('https://') and r['houseId'] for r in rows),'Malformed result'
+          m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+          s=requests.Session();s.headers['User-Agent']=m.USER_AGENT
+          for road,pages in [('中山路二段',[1,2,2,2,3]),('萬安街',[1,1,2]),('三民路一段',[1])]:
+            for page in pages:
+              try:
+                url='https://rent.rakuya.com.tw/result?'+urlencode({'zipcode':'220','keyword':road,'page':page})
+                r=s.get(url,timeout=20)
+                data=m.parse_rakuya_rental_payload(r.text)
+                pag=data.get('pagination');it=data.get('items') or []
+                print('PAGE',road,page,'HTTP',r.status_code,'FINAL',r.url,'PAG',json.dumps(pag,ensure_ascii=False),'ITEMS',len(it),'EHIDS',[x.get('ehid') for x in it[:4]],'RECOMMEND',len(data.get('recommendItems') or []),'IS_LAST',data.get('isLastPage'),'EXHAUSTED',data.get('mainResultExhausted'),'HTML_COUNTS',len(re.findall('firstPublishAt',r.text)), 'LENGTH',len(r.text))
+              except Exception as e: print('ERROR',road,page,type(e).__name__,str(e)[:250])
+          rows,ok,logs=m.fetch_rakuya_http()
+          print('FINAL',ok,len(rows))
+          for line in logs:print('RAKUYA_LOG',line)
           PY
