@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-09T09:18:21+00:00",
+  "capturedAt": "2026-11-09T09:33:20+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -196,7 +196,7 @@
     },
     "板橋區三民路二段": {
       "mainHttp": 200,
-      "count": 28,
+      "count": 29,
       "primarySearchUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw?od=80",
       "confirmationUsed": false,
       "primaryHttp": 200,
@@ -205,10 +205,10 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 62592,
+      "primaryApiListDataLength": 64556,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
-      "roadTextCount": 28,
+      "roadTextCount": 29,
       "summary": [],
       "searchUrl": "https://buy.yungching.com.tw/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5&filter=0&pg=1&ps=30",
       "loadRounds": 0,
@@ -252,7 +252,8 @@
           "7559748",
           "7564581",
           "7576495",
-          "7590014"
+          "7590014",
+          "7591797"
         ]
       },
       "paginationPageRawNewIds": {
@@ -284,21 +285,22 @@
           "7559748",
           "7564581",
           "7576495",
-          "7590014"
+          "7590014",
+          "7591797"
         ]
       },
-      "rawHouseIdCount": 30,
-      "rawExactAddressTextCount": 28,
+      "rawHouseIdCount": 31,
+      "rawExactAddressTextCount": 29,
       "paginationError": null,
-      "apiTotalCount": 28,
-      "apiTotalItemCount": 29,
-      "apiRawRowCount": 30,
-      "apiUniqueRowCount": 30,
+      "apiTotalCount": 29,
+      "apiTotalItemCount": 30,
+      "apiRawRowCount": 31,
+      "apiUniqueRowCount": 31,
       "emptyResultVerified": false,
       "skippedConfirmedEmpty": false,
       "transportEvidence": "official_api_v2_decrypted",
       "available": true,
-      "rawCountBeforeIdIntegrity": 28,
+      "rawCountBeforeIdIntegrity": 29,
       "idIntegrityRemoved": 0,
       "mode": "yungching_official_api",
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
@@ -536,7 +538,7 @@
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     }
   },
-  "listingCount": 73,
+  "listingCount": 74,
   "listings": [
     {
       "id": "7514442",
@@ -1976,6 +1978,33 @@
       }
     },
     {
+      "id": "7591797",
+      "road": "板橋區三民路二段",
+      "title": "邊間通風採光好｜門口方便停車｜門寬7米｜長輩友善",
+      "price": 2338,
+      "area": 27.32,
+      "floor": "1/5樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7591797",
+      "sourceMode": "yungching_official_api",
+      "text": "邊間通風採光好｜門口方便停車｜門寬7米｜長輩友善 新北市板橋區三民路二段 公寓 建坪27.32 1/5樓 3房(室)2廳1衛 2338萬",
+      "rawText": "邊間通風採光好｜門口方便停車｜門寬7米｜長輩友善 新北市板橋區三民路二段 公寓 建坪27.32 1/5樓 3房(室)2廳1衛 2338萬",
+      "patternInfo": {
+        "room": 3,
+        "livingRoom": 2,
+        "bathRoom": 1,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 1,
+        "upFloor": 5
+      }
+    },
+    {
       "id": "7590014",
       "road": "板橋區三民路二段",
       "title": "板新綻高樓美兩房｜近捷運板新站｜近板橋運動中心",
@@ -2520,8 +2549,8 @@
   "paginationGuardVersion": "api-all-pages-v1",
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 73,
-    "afterCount": 73,
+    "beforeCount": 74,
+    "afterCount": 74,
     "removedCount": 0,
     "collisionIds": [],
     "remainingCollisionIds": [],
@@ -2537,7 +2566,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-09T09:18:37+00:00",
+    "generatedAt": "2026-11-09T09:33:35+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
