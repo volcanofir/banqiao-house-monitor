@@ -35,5 +35,13 @@ jobs:
                   print('ASSIGN',label,re.findall(pat,body)[:12])
                 print('PAYLOAD_SCRIPT_LEN',len(body),'RECORDS',body.count('firstPublishAt'))
               print('LDCOUNT',len(re.findall('firstPublishAt',html)))
+              m=re.search(r'window\.initRentData\s*=\s*',html)
+              if m:
+                data,end=json.JSONDecoder().raw_decode(html[m.end():])
+                print('INIT_TYPE',type(data).__name__,'KEYS',list(data)[:30] if isinstance(data,dict) else 'not-dict')
+                if isinstance(data,dict):
+                  for k,v in data.items():
+                    print('INIT_FIELD',k,'TYPE',type(v).__name__,'COUNT',len(v) if hasattr(v,'__len__') else None,'SAMPLE',json.dumps(v[:1] if isinstance(v,list) else v,ensure_ascii=False)[:1750])
+            
             except Exception as e:print('ERROR',road,page,str(e)[:230])
           PY
