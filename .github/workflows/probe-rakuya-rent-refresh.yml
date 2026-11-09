@@ -15,33 +15,17 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - run: pip install requests beautifulsoup4
-      - name: Identify SSR listing payload exact variable and page split
+      - run: pip install requests beautifulsoup4 playwright curl_cffi
+      - name: Test new parser across all seven rental roads without publishing
         run: |
           python - <<'PY'
-          import requests,json,re
-          from bs4 import BeautifulSoup
-          for road,page in [('三民路二段',1),('中山路二段',1),('中山路二段',2),('翠華街',1)]:
-            try:
-              r=requests.get('https://rent.rakuya.com.tw/result',params={'zipcode':'220','keyword':road,'page':page},headers={'User-Agent':'Mozilla/5.0'},timeout=20)
-              html=r.text
-              vars=list(re.finditer(r'window\.([A-Za-z_$][\w$]*)\s*=\s*',html))
-              print('ROAD',road,'PAGE',page,'HTTP',r.status_code,'VARIABLES',[(m.group(1),m.start()) for m in vars])
-              for tag in BeautifulSoup(html,'html.parser').find_all('script'):
-                body=tag.string or tag.get_text() or ''
-                if 'firstPublishAt' not in body:continue
-                print('PAYLOAD_SCRIPT_HEAD',re.sub(r'\s+',' ',body[:1100]))
-                for label,pat in [('global',r'window\.([A-Za-z_$][\w$]*)\s*=\s*'),('const',r'\b(?:var|let|const)\s+([A-Za-z_$][\w$]*)\s*=\s*')]:
-                  print('ASSIGN',label,re.findall(pat,body)[:12])
-                print('PAYLOAD_SCRIPT_LEN',len(body),'RECORDS',body.count('firstPublishAt'))
-              print('LDCOUNT',len(re.findall('firstPublishAt',html)))
-              m=re.search(r'window\.initRentData\s*=\s*',html)
-              if m:
-                data,end=json.JSONDecoder().raw_decode(html[m.end():])
-                print('INIT_TYPE',type(data).__name__,'KEYS',list(data)[:30] if isinstance(data,dict) else 'not-dict')
-                if isinstance(data,dict):
-                  for k,v in data.items():
-                    print('INIT_FIELD',k,'TYPE',type(v).__name__,'COUNT',len(v) if hasattr(v,'__len__') else None,'SAMPLE',json.dumps(v[:1] if isinstance(v,list) else v,ensure_ascii=False)[:1750])
-            
-            except Exception as e:print('ERROR',road,page,str(e)[:230])
+          import importlib.util,json
+          spec=importlib.util.spec_from_file_location('fetch_rental_preview','scripts/fetch_rental_preview.py')
+          mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
+          rows,ok,logs=mod.fetch_rakuya_http()
+          print('RAKUYA_RESULT',json.dumps({'ok':ok,'total':len(rows),'roads':{road:sum(1 for item in rows if item['road']==road) for road in mod.WATCH_ROADS}},ensure_ascii=False))
+          for log in logs:print('RAKUYA_LOG',log)
+          assert ok,'Seven roads were not all verified'
+          assert rows,'No rental results returned'
+          assert all(r['url'].startswith('https://') and r['houseId'] for r in rows),'Malformed result'
           PY
