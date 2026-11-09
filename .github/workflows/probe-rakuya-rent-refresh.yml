@@ -35,6 +35,7 @@ jobs:
                 print('PAGE',road,page,'HTTP',r.status_code,'FINAL',r.url,'PAG',json.dumps(pag,ensure_ascii=False),'ITEMS',len(it),'EHIDS',[x.get('ehid') for x in it[:4]],'RECOMMEND',len(data.get('recommendItems') or []),'IS_LAST',data.get('isLastPage'),'EXHAUSTED',data.get('mainResultExhausted'),'HTML_COUNTS',len(re.findall('firstPublishAt',r.text)), 'LENGTH',len(r.text))
               except Exception as e: print('ERROR',road,page,type(e).__name__,str(e)[:250])
           rows,ok,logs=m.fetch_rakuya_http()
-          print('FINAL',ok,len(rows))
+          print('FINAL',ok,len(rows),{road:sum(1 for x in rows if x['road']==road) for road in m.WATCH_ROADS})
           for line in logs:print('RAKUYA_LOG',line)
+          assert ok and rows, 'Not all seven roads validated with nonzero total'
           PY
