@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-11-09T05:18:36+00:00",
+  "verifiedAt": "2026-11-09T05:33:29+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-11-09T05:17:48+00:00",
+  "sourceDataUpdatedAt": "2026-11-09T05:32:36+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-09T05:18:27+00:00",
+    "generatedAt": "2026-11-09T05:33:15+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-09T05:15:23+00:00",
+    "sourceRunCheckedAt": "2026-11-09T05:30:22+00:00",
     "activeSinyiCount": 69,
     "matchedOfficialCount": 69,
     "appliedCount": 69,
@@ -30,7 +30,7 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-09T05:18:15+00:00",
+    "updatedAt": "2026-11-09T05:33:05+00:00",
     "status": "ok",
     "totalCount": 230,
     "uniqueListingCount": 230,
@@ -95,14 +95,14 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-09T05:16:02+00:00",
+    "updatedAt": "2026-11-09T05:30:51+00:00",
     "status": "ok",
-    "totalCount": 54,
-    "uniqueListingCount": 54,
+    "totalCount": 55,
+    "uniqueListingCount": 55,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 31,
+        "count": 32,
         "pages": 4
       },
       {
@@ -137,8 +137,10 @@
       }
     ],
     "changes": {
-      "newIds": [],
-      "newCount": 0,
+      "newIds": [
+        "38644928"
+      ],
+      "newCount": 1,
       "removedIds": [],
       "removedCount": 0,
       "priceChanges": [],
@@ -146,8 +148,8 @@
     },
     "complete": true,
     "detailSummary": {
-      "requestedCount": 54,
-      "completeCount": 54,
+      "requestedCount": 55,
+      "completeCount": 55,
       "failedCount": 0,
       "allComplete": true
     },
@@ -161,15 +163,15 @@
     }
   },
   "housepriceGrouping": {
-    "inputCount": 54,
+    "inputCount": 55,
     "regroupedCount": 36,
-    "mergedClusterCount": 14,
-    "absorbedCount": 18,
+    "mergedClusterCount": 15,
+    "absorbedCount": 19,
     "attachedToExistingGroupCount": 32,
     "standaloneGroupCount": 4,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
-    "directGroupIdMergeCount": 18
+    "directGroupIdMergeCount": 19
   },
   "companyNearTieGuard": {
     "enabled": true,
@@ -180,7 +182,7 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-09T05:18:36+00:00",
+    "auditedAt": "2026-11-09T05:33:29+00:00",
     "propertyGroupCount": 165,
     "companyListingCount": 73,
     "companyMatchCount": 40,
@@ -188,13 +190,13 @@
     "chosenCandidateRecomputeMismatchCount": 0,
     "weakIdentityAlreadyMergedPairCount": 813
   },
-  "snapshotCapturedAt": "2026-11-09T05:18:01+00:00",
-  "companySnapshotCapturedAt": "2026-11-09T05:18:01+00:00",
-  "companyGapGeneratedAt": "2026-11-09T05:18:33+00:00",
+  "snapshotCapturedAt": "2026-11-09T05:32:51+00:00",
+  "companySnapshotCapturedAt": "2026-11-09T05:32:51+00:00",
+  "companyGapGeneratedAt": "2026-11-09T05:33:23+00:00",
   "browserListingCount": 73,
   "companyListingCount": 73,
   "propertyGroupCount": 165,
-  "rawListingCount": 758,
+  "rawListingCount": 759,
   "comparisonCount": 165,
   "coveredRoads": [
     "板橋區中山路二段",
@@ -344,7 +346,7 @@
   "candidatesWithFloor": 162,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-09T05:18:15+00:00",
+    "generatedAt": "2026-11-09T05:33:04+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
