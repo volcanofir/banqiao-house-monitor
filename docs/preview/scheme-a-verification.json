@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-11-09T09:34:07+00:00",
+  "verifiedAt": "2026-11-09T09:48:48+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-11-09T09:33:05+00:00",
+  "sourceDataUpdatedAt": "2026-11-09T09:47:49+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-09T09:33:53+00:00",
+    "generatedAt": "2026-11-09T09:48:34+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-09T09:30:22+00:00",
+    "sourceRunCheckedAt": "2026-11-09T09:45:22+00:00",
     "activeSinyiCount": 69,
     "matchedOfficialCount": 69,
     "appliedCount": 69,
@@ -30,14 +30,14 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-09T09:33:35+00:00",
+    "updatedAt": "2026-11-09T09:48:19+00:00",
     "status": "ok",
-    "totalCount": 228,
-    "uniqueListingCount": 228,
+    "totalCount": 227,
+    "uniqueListingCount": 227,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 125,
+        "count": 124,
         "pages": 7
       },
       {
@@ -78,17 +78,17 @@
       "priceChanges": [],
       "removedCount": 1,
       "removedIds": [
-        "0e1f93361316669"
+        "0b76af356545193"
       ],
       "currentChangeCount": 1
     },
     "complete": true
   },
   "rakuyaGrouping": {
-    "inputCount": 228,
+    "inputCount": 227,
     "regroupedCount": 126,
     "mergedClusterCount": 49,
-    "absorbedCount": 102,
+    "absorbedCount": 101,
     "attachedToExistingGroupCount": 102,
     "standaloneGroupCount": 24,
     "ambiguousReviewCount": 0,
@@ -97,7 +97,7 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-09T09:31:07+00:00",
+    "updatedAt": "2026-11-09T09:45:59+00:00",
     "status": "ok",
     "totalCount": 55,
     "uniqueListingCount": 55,
@@ -182,21 +182,21 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-09T09:34:07+00:00",
+    "auditedAt": "2026-11-09T09:48:48+00:00",
     "propertyGroupCount": 167,
     "companyListingCount": 74,
     "companyMatchCount": 41,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 868
+    "weakIdentityAlreadyMergedPairCount": 861
   },
-  "snapshotCapturedAt": "2026-11-09T09:33:20+00:00",
-  "companySnapshotCapturedAt": "2026-11-09T09:33:20+00:00",
-  "companyGapGeneratedAt": "2026-11-09T09:34:02+00:00",
+  "snapshotCapturedAt": "2026-11-09T09:48:04+00:00",
+  "companySnapshotCapturedAt": "2026-11-09T09:48:04+00:00",
+  "companyGapGeneratedAt": "2026-11-09T09:48:42+00:00",
   "browserListingCount": 74,
   "companyListingCount": 74,
   "propertyGroupCount": 167,
-  "rawListingCount": 790,
+  "rawListingCount": 789,
   "comparisonCount": 167,
   "coveredRoads": [
     "板橋區中山路二段",
@@ -346,7 +346,7 @@
   "candidatesWithFloor": 164,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-09T09:33:35+00:00",
+    "generatedAt": "2026-11-09T09:48:18+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
