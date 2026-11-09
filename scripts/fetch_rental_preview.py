@@ -291,74 +291,120 @@ def parse_rakuya_cards(html_text, road):
     return dedupe(rows)
 
 
+def parse_rakuya_rental_payload(html_text):
+    """Read Rakuya's current server-rendered listing data, not retired AJAX."""
+    marker = re.search(r'window\.initRentData\s*=\s*', html_text or '')
+    if not marker:
+        raise ValueError('樂屋新版頁面缺少 window.initRentData')
+    data, _ = json.JSONDecoder().raw_decode(html_text[marker.end():])
+    if (not isinstance(data, dict) or data.get('status') is not True
+            or data.get('statusCode') != '000'
+            or not isinstance(data.get('data'), dict)):
+        raise ValueError('樂屋新版頁面資料狀態異常')
+    result = data['data']
+    if not isinstance(result.get('pagination'), dict) or not isinstance(result.get('items'), list):
+        raise ValueError('樂屋新版頁面缺少分頁或物件清單')
+    return result
+
+
+def parse_rakuya_rental_row(item, road):
+    """Keep exact road matches and stable original ehid across refreshes."""
+    if not isinstance(item, dict):
+        raise ValueError('樂屋租屋資料列格式異常')
+    hid = str(item.get('ehid') or '').strip()
+    if not re.fullmatch(r'[A-Za-z0-9]+', hid):
+        raise ValueError('樂屋租屋資料列缺少有效 ehid')
+    if str(item.get('zipcode') or '') != '220' or norm(item.get('areaName')) != '板橋區':
+        return None
+    if norm(item.get('road')) != WATCH_ROADS[road][0]:
+        return None
+    url = str(item.get('url') or '').strip()
+    parsed = urlparse(url)
+    if parsed.scheme != 'https' or parsed.hostname not in ('rent.rakuya.com.tw', 'community.rakuya.com.tw'):
+        raise ValueError(f'樂屋租屋 {hid} 缺少有效來源網址')
+    return {
+        'id': f'樂屋租屋:{hid}',
+        'source': '樂屋網',
+        'houseId': hid,
+        'road': road,
+        'title': norm(item.get('hname')) or f'樂屋租屋 {hid}',
+        'address': f"新北市板橋區{WATCH_ROADS[road][0]}",
+        'rent': num(item.get('price')),
+        'size': num(item.get('totalsize')),
+        'url': url,
+        'floor': norm(item.get('floor')) or None,
+        'layout': norm(item.get('layout')) or None,
+        'community': norm(item.get('community')) or None,
+        'sourcePublishedAtRaw': item.get('firstPublishAt'),
+        'sourcePublishedAtType': 'rakuyaRentFirstPublishAt',
+        'sourceUpdatedRaw': item.get('updatedtime'),
+    }
+
+
 def fetch_rakuya_http():
+    """Read all verified SSR pages. A partial fetch must never look healthy."""
     rows, logs = [], []
     ok = 0
     session = requests.Session()
     session.headers.update({
         'User-Agent': USER_AGENT,
-        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
         'Accept-Language': 'zh-TW,zh;q=0.9',
-        'X-Requested-With': 'XMLHttpRequest',
     })
     for road, result_url in SEARCH_RAKUYA.items():
-        keyword = WATCH_ROADS[road][0]
         road_rows, seen = [], set()
-        exact_total = None
-        success = False
+        expected_total = None
+        source_seen = 0
         complete = False
-        for page_no in range(1, 6):
-            ajax_url = 'https://rent.rakuya.com.tw/ajax/get-result'
-            try:
-                r = session.get(
-                    ajax_url,
-                    params={
-                        'zipcode': '220',
-                        'keyword': keyword,
-                        'sort': '11',
-                        'page': page_no,
-                    },
-                    headers={'Referer': requests.utils.requote_uri(result_url)},
-                    timeout=25,
-                )
-                if r.status_code != 200:
-                    logs.append(f'{road} 樂屋AJAX第{page_no}頁失敗：HTTP {r.status_code}')
-                    break
-                payload = r.json()
-                success = True
-                if exact_total is None:
-                    try:
-                        exact_total = int(payload.get('total') or 0)
-                    except Exception:
-                        exact_total = 0
-                parsed = parse_rakuya_cards(payload.get('list') or '', road)
-                new_rows = [x for x in parsed if x['id'] not in seen]
-                for item in new_rows:
-                    seen.add(item['id'])
-                    road_rows.append(item)
+        try:
+            first = session.get(result_url, timeout=25)
+            first.raise_for_status()
+            data = parse_rakuya_rental_payload(first.text)
+            pagination = data['pagination']
+            expected_total = int(pagination.get('total'))
+            page_count = int(pagination.get('pageCount'))
+            page_size = int(pagination.get('pageSize'))
+            if (expected_total < 0 or page_count < 0 or page_count > 40 or
+                    page_size <= 0 or (page_count == 0) != (expected_total == 0) or
+                    (expected_total > 0 and page_count * page_size < expected_total)):
+                raise ValueError(f'樂屋分頁資料異常: {pagination}')
+            for page_no in range(1, max(1, page_count) + 1):
+                if page_no > 1:
+                    response = session.get(with_page(result_url, page_no), timeout=25)
+                    response.raise_for_status()
+                    data = parse_rakuya_rental_payload(response.text)
+                p = data['pagination']
+                if (int(p.get('currentPage') or 0) != page_no or
+                        int(p.get('total') or 0) != expected_total or
+                        int(p.get('pageCount') or 0) != page_count):
+                    raise ValueError(f'樂屋租屋第 {page_no} 頁分頁不一致: {p}')
+                items = data['items']
+                if len(items) > page_size or (page_count and not items):
+                    raise ValueError(f'樂屋租屋第 {page_no} 頁回傳不完整')
+                source_seen += len(items)
+                added = 0
+                for item in items:
+                    listing = parse_rakuya_rental_row(item, road)
+                    if listing is None or listing['id'] in seen:
+                        continue
+                    seen.add(listing['id'])
+                    road_rows.append(listing)
+                    added += 1
                 logs.append(
-                    f'{road} 樂屋AJAX第{page_no}頁：符合板橋指定路段 {len(parsed)}／新增 {len(new_rows)}'
-                    + (f'／來源總數 {exact_total}' if exact_total is not None else '')
+                    f'{road} 樂屋SSR第{page_no}頁：來源 {len(items)}／精準路段新增 {added}／來源總數 {expected_total}'
                 )
-                page_info = payload.get('pages') or {}
-                page_count = int(page_info.get('pageCount') or 1)
-                if page_no >= page_count:
-                    complete = True
-                    break
-                if not (payload.get('list') or '').strip():
-                    break
-            except Exception as exc:
-                logs.append(f'{road} 樂屋AJAX第{page_no}頁例外：{type(exc).__name__}: {exc}')
-                break
-
-        if success and complete:
+            if source_seen != expected_total:
+                raise ValueError(f'樂屋來源總數 {expected_total} 與完整分頁 {source_seen} 不符')
+            complete = True
+        except Exception as exc:
+            logs.append(f'{road} 樂屋SSR抓取失敗：{type(exc).__name__}: {exc}')
+        if complete:
             ok += 1
-            if exact_total is not None and len(road_rows) != exact_total:
-                logs.append(f'{road} 樂屋精準路段過濾：來源搜尋總數 {exact_total} 筆，保留精準路段 {len(road_rows)} 筆')
-        elif success:
-            logs.append(f'{road} 樂屋分頁未完整抓取')
-        rows.extend(road_rows)
-        logs.append(f'{road} 樂屋租屋完成，共 {len(road_rows)} 筆')
+            rows.extend(road_rows)
+            logs.append(f'{road} 樂屋租屋完成，共 {len(road_rows)} 筆（來源 {expected_total} 筆）')
+        else:
+            # Discard incomplete per-road results and keep this source in error.
+            logs.append(f'{road} 樂屋租屋未完成；不以缺漏資料判定下架')
     return dedupe(rows), ok == len(SEARCH_RAKUYA), logs
 
 
