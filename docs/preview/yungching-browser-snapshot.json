@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-09T06:48:24+00:00",
+  "capturedAt": "2026-11-09T06:54:24+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -1949,33 +1949,6 @@
       }
     },
     {
-      "id": "7590014",
-      "road": "板橋區三民路二段",
-      "title": "板新綻高樓美兩房",
-      "price": 2550,
-      "area": 30.07,
-      "floor": "9/11樓",
-      "address": "新北市板橋區三民路二段",
-      "type": "住宅大樓",
-      "url": "https://buy.yungching.com.tw/house/7590014",
-      "sourceMode": "yungching_official_api",
-      "text": "板新綻高樓美兩房 新北市板橋區三民路二段 住宅大樓 建坪30.07 9/11樓 2房(室)2廳1衛 2550萬",
-      "rawText": "板新綻高樓美兩房 新北市板橋區三民路二段 住宅大樓 建坪30.07 9/11樓 2房(室)2廳1衛 2550萬",
-      "patternInfo": {
-        "room": 2,
-        "livingRoom": 2,
-        "bathRoom": 1,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 9,
-        "toFloor": 9,
-        "upFloor": 11
-      }
-    },
-    {
       "id": "7576495",
       "road": "板橋區三民路二段",
       "title": "A級辦公｜潤泰營造｜SRC鋼骨結構｜高樓極新裝潢",
@@ -2000,6 +1973,33 @@
         "fromFloor": 20,
         "toFloor": 20,
         "upFloor": 29
+      }
+    },
+    {
+      "id": "7590014",
+      "road": "板橋區三民路二段",
+      "title": "板新綻高樓美兩房",
+      "price": 2550,
+      "area": 30.07,
+      "floor": "9/11樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7590014",
+      "sourceMode": "yungching_official_api",
+      "text": "板新綻高樓美兩房 新北市板橋區三民路二段 住宅大樓 建坪30.07 9/11樓 2房(室)2廳1衛 2550萬",
+      "rawText": "板新綻高樓美兩房 新北市板橋區三民路二段 住宅大樓 建坪30.07 9/11樓 2房(室)2廳1衛 2550萬",
+      "patternInfo": {
+        "room": 2,
+        "livingRoom": 2,
+        "bathRoom": 1,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 9,
+        "toFloor": 9,
+        "upFloor": 11
       }
     },
     {
@@ -2537,7 +2537,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-09T06:48:41+00:00",
+    "generatedAt": "2026-11-09T06:54:38+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
