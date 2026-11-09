@@ -18,7 +18,8 @@ permissions:
 
 concurrency:
   group: banqiao-rental-preview-v4
-  cancel-in-progress: true
+  # A new trigger must not discard an in-progress complete rental snapshot.
+  cancel-in-progress: false
 
 jobs:
   rental-preview:
