@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T22:47:29+00:00",
+  "updatedAt": "2026-11-10T23:02:39+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -110,7 +110,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 94,
-      "checkedAt": "2026-11-10T22:47:37+00:00",
+      "checkedAt": "2026-11-10T23:02:48+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 18／新增 18／來源總數 57",
         "板橋區中山路二段 5168 API第2頁：符合 19／新增 19／來源總數 57",
@@ -1283,6 +1283,19 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
+      "id": "591租屋:22267918",
+      "source": "591",
+      "houseId": "22267918",
+      "road": "板橋區三民路二段",
+      "title": "板橋大套房明亮通風禁煙",
+      "address": "板橋區三民路二段",
+      "rent": 8500.0,
+      "size": 7.0,
+      "url": "https://rent.591.com.tw/22267918",
+      "floor": "5F/5F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
       "id": "591租屋:22273142",
       "source": "591",
       "houseId": "22273142",
@@ -1346,19 +1359,6 @@
       "url": "https://rent.591.com.tw/21043962",
       "floor": "3F/3F",
       "firstSeenAt": "2026-11-06T08:17:45+00:00"
-    },
-    {
-      "id": "591租屋:22267918",
-      "source": "591",
-      "houseId": "22267918",
-      "road": "板橋區三民路二段",
-      "title": "板橋大套房明亮通風禁煙",
-      "address": "板橋區三民路二段",
-      "rent": 8500.0,
-      "size": 7.0,
-      "url": "https://rent.591.com.tw/22267918",
-      "floor": "5F/5F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
       "id": "591租屋:22235088",
@@ -4496,7 +4496,7 @@
       "firstSeenAt": "2026-11-09T15:47:52+00:00"
     }
   ],
-  "elapsedSeconds": 114.71,
+  "elapsedSeconds": 116.49,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
