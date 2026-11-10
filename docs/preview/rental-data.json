@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T06:02:34+00:00",
+  "updatedAt": "2026-11-10T06:17:41+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -110,7 +110,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 97,
-      "checkedAt": "2026-11-10T06:02:41+00:00",
+      "checkedAt": "2026-11-10T06:17:49+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 18／新增 18／來源總數 59",
         "板橋區中山路二段 5168 API第2頁：符合 19／新增 19／來源總數 59",
@@ -1036,19 +1036,6 @@
       "firstSeenAt": "2026-11-05T16:19:57+00:00"
     },
     {
-      "id": "591租屋:22320733",
-      "source": "591",
-      "houseId": "22320733",
-      "road": "板橋區三民路一段",
-      "title": "有對外窗專人倒垃圾因疫情優惠每月8000",
-      "address": "板橋區三民路一段",
-      "rent": 8000.0,
-      "size": 7.0,
-      "url": "https://rent.591.com.tw/22320733",
-      "floor": "4F/5F",
-      "firstSeenAt": "2026-11-09T12:47:16+00:00"
-    },
-    {
       "id": "591租屋:22260801",
       "source": "591",
       "houseId": "22260801",
@@ -1073,6 +1060,19 @@
       "url": "https://rent.591.com.tw/22262953",
       "floor": "4F/4F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22320733",
+      "source": "591",
+      "houseId": "22320733",
+      "road": "板橋區三民路一段",
+      "title": "有對外窗專人倒垃圾因疫情優惠每月8000",
+      "address": "板橋區三民路一段",
+      "rent": 8000.0,
+      "size": 7.0,
+      "url": "https://rent.591.com.tw/22320733",
+      "floor": "4F/5F",
+      "firstSeenAt": "2026-11-09T12:47:16+00:00"
     },
     {
       "id": "591租屋:22193034",
@@ -4601,7 +4601,7 @@
       "firstSeenAt": "2026-11-09T15:47:52+00:00"
     }
   ],
-  "elapsedSeconds": 116.69,
+  "elapsedSeconds": 125.88,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
