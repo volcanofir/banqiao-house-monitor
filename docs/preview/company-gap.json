@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-10T16:03:50+00:00",
-  "sourceDataUpdatedAt": "2026-11-10T16:03:04+00:00",
+  "generatedAt": "2026-11-10T16:18:19+00:00",
+  "sourceDataUpdatedAt": "2026-11-10T16:17:37+00:00",
   "mode": "preview_only_591_sinyi_rakuya_5168_grouping_then_company_v11",
   "fetchMode": "yungching_official_rendered_dom_only",
   "company": "永慶房屋",
   "companyDataSource": "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM；缺樓層時同路徑開官方案件頁補值",
   "companyListingCount": 74,
-  "companySnapshotCapturedAt": "2026-11-10T16:03:18+00:00",
+  "companySnapshotCapturedAt": "2026-11-10T16:17:50+00:00",
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -35,7 +35,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 28,
-      "browserCapturedAt": "2026-11-10T16:03:18+00:00",
+      "browserCapturedAt": "2026-11-10T16:17:50+00:00",
       "paginationExpected": true,
       "paginationComplete": true,
       "paginationActivePage": 2,
@@ -52,7 +52,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 29,
-      "browserCapturedAt": "2026-11-10T16:03:18+00:00",
+      "browserCapturedAt": "2026-11-10T16:17:50+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -69,7 +69,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 6,
-      "browserCapturedAt": "2026-11-10T16:03:18+00:00",
+      "browserCapturedAt": "2026-11-10T16:17:50+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -86,7 +86,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 2,
-      "browserCapturedAt": "2026-11-10T16:03:18+00:00",
+      "browserCapturedAt": "2026-11-10T16:17:50+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -103,7 +103,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 0,
-      "browserCapturedAt": "2026-11-10T16:03:18+00:00",
+      "browserCapturedAt": "2026-11-10T16:17:50+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -120,7 +120,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 6,
-      "browserCapturedAt": "2026-11-10T16:03:18+00:00",
+      "browserCapturedAt": "2026-11-10T16:17:50+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -137,7 +137,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 3,
-      "browserCapturedAt": "2026-11-10T16:03:18+00:00",
+      "browserCapturedAt": "2026-11-10T16:17:50+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -31514,31 +31514,32 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "YC:7455299",
-        "title": "國泰建設｜代收垃圾｜可抽車位｜天然瓦斯｜前後陽台",
+        "id": "YC:6586357",
+        "title": "板橋國泰建設方正三房天然瓦斯一樓好停垃圾代收",
         "address": "新北市板橋區三民路二段",
-        "area": 32.26,
-        "price": 1355,
-        "url": "https://buy.yungching.com.tw/house/7455299",
+        "area": 31.03,
+        "price": 2349,
+        "url": "https://buy.yungching.com.tw/house/6586357",
         "sourceMode": "yungching_official_browser",
-        "officialId": "7455299",
+        "officialId": "6586357",
         "officialCaseId": null,
-        "floor": "4/5樓",
+        "floor": "1/5樓",
         "floorSourceMode": null,
         "floorEvidence": null,
         "type": "公寓"
       },
       "matchInfo": {
-        "areaDelta": 2.2,
-        "priceDelta": 930.0,
+        "areaDelta": 0.97,
+        "priceDelta": 64.0,
         "shared": [],
-        "titleRatio": 0,
+        "titleRatio": 0.125,
+        "companySourceMode": "yungching_official_browser",
         "floorRelation": "conflict",
         "externalFloors": [
           7
         ],
         "companyFloors": [
-          4
+          1
         ],
         "floorConflict": true,
         "reason": "外部案件與公司候選樓層明確不同",
@@ -38001,35 +38002,6 @@
       "captureSourceMode": "yungching_official_api"
     },
     {
-      "id": "YC:7455299",
-      "road": "板橋區三民路二段",
-      "title": "國泰建設｜代收垃圾｜可抽車位｜天然瓦斯｜前後陽台",
-      "price": 1355,
-      "area": 32.26,
-      "floor": "4/5樓",
-      "address": "新北市板橋區三民路二段",
-      "type": "公寓",
-      "url": "https://buy.yungching.com.tw/house/7455299",
-      "sourceMode": "yungching_official_browser",
-      "text": "國泰建設｜代收垃圾｜可抽車位｜天然瓦斯｜前後陽台 新北市板橋區三民路二段 公寓 建坪32.26 4/5樓 3房(室)2廳2衛 1355萬",
-      "rawText": "國泰建設｜代收垃圾｜可抽車位｜天然瓦斯｜前後陽台 新北市板橋區三民路二段 公寓 建坪32.26 4/5樓 3房(室)2廳2衛 1355萬",
-      "patternInfo": {
-        "room": 3,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 4,
-        "toFloor": 4,
-        "upFloor": 5
-      },
-      "officialId": "7455299",
-      "captureSourceMode": "yungching_official_api"
-    },
-    {
       "id": "YC:6586357",
       "road": "板橋區三民路二段",
       "title": "板橋國泰建設方正三房天然瓦斯一樓好停垃圾代收",
@@ -38056,6 +38028,35 @@
         "upFloor": 5
       },
       "officialId": "6586357",
+      "captureSourceMode": "yungching_official_api"
+    },
+    {
+      "id": "YC:7455299",
+      "road": "板橋區三民路二段",
+      "title": "國泰建設｜代收垃圾｜可抽車位｜天然瓦斯｜前後陽台",
+      "price": 1355,
+      "area": 32.26,
+      "floor": "4/5樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7455299",
+      "sourceMode": "yungching_official_browser",
+      "text": "國泰建設｜代收垃圾｜可抽車位｜天然瓦斯｜前後陽台 新北市板橋區三民路二段 公寓 建坪32.26 4/5樓 3房(室)2廳2衛 1355萬",
+      "rawText": "國泰建設｜代收垃圾｜可抽車位｜天然瓦斯｜前後陽台 新北市板橋區三民路二段 公寓 建坪32.26 4/5樓 3房(室)2廳2衛 1355萬",
+      "patternInfo": {
+        "room": 3,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 4,
+        "toFloor": 4,
+        "upFloor": 5
+      },
+      "officialId": "7455299",
       "captureSourceMode": "yungching_official_api"
     },
     {
@@ -39371,8 +39372,8 @@
   },
   "officialBrowserCompany": {
     "enabled": true,
-    "capturedAt": "2026-11-10T16:03:18+00:00",
-    "snapshotAgeMinutes": 0.5,
+    "capturedAt": "2026-11-10T16:17:50+00:00",
+    "snapshotAgeMinutes": 0.4,
     "acceptedRoadCount": 7,
     "unavailableRoadCount": 0,
     "roads": {
@@ -39466,12 +39467,12 @@
   "safeFloorParser": true,
   "safeFloorParserRule": "subject floor must be physically valid against total floor; glued area digits are trimmed instead of becoming impossible floors",
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-10T16:03:44+00:00",
+    "generatedAt": "2026-11-10T16:18:13+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-10T16:00:35+00:00",
+    "sourceRunCheckedAt": "2026-11-10T16:15:24+00:00",
     "activeSinyiCount": 68,
     "matchedOfficialCount": 68,
     "appliedCount": 68,
@@ -39496,7 +39497,7 @@
     "groups": []
   },
   "recentOffMarketRetentionDays": 10,
-  "recentOffMarketGeneratedAt": "2026-11-10T16:03:51+00:00",
+  "recentOffMarketGeneratedAt": "2026-11-10T16:18:20+00:00",
   "recentOffMarketCount": 6,
   "recentOffMarketGroups": [
     {
@@ -40173,7 +40174,7 @@
     "directGroupIdMergeCount": 19
   },
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-10T16:03:34+00:00",
+    "updatedAt": "2026-11-10T16:18:02+00:00",
     "status": "ok",
     "totalCount": 228,
     "uniqueListingCount": 228,
@@ -40219,18 +40220,14 @@
       "newIds": [],
       "priceChangeCount": 0,
       "priceChanges": [],
-      "removedCount": 3,
-      "removedIds": [
-        "03c52f350683394",
-        "0dc84135046546a",
-        "0ea15235072493d"
-      ],
-      "currentChangeCount": 3
+      "removedCount": 0,
+      "removedIds": [],
+      "currentChangeCount": 0
     },
     "complete": true
   },
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-10T16:01:11+00:00",
+    "updatedAt": "2026-11-10T16:15:54+00:00",
     "status": "ok",
     "totalCount": 55,
     "uniqueListingCount": 55,
