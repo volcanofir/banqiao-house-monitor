@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-10T23:18:36+00:00",
+  "verifiedAt": "2026-11-10T23:31:47+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-10T23:18:26+00:00",
+    "generatedAt": "2026-11-10T23:31:32+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -180,21 +180,21 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-10T23:18:36+00:00",
+    "auditedAt": "2026-11-10T23:31:47+00:00",
     "propertyGroupCount": 169,
     "companyListingCount": 74,
     "companyMatchCount": 41,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 876
+    "weakIdentityAlreadyMergedPairCount": 880
   },
   "snapshotCapturedAt": "2026-11-10T23:18:03+00:00",
   "companySnapshotCapturedAt": "2026-11-10T23:18:03+00:00",
-  "companyGapGeneratedAt": "2026-11-10T23:18:32+00:00",
+  "companyGapGeneratedAt": "2026-11-10T23:31:41+00:00",
   "browserListingCount": 74,
   "companyListingCount": 74,
   "propertyGroupCount": 169,
-  "rawListingCount": 786,
+  "rawListingCount": 785,
   "comparisonCount": 169,
   "coveredRoads": [
     "板橋區中山路二段",
@@ -277,9 +277,9 @@
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-10T20:16:57+00:00",
-    "totalCount": 234,
-    "uniqueListingCount": 234,
+    "updatedAt": "2026-11-10T23:31:17+00:00",
+    "totalCount": 233,
+    "uniqueListingCount": 233,
     "groupCount": 96,
     "roadCounts": [
       {
@@ -296,7 +296,7 @@
       },
       {
         "road": "萬安街",
-        "count": 12
+        "count": 11
       },
       {
         "road": "林森街",
@@ -312,13 +312,13 @@
       }
     ],
     "sourceFieldCoverage": {
-      "floor": 224,
-      "layout": 234,
-      "community": 135,
-      "houseAge": 234,
-      "parkingFlag": 234,
+      "floor": 223,
+      "layout": 233,
+      "community": 133,
+      "houseAge": 233,
+      "parkingFlag": 233,
       "unverifiedFloor": 10,
-      "total": 234
+      "total": 233
     },
     "floorAwarePreviewGrouping": true,
     "historyMatchedIdCount": 187,
