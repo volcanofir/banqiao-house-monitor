@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T22:19:39+00:00",
+  "updatedAt": "2026-11-11T22:35:58+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -110,7 +110,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 98,
-      "checkedAt": "2026-11-11T22:19:47+00:00",
+      "checkedAt": "2026-11-11T22:36:20+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 63",
         "板橋區中山路二段 5168 API第2頁：符合 18／新增 18／來源總數 63",
@@ -309,6 +309,19 @@
       "firstSeenAt": "2026-11-09T07:32:49+00:00"
     },
     {
+      "id": "591租屋:22259097",
+      "source": "591",
+      "houseId": "22259097",
+      "road": "板橋區中山路二段",
+      "title": "步行板新捷運站高品質平價溫馨大套房(走道窗)",
+      "address": "板橋區中山路二段",
+      "rent": 7300.0,
+      "size": 6.0,
+      "url": "https://rent.591.com.tw/22259097",
+      "floor": "3F/5F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
       "id": "591租屋:22242970",
       "source": "591",
       "houseId": "22242970",
@@ -357,19 +370,6 @@
       "rent": 7300.0,
       "size": 6.0,
       "url": "https://rent.591.com.tw/22258948",
-      "floor": "3F/5F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
-      "id": "591租屋:22259097",
-      "source": "591",
-      "houseId": "22259097",
-      "road": "板橋區中山路二段",
-      "title": "步行板新捷運站高品質平價溫馨大套房(走道窗)",
-      "address": "板橋區中山路二段",
-      "rent": 7300.0,
-      "size": 6.0,
-      "url": "https://rent.591.com.tw/22259097",
       "floor": "3F/5F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
@@ -1297,19 +1297,6 @@
       "firstSeenAt": "2026-11-02T16:02:51+00:00"
     },
     {
-      "id": "591租屋:22255964",
-      "source": "591",
-      "houseId": "22255964",
-      "road": "板橋區三民路二段",
-      "title": "【家樂福商圈三房】限租補對象｜不收服務費@peace911",
-      "address": "板橋區三民路二段",
-      "rent": 30000.0,
-      "size": 27.9,
-      "url": "https://rent.591.com.tw/22255964",
-      "floor": "2F/5F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
       "id": "591租屋:22270629",
       "source": "591",
       "houseId": "22270629",
@@ -1320,6 +1307,19 @@
       "size": 6.0,
       "url": "https://rent.591.com.tw/22270629",
       "floor": "5F/5F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22255964",
+      "source": "591",
+      "houseId": "22255964",
+      "road": "板橋區三民路二段",
+      "title": "【家樂福商圈三房】限租補對象｜不收服務費@peace911",
+      "address": "板橋區三民路二段",
+      "rent": 30000.0,
+      "size": 27.9,
+      "url": "https://rent.591.com.tw/22255964",
+      "floor": "2F/5F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
@@ -4624,7 +4624,7 @@
       "firstSeenAt": "2026-11-09T15:47:52+00:00"
     }
   ],
-  "elapsedSeconds": 115.63,
+  "elapsedSeconds": 86.13,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
