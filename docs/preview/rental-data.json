@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T21:37:25+00:00",
+  "updatedAt": "2026-11-11T21:48:12+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -110,7 +110,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 98,
-      "checkedAt": "2026-11-11T21:37:41+00:00",
+      "checkedAt": "2026-11-11T21:48:41+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 63",
         "板橋區中山路二段 5168 API第2頁：符合 18／新增 18／來源總數 63",
@@ -283,19 +283,6 @@
       "firstSeenAt": "2026-11-02T08:17:08+00:00"
     },
     {
-      "id": "591租屋:22318601",
-      "source": "591",
-      "houseId": "22318601",
-      "road": "板橋區中山路二段",
-      "title": "板橋雅房很多間",
-      "address": "板橋區中山路二段",
-      "rent": 10000.0,
-      "size": 10.0,
-      "url": "https://rent.591.com.tw/22318601",
-      "floor": "5F/8F",
-      "firstSeenAt": "2026-11-09T07:32:49+00:00"
-    },
-    {
       "id": "591租屋:22259075",
       "source": "591",
       "houseId": "22259075",
@@ -307,6 +294,19 @@
       "url": "https://rent.591.com.tw/22259075",
       "floor": "3F/5F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22318601",
+      "source": "591",
+      "houseId": "22318601",
+      "road": "板橋區中山路二段",
+      "title": "板橋雅房很多間",
+      "address": "板橋區中山路二段",
+      "rent": 10000.0,
+      "size": 10.0,
+      "url": "https://rent.591.com.tw/22318601",
+      "floor": "5F/8F",
+      "firstSeenAt": "2026-11-09T07:32:49+00:00"
     },
     {
       "id": "591租屋:22207700",
@@ -4624,7 +4624,7 @@
       "firstSeenAt": "2026-11-09T15:47:52+00:00"
     }
   ],
-  "elapsedSeconds": 101.5,
+  "elapsedSeconds": 136.06,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
