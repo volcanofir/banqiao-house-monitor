@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-11-12T02:03:38+00:00",
+  "verifiedAt": "2026-11-12T02:18:39+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-11-12T02:02:50+00:00",
+  "sourceDataUpdatedAt": "2026-11-12T02:17:45+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-12T02:03:28+00:00",
+    "generatedAt": "2026-11-12T02:18:26+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-12T02:00:25+00:00",
+    "sourceRunCheckedAt": "2026-11-12T02:15:23+00:00",
     "activeSinyiCount": 68,
     "matchedOfficialCount": 68,
     "appliedCount": 68,
@@ -30,7 +30,7 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-12T02:03:17+00:00",
+    "updatedAt": "2026-11-12T02:18:15+00:00",
     "status": "ok",
     "totalCount": 226,
     "uniqueListingCount": 226,
@@ -95,14 +95,14 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-12T01:46:01+00:00",
+    "updatedAt": "2026-11-12T02:15:57+00:00",
     "status": "ok",
-    "totalCount": 53,
-    "uniqueListingCount": 53,
+    "totalCount": 51,
+    "uniqueListingCount": 51,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 30,
+        "count": 28,
         "pages": 3
       },
       {
@@ -139,15 +139,18 @@
     "changes": {
       "newIds": [],
       "newCount": 0,
-      "removedIds": [],
-      "removedCount": 0,
+      "removedIds": [
+        "37581525",
+        "37581558"
+      ],
+      "removedCount": 2,
       "priceChanges": [],
       "priceChangeCount": 0
     },
     "complete": true,
     "detailSummary": {
-      "requestedCount": 53,
-      "completeCount": 53,
+      "requestedCount": 51,
+      "completeCount": 51,
       "failedCount": 0,
       "allComplete": true
     },
@@ -161,15 +164,15 @@
     }
   },
   "housepriceGrouping": {
-    "inputCount": 53,
+    "inputCount": 51,
     "regroupedCount": 36,
-    "mergedClusterCount": 14,
-    "absorbedCount": 17,
+    "mergedClusterCount": 13,
+    "absorbedCount": 15,
     "attachedToExistingGroupCount": 32,
     "standaloneGroupCount": 4,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
-    "directGroupIdMergeCount": 17
+    "directGroupIdMergeCount": 15
   },
   "companyNearTieGuard": {
     "enabled": true,
@@ -180,21 +183,21 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-12T02:03:38+00:00",
+    "auditedAt": "2026-11-12T02:18:39+00:00",
     "propertyGroupCount": 168,
     "companyListingCount": 73,
     "companyMatchCount": 41,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 861
+    "weakIdentityAlreadyMergedPairCount": 853
   },
-  "snapshotCapturedAt": "2026-11-12T02:03:03+00:00",
-  "companySnapshotCapturedAt": "2026-11-12T02:03:03+00:00",
-  "companyGapGeneratedAt": "2026-11-12T02:03:34+00:00",
+  "snapshotCapturedAt": "2026-11-12T02:18:00+00:00",
+  "companySnapshotCapturedAt": "2026-11-12T02:18:00+00:00",
+  "companyGapGeneratedAt": "2026-11-12T02:18:34+00:00",
   "browserListingCount": 73,
   "companyListingCount": 73,
   "propertyGroupCount": 168,
-  "rawListingCount": 781,
+  "rawListingCount": 779,
   "comparisonCount": 168,
   "coveredRoads": [
     "板橋區中山路二段",
@@ -344,7 +347,7 @@
   "candidatesWithFloor": 165,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-12T02:03:16+00:00",
+    "generatedAt": "2026-11-12T02:18:14+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
