@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-12T11:36:01+00:00",
+  "generatedAt": "2026-11-12T11:48:06+00:00",
   "sourceDataUpdatedAt": "2026-11-12T11:17:51+00:00",
   "mode": "preview_only_591_sinyi_rakuya_5168_grouping_then_company_v11",
   "fetchMode": "yungching_official_rendered_dom_only",
   "company": "永慶房屋",
   "companyDataSource": "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM；缺樓層時同路徑開官方案件頁補值",
   "companyListingCount": 72,
-  "companySnapshotCapturedAt": "2026-11-12T11:32:21+00:00",
+  "companySnapshotCapturedAt": "2026-11-12T11:44:30+00:00",
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -35,7 +35,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 30,
-      "browserCapturedAt": "2026-11-12T11:32:21+00:00",
+      "browserCapturedAt": "2026-11-12T11:44:30+00:00",
       "paginationExpected": true,
       "paginationComplete": true,
       "paginationActivePage": 2,
@@ -52,7 +52,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 28,
-      "browserCapturedAt": "2026-11-12T11:32:21+00:00",
+      "browserCapturedAt": "2026-11-12T11:44:30+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -69,7 +69,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 3,
-      "browserCapturedAt": "2026-11-12T11:32:21+00:00",
+      "browserCapturedAt": "2026-11-12T11:44:30+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -86,7 +86,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 2,
-      "browserCapturedAt": "2026-11-12T11:32:21+00:00",
+      "browserCapturedAt": "2026-11-12T11:44:30+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -103,7 +103,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 0,
-      "browserCapturedAt": "2026-11-12T11:32:21+00:00",
+      "browserCapturedAt": "2026-11-12T11:44:30+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -120,7 +120,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 6,
-      "browserCapturedAt": "2026-11-12T11:32:21+00:00",
+      "browserCapturedAt": "2026-11-12T11:44:30+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -137,7 +137,7 @@
       "available": true,
       "mode": "yungching_official_browser",
       "officialCount": 3,
-      "browserCapturedAt": "2026-11-12T11:32:21+00:00",
+      "browserCapturedAt": "2026-11-12T11:44:30+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -5019,7 +5019,7 @@
           "sourcePublishedAt": 1794412800,
           "postTime": null,
           "sourcePublishedAtType": "rakuyaListingDate",
-          "newAt": "2026-11-12T11:35:24+00:00",
+          "newAt": null,
           "active": true,
           "mergedListingCount": 3,
           "mergedActiveListingCount": 3,
@@ -13504,7 +13504,7 @@
           "sourcePublishedAt": 1794412800,
           "postTime": null,
           "sourcePublishedAtType": "rakuyaListingDate",
-          "newAt": "2026-11-12T11:35:24+00:00",
+          "newAt": null,
           "active": true,
           "mergedListingCount": 4,
           "mergedActiveListingCount": 4,
@@ -18275,7 +18275,7 @@
           "sourcePublishedAt": 1794412800,
           "postTime": null,
           "sourcePublishedAtType": "rakuyaListingDate",
-          "newAt": "2026-11-12T11:35:24+00:00",
+          "newAt": null,
           "active": true,
           "mergedListingCount": 4,
           "mergedActiveListingCount": 4,
@@ -37739,8 +37739,8 @@
   },
   "officialBrowserCompany": {
     "enabled": true,
-    "capturedAt": "2026-11-12T11:32:21+00:00",
-    "snapshotAgeMinutes": 3.6,
+    "capturedAt": "2026-11-12T11:44:30+00:00",
+    "snapshotAgeMinutes": 3.5,
     "acceptedRoadCount": 7,
     "unavailableRoadCount": 0,
     "roads": {
@@ -37834,7 +37834,7 @@
   "safeFloorParser": true,
   "safeFloorParserRule": "subject floor must be physically valid against total floor; glued area digits are trimmed instead of becoming impossible floors",
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-12T11:35:52+00:00",
+    "generatedAt": "2026-11-12T11:47:58+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -37864,7 +37864,7 @@
     "groups": []
   },
   "recentOffMarketRetentionDays": 10,
-  "recentOffMarketGeneratedAt": "2026-11-12T11:36:01+00:00",
+  "recentOffMarketGeneratedAt": "2026-11-12T11:48:06+00:00",
   "recentOffMarketCount": 9,
   "recentOffMarketGroups": [
     {
@@ -38802,7 +38802,7 @@
     "directGroupIdMergeCount": 15
   },
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-12T11:35:24+00:00",
+    "updatedAt": "2026-11-12T11:47:32+00:00",
     "status": "ok",
     "totalCount": 224,
     "uniqueListingCount": 224,
@@ -38844,24 +38844,18 @@
       }
     ],
     "changes": {
-      "newCount": 3,
-      "newIds": [
-        "02ad13362032047",
-        "0a14cf362035709",
-        "0c4000362031502"
-      ],
+      "newCount": 0,
+      "newIds": [],
       "priceChangeCount": 0,
       "priceChanges": [],
-      "removedCount": 1,
-      "removedIds": [
-        "08985d36192303b"
-      ],
-      "currentChangeCount": 4
+      "removedCount": 0,
+      "removedIds": [],
+      "currentChangeCount": 0
     },
     "complete": true
   },
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-12T11:35:39+00:00",
+    "updatedAt": "2026-11-12T11:47:44+00:00",
     "status": "ok",
     "totalCount": 51,
     "uniqueListingCount": 51,
