@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-12T02:48:03+00:00",
+  "capturedAt": "2026-11-12T03:03:22+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -478,7 +478,7 @@
     },
     "板橋區光復街": {
       "mainHttp": 200,
-      "count": 6,
+      "count": 5,
       "primarySearchUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E5%85%89%E5%BE%A9%E8%A1%97_kw?od=80",
       "confirmationUsed": false,
       "primaryHttp": 200,
@@ -487,10 +487,10 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 16556,
+      "primaryApiListDataLength": 14616,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
-      "roadTextCount": 6,
+      "roadTextCount": 5,
       "summary": [],
       "searchUrl": "https://buy.yungching.com.tw/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E5%85%89%E5%BE%A9%E8%A1%97&filter=0&pg=1&ps=30",
       "loadRounds": 0,
@@ -509,7 +509,6 @@
         "1": [
           "7562907",
           "7577270",
-          "7577291",
           "7577706",
           "7589182",
           "7589573"
@@ -519,30 +518,29 @@
         "1": [
           "7562907",
           "7577270",
-          "7577291",
           "7577706",
           "7589182",
           "7589573"
         ]
       },
-      "rawHouseIdCount": 8,
-      "rawExactAddressTextCount": 6,
+      "rawHouseIdCount": 7,
+      "rawExactAddressTextCount": 5,
       "paginationError": null,
-      "apiTotalCount": 6,
-      "apiTotalItemCount": 7,
-      "apiRawRowCount": 8,
-      "apiUniqueRowCount": 8,
+      "apiTotalCount": 5,
+      "apiTotalItemCount": 6,
+      "apiRawRowCount": 7,
+      "apiUniqueRowCount": 7,
       "emptyResultVerified": false,
       "skippedConfirmedEmpty": false,
       "transportEvidence": "official_api_v2_decrypted",
       "available": true,
-      "rawCountBeforeIdIntegrity": 6,
+      "rawCountBeforeIdIntegrity": 5,
       "idIntegrityRemoved": 0,
       "mode": "yungching_official_api",
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     }
   },
-  "listingCount": 75,
+  "listingCount": 74,
   "listings": [
     {
       "id": "7514442",
@@ -2441,33 +2439,6 @@
       }
     },
     {
-      "id": "7577291",
-      "road": "板橋區光復街",
-      "title": "板橋埔墘|面寬店面|正面街道|高廣告效益",
-      "price": 2680,
-      "area": 27.32,
-      "floor": "1/5樓",
-      "address": "新北市板橋區光復街",
-      "type": "店面",
-      "url": "https://buy.yungching.com.tw/house/7577291",
-      "sourceMode": "yungching_official_api",
-      "text": "板橋埔墘|面寬店面|正面街道|高廣告效益 新北市板橋區光復街 店面 建坪27.32 1/5樓 1房(室)0廳1衛 2680萬",
-      "rawText": "板橋埔墘|面寬店面|正面街道|高廣告效益 新北市板橋區光復街 店面 建坪27.32 1/5樓 1房(室)0廳1衛 2680萬",
-      "patternInfo": {
-        "room": 1,
-        "livingRoom": 0,
-        "bathRoom": 1,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 1,
-        "upFloor": 5
-      }
-    },
-    {
       "id": "7577270",
       "road": "板橋區光復街",
       "title": "板橋埔墘|面寬店面|正面街道|高廣告效益",
@@ -2580,8 +2551,8 @@
   "paginationGuardVersion": "api-all-pages-v1",
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 75,
-    "afterCount": 75,
+    "beforeCount": 74,
+    "afterCount": 74,
     "removedCount": 0,
     "collisionIds": [],
     "remainingCollisionIds": [],
@@ -2597,7 +2568,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-12T02:48:18+00:00",
+    "generatedAt": "2026-11-12T03:03:38+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
