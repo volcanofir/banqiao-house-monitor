@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-12T12:33:44+00:00",
+  "generatedAt": "2026-11-12T12:46:05+00:00",
   "sourceDataUpdatedAt": "2026-11-12T12:32:51+00:00",
   "mode": "preview_only_591_sinyi_rakuya_5168_grouping_then_company_v11",
   "fetchMode": "yungching_official_rendered_dom_only",
@@ -38560,7 +38560,7 @@
   "officialBrowserCompany": {
     "enabled": true,
     "capturedAt": "2026-11-12T12:33:04+00:00",
-    "snapshotAgeMinutes": 0.6,
+    "snapshotAgeMinutes": 13.0,
     "acceptedRoadCount": 7,
     "unavailableRoadCount": 0,
     "roads": {
@@ -38654,7 +38654,7 @@
   "safeFloorParser": true,
   "safeFloorParserRule": "subject floor must be physically valid against total floor; glued area digits are trimmed instead of becoming impossible floors",
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-12T12:33:40+00:00",
+    "generatedAt": "2026-11-12T12:45:59+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -38684,8 +38684,8 @@
     "groups": []
   },
   "recentOffMarketRetentionDays": 10,
-  "recentOffMarketGeneratedAt": "2026-11-12T12:33:45+00:00",
-  "recentOffMarketCount": 9,
+  "recentOffMarketGeneratedAt": "2026-11-12T12:46:05+00:00",
+  "recentOffMarketCount": 7,
   "recentOffMarketGroups": [
     {
       "groupId": "GROUP:樂屋:0f3f4b36193642e",
@@ -39289,240 +39289,6 @@
       "offMarketRetentionDays": 10,
       "offMarket": true,
       "offMarketPendingConfirmation": false
-    },
-    {
-      "groupId": "GROUP:信義房屋:9433FB",
-      "primaryId": "信義房屋:9433FB",
-      "primarySource": "信義房屋",
-      "road": "板橋區中山路二段",
-      "title": "馥華大台北‧遠景",
-      "address": "新北市板橋區中山路二段",
-      "price": "4,198萬",
-      "effectivePrice": 4198,
-      "size": "73.43坪",
-      "url": "https://www.sinyi.com.tw/buy/house/9433FB?breadcrumb=list",
-      "sourcePublishedAt": 1784271985,
-      "postTime": 1784271985,
-      "sourcePublishedAtType": "publishTime",
-      "newAt": "2026-07-17T15:06:25+08:00",
-      "active": false,
-      "sources": [
-        "信義房屋",
-        "樂屋網"
-      ],
-      "sourceListings": [
-        {
-          "id": "信義房屋:9433FB",
-          "houseId": "9433FB",
-          "source": "信義房屋",
-          "road": "板橋區中山路二段",
-          "title": "馥華大台北‧遠景",
-          "url": "https://www.sinyi.com.tw/buy/house/9433FB?breadcrumb=list",
-          "price": "4,198萬",
-          "effectivePrice": 4198,
-          "size": "73.43坪",
-          "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": 1784271985,
-          "postTime": 1784271985,
-          "sourcePublishedAtType": "publishTime",
-          "newAt": "2026-07-17T15:06:25+08:00",
-          "active": false,
-          "mergedListingCount": null,
-          "mergedActiveListingCount": null,
-          "mergedListings": [],
-          "structuredFloor": "10",
-          "floor": "10/14樓",
-          "structuredTotalFloor": "14",
-          "floorSourceMode": "sinyi_official_filterObject_api",
-          "sinyiCommId": "0009551",
-          "sinyiCommName": "馥華大台北",
-          "sinyiObjectType": 1
-        },
-        {
-          "id": "樂屋:05f4eb34765705c",
-          "houseId": "05f4eb34765705c",
-          "source": "樂屋網",
-          "road": "板橋區中山路二段",
-          "title": "馥華大台北‧遠景",
-          "url": "https://community.rakuya.com.tw/2365/sell/info?ehid=05f4eb34765705c",
-          "price": "4198萬",
-          "effectivePrice": 4198,
-          "size": "73.43坪",
-          "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": 1784304000,
-          "postTime": null,
-          "sourcePublishedAtType": "rakuyaListingDate",
-          "newAt": null,
-          "active": false,
-          "mergedListingCount": 1,
-          "mergedActiveListingCount": 0,
-          "mergedListings": [
-            {
-              "id": "樂屋:05f4eb34765705c",
-              "houseId": "05f4eb34765705c",
-              "source": "樂屋網",
-              "title": "馥華大台北‧遠景",
-              "url": "https://community.rakuya.com.tw/2365/sell/info?ehid=05f4eb34765705c",
-              "price": "4198萬",
-              "effectivePrice": 4198,
-              "size": "73.43坪",
-              "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": 1784304000,
-              "postTime": null,
-              "active": false,
-              "floor": "10/14樓"
-            }
-          ],
-          "floor": "10/14樓",
-          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
-          "rakuyaSourcePublishedDate": "2026-07-18",
-          "rakuyaSourcePublishedRaw": "2026-07-18",
-          "rakuyaSourcePublishedEvidence": "script:object_upload_time"
-        }
-      ],
-      "crossPlatformMerged": true,
-      "crossPlatformMatchInfo": [
-        {
-          "source": "樂屋網",
-          "sourceId": "樂屋:05f4eb34765705c",
-          "score": 31,
-          "evidenceSource": "信義房屋",
-          "areaDelta": 0.0,
-          "priceDelta": 0.0,
-          "titleRatio": 1.0,
-          "shared": [
-            "馥華大台北",
-            "華大台北",
-            "馥華大台",
-            "大台北",
-            "華大台",
-            "馥華大"
-          ],
-          "exactFingerprint": true
-        }
-      ],
-      "rawListingCount": 2,
-      "removedAt": "2026-11-02T12:36:43+00:00",
-      "offMarketRetentionDays": 10,
-      "offMarket": true,
-      "offMarketPendingConfirmation": false
-    },
-    {
-      "groupId": "GROUP:信義房屋:7533YZ",
-      "primaryId": "信義房屋:7533YZ",
-      "primarySource": "信義房屋",
-      "road": "板橋區中山路二段",
-      "title": "埔墘市場旁金店面",
-      "address": "新北市板橋區中山路二段",
-      "price": "1,858萬",
-      "effectivePrice": 1858,
-      "size": "15.52坪",
-      "url": "https://www.sinyi.com.tw/buy/house/7533YZ?breadcrumb=list",
-      "sourcePublishedAt": 1747285425,
-      "postTime": 1747285425,
-      "sourcePublishedAtType": "publishTime",
-      "newAt": "2025-05-15T13:03:45+08:00",
-      "active": false,
-      "sources": [
-        "信義房屋",
-        "樂屋網"
-      ],
-      "sourceListings": [
-        {
-          "id": "信義房屋:7533YZ",
-          "houseId": "7533YZ",
-          "source": "信義房屋",
-          "road": "板橋區中山路二段",
-          "title": "埔墘市場旁金店面",
-          "url": "https://www.sinyi.com.tw/buy/house/7533YZ?breadcrumb=list",
-          "price": "1,858萬",
-          "effectivePrice": 1858,
-          "size": "15.52坪",
-          "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": 1747285425,
-          "postTime": 1747285425,
-          "sourcePublishedAtType": "publishTime",
-          "newAt": "2025-05-15T13:03:45+08:00",
-          "active": false,
-          "mergedListingCount": null,
-          "mergedActiveListingCount": null,
-          "mergedListings": [],
-          "structuredFloor": "1",
-          "floor": "1/14樓",
-          "structuredTotalFloor": "14",
-          "floorSourceMode": "sinyi_official_filterObject_api",
-          "sinyiCommId": "0000201",
-          "sinyiCommName": "皇翔凱旋門",
-          "sinyiObjectType": 1
-        },
-        {
-          "id": "樂屋:05fa3f306661356",
-          "houseId": "05fa3f306661356",
-          "source": "樂屋網",
-          "road": "板橋區中山路二段",
-          "title": "埔墘市場旁金店面",
-          "url": "https://community.rakuya.com.tw/31476/sell/info?ehid=05fa3f306661356",
-          "price": "1858萬",
-          "effectivePrice": 1858,
-          "size": "15.52坪",
-          "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": 1748275200,
-          "postTime": null,
-          "sourcePublishedAtType": "rakuyaListingDate",
-          "newAt": null,
-          "active": false,
-          "mergedListingCount": 1,
-          "mergedActiveListingCount": 0,
-          "mergedListings": [
-            {
-              "id": "樂屋:05fa3f306661356",
-              "houseId": "05fa3f306661356",
-              "source": "樂屋網",
-              "title": "埔墘市場旁金店面",
-              "url": "https://community.rakuya.com.tw/31476/sell/info?ehid=05fa3f306661356",
-              "price": "1858萬",
-              "effectivePrice": 1858,
-              "size": "15.52坪",
-              "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": 1748275200,
-              "postTime": null,
-              "active": false,
-              "floor": "1/14樓"
-            }
-          ],
-          "floor": "1/14樓",
-          "monitorFirstSeenAt": "2026-10-20T17:31:42+00:00",
-          "rakuyaSourcePublishedDate": "2025-05-27",
-          "rakuyaSourcePublishedRaw": "2025-05-27",
-          "rakuyaSourcePublishedEvidence": "script:object_upload_time"
-        }
-      ],
-      "crossPlatformMerged": true,
-      "crossPlatformMatchInfo": [
-        {
-          "source": "樂屋網",
-          "sourceId": "樂屋:05fa3f306661356",
-          "score": 32,
-          "evidenceSource": "信義房屋",
-          "areaDelta": 0.0,
-          "priceDelta": 0.0,
-          "titleRatio": 1.0,
-          "shared": [
-            "埔墘市場旁金店面",
-            "埔墘市場旁",
-            "場旁金店面",
-            "墘市場旁金",
-            "市場旁金店",
-            "埔墘市場"
-          ],
-          "exactFingerprint": true
-        }
-      ],
-      "rawListingCount": 2,
-      "removedAt": "2026-11-02T12:36:43+00:00",
-      "offMarketRetentionDays": 10,
-      "offMarket": true,
-      "offMarketPendingConfirmation": false
     }
   ],
   "pendingOffMarketConfirmationCount": 2,
@@ -39675,7 +39441,7 @@
     "complete": true
   },
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-12T12:31:03+00:00",
+    "updatedAt": "2026-11-12T12:45:27+00:00",
     "status": "ok",
     "totalCount": 51,
     "uniqueListingCount": 51,
