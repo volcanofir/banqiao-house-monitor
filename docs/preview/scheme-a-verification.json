@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-11-13T08:33:48+00:00",
+  "verifiedAt": "2026-11-13T08:48:47+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-11-13T08:32:38+00:00",
+  "sourceDataUpdatedAt": "2026-11-13T08:47:51+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-13T08:33:36+00:00",
+    "generatedAt": "2026-11-13T08:48:33+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-13T08:30:22+00:00",
+    "sourceRunCheckedAt": "2026-11-13T08:45:21+00:00",
     "activeSinyiCount": 67,
     "matchedOfficialCount": 67,
     "appliedCount": 67,
@@ -30,7 +30,7 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-13T08:33:24+00:00",
+    "updatedAt": "2026-11-13T08:48:22+00:00",
     "status": "ok",
     "totalCount": 220,
     "uniqueListingCount": 220,
@@ -74,11 +74,18 @@
     "changes": {
       "newCount": 0,
       "newIds": [],
-      "priceChangeCount": 0,
-      "priceChanges": [],
+      "priceChangeCount": 1,
+      "priceChanges": [
+        {
+          "listingId": "0c606e35946397e",
+          "from": 1480,
+          "to": 1780,
+          "at": "2026-11-13T08:48:22+00:00"
+        }
+      ],
       "removedCount": 0,
       "removedIds": [],
-      "currentChangeCount": 0
+      "currentChangeCount": 1
     },
     "complete": true
   },
@@ -87,15 +94,15 @@
     "regroupedCount": 123,
     "mergedClusterCount": 50,
     "absorbedCount": 97,
-    "attachedToExistingGroupCount": 100,
-    "standaloneGroupCount": 23,
+    "attachedToExistingGroupCount": 99,
+    "standaloneGroupCount": 24,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 0
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-13T08:30:53+00:00",
+    "updatedAt": "2026-11-13T08:46:01+00:00",
     "status": "ok",
     "totalCount": 51,
     "uniqueListingCount": 51,
@@ -180,22 +187,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-13T08:33:47+00:00",
-    "propertyGroupCount": 166,
+    "auditedAt": "2026-11-13T08:48:47+00:00",
+    "propertyGroupCount": 167,
     "companyListingCount": 72,
     "companyMatchCount": 41,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
     "weakIdentityAlreadyMergedPairCount": 830
   },
-  "snapshotCapturedAt": "2026-11-13T08:33:10+00:00",
-  "companySnapshotCapturedAt": "2026-11-13T08:33:10+00:00",
-  "companyGapGeneratedAt": "2026-11-13T08:33:43+00:00",
+  "snapshotCapturedAt": "2026-11-13T08:48:06+00:00",
+  "companySnapshotCapturedAt": "2026-11-13T08:48:06+00:00",
+  "companyGapGeneratedAt": "2026-11-13T08:48:42+00:00",
   "browserListingCount": 72,
   "companyListingCount": 72,
-  "propertyGroupCount": 166,
+  "propertyGroupCount": 167,
   "rawListingCount": 770,
-  "comparisonCount": 166,
+  "comparisonCount": 167,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -261,10 +268,10 @@
   "counts": {
     "company_match": 41,
     "review": 5,
-    "missing": 120,
+    "missing": 121,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 105,
+  "crossPlatformMergedGroupCount": 104,
   "crossSourceReviewCount": 8,
   "preview591Regroup": {
     "original591TopLevel": 97,
@@ -340,11 +347,11 @@
     "removed": [],
     "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
   },
-  "candidateCount": 163,
-  "candidatesWithFloor": 163,
+  "candidateCount": 164,
+  "candidatesWithFloor": 164,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-13T08:33:24+00:00",
+    "generatedAt": "2026-11-13T08:48:21+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
