@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T20:31:47+00:00",
+  "updatedAt": "2026-11-13T20:46:50+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -110,7 +110,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 104,
-      "checkedAt": "2026-11-13T20:31:55+00:00",
+      "checkedAt": "2026-11-13T20:46:58+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 65",
         "板橋區中山路二段 5168 API第2頁：符合 18／新增 18／來源總數 65",
@@ -2603,6 +2603,28 @@
       "firstSeenAt": "2026-11-11T08:47:27+00:00"
     },
     {
+      "id": "5168租屋:16923555",
+      "source": "5168",
+      "houseId": "16923555",
+      "road": "板橋區中山路二段",
+      "title": "板新🚉陽台獨洗曬☀️變頻冷暖❄️雙門冰箱🧊拎包入住💼",
+      "address": "板橋區中山路二段",
+      "rent": 18000,
+      "size": 6.0,
+      "url": "https://rent.591.com.tw/22340717",
+      "floor": "4/4樓",
+      "rooms": 1.0,
+      "livingRooms": 0.0,
+      "bathrooms": 1.0,
+      "balconies": 0.0,
+      "purposeName": "獨立套房",
+      "buildingStyle": "公寓",
+      "sourcePublishedAt": "2026-10-04T18:18:28.893Z",
+      "sourceUpdatedAtRaw": "2026-11-13T20:31:15.663Z",
+      "sourcePublishedAtType": "housepriceRentApiPublishTime",
+      "firstSeenAt": "2026-10-04T11:20:58+00:00"
+    },
+    {
       "id": "5168租屋:16996117",
       "source": "5168",
       "houseId": "16996117",
@@ -2887,28 +2909,6 @@
       "sourceUpdatedAtRaw": "2026-11-11T20:41:04.813Z",
       "sourcePublishedAtType": "housepriceRentApiPublishTime",
       "firstSeenAt": "2026-10-03T00:30:04+00:00"
-    },
-    {
-      "id": "5168租屋:16923555",
-      "source": "5168",
-      "houseId": "16923555",
-      "road": "板橋區中山路二段",
-      "title": "板新🚉陽台獨洗曬☀️變頻冷暖❄️雙門冰箱🧊拎包入住💼",
-      "address": "板橋區中山路二段",
-      "rent": 18000,
-      "size": 6.0,
-      "url": "https://rent.591.com.tw/22211585",
-      "floor": "4/4樓",
-      "rooms": 1.0,
-      "livingRooms": 0.0,
-      "bathrooms": 1.0,
-      "balconies": 0.0,
-      "purposeName": "獨立套房",
-      "buildingStyle": "公寓",
-      "sourcePublishedAt": "2026-10-04T18:18:28.893Z",
-      "sourceUpdatedAtRaw": "2026-11-11T10:20:11.93Z",
-      "sourcePublishedAtType": "housepriceRentApiPublishTime",
-      "firstSeenAt": "2026-10-04T11:20:58+00:00"
     },
     {
       "id": "5168租屋:16941454",
@@ -4847,7 +4847,7 @@
       "firstSeenAt": "2026-11-10T20:47:23+00:00"
     }
   ],
-  "elapsedSeconds": 67.08,
+  "elapsedSeconds": 64.8,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
