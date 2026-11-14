@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-14T09:47:06+00:00",
+  "updatedAt": "2026-11-14T10:02:02+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -52,12 +52,12 @@
   "runs": {
     "591": {
       "status": "ok",
-      "totalCount": 117,
+      "totalCount": 116,
       "logs": [
         "板橋區中山路二段 591租屋第1頁：DOM 30／新增 30",
         "板橋區中山路二段 591租屋第2頁：DOM 30／新增 30",
-        "板橋區中山路二段 591租屋第3頁：DOM 6／新增 6",
-        "板橋區中山路二段 591租屋完成，共 66 筆",
+        "板橋區中山路二段 591租屋第3頁：DOM 5／新增 5",
+        "板橋區中山路二段 591租屋完成，共 65 筆",
         "板橋區三民路一段 591租屋第1頁：DOM 13／新增 13",
         "板橋區三民路一段 591租屋完成，共 13 筆",
         "板橋區光復街 591租屋第1頁：DOM 2／新增 2",
@@ -110,7 +110,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 105,
-      "checkedAt": "2026-11-14T09:47:14+00:00",
+      "checkedAt": "2026-11-14T10:02:11+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 66",
         "板橋區中山路二段 5168 API第2頁：符合 18／新增 18／來源總數 66",
@@ -136,13 +136,13 @@
     }
   },
   "counts": {
-    "total": 271,
+    "total": 270,
     "sinyi": 15,
-    "591": 117,
+    "591": 116,
     "rakuya": 34,
     "houseprice": 105,
     "roads": {
-      "板橋區中山路二段": 162,
+      "板橋區中山路二段": 161,
       "板橋區三民路一段": 34,
       "板橋區光復街": 4,
       "板橋區三民路二段": 60,
@@ -244,32 +244,6 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
-      "id": "591租屋:22258948",
-      "source": "591",
-      "houseId": "22258948",
-      "road": "板橋區中山路二段",
-      "title": "步行板新捷運站高品質平價溫馨大套房(走道窗)",
-      "address": "板橋區中山路二段",
-      "rent": 7300.0,
-      "size": 6.0,
-      "url": "https://rent.591.com.tw/22258948",
-      "floor": "3F/5F",
-      "firstSeenAt": "2026-11-12T08:17:01+00:00"
-    },
-    {
-      "id": "591租屋:22263264",
-      "source": "591",
-      "houseId": "22263264",
-      "road": "板橋區中山路二段",
-      "title": "埔墘光復橋2房2廳1衛大陽台",
-      "address": "板橋區中山路二段",
-      "rent": 22000.0,
-      "size": 20.0,
-      "url": "https://rent.591.com.tw/22263264",
-      "floor": "5F/6F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
       "id": "591租屋:22207779",
       "source": "591",
       "houseId": "22207779",
@@ -296,6 +270,19 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
+      "id": "591租屋:22258948",
+      "source": "591",
+      "houseId": "22258948",
+      "road": "板橋區中山路二段",
+      "title": "步行板新捷運站高品質平價溫馨大套房(走道窗)",
+      "address": "板橋區中山路二段",
+      "rent": 7300.0,
+      "size": 6.0,
+      "url": "https://rent.591.com.tw/22258948",
+      "floor": "3F/5F",
+      "firstSeenAt": "2026-11-12T08:17:01+00:00"
+    },
+    {
       "id": "591租屋:22259075",
       "source": "591",
       "houseId": "22259075",
@@ -319,6 +306,19 @@
       "size": 6.0,
       "url": "https://rent.591.com.tw/22259097",
       "floor": "3F/5F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22263264",
+      "source": "591",
+      "houseId": "22263264",
+      "road": "板橋區中山路二段",
+      "title": "埔墘光復橋2房2廳1衛大陽台",
+      "address": "板橋區中山路二段",
+      "rent": 22000.0,
+      "size": 20.0,
+      "url": "https://rent.591.com.tw/22263264",
+      "floor": "5F/6F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
@@ -476,19 +476,6 @@
       "url": "https://rent.591.com.tw/22313106",
       "floor": "2F/14F",
       "firstSeenAt": "2026-11-08T09:32:16+00:00"
-    },
-    {
-      "id": "591租屋:22348284",
-      "source": "591",
-      "houseId": "22348284",
-      "road": "板橋區中山路二段",
-      "title": "可租補｜埔墘商圈｜秒殺有陽台套房✨太平洋_柏亦",
-      "address": "板橋區中山路二段",
-      "rent": 10000.0,
-      "size": 10.0,
-      "url": "https://rent.591.com.tw/22348284",
-      "floor": "8F/12F",
-      "firstSeenAt": "2026-11-14T06:31:47+00:00"
     },
     {
       "id": "591租屋:22263000",
@@ -1037,6 +1024,19 @@
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
+      "id": "591租屋:22248642",
+      "source": "591",
+      "houseId": "22248642",
+      "road": "板橋區三民路一段",
+      "title": "✨全新首租｜可租補｜貓咪友善｜可開伙｜獨立洗衣",
+      "address": "板橋區三民路一段",
+      "rent": 17000.0,
+      "size": 7.0,
+      "url": "https://rent.591.com.tw/22248642",
+      "floor": "4F/4F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
       "id": "591租屋:22223223",
       "source": "591",
       "houseId": "22223223",
@@ -1100,19 +1100,6 @@
       "url": "https://rent.591.com.tw/22299971",
       "floor": "4F/4F",
       "firstSeenAt": "2026-11-05T16:19:57+00:00"
-    },
-    {
-      "id": "591租屋:22248642",
-      "source": "591",
-      "houseId": "22248642",
-      "road": "板橋區三民路一段",
-      "title": "✨全新首租｜可租補｜貓咪友善｜可開伙｜獨立洗衣",
-      "address": "板橋區三民路一段",
-      "rent": 17000.0,
-      "size": 7.0,
-      "url": "https://rent.591.com.tw/22248642",
-      "floor": "4F/4F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
       "id": "591租屋:22330410",
@@ -1258,19 +1245,6 @@
       "firstSeenAt": "2026-11-03T09:32:33+00:00"
     },
     {
-      "id": "591租屋:22279938",
-      "source": "591",
-      "houseId": "22279938",
-      "road": "板橋區三民路二段",
-      "title": "可移工宿舍🦄可報稅入籍租補🦄可養寵🦄可補習班🦄可開伙",
-      "address": "板橋區三民路二段",
-      "rent": 39500.0,
-      "size": 39.6,
-      "url": "https://rent.591.com.tw/22279938",
-      "floor": "2F/12F",
-      "firstSeenAt": "2026-11-02T16:02:51+00:00"
-    },
-    {
       "id": "591租屋:22255964",
       "source": "591",
       "houseId": "22255964",
@@ -1295,6 +1269,19 @@
       "url": "https://rent.591.com.tw/22270629",
       "floor": "5F/5F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22279938",
+      "source": "591",
+      "houseId": "22279938",
+      "road": "板橋區三民路二段",
+      "title": "可移工宿舍🦄可報稅入籍租補🦄可養寵🦄可補習班🦄可開伙",
+      "address": "板橋區三民路二段",
+      "rent": 39500.0,
+      "size": 39.6,
+      "url": "https://rent.591.com.tw/22279938",
+      "floor": "2F/12F",
+      "firstSeenAt": "2026-11-02T16:02:51+00:00"
     },
     {
       "id": "591租屋:22284872",
@@ -2525,6 +2512,28 @@
       "firstSeenAt": "2026-10-17T10:32:11+00:00"
     },
     {
+      "id": "5168租屋:17155802",
+      "source": "5168",
+      "houseId": "17155802",
+      "road": "板橋區中山路二段",
+      "title": "板橋中山路二段光復橋電梯陽台4房含坡車",
+      "address": "板橋區中山路二段",
+      "rent": 65000,
+      "size": 59.8,
+      "url": "https://rent.591.com.tw/22294491",
+      "floor": "12/12樓",
+      "rooms": 4.0,
+      "livingRooms": 2.0,
+      "bathrooms": 2.0,
+      "balconies": 0.0,
+      "purposeName": "整層住家",
+      "buildingStyle": "大樓",
+      "sourcePublishedAt": "2026-06-19T00:00:00Z",
+      "sourceUpdatedAtRaw": "2026-11-14T09:50:07.893Z",
+      "sourcePublishedAtType": "housepriceRentApiPublishTime",
+      "firstSeenAt": "2026-11-04T20:47:13+00:00"
+    },
+    {
       "id": "5168租屋:17144021",
       "source": "5168",
       "houseId": "17144021",
@@ -2611,28 +2620,6 @@
       "sourceUpdatedAtRaw": "2026-11-13T20:30:50.007Z",
       "sourcePublishedAtType": "housepriceRentApiPublishTime",
       "firstSeenAt": "2026-10-13T21:18:13+00:00"
-    },
-    {
-      "id": "5168租屋:17155802",
-      "source": "5168",
-      "houseId": "17155802",
-      "road": "板橋區中山路二段",
-      "title": "板橋中山路二段光復橋電梯陽台4房含坡車",
-      "address": "板橋區中山路二段",
-      "rent": 65000,
-      "size": 59.8,
-      "url": "https://rent.591.com.tw/22294491",
-      "floor": "12/12樓",
-      "rooms": 4.0,
-      "livingRooms": 2.0,
-      "bathrooms": 2.0,
-      "balconies": 0.0,
-      "purposeName": "整層住家",
-      "buildingStyle": "大樓",
-      "sourcePublishedAt": "2026-06-19T00:00:00Z",
-      "sourceUpdatedAtRaw": "2026-11-13T20:30:49.963Z",
-      "sourcePublishedAtType": "housepriceRentApiPublishTime",
-      "firstSeenAt": "2026-11-04T20:47:13+00:00"
     },
     {
       "id": "5168租屋:17042255",
@@ -4791,10 +4778,10 @@
       "firstSeenAt": "2026-11-10T20:47:23+00:00"
     }
   ],
-  "elapsedSeconds": 77.72,
+  "elapsedSeconds": 79.43,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
   "newListingPolicy": "firstSeenAt_on_or_after_baseline_and_within_3_days",
-  "newListingCount": 78
+  "newListingCount": 77
 }
