@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-13T22:48:55+00:00",
+  "verifiedAt": "2026-11-14T04:50:43+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-13T22:48:40+00:00",
+    "generatedAt": "2026-11-14T04:50:35+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -30,10 +30,10 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-13T22:48:30+00:00",
+    "updatedAt": "2026-11-14T04:50:07+00:00",
     "status": "ok",
-    "totalCount": 220,
-    "uniqueListingCount": 220,
+    "totalCount": 221,
+    "uniqueListingCount": 221,
     "roadCounts": [
       {
         "road": "中山路二段",
@@ -47,7 +47,7 @@
       },
       {
         "road": "三民路二段",
-        "count": 51,
+        "count": 52,
         "pages": 3
       },
       {
@@ -83,11 +83,11 @@
     "complete": true
   },
   "rakuyaGrouping": {
-    "inputCount": 220,
-    "regroupedCount": 124,
+    "inputCount": 221,
+    "regroupedCount": 125,
     "mergedClusterCount": 50,
     "absorbedCount": 96,
-    "attachedToExistingGroupCount": 100,
+    "attachedToExistingGroupCount": 101,
     "standaloneGroupCount": 24,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
@@ -95,7 +95,7 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-13T22:46:04+00:00",
+    "updatedAt": "2026-11-14T04:50:19+00:00",
     "status": "ok",
     "totalCount": 52,
     "uniqueListingCount": 52,
@@ -174,28 +174,28 @@
   "companyNearTieGuard": {
     "enabled": true,
     "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-    "examinedCompanyMatchCount": 41,
+    "examinedCompanyMatchCount": 42,
     "downgradedCount": 0,
     "remainingAutoNearTieCount": 0,
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-13T22:48:54+00:00",
-    "propertyGroupCount": 162,
+    "auditedAt": "2026-11-14T04:50:43+00:00",
+    "propertyGroupCount": 168,
     "companyListingCount": 73,
-    "companyMatchCount": 41,
+    "companyMatchCount": 42,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 842
+    "weakIdentityAlreadyMergedPairCount": 867
   },
-  "snapshotCapturedAt": "2026-11-13T22:48:15+00:00",
-  "companySnapshotCapturedAt": "2026-11-13T22:48:15+00:00",
-  "companyGapGeneratedAt": "2026-11-13T22:48:49+00:00",
+  "snapshotCapturedAt": "2026-11-14T04:47:04+00:00",
+  "companySnapshotCapturedAt": "2026-11-14T04:47:04+00:00",
+  "companyGapGeneratedAt": "2026-11-14T04:50:40+00:00",
   "browserListingCount": 73,
   "companyListingCount": 73,
-  "propertyGroupCount": 162,
-  "rawListingCount": 766,
-  "comparisonCount": 162,
+  "propertyGroupCount": 168,
+  "rawListingCount": 786,
+  "comparisonCount": 168,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -259,16 +259,16 @@
     }
   },
   "counts": {
-    "company_match": 41,
+    "company_match": 42,
     "review": 5,
-    "missing": 116,
+    "missing": 121,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 104,
+  "crossPlatformMergedGroupCount": 105,
   "crossSourceReviewCount": 7,
   "preview591Regroup": {
-    "original591TopLevel": 91,
-    "regrouped591TopLevel": 83,
+    "original591TopLevel": 97,
+    "regrouped591TopLevel": 89,
     "regrouped591ClusterCount": 8,
     "regrouped591AbsorbedCount": 8,
     "clusterFloorConflictBlocked": 0
@@ -277,18 +277,18 @@
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-13T19:53:43+00:00",
-    "totalCount": 214,
-    "uniqueListingCount": 214,
-    "groupCount": 91,
+    "updatedAt": "2026-11-14T04:46:21+00:00",
+    "totalCount": 222,
+    "uniqueListingCount": 222,
+    "groupCount": 97,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 112
+        "count": 114
       },
       {
         "road": "三民路二段",
-        "count": 47
+        "count": 53
       },
       {
         "road": "光復街",
@@ -312,17 +312,17 @@
       }
     ],
     "sourceFieldCoverage": {
-      "floor": 206,
-      "layout": 214,
-      "community": 122,
-      "houseAge": 214,
-      "parkingFlag": 214,
+      "floor": 214,
+      "layout": 222,
+      "community": 130,
+      "houseAge": 222,
+      "parkingFlag": 222,
       "unverifiedFloor": 8,
-      "total": 214
+      "total": 222
     },
     "floorAwarePreviewGrouping": true,
-    "historyMatchedIdCount": 164,
-    "historyNotPresentUnconfirmed": 349,
+    "historyMatchedIdCount": 165,
+    "historyNotPresentUnconfirmed": 348,
     "historyReappearedCount": 0,
     "missingIdIsNotDelisting": true,
     "newIdIsNotNewProperty": true
@@ -332,29 +332,104 @@
   },
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 73,
+    "beforeCount": 79,
     "afterCount": 73,
-    "removedCount": 0,
-    "collisionIds": [],
+    "removedCount": 6,
+    "collisionIds": [
+      "4308114"
+    ],
     "remainingCollisionIds": [],
-    "removed": [],
-    "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
+    "removed": [
+      {
+        "id": "4308114",
+        "road": "板橋區中山路二段",
+        "title": "中山路大坪數店辦",
+        "area": 136.79,
+        "price": 7600.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "6521665"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區三民路一段",
+        "title": "近北市榮光教會對面電梯大樓管理嚴謹",
+        "area": 19.84,
+        "price": 1350.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7532014"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區三民路二段",
+        "title": "邊間通風採光好｜門口方便停車｜門寬7米｜長輩友善",
+        "area": 27.32,
+        "price": 2338.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7591797"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區翠華街",
+        "title": "鄰近江子翠｜10米大面寬一樓｜漂亮住辦好停車",
+        "area": 59.37,
+        "price": 3988.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7455915"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區萬安街",
+        "title": "埔墘知名商圈｜大空間一樓平車好進出｜挑高3.7米",
+        "area": 46.93,
+        "price": 2288.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7544941"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區光復街",
+        "title": "光復街靜巷｜一層一戶｜三面採光、通風｜頂加大空間",
+        "area": 25.7,
+        "price": 1298.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7589573"
+        ],
+        "replacementFound": true
+      }
+    ],
+    "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
   },
-  "candidateCount": 159,
-  "candidatesWithFloor": 159,
-  "candidatesWithYcCaseId": 2,
+  "candidateCount": 165,
+  "candidatesWithFloor": 146,
+  "candidatesWithYcCaseId": 146,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-13T22:48:30+00:00",
+    "generatedAt": "2026-11-14T04:50:07+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
-    "eligibleBeforeCache": 2,
-    "cacheHitCount": 2,
+    "eligibleBeforeCache": 65,
+    "cacheHitCount": 65,
     "seededFromPreviousDiagnosticCount": 0,
     "liveAttempted": 0,
     "responseFastHitCount": 0,
     "domFallbackCount": 0,
-    "enriched": 2,
+    "enriched": 65,
     "liveEnriched": 0,
-    "officialCaseIdEnriched": 2,
+    "officialCaseIdEnriched": 65,
     "cacheWriteCount": 0,
     "cacheEntryCount": 110,
     "rejectedTitleFloorConflicts": 0,
