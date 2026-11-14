@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-11-14T20:03:52+00:00",
+  "verifiedAt": "2026-11-14T20:17:56+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-11-14T20:03:01+00:00",
+  "sourceDataUpdatedAt": "2026-11-14T20:17:31+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-14T20:03:42+00:00",
+    "generatedAt": "2026-11-14T20:17:47+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-14T20:00:20+00:00",
+    "sourceRunCheckedAt": "2026-11-14T20:15:30+00:00",
     "activeSinyiCount": 67,
     "matchedOfficialCount": 67,
     "appliedCount": 67,
@@ -95,14 +95,14 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-14T20:01:03+00:00",
+    "updatedAt": "2026-11-14T20:16:11+00:00",
     "status": "ok",
-    "totalCount": 52,
-    "uniqueListingCount": 52,
+    "totalCount": 50,
+    "uniqueListingCount": 50,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 27,
+        "count": 26,
         "pages": 3
       },
       {
@@ -122,7 +122,7 @@
       },
       {
         "road": "林森街",
-        "count": 2,
+        "count": 1,
         "pages": 1
       },
       {
@@ -139,15 +139,18 @@
     "changes": {
       "newIds": [],
       "newCount": 0,
-      "removedIds": [],
-      "removedCount": 0,
+      "removedIds": [
+        "35385397",
+        "20105627"
+      ],
+      "removedCount": 2,
       "priceChanges": [],
       "priceChangeCount": 0
     },
     "complete": true,
     "detailSummary": {
-      "requestedCount": 52,
-      "completeCount": 52,
+      "requestedCount": 50,
+      "completeCount": 50,
       "failedCount": 0,
       "allComplete": true
     },
@@ -161,12 +164,12 @@
     }
   },
   "housepriceGrouping": {
-    "inputCount": 52,
-    "regroupedCount": 38,
+    "inputCount": 50,
+    "regroupedCount": 36,
     "mergedClusterCount": 12,
     "absorbedCount": 14,
-    "attachedToExistingGroupCount": 33,
-    "standaloneGroupCount": 5,
+    "attachedToExistingGroupCount": 32,
+    "standaloneGroupCount": 4,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 14
@@ -180,22 +183,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-14T20:03:52+00:00",
-    "propertyGroupCount": 164,
+    "auditedAt": "2026-11-14T20:17:56+00:00",
+    "propertyGroupCount": 163,
     "companyListingCount": 72,
     "companyMatchCount": 41,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
     "weakIdentityAlreadyMergedPairCount": 938
   },
-  "snapshotCapturedAt": "2026-11-14T20:03:15+00:00",
-  "companySnapshotCapturedAt": "2026-11-14T20:03:15+00:00",
-  "companyGapGeneratedAt": "2026-11-14T20:03:48+00:00",
+  "snapshotCapturedAt": "2026-11-14T20:17:38+00:00",
+  "companySnapshotCapturedAt": "2026-11-14T20:17:38+00:00",
+  "companyGapGeneratedAt": "2026-11-14T20:17:52+00:00",
   "browserListingCount": 72,
   "companyListingCount": 72,
-  "propertyGroupCount": 164,
-  "rawListingCount": 774,
-  "comparisonCount": 164,
+  "propertyGroupCount": 163,
+  "rawListingCount": 772,
+  "comparisonCount": 163,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -261,10 +264,10 @@
   "counts": {
     "company_match": 41,
     "review": 5,
-    "missing": 118,
+    "missing": 117,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 104,
+  "crossPlatformMergedGroupCount": 103,
   "crossSourceReviewCount": 7,
   "preview591Regroup": {
     "original591TopLevel": 92,
@@ -344,7 +347,7 @@
   "candidatesWithFloor": 161,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-14T20:03:31+00:00",
+    "generatedAt": "2026-11-14T20:17:46+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
