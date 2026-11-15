@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-15T01:19:26+00:00",
+  "capturedAt": "2026-11-15T01:32:50+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -562,6 +562,33 @@
       }
     },
     {
+      "id": "7455140",
+      "road": "板橋區中山路二段",
+      "title": "板新捷運站、新板埔墘商圈交界、面寬約八米五停車",
+      "price": 2188,
+      "area": 27.92,
+      "floor": "1/5樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7455140",
+      "sourceMode": "yungching_official_api",
+      "text": "板新捷運站、新板埔墘商圈交界、面寬約八米五停車 新北市板橋區中山路二段 公寓 建坪27.92 1/5樓 1房(室)1廳2衛 2188萬",
+      "rawText": "板新捷運站、新板埔墘商圈交界、面寬約八米五停車 新北市板橋區中山路二段 公寓 建坪27.92 1/5樓 1房(室)1廳2衛 2188萬",
+      "patternInfo": {
+        "room": 1,
+        "livingRoom": 1,
+        "bathRoom": 2,
+        "addRoom": 0,
+        "addLivingRoom": 0,
+        "addBathRoom": 2
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 1,
+        "upFloor": 5
+      }
+    },
+    {
       "id": "7141398",
       "road": "板橋區中山路二段",
       "title": "馥華精工天際極景",
@@ -667,33 +694,6 @@
         "fromFloor": 3,
         "toFloor": 3,
         "upFloor": 14
-      }
-    },
-    {
-      "id": "7455140",
-      "road": "板橋區中山路二段",
-      "title": "板新捷運站、新板埔墘商圈交界、面寬約八米五停車",
-      "price": 2188,
-      "area": 27.92,
-      "floor": "1/5樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "公寓",
-      "url": "https://buy.yungching.com.tw/house/7455140",
-      "sourceMode": "yungching_official_api",
-      "text": "板新捷運站、新板埔墘商圈交界、面寬約八米五停車 新北市板橋區中山路二段 公寓 建坪27.92 1/5樓 1房(室)1廳2衛 2188萬",
-      "rawText": "板新捷運站、新板埔墘商圈交界、面寬約八米五停車 新北市板橋區中山路二段 公寓 建坪27.92 1/5樓 1房(室)1廳2衛 2188萬",
-      "patternInfo": {
-        "room": 1,
-        "livingRoom": 1,
-        "bathRoom": 2,
-        "addRoom": 0,
-        "addLivingRoom": 0,
-        "addBathRoom": 2
-      },
-      "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 1,
-        "upFloor": 5
       }
     },
     {
@@ -2479,7 +2479,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-15T01:19:35+00:00",
+    "generatedAt": "2026-11-15T01:33:03+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
