@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-16T06:48:51+00:00",
+  "verifiedAt": "2026-11-16T06:51:14+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-16T06:48:39+00:00",
+    "generatedAt": "2026-11-16T06:51:04+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -87,8 +87,8 @@
     "regroupedCount": 123,
     "mergedClusterCount": 50,
     "absorbedCount": 98,
-    "attachedToExistingGroupCount": 98,
-    "standaloneGroupCount": 25,
+    "attachedToExistingGroupCount": 97,
+    "standaloneGroupCount": 26,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 0
@@ -180,22 +180,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-16T06:48:51+00:00",
-    "propertyGroupCount": 162,
+    "auditedAt": "2026-11-16T06:51:14+00:00",
+    "propertyGroupCount": 166,
     "companyListingCount": 72,
     "companyMatchCount": 44,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 921
+    "weakIdentityAlreadyMergedPairCount": 959
   },
   "snapshotCapturedAt": "2026-11-16T06:48:13+00:00",
   "companySnapshotCapturedAt": "2026-11-16T06:48:13+00:00",
-  "companyGapGeneratedAt": "2026-11-16T06:48:46+00:00",
+  "companyGapGeneratedAt": "2026-11-16T06:51:10+00:00",
   "browserListingCount": 72,
   "companyListingCount": 72,
-  "propertyGroupCount": 162,
-  "rawListingCount": 766,
-  "comparisonCount": 162,
+  "propertyGroupCount": 166,
+  "rawListingCount": 778,
+  "comparisonCount": 166,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -261,30 +261,30 @@
   "counts": {
     "company_match": 44,
     "review": 5,
-    "missing": 113,
+    "missing": 117,
     "unavailable": 0
   },
   "crossPlatformMergedGroupCount": 101,
   "crossSourceReviewCount": 8,
   "preview591Regroup": {
-    "original591TopLevel": 90,
-    "regrouped591TopLevel": 83,
-    "regrouped591ClusterCount": 7,
-    "regrouped591AbsorbedCount": 7,
+    "original591TopLevel": 94,
+    "regrouped591TopLevel": 85,
+    "regrouped591ClusterCount": 9,
+    "regrouped591AbsorbedCount": 9,
     "clusterFloorConflictBlocked": 0
   },
   "preview591Warelist": {
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-16T05:16:26+00:00",
-    "totalCount": 211,
-    "uniqueListingCount": 211,
-    "groupCount": 90,
+    "updatedAt": "2026-11-16T06:50:51+00:00",
+    "totalCount": 213,
+    "uniqueListingCount": 213,
+    "groupCount": 94,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 111
+        "count": 112
       },
       {
         "road": "三民路二段",
@@ -304,7 +304,7 @@
       },
       {
         "road": "三民路一段",
-        "count": 18
+        "count": 19
       },
       {
         "road": "翠華街",
@@ -313,16 +313,16 @@
     ],
     "sourceFieldCoverage": {
       "floor": 204,
-      "layout": 211,
-      "community": 121,
-      "houseAge": 211,
-      "parkingFlag": 211,
-      "unverifiedFloor": 7,
-      "total": 211
+      "layout": 213,
+      "community": 125,
+      "houseAge": 213,
+      "parkingFlag": 213,
+      "unverifiedFloor": 9,
+      "total": 213
     },
     "floorAwarePreviewGrouping": true,
-    "historyMatchedIdCount": 161,
-    "historyNotPresentUnconfirmed": 352,
+    "historyMatchedIdCount": 151,
+    "historyNotPresentUnconfirmed": 362,
     "historyReappearedCount": 0,
     "missingIdIsNotDelisting": true,
     "newIdIsNotNewProperty": true
@@ -340,8 +340,8 @@
     "removed": [],
     "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
   },
-  "candidateCount": 160,
-  "candidatesWithFloor": 160,
+  "candidateCount": 164,
+  "candidatesWithFloor": 164,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
     "generatedAt": "2026-11-16T06:48:26+00:00",
