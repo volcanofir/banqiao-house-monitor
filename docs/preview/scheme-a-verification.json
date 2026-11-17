@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-17T16:03:16+00:00",
+  "verifiedAt": "2026-11-17T16:17:26+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-17T16:03:07+00:00",
+    "generatedAt": "2026-11-17T16:17:16+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -174,28 +174,28 @@
   "companyNearTieGuard": {
     "enabled": true,
     "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-    "examinedCompanyMatchCount": 44,
+    "examinedCompanyMatchCount": 43,
     "downgradedCount": 0,
     "remainingAutoNearTieCount": 0,
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-17T16:03:16+00:00",
-    "propertyGroupCount": 169,
+    "auditedAt": "2026-11-17T16:17:26+00:00",
+    "propertyGroupCount": 168,
     "companyListingCount": 72,
-    "companyMatchCount": 44,
+    "companyMatchCount": 43,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 941
+    "weakIdentityAlreadyMergedPairCount": 926
   },
   "snapshotCapturedAt": "2026-11-17T16:02:57+00:00",
   "companySnapshotCapturedAt": "2026-11-17T16:02:57+00:00",
-  "companyGapGeneratedAt": "2026-11-17T16:03:13+00:00",
+  "companyGapGeneratedAt": "2026-11-17T16:17:22+00:00",
   "browserListingCount": 72,
   "companyListingCount": 72,
-  "propertyGroupCount": 169,
-  "rawListingCount": 782,
-  "comparisonCount": 169,
+  "propertyGroupCount": 168,
+  "rawListingCount": 769,
+  "comparisonCount": 168,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -259,7 +259,7 @@
     }
   },
   "counts": {
-    "company_match": 44,
+    "company_match": 43,
     "review": 5,
     "missing": 120,
     "unavailable": 0
@@ -267,8 +267,8 @@
   "crossPlatformMergedGroupCount": 100,
   "crossSourceReviewCount": 8,
   "preview591Regroup": {
-    "original591TopLevel": 97,
-    "regrouped591TopLevel": 88,
+    "original591TopLevel": 96,
+    "regrouped591TopLevel": 87,
     "regrouped591ClusterCount": 9,
     "regrouped591AbsorbedCount": 9,
     "clusterFloorConflictBlocked": 0
@@ -277,14 +277,14 @@
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-17T13:46:23+00:00",
-    "totalCount": 225,
-    "uniqueListingCount": 225,
-    "groupCount": 97,
+    "updatedAt": "2026-11-17T16:16:53+00:00",
+    "totalCount": 206,
+    "uniqueListingCount": 206,
+    "groupCount": 96,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 124
+        "count": 104
       },
       {
         "road": "三民路二段",
@@ -308,21 +308,21 @@
       },
       {
         "road": "翠華街",
-        "count": 6
+        "count": 7
       }
     ],
     "sourceFieldCoverage": {
-      "floor": 216,
-      "layout": 225,
-      "community": 134,
-      "houseAge": 225,
-      "parkingFlag": 225,
+      "floor": 197,
+      "layout": 206,
+      "community": 117,
+      "houseAge": 206,
+      "parkingFlag": 206,
       "unverifiedFloor": 9,
-      "total": 225
+      "total": 206
     },
     "floorAwarePreviewGrouping": true,
-    "historyMatchedIdCount": 158,
-    "historyNotPresentUnconfirmed": 355,
+    "historyMatchedIdCount": 145,
+    "historyNotPresentUnconfirmed": 368,
     "historyReappearedCount": 0,
     "missingIdIsNotDelisting": true,
     "newIdIsNotNewProperty": true
@@ -340,8 +340,8 @@
     "removed": [],
     "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
   },
-  "candidateCount": 167,
-  "candidatesWithFloor": 167,
+  "candidateCount": 166,
+  "candidatesWithFloor": 166,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
     "generatedAt": "2026-11-17T16:03:07+00:00",
