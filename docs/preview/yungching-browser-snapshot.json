@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-17T03:47:46+00:00",
+  "capturedAt": "2026-11-17T07:32:42+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -29,7 +29,7 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 79980,
+      "primaryApiListDataLength": 80024,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
       "roadTextCount": 31,
@@ -2003,6 +2003,33 @@
       }
     },
     {
+      "id": "7591797",
+      "road": "板橋區三民路二段",
+      "title": "邊間通風採光好｜門口方便停車｜門寬7米｜長輩友善",
+      "price": 2338,
+      "area": 27.32,
+      "floor": "1/5樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7591797",
+      "sourceMode": "yungching_official_api",
+      "text": "邊間通風採光好｜門口方便停車｜門寬7米｜長輩友善 新北市板橋區三民路二段 公寓 建坪27.32 1/5樓 3房(室)2廳1衛 2338萬",
+      "rawText": "邊間通風採光好｜門口方便停車｜門寬7米｜長輩友善 新北市板橋區三民路二段 公寓 建坪27.32 1/5樓 3房(室)2廳1衛 2338萬",
+      "patternInfo": {
+        "room": 3,
+        "livingRoom": 2,
+        "bathRoom": 1,
+        "addRoom": 0,
+        "addLivingRoom": 0,
+        "addBathRoom": 1
+      },
+      "floorInfo": {
+        "fromFloor": 1,
+        "toFloor": 1,
+        "upFloor": 5
+      }
+    },
+    {
       "id": "7576495",
       "road": "板橋區三民路二段",
       "title": "A級辦公｜潤泰營造｜SRC鋼骨結構｜高樓極新裝潢",
@@ -2046,33 +2073,6 @@
         "room": 3,
         "livingRoom": 2,
         "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 1,
-        "upFloor": 5
-      }
-    },
-    {
-      "id": "7591797",
-      "road": "板橋區三民路二段",
-      "title": "邊間通風採光好｜門口方便停車｜門寬7米｜長輩友善",
-      "price": 2338,
-      "area": 27.32,
-      "floor": "1/5樓",
-      "address": "新北市板橋區三民路二段",
-      "type": "公寓",
-      "url": "https://buy.yungching.com.tw/house/7591797",
-      "sourceMode": "yungching_official_api",
-      "text": "邊間通風採光好｜門口方便停車｜門寬7米｜長輩友善 新北市板橋區三民路二段 公寓 建坪27.32 1/5樓 3房(室)2廳1衛 2338萬",
-      "rawText": "邊間通風採光好｜門口方便停車｜門寬7米｜長輩友善 新北市板橋區三民路二段 公寓 建坪27.32 1/5樓 3房(室)2廳1衛 2338萬",
-      "patternInfo": {
-        "room": 3,
-        "livingRoom": 2,
-        "bathRoom": 1,
         "addRoom": null,
         "addLivingRoom": null,
         "addBathRoom": null
@@ -2510,7 +2510,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-17T03:47:56+00:00",
+    "generatedAt": "2026-11-17T07:32:52+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
