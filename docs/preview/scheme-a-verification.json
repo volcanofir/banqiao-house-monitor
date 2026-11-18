@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-18T14:48:31+00:00",
+  "verifiedAt": "2026-11-18T15:05:42+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-18T14:48:24+00:00",
+    "generatedAt": "2026-11-18T15:05:28+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -30,7 +30,7 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-18T14:48:11+00:00",
+    "updatedAt": "2026-11-18T15:04:56+00:00",
     "status": "ok",
     "totalCount": 221,
     "uniqueListingCount": 221,
@@ -87,15 +87,15 @@
     "regroupedCount": 124,
     "mergedClusterCount": 50,
     "absorbedCount": 97,
-    "attachedToExistingGroupCount": 98,
-    "standaloneGroupCount": 26,
+    "attachedToExistingGroupCount": 97,
+    "standaloneGroupCount": 27,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 0
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-18T14:45:53+00:00",
+    "updatedAt": "2026-11-18T15:05:07+00:00",
     "status": "ok",
     "totalCount": 54,
     "uniqueListingCount": 54,
@@ -180,22 +180,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-18T14:48:31+00:00",
-    "propertyGroupCount": 171,
+    "auditedAt": "2026-11-18T15:05:42+00:00",
+    "propertyGroupCount": 172,
     "companyListingCount": 71,
     "companyMatchCount": 43,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 970
+    "weakIdentityAlreadyMergedPairCount": 993
   },
-  "snapshotCapturedAt": "2026-11-18T14:47:57+00:00",
-  "companySnapshotCapturedAt": "2026-11-18T14:47:57+00:00",
-  "companyGapGeneratedAt": "2026-11-18T14:48:28+00:00",
+  "snapshotCapturedAt": "2026-11-18T15:01:52+00:00",
+  "companySnapshotCapturedAt": "2026-11-18T15:01:52+00:00",
+  "companyGapGeneratedAt": "2026-11-18T15:05:37+00:00",
   "browserListingCount": 71,
   "companyListingCount": 71,
-  "propertyGroupCount": 171,
-  "rawListingCount": 784,
-  "comparisonCount": 171,
+  "propertyGroupCount": 172,
+  "rawListingCount": 779,
+  "comparisonCount": 172,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -261,14 +261,14 @@
   "counts": {
     "company_match": 43,
     "review": 5,
-    "missing": 123,
+    "missing": 124,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 102,
-  "crossSourceReviewCount": 7,
+  "crossPlatformMergedGroupCount": 101,
+  "crossSourceReviewCount": 8,
   "preview591Regroup": {
-    "original591TopLevel": 94,
-    "regrouped591TopLevel": 87,
+    "original591TopLevel": 93,
+    "regrouped591TopLevel": 86,
     "regrouped591ClusterCount": 7,
     "regrouped591AbsorbedCount": 7,
     "clusterFloorConflictBlocked": 0
@@ -277,18 +277,18 @@
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-18T11:57:42+00:00",
-    "totalCount": 223,
-    "uniqueListingCount": 223,
-    "groupCount": 94,
+    "updatedAt": "2026-11-18T15:01:14+00:00",
+    "totalCount": 206,
+    "uniqueListingCount": 206,
+    "groupCount": 93,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 121
+        "count": 108
       },
       {
         "road": "三民路二段",
-        "count": 53
+        "count": 52
       },
       {
         "road": "光復街",
@@ -296,7 +296,7 @@
       },
       {
         "road": "萬安街",
-        "count": 12
+        "count": 11
       },
       {
         "road": "林森街",
@@ -304,25 +304,25 @@
       },
       {
         "road": "三民路一段",
-        "count": 19
+        "count": 18
       },
       {
         "road": "翠華街",
-        "count": 7
+        "count": 6
       }
     ],
     "sourceFieldCoverage": {
-      "floor": 216,
-      "layout": 223,
-      "community": 131,
-      "houseAge": 223,
-      "parkingFlag": 223,
+      "floor": 199,
+      "layout": 206,
+      "community": 125,
+      "houseAge": 206,
+      "parkingFlag": 206,
       "unverifiedFloor": 7,
-      "total": 223
+      "total": 206
     },
     "floorAwarePreviewGrouping": true,
-    "historyMatchedIdCount": 150,
-    "historyNotPresentUnconfirmed": 363,
+    "historyMatchedIdCount": 134,
+    "historyNotPresentUnconfirmed": 379,
     "historyReappearedCount": 0,
     "missingIdIsNotDelisting": true,
     "newIdIsNotNewProperty": true
@@ -332,29 +332,104 @@
   },
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 71,
+    "beforeCount": 77,
     "afterCount": 71,
-    "removedCount": 0,
-    "collisionIds": [],
+    "removedCount": 6,
+    "collisionIds": [
+      "4308114"
+    ],
     "remainingCollisionIds": [],
-    "removed": [],
-    "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
+    "removed": [
+      {
+        "id": "4308114",
+        "road": "板橋區中山路二段",
+        "title": "中山路透天金店面",
+        "area": 91.68,
+        "price": 12000.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7599960"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區三民路一段",
+        "title": "近北市榮光教會對面電梯大樓管理嚴謹",
+        "area": 19.84,
+        "price": 1350.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7532014"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區三民路二段",
+        "title": "邊間通風採光好｜門口方便停車｜門寬7米｜長輩友善",
+        "area": 27.32,
+        "price": 2338.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7591797"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區翠華街",
+        "title": "鄰近江子翠｜10米大面寬一樓｜漂亮住辦好停車",
+        "area": 59.37,
+        "price": 3988.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7455915"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區萬安街",
+        "title": "埔墘知名商圈｜大空間一樓平車好進出｜挑高3.7米",
+        "area": 46.93,
+        "price": 2288.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7544941"
+        ],
+        "replacementFound": true
+      },
+      {
+        "id": "4308114",
+        "road": "板橋區光復街",
+        "title": "光復街靜巷｜一層一戶｜三面採光、通風｜頂加大空間",
+        "area": 25.7,
+        "price": 1298.0,
+        "reason": "同一永慶 house ID 同時出現在不同道路；視為第一卡 stale href 汙染",
+        "replacementIds": [
+          "7589573"
+        ],
+        "replacementFound": true
+      }
+    ],
+    "rule": "同一永慶 house ID 不得跨不同精確道路；跨路碰撞視為 stale href 並從 Preview 公司資料排除"
   },
-  "candidateCount": 169,
-  "candidatesWithFloor": 169,
-  "candidatesWithYcCaseId": 2,
+  "candidateCount": 170,
+  "candidatesWithFloor": 152,
+  "candidatesWithYcCaseId": 152,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-18T14:48:10+00:00",
+    "generatedAt": "2026-11-18T15:04:56+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
-    "eligibleBeforeCache": 2,
-    "cacheHitCount": 2,
+    "eligibleBeforeCache": 62,
+    "cacheHitCount": 62,
     "seededFromPreviousDiagnosticCount": 0,
     "liveAttempted": 0,
     "responseFastHitCount": 0,
     "domFallbackCount": 0,
-    "enriched": 2,
+    "enriched": 62,
     "liveEnriched": 0,
-    "officialCaseIdEnriched": 2,
+    "officialCaseIdEnriched": 62,
     "cacheWriteCount": 0,
     "cacheEntryCount": 110,
     "rejectedTitleFloorConflicts": 0,
