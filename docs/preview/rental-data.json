@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-18T16:16:49+00:00",
+  "updatedAt": "2026-11-18T16:32:05+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -110,7 +110,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 103,
-      "checkedAt": "2026-11-18T16:16:59+00:00",
+      "checkedAt": "2026-11-18T16:32:13+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 64",
         "板橋區中山路二段 5168 API第2頁：符合 18／新增 18／來源總數 64",
@@ -283,6 +283,19 @@
       "firstSeenAt": "2026-11-12T08:17:01+00:00"
     },
     {
+      "id": "591租屋:22207700",
+      "source": "591",
+      "houseId": "22207700",
+      "road": "板橋區中山路二段",
+      "title": "☆租屋☆精美裝潢溫馨大兩房",
+      "address": "板橋區中山路二段",
+      "rent": 33000.0,
+      "size": 18.0,
+      "url": "https://rent.591.com.tw/22207700",
+      "floor": "5F/5F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
       "id": "591租屋:22372894",
       "source": "591",
       "houseId": "22372894",
@@ -345,19 +358,6 @@
       "size": 6.0,
       "url": "https://rent.591.com.tw/22207779",
       "floor": "1F/1F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
-      "id": "591租屋:22207700",
-      "source": "591",
-      "houseId": "22207700",
-      "road": "板橋區中山路二段",
-      "title": "☆租屋☆精美裝潢溫馨大兩房",
-      "address": "板橋區中山路二段",
-      "rent": 33000.0,
-      "size": 18.0,
-      "url": "https://rent.591.com.tw/22207700",
-      "floor": "5F/5F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
@@ -4732,7 +4732,7 @@
       "firstSeenAt": "2026-11-17T10:47:39+00:00"
     }
   ],
-  "elapsedSeconds": 69.06,
+  "elapsedSeconds": 79.75,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
