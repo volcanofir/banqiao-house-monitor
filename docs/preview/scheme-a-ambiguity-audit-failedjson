@@ -1,15 +1,61 @@
 {
-  "auditedAt": "2026-11-18T00:48:56+00:00",
+  "auditedAt": "2026-11-18T07:36:00+00:00",
   "scheme": "A",
-  "sourceGeneratedAt": "2026-11-18T00:48:50+00:00",
-  "propertyGroupCount": 167,
+  "sourceGeneratedAt": "2026-11-18T07:35:57+00:00",
+  "propertyGroupCount": 163,
   "companyListingCount": 71,
   "companyMatchCount": 42,
-  "companyNearTieStrongCount": 0,
-  "companyNearTieStrong": [],
+  "companyNearTieStrongCount": 1,
+  "companyNearTieStrong": [
+    {
+      "groupId": "GROUP:信義房屋:5818CQ",
+      "road": "板橋區三民路二段",
+      "title": "三珉築琚！成家電梯兩房",
+      "chosenId": "YC:7145128",
+      "top": {
+        "id": "YC:7145128",
+        "officialId": "7145128",
+        "title": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福",
+        "score": 22,
+        "info": {
+          "areaDelta": 0.0,
+          "priceDelta": 0.0,
+          "titleRatio": 0.138,
+          "shared": [],
+          "externalFloors": [
+            10
+          ],
+          "companyFloors": [
+            10
+          ],
+          "floorRelation": "match"
+        }
+      },
+      "second": {
+        "id": "YC:7145115",
+        "officialId": "7145115",
+        "title": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福",
+        "score": 20,
+        "info": {
+          "areaDelta": 0.04,
+          "priceDelta": 2.0,
+          "titleRatio": 0.278,
+          "shared": [],
+          "externalFloors": [
+            9
+          ],
+          "companyFloors": [
+            9
+          ],
+          "floorRelation": "match"
+        }
+      },
+      "risk": "同一外部群組有兩筆不同永慶公司案件同時達 strong 且分差<=2；目前邏輯會直接取第一名"
+    }
+  ],
   "chosenCandidateRecomputeMismatchCount": 0,
   "chosenCandidateRecomputeMismatch": [],
-  "weakIdentityAlreadyMergedPairCount": 920,
+  "weakIdentityAlreadyMergedPairCount": 860,
   "weakIdentityAlreadyMergedPairs": [
     {
       "groupId": "GROUP:信義房屋:8928TQ",
@@ -38,6 +84,21 @@
       "areaDelta": 0.0,
       "priceDelta": 0.0,
       "titleRatio": 0.105,
+      "floorRelation": "unknown",
+      "shared": []
+    },
+    {
+      "groupId": "GROUP:信義房屋:5860LQ",
+      "road": "板橋區中山路二段",
+      "aId": "591:20935624",
+      "aSource": "591",
+      "aTitle": "[來江翠北側找\"福華\"]馥華大台北超大戶[江翠北側-應福華]",
+      "bId": "591:21095756",
+      "bSource": "591",
+      "bTitle": "間間採光💖埔墘4房雙車位💖~全國張黎如",
+      "areaDelta": 0.03,
+      "priceDelta": 0.0,
+      "titleRatio": 0.0,
       "floorRelation": "unknown",
       "shared": []
     },
@@ -857,6 +918,21 @@
       "aId": "591:20902792",
       "aSource": "591",
       "aTitle": "三套房<收租等都更夢>低自備款當房東",
+      "bId": "591:25481451",
+      "bSource": "591",
+      "bTitle": "☎21小莉🌟【埔墘優質收租二樓】🌟低總價高投報",
+      "areaDelta": 0.03,
+      "priceDelta": 0.0,
+      "titleRatio": 0.176,
+      "floorRelation": "unknown",
+      "shared": []
+    },
+    {
+      "groupId": "GROUP:信義房屋:8485QF",
+      "road": "板橋區光復街",
+      "aId": "591:20902792",
+      "aSource": "591",
+      "aTitle": "三套房<收租等都更夢>低自備款當房東",
       "bId": "591:21234036",
       "bSource": "591",
       "bTitle": "🍎~小資族低總價高投報二樓~住商小蘋果推薦🍎",
@@ -1127,6 +1203,21 @@
       "aId": "591:25298907",
       "aSource": "591",
       "aTitle": "三套房<收租等都更夢>低自備款當房東",
+      "bId": "591:25481451",
+      "bSource": "591",
+      "bTitle": "☎21小莉🌟【埔墘優質收租二樓】🌟低總價高投報",
+      "areaDelta": 0.03,
+      "priceDelta": 0.0,
+      "titleRatio": 0.176,
+      "floorRelation": "unknown",
+      "shared": []
+    },
+    {
+      "groupId": "GROUP:信義房屋:8485QF",
+      "road": "板橋區光復街",
+      "aId": "591:25298907",
+      "aSource": "591",
+      "aTitle": "三套房<收租等都更夢>低自備款當房東",
       "bId": "591:21234036",
       "bSource": "591",
       "bTitle": "🍎~小資族低總價高投報二樓~住商小蘋果推薦🍎",
@@ -1397,6 +1488,21 @@
       "aId": "591:25297554",
       "aSource": "591",
       "aTitle": "三套房<收租等都更夢>低自備款當房東",
+      "bId": "591:25481451",
+      "bSource": "591",
+      "bTitle": "☎21小莉🌟【埔墘優質收租二樓】🌟低總價高投報",
+      "areaDelta": 0.03,
+      "priceDelta": 0.0,
+      "titleRatio": 0.176,
+      "floorRelation": "unknown",
+      "shared": []
+    },
+    {
+      "groupId": "GROUP:信義房屋:8485QF",
+      "road": "板橋區光復街",
+      "aId": "591:25297554",
+      "aSource": "591",
+      "aTitle": "三套房<收租等都更夢>低自備款當房東",
       "bId": "591:21234036",
       "bSource": "591",
       "bTitle": "🍎~小資族低總價高投報二樓~住商小蘋果推薦🍎",
@@ -1656,6 +1762,21 @@
       "bSource": "591",
       "bTitle": "☎21小莉🌟【埔墘優質收租二樓】🌟低總價高投報",
       "areaDelta": 0.0,
+      "priceDelta": 0.0,
+      "titleRatio": 0.176,
+      "floorRelation": "unknown",
+      "shared": []
+    },
+    {
+      "groupId": "GROUP:信義房屋:8485QF",
+      "road": "板橋區光復街",
+      "aId": "591:25298256",
+      "aSource": "591",
+      "aTitle": "三套房<收租等都更夢>低自備款當房東",
+      "bId": "591:25481451",
+      "bSource": "591",
+      "bTitle": "☎21小莉🌟【埔墘優質收租二樓】🌟低總價高投報",
+      "areaDelta": 0.03,
       "priceDelta": 0.0,
       "titleRatio": 0.176,
       "floorRelation": "unknown",
@@ -2183,81 +2304,6 @@
       "areaDelta": 0.04,
       "priceDelta": 0.0,
       "titleRatio": 0.062,
-      "floorRelation": "unknown",
-      "shared": []
-    },
-    {
-      "groupId": "GROUP:信義房屋:8485QF",
-      "road": "板橋區光復街",
-      "aId": "591:25298873",
-      "aSource": "591",
-      "aTitle": "🌈埔墘商圈🌈都更洽談中🌈穩定收租中🍎",
-      "bId": "樂屋:02d679362001589",
-      "bSource": "樂屋網",
-      "bTitle": "364BH埔墘家樂福3套房",
-      "areaDelta": 0.04,
-      "priceDelta": 0.0,
-      "titleRatio": 0.148,
-      "floorRelation": "unknown",
-      "shared": []
-    },
-    {
-      "groupId": "GROUP:信義房屋:8485QF",
-      "road": "板橋區光復街",
-      "aId": "591:25298873",
-      "aSource": "591",
-      "aTitle": "🌈埔墘商圈🌈都更洽談中🌈穩定收租中🍎",
-      "bId": "樂屋:0265d3359910866",
-      "bSource": "樂屋網",
-      "bTitle": "低總價高投報二樓",
-      "areaDelta": 0.04,
-      "priceDelta": 0.0,
-      "titleRatio": 0.0,
-      "floorRelation": "unknown",
-      "shared": []
-    },
-    {
-      "groupId": "GROUP:信義房屋:8485QF",
-      "road": "板橋區光復街",
-      "aId": "591:25298873",
-      "aSource": "591",
-      "aTitle": "🌈埔墘商圈🌈都更洽談中🌈穩定收租中🍎",
-      "bId": "樂屋:0263ba35474795e",
-      "bSource": "樂屋網",
-      "bTitle": "光復街★二樓置產低總美寓",
-      "areaDelta": 0.04,
-      "priceDelta": 0.0,
-      "titleRatio": 0.0,
-      "floorRelation": "unknown",
-      "shared": []
-    },
-    {
-      "groupId": "GROUP:信義房屋:8485QF",
-      "road": "板橋區光復街",
-      "aId": "591:25298873",
-      "aSource": "591",
-      "aTitle": "🌈埔墘商圈🌈都更洽談中🌈穩定收租中🍎",
-      "bId": "樂屋:0ab93b350771785",
-      "bSource": "樂屋網",
-      "bTitle": "364BH埔墘家樂福3套房",
-      "areaDelta": 0.04,
-      "priceDelta": 0.0,
-      "titleRatio": 0.148,
-      "floorRelation": "unknown",
-      "shared": []
-    },
-    {
-      "groupId": "GROUP:信義房屋:8485QF",
-      "road": "板橋區光復街",
-      "aId": "591:25298873",
-      "aSource": "591",
-      "aTitle": "🌈埔墘商圈🌈都更洽談中🌈穩定收租中🍎",
-      "bId": "5168:38320505",
-      "bSource": "5168",
-      "bTitle": "364BH埔墘家樂福3套房",
-      "areaDelta": 0.04,
-      "priceDelta": 0.0,
-      "titleRatio": 0.148,
       "floorRelation": "unknown",
       "shared": []
     }
