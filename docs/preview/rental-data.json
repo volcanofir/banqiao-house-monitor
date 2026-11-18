@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-18T23:31:53+00:00",
+  "updatedAt": "2026-11-18T23:39:02+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -110,7 +110,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 100,
-      "checkedAt": "2026-11-18T23:32:01+00:00",
+      "checkedAt": "2026-11-18T23:39:11+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 20／新增 20／來源總數 61",
         "板橋區中山路二段 5168 API第2頁：符合 17／新增 17／來源總數 61",
@@ -244,19 +244,6 @@
       "firstSeenAt": "2026-11-15T02:46:54+00:00"
     },
     {
-      "id": "591租屋:22372894",
-      "source": "591",
-      "houseId": "22372894",
-      "road": "板橋區中山路二段",
-      "title": "板橋光復橋｜全新裝潢分租套房｜獨立衛浴｜1樓",
-      "address": "板橋區中山路二段",
-      "rent": 13500.0,
-      "size": 5.0,
-      "url": "https://rent.591.com.tw/22372894",
-      "floor": "1F/1F",
-      "firstSeenAt": "2026-11-18T13:32:06+00:00"
-    },
-    {
       "id": "591租屋:22258948",
       "source": "591",
       "houseId": "22258948",
@@ -268,6 +255,19 @@
       "url": "https://rent.591.com.tw/22258948",
       "floor": "3F/5F",
       "firstSeenAt": "2026-11-12T08:17:01+00:00"
+    },
+    {
+      "id": "591租屋:22372894",
+      "source": "591",
+      "houseId": "22372894",
+      "road": "板橋區中山路二段",
+      "title": "板橋光復橋｜全新裝潢分租套房｜獨立衛浴｜1樓",
+      "address": "板橋區中山路二段",
+      "rent": 13500.0,
+      "size": 5.0,
+      "url": "https://rent.591.com.tw/22372894",
+      "floor": "1F/1F",
+      "firstSeenAt": "2026-11-18T13:32:06+00:00"
     },
     {
       "id": "591租屋:22302775",
@@ -4653,7 +4653,7 @@
       "firstSeenAt": "2026-11-17T10:47:39+00:00"
     }
   ],
-  "elapsedSeconds": 69.88,
+  "elapsedSeconds": 77.84,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
