@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-18T00:32:51+00:00",
+  "capturedAt": "2026-11-18T00:48:10+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -204,7 +204,7 @@
     },
     "板橋區三民路二段": {
       "mainHttp": 200,
-      "count": 27,
+      "count": 26,
       "primarySearchUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw?od=80",
       "confirmationUsed": false,
       "primaryHttp": 200,
@@ -213,10 +213,10 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 60480,
+      "primaryApiListDataLength": 58476,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
-      "roadTextCount": 27,
+      "roadTextCount": 26,
       "summary": [],
       "searchUrl": "https://buy.yungching.com.tw/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5&filter=0&pg=1&ps=30",
       "loadRounds": 0,
@@ -236,7 +236,6 @@
           "6456220",
           "6586357",
           "6700174",
-          "6724191",
           "7078318",
           "7122798",
           "7144966",
@@ -267,7 +266,6 @@
           "6456220",
           "6586357",
           "6700174",
-          "6724191",
           "7078318",
           "7122798",
           "7144966",
@@ -293,18 +291,18 @@
           "7591797"
         ]
       },
-      "rawHouseIdCount": 29,
-      "rawExactAddressTextCount": 27,
+      "rawHouseIdCount": 28,
+      "rawExactAddressTextCount": 26,
       "paginationError": null,
-      "apiTotalCount": 27,
-      "apiTotalItemCount": 28,
-      "apiRawRowCount": 29,
-      "apiUniqueRowCount": 29,
+      "apiTotalCount": 26,
+      "apiTotalItemCount": 27,
+      "apiRawRowCount": 28,
+      "apiUniqueRowCount": 28,
       "emptyResultVerified": false,
       "skippedConfirmedEmpty": false,
       "transportEvidence": "official_api_v2_decrypted",
       "available": true,
-      "rawCountBeforeIdIntegrity": 27,
+      "rawCountBeforeIdIntegrity": 26,
       "idIntegrityRemoved": 0,
       "mode": "yungching_official_api",
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
@@ -536,7 +534,7 @@
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     }
   },
-  "listingCount": 72,
+  "listingCount": 71,
   "listings": [
     {
       "id": "7514442",
@@ -1541,33 +1539,6 @@
       "floorEvidence": "verified cache 2026-09-15T05:19:42+00:00"
     },
     {
-      "id": "6724191",
-      "road": "板橋區三民路二段",
-      "title": "面寬6米3｜正馬路金店面｜興隆市場｜方正格局",
-      "price": 4888,
-      "area": 29.33,
-      "floor": "1/5樓",
-      "address": "新北市板橋區三民路二段",
-      "type": "公寓",
-      "url": "https://buy.yungching.com.tw/house/6724191",
-      "sourceMode": "yungching_official_api",
-      "text": "面寬6米3｜正馬路金店面｜興隆市場｜方正格局 新北市板橋區三民路二段 公寓 建坪29.33 1/5樓 2房(室)2廳2衛 4888萬",
-      "rawText": "面寬6米3｜正馬路金店面｜興隆市場｜方正格局 新北市板橋區三民路二段 公寓 建坪29.33 1/5樓 2房(室)2廳2衛 4888萬",
-      "patternInfo": {
-        "room": 2,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": 1,
-        "addLivingRoom": 1,
-        "addBathRoom": 2
-      },
-      "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 1,
-        "upFloor": 5
-      }
-    },
-    {
       "id": "6586357",
       "road": "板橋區三民路二段",
       "title": "板橋國泰建設方正三房天然瓦斯一樓好停垃圾代收",
@@ -2493,8 +2464,8 @@
   "paginationGuardVersion": "api-all-pages-v1",
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 72,
-    "afterCount": 72,
+    "beforeCount": 71,
+    "afterCount": 71,
     "removedCount": 0,
     "collisionIds": [],
     "remainingCollisionIds": [],
@@ -2510,7 +2481,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-18T00:33:06+00:00",
+    "generatedAt": "2026-11-18T00:48:25+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,

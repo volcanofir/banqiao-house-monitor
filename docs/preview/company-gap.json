@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-18T00:33:25+00:00",
-  "sourceDataUpdatedAt": "2026-11-18T00:32:37+00:00",
+  "generatedAt": "2026-11-18T00:48:50+00:00",
+  "sourceDataUpdatedAt": "2026-11-18T00:47:55+00:00",
   "mode": "preview_only_591_sinyi_rakuya_5168_grouping_then_company_v11",
   "fetchMode": "yungching_official_rendered_dom_only",
   "company": "永慶房屋",
   "companyDataSource": "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM；缺樓層時同路徑開官方案件頁補值",
-  "companyListingCount": 72,
-  "companySnapshotCapturedAt": "2026-11-18T00:32:51+00:00",
+  "companyListingCount": 71,
+  "companySnapshotCapturedAt": "2026-11-18T00:48:10+00:00",
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -23,9 +23,9 @@
   "crossSourceReviewCount": 8,
   "companyConflictDowngradedCount": 5,
   "counts": {
-    "company_match": 43,
+    "company_match": 42,
     "review": 5,
-    "missing": 119,
+    "missing": 120,
     "unavailable": 0
   },
   "roadStatus": {
@@ -35,7 +35,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 31,
-      "browserCapturedAt": "2026-11-18T00:32:51+00:00",
+      "browserCapturedAt": "2026-11-18T00:48:10+00:00",
       "paginationExpected": true,
       "paginationComplete": true,
       "paginationActivePage": 2,
@@ -47,12 +47,12 @@
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     },
     "板橋區三民路二段": {
-      "count": 27,
+      "count": 26,
       "http": 200,
       "available": true,
       "mode": "yungching_official_api",
-      "officialCount": 27,
-      "browserCapturedAt": "2026-11-18T00:32:51+00:00",
+      "officialCount": 26,
+      "browserCapturedAt": "2026-11-18T00:48:10+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -69,7 +69,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 3,
-      "browserCapturedAt": "2026-11-18T00:32:51+00:00",
+      "browserCapturedAt": "2026-11-18T00:48:10+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -86,7 +86,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 2,
-      "browserCapturedAt": "2026-11-18T00:32:51+00:00",
+      "browserCapturedAt": "2026-11-18T00:48:10+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -103,7 +103,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 0,
-      "browserCapturedAt": "2026-11-18T00:32:51+00:00",
+      "browserCapturedAt": "2026-11-18T00:48:10+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -120,7 +120,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 6,
-      "browserCapturedAt": "2026-11-18T00:32:51+00:00",
+      "browserCapturedAt": "2026-11-18T00:48:10+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -137,7 +137,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 3,
-      "browserCapturedAt": "2026-11-18T00:32:51+00:00",
+      "browserCapturedAt": "2026-11-18T00:48:10+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -30859,18 +30859,18 @@
       "primaryId": "信義房屋:6956FJ",
       "primarySource": "信義房屋",
       "road": "板橋區三民路二段",
-      "status": "company_match",
-      "statusLabel": "庫存",
-      "score": 25,
+      "status": "missing",
+      "statusLabel": "未接回",
+      "score": -91,
       "companyCandidate": {
-        "id": "YC:6724191",
-        "title": "面寬6米3｜正馬路金店面｜興隆市場｜方正格局",
+        "id": "YC:6586357",
+        "title": "板橋國泰建設方正三房天然瓦斯一樓好停垃圾代收",
         "address": "新北市板橋區三民路二段",
-        "area": 29.33,
-        "price": 4888,
-        "url": "https://buy.yungching.com.tw/house/6724191",
+        "area": 31.03,
+        "price": 2349,
+        "url": "https://buy.yungching.com.tw/house/6586357",
         "sourceMode": "yungching_official_browser",
-        "officialId": "6724191",
+        "officialId": "6586357",
         "officialCaseId": null,
         "floor": "1/5樓",
         "floorSourceMode": null,
@@ -30878,13 +30878,10 @@
         "type": "公寓"
       },
       "matchInfo": {
-        "areaDelta": 0.0,
-        "priceDelta": 0.0,
-        "shared": [
-          "金店面"
-        ],
-        "titleRatio": 0.357,
-        "companySourceMode": "yungching_official_browser",
+        "areaDelta": 1.7,
+        "priceDelta": 2539.0,
+        "shared": [],
+        "titleRatio": 0,
         "floorRelation": "match",
         "externalFloors": [
           1
@@ -30895,10 +30892,7 @@
         "floorMatch": true,
         "evidenceSource": "信義房屋",
         "evidenceListingId": "信義房屋:6956FJ"
-      },
-      "companyStrongCandidateCount": 1,
-      "companyTopStrongScore": 25,
-      "companyNearTieStrong": false
+      }
     },
     {
       "groupId": "GROUP:信義房屋:7188GU",
@@ -31215,14 +31209,14 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "YC:6724191",
-        "title": "面寬6米3｜正馬路金店面｜興隆市場｜方正格局",
+        "id": "YC:6586357",
+        "title": "板橋國泰建設方正三房天然瓦斯一樓好停垃圾代收",
         "address": "新北市板橋區三民路二段",
-        "area": 29.33,
-        "price": 4888,
-        "url": "https://buy.yungching.com.tw/house/6724191",
+        "area": 31.03,
+        "price": 2349,
+        "url": "https://buy.yungching.com.tw/house/6586357",
         "sourceMode": "yungching_official_browser",
-        "officialId": "6724191",
+        "officialId": "6586357",
         "officialCaseId": null,
         "floor": "1/5樓",
         "floorSourceMode": null,
@@ -31230,10 +31224,10 @@
         "type": "公寓"
       },
       "matchInfo": {
-        "areaDelta": 0.73,
-        "priceDelta": 2603.0,
+        "areaDelta": 0.97,
+        "priceDelta": 64.0,
         "shared": [],
-        "titleRatio": 0.0,
+        "titleRatio": 0.125,
         "companySourceMode": "yungching_official_browser",
         "floorRelation": "conflict",
         "externalFloors": [
@@ -31565,14 +31559,14 @@
       "statusLabel": "未接回",
       "score": -91,
       "companyCandidate": {
-        "id": "YC:6724191",
-        "title": "面寬6米3｜正馬路金店面｜興隆市場｜方正格局",
+        "id": "YC:6586357",
+        "title": "板橋國泰建設方正三房天然瓦斯一樓好停垃圾代收",
         "address": "新北市板橋區三民路二段",
-        "area": 29.33,
-        "price": 4888,
-        "url": "https://buy.yungching.com.tw/house/6724191",
+        "area": 31.03,
+        "price": 2349,
+        "url": "https://buy.yungching.com.tw/house/6586357",
         "sourceMode": "yungching_official_browser",
-        "officialId": "6724191",
+        "officialId": "6586357",
         "officialCaseId": null,
         "floor": "1/5樓",
         "floorSourceMode": null,
@@ -31580,8 +31574,8 @@
         "type": "公寓"
       },
       "matchInfo": {
-        "areaDelta": 7.12,
-        "priceDelta": 1008.0,
+        "areaDelta": 5.42,
+        "priceDelta": 1531.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "match",
@@ -32764,14 +32758,14 @@
       "statusLabel": "未接回",
       "score": -99,
       "companyCandidate": {
-        "id": "YC:6724191",
-        "title": "面寬6米3｜正馬路金店面｜興隆市場｜方正格局",
+        "id": "YC:6586357",
+        "title": "板橋國泰建設方正三房天然瓦斯一樓好停垃圾代收",
         "address": "新北市板橋區三民路二段",
-        "area": 29.33,
-        "price": 4888,
-        "url": "https://buy.yungching.com.tw/house/6724191",
+        "area": 31.03,
+        "price": 2349,
+        "url": "https://buy.yungching.com.tw/house/6586357",
         "sourceMode": "yungching_official_browser",
-        "officialId": "6724191",
+        "officialId": "6586357",
         "officialCaseId": null,
         "floor": "1/5樓",
         "floorSourceMode": null,
@@ -32779,8 +32773,8 @@
         "type": "公寓"
       },
       "matchInfo": {
-        "areaDelta": 18.26,
-        "priceDelta": 608.0,
+        "areaDelta": 16.56,
+        "priceDelta": 1931.0,
         "shared": [],
         "titleRatio": 0,
         "floorRelation": "unknown",
@@ -37699,35 +37693,6 @@
       "captureSourceMode": "yungching_official_api"
     },
     {
-      "id": "YC:6724191",
-      "road": "板橋區三民路二段",
-      "title": "面寬6米3｜正馬路金店面｜興隆市場｜方正格局",
-      "price": 4888,
-      "area": 29.33,
-      "floor": "1/5樓",
-      "address": "新北市板橋區三民路二段",
-      "type": "公寓",
-      "url": "https://buy.yungching.com.tw/house/6724191",
-      "sourceMode": "yungching_official_browser",
-      "text": "面寬6米3｜正馬路金店面｜興隆市場｜方正格局 新北市板橋區三民路二段 公寓 建坪29.33 1/5樓 2房(室)2廳2衛 4888萬",
-      "rawText": "面寬6米3｜正馬路金店面｜興隆市場｜方正格局 新北市板橋區三民路二段 公寓 建坪29.33 1/5樓 2房(室)2廳2衛 4888萬",
-      "patternInfo": {
-        "room": 2,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": 1,
-        "addLivingRoom": 1,
-        "addBathRoom": 2
-      },
-      "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 1,
-        "upFloor": 5
-      },
-      "officialId": "6724191",
-      "captureSourceMode": "yungching_official_api"
-    },
-    {
       "id": "YC:6586357",
       "road": "板橋區三民路二段",
       "title": "板橋國泰建設方正三房天然瓦斯一樓好停垃圾代收",
@@ -38896,7 +38861,7 @@
   ],
   "logs": [
     "永慶官方資料：板橋區中山路二段 採用官方 API 31 筆。",
-    "永慶官方資料：板橋區三民路二段 採用官方 API 27 筆。",
+    "永慶官方資料：板橋區三民路二段 採用官方 API 26 筆。",
     "永慶官方資料：板橋區光復街 採用官方 API 3 筆。",
     "永慶官方資料：板橋區萬安街 採用官方 API 2 筆。",
     "永慶官方瀏覽器資料：板橋區林森街 原路段網址 HTTP 404；官方新北市關鍵字頁完整複查為 0 筆，已跳過此路段公司案件。",
@@ -38924,8 +38889,8 @@
   },
   "officialBrowserCompany": {
     "enabled": true,
-    "capturedAt": "2026-11-18T00:32:51+00:00",
-    "snapshotAgeMinutes": 0.5,
+    "capturedAt": "2026-11-18T00:48:10+00:00",
+    "snapshotAgeMinutes": 0.6,
     "acceptedRoadCount": 7,
     "unavailableRoadCount": 0,
     "roads": {
@@ -38942,7 +38907,7 @@
       },
       "板橋區三民路二段": {
         "mode": "official_api",
-        "officialCount": 27,
+        "officialCount": 26,
         "http": 200,
         "paginationComplete": true,
         "emptyResultVerified": false,
@@ -39019,12 +38984,12 @@
   "safeFloorParser": true,
   "safeFloorParserRule": "subject floor must be physically valid against total floor; glued area digits are trimmed instead of becoming impossible floors",
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-18T00:33:21+00:00",
+    "generatedAt": "2026-11-18T00:48:41+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-18T00:30:21+00:00",
+    "sourceRunCheckedAt": "2026-11-18T00:45:29+00:00",
     "activeSinyiCount": 68,
     "matchedOfficialCount": 68,
     "appliedCount": 68,
@@ -39043,13 +39008,13 @@
   "companyNearTieGuard": {
     "enabled": true,
     "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-    "examinedCompanyMatchCount": 43,
+    "examinedCompanyMatchCount": 42,
     "downgradedCount": 0,
     "remainingAutoNearTieCount": 0,
     "groups": []
   },
   "recentOffMarketRetentionDays": 10,
-  "recentOffMarketGeneratedAt": "2026-11-18T00:33:26+00:00",
+  "recentOffMarketGeneratedAt": "2026-11-18T00:48:51+00:00",
   "recentOffMarketCount": 10,
   "recentOffMarketGroups": [
     {
@@ -40051,7 +40016,7 @@
     "directGroupIdMergeCount": 15
   },
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-18T00:33:06+00:00",
+    "updatedAt": "2026-11-18T00:48:25+00:00",
     "status": "ok",
     "totalCount": 220,
     "uniqueListingCount": 220,
@@ -40104,7 +40069,7 @@
     "complete": true
   },
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-18T00:30:52+00:00",
+    "updatedAt": "2026-11-18T00:46:08+00:00",
     "status": "ok",
     "totalCount": 52,
     "uniqueListingCount": 52,
