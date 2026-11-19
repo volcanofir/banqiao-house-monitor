@@ -1,19 +1,19 @@
 {
-  "verifiedAt": "2026-11-19T22:33:41+00:00",
+  "verifiedAt": "2026-11-19T22:48:45+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
   "fetchMode": "yungching_official_rendered_dom_only",
-  "sourceDataUpdatedAt": "2026-11-19T22:32:49+00:00",
+  "sourceDataUpdatedAt": "2026-11-19T22:47:52+00:00",
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-19T22:33:28+00:00",
+    "generatedAt": "2026-11-19T22:48:34+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-19T22:30:32+00:00",
+    "sourceRunCheckedAt": "2026-11-19T22:45:23+00:00",
     "activeSinyiCount": 68,
     "matchedOfficialCount": 68,
     "appliedCount": 68,
@@ -30,14 +30,14 @@
   },
   "rakuyaIntegrated": true,
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-19T22:33:16+00:00",
+    "updatedAt": "2026-11-19T22:48:22+00:00",
     "status": "ok",
-    "totalCount": 221,
-    "uniqueListingCount": 221,
+    "totalCount": 220,
+    "uniqueListingCount": 220,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 121,
+        "count": 120,
         "pages": 7
       },
       {
@@ -76,18 +76,20 @@
       "newIds": [],
       "priceChangeCount": 0,
       "priceChanges": [],
-      "removedCount": 0,
-      "removedIds": [],
-      "currentChangeCount": 0
+      "removedCount": 1,
+      "removedIds": [
+        "0a2d0d32947684f"
+      ],
+      "currentChangeCount": 1
     },
     "complete": true
   },
   "rakuyaGrouping": {
-    "inputCount": 221,
-    "regroupedCount": 125,
+    "inputCount": 220,
+    "regroupedCount": 124,
     "mergedClusterCount": 50,
     "absorbedCount": 96,
-    "attachedToExistingGroupCount": 99,
+    "attachedToExistingGroupCount": 98,
     "standaloneGroupCount": 26,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
@@ -95,7 +97,7 @@
   },
   "housepriceIntegrated": true,
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-19T22:31:07+00:00",
+    "updatedAt": "2026-11-19T22:46:07+00:00",
     "status": "ok",
     "totalCount": 54,
     "uniqueListingCount": 54,
@@ -180,7 +182,7 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-19T22:33:40+00:00",
+    "auditedAt": "2026-11-19T22:48:45+00:00",
     "propertyGroupCount": 170,
     "companyListingCount": 71,
     "companyMatchCount": 43,
@@ -188,13 +190,13 @@
     "chosenCandidateRecomputeMismatchCount": 0,
     "weakIdentityAlreadyMergedPairCount": 943
   },
-  "snapshotCapturedAt": "2026-11-19T22:33:03+00:00",
-  "companySnapshotCapturedAt": "2026-11-19T22:33:03+00:00",
-  "companyGapGeneratedAt": "2026-11-19T22:33:35+00:00",
+  "snapshotCapturedAt": "2026-11-19T22:48:08+00:00",
+  "companySnapshotCapturedAt": "2026-11-19T22:48:08+00:00",
+  "companyGapGeneratedAt": "2026-11-19T22:48:40+00:00",
   "browserListingCount": 71,
   "companyListingCount": 71,
   "propertyGroupCount": 170,
-  "rawListingCount": 792,
+  "rawListingCount": 791,
   "comparisonCount": 170,
   "coveredRoads": [
     "板橋區中山路二段",
@@ -264,7 +266,7 @@
     "missing": 122,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 103,
+  "crossPlatformMergedGroupCount": 102,
   "crossSourceReviewCount": 9,
   "preview591Regroup": {
     "original591TopLevel": 94,
@@ -344,7 +346,7 @@
   "candidatesWithFloor": 168,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-19T22:33:15+00:00",
+    "generatedAt": "2026-11-19T22:48:22+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
