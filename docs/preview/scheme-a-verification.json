@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-19T23:48:14+00:00",
+  "verifiedAt": "2026-11-19T23:54:16+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-19T23:48:04+00:00",
+    "generatedAt": "2026-11-19T23:54:06+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -180,21 +180,21 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-19T23:48:14+00:00",
+    "auditedAt": "2026-11-19T23:54:16+00:00",
     "propertyGroupCount": 170,
     "companyListingCount": 71,
     "companyMatchCount": 43,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 943
+    "weakIdentityAlreadyMergedPairCount": 980
   },
   "snapshotCapturedAt": "2026-11-19T23:47:41+00:00",
   "companySnapshotCapturedAt": "2026-11-19T23:47:41+00:00",
-  "companyGapGeneratedAt": "2026-11-19T23:48:10+00:00",
+  "companyGapGeneratedAt": "2026-11-19T23:54:12+00:00",
   "browserListingCount": 71,
   "companyListingCount": 71,
   "propertyGroupCount": 170,
-  "rawListingCount": 791,
+  "rawListingCount": 790,
   "comparisonCount": 170,
   "coveredRoads": [
     "板橋區中山路二段",
@@ -277,18 +277,18 @@
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-19T20:50:20+00:00",
-    "totalCount": 234,
-    "uniqueListingCount": 234,
+    "updatedAt": "2026-11-19T23:53:45+00:00",
+    "totalCount": 232,
+    "uniqueListingCount": 232,
     "groupCount": 94,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 125
+        "count": 124
       },
       {
         "road": "三民路二段",
-        "count": 60
+        "count": 59
       },
       {
         "road": "光復街",
@@ -300,7 +300,7 @@
       },
       {
         "road": "林森街",
-        "count": 3
+        "count": 4
       },
       {
         "road": "三民路一段",
@@ -308,21 +308,21 @@
       },
       {
         "road": "翠華街",
-        "count": 7
+        "count": 6
       }
     ],
     "sourceFieldCoverage": {
-      "floor": 226,
-      "layout": 234,
-      "community": 137,
-      "houseAge": 234,
-      "parkingFlag": 234,
+      "floor": 224,
+      "layout": 232,
+      "community": 136,
+      "houseAge": 232,
+      "parkingFlag": 232,
       "unverifiedFloor": 8,
-      "total": 234
+      "total": 232
     },
     "floorAwarePreviewGrouping": true,
-    "historyMatchedIdCount": 155,
-    "historyNotPresentUnconfirmed": 358,
+    "historyMatchedIdCount": 154,
+    "historyNotPresentUnconfirmed": 359,
     "historyReappearedCount": 0,
     "missingIdIsNotDelisting": true,
     "newIdIsNotNewProperty": true
