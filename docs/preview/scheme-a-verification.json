@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-19T08:48:42+00:00",
+  "verifiedAt": "2026-11-19T08:52:24+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-19T08:48:33+00:00",
+    "generatedAt": "2026-11-19T08:52:10+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -165,8 +165,8 @@
     "regroupedCount": 38,
     "mergedClusterCount": 13,
     "absorbedCount": 16,
-    "attachedToExistingGroupCount": 32,
-    "standaloneGroupCount": 6,
+    "attachedToExistingGroupCount": 33,
+    "standaloneGroupCount": 5,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 16
@@ -180,22 +180,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-19T08:48:42+00:00",
-    "propertyGroupCount": 169,
+    "auditedAt": "2026-11-19T08:52:24+00:00",
+    "propertyGroupCount": 167,
     "companyListingCount": 71,
     "companyMatchCount": 43,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 958
+    "weakIdentityAlreadyMergedPairCount": 920
   },
   "snapshotCapturedAt": "2026-11-19T08:48:07+00:00",
   "companySnapshotCapturedAt": "2026-11-19T08:48:07+00:00",
-  "companyGapGeneratedAt": "2026-11-19T08:48:38+00:00",
+  "companyGapGeneratedAt": "2026-11-19T08:52:18+00:00",
   "browserListingCount": 71,
   "companyListingCount": 71,
-  "propertyGroupCount": 169,
-  "rawListingCount": 758,
-  "comparisonCount": 169,
+  "propertyGroupCount": 167,
+  "rawListingCount": 756,
+  "comparisonCount": 167,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -261,14 +261,14 @@
   "counts": {
     "company_match": 43,
     "review": 5,
-    "missing": 121,
+    "missing": 119,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 102,
+  "crossPlatformMergedGroupCount": 103,
   "crossSourceReviewCount": 9,
   "preview591Regroup": {
-    "original591TopLevel": 94,
-    "regrouped591TopLevel": 86,
+    "original591TopLevel": 92,
+    "regrouped591TopLevel": 84,
     "regrouped591ClusterCount": 8,
     "regrouped591AbsorbedCount": 8,
     "clusterFloorConflictBlocked": 0
@@ -277,14 +277,14 @@
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-19T05:46:17+00:00",
+    "updatedAt": "2026-11-19T08:51:54+00:00",
     "totalCount": 220,
     "uniqueListingCount": 220,
-    "groupCount": 94,
+    "groupCount": 92,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 114
+        "count": 115
       },
       {
         "road": "三民路二段",
@@ -296,7 +296,7 @@
       },
       {
         "road": "萬安街",
-        "count": 12
+        "count": 11
       },
       {
         "road": "林森街",
@@ -312,17 +312,17 @@
       }
     ],
     "sourceFieldCoverage": {
-      "floor": 213,
+      "floor": 212,
       "layout": 220,
-      "community": 126,
+      "community": 131,
       "houseAge": 220,
       "parkingFlag": 220,
-      "unverifiedFloor": 7,
+      "unverifiedFloor": 8,
       "total": 220
     },
     "floorAwarePreviewGrouping": true,
-    "historyMatchedIdCount": 149,
-    "historyNotPresentUnconfirmed": 364,
+    "historyMatchedIdCount": 150,
+    "historyNotPresentUnconfirmed": 363,
     "historyReappearedCount": 0,
     "missingIdIsNotDelisting": true,
     "newIdIsNotNewProperty": true
@@ -340,8 +340,8 @@
     "removed": [],
     "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
   },
-  "candidateCount": 167,
-  "candidatesWithFloor": 167,
+  "candidateCount": 165,
+  "candidatesWithFloor": 165,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
     "generatedAt": "2026-11-19T08:48:21+00:00",
