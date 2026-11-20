@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-20T05:18:23+00:00",
+  "verifiedAt": "2026-11-20T05:31:48+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-20T05:18:15+00:00",
+    "generatedAt": "2026-11-20T05:31:39+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -87,8 +87,8 @@
     "regroupedCount": 125,
     "mergedClusterCount": 50,
     "absorbedCount": 96,
-    "attachedToExistingGroupCount": 99,
-    "standaloneGroupCount": 26,
+    "attachedToExistingGroupCount": 98,
+    "standaloneGroupCount": 27,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 0
@@ -165,8 +165,8 @@
     "regroupedCount": 38,
     "mergedClusterCount": 13,
     "absorbedCount": 16,
-    "attachedToExistingGroupCount": 33,
-    "standaloneGroupCount": 5,
+    "attachedToExistingGroupCount": 32,
+    "standaloneGroupCount": 6,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 16
@@ -174,28 +174,28 @@
   "companyNearTieGuard": {
     "enabled": true,
     "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-    "examinedCompanyMatchCount": 43,
+    "examinedCompanyMatchCount": 42,
     "downgradedCount": 0,
     "remainingAutoNearTieCount": 0,
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-20T05:18:23+00:00",
-    "propertyGroupCount": 167,
+    "auditedAt": "2026-11-20T05:31:48+00:00",
+    "propertyGroupCount": 166,
     "companyListingCount": 71,
-    "companyMatchCount": 43,
+    "companyMatchCount": 42,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
     "weakIdentityAlreadyMergedPairCount": 945
   },
   "snapshotCapturedAt": "2026-11-20T05:17:48+00:00",
   "companySnapshotCapturedAt": "2026-11-20T05:17:48+00:00",
-  "companyGapGeneratedAt": "2026-11-20T05:18:20+00:00",
+  "companyGapGeneratedAt": "2026-11-20T05:31:44+00:00",
   "browserListingCount": 71,
   "companyListingCount": 71,
-  "propertyGroupCount": 167,
-  "rawListingCount": 787,
-  "comparisonCount": 167,
+  "propertyGroupCount": 166,
+  "rawListingCount": 774,
+  "comparisonCount": 166,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -259,16 +259,16 @@
     }
   },
   "counts": {
-    "company_match": 43,
+    "company_match": 42,
     "review": 5,
     "missing": 119,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 102,
+  "crossPlatformMergedGroupCount": 100,
   "crossSourceReviewCount": 9,
   "preview591Regroup": {
-    "original591TopLevel": 91,
-    "regrouped591TopLevel": 83,
+    "original591TopLevel": 88,
+    "regrouped591TopLevel": 80,
     "regrouped591ClusterCount": 8,
     "regrouped591AbsorbedCount": 8,
     "clusterFloorConflictBlocked": 0
@@ -277,22 +277,22 @@
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-20T02:26:30+00:00",
-    "totalCount": 229,
-    "uniqueListingCount": 229,
-    "groupCount": 91,
+    "updatedAt": "2026-11-20T05:31:18+00:00",
+    "totalCount": 215,
+    "uniqueListingCount": 215,
+    "groupCount": 88,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 121
+        "count": 113
       },
       {
         "road": "三民路二段",
-        "count": 60
+        "count": 53
       },
       {
         "road": "光復街",
-        "count": 7
+        "count": 8
       },
       {
         "road": "萬安街",
@@ -300,11 +300,11 @@
       },
       {
         "road": "林森街",
-        "count": 4
+        "count": 3
       },
       {
         "road": "三民路一段",
-        "count": 18
+        "count": 19
       },
       {
         "road": "翠華街",
@@ -312,17 +312,17 @@
       }
     ],
     "sourceFieldCoverage": {
-      "floor": 222,
-      "layout": 229,
-      "community": 135,
-      "houseAge": 229,
-      "parkingFlag": 229,
+      "floor": 208,
+      "layout": 215,
+      "community": 124,
+      "houseAge": 215,
+      "parkingFlag": 215,
       "unverifiedFloor": 7,
-      "total": 229
+      "total": 215
     },
     "floorAwarePreviewGrouping": true,
-    "historyMatchedIdCount": 153,
-    "historyNotPresentUnconfirmed": 360,
+    "historyMatchedIdCount": 146,
+    "historyNotPresentUnconfirmed": 367,
     "historyReappearedCount": 0,
     "missingIdIsNotDelisting": true,
     "newIdIsNotNewProperty": true
@@ -340,8 +340,8 @@
     "removed": [],
     "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
   },
-  "candidateCount": 165,
-  "candidatesWithFloor": 165,
+  "candidateCount": 164,
+  "candidatesWithFloor": 164,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
     "generatedAt": "2026-11-20T05:18:02+00:00",
