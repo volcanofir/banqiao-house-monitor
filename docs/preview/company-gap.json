@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-20T22:33:31+00:00",
-  "sourceDataUpdatedAt": "2026-11-20T22:32:39+00:00",
+  "generatedAt": "2026-11-20T22:48:38+00:00",
+  "sourceDataUpdatedAt": "2026-11-20T22:47:34+00:00",
   "mode": "preview_only_591_sinyi_rakuya_5168_grouping_then_company_v11",
   "fetchMode": "yungching_official_rendered_dom_only",
   "company": "永慶房屋",
   "companyDataSource": "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM；缺樓層時同路徑開官方案件頁補值",
   "companyListingCount": 70,
-  "companySnapshotCapturedAt": "2026-11-20T22:32:55+00:00",
+  "companySnapshotCapturedAt": "2026-11-20T22:47:59+00:00",
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -19,7 +19,7 @@
   "externalActiveCount": 441,
   "propertyGroupCount": 171,
   "rawListingCount": 799,
-  "crossPlatformMergedGroupCount": 104,
+  "crossPlatformMergedGroupCount": 103,
   "crossSourceReviewCount": 8,
   "companyConflictDowngradedCount": 4,
   "counts": {
@@ -35,7 +35,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 31,
-      "browserCapturedAt": "2026-11-20T22:32:55+00:00",
+      "browserCapturedAt": "2026-11-20T22:47:59+00:00",
       "paginationExpected": true,
       "paginationComplete": true,
       "paginationActivePage": 2,
@@ -52,7 +52,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 25,
-      "browserCapturedAt": "2026-11-20T22:32:55+00:00",
+      "browserCapturedAt": "2026-11-20T22:47:59+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -69,7 +69,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 3,
-      "browserCapturedAt": "2026-11-20T22:32:55+00:00",
+      "browserCapturedAt": "2026-11-20T22:47:59+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -86,7 +86,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 2,
-      "browserCapturedAt": "2026-11-20T22:32:55+00:00",
+      "browserCapturedAt": "2026-11-20T22:47:59+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -103,7 +103,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 0,
-      "browserCapturedAt": "2026-11-20T22:32:55+00:00",
+      "browserCapturedAt": "2026-11-20T22:47:59+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -120,7 +120,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 6,
-      "browserCapturedAt": "2026-11-20T22:32:55+00:00",
+      "browserCapturedAt": "2026-11-20T22:47:59+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -137,7 +137,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 3,
-      "browserCapturedAt": "2026-11-20T22:32:55+00:00",
+      "browserCapturedAt": "2026-11-20T22:47:59+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -168,7 +168,8 @@
       "active": true,
       "sources": [
         "信義房屋",
-        "591"
+        "591",
+        "樂屋網"
       ],
       "sourceListings": [
         {
@@ -272,6 +273,47 @@
               "sourceParkingFlag": false
             }
           ]
+        },
+        {
+          "id": "樂屋:01405c36318552c",
+          "houseId": "01405c36318552c",
+          "source": "樂屋網",
+          "road": "板橋區中山路二段",
+          "title": "埔墘三面採光前後陽台美寓",
+          "url": "https://community.rakuya.com.tw/106004/sell/info?ehid=01405c36318552c",
+          "price": "1480萬",
+          "effectivePrice": 1480,
+          "size": "35.68坪",
+          "address": "新北市板橋區中山路二段",
+          "sourcePublishedAt": 1795190400,
+          "postTime": null,
+          "sourcePublishedAtType": "rakuyaListingDate",
+          "newAt": "2026-11-20T22:48:13+00:00",
+          "active": true,
+          "mergedListingCount": 1,
+          "mergedActiveListingCount": 1,
+          "mergedListings": [
+            {
+              "id": "樂屋:01405c36318552c",
+              "houseId": "01405c36318552c",
+              "source": "樂屋網",
+              "title": "埔墘三面採光前後陽台美寓",
+              "url": "https://community.rakuya.com.tw/106004/sell/info?ehid=01405c36318552c",
+              "price": "1480萬",
+              "effectivePrice": 1480,
+              "size": "35.68坪",
+              "address": "新北市板橋區中山路二段",
+              "sourcePublishedAt": 1795190400,
+              "postTime": null,
+              "active": true,
+              "floor": "4/5樓"
+            }
+          ],
+          "floor": "4/5樓",
+          "monitorFirstSeenAt": "2026-11-20T22:48:13+00:00",
+          "rakuyaSourcePublishedDate": "2026-11-21",
+          "rakuyaSourcePublishedRaw": "2026-11-21",
+          "rakuyaSourcePublishedEvidence": "script:object_upload_time"
         }
       ],
       "crossPlatformMerged": true,
@@ -293,9 +335,35 @@
             4
           ],
           "listing591Floors": []
+        },
+        {
+          "source": "樂屋網",
+          "sourceId": "樂屋:01405c36318552c",
+          "score": 40,
+          "evidenceSource": "信義房屋",
+          "areaDelta": 0.0,
+          "priceDelta": 0.0,
+          "titleRatio": 1.0,
+          "shared": [
+            "埔墘三面採光前後陽台美寓",
+            "三面採光前",
+            "光前後陽台",
+            "前後陽台美",
+            "埔墘三面採",
+            "墘三面採光"
+          ],
+          "exactFingerprint": true,
+          "floorRelation": "match",
+          "sinyiFloors": [
+            4
+          ],
+          "listing591Floors": [
+            4
+          ],
+          "floorMatch": true
         }
       ],
-      "rawListingCount": 4,
+      "rawListingCount": 5,
       "propertyFirstPublishedAt": "2026-06-13T03:42:26+00:00",
       "propertyFirstPublishedSource": "591",
       "propertyFirstPublishedListingId": "591:20382365",
@@ -7678,8 +7746,7 @@
       "newAt": "2026-01-05T11:05:20+08:00",
       "active": true,
       "sources": [
-        "信義房屋",
-        "樂屋網"
+        "信義房屋"
       ],
       "sourceListings": [
         {
@@ -7706,82 +7773,11 @@
           "structuredTotalFloor": "4",
           "floorSourceMode": "sinyi_official_filterObject_api",
           "sinyiObjectType": 1
-        },
-        {
-          "id": "樂屋:0a2d0d32947684f",
-          "houseId": "0a2d0d32947684f",
-          "source": "樂屋網",
-          "road": "板橋區中山路二段",
-          "title": "正中山路透天店面",
-          "url": "https://www.rakuya.com.tw/sell_item/info?ehid=0a2d0d32947684f",
-          "price": "12000萬",
-          "effectivePrice": 12000,
-          "size": "91.68坪",
-          "address": "新北市板橋區中山路二段",
-          "sourcePublishedAt": 1767628800,
-          "postTime": null,
-          "sourcePublishedAtType": "rakuyaListingDate",
-          "newAt": null,
-          "active": true,
-          "mergedListingCount": 1,
-          "mergedActiveListingCount": 1,
-          "mergedListings": [
-            {
-              "id": "樂屋:0a2d0d32947684f",
-              "houseId": "0a2d0d32947684f",
-              "source": "樂屋網",
-              "title": "正中山路透天店面",
-              "url": "https://www.rakuya.com.tw/sell_item/info?ehid=0a2d0d32947684f",
-              "price": "12000萬",
-              "effectivePrice": 12000,
-              "size": "91.68坪",
-              "address": "新北市板橋區中山路二段",
-              "sourcePublishedAt": 1767628800,
-              "postTime": null,
-              "active": true,
-              "floor": "4/4樓"
-            }
-          ],
-          "floor": "4/4樓",
-          "monitorFirstSeenAt": "2026-11-20T00:18:50+00:00",
-          "rakuyaSourcePublishedDate": "2026-01-06",
-          "rakuyaSourcePublishedRaw": "2026-01-06",
-          "rakuyaSourcePublishedEvidence": "script:object_upload_time"
         }
       ],
-      "crossPlatformMerged": true,
-      "crossPlatformMatchInfo": [
-        {
-          "source": "樂屋網",
-          "sourceId": "樂屋:0a2d0d32947684f",
-          "score": 40,
-          "evidenceSource": "信義房屋",
-          "areaDelta": 0.0,
-          "priceDelta": 0.0,
-          "titleRatio": 1.0,
-          "shared": [
-            "正中山路透天店面",
-            "中山路透天",
-            "山路透天店",
-            "正中山路透",
-            "路透天店面",
-            "中山路透"
-          ],
-          "exactFingerprint": true,
-          "floorRelation": "match",
-          "sinyiFloors": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "listing591Floors": [
-            4
-          ],
-          "floorMatch": true
-        }
-      ],
-      "rawListingCount": 2,
+      "crossPlatformMerged": false,
+      "crossPlatformMatchInfo": [],
+      "rawListingCount": 1,
       "propertyFirstPublishedAt": "2026-01-05T03:05:20+00:00",
       "propertyFirstPublishedSource": "信義房屋",
       "propertyFirstPublishedListingId": null,
@@ -39662,8 +39658,8 @@
   },
   "officialBrowserCompany": {
     "enabled": true,
-    "capturedAt": "2026-11-20T22:32:55+00:00",
-    "snapshotAgeMinutes": 0.5,
+    "capturedAt": "2026-11-20T22:47:59+00:00",
+    "snapshotAgeMinutes": 0.6,
     "acceptedRoadCount": 7,
     "unavailableRoadCount": 0,
     "roads": {
@@ -39757,12 +39753,12 @@
   "safeFloorParser": true,
   "safeFloorParserRule": "subject floor must be physically valid against total floor; glued area digits are trimmed instead of becoming impossible floors",
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-20T22:33:22+00:00",
+    "generatedAt": "2026-11-20T22:48:29+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-20T22:30:23+00:00",
+    "sourceRunCheckedAt": "2026-11-20T22:45:22+00:00",
     "activeSinyiCount": 69,
     "matchedOfficialCount": 69,
     "appliedCount": 69,
@@ -39787,7 +39783,7 @@
     "groups": []
   },
   "recentOffMarketRetentionDays": 10,
-  "recentOffMarketGeneratedAt": "2026-11-20T22:33:32+00:00",
+  "recentOffMarketGeneratedAt": "2026-11-20T22:48:38+00:00",
   "recentOffMarketCount": 5,
   "recentOffMarketGroups": [
     {
@@ -40326,7 +40322,7 @@
     "directGroupIdMergeCount": 16
   },
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-20T22:33:12+00:00",
+    "updatedAt": "2026-11-20T22:48:13+00:00",
     "status": "ok",
     "totalCount": 223,
     "uniqueListingCount": 223,
@@ -40368,18 +40364,22 @@
       }
     ],
     "changes": {
-      "newCount": 0,
-      "newIds": [],
+      "newCount": 1,
+      "newIds": [
+        "01405c36318552c"
+      ],
       "priceChangeCount": 0,
       "priceChanges": [],
-      "removedCount": 0,
-      "removedIds": [],
-      "currentChangeCount": 0
+      "removedCount": 1,
+      "removedIds": [
+        "0a2d0d32947684f"
+      ],
+      "currentChangeCount": 2
     },
     "complete": true
   },
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-20T22:30:54+00:00",
+    "updatedAt": "2026-11-20T22:45:51+00:00",
     "status": "ok",
     "totalCount": 54,
     "uniqueListingCount": 54,
