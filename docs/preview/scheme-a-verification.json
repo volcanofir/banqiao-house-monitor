@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-20T02:18:39+00:00",
+  "verifiedAt": "2026-11-20T02:26:59+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-20T02:18:30+00:00",
+    "generatedAt": "2026-11-20T02:26:45+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -180,22 +180,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-20T02:18:39+00:00",
-    "propertyGroupCount": 170,
+    "auditedAt": "2026-11-20T02:26:59+00:00",
+    "propertyGroupCount": 167,
     "companyListingCount": 71,
     "companyMatchCount": 43,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 980
+    "weakIdentityAlreadyMergedPairCount": 945
   },
   "snapshotCapturedAt": "2026-11-20T02:18:10+00:00",
   "companySnapshotCapturedAt": "2026-11-20T02:18:10+00:00",
-  "companyGapGeneratedAt": "2026-11-20T02:18:36+00:00",
+  "companyGapGeneratedAt": "2026-11-20T02:26:53+00:00",
   "browserListingCount": 71,
   "companyListingCount": 71,
-  "propertyGroupCount": 170,
-  "rawListingCount": 791,
-  "comparisonCount": 170,
+  "propertyGroupCount": 167,
+  "rawListingCount": 787,
+  "comparisonCount": 167,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -261,14 +261,14 @@
   "counts": {
     "company_match": 43,
     "review": 5,
-    "missing": 122,
+    "missing": 119,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 103,
+  "crossPlatformMergedGroupCount": 102,
   "crossSourceReviewCount": 9,
   "preview591Regroup": {
-    "original591TopLevel": 94,
-    "regrouped591TopLevel": 86,
+    "original591TopLevel": 91,
+    "regrouped591TopLevel": 83,
     "regrouped591ClusterCount": 8,
     "regrouped591AbsorbedCount": 8,
     "clusterFloorConflictBlocked": 0
@@ -277,22 +277,22 @@
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-19T23:53:45+00:00",
-    "totalCount": 232,
-    "uniqueListingCount": 232,
-    "groupCount": 94,
+    "updatedAt": "2026-11-20T02:26:30+00:00",
+    "totalCount": 229,
+    "uniqueListingCount": 229,
+    "groupCount": 91,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 124
+        "count": 121
       },
       {
         "road": "三民路二段",
-        "count": 59
+        "count": 60
       },
       {
         "road": "光復街",
-        "count": 8
+        "count": 7
       },
       {
         "road": "萬安街",
@@ -304,25 +304,25 @@
       },
       {
         "road": "三民路一段",
-        "count": 19
+        "count": 18
       },
       {
         "road": "翠華街",
-        "count": 6
+        "count": 7
       }
     ],
     "sourceFieldCoverage": {
-      "floor": 224,
-      "layout": 232,
-      "community": 136,
-      "houseAge": 232,
-      "parkingFlag": 232,
-      "unverifiedFloor": 8,
-      "total": 232
+      "floor": 222,
+      "layout": 229,
+      "community": 135,
+      "houseAge": 229,
+      "parkingFlag": 229,
+      "unverifiedFloor": 7,
+      "total": 229
     },
     "floorAwarePreviewGrouping": true,
-    "historyMatchedIdCount": 154,
-    "historyNotPresentUnconfirmed": 359,
+    "historyMatchedIdCount": 153,
+    "historyNotPresentUnconfirmed": 360,
     "historyReappearedCount": 0,
     "missingIdIsNotDelisting": true,
     "newIdIsNotNewProperty": true
@@ -340,8 +340,8 @@
     "removed": [],
     "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
   },
-  "candidateCount": 168,
-  "candidatesWithFloor": 168,
+  "candidateCount": 165,
+  "candidatesWithFloor": 165,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
     "generatedAt": "2026-11-20T02:18:18+00:00",
