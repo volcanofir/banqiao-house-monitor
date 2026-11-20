@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-20T12:16:12+00:00",
+  "updatedAt": "2026-11-20T12:32:13+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -109,15 +109,15 @@
     },
     "5168": {
       "status": "ok",
-      "totalCount": 101,
-      "checkedAt": "2026-11-20T12:16:20+00:00",
+      "totalCount": 102,
+      "checkedAt": "2026-11-20T12:32:22+00:00",
       "logs": [
-        "板橋區中山路二段 5168 API第1頁：符合 20／新增 20／來源總數 62",
-        "板橋區中山路二段 5168 API第2頁：符合 17／新增 17／來源總數 62",
-        "板橋區中山路二段 5168 API第3頁：符合 19／新增 19／來源總數 62",
-        "板橋區中山路二段 5168 API第4頁：符合 2／新增 2／來源總數 62",
-        "板橋區中山路二段 5168精準路段過濾：來源搜尋總數 62 筆，保留精準路段 58 筆",
-        "板橋區中山路二段 5168租屋完成，共 58 筆",
+        "板橋區中山路二段 5168 API第1頁：符合 20／新增 20／來源總數 63",
+        "板橋區中山路二段 5168 API第2頁：符合 17／新增 17／來源總數 63",
+        "板橋區中山路二段 5168 API第3頁：符合 19／新增 19／來源總數 63",
+        "板橋區中山路二段 5168 API第4頁：符合 3／新增 3／來源總數 63",
+        "板橋區中山路二段 5168精準路段過濾：來源搜尋總數 63 筆，保留精準路段 59 筆",
+        "板橋區中山路二段 5168租屋完成，共 59 筆",
         "板橋區三民路一段 5168 API第1頁：符合 11／新增 11／來源總數 11",
         "板橋區三民路一段 5168租屋完成，共 11 筆",
         "板橋區光復街 5168 API第1頁：符合 1／新增 1／來源總數 1",
@@ -136,13 +136,13 @@
     }
   },
   "counts": {
-    "total": 265,
+    "total": 266,
     "sinyi": 14,
     "591": 120,
     "rakuya": 30,
-    "houseprice": 101,
+    "houseprice": 102,
     "roads": {
-      "板橋區中山路二段": 156,
+      "板橋區中山路二段": 157,
       "板橋區三民路一段": 32,
       "板橋區光復街": 3,
       "板橋區三民路二段": 56,
@@ -205,19 +205,6 @@
       "firstSeenAt": "2026-11-02T08:17:08+00:00"
     },
     {
-      "id": "591租屋:22242970",
-      "source": "591",
-      "houseId": "22242970",
-      "road": "板橋區中山路二段",
-      "title": "共生公寓近板新站/新埔站/市場/板橋火車站",
-      "address": "板橋區中山路二段",
-      "rent": 6800.0,
-      "size": 5.0,
-      "url": "https://rent.591.com.tw/22242970",
-      "floor": "2F/4F",
-      "firstSeenAt": "2026-11-01T13:02:19+00:00"
-    },
-    {
       "id": "591租屋:22258948",
       "source": "591",
       "houseId": "22258948",
@@ -255,19 +242,6 @@
       "url": "https://rent.591.com.tw/22318601",
       "floor": "5F/8F",
       "firstSeenAt": "2026-11-09T07:32:49+00:00"
-    },
-    {
-      "id": "591租屋:22377185",
-      "source": "591",
-      "houseId": "22377185",
-      "road": "板橋區中山路二段",
-      "title": "板新站/獨立陽台/獨立洗衣機/對外窗",
-      "address": "板橋區中山路二段",
-      "rent": 10500.0,
-      "size": 6.0,
-      "url": "https://rent.591.com.tw/22377185",
-      "floor": null,
-      "firstSeenAt": "2026-11-19T09:17:18+00:00"
     },
     {
       "id": "591租屋:22366689",
@@ -319,6 +293,32 @@
       "size": 6.0,
       "url": "https://rent.591.com.tw/22259097",
       "floor": "3F/5F",
+      "firstSeenAt": "2026-11-01T13:02:19+00:00"
+    },
+    {
+      "id": "591租屋:22377185",
+      "source": "591",
+      "houseId": "22377185",
+      "road": "板橋區中山路二段",
+      "title": "板新站/獨立陽台/獨立洗衣機/對外窗",
+      "address": "板橋區中山路二段",
+      "rent": 10500.0,
+      "size": 6.0,
+      "url": "https://rent.591.com.tw/22377185",
+      "floor": null,
+      "firstSeenAt": "2026-11-19T09:17:18+00:00"
+    },
+    {
+      "id": "591租屋:22242970",
+      "source": "591",
+      "houseId": "22242970",
+      "road": "板橋區中山路二段",
+      "title": "共生公寓近板新站/新埔站/市場/板橋火車站",
+      "address": "板橋區中山路二段",
+      "rent": 6800.0,
+      "size": 5.0,
+      "url": "https://rent.591.com.tw/22242970",
+      "floor": "2F/4F",
       "firstSeenAt": "2026-11-01T13:02:19+00:00"
     },
     {
@@ -3249,6 +3249,28 @@
       "firstSeenAt": "2026-10-17T10:32:11+00:00"
     },
     {
+      "id": "5168租屋:17279234",
+      "source": "5168",
+      "houseId": "17279234",
+      "road": "板橋區中山路二段",
+      "title": "中山路上1-5樓大透天*郵局旁",
+      "address": "板橋區中山路二段",
+      "rent": 127000,
+      "size": 150.0,
+      "url": "https://rent.591.com.tw/22383572",
+      "floor": "1/5樓",
+      "rooms": 1.0,
+      "livingRooms": 0.0,
+      "bathrooms": 1.0,
+      "balconies": 0.0,
+      "purposeName": "獨立套房",
+      "buildingStyle": "公寓",
+      "sourcePublishedAt": "2026-11-20T20:18:47.18Z",
+      "sourceUpdatedAtRaw": null,
+      "sourcePublishedAtType": "housepriceRentApiPublishTime",
+      "firstSeenAt": "2026-11-20T12:32:13+00:00"
+    },
+    {
       "id": "5168租屋:17269972",
       "source": "5168",
       "houseId": "17269972",
@@ -4613,28 +4635,6 @@
       "firstSeenAt": "2026-11-17T12:47:09+00:00"
     },
     {
-      "id": "5168租屋:17253599",
-      "source": "5168",
-      "houseId": "17253599",
-      "road": "板橋區萬安街",
-      "title": "～～～～～～～",
-      "address": "板橋區萬安街",
-      "rent": 20000,
-      "size": 8.0,
-      "url": "https://rent.591.com.tw/22365223",
-      "floor": "2/4樓",
-      "rooms": 1.0,
-      "livingRooms": 0.0,
-      "bathrooms": 1.0,
-      "balconies": 0.0,
-      "purposeName": "獨立套房",
-      "buildingStyle": "公寓",
-      "sourcePublishedAt": "2026-11-17T18:28:33.123Z",
-      "sourceUpdatedAtRaw": null,
-      "sourcePublishedAtType": "housepriceRentApiPublishTime",
-      "firstSeenAt": "2026-11-17T10:47:39+00:00"
-    },
-    {
       "id": "5168租屋:17253603",
       "source": "5168",
       "houseId": "17253603",
@@ -4655,12 +4655,34 @@
       "sourceUpdatedAtRaw": null,
       "sourcePublishedAtType": "housepriceRentApiPublishTime",
       "firstSeenAt": "2026-11-17T10:47:39+00:00"
+    },
+    {
+      "id": "5168租屋:17253599",
+      "source": "5168",
+      "houseId": "17253599",
+      "road": "板橋區萬安街",
+      "title": "～～～～～～～",
+      "address": "板橋區萬安街",
+      "rent": 20000,
+      "size": 8.0,
+      "url": "https://rent.591.com.tw/22365223",
+      "floor": "2/4樓",
+      "rooms": 1.0,
+      "livingRooms": 0.0,
+      "bathrooms": 1.0,
+      "balconies": 0.0,
+      "purposeName": "獨立套房",
+      "buildingStyle": "公寓",
+      "sourcePublishedAt": "2026-11-17T18:28:33.123Z",
+      "sourceUpdatedAtRaw": null,
+      "sourcePublishedAtType": "housepriceRentApiPublishTime",
+      "firstSeenAt": "2026-11-17T10:47:39+00:00"
     }
   ],
-  "elapsedSeconds": 88.9,
+  "elapsedSeconds": 98.05,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
   "newListingPolicy": "firstSeenAt_on_or_after_baseline_and_within_3_days",
-  "newListingCount": 74
+  "newListingCount": 75
 }
