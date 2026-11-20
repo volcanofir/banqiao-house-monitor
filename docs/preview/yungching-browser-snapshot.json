@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-20T09:18:21+00:00",
+  "capturedAt": "2026-11-20T09:33:16+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -29,7 +29,7 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 80024,
+      "primaryApiListDataLength": 79408,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
       "roadTextCount": 31,
@@ -53,6 +53,7 @@
           "6195588",
           "6327691",
           "6482848",
+          "6521665",
           "6693666",
           "6705632",
           "6778412",
@@ -76,11 +77,10 @@
           "7590032",
           "7591987",
           "7595236",
-          "7595237",
           "7598186"
         ],
         "2": [
-          "6521665",
+          "7595237",
           "7599960"
         ]
       },
@@ -90,6 +90,7 @@
           "6195588",
           "6327691",
           "6482848",
+          "6521665",
           "6693666",
           "6705632",
           "6778412",
@@ -113,11 +114,10 @@
           "7590032",
           "7591987",
           "7595236",
-          "7595237",
           "7598186"
         ],
         "2": [
-          "6521665",
+          "7595237",
           "7599960"
         ]
       },
@@ -1102,33 +1102,6 @@
       }
     },
     {
-      "id": "7595237",
-      "road": "板橋區中山路二段",
-      "title": "皇冠全新裝潢四房",
-      "price": 4718,
-      "area": 84.58,
-      "floor": "19/21樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "住宅大樓",
-      "url": "https://buy.yungching.com.tw/house/7595237",
-      "sourceMode": "yungching_official_api",
-      "text": "皇冠全新裝潢四房 新北市板橋區中山路二段 住宅大樓 建坪84.58 19/21樓 4房(室)2廳2衛 4718萬",
-      "rawText": "皇冠全新裝潢四房 新北市板橋區中山路二段 住宅大樓 建坪84.58 19/21樓 4房(室)2廳2衛 4718萬",
-      "patternInfo": {
-        "room": 4,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 19,
-        "toFloor": 19,
-        "upFloor": 21
-      }
-    },
-    {
       "id": "7219043",
       "road": "板橋區中山路二段",
       "title": "中山路門牌近北市家樂福周邊連鎖店面匯聚",
@@ -1342,6 +1315,33 @@
         "fromFloor": 1,
         "toFloor": 1,
         "upFloor": 7
+      }
+    },
+    {
+      "id": "7595237",
+      "road": "板橋區中山路二段",
+      "title": "皇冠全新裝潢四房",
+      "price": 4718,
+      "area": 84.58,
+      "floor": "19/21樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7595237",
+      "sourceMode": "yungching_official_api",
+      "text": "皇冠全新裝潢四房 新北市板橋區中山路二段 住宅大樓 建坪84.58 19/21樓 4房(室)2廳2衛 4718萬",
+      "rawText": "皇冠全新裝潢四房 新北市板橋區中山路二段 住宅大樓 建坪84.58 19/21樓 4房(室)2廳2衛 4718萬",
+      "patternInfo": {
+        "room": 4,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 19,
+        "toFloor": 19,
+        "upFloor": 21
       }
     },
     {
@@ -2452,7 +2452,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-20T09:18:37+00:00",
+    "generatedAt": "2026-11-20T09:33:34+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
