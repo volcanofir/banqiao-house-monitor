@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-20T08:18:10+00:00",
-  "sourceDataUpdatedAt": "2026-11-20T08:17:38+00:00",
+  "generatedAt": "2026-11-20T08:33:56+00:00",
+  "sourceDataUpdatedAt": "2026-11-20T08:33:00+00:00",
   "mode": "preview_only_591_sinyi_rakuya_5168_grouping_then_company_v11",
   "fetchMode": "yungching_official_rendered_dom_only",
   "company": "永慶房屋",
   "companyDataSource": "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM；缺樓層時同路徑開官方案件頁補值",
   "companyListingCount": 70,
-  "companySnapshotCapturedAt": "2026-11-20T08:17:44+00:00",
+  "companySnapshotCapturedAt": "2026-11-20T08:33:15+00:00",
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -35,7 +35,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 31,
-      "browserCapturedAt": "2026-11-20T08:17:44+00:00",
+      "browserCapturedAt": "2026-11-20T08:33:15+00:00",
       "paginationExpected": true,
       "paginationComplete": true,
       "paginationActivePage": 2,
@@ -52,7 +52,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 25,
-      "browserCapturedAt": "2026-11-20T08:17:44+00:00",
+      "browserCapturedAt": "2026-11-20T08:33:15+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -69,7 +69,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 3,
-      "browserCapturedAt": "2026-11-20T08:17:44+00:00",
+      "browserCapturedAt": "2026-11-20T08:33:15+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -86,7 +86,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 2,
-      "browserCapturedAt": "2026-11-20T08:17:44+00:00",
+      "browserCapturedAt": "2026-11-20T08:33:15+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -103,7 +103,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 0,
-      "browserCapturedAt": "2026-11-20T08:17:44+00:00",
+      "browserCapturedAt": "2026-11-20T08:33:15+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -120,7 +120,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 6,
-      "browserCapturedAt": "2026-11-20T08:17:44+00:00",
+      "browserCapturedAt": "2026-11-20T08:33:15+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -137,7 +137,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 3,
-      "browserCapturedAt": "2026-11-20T08:17:44+00:00",
+      "browserCapturedAt": "2026-11-20T08:33:15+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -36648,6 +36648,35 @@
       "captureSourceMode": "yungching_official_api"
     },
     {
+      "id": "YC:7310666",
+      "road": "板橋區中山路二段",
+      "title": "馥華綠意森活臻品",
+      "price": 3688,
+      "area": 63.47,
+      "floor": "3/14樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "辦公商業大樓",
+      "url": "https://buy.yungching.com.tw/house/7310666",
+      "sourceMode": "yungching_official_browser",
+      "text": "馥華綠意森活臻品 新北市板橋區中山路二段 辦公商業大樓 建坪63.47 3/14樓 4房(室)2廳2衛 3688萬",
+      "rawText": "馥華綠意森活臻品 新北市板橋區中山路二段 辦公商業大樓 建坪63.47 3/14樓 4房(室)2廳2衛 3688萬",
+      "patternInfo": {
+        "room": 4,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 3,
+        "toFloor": 3,
+        "upFloor": 14
+      },
+      "officialId": "7310666",
+      "captureSourceMode": "yungching_official_api"
+    },
+    {
       "id": "YC:7141398",
       "road": "板橋區中山路二段",
       "title": "馥華精工天際極景",
@@ -36761,35 +36790,6 @@
         "upFloor": 5
       },
       "officialId": "7460476",
-      "captureSourceMode": "yungching_official_api"
-    },
-    {
-      "id": "YC:7310666",
-      "road": "板橋區中山路二段",
-      "title": "馥華綠意森活臻品",
-      "price": 3688,
-      "area": 63.47,
-      "floor": "3/14樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "辦公商業大樓",
-      "url": "https://buy.yungching.com.tw/house/7310666",
-      "sourceMode": "yungching_official_browser",
-      "text": "馥華綠意森活臻品 新北市板橋區中山路二段 辦公商業大樓 建坪63.47 3/14樓 4房(室)2廳2衛 3688萬",
-      "rawText": "馥華綠意森活臻品 新北市板橋區中山路二段 辦公商業大樓 建坪63.47 3/14樓 4房(室)2廳2衛 3688萬",
-      "patternInfo": {
-        "room": 4,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 3,
-        "toFloor": 3,
-        "upFloor": 14
-      },
-      "officialId": "7310666",
       "captureSourceMode": "yungching_official_api"
     },
     {
@@ -38275,35 +38275,6 @@
       "captureSourceMode": "yungching_official_api"
     },
     {
-      "id": "YC:7589182",
-      "road": "板橋區光復街",
-      "title": "法國賞面河景4房",
-      "price": 3980,
-      "area": 80.27,
-      "floor": "10/14樓",
-      "address": "新北市板橋區光復街",
-      "type": "住宅大樓",
-      "url": "https://buy.yungching.com.tw/house/7589182",
-      "sourceMode": "yungching_official_browser",
-      "text": "法國賞面河景4房 新北市板橋區光復街 住宅大樓 建坪80.27 10/14樓 4房(室)2廳2衛 3980萬",
-      "rawText": "法國賞面河景4房 新北市板橋區光復街 住宅大樓 建坪80.27 10/14樓 4房(室)2廳2衛 3980萬",
-      "patternInfo": {
-        "room": 4,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 10,
-        "toFloor": 10,
-        "upFloor": 14
-      },
-      "officialId": "7589182",
-      "captureSourceMode": "yungching_official_api"
-    },
-    {
       "id": "YC:7562907",
       "road": "板橋區光復街",
       "title": "埔墘靜巷稀有透天",
@@ -38330,6 +38301,35 @@
         "upFloor": 2
       },
       "officialId": "7562907",
+      "captureSourceMode": "yungching_official_api"
+    },
+    {
+      "id": "YC:7589182",
+      "road": "板橋區光復街",
+      "title": "法國賞面河景4房",
+      "price": 3980,
+      "area": 80.27,
+      "floor": "10/14樓",
+      "address": "新北市板橋區光復街",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7589182",
+      "sourceMode": "yungching_official_browser",
+      "text": "法國賞面河景4房 新北市板橋區光復街 住宅大樓 建坪80.27 10/14樓 4房(室)2廳2衛 3980萬",
+      "rawText": "法國賞面河景4房 新北市板橋區光復街 住宅大樓 建坪80.27 10/14樓 4房(室)2廳2衛 3980萬",
+      "patternInfo": {
+        "room": 4,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 10,
+        "toFloor": 10,
+        "upFloor": 14
+      },
+      "officialId": "7589182",
       "captureSourceMode": "yungching_official_api"
     },
     {
@@ -38685,8 +38685,8 @@
   },
   "officialBrowserCompany": {
     "enabled": true,
-    "capturedAt": "2026-11-20T08:17:44+00:00",
-    "snapshotAgeMinutes": 0.4,
+    "capturedAt": "2026-11-20T08:33:15+00:00",
+    "snapshotAgeMinutes": 0.6,
     "acceptedRoadCount": 7,
     "unavailableRoadCount": 0,
     "roads": {
@@ -38780,12 +38780,12 @@
   "safeFloorParser": true,
   "safeFloorParserRule": "subject floor must be physically valid against total floor; glued area digits are trimmed instead of becoming impossible floors",
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-20T08:18:05+00:00",
+    "generatedAt": "2026-11-20T08:33:49+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-20T08:15:35+00:00",
+    "sourceRunCheckedAt": "2026-11-20T08:30:23+00:00",
     "activeSinyiCount": 69,
     "matchedOfficialCount": 69,
     "appliedCount": 69,
@@ -38810,7 +38810,7 @@
     "groups": []
   },
   "recentOffMarketRetentionDays": 10,
-  "recentOffMarketGeneratedAt": "2026-11-20T08:18:11+00:00",
+  "recentOffMarketGeneratedAt": "2026-11-20T08:33:56+00:00",
   "recentOffMarketCount": 5,
   "recentOffMarketGroups": [
     {
@@ -39394,7 +39394,7 @@
     "directGroupIdMergeCount": 16
   },
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-20T08:17:52+00:00",
+    "updatedAt": "2026-11-20T08:33:31+00:00",
     "status": "ok",
     "totalCount": 222,
     "uniqueListingCount": 222,
@@ -39447,7 +39447,7 @@
     "complete": true
   },
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-20T08:16:16+00:00",
+    "updatedAt": "2026-11-20T08:31:04+00:00",
     "status": "ok",
     "totalCount": 54,
     "uniqueListingCount": 54,
