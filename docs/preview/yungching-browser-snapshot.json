@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-21T08:32:52+00:00",
+  "capturedAt": "2026-11-21T08:48:42+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -29,7 +29,7 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 79384,
+      "primaryApiListDataLength": 80024,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
       "roadTextCount": 31,
@@ -76,11 +76,11 @@
           "7589556",
           "7590032",
           "7591987",
-          "7595237",
+          "7595236",
           "7598186"
         ],
         "2": [
-          "7595236",
+          "7595237",
           "7599960"
         ]
       },
@@ -113,11 +113,11 @@
           "7589556",
           "7590032",
           "7591987",
-          "7595237",
+          "7595236",
           "7598186"
         ],
         "2": [
-          "7595236",
+          "7595237",
           "7599960"
         ]
       },
@@ -549,6 +549,33 @@
         "fromFloor": 1,
         "toFloor": 2,
         "upFloor": 2
+      }
+    },
+    {
+      "id": "7595236",
+      "road": "板橋區中山路二段",
+      "title": "皇冠市景四房雙車",
+      "price": 4660,
+      "area": 83.75,
+      "floor": "19/21樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7595236",
+      "sourceMode": "yungching_official_api",
+      "text": "皇冠市景四房雙車 新北市板橋區中山路二段 住宅大樓 建坪83.75 19/21樓 4房(室)2廳2衛 4660萬",
+      "rawText": "皇冠市景四房雙車 新北市板橋區中山路二段 住宅大樓 建坪83.75 19/21樓 4房(室)2廳2衛 4660萬",
+      "patternInfo": {
+        "room": 4,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 19,
+        "toFloor": 19,
+        "upFloor": 21
       }
     },
     {
@@ -1308,33 +1335,6 @@
       }
     },
     {
-      "id": "7595236",
-      "road": "板橋區中山路二段",
-      "title": "皇冠市景四房雙車",
-      "price": 4660,
-      "area": 83.75,
-      "floor": "19/21樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "住宅大樓",
-      "url": "https://buy.yungching.com.tw/house/7595236",
-      "sourceMode": "yungching_official_api",
-      "text": "皇冠市景四房雙車 新北市板橋區中山路二段 住宅大樓 建坪83.75 19/21樓 4房(室)2廳2衛 4660萬",
-      "rawText": "皇冠市景四房雙車 新北市板橋區中山路二段 住宅大樓 建坪83.75 19/21樓 4房(室)2廳2衛 4660萬",
-      "patternInfo": {
-        "room": 4,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 19,
-        "toFloor": 19,
-        "upFloor": 21
-      }
-    },
-    {
       "id": "7599960",
       "road": "板橋區中山路二段",
       "title": "中山路透天金店面",
@@ -1716,33 +1716,6 @@
       }
     },
     {
-      "id": "7145052",
-      "road": "板橋區三民路二段",
-      "title": "全新可談8樓三房",
-      "price": 2940,
-      "area": 38.17,
-      "floor": "8/11樓",
-      "address": "新北市板橋區三民路二段",
-      "type": "住宅大樓",
-      "url": "https://buy.yungching.com.tw/house/7145052",
-      "sourceMode": "yungching_official_api",
-      "text": "全新可談8樓三房 新北市板橋區三民路二段 住宅大樓 建坪38.17 8/11樓 3房(室)2廳1衛 2940萬",
-      "rawText": "全新可談8樓三房 新北市板橋區三民路二段 住宅大樓 建坪38.17 8/11樓 3房(室)2廳1衛 2940萬",
-      "patternInfo": {
-        "room": 3,
-        "livingRoom": 2,
-        "bathRoom": 1,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 8,
-        "toFloor": 8,
-        "upFloor": 11
-      }
-    },
-    {
       "id": "7145115",
       "road": "板橋區三民路二段",
       "title": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福",
@@ -1766,6 +1739,33 @@
       "floorInfo": {
         "fromFloor": 9,
         "toFloor": 9,
+        "upFloor": 11
+      }
+    },
+    {
+      "id": "7145052",
+      "road": "板橋區三民路二段",
+      "title": "全新可談8樓三房",
+      "price": 2940,
+      "area": 38.17,
+      "floor": "8/11樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7145052",
+      "sourceMode": "yungching_official_api",
+      "text": "全新可談8樓三房 新北市板橋區三民路二段 住宅大樓 建坪38.17 8/11樓 3房(室)2廳1衛 2940萬",
+      "rawText": "全新可談8樓三房 新北市板橋區三民路二段 住宅大樓 建坪38.17 8/11樓 3房(室)2廳1衛 2940萬",
+      "patternInfo": {
+        "room": 3,
+        "livingRoom": 2,
+        "bathRoom": 1,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 8,
+        "toFloor": 8,
         "upFloor": 11
       }
     },
@@ -2334,7 +2334,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-21T08:33:07+00:00",
+    "generatedAt": "2026-11-21T08:48:54+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
