@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-21T09:18:18+00:00",
-  "sourceDataUpdatedAt": "2026-11-21T09:17:44+00:00",
+  "generatedAt": "2026-11-21T09:33:25+00:00",
+  "sourceDataUpdatedAt": "2026-11-21T09:32:34+00:00",
   "mode": "preview_only_591_sinyi_rakuya_5168_grouping_then_company_v11",
   "fetchMode": "yungching_official_rendered_dom_only",
   "company": "永慶房屋",
   "companyDataSource": "永慶房仲網官方公開搜尋頁：Surfshark → Chromium → 實際渲染 DOM；缺樓層時同路徑開官方案件頁補值",
   "companyListingCount": 66,
-  "companySnapshotCapturedAt": "2026-11-21T09:17:50+00:00",
+  "companySnapshotCapturedAt": "2026-11-21T09:32:48+00:00",
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -16,16 +16,16 @@
     "板橋區三民路一段",
     "板橋區翠華街"
   ],
-  "externalActiveCount": 444,
-  "propertyGroupCount": 170,
-  "rawListingCount": 782,
+  "externalActiveCount": 446,
+  "propertyGroupCount": 171,
+  "rawListingCount": 784,
   "crossPlatformMergedGroupCount": 105,
-  "crossSourceReviewCount": 9,
+  "crossSourceReviewCount": 10,
   "companyConflictDowngradedCount": 4,
   "counts": {
     "company_match": 42,
     "review": 4,
-    "missing": 124,
+    "missing": 125,
     "unavailable": 0
   },
   "roadStatus": {
@@ -35,7 +35,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 31,
-      "browserCapturedAt": "2026-11-21T09:17:50+00:00",
+      "browserCapturedAt": "2026-11-21T09:32:48+00:00",
       "paginationExpected": true,
       "paginationComplete": true,
       "paginationActivePage": 2,
@@ -52,7 +52,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 24,
-      "browserCapturedAt": "2026-11-21T09:17:50+00:00",
+      "browserCapturedAt": "2026-11-21T09:32:48+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -69,7 +69,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 3,
-      "browserCapturedAt": "2026-11-21T09:17:50+00:00",
+      "browserCapturedAt": "2026-11-21T09:32:48+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -86,7 +86,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 2,
-      "browserCapturedAt": "2026-11-21T09:17:50+00:00",
+      "browserCapturedAt": "2026-11-21T09:32:48+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -103,7 +103,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 0,
-      "browserCapturedAt": "2026-11-21T09:17:50+00:00",
+      "browserCapturedAt": "2026-11-21T09:32:48+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -120,7 +120,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 6,
-      "browserCapturedAt": "2026-11-21T09:17:50+00:00",
+      "browserCapturedAt": "2026-11-21T09:32:48+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -137,7 +137,7 @@
       "available": true,
       "mode": "yungching_official_api",
       "officialCount": 0,
-      "browserCapturedAt": "2026-11-21T09:17:50+00:00",
+      "browserCapturedAt": "2026-11-21T09:32:48+00:00",
       "paginationExpected": false,
       "paginationComplete": true,
       "paginationActivePage": 1,
@@ -7457,7 +7457,7 @@
           "housepriceMainArea": 19.96,
           "housepriceBuildingAge": "5.0年",
           "housepriceCaseType": "華廈",
-          "housepriceAgentCount": 177
+          "housepriceAgentCount": 178
         }
       ],
       "crossPlatformMerged": true,
@@ -13135,7 +13135,7 @@
           "housepriceMainArea": 19.96,
           "housepriceBuildingAge": "5.0年",
           "housepriceCaseType": "華廈",
-          "housepriceAgentCount": 177
+          "housepriceAgentCount": 178
         }
       ],
       "crossPlatformMerged": true,
@@ -13548,7 +13548,7 @@
           "housepriceMainArea": 19.96,
           "housepriceBuildingAge": "5.0年",
           "housepriceCaseType": "華廈",
-          "housepriceAgentCount": 177
+          "housepriceAgentCount": 178
         }
       ],
       "crossPlatformMerged": true,
@@ -23307,7 +23307,8 @@
       "active": true,
       "sources": [
         "591",
-        "樂屋網"
+        "樂屋網",
+        "5168"
       ],
       "sourceListings": [
         {
@@ -23362,119 +23363,153 @@
           "sourceParkingFlag": false
         },
         {
-          "id": "樂屋:0f914c29712175e",
-          "houseId": "0f914c29712175e",
+          "id": "樂屋:01cf3f363242757",
+          "houseId": "01cf3f363242757",
           "source": "樂屋網",
           "road": "板橋區三民路二段",
-          "title": "三珉築琚全新3房露臺戶",
-          "url": "https://community.rakuya.com.tw/100109/sell/info?ehid=0f914c29712175e",
-          "price": "3282萬",
-          "effectivePrice": 3282,
-          "size": "34.91坪",
+          "title": "EZ6板橋全新頂樓景觀露台戶",
+          "url": "https://community.rakuya.com.tw/100109/sell/info?ehid=01cf3f363242757",
+          "price": "2862萬",
+          "effectivePrice": 2862,
+          "size": "34.9坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": 1740931200,
+          "sourcePublishedAt": 1795190400,
           "postTime": null,
           "sourcePublishedAtType": "rakuyaListingDate",
-          "newAt": null,
+          "newAt": "2026-11-21T09:33:01+00:00",
           "active": true,
           "mergedListingCount": 1,
           "mergedActiveListingCount": 1,
           "mergedListings": [
             {
-              "id": "樂屋:0f914c29712175e",
-              "houseId": "0f914c29712175e",
+              "id": "樂屋:01cf3f363242757",
+              "houseId": "01cf3f363242757",
               "source": "樂屋網",
-              "title": "三珉築琚全新3房露臺戶",
-              "url": "https://community.rakuya.com.tw/100109/sell/info?ehid=0f914c29712175e",
-              "price": "3282萬",
-              "effectivePrice": 3282,
-              "size": "34.91坪",
+              "title": "EZ6板橋全新頂樓景觀露台戶",
+              "url": "https://community.rakuya.com.tw/100109/sell/info?ehid=01cf3f363242757",
+              "price": "2862萬",
+              "effectivePrice": 2862,
+              "size": "34.9坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": 1740931200,
+              "sourcePublishedAt": 1795190400,
               "postTime": null,
               "active": true,
               "floor": "11/11樓"
             }
           ],
           "floor": "11/11樓",
-          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
-          "rakuyaSourcePublishedDate": "2025-03-03",
-          "rakuyaSourcePublishedRaw": "2025-03-03",
+          "monitorFirstSeenAt": "2026-11-21T09:33:01+00:00",
+          "rakuyaSourcePublishedDate": "2026-11-21",
+          "rakuyaSourcePublishedRaw": "2026-11-21",
           "rakuyaSourcePublishedEvidence": "script:object_upload_time"
         },
         {
-          "id": "樂屋:0b714d343008983",
-          "houseId": "0b714d343008983",
-          "source": "樂屋網",
+          "id": "5168:39530417",
+          "houseId": "39530417",
+          "source": "5168",
           "road": "板橋區三民路二段",
-          "title": "板橋三珉築琚全新電梯露臺戶~住商南京建國店陳經理~",
-          "url": "https://community.rakuya.com.tw/100109/sell/info?ehid=0b714d343008983",
-          "price": "3043萬",
-          "effectivePrice": 3043,
-          "size": "34.91坪",
+          "title": "🏆儀居團隊🏆EZ6板橋全新頂樓景觀露台戶",
+          "url": "https://buy.houseprice.tw/house/39530417_1670834",
+          "price": "2862萬",
+          "effectivePrice": 2862,
+          "size": "34.9坪",
           "address": "新北市板橋區三民路二段",
-          "sourcePublishedAt": 1780329600,
+          "sourcePublishedAt": 1718553600,
           "postTime": null,
-          "sourcePublishedAtType": "rakuyaListingDate",
-          "newAt": null,
+          "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
+          "newAt": "2026-11-21T09:30:53+00:00",
           "active": true,
-          "mergedListingCount": 2,
-          "mergedActiveListingCount": 2,
+          "mergedListingCount": 1,
+          "mergedActiveListingCount": 1,
           "mergedListings": [
             {
-              "id": "樂屋:0b714d343008983",
-              "houseId": "0b714d343008983",
-              "source": "樂屋網",
-              "title": "板橋三珉築琚全新電梯露臺戶~住商南京建國店陳經理~",
-              "url": "https://community.rakuya.com.tw/100109/sell/info?ehid=0b714d343008983",
-              "price": "3043萬",
-              "effectivePrice": 3043,
-              "size": "34.91坪",
+              "id": "5168:39530417",
+              "houseId": "39530417",
+              "source": "5168",
+              "title": "🏆儀居團隊🏆EZ6板橋全新頂樓景觀露台戶",
+              "url": "https://buy.houseprice.tw/house/39530417_1670834",
+              "price": "2862萬",
+              "effectivePrice": 2862,
+              "size": "34.9坪",
               "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": 1780329600,
+              "sourcePublishedAt": 1718553600,
               "postTime": null,
               "active": true,
-              "floor": "11/11樓"
-            },
-            {
-              "id": "樂屋:0ba27d33605033e",
-              "houseId": "0ba27d33605033e",
-              "source": "樂屋網",
-              "title": "築琚♥幸福頂樓露臺三房",
-              "url": "https://community.rakuya.com.tw/100109/sell/info?ehid=0ba27d33605033e",
-              "price": "3043萬",
-              "effectivePrice": 3043,
-              "size": "34.91坪",
-              "address": "新北市板橋區三民路二段",
-              "sourcePublishedAt": 1774108800,
-              "postTime": null,
-              "active": true,
-              "floor": "11/11樓"
+              "structuredFloor": "11/11樓",
+              "floor": "11/11樓",
+              "structuredTotalFloor": 11,
+              "floorSourceMode": "5168-app-detail",
+              "housepriceGroupSid": 20013285,
+              "housepriceGroupId": "a56f0826-c0c2-41d9-bbf3-7c534408c40c"
             }
           ],
+          "structuredFloor": "11/11樓",
           "floor": "11/11樓",
-          "monitorFirstSeenAt": "2026-11-03T16:48:40+00:00",
-          "rakuyaSourcePublishedDate": "2026-06-02",
-          "rakuyaSourcePublishedRaw": "2026-06-02",
-          "rakuyaSourcePublishedEvidence": "script:object_upload_time"
+          "structuredTotalFloor": 11,
+          "floorSourceMode": "5168-app-detail",
+          "housepriceGroupSid": 20013285,
+          "housepriceGroupId": "a56f0826-c0c2-41d9-bbf3-7c534408c40c",
+          "monitorFirstSeenAt": "2026-11-21T09:30:53+00:00",
+          "housepriceSourcePublishedDate": "2024-06-17",
+          "housepriceSourcePublishedRaw": "2024-06-17T00:00:00Z",
+          "housepriceSourcePublishedEvidence": "5168 APP PriceAnalyze.newKeyInDate; grouped-property first-listing date",
+          "housepricePublishDaysTag": "今天新上架",
+          "housepriceGroupNewKeyInDate": "2024-06-17T00:00:00Z",
+          "housepriceGroupPriceHistory": [
+            {
+              "priceChgDate": "2026/10",
+              "priceChg": 2862.0
+            },
+            {
+              "priceChgDate": "2026/03",
+              "priceChg": 3043.0
+            },
+            {
+              "priceChgDate": "2026/02",
+              "priceChg": 3107.0
+            },
+            {
+              "priceChgDate": "2025/12",
+              "priceChg": 2668.0
+            },
+            {
+              "priceChgDate": "2025/10",
+              "priceChg": 3107.0
+            },
+            {
+              "priceChgDate": "2025/08",
+              "priceChg": 3138.0
+            },
+            {
+              "priceChgDate": "2025/07",
+              "priceChg": 3282.0
+            },
+            {
+              "priceChgDate": "2024/06",
+              "priceChg": 3107.0
+            }
+          ],
+          "housepriceUnitPrice": 82,
+          "housepriceMainArea": 20.25,
+          "housepriceBuildingAge": "5.0年",
+          "housepriceCaseType": "華廈",
+          "housepriceAgentCount": 178
         }
       ],
       "crossPlatformMerged": true,
       "crossPlatformMatchInfo": [
         {
           "source": "樂屋網",
-          "sourceId": "樂屋:0f914c29712175e",
-          "score": 17,
+          "sourceId": "樂屋:01cf3f363242757",
+          "score": 22,
           "evidenceSource": "591",
-          "areaDelta": 0.0,
-          "priceDelta": 420.0,
-          "titleRatio": 0.6,
+          "areaDelta": 0.01,
+          "priceDelta": 0.0,
+          "titleRatio": 0.242,
           "shared": [
-            "三珉築琚",
-            "三珉築",
-            "珉築琚"
+            "露台戶"
           ],
-          "exactFingerprint": false,
+          "exactFingerprint": true,
           "floorRelation": "unknown",
           "sinyiFloors": [],
           "listing591Floors": [
@@ -23482,22 +23517,22 @@
           ]
         },
         {
-          "source": "樂屋網",
-          "sourceId": "樂屋:0b714d343008983",
-          "score": 29,
+          "source": "5168",
+          "sourceId": "5168:39530417",
+          "score": 40,
           "evidenceSource": "樂屋網",
           "areaDelta": 0.0,
-          "priceDelta": 239.0,
-          "titleRatio": 0.529,
+          "priceDelta": 0.0,
+          "titleRatio": 0.875,
           "shared": [
-            "三珉築琚全",
-            "珉築琚全新",
-            "三珉築琚",
-            "珉築琚全",
-            "築琚全新",
-            "三珉築"
+            "板橋全新頂樓景觀露台戶",
+            "全新頂樓景",
+            "新頂樓景觀",
+            "景觀露台戶",
+            "板橋全新頂",
+            "樓景觀露台"
           ],
-          "exactFingerprint": false,
+          "exactFingerprint": true,
           "floorRelation": "match",
           "sinyiFloors": [
             11
@@ -23508,10 +23543,10 @@
           "floorMatch": true
         }
       ],
-      "rawListingCount": 4,
-      "propertyFirstPublishedAt": "2025-03-02T16:00:00+00:00",
-      "propertyFirstPublishedSource": "樂屋網",
-      "propertyFirstPublishedListingId": "樂屋:0f914c29712175e",
+      "rawListingCount": 3,
+      "propertyFirstPublishedAt": "2024-06-16T16:00:00+00:00",
+      "propertyFirstPublishedSource": "5168",
+      "propertyFirstPublishedListingId": "5168:39530417",
       "propertyFirstPublishedEvidence": "source_field",
       "propertyFirstPublishedBasis": "earliest_known_source_timestamp"
     },
@@ -29644,6 +29679,160 @@
       "crossPlatformMatchInfo": [],
       "rawListingCount": 1,
       "propertyFirstPublishedAt": "2026-11-01T16:00:00+00:00",
+      "propertyFirstPublishedSource": "樂屋網",
+      "propertyFirstPublishedListingId": null,
+      "propertyFirstPublishedEvidence": "source_field",
+      "propertyFirstPublishedBasis": "earliest_known_source_timestamp"
+    },
+    {
+      "groupId": "GROUP:樂屋:0f914c29712175e",
+      "primaryId": "樂屋:0f914c29712175e",
+      "primarySource": "樂屋網",
+      "road": "板橋區三民路二段",
+      "title": "三珉築琚全新3房露臺戶",
+      "address": "新北市板橋區三民路二段",
+      "price": "3282萬",
+      "effectivePrice": 3282,
+      "size": "34.91坪",
+      "url": "https://community.rakuya.com.tw/100109/sell/info?ehid=0f914c29712175e",
+      "sourcePublishedAt": 1740931200,
+      "postTime": null,
+      "sourcePublishedAtType": "rakuyaListingDate",
+      "newAt": null,
+      "active": true,
+      "sources": [
+        "樂屋網"
+      ],
+      "sourceListings": [
+        {
+          "id": "樂屋:0f914c29712175e",
+          "houseId": "0f914c29712175e",
+          "source": "樂屋網",
+          "road": "板橋區三民路二段",
+          "title": "三珉築琚全新3房露臺戶",
+          "url": "https://community.rakuya.com.tw/100109/sell/info?ehid=0f914c29712175e",
+          "price": "3282萬",
+          "effectivePrice": 3282,
+          "size": "34.91坪",
+          "address": "新北市板橋區三民路二段",
+          "sourcePublishedAt": 1740931200,
+          "postTime": null,
+          "sourcePublishedAtType": "rakuyaListingDate",
+          "newAt": null,
+          "active": true,
+          "mergedListingCount": 1,
+          "mergedActiveListingCount": 1,
+          "mergedListings": [
+            {
+              "id": "樂屋:0f914c29712175e",
+              "houseId": "0f914c29712175e",
+              "source": "樂屋網",
+              "title": "三珉築琚全新3房露臺戶",
+              "url": "https://community.rakuya.com.tw/100109/sell/info?ehid=0f914c29712175e",
+              "price": "3282萬",
+              "effectivePrice": 3282,
+              "size": "34.91坪",
+              "address": "新北市板橋區三民路二段",
+              "sourcePublishedAt": 1740931200,
+              "postTime": null,
+              "active": true,
+              "floor": "11/11樓"
+            }
+          ],
+          "floor": "11/11樓",
+          "monitorFirstSeenAt": "2026-10-01T16:06:57+00:00",
+          "rakuyaSourcePublishedDate": "2025-03-03",
+          "rakuyaSourcePublishedRaw": "2025-03-03",
+          "rakuyaSourcePublishedEvidence": "script:object_upload_time"
+        },
+        {
+          "id": "樂屋:0b714d343008983",
+          "houseId": "0b714d343008983",
+          "source": "樂屋網",
+          "road": "板橋區三民路二段",
+          "title": "板橋三珉築琚全新電梯露臺戶~住商南京建國店陳經理~",
+          "url": "https://community.rakuya.com.tw/100109/sell/info?ehid=0b714d343008983",
+          "price": "3043萬",
+          "effectivePrice": 3043,
+          "size": "34.91坪",
+          "address": "新北市板橋區三民路二段",
+          "sourcePublishedAt": 1780329600,
+          "postTime": null,
+          "sourcePublishedAtType": "rakuyaListingDate",
+          "newAt": null,
+          "active": true,
+          "mergedListingCount": 2,
+          "mergedActiveListingCount": 2,
+          "mergedListings": [
+            {
+              "id": "樂屋:0b714d343008983",
+              "houseId": "0b714d343008983",
+              "source": "樂屋網",
+              "title": "板橋三珉築琚全新電梯露臺戶~住商南京建國店陳經理~",
+              "url": "https://community.rakuya.com.tw/100109/sell/info?ehid=0b714d343008983",
+              "price": "3043萬",
+              "effectivePrice": 3043,
+              "size": "34.91坪",
+              "address": "新北市板橋區三民路二段",
+              "sourcePublishedAt": 1780329600,
+              "postTime": null,
+              "active": true,
+              "floor": "11/11樓"
+            },
+            {
+              "id": "樂屋:0ba27d33605033e",
+              "houseId": "0ba27d33605033e",
+              "source": "樂屋網",
+              "title": "築琚♥幸福頂樓露臺三房",
+              "url": "https://community.rakuya.com.tw/100109/sell/info?ehid=0ba27d33605033e",
+              "price": "3043萬",
+              "effectivePrice": 3043,
+              "size": "34.91坪",
+              "address": "新北市板橋區三民路二段",
+              "sourcePublishedAt": 1774108800,
+              "postTime": null,
+              "active": true,
+              "floor": "11/11樓"
+            }
+          ],
+          "floor": "11/11樓",
+          "monitorFirstSeenAt": "2026-11-03T16:48:40+00:00",
+          "rakuyaSourcePublishedDate": "2026-06-02",
+          "rakuyaSourcePublishedRaw": "2026-06-02",
+          "rakuyaSourcePublishedEvidence": "script:object_upload_time"
+        }
+      ],
+      "crossPlatformMerged": false,
+      "crossPlatformMatchInfo": [
+        {
+          "source": "樂屋網",
+          "sourceId": "樂屋:0b714d343008983",
+          "score": 29,
+          "evidenceSource": "樂屋網",
+          "areaDelta": 0.0,
+          "priceDelta": 239.0,
+          "titleRatio": 0.529,
+          "shared": [
+            "三珉築琚全",
+            "珉築琚全新",
+            "三珉築琚",
+            "珉築琚全",
+            "築琚全新",
+            "三珉築"
+          ],
+          "exactFingerprint": false,
+          "floorRelation": "match",
+          "sinyiFloors": [
+            11
+          ],
+          "listing591Floors": [
+            11
+          ],
+          "floorMatch": true
+        }
+      ],
+      "rawListingCount": 3,
+      "propertyFirstPublishedAt": "2025-03-02T16:00:00+00:00",
       "propertyFirstPublishedSource": "樂屋網",
       "propertyFirstPublishedListingId": null,
       "propertyFirstPublishedEvidence": "source_field",
@@ -36993,6 +37182,47 @@
       "companyNearTieStrong": false
     },
     {
+      "groupId": "GROUP:樂屋:0f914c29712175e",
+      "primaryId": "樂屋:0f914c29712175e",
+      "primarySource": "樂屋網",
+      "road": "板橋區三民路二段",
+      "status": "missing",
+      "statusLabel": "未接回",
+      "score": -99,
+      "companyCandidate": {
+        "id": "YC:7576495",
+        "title": "A級辦公｜潤泰營造｜SRC鋼骨結構｜高樓極新裝潢",
+        "address": "新北市板橋區三民路二段",
+        "area": 104.34,
+        "price": 5500,
+        "url": "https://buy.yungching.com.tw/house/7576495",
+        "sourceMode": "yungching_official_browser",
+        "officialId": "7576495",
+        "officialCaseId": null,
+        "floor": "20/29樓",
+        "floorSourceMode": null,
+        "floorEvidence": null,
+        "type": "辦公商業大樓"
+      },
+      "matchInfo": {
+        "areaDelta": 69.43,
+        "priceDelta": 2218.0,
+        "shared": [],
+        "titleRatio": 0,
+        "floorRelation": "conflict",
+        "externalFloors": [
+          11
+        ],
+        "companyFloors": [
+          20
+        ],
+        "floorConflict": true,
+        "reason": "外部案件與公司候選樓層明確不同",
+        "evidenceSource": "樂屋網",
+        "evidenceListingId": "樂屋:0f914c29712175e"
+      }
+    },
+    {
       "groupId": "GROUP:樂屋:0d9477362304295",
       "primaryId": "樂屋:0d9477362304295",
       "primarySource": "樂屋網",
@@ -37492,6 +37722,28 @@
         "listing591Floors": [
           2
         ]
+      },
+      "reason": "樂屋網與既有房屋群組資料接近，但未達自動整併門檻"
+    },
+    {
+      "source": "樂屋網",
+      "sourceId": "樂屋:0f914c29712175e",
+      "groupId": "GROUP:信義房屋:3860VH",
+      "score": 22,
+      "matchInfo": {
+        "areaDelta": 0.0,
+        "priceDelta": 239.0,
+        "titleRatio": 0.381,
+        "shared": [],
+        "exactFingerprint": false,
+        "floorRelation": "match",
+        "sinyiFloors": [
+          11
+        ],
+        "listing591Floors": [
+          11
+        ],
+        "floorMatch": true
       },
       "reason": "樂屋網與既有房屋群組資料接近，但未達自動整併門檻"
     },
@@ -38644,35 +38896,6 @@
       "captureSourceMode": "yungching_official_api"
     },
     {
-      "id": "YC:7145115",
-      "road": "板橋區三民路二段",
-      "title": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福",
-      "price": 2313,
-      "area": 30.04,
-      "floor": "9/11樓",
-      "address": "新北市板橋區三民路二段",
-      "type": "住宅大樓",
-      "url": "https://buy.yungching.com.tw/house/7145115",
-      "sourceMode": "yungching_official_browser",
-      "text": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
-      "rawText": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
-      "patternInfo": {
-        "room": 2,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 9,
-        "toFloor": 9,
-        "upFloor": 11
-      },
-      "officialId": "7145115",
-      "captureSourceMode": "yungching_official_api"
-    },
-    {
       "id": "YC:7145052",
       "road": "板橋區三民路二段",
       "title": "全新可談8樓三房",
@@ -38699,6 +38922,35 @@
         "upFloor": 11
       },
       "officialId": "7145052",
+      "captureSourceMode": "yungching_official_api"
+    },
+    {
+      "id": "YC:7145115",
+      "road": "板橋區三民路二段",
+      "title": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福",
+      "price": 2313,
+      "area": 30.04,
+      "floor": "9/11樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7145115",
+      "sourceMode": "yungching_official_browser",
+      "text": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
+      "rawText": "雙捷運｜全新落成｜前後陽台邊間戶｜板橋家樂福 新北市板橋區三民路二段 住宅大樓 建坪30.04 9/11樓 2房(室)2廳2衛 2313萬",
+      "patternInfo": {
+        "room": 2,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 9,
+        "toFloor": 9,
+        "upFloor": 11
+      },
+      "officialId": "7145115",
       "captureSourceMode": "yungching_official_api"
     },
     {
@@ -39492,8 +39744,8 @@
   },
   "officialBrowserCompany": {
     "enabled": true,
-    "capturedAt": "2026-11-21T09:17:50+00:00",
-    "snapshotAgeMinutes": 0.4,
+    "capturedAt": "2026-11-21T09:32:48+00:00",
+    "snapshotAgeMinutes": 0.5,
     "acceptedRoadCount": 7,
     "unavailableRoadCount": 0,
     "roads": {
@@ -39587,12 +39839,12 @@
   "safeFloorParser": true,
   "safeFloorParserRule": "subject floor must be physically valid against total floor; glued area digits are trimmed instead of becoming impossible floors",
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-21T09:18:12+00:00",
+    "generatedAt": "2026-11-21T09:33:16+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
     "sourceRunStatus": "ok",
-    "sourceRunCheckedAt": "2026-11-21T09:15:27+00:00",
+    "sourceRunCheckedAt": "2026-11-21T09:30:23+00:00",
     "activeSinyiCount": 69,
     "matchedOfficialCount": 69,
     "appliedCount": 69,
@@ -39617,7 +39869,7 @@
     "groups": []
   },
   "recentOffMarketRetentionDays": 10,
-  "recentOffMarketGeneratedAt": "2026-11-21T09:18:18+00:00",
+  "recentOffMarketGeneratedAt": "2026-11-21T09:33:26+00:00",
   "recentOffMarketCount": 5,
   "recentOffMarketGroups": [
     {
@@ -40134,32 +40386,32 @@
   "rakuyaIntegrated": true,
   "housepriceIntegrated": true,
   "rakuyaGrouping": {
-    "inputCount": 225,
-    "regroupedCount": 129,
+    "inputCount": 226,
+    "regroupedCount": 130,
     "mergedClusterCount": 50,
     "absorbedCount": 96,
     "attachedToExistingGroupCount": 103,
-    "standaloneGroupCount": 26,
+    "standaloneGroupCount": 27,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 0
   },
   "housepriceGrouping": {
-    "inputCount": 57,
-    "regroupedCount": 41,
+    "inputCount": 58,
+    "regroupedCount": 42,
     "mergedClusterCount": 13,
     "absorbedCount": 16,
-    "attachedToExistingGroupCount": 35,
+    "attachedToExistingGroupCount": 36,
     "standaloneGroupCount": 6,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 16
   },
   "rakuyaSnapshot": {
-    "updatedAt": "2026-11-21T09:17:59+00:00",
+    "updatedAt": "2026-11-21T09:33:01+00:00",
     "status": "ok",
-    "totalCount": 225,
-    "uniqueListingCount": 225,
+    "totalCount": 226,
+    "uniqueListingCount": 226,
     "roadCounts": [
       {
         "road": "中山路二段",
@@ -40173,7 +40425,7 @@
       },
       {
         "road": "三民路二段",
-        "count": 55,
+        "count": 56,
         "pages": 3
       },
       {
@@ -40198,23 +40450,23 @@
       }
     ],
     "changes": {
-      "newCount": 0,
-      "newIds": [],
+      "newCount": 1,
+      "newIds": [
+        "01cf3f363242757"
+      ],
       "priceChangeCount": 0,
       "priceChanges": [],
-      "removedCount": 1,
-      "removedIds": [
-        "045b9336295649d"
-      ],
+      "removedCount": 0,
+      "removedIds": [],
       "currentChangeCount": 1
     },
     "complete": true
   },
   "housepriceSnapshot": {
-    "updatedAt": "2026-11-21T09:16:15+00:00",
+    "updatedAt": "2026-11-21T09:30:53+00:00",
     "status": "ok",
-    "totalCount": 57,
-    "uniqueListingCount": 57,
+    "totalCount": 58,
+    "uniqueListingCount": 58,
     "roadCounts": [
       {
         "road": "中山路二段",
@@ -40228,7 +40480,7 @@
       },
       {
         "road": "三民路二段",
-        "count": 15,
+        "count": 16,
         "pages": 2
       },
       {
@@ -40253,8 +40505,10 @@
       }
     ],
     "changes": {
-      "newIds": [],
-      "newCount": 0,
+      "newIds": [
+        "39530417"
+      ],
+      "newCount": 1,
       "removedIds": [],
       "removedCount": 0,
       "priceChanges": [],
@@ -40262,8 +40516,8 @@
     },
     "complete": true,
     "detailSummary": {
-      "requestedCount": 57,
-      "completeCount": 57,
+      "requestedCount": 58,
+      "completeCount": 58,
       "failedCount": 0,
       "allComplete": true
     },
