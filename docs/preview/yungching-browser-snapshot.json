@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-21T00:02:53+00:00",
+  "capturedAt": "2026-11-21T00:18:18+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -204,7 +204,7 @@
     },
     "板橋區三民路二段": {
       "mainHttp": 200,
-      "count": 25,
+      "count": 24,
       "primarySearchUrl": "https://buy.yungching.com.tw/list/%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80_c/%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5_kw?od=80",
       "confirmationUsed": false,
       "primaryHttp": 200,
@@ -213,10 +213,10 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 56428,
+      "primaryApiListDataLength": 54400,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
-      "roadTextCount": 25,
+      "roadTextCount": 24,
       "summary": [],
       "searchUrl": "https://buy.yungching.com.tw/api/v2/list?area=%E6%96%B0%E5%8C%97%E5%B8%82-%E6%9D%BF%E6%A9%8B%E5%8D%80&pinType=0&isAddRoom=true&keyword=%E4%B8%89%E6%B0%91%E8%B7%AF%E4%BA%8C%E6%AE%B5&filter=0&pg=1&ps=30",
       "loadRounds": 0,
@@ -255,7 +255,6 @@
           "7516413",
           "7521423",
           "7559748",
-          "7564581",
           "7576495",
           "7591797"
         ]
@@ -284,23 +283,22 @@
           "7516413",
           "7521423",
           "7559748",
-          "7564581",
           "7576495",
           "7591797"
         ]
       },
-      "rawHouseIdCount": 27,
-      "rawExactAddressTextCount": 25,
+      "rawHouseIdCount": 26,
+      "rawExactAddressTextCount": 24,
       "paginationError": null,
-      "apiTotalCount": 25,
-      "apiTotalItemCount": 26,
-      "apiRawRowCount": 27,
-      "apiUniqueRowCount": 27,
+      "apiTotalCount": 24,
+      "apiTotalItemCount": 25,
+      "apiRawRowCount": 26,
+      "apiUniqueRowCount": 26,
       "emptyResultVerified": false,
       "skippedConfirmedEmpty": false,
       "transportEvidence": "official_api_v2_decrypted",
       "available": true,
-      "rawCountBeforeIdIntegrity": 25,
+      "rawCountBeforeIdIntegrity": 24,
       "idIntegrityRemoved": 0,
       "mode": "yungching_official_api",
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
@@ -532,7 +530,7 @@
       "source": "永慶房仲網官方 /api/v2/list（官方前端同演算法解密）"
     }
   },
-  "listingCount": 70,
+  "listingCount": 69,
   "listings": [
     {
       "id": "7514442",
@@ -1999,33 +1997,6 @@
       }
     },
     {
-      "id": "7564581",
-      "road": "板橋區三民路二段",
-      "title": "國泰建設一樓邊間好停美寓",
-      "price": 2349,
-      "area": 33.69,
-      "floor": "1/5樓",
-      "address": "新北市板橋區三民路二段",
-      "type": "公寓",
-      "url": "https://buy.yungching.com.tw/house/7564581",
-      "sourceMode": "yungching_official_api",
-      "text": "國泰建設一樓邊間好停美寓 新北市板橋區三民路二段 公寓 建坪33.69 1/5樓 3房(室)2廳2衛 2349萬",
-      "rawText": "國泰建設一樓邊間好停美寓 新北市板橋區三民路二段 公寓 建坪33.69 1/5樓 3房(室)2廳2衛 2349萬",
-      "patternInfo": {
-        "room": 3,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 1,
-        "toFloor": 1,
-        "upFloor": 5
-      }
-    },
-    {
       "id": "6700174",
       "road": "板橋區三民路二段",
       "title": "三民路大馬路知名連鎖品牌穩定收租金店面",
@@ -2435,8 +2406,8 @@
   "paginationGuardVersion": "api-all-pages-v1",
   "idIntegrityGuard": {
     "enabled": true,
-    "beforeCount": 70,
-    "afterCount": 70,
+    "beforeCount": 69,
+    "afterCount": 69,
     "removedCount": 0,
     "collisionIds": [],
     "remainingCollisionIds": [],
@@ -2452,7 +2423,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-21T00:03:07+00:00",
+    "generatedAt": "2026-11-21T00:18:34+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 2,
     "cacheHitCount": 2,
