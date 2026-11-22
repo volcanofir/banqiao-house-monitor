@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-22T19:01:46+00:00",
+  "updatedAt": "2026-11-22T19:16:55+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -110,7 +110,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 102,
-      "checkedAt": "2026-11-22T19:01:55+00:00",
+      "checkedAt": "2026-11-22T19:17:03+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 20／新增 20／來源總數 62",
         "板橋區中山路二段 5168 API第2頁：符合 17／新增 17／來源總數 62",
@@ -1076,19 +1076,6 @@
       "firstSeenAt": "2026-11-22T02:22:05+00:00"
     },
     {
-      "id": "591租屋:22260801",
-      "source": "591",
-      "houseId": "22260801",
-      "road": "板橋區三民路一段",
-      "title": "可補助報稅‧全新首租‧貓咪友善‧流理台可煮‧板橋區三民路2房",
-      "address": "板橋區三民路一段",
-      "rent": 25500.0,
-      "size": 14.0,
-      "url": "https://rent.591.com.tw/22260801",
-      "floor": "4F/4F",
-      "firstSeenAt": "2026-11-22T02:22:05+00:00"
-    },
-    {
       "id": "591租屋:22262953",
       "source": "591",
       "houseId": "22262953",
@@ -1112,6 +1099,19 @@
       "size": 7.0,
       "url": "https://rent.591.com.tw/22320733",
       "floor": "4F/5F",
+      "firstSeenAt": "2026-11-22T02:22:05+00:00"
+    },
+    {
+      "id": "591租屋:22260801",
+      "source": "591",
+      "houseId": "22260801",
+      "road": "板橋區三民路一段",
+      "title": "可補助報稅‧全新首租‧貓咪友善‧流理台可煮‧板橋區三民路2房",
+      "address": "板橋區三民路一段",
+      "rent": 25500.0,
+      "size": 14.0,
+      "url": "https://rent.591.com.tw/22260801",
+      "floor": "4F/4F",
       "firstSeenAt": "2026-11-22T02:22:05+00:00"
     },
     {
@@ -4674,7 +4674,7 @@
       "firstSeenAt": "2026-11-21T08:46:58+00:00"
     }
   ],
-  "elapsedSeconds": 71.09,
+  "elapsedSeconds": 76.99,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
