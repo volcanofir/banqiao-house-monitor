@@ -299,8 +299,11 @@ function applyLiveSourceReports(){
     badge.textContent=ok?'正常':stale?'資料過期':'異常/沿用';
     const homes=(GAP.propertyGroups||[]).filter(g=>(g.sources||[]).includes(name)).length;
     const count=Math.max(0,Number(r.count)||0);
+    const canonicalSinyiAt=Date.parse(DATA.runs?.['信義房屋']?.checkedAt||'');
+    const groupingOlder=name==='信義房屋'&&Number.isFinite(canonicalSinyiAt)&&
+      Number.isFinite(ms)&&ms>canonicalSinyiAt+60000;
     note.style.whiteSpace='pre-line';
-    note.textContent='刊登 ID '+count+' 筆\n最近整併 '+homes+' 戶\n最近成功檢查：'+fmt(r.at)+(stale?'\n超過4小時未成功檢查，顯示上次有效資料':'')+(name==='591'&&Number.isInteger(r.pending)?'\n連續未觀察、待確認：'+r.pending+' 筆':'')+(name==='591'&&r.missingOnce>0?'\n首次未觀察：'+r.missingOnce+' 筆':'');
+    note.textContent='刊登 ID '+count+' 筆\n最近整併 '+homes+' 戶\n最近成功檢查：'+fmt(r.at)+(stale?'\n超過4小時未成功檢查，顯示上次有效資料':'')+(name==='591'&&Number.isInteger(r.pending)?'\n連續未觀察、待確認：'+r.pending+' 筆':'')+(name==='591'&&r.missingOnce>0?'\n首次未觀察：'+r.missingOnce+' 筆':'')+(groupingOlder?'\n來源已更新；下方整併案件仍使用上次驗證版本':'');
   });
 }
 async function refreshLiveSourceReports(){
@@ -312,36 +315,26 @@ async function refreshLiveSourceReports(){
   ];
   await Promise.all(urls.map(async([name,path])=>{
     try{
-      let data;
-      try{
-        data=await fetchJson(path+'?ts='+Date.now(),name+'來源狀態');
-      }catch(primaryError){
-        // The independent Sinyi feed is deployed separately. During its first
-        // rollout keep the older canonical status as a fallback, not an error.
-        if(name!=='信義房屋')throw primaryError;
-        data=await fetchJson('../data/listings.json?ts='+Date.now(),'信義房屋原始來源狀態');
-      }
-      // If a later full Sinyi check succeeds, do not regress to an older
-      // independent status snapshot. Both are read-only status sources.
-      if(name==='信義房屋'&&data.source==='信義房屋'){
-        try{
-          const canonical=await fetchJson('../data/listings.json?ts='+Date.now(),'信義房屋主來源時間');
-          const mainRun=canonical.runs?.['信義房屋']||{};
-          const mainAt=Date.parse(mainRun.checkedAt||'');
-          const independentAt=Date.parse(data.updatedAt||'');
-          if(mainRun.status==='ok'&&Number.isFinite(mainAt)&&
-             (!Number.isFinite(independentAt)||mainAt>independentAt))data=canonical;
-        }catch(e){console.warn('Canonical Sinyi status check unavailable, keeping verified independent feed',e);}
-      }
+      // Always read the independent source. An old canonical fallback can mask failures.
+      const data=await fetchJson(path+'?ts='+Date.now(),name+'來源狀態');
       let report;
       if(name==='591'){
         report={ok:data.complete===true&&data.source==='591_public_warelist_initial_state'&&data.mode==='preview_only'&&data.schemaVersion===1&&data.noOffmarketDecision===true&&data.noAutomaticNewPropertyDecision===true&&Array.isArray(data.roadCounts)&&data.roadCounts.length===7,at:data.updatedAt,count:data.counts?.totalListings};
       }else if(name==='信義房屋'){
         const src=data.runs?.['信義房屋']||{};
-        const independent=data.source==='信義房屋'&&data.previewOnly===true;
-        report={ok:src.status==='ok'&&(!independent||data.complete===true),
-          at:independent?data.updatedAt:src.checkedAt,
-          count:independent?data.uniqueListingCount:src.totalCount};
+        const rows=Array.isArray(data.listings)?data.listings:[];
+        const roads=Array.isArray(data.roadCounts)?data.roadCounts:[];
+        const count=rows.length;
+        const ids=new Set(rows.map(x=>x?.id));
+        const verified=data.source==='信義房屋'&&data.previewOnly===true&&
+          data.complete===true&&data.noOffmarketDecision===true&&
+          data.noAutomaticNewPropertyDecision===true&&src.status==='ok'&&
+          src.checkedAt===data.updatedAt&&count>0&&
+          data.uniqueListingCount===count&&src.totalCount===count&&
+          roads.length===7&&roads.every(x=>Number.isInteger(x?.count)&&x.count>=0)&&
+          roads.reduce((n,x)=>n+x.count,0)===count&&ids.size===count&&
+          rows.every(x=>x?.source==='信義房屋'&&x?.sinyiApiVerifiedAt);
+        report={ok:verified,at:data.updatedAt,count:data.uniqueListingCount};
       }else{
         report={ok:data.complete===true,at:data.updatedAt,count:data.uniqueListingCount??data.totalCount};
       }
