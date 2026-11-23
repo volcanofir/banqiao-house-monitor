@@ -12,7 +12,11 @@ on:
           - sinyi
           - rakuya
           - houseprice
-  # A workflow update starts a one-off Sinyi recovery without affecting production.
+  # Backup Sinyi schedule: even a broken full CLEAN monitor cannot stop source refresh.
+  # Normal per-source cadence and 30-minute failure retries still run via monitor-clean.
+  schedule:
+    - cron: "23 */3 * * *"
+  # Workflow changes immediately check the independently published feed.
   push:
     branches: [main]
     paths:
@@ -48,7 +52,32 @@ jobs:
           python -m unittest discover -s tests -p test_sinyi_independent_preview.py -v
           python -m py_compile scripts/refresh_sinyi_preview_source.py scripts/preview_source_retry_gate.py
 
+      - name: Skip redundant scheduled Sinyi crawl when the feed is recent
+        id: backup_gate
+        if: github.event_name == 'schedule'
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          path = Path("docs/preview/sinyi-source.json")
+          due = True
+          try:
+              obj = json.loads(path.read_text(encoding="utf-8"))
+              if obj.get("complete") is True and obj.get("source") == "信義房屋" and (obj.get("runs") or {}).get("信義房屋", {}).get("status") == "ok":
+                  t = datetime.fromisoformat(obj["updatedAt"].replace("Z", "+00:00"))
+                  age = (datetime.now(timezone.utc) - t.astimezone(timezone.utc)).total_seconds() / 60
+                  due = not (-5 <= age < 180)
+          except (OSError, ValueError, KeyError, TypeError) as exc:
+              print(f"Missing/invalid backup snapshot: {exc}")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              output.write("due=" + str(due).lower() + "\\n")
+          print(f"Independent Sinyi backup due={due}")
+          PY
+
       - name: Refresh only selected source
+        if: github.event_name != 'schedule' || steps.backup_gate.outputs.due == 'true'
         shell: bash
         env:
           SOURCE: ${{ inputs.source || 'sinyi' }}
@@ -81,6 +110,7 @@ jobs:
           echo "file=$file" >> "$GITHUB_ENV"
 
       - name: Publish only complete verified source snapshot
+        if: github.event_name != 'schedule' || steps.backup_gate.outputs.due == 'true'
         env:
           SOURCE: ${{ inputs.source || 'sinyi' }}
         shell: bash
@@ -151,9 +181,25 @@ jobs:
           exit 1
 
       - name: Request Pages source status refresh
-        if: success()
+        if: success() && (github.event_name != 'schedule' || steps.backup_gate.outputs.due == 'true')
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" >/dev/null
+
+      - name: Verify Sinyi exists on GitHub and the public Preview serves it
+        if: success() && (github.event_name != 'schedule' || steps.backup_gate.outputs.due == 'true')
+        env:
+          SOURCE: ${{ inputs.source || 'sinyi' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$SOURCE" == "sinyi" ]]; then
+            python -m unittest discover -s tests -p "test_verify_sinyi_publication.py" -v
+            python scripts/verify_sinyi_publication.py \\
+              --expected /tmp/preview-independent-source.json \\
+              --check-git --check-pages --retries 18 --delay 10
+          else
+            echo "Sinyi-only public publication check skipped for $SOURCE."
+          fi
