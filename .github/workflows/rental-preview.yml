@@ -221,17 +221,6 @@ jobs:
             git push
           fi
 
-      - name: Request GitHub Pages rebuild
-        if: steps.fetch.outcome == 'success' && steps.stamp.outcome == 'success'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          gh api --method POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2026-03-10" \
-            "repos/${GITHUB_REPOSITORY}/pages/builds"
-
       - name: Fail if rental data did not build
         if: steps.fetch.outcome != 'success' || steps.stamp.outcome != 'success' || steps.houseprice_vpn.outcome != 'success'
         run: exit 1
