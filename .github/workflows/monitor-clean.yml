@@ -113,12 +113,30 @@ jobs:
           raise SystemExit(0 if stale else 1)
           PY
           then
-            active="$(gh run list --workflow r420-preview.yml --limit 10 --json status --jq '[.[] | select(.status == "in_progress" or .status == "queued" or .status == "pending")] | length')"
-            if [[ "$active" == "0" ]]; then
+            recent="$(gh run list --workflow r420-preview.yml --limit 10 --json createdAt,status,conclusion)"
+            export COMPETITOR_RUNS="$recent"
+            if python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          runs=json.loads(os.environ["COMPETITOR_RUNS"])
+          active={"in_progress","queued","pending","waiting","requested"}
+          if any(r.get("status") in active for r in runs):
+              print("Competitor refresh is already active; skip")
+              raise SystemExit(1)
+          if runs:
+              last=max(runs,key=lambda r:r.get("createdAt") or "")
+              t=datetime.fromisoformat(str(last["createdAt"]).replace("Z","+00:00"))
+              age=(datetime.now(timezone.utc)-t).total_seconds()/60
+              if age < 60:
+                  print(f"Most recent competitor attempt was {age:.1f} min ago; retry cooldown")
+                  raise SystemExit(1)
+          print("Competitor retry permitted: snapshot stale and no recent attempt")
+          PY
+            then
               gh workflow run r420-preview.yml --ref main
-              echo "Competitor refresh dispatched because snapshot is at least 240 minutes old."
+              echo "Competitor snapshot stale; recovery refresh dispatched."
             else
-              echo "Competitor refresh is already active; no duplicate dispatch."
+              echo "Competitor source fallback not due."
             fi
           else
             echo "Competitor snapshot is still within the 240-minute freshness window."
