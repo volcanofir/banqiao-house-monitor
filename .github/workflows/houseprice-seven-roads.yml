@@ -22,15 +22,30 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v5
+      - name: Skip duplicate scheduled 5168 API crawl when independent feed is fresh
+        id: gate
+        shell: bash
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == "schedule" ]] &&
+             python scripts/reuse_verified_preview_snapshot.py houseprice --max-age-minutes 165; then
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "5168 feed already complete and verified; redundant scheduled crawl skipped."
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/setup-python@v6
+        if: steps.gate.outputs.run == 'true'
         with:
           python-version: "3.12"
       - run: pip install requests
+        if: steps.gate.outputs.run == 'true'
       - name: Fetch and validate 5168 seven roads
+        if: steps.gate.outputs.run == 'true'
         run: |
           python scripts/fetch_houseprice_seven_roads_preview.py
           python scripts/validate_houseprice_preview_snapshot.py
       - name: Publish only validated 5168 snapshot without overwriting newer data
+        if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -70,7 +85,7 @@ jobs:
           exit 1
 
       - name: Update existing Preview when recent official company snapshot is available
-        if: success()
+        if: success() && steps.gate.outputs.run == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
