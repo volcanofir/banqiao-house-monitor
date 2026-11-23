@@ -27,5 +27,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh workflow run preview-source-refresh.yml --ref main -f source=rakuya
+          gh workflow run preview-source-refresh.yml --repo "$GITHUB_REPOSITORY" --ref main -f source=rakuya
           echo "Independent Rakuya source refresh requested. No full Yongching crawl or canonical regroup."
