@@ -1,20 +1,31 @@
+# Legacy manual entry point only.  The Rakuya independent source is refreshed
+# through monitor-clean's 3-hour per-source scheduler, not by repeatedly crawling
+# Yongching and re-running the entire four-platform company comparison.
 name: 樂屋七路段 Preview
 
 on:
   workflow_dispatch:
-  schedule:
-    # Preview-only integrated refresh every 3 hours.
-    - cron: "35 */3 * * *"
   push:
     branches: [main]
     paths:
       - ".github/workflows/rakuya-preview.yml"
 
 permissions:
-  contents: write
-  pages: write
+  contents: read
+  actions: write
+
+concurrency:
+  group: banqiao-rakuya-manual-dispatch
+  cancel-in-progress: true
 
 jobs:
-  integrated-preview:
-    uses: ./.github/workflows/yungching-preview.yml
-    secrets: inherit
+  dispatch-independent-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Request independent Rakuya-only refresh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run preview-source-refresh.yml --ref main -f source=rakuya
+          echo "Independent Rakuya source refresh requested. No full Yongching crawl or canonical regroup."
