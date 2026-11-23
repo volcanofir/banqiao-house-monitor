@@ -128,20 +128,38 @@ jobs:
           echo "::error::Could not publish verified 591 feed after three retries."
           exit 1
 
-      - name: Rebuild the EXISTING /preview/ with newly captured 591 data
+      - name: Rebuild original Preview ONLY when a recent verified company snapshot exists
         if: success()
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          # Quickly rebuild the SAME existing /preview/ using a verified
-          # recently captured company snapshot. This avoids needing a fresh
-          # Surfshark exit just to show already verified 591 data.
-          if gh workflow run rebuild-original-preview-from-verified-snapshot.yml --ref main; then
-            echo "Fast verified rebuild of existing /preview/ dispatched."
-          else
-            echo "::warning::Fast cached-company rebuild unavailable; full original Preview crawl will still run."
+          set -euo pipefail
+          # Do not launch BOTH a fast rebuild and a second full VPN/Chrome crawl.
+          # monitor-clean already owns the regular 3-hour company comparison.
+          git fetch origin main
+          if ! git show origin/main:docs/preview/yungching-browser-snapshot.json > /tmp/591-company-snapshot.json ||
+             ! git show origin/main:docs/preview/scheme-a-verification.json > /tmp/591-company-verification.json; then
+            echo "No verified company snapshot to reuse; source feed alone is already published."
+            exit 0
           fi
-          # Full live company comparison remains an independent backstop.
-          gh workflow run yungching-preview.yml --ref main
-          echo "Dispatched full original /preview/ property grouping; no separate website."
+          if python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          snapshot=json.loads(Path('/tmp/591-company-snapshot.json').read_text(encoding='utf-8'))
+          verification=json.loads(Path('/tmp/591-company-verification.json').read_text(encoding='utf-8'))
+          stamp=snapshot.get('capturedAt')
+          if not stamp or verification.get('valid') is not True or verification.get('snapshotCapturedAt') != stamp:
+              raise SystemExit('Company comparison snapshot is not verified')
+          parsed=datetime.fromisoformat(str(stamp).replace('Z', '+00:00'))
+          age=(datetime.now(timezone.utc)-parsed.astimezone(timezone.utc)).total_seconds()/60
+          assert 0 <= age <= 65, f'Company snapshot age {age:.1f} min: not recent'
+          print(f'Reusing verified company snapshot from {age:.1f} minutes ago')
+          PY
+          then
+            gh workflow run rebuild-original-preview-from-verified-snapshot.yml --ref main
+            echo "Fast Preview regroup requested without a second full company crawl."
+          else
+            echo "Company snapshot too old or unverified; no redundant rebuild dispatched."
+          fi
