@@ -54,7 +54,7 @@ jobs:
           stale = age is None or age >= 210
           print(f'last full-check ATTEMPT age={age}; watchdog overdue={stale}')
           with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
-              output.write(f"stale={'true' if stale else 'false'}\\n")
+              output.write(f"stale={'true' if stale else 'false'}\n")
           PY
 
       - name: Wake main monitor when overdue, avoiding duplicates
