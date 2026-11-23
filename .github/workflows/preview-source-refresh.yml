@@ -72,7 +72,7 @@ jobs:
           except (OSError, ValueError, KeyError, TypeError) as exc:
               print(f"Missing/invalid backup snapshot: {exc}")
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
-              output.write("due=" + str(due).lower() + "\\n")
+              output.write("due=" + str(due).lower() + "\n")
           print(f"Independent Sinyi backup due={due}")
           PY
 
@@ -197,8 +197,8 @@ jobs:
           set -euo pipefail
           if [[ "$SOURCE" == "sinyi" ]]; then
             python -m unittest discover -s tests -p "test_verify_sinyi_publication.py" -v
-            python scripts/verify_sinyi_publication.py \\
-              --expected /tmp/preview-independent-source.json \\
+            python scripts/verify_sinyi_publication.py \
+              --expected /tmp/preview-independent-source.json \
               --check-git --check-pages --retries 18 --delay 10
           else
             echo "Sinyi-only public publication check skipped for $SOURCE."
