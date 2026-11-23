@@ -11,6 +11,8 @@ on:
       - ".github/workflows/preview-source-alerts.yml"
       - "scripts/check_preview_source_freshness.py"
       - "tests/test_preview_source_freshness.py"
+      - "scripts/verify_sinyi_publication.py"
+      - "tests/test_verify_sinyi_publication.py"
 
 permissions:
   contents: read
@@ -29,6 +31,15 @@ jobs:
         with:
           python-version: "3.12"
       - name: Test safe source freshness rules
-        run: python -m unittest discover -s tests -p "test_preview_source_freshness.py" -v
+        run: |
+          python -m unittest discover -s tests -p "test_preview_source_freshness.py" -v
+          python -m unittest discover -s tests -p "test_verify_sinyi_publication.py" -v
       - name: Alert only when a source is stale, invalid or missing
         run: python scripts/check_preview_source_freshness.py
+
+      - name: Confirm public Preview serves the latest independently published Sinyi feed
+        if: always() && !cancelled()
+        run: |
+          python scripts/verify_sinyi_publication.py \
+            --expected docs/preview/sinyi-source.json \
+            --check-pages --retries 4 --delay 5
