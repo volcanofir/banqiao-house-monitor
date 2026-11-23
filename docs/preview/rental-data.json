@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-23T20:17:37+00:00",
+  "updatedAt": "2026-11-23T20:32:14+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -108,10 +108,11 @@
       ]
     },
     "5168": {
-      "status": "ok",
+      "status": "error",
       "totalCount": 98,
       "checkedAt": "2026-11-23T20:17:45+00:00",
       "logs": [
+        "本輪 VPN/API 更新失敗，保留最後成功 5168 租屋資料。",
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 58",
         "板橋區中山路二段 5168 API第2頁：符合 18／新增 18／來源總數 58",
         "板橋區中山路二段 5168 API第3頁：符合 17／新增 17／來源總數 58",
@@ -131,7 +132,8 @@
         "板橋區翠華街 5168租屋完成，共 0 筆",
         "板橋區林森街 5168 API第1頁：符合 0／新增 0／來源總數 0",
         "板橋區林森街 5168租屋完成，共 0 筆"
-      ]
+      ],
+      "message": "本輪找不到 5168 可用 VPN 出口；沿用最後成功快照，未以 0 筆覆蓋。"
     }
   },
   "counts": {
@@ -173,7 +175,7 @@
       "address": "板橋區中山路二段",
       "rent": 11000.0,
       "size": 5.0,
-      "url": "https://rent.591.com.tw/22383951?is_ai_video=1",
+      "url": "https://rent.591.com.tw/22383951",
       "floor": "4F/5F",
       "firstSeenAt": "2026-11-22T02:22:05+00:00"
     },
@@ -1023,19 +1025,6 @@
       "firstSeenAt": "2026-11-22T02:22:05+00:00"
     },
     {
-      "id": "591租屋:22269812",
-      "source": "591",
-      "houseId": "22269812",
-      "road": "板橋區三民路一段",
-      "title": "獨家🔥近光復橋✦採光大空間✦小資族首選✦變頻冷氣",
-      "address": "板橋區三民路一段",
-      "rent": 7999.0,
-      "size": 6.5,
-      "url": "https://rent.591.com.tw/22269812",
-      "floor": "4F/5F",
-      "firstSeenAt": "2026-11-22T02:22:05+00:00"
-    },
-    {
       "id": "591租屋:22299971",
       "source": "591",
       "houseId": "22299971",
@@ -1046,6 +1035,19 @@
       "size": 14.0,
       "url": "https://rent.591.com.tw/22299971",
       "floor": "4F/4F",
+      "firstSeenAt": "2026-11-22T02:22:05+00:00"
+    },
+    {
+      "id": "591租屋:22269812",
+      "source": "591",
+      "houseId": "22269812",
+      "road": "板橋區三民路一段",
+      "title": "獨家🔥近光復橋✦採光大空間✦小資族首選✦變頻冷氣",
+      "address": "板橋區三民路一段",
+      "rent": 7999.0,
+      "size": 6.5,
+      "url": "https://rent.591.com.tw/22269812",
+      "floor": "4F/5F",
       "firstSeenAt": "2026-11-22T02:22:05+00:00"
     },
     {
@@ -1239,7 +1241,7 @@
       "address": "板橋區三民路二段",
       "rent": 10000.0,
       "size": 8.0,
-      "url": "https://rent.591.com.tw/22397498?is_ai_video=1",
+      "url": "https://rent.591.com.tw/22397498",
       "floor": "1F/3F",
       "firstSeenAt": "2026-11-23T14:47:39+00:00"
     },
@@ -4585,7 +4587,7 @@
       "firstSeenAt": "2026-11-23T09:46:46+00:00"
     }
   ],
-  "elapsedSeconds": 118.41,
+  "elapsedSeconds": 73.29,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
