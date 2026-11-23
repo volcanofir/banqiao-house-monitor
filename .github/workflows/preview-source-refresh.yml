@@ -1,5 +1,5 @@
 name: Independent Preview source refresh
-run-name: preview-source:${{ inputs.source }}
+run-name: preview-source:${{ inputs.source || 'sinyi' }}
 
 on:
   workflow_dispatch:
@@ -12,13 +12,18 @@ on:
           - sinyi
           - rakuya
           - houseprice
+  # A workflow update starts a one-off Sinyi recovery without affecting production.
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/preview-source-refresh.yml"
 
 permissions:
   contents: write
   pages: write
 
 concurrency:
-  group: banqiao-preview-source-${{ inputs.source }}
+  group: banqiao-preview-source-${{ inputs.source || 'sinyi' }}
   cancel-in-progress: false
 
 jobs:
@@ -46,7 +51,7 @@ jobs:
       - name: Refresh only selected source
         shell: bash
         env:
-          SOURCE: ${{ inputs.source }}
+          SOURCE: ${{ inputs.source || 'sinyi' }}
         run: |
           set -euo pipefail
           case "$SOURCE" in
@@ -77,7 +82,7 @@ jobs:
 
       - name: Publish only complete verified source snapshot
         env:
-          SOURCE: ${{ inputs.source }}
+          SOURCE: ${{ inputs.source || 'sinyi' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -86,9 +91,17 @@ jobs:
           for attempt in 1 2 3; do
             git fetch origin main
             git reset --hard origin/main
+            # A newly scraped file might be untracked; reset --hard leaves it in place.
+            # Always compare against the actual REMOTE committed source, not local files.
+            remote_file=/tmp/preview-remote-source.json
+            if git cat-file -e "origin/main:$file" 2>/dev/null; then
+              git show "origin/main:$file" > "$remote_file"
+            else
+              rm -f "$remote_file"
+            fi
             mkdir -p "$(dirname "$file")"
             # Never overwrite a newer independently verified capture.
-            if python - "$file" /tmp/preview-independent-source.json <<'PY'
+            if python - "$remote_file" /tmp/preview-independent-source.json <<'PY'
           import json, sys
           from datetime import datetime, timezone
           from pathlib import Path
