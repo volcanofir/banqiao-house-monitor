@@ -89,15 +89,6 @@ jobs:
           done
           exit 1
 
-      - name: Request GitHub Pages rebuild
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh api --method POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2026-03-10" \
-            "repos/${GITHUB_REPOSITORY}/pages/builds"
-
       - name: Save IP sample as workflow artifact
         if: always()
         uses: actions/upload-artifact@v4
