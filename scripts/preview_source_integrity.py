@@ -5,9 +5,16 @@ import os
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Works both as a direct script and when imported by unittest.
+try:
+    from scripts.check_preview_source_freshness import sinyi_snapshot_error
+except ModuleNotFoundError:
+    from check_preview_source_freshness import sinyi_snapshot_error
+
 ROOT = Path('docs/preview')
 CANONICAL = Path('docs/data/listings.json')
 WARELIST = Path('docs/591-preview/snapshot.json')
+SINYI_FEED = ROOT / 'sinyi-source.json'
 LEDGER = ROOT / 'platform-id-history.json'
 REPORT = ROOT / 'source-integrity.json'
 ROADS = {'中山路二段', '三民路一段', '三民路二段', '翠華街', '林森街', '萬安街', '光復街'}
@@ -56,9 +63,11 @@ def verified(source, payload):
     if not isinstance(rows, list) or not rows:
         return False, 'empty/incomplete listings', []
     if source == '信義房屋':
-        if (payload.get('runs',{}).get(source) or {}).get('status') != 'ok':
-            return False, 'Sinyi run incomplete; previous history held', []
-        rows = [r for r in rows if isinstance(r,dict) and r.get('source')==source and r.get('active',True)]
+        # Only independent fully verified Sinyi snapshots may update source health.
+        # Canonical data can be stale because unrelated cross-platform grouping failed.
+        reason = sinyi_snapshot_error(payload)
+        if reason:
+            return False, reason, []
     else:
         roads = payload.get('roadCounts') or []
         if payload.get('complete') is not True or len(roads) != 7 or {str(r.get('road')) for r in roads} != ROADS:
@@ -151,7 +160,7 @@ def write_atomic(path, obj):
 
 def main():
     canonical=load(CANONICAL)
-    sources={'591':load(WARELIST),'信義房屋':canonical,
+    sources={'591':load(WARELIST),'信義房屋':load(SINYI_FEED),
              '樂屋網':load(ROOT/'rakuya-seven-roads.json'),
              '5168':load(ROOT/'houseprice-seven-roads.json')}
     history=build(load(LEDGER),sources,canonical,load(ROOT/'preview-monitor-state.json'))
