@@ -76,7 +76,13 @@ jobs:
           cp /tmp/sinyi-first-display-cache.json docs/data/sinyi-first-display-cache.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # One atomic commit for the verified listings and runner IP history:
+          # two separate pushes previously triggered two Pages deployments.
+          if [[ -s /tmp/sinyi-runner-ip-sample.json ]]; then
+            python scripts/log_sinyi_runner_ip.py merge || echo "::warning::Optional IP history merge failed."
+          fi
           git add docs/company/sinyi-banqiao-stores.json docs/data/sinyi-first-display-cache.json
+          [[ -f docs/data/sinyi-runner-ip-history.json ]] && git add docs/data/sinyi-runner-ip-history.json || true
           if git diff --cached --quiet; then
             echo "Competitor data already current."
             exit 0
@@ -98,8 +104,8 @@ jobs:
           if-no-files-found: ignore
           retention-days: 30
 
-      - name: Save runner IP history to repository
-        if: always()
+      - name: Save runner IP history when competitor crawl FAILED
+        if: failure()
         continue-on-error: true
         shell: bash
         run: |
