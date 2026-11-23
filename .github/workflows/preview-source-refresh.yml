@@ -180,13 +180,9 @@ jobs:
           echo "::error::Could not publish $SOURCE after three retries."
           exit 1
 
-      - name: Request Pages source status refresh
-        if: success() && (github.event_name != 'schedule' || steps.backup_gate.outputs.due == 'true')
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" >/dev/null
+      # Every successful source-file commit already triggers branch-based GitHub Pages.
+      # Do not call /pages/builds a second time: duplicate builds can pile up and
+      # repeatedly cancel the deployment that would make the source visible.
 
       - name: Verify Sinyi exists on GitHub and the public Preview serves it
         if: success() && (github.event_name != 'schedule' || steps.backup_gate.outputs.due == 'true')
@@ -199,7 +195,7 @@ jobs:
             python -m unittest discover -s tests -p "test_verify_sinyi_publication.py" -v
             python scripts/verify_sinyi_publication.py \
               --expected /tmp/preview-independent-source.json \
-              --check-git --check-pages --retries 18 --delay 10
+              --check-git --check-pages --retries 30 --delay 10
           else
             echo "Sinyi-only public publication check skipped for $SOURCE."
           fi
