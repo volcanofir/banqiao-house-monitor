@@ -171,6 +171,8 @@ jobs:
           python -m py_compile scripts/monitor_fast.py scripts/monitor_591_web_fallback.py scripts/retry_591_direct_egress.py scripts/monitor_sinyi_parallel.py scripts/monitor_schedule_state.py scripts/preview_source_integrity.py
           python -m unittest discover -s tests -p test_preview_source_retry_gate.py -v
           python -m unittest discover -s tests -p test_preview_source_integrity.py -v
+          python -m unittest discover -s tests -p test_reuse_verified_preview_snapshot.py -v
+          python -m py_compile scripts/reuse_verified_preview_snapshot.py
 
       - name: Install shared crawler packages
         if: steps.gate.outputs.run == 'true'
@@ -194,8 +196,10 @@ jobs:
           set -e
           # Keep the last published and verified 5168 snapshot unless this refresh validates.
           cp docs/preview/houseprice-seven-roads.json /tmp/houseprice-before-refresh.json
-          if python scripts/fetch_houseprice_seven_roads_preview.py && python scripts/validate_houseprice_preview_snapshot.py; then
-            echo "5168 snapshot validated; continuing monitor."
+          if python scripts/reuse_verified_preview_snapshot.py houseprice --max-age-minutes 150; then
+            echo "Reuse recently verified 5168 snapshot; avoid duplicate API/detail crawl."
+          elif python scripts/fetch_houseprice_seven_roads_preview.py && python scripts/validate_houseprice_preview_snapshot.py; then
+            echo "Freshly fetched 5168 snapshot validated; continuing monitor."
           else
             cp /tmp/houseprice-before-refresh.json docs/preview/houseprice-seven-roads.json
             echo "::warning title=5168 Preview check failed::Restored last verified 5168 snapshot; continuing canonical 591/Sinyi monitoring."
@@ -391,8 +395,10 @@ jobs:
         run: |
           set -euo pipefail
           cp docs/preview/rakuya-seven-roads.json /tmp/rakuya-before-refresh.json
-          if python scripts/fetch_rakuya_seven_roads_preview.py && python scripts/validate_rakuya_preview_snapshot.py; then
-            echo "Rakuya seven-road snapshot verified."
+          if python scripts/reuse_verified_preview_snapshot.py rakuya --max-age-minutes 150; then
+            echo "Reuse recently verified Rakuya seven-road snapshot; avoid duplicate crawl."
+          elif python scripts/fetch_rakuya_seven_roads_preview.py && python scripts/validate_rakuya_preview_snapshot.py; then
+            echo "Freshly fetched Rakuya seven-road snapshot verified."
           else
             cp /tmp/rakuya-before-refresh.json docs/preview/rakuya-seven-roads.json
             echo "::warning title=Rakuya Preview check failed::Restored previous verified snapshot; no delisting from failed scrape."
@@ -540,18 +546,6 @@ jobs:
       - name: Full check incomplete; retry on next heartbeat
         if: steps.gate.outputs.run == 'true' && steps.fullcheck.outputs.success != 'true'
         run: echo "591 or Sinyi incomplete; keep last successful timestamp unchanged but record this attempt to avoid ten-minute repeat crawls."
-
-      - name: Request GitHub Pages rebuild
-        if: steps.gate.outputs.run == 'true' && steps.changes.outputs.meaningful == 'true' && success()
-        env:
-          GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          gh api --method POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2026-03-10" \
-            "repos/${GITHUB_REPOSITORY}/pages/builds"
-          echo "Fast canonical Pages rebuild queued."
 
       - name: Persist attempted full-check cadence, preserving last verified success
         if: always() && steps.gate.outputs.run == 'true' && steps.attempt.outcome == 'success'
