@@ -78,6 +78,9 @@ jobs:
       - name: Install packages
         run: pip install requests beautifulsoup4 cryptography playwright
 
+      - name: Test cache reuse never bypasses the source validators
+        run: python -m unittest discover -s tests -p test_reuse_verified_preview_snapshot.py -v
+
       - name: Find usable Surfshark exit for Yongching
         env:
           SURFSHARK_WG_CONFIG: ${{ secrets.SURFSHARK_WG_CONFIG }}
@@ -106,15 +109,23 @@ jobs:
         continue-on-error: true
         run: sudo wg-quick down surfshark || true
 
-      - name: Refresh complete Rakuya seven-road snapshot
+      - name: Reuse verified recent Rakuya feed or fetch when stale
         run: |
-          python scripts/fetch_rakuya_seven_roads_preview.py
-          python scripts/validate_rakuya_preview_snapshot.py
+          if python scripts/reuse_verified_preview_snapshot.py rakuya --max-age-minutes 150; then
+            echo "Rakuya source already verified recently; skip second crawl."
+          else
+            python scripts/fetch_rakuya_seven_roads_preview.py
+            python scripts/validate_rakuya_preview_snapshot.py
+          fi
 
-      - name: Refresh complete 5168 seven-road snapshot
+      - name: Reuse verified recent 5168 feed or fetch when stale
         run: |
-          python scripts/fetch_houseprice_seven_roads_preview.py
-          python scripts/validate_houseprice_preview_snapshot.py
+          if python scripts/reuse_verified_preview_snapshot.py houseprice --max-age-minutes 150; then
+            echo "5168 source already verified recently; skip second API/detail crawl."
+          else
+            python scripts/fetch_houseprice_seven_roads_preview.py
+            python scripts/validate_houseprice_preview_snapshot.py
+          fi
 
       - name: Build Preview-only Sinyi structured floor snapshot
         run: python scripts/sinyi_preview_floor_enrich.py
@@ -218,20 +229,8 @@ jobs:
           done
           exit 1
 
-      - name: Request GitHub Pages build for canonical commit
-        id: pages
-        if: success()
-        env:
-          GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          gh api --method POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2026-03-10" \
-            "repos/${GITHUB_REPOSITORY}/pages/builds"
-
       - name: Save failed scheme A diagnostics separately
-        if: failure() && steps.pages.outcome != 'failure'
+        if: failure()
         continue-on-error: true
         shell: bash
         run: |
