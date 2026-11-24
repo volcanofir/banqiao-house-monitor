@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T18:02:30+00:00",
+  "updatedAt": "2026-11-24T18:16:54+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -108,11 +108,10 @@
       ]
     },
     "5168": {
-      "status": "error",
+      "status": "ok",
       "totalCount": 105,
-      "checkedAt": "2026-11-24T17:46:58+00:00",
+      "checkedAt": "2026-11-24T18:17:10+00:00",
       "logs": [
-        "本輪 VPN/API 更新失敗，保留最後成功 5168 租屋資料。",
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 64",
         "板橋區中山路二段 5168 API第2頁：符合 18／新增 18／來源總數 64",
         "板橋區中山路二段 5168 API第3頁：符合 19／新增 19／來源總數 64",
@@ -133,8 +132,7 @@
         "板橋區翠華街 5168租屋完成，共 0 筆",
         "板橋區林森街 5168 API第1頁：符合 0／新增 0／來源總數 0",
         "板橋區林森街 5168租屋完成，共 0 筆"
-      ],
-      "message": "本輪找不到 5168 可用 VPN 出口；沿用最後成功快照，未以 0 筆覆蓋。"
+      ]
     }
   },
   "counts": {
@@ -4872,7 +4870,7 @@
       "firstSeenAt": "2026-11-23T09:46:46+00:00"
     }
   ],
-  "elapsedSeconds": 80.96,
+  "elapsedSeconds": 68.86,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
