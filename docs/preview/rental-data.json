@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T23:31:41+00:00",
+  "updatedAt": "2026-11-26T23:46:45+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -110,7 +110,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 101,
-      "checkedAt": "2026-11-26T23:31:49+00:00",
+      "checkedAt": "2026-11-26T23:46:53+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 61",
         "板橋區中山路二段 5168 API第2頁：符合 19／新增 19／來源總數 61",
@@ -1025,6 +1025,19 @@
       "firstSeenAt": "2026-11-22T02:22:05+00:00"
     },
     {
+      "id": "591租屋:22392912",
+      "source": "591",
+      "houseId": "22392912",
+      "road": "板橋區三民路一段",
+      "title": "板橋埔墘5分鐘生活圈套房可短租",
+      "address": "板橋區三民路一段",
+      "rent": 8000.0,
+      "size": 7.0,
+      "url": "https://rent.591.com.tw/22392912",
+      "floor": "4F/5F",
+      "firstSeenAt": "2026-11-23T04:06:47+00:00"
+    },
+    {
       "id": "591租屋:22260801",
       "source": "591",
       "houseId": "22260801",
@@ -1062,19 +1075,6 @@
       "url": "https://rent.591.com.tw/22320733",
       "floor": "4F/5F",
       "firstSeenAt": "2026-11-22T02:22:05+00:00"
-    },
-    {
-      "id": "591租屋:22392912",
-      "source": "591",
-      "houseId": "22392912",
-      "road": "板橋區三民路一段",
-      "title": "板橋埔墘5分鐘生活圈套房可短租",
-      "address": "板橋區三民路一段",
-      "rent": 8000.0,
-      "size": 7.0,
-      "url": "https://rent.591.com.tw/22392912",
-      "floor": "4F/5F",
-      "firstSeenAt": "2026-11-23T04:06:47+00:00"
     },
     {
       "id": "591租屋:22398191",
@@ -4835,7 +4835,7 @@
       "firstSeenAt": "2026-11-23T09:46:46+00:00"
     }
   ],
-  "elapsedSeconds": 65.37,
+  "elapsedSeconds": 66.11,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
