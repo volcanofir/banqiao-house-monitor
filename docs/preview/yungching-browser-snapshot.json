@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-26T05:17:57+00:00",
+  "capturedAt": "2026-11-26T05:32:34+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -1629,33 +1629,6 @@
       }
     },
     {
-      "id": "7455299",
-      "road": "板橋區三民路二段",
-      "title": "國泰建設｜代收垃圾｜可抽車位｜天然瓦斯｜前後陽台",
-      "price": 1298,
-      "area": 32.26,
-      "floor": "4/5樓",
-      "address": "新北市板橋區三民路二段",
-      "type": "公寓",
-      "url": "https://buy.yungching.com.tw/house/7455299",
-      "sourceMode": "yungching_official_api",
-      "text": "國泰建設｜代收垃圾｜可抽車位｜天然瓦斯｜前後陽台 新北市板橋區三民路二段 公寓 建坪32.26 4/5樓 3房(室)2廳2衛 1298萬",
-      "rawText": "國泰建設｜代收垃圾｜可抽車位｜天然瓦斯｜前後陽台 新北市板橋區三民路二段 公寓 建坪32.26 4/5樓 3房(室)2廳2衛 1298萬",
-      "patternInfo": {
-        "room": 3,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 4,
-        "toFloor": 4,
-        "upFloor": 5
-      }
-    },
-    {
       "id": "7450646",
       "road": "板橋區三民路二段",
       "title": "邊間明亮通風有天然瓦斯｜方正大四房｜近中原捷運站",
@@ -1672,6 +1645,33 @@
         "room": 4,
         "livingRoom": 2,
         "bathRoom": 1,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 4,
+        "toFloor": 4,
+        "upFloor": 5
+      }
+    },
+    {
+      "id": "7455299",
+      "road": "板橋區三民路二段",
+      "title": "國泰建設｜代收垃圾｜可抽車位｜天然瓦斯｜前後陽台",
+      "price": 1298,
+      "area": 32.26,
+      "floor": "4/5樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "公寓",
+      "url": "https://buy.yungching.com.tw/house/7455299",
+      "sourceMode": "yungching_official_api",
+      "text": "國泰建設｜代收垃圾｜可抽車位｜天然瓦斯｜前後陽台 新北市板橋區三民路二段 公寓 建坪32.26 4/5樓 3房(室)2廳2衛 1298萬",
+      "rawText": "國泰建設｜代收垃圾｜可抽車位｜天然瓦斯｜前後陽台 新北市板橋區三民路二段 公寓 建坪32.26 4/5樓 3房(室)2廳2衛 1298萬",
+      "patternInfo": {
+        "room": 3,
+        "livingRoom": 2,
+        "bathRoom": 2,
         "addRoom": null,
         "addLivingRoom": null,
         "addBathRoom": null
@@ -2250,7 +2250,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-26T05:18:09+00:00",
+    "generatedAt": "2026-11-26T05:32:46+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 3,
     "cacheHitCount": 3,
