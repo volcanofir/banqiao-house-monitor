@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-26T20:02:58+00:00",
+  "verifiedAt": "2026-11-26T20:17:04+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-26T20:02:47+00:00",
+    "generatedAt": "2026-11-26T20:16:48+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -180,22 +180,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-26T20:02:58+00:00",
-    "propertyGroupCount": 174,
+    "auditedAt": "2026-11-26T20:17:04+00:00",
+    "propertyGroupCount": 175,
     "companyListingCount": 63,
     "companyMatchCount": 39,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 1057
+    "weakIdentityAlreadyMergedPairCount": 1068
   },
   "snapshotCapturedAt": "2026-11-26T20:02:31+00:00",
   "companySnapshotCapturedAt": "2026-11-26T20:02:31+00:00",
-  "companyGapGeneratedAt": "2026-11-26T20:02:54+00:00",
+  "companyGapGeneratedAt": "2026-11-26T20:16:58+00:00",
   "browserListingCount": 63,
   "companyListingCount": 63,
-  "propertyGroupCount": 174,
-  "rawListingCount": 809,
-  "comparisonCount": 174,
+  "propertyGroupCount": 175,
+  "rawListingCount": 831,
+  "comparisonCount": 175,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -261,42 +261,42 @@
   "counts": {
     "company_match": 39,
     "review": 5,
-    "missing": 130,
+    "missing": 131,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 110,
+  "crossPlatformMergedGroupCount": 109,
   "crossSourceReviewCount": 11,
   "preview591Regroup": {
-    "original591TopLevel": 102,
-    "regrouped591TopLevel": 93,
-    "regrouped591ClusterCount": 7,
-    "regrouped591AbsorbedCount": 9,
+    "original591TopLevel": 104,
+    "regrouped591TopLevel": 94,
+    "regrouped591ClusterCount": 8,
+    "regrouped591AbsorbedCount": 10,
     "clusterFloorConflictBlocked": 0
   },
   "preview591Warelist": {
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-26T17:07:26+00:00",
-    "totalCount": 214,
-    "uniqueListingCount": 214,
-    "groupCount": 102,
+    "updatedAt": "2026-11-26T20:16:32+00:00",
+    "totalCount": 242,
+    "uniqueListingCount": 242,
+    "groupCount": 104,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 106
+        "count": 131
       },
       {
         "road": "三民路二段",
-        "count": 61
+        "count": 66
       },
       {
         "road": "光復街",
-        "count": 7
+        "count": 6
       },
       {
         "road": "萬安街",
-        "count": 11
+        "count": 10
       },
       {
         "road": "林森街",
@@ -312,17 +312,17 @@
       }
     ],
     "sourceFieldCoverage": {
-      "floor": 204,
-      "layout": 214,
-      "community": 120,
-      "houseAge": 214,
-      "parkingFlag": 214,
+      "floor": 232,
+      "layout": 242,
+      "community": 147,
+      "houseAge": 242,
+      "parkingFlag": 242,
       "unverifiedFloor": 10,
-      "total": 214
+      "total": 242
     },
     "floorAwarePreviewGrouping": true,
-    "historyMatchedIdCount": 101,
-    "historyNotPresentUnconfirmed": 412,
+    "historyMatchedIdCount": 124,
+    "historyNotPresentUnconfirmed": 389,
     "historyReappearedCount": 0,
     "missingIdIsNotDelisting": true,
     "newIdIsNotNewProperty": true
@@ -340,8 +340,8 @@
     "removed": [],
     "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
   },
-  "candidateCount": 168,
-  "candidatesWithFloor": 168,
+  "candidateCount": 169,
+  "candidatesWithFloor": 169,
   "candidatesWithYcCaseId": 5,
   "detailFloorEnrichment": {
     "generatedAt": "2026-11-26T20:02:47+00:00",
