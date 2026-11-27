@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-27T19:03:11+00:00",
+  "verifiedAt": "2026-11-27T19:16:42+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-27T19:02:57+00:00",
+    "generatedAt": "2026-11-27T19:16:31+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -89,8 +89,8 @@
     "regroupedCount": 131,
     "mergedClusterCount": 50,
     "absorbedCount": 100,
-    "attachedToExistingGroupCount": 105,
-    "standaloneGroupCount": 26,
+    "attachedToExistingGroupCount": 104,
+    "standaloneGroupCount": 27,
     "ambiguousReviewCount": 0,
     "floorConflictBlocked": 0,
     "directGroupIdMergeCount": 0
@@ -182,22 +182,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-27T19:03:11+00:00",
-    "propertyGroupCount": 175,
+    "auditedAt": "2026-11-27T19:16:42+00:00",
+    "propertyGroupCount": 174,
     "companyListingCount": 63,
     "companyMatchCount": 39,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 1081
+    "weakIdentityAlreadyMergedPairCount": 1066
   },
   "snapshotCapturedAt": "2026-11-27T19:02:43+00:00",
   "companySnapshotCapturedAt": "2026-11-27T19:02:43+00:00",
-  "companyGapGeneratedAt": "2026-11-27T19:03:06+00:00",
+  "companyGapGeneratedAt": "2026-11-27T19:16:37+00:00",
   "browserListingCount": 63,
   "companyListingCount": 63,
-  "propertyGroupCount": 175,
-  "rawListingCount": 822,
-  "comparisonCount": 175,
+  "propertyGroupCount": 174,
+  "rawListingCount": 813,
+  "comparisonCount": 174,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -263,34 +263,34 @@
   "counts": {
     "company_match": 39,
     "review": 5,
-    "missing": 131,
+    "missing": 130,
     "unavailable": 0
   },
-  "crossPlatformMergedGroupCount": 110,
-  "crossSourceReviewCount": 11,
+  "crossPlatformMergedGroupCount": 109,
+  "crossSourceReviewCount": 12,
   "preview591Regroup": {
-    "original591TopLevel": 104,
-    "regrouped591TopLevel": 92,
-    "regrouped591ClusterCount": 9,
-    "regrouped591AbsorbedCount": 12,
+    "original591TopLevel": 97,
+    "regrouped591TopLevel": 89,
+    "regrouped591ClusterCount": 7,
+    "regrouped591AbsorbedCount": 8,
     "clusterFloorConflictBlocked": 0
   },
   "preview591Warelist": {
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-27T16:01:16+00:00",
+    "updatedAt": "2026-11-27T19:16:10+00:00",
     "totalCount": 223,
     "uniqueListingCount": 223,
-    "groupCount": 104,
+    "groupCount": 97,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 111
+        "count": 114
       },
       {
         "road": "三民路二段",
-        "count": 65
+        "count": 62
       },
       {
         "road": "光復街",
@@ -316,15 +316,15 @@
     "sourceFieldCoverage": {
       "floor": 213,
       "layout": 223,
-      "community": 126,
+      "community": 133,
       "houseAge": 223,
       "parkingFlag": 223,
       "unverifiedFloor": 10,
       "total": 223
     },
     "floorAwarePreviewGrouping": true,
-    "historyMatchedIdCount": 106,
-    "historyNotPresentUnconfirmed": 407,
+    "historyMatchedIdCount": 115,
+    "historyNotPresentUnconfirmed": 398,
     "historyReappearedCount": 0,
     "missingIdIsNotDelisting": true,
     "newIdIsNotNewProperty": true
@@ -342,8 +342,8 @@
     "removed": [],
     "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
   },
-  "candidateCount": 169,
-  "candidatesWithFloor": 169,
+  "candidateCount": 168,
+  "candidatesWithFloor": 168,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
     "generatedAt": "2026-11-27T19:02:57+00:00",
