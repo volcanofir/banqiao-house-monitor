@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-27T07:48:06+00:00",
+  "verifiedAt": "2026-11-27T08:01:51+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-27T07:47:55+00:00",
+    "generatedAt": "2026-11-27T08:01:38+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -174,27 +174,27 @@
   "companyNearTieGuard": {
     "enabled": true,
     "rule": "同一外部群組若仍有至少兩筆不同永慶 strong 候選且前兩名分差<=2，禁止自動判庫存，全部降為待確認",
-    "examinedCompanyMatchCount": 39,
+    "examinedCompanyMatchCount": 38,
     "downgradedCount": 0,
     "remainingAutoNearTieCount": 0,
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-27T07:48:06+00:00",
+    "auditedAt": "2026-11-27T08:01:51+00:00",
     "propertyGroupCount": 174,
     "companyListingCount": 63,
-    "companyMatchCount": 39,
+    "companyMatchCount": 38,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 1075
+    "weakIdentityAlreadyMergedPairCount": 1081
   },
   "snapshotCapturedAt": "2026-11-27T07:47:38+00:00",
   "companySnapshotCapturedAt": "2026-11-27T07:47:38+00:00",
-  "companyGapGeneratedAt": "2026-11-27T07:48:02+00:00",
+  "companyGapGeneratedAt": "2026-11-27T08:01:46+00:00",
   "browserListingCount": 63,
   "companyListingCount": 63,
   "propertyGroupCount": 174,
-  "rawListingCount": 831,
+  "rawListingCount": 838,
   "comparisonCount": 174,
   "coveredRoads": [
     "板橋區中山路二段",
@@ -259,9 +259,9 @@
     }
   },
   "counts": {
-    "company_match": 39,
+    "company_match": 38,
     "review": 5,
-    "missing": 130,
+    "missing": 131,
     "unavailable": 0
   },
   "crossPlatformMergedGroupCount": 110,
@@ -277,22 +277,22 @@
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-27T04:58:32+00:00",
-    "totalCount": 239,
-    "uniqueListingCount": 239,
+    "updatedAt": "2026-11-27T08:01:21+00:00",
+    "totalCount": 245,
+    "uniqueListingCount": 245,
     "groupCount": 105,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 126
+        "count": 133
       },
       {
         "road": "三民路二段",
-        "count": 66
+        "count": 64
       },
       {
         "road": "光復街",
-        "count": 6
+        "count": 7
       },
       {
         "road": "萬安街",
@@ -312,13 +312,13 @@
       }
     ],
     "sourceFieldCoverage": {
-      "floor": 229,
-      "layout": 239,
-      "community": 140,
-      "houseAge": 239,
-      "parkingFlag": 239,
+      "floor": 235,
+      "layout": 245,
+      "community": 147,
+      "houseAge": 245,
+      "parkingFlag": 245,
       "unverifiedFloor": 10,
-      "total": 239
+      "total": 245
     },
     "floorAwarePreviewGrouping": true,
     "historyMatchedIdCount": 124,
