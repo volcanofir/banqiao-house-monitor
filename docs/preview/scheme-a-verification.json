@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-27T23:33:10+00:00",
+  "verifiedAt": "2026-11-27T23:36:02+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-27T23:32:59+00:00",
+    "generatedAt": "2026-11-27T23:35:48+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -180,17 +180,17 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-27T23:33:10+00:00",
+    "auditedAt": "2026-11-27T23:36:02+00:00",
     "propertyGroupCount": 176,
     "companyListingCount": 63,
     "companyMatchCount": 39,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 1073
+    "weakIdentityAlreadyMergedPairCount": 1081
   },
   "snapshotCapturedAt": "2026-11-27T23:32:46+00:00",
   "companySnapshotCapturedAt": "2026-11-27T23:32:46+00:00",
-  "companyGapGeneratedAt": "2026-11-27T23:33:06+00:00",
+  "companyGapGeneratedAt": "2026-11-27T23:35:57+00:00",
   "browserListingCount": 63,
   "companyListingCount": 63,
   "propertyGroupCount": 176,
@@ -277,7 +277,7 @@
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-27T22:31:11+00:00",
+    "updatedAt": "2026-11-27T23:35:33+00:00",
     "totalCount": 246,
     "uniqueListingCount": 246,
     "groupCount": 106,
@@ -312,12 +312,12 @@
       }
     ],
     "sourceFieldCoverage": {
-      "floor": 235,
+      "floor": 236,
       "layout": 246,
-      "community": 147,
+      "community": 148,
       "houseAge": 246,
       "parkingFlag": 246,
-      "unverifiedFloor": 11,
+      "unverifiedFloor": 10,
       "total": 246
     },
     "floorAwarePreviewGrouping": true,
