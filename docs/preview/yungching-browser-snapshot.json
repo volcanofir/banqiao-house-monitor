@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-27T15:47:43+00:00",
+  "capturedAt": "2026-11-27T16:17:45+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -29,7 +29,7 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 82328,
+      "primaryApiListDataLength": 82220,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
       "roadTextCount": 32,
@@ -215,7 +215,7 @@
       "primaryApiListSuccess": true,
       "primaryApiListStatus": "Success",
       "primaryApiListVersion": "2",
-      "primaryApiListDataLength": 48384,
+      "primaryApiListDataLength": 48364,
       "primaryNavigationError": null,
       "title": "永慶房仲網官方 API",
       "roadTextCount": 21,
@@ -1548,6 +1548,33 @@
       "floorEvidence": "verified cache 2026-09-15T05:19:42+00:00"
     },
     {
+      "id": "7576495",
+      "road": "板橋區三民路二段",
+      "title": "A級辦公｜潤泰營造｜SRC鋼骨結構｜高樓極新裝潢",
+      "price": 5500,
+      "area": 104.34,
+      "floor": "20/29樓",
+      "address": "新北市板橋區三民路二段",
+      "type": "辦公商業大樓",
+      "url": "https://buy.yungching.com.tw/house/7576495",
+      "sourceMode": "yungching_official_api",
+      "text": "A級辦公｜潤泰營造｜SRC鋼骨結構｜高樓極新裝潢 新北市板橋區三民路二段 辦公商業大樓 建坪104.34 20/29樓 5房(室)0廳0衛 5500萬",
+      "rawText": "A級辦公｜潤泰營造｜SRC鋼骨結構｜高樓極新裝潢 新北市板橋區三民路二段 辦公商業大樓 建坪104.34 20/29樓 5房(室)0廳0衛 5500萬",
+      "patternInfo": {
+        "room": 5,
+        "livingRoom": 0,
+        "bathRoom": 0,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 20,
+        "toFloor": 20,
+        "upFloor": 29
+      }
+    },
+    {
       "id": "7591797",
       "road": "板橋區三民路二段",
       "title": "邊間通風採光好｜門口方便停車｜門寬7米｜巷寬7米",
@@ -1603,33 +1630,6 @@
       "officialCaseId": "YC1235235",
       "floorSourceMode": "yungching_verified_detail_cache",
       "floorEvidence": "verified cache 2026-08-24T10:31:44+00:00"
-    },
-    {
-      "id": "7576495",
-      "road": "板橋區三民路二段",
-      "title": "A級辦公｜潤泰營造｜SRC鋼骨結構｜高樓極新裝潢",
-      "price": 5500,
-      "area": 104.34,
-      "floor": "20/29樓",
-      "address": "新北市板橋區三民路二段",
-      "type": "辦公商業大樓",
-      "url": "https://buy.yungching.com.tw/house/7576495",
-      "sourceMode": "yungching_official_api",
-      "text": "A級辦公｜潤泰營造｜SRC鋼骨結構｜高樓極新裝潢 新北市板橋區三民路二段 辦公商業大樓 建坪104.34 20/29樓 5房(室)0廳0衛 5500萬",
-      "rawText": "A級辦公｜潤泰營造｜SRC鋼骨結構｜高樓極新裝潢 新北市板橋區三民路二段 辦公商業大樓 建坪104.34 20/29樓 5房(室)0廳0衛 5500萬",
-      "patternInfo": {
-        "room": 5,
-        "livingRoom": 0,
-        "bathRoom": 0,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 20,
-        "toFloor": 20,
-        "upFloor": 29
-      }
     },
     {
       "id": "7455299",
@@ -2250,7 +2250,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-27T15:47:58+00:00",
+    "generatedAt": "2026-11-27T16:17:59+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 3,
     "cacheHitCount": 3,
