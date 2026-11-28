@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-28T18:01:47+00:00",
+  "updatedAt": "2026-11-28T18:16:58+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -110,7 +110,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 104,
-      "checkedAt": "2026-11-28T18:01:56+00:00",
+      "checkedAt": "2026-11-28T18:17:05+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 62",
         "板橋區中山路二段 5168 API第2頁：符合 18／新增 18／來源總數 62",
@@ -1090,19 +1090,6 @@
       "firstSeenAt": "2026-11-23T04:06:47+00:00"
     },
     {
-      "id": "591租屋:22262953",
-      "source": "591",
-      "houseId": "22262953",
-      "road": "板橋區三民路一段",
-      "title": "可補助報稅‧貓咪友善‧全新首租‧流理台可煮",
-      "address": "板橋區三民路一段",
-      "rent": 16500.0,
-      "size": 7.0,
-      "url": "https://rent.591.com.tw/22262953",
-      "floor": "4F/4F",
-      "firstSeenAt": "2026-11-22T02:22:05+00:00"
-    },
-    {
       "id": "591租屋:22260801",
       "source": "591",
       "houseId": "22260801",
@@ -1112,6 +1099,19 @@
       "rent": 25500.0,
       "size": 14.0,
       "url": "https://rent.591.com.tw/22260801",
+      "floor": "4F/4F",
+      "firstSeenAt": "2026-11-22T02:22:05+00:00"
+    },
+    {
+      "id": "591租屋:22262953",
+      "source": "591",
+      "houseId": "22262953",
+      "road": "板橋區三民路一段",
+      "title": "可補助報稅‧貓咪友善‧全新首租‧流理台可煮",
+      "address": "板橋區三民路一段",
+      "rent": 16500.0,
+      "size": 7.0,
+      "url": "https://rent.591.com.tw/22262953",
       "floor": "4F/4F",
       "firstSeenAt": "2026-11-22T02:22:05+00:00"
     },
@@ -1298,19 +1298,6 @@
       "firstSeenAt": "2026-11-23T14:47:39+00:00"
     },
     {
-      "id": "591租屋:22399665",
-      "source": "591",
-      "houseId": "22399665",
-      "road": "板橋區三民路二段",
-      "title": "吉屋出租低樓層2樓",
-      "address": "板橋區三民路二段",
-      "rent": 30000.0,
-      "size": 26.0,
-      "url": "https://rent.591.com.tw/22399665",
-      "floor": "2F/5F",
-      "firstSeenAt": "2026-11-24T05:16:55+00:00"
-    },
-    {
       "id": "591租屋:22410764",
       "source": "591",
       "houseId": "22410764",
@@ -1322,6 +1309,19 @@
       "url": "https://rent.591.com.tw/22410764",
       "floor": "3F/4F",
       "firstSeenAt": "2026-11-26T06:16:51+00:00"
+    },
+    {
+      "id": "591租屋:22399665",
+      "source": "591",
+      "houseId": "22399665",
+      "road": "板橋區三民路二段",
+      "title": "吉屋出租低樓層2樓",
+      "address": "板橋區三民路二段",
+      "rent": 30000.0,
+      "size": 26.0,
+      "url": "https://rent.591.com.tw/22399665",
+      "floor": "2F/5F",
+      "firstSeenAt": "2026-11-24T05:16:55+00:00"
     },
     {
       "id": "591租屋:22368282",
@@ -4950,7 +4950,7 @@
       "firstSeenAt": "2026-11-23T09:46:46+00:00"
     }
   ],
-  "elapsedSeconds": 71.18,
+  "elapsedSeconds": 75.59,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
