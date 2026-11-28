@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-28T06:01:59+00:00",
+  "updatedAt": "2026-11-28T06:16:41+00:00",
   "previewOnly": true,
   "market": "rent",
   "watchRoads": [
@@ -110,7 +110,7 @@
     "5168": {
       "status": "ok",
       "totalCount": 102,
-      "checkedAt": "2026-11-28T06:02:28+00:00",
+      "checkedAt": "2026-11-28T06:16:49+00:00",
       "logs": [
         "板橋區中山路二段 5168 API第1頁：符合 19／新增 19／來源總數 61",
         "板橋區中山路二段 5168 API第2頁：符合 18／新增 18／來源總數 61",
@@ -375,6 +375,19 @@
       "firstSeenAt": "2026-11-26T07:16:47+00:00"
     },
     {
+      "id": "591租屋:22313106",
+      "source": "591",
+      "houseId": "22313106",
+      "road": "板橋區中山路二段",
+      "title": "埔墘家樂福/馥華大台北電梯2房/家具冷氣門口公車站牌",
+      "address": "板橋區中山路二段",
+      "rent": 27500.0,
+      "size": 19.0,
+      "url": "https://rent.591.com.tw/22313106",
+      "floor": "2F/14F",
+      "firstSeenAt": "2026-11-22T02:22:05+00:00"
+    },
+    {
       "id": "591租屋:22378722",
       "source": "591",
       "houseId": "22378722",
@@ -463,19 +476,6 @@
       "size": 40.0,
       "url": "https://rent.591.com.tw/22308123",
       "floor": "4F/7F",
-      "firstSeenAt": "2026-11-22T02:22:05+00:00"
-    },
-    {
-      "id": "591租屋:22313106",
-      "source": "591",
-      "houseId": "22313106",
-      "road": "板橋區中山路二段",
-      "title": "埔墘家樂福/馥華大台北電梯2房/家具冷氣門口公車站牌",
-      "address": "板橋區中山路二段",
-      "rent": 27500.0,
-      "size": 19.0,
-      "url": "https://rent.591.com.tw/22313106",
-      "floor": "2F/14F",
       "firstSeenAt": "2026-11-22T02:22:05+00:00"
     },
     {
@@ -778,19 +778,6 @@
       "firstSeenAt": "2026-11-27T04:01:51+00:00"
     },
     {
-      "id": "591租屋:22403553",
-      "source": "591",
-      "houseId": "22403553",
-      "road": "板橋區中山路二段",
-      "title": "獨洗近光復橋~可貓狗獨洗窗台曬衣可雙補助大套房302",
-      "address": "板橋區中山路二段",
-      "rent": 18000.0,
-      "size": 12.0,
-      "url": "https://rent.591.com.tw/22403553",
-      "floor": "3F/5F",
-      "firstSeenAt": "2026-11-25T01:32:44+00:00"
-    },
-    {
       "id": "591租屋:22390676",
       "source": "591",
       "houseId": "22390676",
@@ -802,6 +789,19 @@
       "url": "https://rent.591.com.tw/22390676",
       "floor": "4F/4F",
       "firstSeenAt": "2026-11-22T13:17:01+00:00"
+    },
+    {
+      "id": "591租屋:22403553",
+      "source": "591",
+      "houseId": "22403553",
+      "road": "板橋區中山路二段",
+      "title": "獨洗近光復橋~可貓狗獨洗窗台曬衣可雙補助大套房302",
+      "address": "板橋區中山路二段",
+      "rent": 18000.0,
+      "size": 12.0,
+      "url": "https://rent.591.com.tw/22403553",
+      "floor": "3F/5F",
+      "firstSeenAt": "2026-11-25T01:32:44+00:00"
     },
     {
       "id": "591租屋:22410708",
@@ -4893,7 +4893,7 @@
       "firstSeenAt": "2026-11-23T09:46:46+00:00"
     }
   ],
-  "elapsedSeconds": 79.08,
+  "elapsedSeconds": 68.45,
   "firstSeenPolicy": "first_time_observed_by_banqiao_house_monitor",
   "newListingBaselineAt": "2026-08-24T16:00:00+00:00",
   "newListingWindowDays": 3,
