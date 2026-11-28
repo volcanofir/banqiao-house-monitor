@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-28T08:02:27+00:00",
+  "updatedAt": "2026-11-28T08:18:07+00:00",
   "identityPolicy": "Permanent raw advertisement IDs; absence is never automatic delisting; new ID is not new property",
   "sources": {
     "591": {
       "status": "ok",
-      "lastVerifiedAt": "2026-11-28T06:01:14+00:00",
-      "observedIdCount": 231,
-      "historyIdCount": 2043,
+      "lastVerifiedAt": "2026-11-28T08:07:07+00:00",
+      "observedIdCount": 239,
+      "historyIdCount": 2054,
       "firstSeenIdCount": 0,
-      "reappearedIdCount": 0,
+      "reappearedIdCount": 14,
       "missingIdIsNotDelisting": true,
       "newIdIsNotNewProperty": true,
-      "minutesSinceVerified": 121.2,
+      "minutesSinceVerified": 11.0,
       "freshness": "current",
       "health": "healthy",
       "alertRequired": false
@@ -26,7 +26,7 @@
       "reappearedIdCount": 0,
       "missingIdIsNotDelisting": true,
       "newIdIsNotNewProperty": true,
-      "minutesSinceVerified": 121.8,
+      "minutesSinceVerified": 137.5,
       "freshness": "current",
       "health": "healthy",
       "alertRequired": false
@@ -40,21 +40,21 @@
       "reappearedIdCount": 0,
       "missingIdIsNotDelisting": true,
       "newIdIsNotNewProperty": true,
-      "minutesSinceVerified": 134.2,
+      "minutesSinceVerified": 149.9,
       "freshness": "current",
       "health": "healthy",
       "alertRequired": false
     },
     "5168": {
       "status": "ok",
-      "lastVerifiedAt": "2026-11-28T05:45:53+00:00",
+      "lastVerifiedAt": "2026-11-28T08:16:14+00:00",
       "observedIdCount": 63,
       "historyIdCount": 77,
       "firstSeenIdCount": 0,
       "reappearedIdCount": 0,
       "missingIdIsNotDelisting": true,
       "newIdIsNotNewProperty": true,
-      "minutesSinceVerified": 136.6,
+      "minutesSinceVerified": 1.9,
       "freshness": "current",
       "health": "healthy",
       "alertRequired": false
@@ -72,7 +72,7 @@
       },
       "591:21139776": {
         "firstObservedAt": "2026-10-26T10:35:02+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793004548,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -96,7 +96,7 @@
       },
       "591:21124144": {
         "firstObservedAt": "2026-10-22T10:46:37+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792654923,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -104,7 +104,7 @@
       },
       "591:21124016": {
         "firstObservedAt": "2026-10-22T10:46:37+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792654093,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -112,7 +112,7 @@
       },
       "591:21118710": {
         "firstObservedAt": "2026-10-21T10:16:48+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792570341,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -120,7 +120,7 @@
       },
       "591:21107096": {
         "firstObservedAt": "2026-10-19T10:31:47+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792403903,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -128,7 +128,7 @@
       },
       "591:21106843": {
         "firstObservedAt": "2026-10-19T10:31:47+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792401733,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -144,7 +144,7 @@
       },
       "591:21096309": {
         "firstObservedAt": "2026-10-17T10:31:42+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792228783,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -152,7 +152,7 @@
       },
       "591:21088003": {
         "firstObservedAt": "2026-10-16T08:31:49+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792126282,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -160,7 +160,7 @@
       },
       "591:21079142": {
         "firstObservedAt": "2026-10-14T16:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791983387,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -168,7 +168,7 @@
       },
       "591:21150559": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793167266,
         "everObserved": true,
         "seenOnLastVerifiedCheck": true,
@@ -176,7 +176,7 @@
       },
       "591:21152545": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793180867,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -191,7 +191,7 @@
       },
       "591:21046556": {
         "firstObservedAt": "2026-10-28T22:46:40+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791530375,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -207,7 +207,7 @@
       },
       "591:21019804": {
         "firstObservedAt": "2026-10-05T10:31:37+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791184559,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -223,7 +223,7 @@
       },
       "591:21001241": {
         "firstObservedAt": "2026-10-02T06:16:59+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790921615,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -231,7 +231,7 @@
       },
       "591:20988643": {
         "firstObservedAt": "2026-10-21T23:45:57+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790753429,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -247,7 +247,7 @@
       },
       "591:20971644": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790493393,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -299,7 +299,7 @@
       },
       "591:20956131": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790154862,
         "everObserved": true,
         "seenOnLastVerifiedCheck": true,
@@ -351,7 +351,7 @@
       },
       "591:20929493": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1789723755,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -359,7 +359,7 @@
       },
       "591:20926997": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1789709627,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -383,7 +383,7 @@
       },
       "591:21095756": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792220949,
         "everObserved": true,
         "seenOnLastVerifiedCheck": true,
@@ -391,7 +391,7 @@
       },
       "591:20925999": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1789702327,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -423,7 +423,7 @@
       },
       "591:21062496": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791788387,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -431,7 +431,7 @@
       },
       "591:20916842": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1789547168,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -447,7 +447,7 @@
       },
       "591:20909514": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1789452612,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -455,7 +455,7 @@
       },
       "591:20902478": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1789363126,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -479,7 +479,7 @@
       },
       "591:21006543": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790993444,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -487,7 +487,7 @@
       },
       "591:21045513": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791523382,
         "everObserved": true,
         "seenOnLastVerifiedCheck": true,
@@ -495,7 +495,7 @@
       },
       "591:21050640": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791603430,
         "everObserved": true,
         "seenOnLastVerifiedCheck": true,
@@ -527,7 +527,7 @@
       },
       "591:20893251": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792226054,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -535,7 +535,7 @@
       },
       "591:20890426": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1789124820,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -559,7 +559,7 @@
       },
       "591:20883518": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1789033327,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -583,7 +583,7 @@
       },
       "591:20878033": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1788945503,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -607,7 +607,7 @@
       },
       "591:20862005": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1788753551,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -630,14 +630,14 @@
       },
       "591:20855328": {
         "firstObservedAt": "2026-09-29T12:16:18+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1788607903,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
       },
       "591:20983135": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790672022,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -645,7 +645,7 @@
       },
       "591:21008637": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791009360,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -653,7 +653,7 @@
       },
       "591:21014671": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791109686,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -661,7 +661,7 @@
       },
       "591:21014878": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791113216,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -669,7 +669,7 @@
       },
       "591:21021307": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791192542,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -677,7 +677,7 @@
       },
       "591:21065906": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791811905,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -732,7 +732,7 @@
         "sourcePublishedAt": 1788236887,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:20809429": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
@@ -750,7 +750,7 @@
       },
       "591:21093225": {
         "firstObservedAt": "2026-10-16T23:31:28+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792182677,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -772,7 +772,7 @@
       },
       "591:20794953": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1787714565,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -793,7 +793,7 @@
       },
       "591:20792429": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1787649577,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -808,7 +808,7 @@
       },
       "591:21007614": {
         "firstObservedAt": "2026-10-24T09:17:07+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791001145,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -824,7 +824,7 @@
       },
       "591:20782935": {
         "firstObservedAt": "2026-10-13T10:03:03+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1787534869,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -851,11 +851,11 @@
         "sourcePublishedAt": 1790659772,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:21070611": {
         "firstObservedAt": "2026-10-23T00:31:44+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791879180,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -863,7 +863,7 @@
       },
       "591:21071399": {
         "firstObservedAt": "2026-10-23T00:31:44+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791885256,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -871,7 +871,7 @@
       },
       "591:21082175": {
         "firstObservedAt": "2026-10-23T00:31:44+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792220553,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -879,23 +879,23 @@
       },
       "591:21096536": {
         "firstObservedAt": "2026-10-23T00:31:44+00:00",
-        "lastObservedAt": "2026-11-27T23:35:33+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792227622,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": false
+        "seenOnLastVerifiedCheck": true
       },
       "591:21117673": {
         "firstObservedAt": "2026-10-23T00:31:44+00:00",
-        "lastObservedAt": "2026-11-28T02:46:34+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792632237,
         "everObserved": true,
-        "seenOnLastVerifiedCheck": false,
+        "seenOnLastVerifiedCheck": true,
         "sourcePublishedAtType": null
       },
       "591:21128771": {
         "firstObservedAt": "2026-10-23T14:46:42+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792758397,
         "everObserved": true,
         "seenOnLastVerifiedCheck": true,
@@ -910,7 +910,7 @@
       },
       "591:21139292": {
         "firstObservedAt": "2026-10-26T10:35:02+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793002171,
         "everObserved": true,
         "seenOnLastVerifiedCheck": true,
@@ -918,7 +918,7 @@
       },
       "591:20780433": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1787458984,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -984,7 +984,7 @@
       },
       "591:21129843": {
         "firstObservedAt": "2026-10-24T05:31:17+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792816848,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1013,7 +1013,7 @@
       },
       "591:20773812": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1787307292,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -1035,7 +1035,7 @@
       },
       "591:21118716": {
         "firstObservedAt": "2026-10-21T10:16:48+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792570360,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1050,7 +1050,7 @@
       },
       "591:21152967": {
         "firstObservedAt": "2026-10-28T14:16:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793184991,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1079,14 +1079,14 @@
       },
       "591:20765893": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1787207827,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
       },
       "591:21130617": {
         "firstObservedAt": "2026-10-24T09:17:07+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792833311,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1094,7 +1094,7 @@
       },
       "591:20749649": {
         "firstObservedAt": "2026-10-02T06:16:59+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1787132609,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -1132,7 +1132,7 @@
       },
       "591:21096907": {
         "firstObservedAt": "2026-10-17T10:31:42+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792231599,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1140,7 +1140,7 @@
       },
       "591:21110465": {
         "firstObservedAt": "2026-10-20T05:16:41+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792470739,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1148,7 +1148,7 @@
       },
       "591:21125304": {
         "firstObservedAt": "2026-10-22T10:46:37+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792662682,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1156,7 +1156,7 @@
       },
       "591:20756127": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1787041030,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -1215,7 +1215,7 @@
       },
       "591:21024658": {
         "firstObservedAt": "2026-10-17T06:52:34+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791258477,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1230,7 +1230,7 @@
       },
       "591:21043697": {
         "firstObservedAt": "2026-10-17T06:52:34+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791525427,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1238,7 +1238,7 @@
       },
       "591:21050911": {
         "firstObservedAt": "2026-10-17T06:52:34+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791611062,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1253,7 +1253,7 @@
       },
       "591:21103439": {
         "firstObservedAt": "2026-10-19T06:46:21+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792381874,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1261,7 +1261,7 @@
       },
       "591:20748957": {
         "firstObservedAt": "2026-10-21T10:16:48+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1786950724,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1269,7 +1269,7 @@
       },
       "591:21102350": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792376634,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1277,7 +1277,7 @@
       },
       "591:21118108": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792566797,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1285,7 +1285,7 @@
       },
       "591:21118152": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792567065,
         "everObserved": true,
         "seenOnLastVerifiedCheck": true,
@@ -1293,15 +1293,15 @@
       },
       "591:21120389": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-27T23:35:33+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792588105,
         "everObserved": true,
-        "seenOnLastVerifiedCheck": false,
+        "seenOnLastVerifiedCheck": true,
         "sourcePublishedAtType": null
       },
       "591:20738810": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1786778502,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -1409,7 +1409,7 @@
       },
       "591:21081200": {
         "firstObservedAt": "2026-10-15T06:31:09+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792036435,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1424,7 +1424,7 @@
       },
       "591:20737473": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1786766036,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1432,7 +1432,7 @@
       },
       "591:20735622": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1786711333,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -1489,14 +1489,14 @@
       },
       "591:20657856": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1786702703,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
       },
       "591:21094042": {
         "firstObservedAt": "2026-10-17T03:16:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792205711,
         "everObserved": true,
         "seenOnLastVerifiedCheck": true,
@@ -1690,7 +1690,7 @@
       },
       "591:20725187": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1786596547,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -1704,7 +1704,7 @@
       },
       "591:21019851": {
         "firstObservedAt": "2026-10-12T04:01:48+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791184739,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1712,7 +1712,7 @@
       },
       "591:21062728": {
         "firstObservedAt": "2026-10-12T07:31:08+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791789408,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1720,7 +1720,7 @@
       },
       "591:20722634": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1786535378,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -1741,7 +1741,7 @@
       },
       "591:21082317": {
         "firstObservedAt": "2026-10-15T06:31:09+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792044923,
         "everObserved": true,
         "seenOnLastVerifiedCheck": true,
@@ -1749,7 +1749,7 @@
       },
       "591:21157902": {
         "firstObservedAt": "2026-10-29T10:01:30+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793264208,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1757,7 +1757,7 @@
       },
       "591:20719297": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1786509982,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -1772,7 +1772,7 @@
       },
       "591:21135490": {
         "firstObservedAt": "2026-10-25T13:50:07+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792932565,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1820,7 +1820,7 @@
         "sourcePublishedAt": 1786364080,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:20706458": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
@@ -1831,7 +1831,7 @@
       },
       "591:20956124": {
         "firstObservedAt": "2026-10-09T05:33:13+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790154833,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1847,7 +1847,7 @@
       },
       "591:20705608": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1786337168,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1855,7 +1855,7 @@
       },
       "591:20697485": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1786174182,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -1892,7 +1892,7 @@
       },
       "591:20694140": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1786106253,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1900,7 +1900,7 @@
       },
       "591:21019891": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791185010,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1908,7 +1908,7 @@
       },
       "591:21020530": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791188318,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1916,7 +1916,7 @@
       },
       "591:20694163": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1786103514,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -1937,7 +1937,7 @@
       },
       "591:20777399": {
         "firstObservedAt": "2026-10-06T12:46:54+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1787382338,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1973,7 +1973,7 @@
       },
       "591:21065102": {
         "firstObservedAt": "2026-10-18T04:31:42+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791801842,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -1988,7 +1988,7 @@
       },
       "591:20694113": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1786102953,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2069,14 +2069,14 @@
       },
       "591:20689112": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1786072040,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
       },
       "591:21032079": {
         "firstObservedAt": "2026-10-07T06:32:46+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791348835,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2084,7 +2084,7 @@
       },
       "591:20676750": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1785904464,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2092,7 +2092,7 @@
       },
       "591:20675948": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1785899366,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -2113,7 +2113,7 @@
       },
       "591:21075435": {
         "firstObservedAt": "2026-10-14T08:32:19+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791954239,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2121,7 +2121,7 @@
       },
       "591:20674223": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1785847890,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2129,7 +2129,7 @@
       },
       "591:20673961": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1785844477,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -2197,7 +2197,7 @@
         "sourcePublishedAt": 1790657960,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:25178457": {
         "firstObservedAt": "2026-10-03T15:47:54+00:00",
@@ -2257,7 +2257,7 @@
       },
       "591:21019790": {
         "firstObservedAt": "2026-10-05T10:31:37+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791184425,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2307,7 +2307,7 @@
       },
       "591:20668273": {
         "firstObservedAt": "2026-10-17T10:31:42+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1785837264,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2315,7 +2315,7 @@
       },
       "591:20993248": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791169163,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2323,7 +2323,7 @@
       },
       "591:21051856": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791615739,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2331,7 +2331,7 @@
       },
       "591:21096665": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792228870,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2339,7 +2339,7 @@
       },
       "591:21158717": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793270821,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2361,7 +2361,7 @@
       },
       "591:20660640": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1785676242,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -2396,7 +2396,7 @@
       },
       "591:20935391": {
         "firstObservedAt": "2026-10-01T14:53:30+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1789823003,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2418,7 +2418,7 @@
       },
       "591:20998727": {
         "firstObservedAt": "2026-10-02T06:16:59+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790906697,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2469,7 +2469,7 @@
       },
       "591:20659166": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1785656169,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -2609,7 +2609,7 @@
       },
       "591:21066377": {
         "firstObservedAt": "2026-10-12T18:47:27+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791825742,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2652,7 +2652,7 @@
       },
       "591:20647208": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1785476795,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -2666,7 +2666,7 @@
       },
       "591:20658864": {
         "firstObservedAt": "2026-09-29T04:47:14+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1785653352,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2681,7 +2681,7 @@
       },
       "591:20660519": {
         "firstObservedAt": "2026-09-29T04:47:14+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1785674554,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2752,7 +2752,7 @@
       },
       "591:20880365": {
         "firstObservedAt": "2026-09-29T04:47:14+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1789009026,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2841,7 +2841,7 @@
       },
       "591:20982587": {
         "firstObservedAt": "2026-09-29T08:32:50+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790668889,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2849,7 +2849,7 @@
       },
       "591:21006720": {
         "firstObservedAt": "2026-10-03T04:03:03+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790994631,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2871,7 +2871,7 @@
       },
       "591:21007325": {
         "firstObservedAt": "2026-10-03T04:03:03+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790998850,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2879,7 +2879,7 @@
       },
       "591:21026950": {
         "firstObservedAt": "2026-10-06T09:02:01+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791272763,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2894,7 +2894,7 @@
       },
       "591:21030504": {
         "firstObservedAt": "2026-10-07T02:46:30+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791339208,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2909,7 +2909,7 @@
       },
       "591:21051578": {
         "firstObservedAt": "2026-10-10T07:47:01+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791614265,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2924,7 +2924,7 @@
       },
       "591:21125463": {
         "firstObservedAt": "2026-10-22T10:46:37+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792663878,
         "everObserved": true,
         "seenOnLastVerifiedCheck": true,
@@ -2932,7 +2932,7 @@
       },
       "591:21150417": {
         "firstObservedAt": "2026-10-28T06:46:37+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793166321,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2940,14 +2940,14 @@
       },
       "591:20647185": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1785476648,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
       },
       "591:20982540": {
         "firstObservedAt": "2026-09-29T08:32:50+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790668656,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -2955,7 +2955,7 @@
       },
       "591:20633113": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1785471233,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -3116,7 +3116,7 @@
         "sourcePublishedAt": 1790661836,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:25308520": {
         "firstObservedAt": "2026-10-17T10:31:42+00:00",
@@ -3134,7 +3134,7 @@
       },
       "591:21124617": {
         "firstObservedAt": "2026-10-22T10:46:37+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792658022,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3149,7 +3149,7 @@
       },
       "591:21132130": {
         "firstObservedAt": "2026-10-25T03:16:19+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792896372,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3164,7 +3164,7 @@
       },
       "591:21136241": {
         "firstObservedAt": "2026-10-26T03:46:58+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792979667,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3179,14 +3179,14 @@
       },
       "591:20643126": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1785402531,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
       },
       "591:21149865": {
         "firstObservedAt": "2026-10-28T06:46:37+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793161157,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3208,7 +3208,7 @@
       },
       "591:20633020": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1785236900,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3216,7 +3216,7 @@
       },
       "591:21064091": {
         "firstObservedAt": "2026-10-30T04:46:38+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791795842,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3232,7 +3232,7 @@
       },
       "591:20541699": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1783924540,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3256,7 +3256,7 @@
       },
       "591:20537650": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1783864934,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3314,7 +3314,7 @@
       },
       "591:20479128": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1782923078,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -3337,7 +3337,7 @@
       },
       "591:20994731": {
         "firstObservedAt": "2026-10-29T17:32:07+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790836718,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3345,7 +3345,7 @@
       },
       "591:21059221": {
         "firstObservedAt": "2026-10-29T17:32:07+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791772355,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3353,7 +3353,7 @@
       },
       "591:21141816": {
         "firstObservedAt": "2026-10-29T17:32:07+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793064642,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3384,7 +3384,7 @@
       },
       "591:20416117": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1781862955,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -3442,7 +3442,7 @@
       },
       "591:20985721": {
         "firstObservedAt": "2026-10-17T06:52:34+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790734316,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3450,7 +3450,7 @@
       },
       "591:21013502": {
         "firstObservedAt": "2026-10-17T06:52:34+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791097510,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3458,15 +3458,15 @@
       },
       "591:21031000": {
         "firstObservedAt": "2026-10-17T06:52:34+00:00",
-        "lastObservedAt": "2026-11-28T02:46:34+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791341919,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": false
+        "seenOnLastVerifiedCheck": true
       },
       "591:21093430": {
         "firstObservedAt": "2026-10-17T06:52:34+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792200595,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3481,7 +3481,7 @@
       },
       "591:21111270": {
         "firstObservedAt": "2026-10-20T09:16:29+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792477349,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3489,7 +3489,7 @@
       },
       "591:20382365": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1781322146,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -3517,7 +3517,7 @@
       },
       "591:21058974": {
         "firstObservedAt": "2026-10-12T04:01:48+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791771253,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3525,7 +3525,7 @@
       },
       "591:21125465": {
         "firstObservedAt": "2026-10-22T10:46:37+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792663940,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3561,14 +3561,14 @@
       },
       "591:20120678": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1777541557,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
       },
       "591:21023523": {
         "firstObservedAt": "2026-10-27T08:01:36+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791251903,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3591,7 +3591,7 @@
       },
       "591:21053195": {
         "firstObservedAt": "2026-10-27T08:01:36+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791627507,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3599,7 +3599,7 @@
       },
       "591:21085043": {
         "firstObservedAt": "2026-10-27T08:01:36+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792065632,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3615,7 +3615,7 @@
       },
       "591:21134839": {
         "firstObservedAt": "2026-10-27T08:01:36+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792922205,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3623,7 +3623,7 @@
       },
       "591:21158506": {
         "firstObservedAt": "2026-10-29T13:46:58+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793268627,
         "everObserved": true,
         "seenOnLastVerifiedCheck": true,
@@ -3687,7 +3687,7 @@
       },
       "591:20795023": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1787712915,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -3708,7 +3708,7 @@
       },
       "591:20773579": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1787305484,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -3757,7 +3757,7 @@
       },
       "591:20705830": {
         "firstObservedAt": "2026-09-28T03:01:45+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1786334755,
         "everObserved": true,
         "seenOnLastVerifiedCheck": false
@@ -3869,7 +3869,7 @@
       },
       "591:21162626": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793341757,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3885,7 +3885,7 @@
       },
       "591:21171506": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793497352,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3893,7 +3893,7 @@
       },
       "591:21203711": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793887062,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3901,7 +3901,7 @@
       },
       "591:21201112": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793865325,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3909,7 +3909,7 @@
       },
       "591:21172151": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793502909,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3917,7 +3917,7 @@
       },
       "591:21188043": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793695004,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3925,7 +3925,7 @@
       },
       "591:21199961": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793859114,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3941,7 +3941,7 @@
       },
       "591:21196514": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793795873,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3949,7 +3949,7 @@
       },
       "591:21196009": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793790142,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3957,7 +3957,7 @@
       },
       "591:21194310": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793780500,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3981,7 +3981,7 @@
       },
       "591:21194226": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793777972,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -3989,7 +3989,7 @@
       },
       "591:21190854": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793756918,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -4005,7 +4005,7 @@
       },
       "591:21189077": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793701320,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -4021,7 +4021,7 @@
       },
       "591:21176270": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793584920,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -4029,7 +4029,7 @@
       },
       "591:21175403": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793541119,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -4037,7 +4037,7 @@
       },
       "591:21173569": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793516718,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -4045,7 +4045,7 @@
       },
       "591:21171599": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793498359,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -4069,7 +4069,7 @@
       },
       "591:21170648": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793448336,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -4077,7 +4077,7 @@
       },
       "591:21169296": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793437635,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -4101,7 +4101,7 @@
       },
       "591:21165945": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793362009,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -4109,7 +4109,7 @@
       },
       "591:21162913": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793343411,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -4141,7 +4141,7 @@
       },
       "591:21055029": {
         "firstObservedAt": "2026-11-05T14:16:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791787077,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -4189,7 +4189,7 @@
       },
       "591:21176397": {
         "firstObservedAt": "2026-11-05T17:18:14+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793585749,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -4213,7 +4213,7 @@
       },
       "591:21139839": {
         "firstObservedAt": "2026-11-05T17:18:14+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793443319,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -4733,7 +4733,7 @@
       },
       "591:21208088": {
         "firstObservedAt": "2026-11-06T08:16:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1793950733,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -5533,7 +5533,7 @@
       },
       "591:21003741": {
         "firstObservedAt": "2026-11-07T16:46:19+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790993645,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -5901,7 +5901,7 @@
       },
       "591:21055241": {
         "firstObservedAt": "2026-10-27T08:01:36+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791689760,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -5949,7 +5949,7 @@
       },
       "591:21045173": {
         "firstObservedAt": "2026-11-08T04:31:24+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791520817,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -6141,7 +6141,7 @@
       },
       "591:21219052": {
         "firstObservedAt": "2026-11-08T16:46:10+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794127699,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -6685,7 +6685,7 @@
       },
       "591:21224800": {
         "firstObservedAt": "2026-11-09T10:46:17+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794210150,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -7317,7 +7317,7 @@
       },
       "591:21229592": {
         "firstObservedAt": "2026-11-10T05:01:25+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794281598,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -7469,7 +7469,7 @@
       },
       "591:21233354": {
         "firstObservedAt": "2026-11-10T10:46:19+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794305676,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -7549,7 +7549,7 @@
       },
       "591:21044916": {
         "firstObservedAt": "2026-11-10T14:01:12+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791518727,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -7557,7 +7557,7 @@
       },
       "591:21234036": {
         "firstObservedAt": "2026-11-10T14:01:12+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794312393,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -7869,7 +7869,7 @@
       },
       "591:21235304": {
         "firstObservedAt": "2026-11-11T02:46:34+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794362789,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -7933,7 +7933,7 @@
       },
       "591:21233514": {
         "firstObservedAt": "2026-11-11T06:01:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794368361,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -8021,7 +8021,7 @@
       },
       "591:21237433": {
         "firstObservedAt": "2026-11-11T06:48:31+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794377566,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -8717,7 +8717,7 @@
       },
       "591:21243493": {
         "firstObservedAt": "2026-11-12T10:16:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794462727,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -9165,7 +9165,7 @@
       },
       "591:21248577": {
         "firstObservedAt": "2026-11-13T05:01:50+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794538976,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -9261,7 +9261,7 @@
       },
       "591:21248202": {
         "firstObservedAt": "2026-11-13T08:16:20+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794536763,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -9333,7 +9333,7 @@
       },
       "591:21253612": {
         "firstObservedAt": "2026-11-13T11:46:12+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794566343,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -9341,7 +9341,7 @@
       },
       "591:21252383": {
         "firstObservedAt": "2026-11-13T11:46:12+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794560479,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -9349,7 +9349,7 @@
       },
       "591:21253453": {
         "firstObservedAt": "2026-11-13T11:46:12+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794566072,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -9445,7 +9445,7 @@
       },
       "591:20983811": {
         "firstObservedAt": "2026-11-13T11:46:12+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1790676718,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -9829,7 +9829,7 @@
       },
       "591:21257844": {
         "firstObservedAt": "2026-11-14T10:42:40+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794644469,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -10501,7 +10501,7 @@
       },
       "591:21261760": {
         "firstObservedAt": "2026-11-15T10:01:54+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794730805,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -10813,7 +10813,7 @@
       },
       "591:21263320": {
         "firstObservedAt": "2026-11-16T02:01:28+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794788631,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -10881,11 +10881,11 @@
         "sourcePublishedAt": 1794800850,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:21265040": {
         "firstObservedAt": "2026-11-16T05:16:26+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794800137,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -10957,11 +10957,11 @@
       },
       "591:21266284": {
         "firstObservedAt": "2026-11-16T06:50:51+00:00",
-        "lastObservedAt": "2026-11-27T23:35:33+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794807937,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": false
+        "seenOnLastVerifiedCheck": true
       },
       "591:25481948": {
         "firstObservedAt": "2026-11-16T06:50:51+00:00",
@@ -11101,7 +11101,7 @@
       },
       "591:21270069": {
         "firstObservedAt": "2026-11-16T13:20:51+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794830490,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -11173,7 +11173,7 @@
       },
       "591:21114363": {
         "firstObservedAt": "2026-11-16T17:17:18+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792502478,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -11397,7 +11397,7 @@
       },
       "591:21273165": {
         "firstObservedAt": "2026-11-17T07:16:13+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794893244,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -11405,7 +11405,7 @@
       },
       "591:21272449": {
         "firstObservedAt": "2026-11-17T07:16:13+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794888067,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -11501,7 +11501,7 @@
       },
       "591:21276972": {
         "firstObservedAt": "2026-11-17T13:46:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794920732,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -11509,7 +11509,7 @@
       },
       "591:21276250": {
         "firstObservedAt": "2026-11-17T13:46:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794910893,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -11517,7 +11517,7 @@
       },
       "591:21275645": {
         "firstObservedAt": "2026-11-17T13:46:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794909838,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -11901,7 +11901,7 @@
       },
       "591:21278716": {
         "firstObservedAt": "2026-11-18T04:16:09+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794972321,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -11909,7 +11909,7 @@
       },
       "591:21278714": {
         "firstObservedAt": "2026-11-18T04:16:09+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794971817,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -11917,7 +11917,7 @@
       },
       "591:21278207": {
         "firstObservedAt": "2026-11-18T04:16:09+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794968736,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -11997,7 +11997,7 @@
       },
       "591:21281549": {
         "firstObservedAt": "2026-11-18T10:45:41+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794991073,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -12013,7 +12013,7 @@
       },
       "591:21281246": {
         "firstObservedAt": "2026-11-18T10:45:41+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794988931,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -12021,7 +12021,7 @@
       },
       "591:21032904": {
         "firstObservedAt": "2026-11-18T10:45:41+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791354162,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -12029,7 +12029,7 @@
       },
       "591:21279441": {
         "firstObservedAt": "2026-11-18T10:45:41+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794976634,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -12645,7 +12645,7 @@
       },
       "591:21287284": {
         "firstObservedAt": "2026-11-19T08:51:54+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795077235,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -12653,11 +12653,11 @@
       },
       "591:21287013": {
         "firstObservedAt": "2026-11-19T08:51:54+00:00",
-        "lastObservedAt": "2026-11-28T02:46:34+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795075573,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": false
+        "seenOnLastVerifiedCheck": true
       },
       "591:25545623": {
         "firstObservedAt": "2026-11-19T08:51:54+00:00",
@@ -12725,19 +12725,19 @@
       },
       "591:21287767": {
         "firstObservedAt": "2026-11-19T18:16:32+00:00",
-        "lastObservedAt": "2026-11-28T02:46:34+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795080205,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": false
+        "seenOnLastVerifiedCheck": true
       },
       "591:21285711": {
         "firstObservedAt": "2026-11-19T18:16:32+00:00",
-        "lastObservedAt": "2026-11-28T02:46:34+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795068318,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": false
+        "seenOnLastVerifiedCheck": true
       },
       "591:25537215": {
         "firstObservedAt": "2026-11-19T18:16:32+00:00",
@@ -13125,15 +13125,15 @@
       },
       "591:21293765": {
         "firstObservedAt": "2026-11-20T08:46:10+00:00",
-        "lastObservedAt": "2026-11-28T02:46:34+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795163854,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": false
+        "seenOnLastVerifiedCheck": true
       },
       "591:21291397": {
         "firstObservedAt": "2026-11-20T08:46:10+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795159710,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -13221,7 +13221,7 @@
       },
       "591:21295390": {
         "firstObservedAt": "2026-11-20T11:56:07+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795174053,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -13229,7 +13229,7 @@
       },
       "591:21294894": {
         "firstObservedAt": "2026-11-20T11:56:07+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795169855,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -13237,7 +13237,7 @@
       },
       "591:21293899": {
         "firstObservedAt": "2026-11-20T11:56:07+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795164559,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -13317,11 +13317,11 @@
       },
       "591:21294725": {
         "firstObservedAt": "2026-11-20T15:01:35+00:00",
-        "lastObservedAt": "2026-11-28T02:46:34+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795168570,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": false
+        "seenOnLastVerifiedCheck": true
       },
       "591:25546248": {
         "firstObservedAt": "2026-11-20T15:01:35+00:00",
@@ -13629,11 +13629,11 @@
       },
       "591:21297496": {
         "firstObservedAt": "2026-11-21T05:46:22+00:00",
-        "lastObservedAt": "2026-11-28T02:46:34+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795233147,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": false
+        "seenOnLastVerifiedCheck": true
       },
       "591:25535880": {
         "firstObservedAt": "2026-11-21T05:46:22+00:00",
@@ -13645,7 +13645,7 @@
       },
       "591:21013567": {
         "firstObservedAt": "2026-11-21T05:46:22+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791099667,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -13733,7 +13733,7 @@
       },
       "591:21298530": {
         "firstObservedAt": "2026-11-21T08:53:43+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795244079,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -13741,7 +13741,7 @@
       },
       "591:21298189": {
         "firstObservedAt": "2026-11-21T08:53:43+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795241389,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -13749,7 +13749,7 @@
       },
       "591:21298160": {
         "firstObservedAt": "2026-11-21T08:53:43+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795240696,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -13837,7 +13837,7 @@
       },
       "591:21299575": {
         "firstObservedAt": "2026-11-21T12:01:27+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795253163,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -13845,7 +13845,7 @@
       },
       "591:21299571": {
         "firstObservedAt": "2026-11-21T12:01:27+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795253109,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -13853,7 +13853,7 @@
       },
       "591:21299463": {
         "firstObservedAt": "2026-11-21T12:01:27+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795252391,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -13861,7 +13861,7 @@
       },
       "591:21299100": {
         "firstObservedAt": "2026-11-21T12:01:27+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795249173,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14333,7 +14333,7 @@
       },
       "591:21320044": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795591894,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14341,7 +14341,7 @@
       },
       "591:21319538": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795588597,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14349,7 +14349,7 @@
       },
       "591:21318857": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795582633,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14357,7 +14357,7 @@
       },
       "591:21316779": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795529270,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14365,7 +14365,7 @@
       },
       "591:21316698": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795527040,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14373,7 +14373,7 @@
       },
       "591:21316695": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795527001,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14381,7 +14381,7 @@
       },
       "591:21111325": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1792477635,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14389,7 +14389,7 @@
       },
       "591:21315108": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795510139,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14397,7 +14397,7 @@
       },
       "591:21314747": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795508160,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14405,7 +14405,7 @@
       },
       "591:21307256": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795415190,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14429,23 +14429,23 @@
       },
       "591:21305853": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T02:46:34+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795405751,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": false
+        "seenOnLastVerifiedCheck": true
       },
       "591:21277219": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-27T23:35:33+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794926852,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": false
+        "seenOnLastVerifiedCheck": true
       },
       "591:21304029": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795362512,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14453,15 +14453,15 @@
       },
       "591:21302738": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T02:46:34+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795334129,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": false
+        "seenOnLastVerifiedCheck": true
       },
       "591:21302196": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795327738,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14469,7 +14469,7 @@
       },
       "591:21301729": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795319891,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14477,7 +14477,7 @@
       },
       "591:21301480": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795317173,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14485,7 +14485,7 @@
       },
       "591:21301221": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795314324,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14509,7 +14509,7 @@
       },
       "591:21240027": {
         "firstObservedAt": "2026-11-26T03:40:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794394723,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14557,7 +14557,7 @@
       },
       "591:21324606": {
         "firstObservedAt": "2026-11-26T06:46:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795673658,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14565,7 +14565,7 @@
       },
       "591:21228992": {
         "firstObservedAt": "2026-11-26T06:46:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1794278568,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14577,7 +14577,7 @@
         "sourcePublishedAt": 1795668033,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:25584664": {
         "firstObservedAt": "2026-11-26T06:46:23+00:00",
@@ -14597,7 +14597,7 @@
       },
       "591:21051946": {
         "firstObservedAt": "2026-11-26T06:46:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791616544,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14661,7 +14661,7 @@
       },
       "591:21027845": {
         "firstObservedAt": "2026-11-26T06:46:23+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1791277033,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14693,7 +14693,7 @@
       },
       "591:21325081": {
         "firstObservedAt": "2026-11-26T10:01:27+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795676900,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -14709,7 +14709,7 @@
       },
       "591:21325075": {
         "firstObservedAt": "2026-11-26T10:01:27+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795676848,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -15261,7 +15261,7 @@
       },
       "591:21328970": {
         "firstObservedAt": "2026-11-27T04:58:32+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795750208,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -15269,7 +15269,7 @@
       },
       "591:21328554": {
         "firstObservedAt": "2026-11-27T04:58:32+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795747696,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -15365,7 +15365,7 @@
       },
       "591:21328759": {
         "firstObservedAt": "2026-11-27T08:01:21+00:00",
-        "lastObservedAt": "2026-11-28T06:01:14+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
         "sourcePublishedAt": 1795756274,
         "everObserved": true,
         "sourcePublishedAtType": null,
@@ -16033,7 +16033,7 @@
         "sourcePublishedAt": 1794788631,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:25595754": {
         "firstObservedAt": "2026-11-28T06:01:14+00:00",
@@ -16041,7 +16041,7 @@
         "sourcePublishedAt": 1795668033,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:25590957": {
         "firstObservedAt": "2026-11-28T06:01:14+00:00",
@@ -16049,7 +16049,7 @@
         "sourcePublishedAt": 1791525427,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:25559717": {
         "firstObservedAt": "2026-11-28T06:01:14+00:00",
@@ -16057,7 +16057,7 @@
         "sourcePublishedAt": 1791615739,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:25584977": {
         "firstObservedAt": "2026-11-28T06:01:14+00:00",
@@ -16065,7 +16065,7 @@
         "sourcePublishedAt": 1795319891,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:25535232": {
         "firstObservedAt": "2026-11-28T06:01:14+00:00",
@@ -16073,7 +16073,7 @@
         "sourcePublishedAt": 1794644469,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:25450052": {
         "firstObservedAt": "2026-11-28T06:01:14+00:00",
@@ -16081,7 +16081,7 @@
         "sourcePublishedAt": 1790672022,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:25594899": {
         "firstObservedAt": "2026-11-28T06:01:14+00:00",
@@ -16089,7 +16089,7 @@
         "sourcePublishedAt": 1792477349,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:25565230": {
         "firstObservedAt": "2026-11-28T06:01:14+00:00",
@@ -16097,12 +16097,100 @@
         "sourcePublishedAt": 1791251903,
         "everObserved": true,
         "sourcePublishedAtType": null,
-        "seenOnLastVerifiedCheck": true
+        "seenOnLastVerifiedCheck": false
       },
       "591:25481774": {
         "firstObservedAt": "2026-11-28T06:01:14+00:00",
         "lastObservedAt": "2026-11-28T06:01:14+00:00",
         "sourcePublishedAt": 1791184425,
+        "everObserved": true,
+        "sourcePublishedAtType": null,
+        "seenOnLastVerifiedCheck": false
+      },
+      "591:25595646": {
+        "firstObservedAt": "2026-11-28T08:07:07+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
+        "sourcePublishedAt": 1795362512,
+        "everObserved": true,
+        "sourcePublishedAtType": null,
+        "seenOnLastVerifiedCheck": true
+      },
+      "591:25591635": {
+        "firstObservedAt": "2026-11-28T08:07:07+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
+        "sourcePublishedAt": 1795527001,
+        "everObserved": true,
+        "sourcePublishedAtType": null,
+        "seenOnLastVerifiedCheck": true
+      },
+      "591:25595697": {
+        "firstObservedAt": "2026-11-28T08:07:07+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
+        "sourcePublishedAt": 1791523382,
+        "everObserved": true,
+        "sourcePublishedAtType": null,
+        "seenOnLastVerifiedCheck": true
+      },
+      "591:25543965": {
+        "firstObservedAt": "2026-11-28T08:07:07+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
+        "sourcePublishedAt": 1794644469,
+        "everObserved": true,
+        "sourcePublishedAtType": null,
+        "seenOnLastVerifiedCheck": true
+      },
+      "591:25482149": {
+        "firstObservedAt": "2026-11-28T08:07:07+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
+        "sourcePublishedAt": 1792036435,
+        "everObserved": true,
+        "sourcePublishedAtType": null,
+        "seenOnLastVerifiedCheck": true
+      },
+      "591:25450810": {
+        "firstObservedAt": "2026-11-28T08:07:07+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
+        "sourcePublishedAt": 1790672022,
+        "everObserved": true,
+        "sourcePublishedAtType": null,
+        "seenOnLastVerifiedCheck": true
+      },
+      "591:25428169": {
+        "firstObservedAt": "2026-11-28T08:07:07+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
+        "sourcePublishedAt": 1791954239,
+        "everObserved": true,
+        "sourcePublishedAtType": null,
+        "seenOnLastVerifiedCheck": true
+      },
+      "591:25560155": {
+        "firstObservedAt": "2026-11-28T08:07:07+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
+        "sourcePublishedAt": 1792932565,
+        "everObserved": true,
+        "sourcePublishedAtType": null,
+        "seenOnLastVerifiedCheck": true
+      },
+      "591:25590096": {
+        "firstObservedAt": "2026-11-28T08:07:07+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
+        "sourcePublishedAt": 1789823003,
+        "everObserved": true,
+        "sourcePublishedAtType": null,
+        "seenOnLastVerifiedCheck": true
+      },
+      "591:25590823": {
+        "firstObservedAt": "2026-11-28T08:07:07+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
+        "sourcePublishedAt": 1790154833,
+        "everObserved": true,
+        "sourcePublishedAtType": null,
+        "seenOnLastVerifiedCheck": true
+      },
+      "591:25584978": {
+        "firstObservedAt": "2026-11-28T08:07:07+00:00",
+        "lastObservedAt": "2026-11-28T08:07:07+00:00",
+        "sourcePublishedAt": 1783864934,
         "everObserved": true,
         "sourcePublishedAtType": null,
         "seenOnLastVerifiedCheck": true
@@ -16111,7 +16199,7 @@
     "信義房屋": {
       "信義房屋:3359KG": {
         "firstObservedAt": "2026-11-02T12:33:44+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1793502380,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16135,7 +16223,7 @@
       },
       "信義房屋:5860LQ": {
         "firstObservedAt": "2026-10-16T08:30:27+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1792133652,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16143,7 +16231,7 @@
       },
       "信義房屋:3232NF": {
         "firstObservedAt": "2026-10-15T10:15:19+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1792054375,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16151,7 +16239,7 @@
       },
       "信義房屋:4503HN": {
         "firstObservedAt": "2026-10-12T04:00:33+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1791773687,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16159,7 +16247,7 @@
       },
       "信義房屋:9197YX": {
         "firstObservedAt": "2026-09-30T12:45:59+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1790759178,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16167,7 +16255,7 @@
       },
       "信義房屋:2924YS": {
         "firstObservedAt": "2026-09-27T20:09:52+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1790538380,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16175,7 +16263,7 @@
       },
       "信義房屋:8485QF": {
         "firstObservedAt": "2026-09-14T07:46:06+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1789368867,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16183,7 +16271,7 @@
       },
       "信義房屋:14719K": {
         "firstObservedAt": "2026-08-21T20:41:20+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1787341291,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16191,7 +16279,7 @@
       },
       "信義房屋:8478PH": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1786360036,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16199,7 +16287,7 @@
       },
       "信義房屋:5752GM": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1786244719,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16207,7 +16295,7 @@
       },
       "信義房屋:3658LZ": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1784955377,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16215,7 +16303,7 @@
       },
       "信義房屋:6630DJ": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1784898305,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16223,7 +16311,7 @@
       },
       "信義房屋:4042UF": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1784790275,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16231,7 +16319,7 @@
       },
       "信義房屋:3860YC": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1784538371,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16239,7 +16327,7 @@
       },
       "信義房屋:6092QT": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1784177848,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16247,7 +16335,7 @@
       },
       "信義房屋:6300AU": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1784084655,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16255,7 +16343,7 @@
       },
       "信義房屋:8606ZC": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1783825531,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16263,7 +16351,7 @@
       },
       "信義房屋:3215DL": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1783415157,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16271,7 +16359,7 @@
       },
       "信義房屋:8593LS": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1782795847,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16279,7 +16367,7 @@
       },
       "信義房屋:1867YM": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1782191072,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16287,7 +16375,7 @@
       },
       "信義房屋:6522GX": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1782191072,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16295,7 +16383,7 @@
       },
       "信義房屋:7892UX": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1781787837,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16303,7 +16391,7 @@
       },
       "信義房屋:9692LY": {
         "firstObservedAt": "2026-08-21T04:46:27+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1780664717,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16311,7 +16399,7 @@
       },
       "信義房屋:6956FJ": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1780146304,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16319,7 +16407,7 @@
       },
       "信義房屋:1402SL": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1778900250,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16327,7 +16415,7 @@
       },
       "信義房屋:7188GU": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1778123117,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16335,7 +16423,7 @@
       },
       "信義房屋:0886ZW": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1777431867,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16343,7 +16431,7 @@
       },
       "信義房屋:2664TV": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1776927874,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16351,7 +16439,7 @@
       },
       "信義房屋:3568NM": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1775732644,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16359,7 +16447,7 @@
       },
       "信義房屋:3860VH": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1774122918,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16367,7 +16455,7 @@
       },
       "信義房屋:5637RL": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1774122918,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16375,7 +16463,7 @@
       },
       "信義房屋:5818CQ": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1774122918,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16383,7 +16471,7 @@
       },
       "信義房屋:6218YW": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1774062214,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16391,7 +16479,7 @@
       },
       "信義房屋:6152TJ": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1767582320,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16399,7 +16487,7 @@
       },
       "信義房屋:5887RT": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1764966425,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16407,7 +16495,7 @@
       },
       "信義房屋:5368YG": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1764306277,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16415,7 +16503,7 @@
       },
       "信義房屋:9435YK": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1764061469,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16423,7 +16511,7 @@
       },
       "信義房屋:8352FP": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1763456660,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16431,7 +16519,7 @@
       },
       "信義房屋:4833HN": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1761901587,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16439,7 +16527,7 @@
       },
       "信義房屋:2491JY": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1761728652,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16447,7 +16535,7 @@
       },
       "信義房屋:0390CW": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1761336588,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16455,7 +16543,7 @@
       },
       "信義房屋:9048RV": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1758459801,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16463,7 +16551,7 @@
       },
       "信義房屋:5799WW": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1757919862,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16471,7 +16559,7 @@
       },
       "信義房屋:2006WS": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1754164543,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16479,7 +16567,7 @@
       },
       "信義房屋:18830N": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1751778183,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16495,7 +16583,7 @@
       },
       "信義房屋:9368WF": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1746191012,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16503,7 +16591,7 @@
       },
       "信義房屋:0496JB": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1745319379,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16511,7 +16599,7 @@
       },
       "信義房屋:5347JQ": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1742612117,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16519,7 +16607,7 @@
       },
       "信義房屋:9633KZ": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1742115337,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16527,7 +16615,7 @@
       },
       "信義房屋:6067GC": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1740452187,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16535,7 +16623,7 @@
       },
       "信義房屋:0352HH": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1739696092,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16543,7 +16631,7 @@
       },
       "信義房屋:7288WM": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1737378190,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16551,7 +16639,7 @@
       },
       "信義房屋:2238MF": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1732877725,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16559,7 +16647,7 @@
       },
       "信義房屋:1110AH": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1731905745,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16567,7 +16655,7 @@
       },
       "信義房屋:6901DN": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1728298518,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16575,7 +16663,7 @@
       },
       "信義房屋:1718YP": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1728298518,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16583,7 +16671,7 @@
       },
       "信義房屋:1247NF": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1716967503,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16591,7 +16679,7 @@
       },
       "信義房屋:4658HT": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1714721098,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16599,7 +16687,7 @@
       },
       "信義房屋:7956WZ": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1701458312,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16607,7 +16695,7 @@
       },
       "信義房屋:7015KC": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1700881158,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16615,7 +16703,7 @@
       },
       "信義房屋:74076H": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1650957912,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16623,7 +16711,7 @@
       },
       "信義房屋:01327T": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1650957912,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16631,7 +16719,7 @@
       },
       "信義房屋:03516R": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1636356392,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16639,7 +16727,7 @@
       },
       "信義房屋:68310D": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1612814441,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16647,7 +16735,7 @@
       },
       "信義房屋:33277Z": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1606893955,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16781,7 +16869,7 @@
       },
       "信義房屋:7533YZ": {
         "firstObservedAt": "2026-08-18T12:57:05+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1747285425,
         "everObserved": true,
         "seenOnLastVerifiedCheck": true
@@ -16809,7 +16897,7 @@
       },
       "信義房屋:8398MC": {
         "firstObservedAt": "2026-11-06T09:15:19+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1793955259,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16825,7 +16913,7 @@
       },
       "信義房屋:8928TQ": {
         "firstObservedAt": "2026-11-16T11:15:38+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1794826406,
         "everObserved": true,
         "sourcePublishedAtType": "publishTime",
@@ -16841,7 +16929,7 @@
       },
       "信義房屋:1236XU": {
         "firstObservedAt": "2026-11-26T11:15:21+00:00",
-        "lastObservedAt": "2026-11-28T08:00:30+00:00",
+        "lastObservedAt": "2026-11-28T08:15:28+00:00",
         "sourcePublishedAt": 1795690387,
         "everObserved": true,
         "seenOnLastVerifiedCheck": true
@@ -19676,7 +19764,7 @@
     "5168": {
       "5168:35385397": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19684,7 +19772,7 @@
       },
       "5168:38320560": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19692,7 +19780,7 @@
       },
       "5168:38498100": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19700,7 +19788,7 @@
       },
       "5168:33956178": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19716,7 +19804,7 @@
       },
       "5168:24171601": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19732,7 +19820,7 @@
       },
       "5168:16758272": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19740,7 +19828,7 @@
       },
       "5168:36493438": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19748,7 +19836,7 @@
       },
       "5168:38212771": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19764,7 +19852,7 @@
       },
       "5168:37913230": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1775836800,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19788,7 +19876,7 @@
       },
       "5168:22734264": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19796,7 +19884,7 @@
       },
       "5168:37928641": {
         "firstObservedAt": "2026-11-03T08:16:04+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "seenOnLastVerifiedCheck": true,
         "everObserved": true,
         "sourcePublishedAt": 1791820800,
@@ -19804,7 +19892,7 @@
       },
       "5168:32950239": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19836,7 +19924,7 @@
       },
       "5168:39235331": {
         "firstObservedAt": "2026-11-05T11:01:07+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1791820800,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19844,7 +19932,7 @@
       },
       "5168:38050477": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19852,7 +19940,7 @@
       },
       "5168:38987743": {
         "firstObservedAt": "2026-10-22T17:36:52+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19876,7 +19964,7 @@
       },
       "5168:37910106": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19884,7 +19972,7 @@
       },
       "5168:38116565": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19892,7 +19980,7 @@
       },
       "5168:39128983": {
         "firstObservedAt": "2026-11-02T12:30:58+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1787760000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19900,7 +19988,7 @@
       },
       "5168:33567306": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19916,7 +20004,7 @@
       },
       "5168:19590310": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19924,7 +20012,7 @@
       },
       "5168:39091748": {
         "firstObservedAt": "2026-10-29T10:00:55+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1791820800,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19932,7 +20020,7 @@
       },
       "5168:26630266": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19940,7 +20028,7 @@
       },
       "5168:26630123": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19948,7 +20036,7 @@
       },
       "5168:28797343": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19956,7 +20044,7 @@
       },
       "5168:37147531": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1785081600,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19964,7 +20052,7 @@
       },
       "5168:19255789": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19972,7 +20060,7 @@
       },
       "5168:26234090": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19980,7 +20068,7 @@
       },
       "5168:39058935": {
         "firstObservedAt": "2026-10-27T11:46:06+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1793030400,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19988,7 +20076,7 @@
       },
       "5168:35705134": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -19996,7 +20084,7 @@
       },
       "5168:37596683": {
         "firstObservedAt": "2026-11-04T10:30:57+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1783612800,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20004,7 +20092,7 @@
       },
       "5168:32185101": {
         "firstObservedAt": "2026-11-03T07:31:00+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1720022400,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20012,7 +20100,7 @@
       },
       "5168:39139796": {
         "firstObservedAt": "2026-11-02T12:30:58+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1773936000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20020,7 +20108,7 @@
       },
       "5168:33259075": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20028,7 +20116,7 @@
       },
       "5168:37831599": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1761667200,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20036,7 +20124,7 @@
       },
       "5168:37831665": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1742486400,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20052,7 +20140,7 @@
       },
       "5168:37831368": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1742486400,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20060,7 +20148,7 @@
       },
       "5168:36168454": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20068,7 +20156,7 @@
       },
       "5168:36095645": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1761321600,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20084,7 +20172,7 @@
       },
       "5168:37408231": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20092,7 +20180,7 @@
       },
       "5168:38424411": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20100,7 +20188,7 @@
       },
       "5168:38320505": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1747152000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20108,7 +20196,7 @@
       },
       "5168:38044196": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1747152000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20116,7 +20204,7 @@
       },
       "5168:22785865": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1743609600,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20124,7 +20212,7 @@
       },
       "5168:29681413": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1743609600,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20132,7 +20220,7 @@
       },
       "5168:24188959": {
         "firstObservedAt": "2026-10-02T01:40:33+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1747152000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20148,7 +20236,7 @@
       },
       "5168:38644928": {
         "firstObservedAt": "2026-11-09T05:30:51+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20156,7 +20244,7 @@
       },
       "5168:38571019": {
         "firstObservedAt": "2026-11-12T07:15:55+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1758556800,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20164,7 +20252,7 @@
       },
       "5168:32725993": {
         "firstObservedAt": "2026-11-12T17:01:02+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20172,7 +20260,7 @@
       },
       "5168:39390585": {
         "firstObservedAt": "2026-11-13T09:16:03+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1760112000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20180,7 +20268,7 @@
       },
       "5168:34007405": {
         "firstObservedAt": "2026-11-17T03:46:14+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1758556800,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20188,7 +20276,7 @@
       },
       "5168:33036974": {
         "firstObservedAt": "2026-11-18T02:16:04+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1780761600,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20196,7 +20284,7 @@
       },
       "5168:39473558": {
         "firstObservedAt": "2026-11-18T10:30:30+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1792944000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20204,7 +20292,7 @@
       },
       "5168:39524730": {
         "firstObservedAt": "2026-11-21T06:00:58+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1718726400,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20212,7 +20300,7 @@
       },
       "5168:39525742": {
         "firstObservedAt": "2026-11-21T07:01:19+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1718553600,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20220,7 +20308,7 @@
       },
       "5168:39526952": {
         "firstObservedAt": "2026-11-21T08:30:56+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1718380800,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20228,7 +20316,7 @@
       },
       "5168:39530417": {
         "firstObservedAt": "2026-11-21T09:30:53+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1718553600,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20236,7 +20324,7 @@
       },
       "5168:39534531": {
         "firstObservedAt": "2026-11-22T02:31:02+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1718553600,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20244,7 +20332,7 @@
       },
       "5168:39535059": {
         "firstObservedAt": "2026-11-22T03:16:03+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1718553600,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20252,7 +20340,7 @@
       },
       "5168:39535268": {
         "firstObservedAt": "2026-11-22T04:00:58+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1718380800,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20260,7 +20348,7 @@
       },
       "5168:38854049": {
         "firstObservedAt": "2026-11-24T12:30:44+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1795449600,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20268,7 +20356,7 @@
       },
       "5168:39583932": {
         "firstObservedAt": "2026-11-24T12:30:44+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1795104000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20276,7 +20364,7 @@
       },
       "5168:39615733": {
         "firstObservedAt": "2026-11-25T08:00:32+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1795536000,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
@@ -20284,7 +20372,7 @@
       },
       "5168:39654442": {
         "firstObservedAt": "2026-11-27T03:01:18+00:00",
-        "lastObservedAt": "2026-11-28T05:45:53+00:00",
+        "lastObservedAt": "2026-11-28T08:16:14+00:00",
         "sourcePublishedAt": 1758556800,
         "sourcePublishedAtType": "housepriceGroupNewKeyInDate",
         "seenOnLastVerifiedCheck": true,
