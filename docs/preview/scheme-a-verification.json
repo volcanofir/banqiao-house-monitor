@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-11-28T02:33:08+00:00",
+  "verifiedAt": "2026-11-28T02:47:08+00:00",
   "scheme": "A",
   "integrityVersion": "scheme-a-canonical-v5-sinyi-rakuya-5168-floor-neartie",
   "source": "591 + Sinyi official structured floors + Rakuya + 5168 seven-road snapshots + Surfshark + system Chrome official Yongching DOM",
@@ -8,7 +8,7 @@
   "safeFloorParser": true,
   "sinyiStructuredFloorMatching": true,
   "sinyiFloorEnrichment": {
-    "generatedAt": "2026-11-28T02:32:57+00:00",
+    "generatedAt": "2026-11-28T02:46:51+00:00",
     "previewOnly": true,
     "source": "Sinyi official filterObject.php API via runtime browser-issued auth",
     "sourceRunMode": "official_filterObject_api_browser_auth",
@@ -182,22 +182,22 @@
     "groups": []
   },
   "ambiguityAudit": {
-    "auditedAt": "2026-11-28T02:33:07+00:00",
-    "propertyGroupCount": 176,
+    "auditedAt": "2026-11-28T02:47:08+00:00",
+    "propertyGroupCount": 174,
     "companyListingCount": 63,
     "companyMatchCount": 39,
     "companyNearTieStrongCount": 0,
     "chosenCandidateRecomputeMismatchCount": 0,
-    "weakIdentityAlreadyMergedPairCount": 1081
+    "weakIdentityAlreadyMergedPairCount": 1077
   },
   "snapshotCapturedAt": "2026-11-28T02:32:41+00:00",
   "companySnapshotCapturedAt": "2026-11-28T02:32:41+00:00",
-  "companyGapGeneratedAt": "2026-11-28T02:33:03+00:00",
+  "companyGapGeneratedAt": "2026-11-28T02:47:02+00:00",
   "browserListingCount": 63,
   "companyListingCount": 63,
-  "propertyGroupCount": 176,
-  "rawListingCount": 841,
-  "comparisonCount": 176,
+  "propertyGroupCount": 174,
+  "rawListingCount": 829,
+  "comparisonCount": 174,
   "coveredRoads": [
     "板橋區中山路二段",
     "板橋區三民路二段",
@@ -263,38 +263,38 @@
   "counts": {
     "company_match": 39,
     "review": 5,
-    "missing": 132,
+    "missing": 130,
     "unavailable": 0
   },
   "crossPlatformMergedGroupCount": 111,
   "crossSourceReviewCount": 11,
   "preview591Regroup": {
-    "original591TopLevel": 106,
-    "regrouped591TopLevel": 94,
-    "regrouped591ClusterCount": 9,
-    "regrouped591AbsorbedCount": 12,
+    "original591TopLevel": 102,
+    "regrouped591TopLevel": 92,
+    "regrouped591ClusterCount": 8,
+    "regrouped591AbsorbedCount": 10,
     "clusterFloorConflictBlocked": 0
   },
   "preview591Warelist": {
     "mode": "warelist_preview",
     "status": "ok",
     "complete": true,
-    "updatedAt": "2026-11-27T23:35:33+00:00",
-    "totalCount": 246,
-    "uniqueListingCount": 246,
-    "groupCount": 106,
+    "updatedAt": "2026-11-28T02:46:34+00:00",
+    "totalCount": 236,
+    "uniqueListingCount": 236,
+    "groupCount": 102,
     "roadCounts": [
       {
         "road": "中山路二段",
-        "count": 134
+        "count": 123
       },
       {
         "road": "三民路二段",
-        "count": 66
+        "count": 65
       },
       {
         "road": "光復街",
-        "count": 6
+        "count": 7
       },
       {
         "road": "萬安街",
@@ -302,7 +302,7 @@
       },
       {
         "road": "林森街",
-        "count": 3
+        "count": 4
       },
       {
         "road": "三民路一段",
@@ -314,17 +314,17 @@
       }
     ],
     "sourceFieldCoverage": {
-      "floor": 236,
-      "layout": 246,
-      "community": 148,
-      "houseAge": 246,
-      "parkingFlag": 246,
-      "unverifiedFloor": 10,
-      "total": 246
+      "floor": 225,
+      "layout": 236,
+      "community": 140,
+      "houseAge": 236,
+      "parkingFlag": 236,
+      "unverifiedFloor": 11,
+      "total": 236
     },
     "floorAwarePreviewGrouping": true,
-    "historyMatchedIdCount": 124,
-    "historyNotPresentUnconfirmed": 389,
+    "historyMatchedIdCount": 118,
+    "historyNotPresentUnconfirmed": 395,
     "historyReappearedCount": 0,
     "missingIdIsNotDelisting": true,
     "newIdIsNotNewProperty": true
@@ -342,8 +342,8 @@
     "removed": [],
     "rule": "API精確地址過濾後，同一永慶 house ID 不得跨不同監控道路"
   },
-  "candidateCount": 170,
-  "candidatesWithFloor": 170,
+  "candidateCount": 168,
+  "candidatesWithFloor": 168,
   "candidatesWithYcCaseId": 2,
   "detailFloorEnrichment": {
     "generatedAt": "2026-11-28T02:32:57+00:00",
