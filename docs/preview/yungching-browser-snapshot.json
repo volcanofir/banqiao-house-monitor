@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-28T07:17:53+00:00",
+  "capturedAt": "2026-11-28T07:32:44+00:00",
   "previewOnly": true,
   "source": "buy.yungching.com.tw official /api/v2/list decrypted after Chromium warmup",
   "captureMode": "yungching_official_api",
@@ -546,6 +546,33 @@
       }
     },
     {
+      "id": "7595236",
+      "road": "板橋區中山路二段",
+      "title": "皇冠市景四房雙車",
+      "price": 4660,
+      "area": 83.75,
+      "floor": "19/21樓",
+      "address": "新北市板橋區中山路二段",
+      "type": "住宅大樓",
+      "url": "https://buy.yungching.com.tw/house/7595236",
+      "sourceMode": "yungching_official_api",
+      "text": "皇冠市景四房雙車 新北市板橋區中山路二段 住宅大樓 建坪83.75 19/21樓 4房(室)2廳2衛 4660萬",
+      "rawText": "皇冠市景四房雙車 新北市板橋區中山路二段 住宅大樓 建坪83.75 19/21樓 4房(室)2廳2衛 4660萬",
+      "patternInfo": {
+        "room": 4,
+        "livingRoom": 2,
+        "bathRoom": 2,
+        "addRoom": null,
+        "addLivingRoom": null,
+        "addBathRoom": null
+      },
+      "floorInfo": {
+        "fromFloor": 19,
+        "toFloor": 19,
+        "upFloor": 21
+      }
+    },
+    {
       "id": "7460476",
       "road": "板橋區中山路二段",
       "title": "中山邊間採光大戶",
@@ -585,33 +612,6 @@
       "sourceMode": "yungching_official_api",
       "text": "皇冠全新裝潢四房 新北市板橋區中山路二段 住宅大樓 建坪84.58 19/21樓 4房(室)2廳2衛 4718萬",
       "rawText": "皇冠全新裝潢四房 新北市板橋區中山路二段 住宅大樓 建坪84.58 19/21樓 4房(室)2廳2衛 4718萬",
-      "patternInfo": {
-        "room": 4,
-        "livingRoom": 2,
-        "bathRoom": 2,
-        "addRoom": null,
-        "addLivingRoom": null,
-        "addBathRoom": null
-      },
-      "floorInfo": {
-        "fromFloor": 19,
-        "toFloor": 19,
-        "upFloor": 21
-      }
-    },
-    {
-      "id": "7595236",
-      "road": "板橋區中山路二段",
-      "title": "皇冠市景四房雙車",
-      "price": 4660,
-      "area": 83.75,
-      "floor": "19/21樓",
-      "address": "新北市板橋區中山路二段",
-      "type": "住宅大樓",
-      "url": "https://buy.yungching.com.tw/house/7595236",
-      "sourceMode": "yungching_official_api",
-      "text": "皇冠市景四房雙車 新北市板橋區中山路二段 住宅大樓 建坪83.75 19/21樓 4房(室)2廳2衛 4660萬",
-      "rawText": "皇冠市景四房雙車 新北市板橋區中山路二段 住宅大樓 建坪83.75 19/21樓 4房(室)2廳2衛 4660萬",
       "patternInfo": {
         "room": 4,
         "livingRoom": 2,
@@ -2250,7 +2250,7 @@
     "allRoadsComplete": true
   },
   "detailFloorEnrichment": {
-    "generatedAt": "2026-11-28T07:18:08+00:00",
+    "generatedAt": "2026-11-28T07:32:57+00:00",
     "source": "Yongching verified persistent detail cache; uncached rows use official Chromium response first, current-property DOM fallback only when needed",
     "eligibleBeforeCache": 3,
     "cacheHitCount": 3,
